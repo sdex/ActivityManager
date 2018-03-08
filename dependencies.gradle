@@ -1,0 +1,11 @@
+ext.app = [
+  compileSdk: 27,
+  buildTools: '27.0.3'
+]
+
+ext.versions = [
+  support         : '27.1.0',
+  constraintLayout: '1.0.2',
+  playServices    : '11.8.0',
+  roomVersion     : '1.1.0-alpha3'
+]
