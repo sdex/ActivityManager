@@ -1,6 +1,5 @@
 package com.sdex.activityrunner;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -66,7 +65,6 @@ public class AllTasksListFragment extends Fragment implements
         MyActivityInfo activity = (MyActivityInfo) list.getExpandableListAdapter()
           .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
             ExpandableListView.getPackedPositionChild(info.packedPosition));
-        menu.setHeaderIcon(new BitmapDrawable(getResources(), activity.getIcon()));
         menu.setHeaderTitle(activity.getName());
         menu.add(Menu.NONE, 0, Menu.NONE, R.string.context_action_shortcut);
         menu.add(Menu.NONE, 1, Menu.NONE, R.string.context_action_launch);

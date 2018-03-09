@@ -10,31 +10,28 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import com.sdex.activityrunner.info.MyActivityInfo;
 import com.sdex.activityrunner.util.LauncherIconCreator;
 
 public class ShortcutEditDialogFragment extends DialogFragment {
 
-  protected MyActivityInfo activityInfo;
-  protected EditText textName;
-  protected ImageButton imageIcon;
-
   @NonNull
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     ComponentName activity = getArguments().getParcelable("activityInfo");
-    this.activityInfo = new MyActivityInfo(activity, getActivity().getPackageManager());
+    final MyActivityInfo activityInfo = new MyActivityInfo(activity,
+      getActivity().getPackageManager());
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     LayoutInflater inflater = LayoutInflater.from(getActivity());
     View view = inflater.inflate(R.layout.dialog_edit_activity, null);
 
-    textName = view.findViewById(R.id.editText_name);
-    textName.setText(this.activityInfo.getName());
+    final EditText textName = view.findViewById(R.id.editText_name);
+    textName.setText(activityInfo.getName());
 
-    imageIcon = view.findViewById(R.id.iconButton);
-    imageIcon.setImageBitmap(this.activityInfo.getIcon());
+    final ImageView imageIcon = view.findViewById(R.id.iconButton);
+    imageIcon.setImageBitmap(activityInfo.getIcon());
 
     builder.setTitle(R.string.context_action_edit)
       .setView(view)
