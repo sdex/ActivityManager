@@ -1,5 +1,6 @@
 package com.sdex.commons.apps;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.sdex.commons.R;
 import com.sdex.commons.util.AppUtils;
-import com.squareup.picasso.Picasso;
+import com.sdex.commons.util.UIUtils;
 import java.util.List;
 
 public class AppsListAdapter extends RecyclerView.Adapter<AppsListAdapter.ViewHolder> {
@@ -20,14 +21,15 @@ public class AppsListAdapter extends RecyclerView.Adapter<AppsListAdapter.ViewHo
     this.items = items;
   }
 
+  @NonNull
   @Override
-  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     LayoutInflater inflater = LayoutInflater.from(parent.getContext());
     return new ViewHolder(inflater.inflate(R.layout.item_app, parent, false));
   }
 
   @Override
-  public void onBindViewHolder(ViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     AppItem item = items.get(position);
     holder.bind(item);
   }
@@ -55,16 +57,13 @@ public class AppsListAdapter extends RecyclerView.Adapter<AppsListAdapter.ViewHo
     public void bind(final AppItem item) {
       name.setText(item.getName());
       description.setText(item.getDescription());
+      icon.setImageDrawable(UIUtils.getDrawable(item.getIcon(), itemView.getContext()));
       itemClickView.setOnClickListener(new OnClickListener() {
         @Override
         public void onClick(View v) {
           AppUtils.openApp(itemView.getContext(), item.getPackageName());
         }
       });
-      Picasso.with(icon.getContext())
-        .load(item.getIcon())
-        .into(icon);
     }
   }
-
 }

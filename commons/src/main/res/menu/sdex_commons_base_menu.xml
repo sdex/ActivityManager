@@ -4,11 +4,13 @@
 
   <item
     android:id="@+id/rate"
+    android:orderInCategory="0"
     android:title="@string/sdex_commons_rate"
     app:showAsAction="never" />
 
   <item
     android:id="@+id/more_apps"
+    android:orderInCategory="1"
     android:title="@string/sdex_commons_more_apps"
     app:showAsAction="never" />
 

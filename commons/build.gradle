@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  //implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation "com.android.support:appcompat-v7:$versions.support"
   implementation "com.android.support:recyclerview-v7:$versions.support"
   implementation "com.android.support:cardview-v7:$versions.support"
