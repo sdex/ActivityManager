@@ -2,12 +2,15 @@ package com.sdex.commons.apps;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.R;
+import com.sdex.commons.util.IOUtils;
 import com.sdex.commons.util.SpaceItemDecoration;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -26,7 +29,7 @@ import org.json.JSONTokener;
 
 public class AppsListActivity extends BaseActivity {
 
-  public static final long UPDATE_PERIOD = TimeUnit.DAYS.toMillis(3);
+  public static final long UPDATE_PERIOD = TimeUnit.DAYS.toMillis(7);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +69,15 @@ public class AppsListActivity extends BaseActivity {
     protected List<AppItem> doInBackground(Void... voids) {
       SharedPreferences appCache = context.getSharedPreferences("app_cache",
         Context.MODE_PRIVATE);
-      String appList = appCache.getString("app_list", "[]");
+      String appList = appCache.getString("app_list", null);
+      if (appList == null) {
+        appList = IOUtils.loadAssetTextAsString(context, "apps.json");
+      }
+      if (appList == null) {
+        appList = "[]";
+      }
       long lastUpdate = appCache.getLong("last_update", 0);
-      if (appList != null && System.currentTimeMillis() - lastUpdate > UPDATE_PERIOD) {
+      if (System.currentTimeMillis() - lastUpdate > UPDATE_PERIOD) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
           .url(url)

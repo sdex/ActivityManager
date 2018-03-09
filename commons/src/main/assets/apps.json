@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Device IMEI Changer [Xposed]",
+    "description": "The application acts as Xposed module and allows you to mask device IMEI",
+    "package_name": "com.sdex.xposed.imei",
+    "icon": "http://this.alwaysdata.net/apps/icons/imei.png"
+  },
+  {
+    "id": 2,
+    "name": "Device ID changer [Root]",
+    "description": "The app changes ANDROID ID without factory reset. ROOT permission is required",
+    "package_name": "com.sdex.androididchanger",
+    "icon": "http://this.alwaysdata.net/apps/icons/id.png"
+  }
+]
