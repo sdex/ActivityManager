@@ -3,10 +3,15 @@ package com.sdex.activityrunner.util;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.pm.ShortcutInfoCompat;
 import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
 import android.widget.Toast;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.ActivityModel;
 
@@ -20,9 +25,9 @@ public class LauncherIconCreator {
     return intent;
   }
 
-  public static void createLauncherIcon(Context context, ActivityModel activityModel) {
-    final IconCompat iconCompat = //IconCompat.createWithBitmap(activityModel.getIcon()); // TODO icon
-      IconCompat.createWithResource(context, R.mipmap.ic_launcher);
+  private static void createLauncherIcon(Context context, ActivityModel activityModel,
+    Bitmap bitmap) {
+    final IconCompat iconCompat = IconCompat.createWithBitmap(bitmap);
     ShortcutInfoCompat pinShortcutInfo =
       new ShortcutInfoCompat.Builder(context, activityModel.getName())
         .setIcon(iconCompat)
@@ -30,6 +35,20 @@ public class LauncherIconCreator {
         .setIntent(getActivityIntent(activityModel.getComponentName()))
         .build();
     ShortcutManagerCompat.requestPinShortcut(context, pinShortcutInfo, null);
+  }
+
+  public static void createLauncherIcon(final Context context, final ActivityModel activityModel) {
+    GlideApp.with(context)
+      .asBitmap()
+      .error(R.mipmap.ic_launcher)
+      .load(activityModel.getIconPath())
+      .into(new SimpleTarget<Bitmap>() {
+        @Override
+        public void onResourceReady(@NonNull Bitmap resource,
+          @Nullable Transition<? super Bitmap> transition) {
+          createLauncherIcon(context, activityModel, resource);
+        }
+      });
   }
 
   public static void launchActivity(Context context, ComponentName activity, String name) {

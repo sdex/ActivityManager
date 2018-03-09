@@ -115,7 +115,7 @@ public class AppsListFragment extends Fragment {
           case 0:
             DialogFragment dialog = new ShortcutEditDialogFragment();
             Bundle args = new Bundle();
-            args.putParcelable("activityInfo", activity.getComponentName());
+            args.putSerializable("activityInfo", activity);
             dialog.setArguments(args);
             dialog.show(getFragmentManager(), "ShortcutEditor");
             break;

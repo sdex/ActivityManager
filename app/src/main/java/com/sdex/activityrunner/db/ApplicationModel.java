@@ -6,15 +6,21 @@ import android.support.annotation.NonNull;
 @Entity(primaryKeys = {"packageName"})
 public class ApplicationModel {
 
+  @NonNull
   private String name;
   @NonNull
   private String packageName;
+  @NonNull
+  private String iconPath;
 
-  public ApplicationModel(String name, @NonNull String packageName) {
+  public ApplicationModel(@NonNull String name, @NonNull String packageName,
+    @NonNull String iconPath) {
     this.name = name;
     this.packageName = packageName;
+    this.iconPath = iconPath;
   }
 
+  @NonNull
   public String getName() {
     return name;
   }
@@ -22,5 +28,10 @@ public class ApplicationModel {
   @NonNull
   public String getPackageName() {
     return packageName;
+  }
+
+  @NonNull
+  public String getIconPath() {
+    return iconPath;
   }
 }

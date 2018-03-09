@@ -7,8 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
 import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.db.ApplicationModel;
 import com.sdex.activityrunner.db.ItemModel;
+import com.sdex.activityrunner.util.GlideApp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +20,12 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
 
   private List<ItemModel> items;
   private Context context;
+  private RequestManager glide;
 
   public ApplicationsListAdapter(Context context) {
     this.context = context;
     this.items = new ArrayList<>();
+    this.glide = GlideApp.with(context);
   }
 
   @Override
@@ -35,18 +41,21 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
   @Override
   public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
     View convertView, ViewGroup parent) {
-    ActivityModel activity = (ActivityModel) getChild(groupPosition, childPosition);
+    ActivityModel activityModel = (ActivityModel) getChild(groupPosition, childPosition);
     LayoutInflater inflater = LayoutInflater.from(context);
     View view = inflater.inflate(R.layout.all_activities_child_item, parent, false);
 
     TextView text1 = view.findViewById(android.R.id.text1);
-    text1.setText(activity.getName());
+    text1.setText(activityModel.getName());
 
     TextView text2 = view.findViewById(android.R.id.text2);
-    text2.setText(activity.getComponentName().getShortClassName());
+    text2.setText(activityModel.getComponentName().getShortClassName());
 
     ImageView icon = view.findViewById(android.R.id.icon);
-//    icon.setImageBitmap(activity.getIcon()); // TODO icon
+    glide.load(activityModel.getIconPath())
+      .apply(new RequestOptions()
+        .fitCenter())
+      .into(icon);
 
     return view;
   }
@@ -74,19 +83,22 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
   @Override
   public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
     ViewGroup parent) {
-    ItemModel pack = (ItemModel) getGroup(groupPosition);
+    ItemModel itemModel = (ItemModel) getGroup(groupPosition);
+    final ApplicationModel applicationModel = itemModel.getApplicationModel();
     LayoutInflater inflater = LayoutInflater.from(context);
     View view = inflater.inflate(R.layout.all_activities_group_item, parent, false);
 
     TextView text = view.findViewById(android.R.id.text1);
-    text.setText(pack.getApplicationModel().getName());
+    text.setText(applicationModel.getName());
 
     TextView text2 = view.findViewById(android.R.id.text2);
-    text2.setText(pack.getApplicationModel().getPackageName());
+    text2.setText(applicationModel.getPackageName());
 
     ImageView icon = view.findViewById(android.R.id.icon);
-//    icon.setImageBitmap(pack.getIcon());
-    // TODO icon
+    glide.load(applicationModel.getIconPath())
+      .apply(new RequestOptions()
+        .fitCenter())
+      .into(icon);
 
     return view;
   }

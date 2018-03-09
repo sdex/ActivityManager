@@ -2,10 +2,7 @@ package com.sdex.activityrunner;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -13,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import com.bumptech.glide.request.RequestOptions;
 import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.util.GlideApp;
 import com.sdex.activityrunner.util.LauncherIconCreator;
 
 public class ShortcutEditDialogFragment extends DialogFragment {
@@ -21,18 +20,8 @@ public class ShortcutEditDialogFragment extends DialogFragment {
   @NonNull
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
-    ComponentName componentName = getArguments().getParcelable("activityInfo");
-    String name;
-    PackageManager pm = getActivity().getPackageManager();
-    ActivityInfo act;
-    try {
-      act = pm.getActivityInfo(componentName, 0);
-      name = act.loadLabel(pm).toString();
-    } catch (Exception e) {
-      name = componentName.getShortClassName();
-    }
-
-    final ActivityModel activityModel = new ActivityModel(name, componentName);
+    final ActivityModel activityModel = (ActivityModel)
+      getArguments().getSerializable("activityInfo");
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     LayoutInflater inflater = LayoutInflater.from(getActivity());
@@ -42,7 +31,11 @@ public class ShortcutEditDialogFragment extends DialogFragment {
     textName.setText(activityModel.getName());
 
     final ImageView imageIcon = view.findViewById(R.id.iconButton);
-//    imageIcon.setImageBitmap(activityModel.getIcon()); // TODO icon
+    GlideApp.with(this)
+      .load(activityModel.getIconPath())
+      .apply(new RequestOptions()
+        .fitCenter())
+      .into(imageIcon);
 
     builder.setTitle(R.string.context_action_edit)
       .setView(view)

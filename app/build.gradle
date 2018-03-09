@@ -30,11 +30,12 @@ dependencies {
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
   implementation "com.google.firebase:firebase-ads:$versions.playServices"
   implementation "com.google.firebase:firebase-crash:$versions.playServices"
-
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
   annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
   implementation "android.arch.persistence.room:runtime:$versions.room"
   annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
+  implementation 'com.github.bumptech.glide:glide:4.6.1'
+  annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

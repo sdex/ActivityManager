@@ -5,6 +5,7 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.content.ComponentName;
 import android.support.annotation.NonNull;
+import java.io.Serializable;
 
 @Entity(primaryKeys = {"className"},
   indices = {@Index(value = {"packageName"})},
@@ -12,7 +13,7 @@ import android.support.annotation.NonNull;
     parentColumns = "packageName",
     childColumns = "packageName",
     onDelete = ForeignKey.CASCADE))
-public class ActivityModel {
+public class ActivityModel implements Serializable {
 
   @NonNull
   private String name;
@@ -20,18 +21,15 @@ public class ActivityModel {
   private String packageName;
   @NonNull
   private String className;
+  @NonNull
+  private String iconPath;
 
   public ActivityModel(@NonNull String name, @NonNull String packageName,
-    @NonNull String className) {
+    @NonNull String className, @NonNull String iconPath) {
     this.name = name;
     this.packageName = packageName;
     this.className = className;
-  }
-
-  public ActivityModel(@NonNull String name, @NonNull ComponentName componentName) {
-    this.name = name;
-    this.packageName = componentName.getPackageName();
-    this.className = componentName.getClassName();
+    this.iconPath = iconPath;
   }
 
   @NonNull
@@ -59,6 +57,15 @@ public class ActivityModel {
 
   public void setClassName(@NonNull String className) {
     this.className = className;
+  }
+
+  @NonNull
+  public String getIconPath() {
+    return iconPath;
+  }
+
+  public void setIconPath(@NonNull String iconPath) {
+    this.iconPath = iconPath;
   }
 
   public ComponentName getComponentName() {
