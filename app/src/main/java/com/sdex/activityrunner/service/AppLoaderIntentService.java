@@ -14,6 +14,7 @@ import android.support.v4.app.JobIntentService;
 import com.sdex.activityrunner.db.ActivityModel;
 import com.sdex.activityrunner.db.AppDatabase;
 import com.sdex.activityrunner.db.ApplicationModel;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppLoaderIntentService extends JobIntentService {
@@ -32,6 +33,10 @@ public class AppLoaderIntentService extends JobIntentService {
   private void updateApplications() {
     final AppDatabase database = AppDatabase.getDatabase(this);
     PackageManager pm = getPackageManager();
+
+    List<ApplicationModel> applications = new ArrayList<>();
+    List<ActivityModel> activities = new ArrayList<>();
+
     List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
     for (PackageInfo installedPackage : installedPackages) {
       try {
@@ -46,7 +51,7 @@ public class AppLoaderIntentService extends JobIntentService {
             name = info.packageName;
           }
           ApplicationModel model = new ApplicationModel(name, packageName);
-          database.getApplicationModelDao().insert(model);
+          applications.add(model);
 
           for (ActivityInfo activity : info.activities) {
             if (activity.isEnabled() && activity.exported) {
@@ -61,7 +66,7 @@ public class AppLoaderIntentService extends JobIntentService {
 
               ActivityModel activityModel = new ActivityModel(activityName, activity.packageName,
                 activity.name);
-              database.getActivityModelDao().insert(activityModel);
+              activities.add(activityModel);
             }
           }
         }
@@ -69,6 +74,14 @@ public class AppLoaderIntentService extends JobIntentService {
         e.printStackTrace();
       }
     }
+
+    final ApplicationModel[] applicationsArray = applications
+      .toArray(new ApplicationModel[applications.size()]);
+    final ActivityModel[] activitiesArray = activities
+      .toArray(new ActivityModel[activities.size()]);
+
+    database.getApplicationModelDao().insert(applicationsArray);
+    database.getActivityModelDao().insert(activitiesArray);
   }
 
   private static int countActivitiesFromInfo(PackageInfo info) {

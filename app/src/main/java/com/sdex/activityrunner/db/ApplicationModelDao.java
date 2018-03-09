@@ -14,7 +14,7 @@ import java.util.List;
 public interface ApplicationModelDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  long insert(ApplicationModel model);
+  void insert(ApplicationModel... model);
 
   @Update(onConflict = OnConflictStrategy.REPLACE)
   void update(ApplicationModel... models);

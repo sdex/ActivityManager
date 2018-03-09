@@ -2,11 +2,14 @@ package com.sdex.activityrunner;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -20,19 +23,21 @@ import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.ExpandableListView.OnChildClickListener;
 import com.sdex.activityrunner.db.ActivityModel;
 import com.sdex.activityrunner.db.ItemModel;
+import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.LauncherIconCreator;
 import java.util.List;
 
 public class AppsListFragment extends Fragment {
 
   private ExpandableListView list;
-  private ApplicationListViewModel viewModel;
   private ApplicationsListAdapter adapter;
+  private SwipeRefreshLayout refreshLayout;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_all_list, container, false);
+    refreshLayout = view.findViewById(R.id.refresh);
     list = view.findViewById(R.id.expandableListView1);
     list.setOnChildClickListener(new OnChildClickListener() {
       @Override
@@ -47,17 +52,27 @@ public class AppsListFragment extends Fragment {
     });
     adapter = new ApplicationsListAdapter(getActivity());
     list.setAdapter(adapter);
+
+    refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        refreshLayout.setRefreshing(true);
+        AppLoaderIntentService.enqueueWork(getActivity(), new Intent());
+      }
+    });
     return view;
   }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel.class);
+    ApplicationListViewModel viewModel = ViewModelProviders.of(this)
+      .get(ApplicationListViewModel.class);
     viewModel.getItems().observe(this, new Observer<List<ItemModel>>() {
       @Override
       public void onChanged(@Nullable List<ItemModel> itemModels) {
         adapter.addItems(itemModels);
+        refreshLayout.setRefreshing(false);
       }
     });
   }

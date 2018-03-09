@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="?android:attr/activatedBackgroundIndicator"
@@ -10,16 +11,16 @@
     android:id="@android:id/icon"
     android:layout_width="40dp"
     android:layout_height="40dp"
+    android:layout_marginLeft="35dp"
     android:layout_gravity="center_vertical"
-    android:layout_marginLeft="30dp"
-    android:src="@mipmap/ic_launcher" />
+    tools:src="@mipmap/ic_launcher" />
 
   <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="left|center_vertical"
-    android:orientation="vertical"
-    android:paddingLeft="10dp">
+    android:paddingLeft="10dp"
+    android:orientation="vertical">
 
     <TextView
       android:id="@android:id/text1"
@@ -27,7 +28,8 @@
       android:layout_height="wrap_content"
       android:layout_gravity="left|center_vertical"
       android:textAppearance="?android:attr/textAppearanceListItem"
-      android:textIsSelectable="false" />
+      android:textIsSelectable="false"
+      tools:text="App name" />
 
     <TextView
       android:id="@android:id/text2"
@@ -36,7 +38,8 @@
       android:layout_gravity="left|center_vertical"
       android:textAppearance="?attr/textAppearanceListItemSecondary"
       android:textColor="@android:color/darker_gray"
-      android:textIsSelectable="false" />
+      android:textIsSelectable="false"
+      tools:text="com.app.package" />
   </LinearLayout>
 
 </LinearLayout>

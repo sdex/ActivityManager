@@ -4,11 +4,17 @@
   android:layout_height="fill_parent"
   android:orientation="vertical">
 
-  <ExpandableListView
-    android:id="@+id/expandableListView1"
+  <android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fastScrollAlwaysVisible="true"
-    android:fastScrollEnabled="true" />
+    android:layout_height="wrap_content">
+
+    <ExpandableListView
+      android:id="@+id/expandableListView1"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fastScrollEnabled="true" />
+
+  </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

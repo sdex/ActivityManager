@@ -12,7 +12,7 @@ import java.util.List;
 public interface ActivityModelDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  long insert(ActivityModel model);
+  void insert(ActivityModel... model);
 
   @Update(onConflict = OnConflictStrategy.REPLACE)
   void update(ActivityModel... models);
