@@ -8,13 +8,12 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import com.sdex.activityrunner.util.Utils;
 
+@Deprecated
 public class MyActivityInfo implements Comparable<MyActivityInfo> {
 
+  private String name;
   private ComponentName componentName;
   private Bitmap icon;
-  private int iconResource;
-  private String iconResourceName;
-  private String name;
 
   public MyActivityInfo(ComponentName activity, PackageManager pm) {
     this.componentName = activity;
@@ -28,20 +27,9 @@ public class MyActivityInfo implements Comparable<MyActivityInfo> {
       } catch (ClassCastException e) {
         this.icon = Utils.getBitmap(pm.getDefaultActivityIcon());
       }
-      this.iconResource = act.getIconResource();
     } catch (NameNotFoundException e) {
       this.name = activity.getShortClassName();
       this.icon = Utils.getBitmap(pm.getDefaultActivityIcon());
-      this.iconResource = 0;
-    }
-
-    this.iconResourceName = null;
-    if (this.iconResource != 0) {
-      try {
-        this.iconResourceName = pm.getResourcesForActivity(activity)
-          .getResourceName(this.iconResource);
-      } catch (Exception e) {
-      }
     }
   }
 
@@ -55,10 +43,6 @@ public class MyActivityInfo implements Comparable<MyActivityInfo> {
 
   public String getName() {
     return name;
-  }
-
-  public String getIconResourceName() {
-    return iconResourceName;
   }
 
   public void setName(String name) {

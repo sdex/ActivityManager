@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import com.sdex.activityrunner.R;
 
+@Deprecated
 public abstract class AsyncProvider<ReturnType> extends AsyncTask<Void, Integer, ReturnType> {
 
   public interface Listener<ReturnType> {

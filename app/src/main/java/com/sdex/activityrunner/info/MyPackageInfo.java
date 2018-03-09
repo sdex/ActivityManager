@@ -11,13 +11,12 @@ import com.sdex.activityrunner.PackageManagerCache;
 import com.sdex.activityrunner.util.Utils;
 import java.util.Arrays;
 
+@Deprecated
 public class MyPackageInfo implements Comparable<MyPackageInfo> {
 
+  private String name;
   private String packageName;
   private Bitmap icon;
-  private int iconResource;
-  private String iconResourceName;
-  private String name;
   private MyActivityInfo[] activities;
 
   public MyPackageInfo(PackageInfo info, PackageManager pm, PackageManagerCache cache) {
@@ -31,20 +30,9 @@ public class MyPackageInfo implements Comparable<MyPackageInfo> {
       } catch (ClassCastException e) {
         this.icon = Utils.getBitmap(pm.getDefaultActivityIcon());
       }
-      this.iconResource = app.icon;
     } else {
       this.name = info.packageName;
       this.icon = Utils.getBitmap(pm.getDefaultActivityIcon());
-      this.iconResource = 0;
-    }
-
-    this.iconResourceName = null;
-    if (this.iconResource != 0) {
-      try {
-        this.iconResourceName = pm.getResourcesForApplication(app)
-          .getResourceName(this.iconResource);
-      } catch (Exception e) {
-      }
     }
 
     if (info.activities == null) {
@@ -92,16 +80,8 @@ public class MyPackageInfo implements Comparable<MyPackageInfo> {
     return icon;
   }
 
-  public int getIconResource() {
-    return iconResource;
-  }
-
   public String getName() {
     return name;
-  }
-
-  public String getIconResourceName() {
-    return iconResourceName;
   }
 
   @Override

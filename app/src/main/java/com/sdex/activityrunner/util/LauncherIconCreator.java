@@ -1,26 +1,14 @@
-/**
- * Based on code from Stackoverflow.com under CC BY-SA 3.0
- * Url: http://stackoverflow.com/questions/6493518/create-a-shortcut-for-any-app-on-desktop
- * By:  http://stackoverflow.com/users/815400/xuso
- * <p>
- * and
- * <p>
- * Url: http://stackoverflow.com/questions/3298908/creating-a-shortcut-how-can-i-work-with-a-drawable-as-icon
- * By:  http://stackoverflow.com/users/327402/waza-be
- */
-
 package com.sdex.activityrunner.util;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.content.pm.ShortcutInfoCompat;
 import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
 import android.widget.Toast;
 import com.sdex.activityrunner.R;
-import com.sdex.activityrunner.info.MyActivityInfo;
+import com.sdex.activityrunner.db.ActivityModel;
 
 public class LauncherIconCreator {
 
@@ -32,13 +20,14 @@ public class LauncherIconCreator {
     return intent;
   }
 
-  public static void createLauncherIcon(Context context, MyActivityInfo activity) {
-    final IconCompat iconCompat = IconCompat.createWithBitmap(activity.getIcon());
+  public static void createLauncherIcon(Context context, ActivityModel activityModel) {
+    final IconCompat iconCompat = //IconCompat.createWithBitmap(activityModel.getIcon()); // TODO icon
+      IconCompat.createWithResource(context, R.mipmap.ic_launcher);
     ShortcutInfoCompat pinShortcutInfo =
-      new ShortcutInfoCompat.Builder(context, activity.getName())
+      new ShortcutInfoCompat.Builder(context, activityModel.getName())
         .setIcon(iconCompat)
-        .setShortLabel(activity.getName())
-        .setIntent(getActivityIntent(activity.getComponentName()))
+        .setShortLabel(activityModel.getName())
+        .setIntent(getActivityIntent(activityModel.getComponentName()))
         .build();
     ShortcutManagerCompat.requestPinShortcut(context, pinShortcutInfo, null);
   }

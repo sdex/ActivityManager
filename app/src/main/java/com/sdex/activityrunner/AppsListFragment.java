@@ -1,7 +1,10 @@
 package com.sdex.activityrunner;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
@@ -15,40 +18,48 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.ExpandableListView.OnChildClickListener;
-import com.sdex.activityrunner.info.MyActivityInfo;
-import com.sdex.activityrunner.loader.AllTasksListAsyncProvider;
-import com.sdex.activityrunner.loader.AsyncProvider;
+import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.db.ItemModel;
 import com.sdex.activityrunner.util.LauncherIconCreator;
+import java.util.List;
 
-@Deprecated
-public class AllTasksListFragment extends Fragment implements
-  AllTasksListAsyncProvider.Listener<AllTasksListAdapter> {
+public class AppsListFragment extends Fragment {
 
   private ExpandableListView list;
+  private ApplicationListViewModel viewModel;
+  private ApplicationsListAdapter adapter;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_all_list, container, false);
-
     list = view.findViewById(R.id.expandableListView1);
-
     list.setOnChildClickListener(new OnChildClickListener() {
       @Override
       public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
         int childPosition, long id) {
         ExpandableListAdapter adapter = parent.getExpandableListAdapter();
-        MyActivityInfo info = (MyActivityInfo) adapter.getChild(groupPosition, childPosition);
+        ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
         LauncherIconCreator.launchActivity(getActivity(),
           info.getComponentName(), info.getName());
         return false;
       }
     });
-
-    AllTasksListAsyncProvider provider = new AllTasksListAsyncProvider(this.getActivity(), this);
-    provider.execute();
-
+    adapter = new ApplicationsListAdapter(getActivity());
+    list.setAdapter(adapter);
     return view;
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel.class);
+    viewModel.getItems().observe(this, new Observer<List<ItemModel>>() {
+      @Override
+      public void onChanged(@Nullable List<ItemModel> itemModels) {
+        adapter.addItems(itemModels);
+      }
+    });
   }
 
   @Override
@@ -63,7 +74,7 @@ public class AllTasksListFragment extends Fragment implements
     ExpandableListView list = getView().findViewById(R.id.expandableListView1);
     switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
       case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
-        MyActivityInfo activity = (MyActivityInfo) list.getExpandableListAdapter()
+        ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
           .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
             ExpandableListView.getPackedPositionChild(info.packedPosition));
         menu.setHeaderTitle(activity.getName());
@@ -82,7 +93,7 @@ public class AllTasksListFragment extends Fragment implements
 
     switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
       case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
-        MyActivityInfo activity = (MyActivityInfo) list.getExpandableListAdapter()
+        ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
           .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
             ExpandableListView.getPackedPositionChild(info.packedPosition));
         switch (item.getItemId()) {
@@ -101,11 +112,5 @@ public class AllTasksListFragment extends Fragment implements
         break;
     }
     return super.onContextItemSelected(item);
-  }
-
-  @Override
-  public void onProviderFinished(AsyncProvider<AllTasksListAdapter> task,
-    AllTasksListAdapter value) {
-    list.setAdapter(value);
   }
 }

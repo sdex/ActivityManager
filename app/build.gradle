@@ -30,6 +30,11 @@ dependencies {
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
   implementation "com.google.firebase:firebase-ads:$versions.playServices"
   implementation "com.google.firebase:firebase-crash:$versions.playServices"
+
+  implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
+  annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
+  implementation "android.arch.persistence.room:runtime:$versions.room"
+  annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
 }
 
 apply plugin: 'com.google.gms.google-services'

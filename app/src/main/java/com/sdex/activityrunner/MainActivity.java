@@ -8,6 +8,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdRequest.Builder;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
 
 public class MainActivity extends BaseActivity {
@@ -16,6 +17,8 @@ public class MainActivity extends BaseActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    AppLoaderIntentService.enqueueWork(this, new Intent());
 
     MobileAds.initialize(getApplicationContext(),
       getString(R.string.ad_app_id));
@@ -29,7 +32,7 @@ public class MainActivity extends BaseActivity {
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-        .replace(R.id.container, new AllTasksListFragment())
+        .replace(R.id.container, new AppsListFragment())
         .commit();
     }
   }
