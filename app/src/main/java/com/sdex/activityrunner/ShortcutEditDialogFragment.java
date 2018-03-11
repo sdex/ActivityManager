@@ -25,7 +25,7 @@ public class ShortcutEditDialogFragment extends DialogFragment {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     LayoutInflater inflater = LayoutInflater.from(getActivity());
-    View view = inflater.inflate(R.layout.dialog_edit_activity, null);
+    View view = inflater.inflate(R.layout.dialog_add_shortcut, null);
 
     final EditText textName = view.findViewById(R.id.editText_name);
     textName.setText(activityModel.getName());

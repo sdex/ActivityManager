@@ -25,4 +25,10 @@ public interface ApplicationModelDao {
   @Transaction
   @Query("SELECT * FROM ApplicationModel ORDER BY name")
   LiveData<List<ItemModel>> getAllApplicationModels();
+
+  @Query("SELECT COUNT(*) FROM ApplicationModel")
+  int count();
+
+  @Query("DELETE FROM ApplicationModel")
+  void clean();
 }

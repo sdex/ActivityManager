@@ -43,7 +43,7 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
     View convertView, ViewGroup parent) {
     ActivityModel activityModel = (ActivityModel) getChild(groupPosition, childPosition);
     LayoutInflater inflater = LayoutInflater.from(context);
-    View view = inflater.inflate(R.layout.all_activities_child_item, parent, false);
+    View view = inflater.inflate(R.layout.item_application, parent, false);
 
     TextView text1 = view.findViewById(android.R.id.text1);
     text1.setText(activityModel.getName());
@@ -86,7 +86,7 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
     ItemModel itemModel = (ItemModel) getGroup(groupPosition);
     final ApplicationModel applicationModel = itemModel.getApplicationModel();
     LayoutInflater inflater = LayoutInflater.from(context);
-    View view = inflater.inflate(R.layout.all_activities_group_item, parent, false);
+    View view = inflater.inflate(R.layout.item_activity, parent, false);
 
     TextView text = view.findViewById(android.R.id.text1);
     text.setText(applicationModel.getName());

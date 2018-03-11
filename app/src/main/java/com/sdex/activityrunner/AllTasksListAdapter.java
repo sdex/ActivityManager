@@ -63,7 +63,7 @@ public class AllTasksListAdapter extends BaseExpandableListAdapter {
     View convertView, ViewGroup parent) {
     MyActivityInfo activity = (MyActivityInfo) getChild(groupPosition, childPosition);
     LayoutInflater inflater = LayoutInflater.from(context);
-    View view = inflater.inflate(R.layout.all_activities_child_item, parent, false);
+    View view = inflater.inflate(R.layout.item_application, parent, false);
 
     TextView text1 = view.findViewById(android.R.id.text1);
     text1.setText(activity.getName());
@@ -102,7 +102,7 @@ public class AllTasksListAdapter extends BaseExpandableListAdapter {
     ViewGroup parent) {
     MyPackageInfo pack = (MyPackageInfo) getGroup(groupPosition);
     LayoutInflater inflater = LayoutInflater.from(context);
-    View view = inflater.inflate(R.layout.all_activities_group_item, parent, false);
+    View view = inflater.inflate(R.layout.item_activity, parent, false);
 
     TextView text = view.findViewById(android.R.id.text1);
     text.setText(pack.getName());

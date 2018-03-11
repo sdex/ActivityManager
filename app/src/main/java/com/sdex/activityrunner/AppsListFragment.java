@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.ContextMenu;
@@ -32,11 +33,14 @@ public class AppsListFragment extends Fragment {
   private ExpandableListView list;
   private ApplicationsListAdapter adapter;
   private SwipeRefreshLayout refreshLayout;
+  private ContentLoadingProgressBar progressBar;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_all_list, container, false);
+    View view = inflater.inflate(R.layout.fragment_apps_list, container, false);
+    progressBar = view.findViewById(R.id.progress);
+    progressBar.show();
     refreshLayout = view.findViewById(R.id.refresh);
     list = view.findViewById(R.id.expandableListView1);
     list.setOnChildClickListener(new OnChildClickListener() {
@@ -57,7 +61,9 @@ public class AppsListFragment extends Fragment {
       @Override
       public void onRefresh() {
         refreshLayout.setRefreshing(true);
-        AppLoaderIntentService.enqueueWork(getActivity(), new Intent());
+        final Intent work = new Intent();
+        work.putExtra(AppLoaderIntentService.ARG_REASON, AppLoaderIntentService.REFRESH_USER);
+        AppLoaderIntentService.enqueueWork(getActivity(), work);
       }
     });
     return view;
@@ -71,8 +77,11 @@ public class AppsListFragment extends Fragment {
     viewModel.getItems().observe(this, new Observer<List<ItemModel>>() {
       @Override
       public void onChanged(@Nullable List<ItemModel> itemModels) {
-        adapter.addItems(itemModels);
-        refreshLayout.setRefreshing(false);
+        if (itemModels != null && !itemModels.isEmpty()) {
+          adapter.addItems(itemModels);
+          refreshLayout.setRefreshing(false);
+          progressBar.hide();
+        }
       }
     });
   }

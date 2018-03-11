@@ -29,7 +29,7 @@ public class AllTasksListFragment extends Fragment implements
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_all_list, container, false);
+    View view = inflater.inflate(R.layout.fragment_apps_list, container, false);
 
     list = view.findViewById(R.id.expandableListView1);
 

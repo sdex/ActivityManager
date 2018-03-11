@@ -18,7 +18,7 @@ public class MainActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-     AppLoaderIntentService.enqueueWork(this, new Intent());
+    AppLoaderIntentService.enqueueWork(this, new Intent());
 
     MobileAds.initialize(getApplicationContext(),
       getString(R.string.ad_app_id));
