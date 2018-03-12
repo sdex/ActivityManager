@@ -30,10 +30,13 @@ import java.util.List;
 
 public class AppsListFragment extends Fragment {
 
+  public static final String TAG = "AppsListFragment";
+
   private ExpandableListView list;
   private ApplicationsListAdapter adapter;
   private SwipeRefreshLayout refreshLayout;
   private ContentLoadingProgressBar progressBar;
+  private ApplicationListViewModel viewModel;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -72,8 +75,7 @@ public class AppsListFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    ApplicationListViewModel viewModel = ViewModelProviders.of(this)
-      .get(ApplicationListViewModel.class);
+    viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel.class);
     viewModel.getItems().observe(this, new Observer<List<ItemModel>>() {
       @Override
       public void onChanged(@Nullable List<ItemModel> itemModels) {
@@ -136,5 +138,16 @@ public class AppsListFragment extends Fragment {
         break;
     }
     return super.onContextItemSelected(item);
+  }
+
+  public void filter(String text) {
+    if (adapter != null) {
+      viewModel.getItems(text).observe(this, new Observer<List<ItemModel>>() {
+        @Override
+        public void onChanged(@Nullable List<ItemModel> itemModels) {
+          adapter.addItems(itemModels);
+        }
+      });
+    }
   }
 }

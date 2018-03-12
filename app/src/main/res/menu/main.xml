@@ -3,15 +3,15 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <item
-    android:id="@+id/action_disable_ads"
-    android:title="@string/action_disable_ads"
-    app:showAsAction="ifRoom" />
+    android:id="@+id/action_search"
+    android:icon="@drawable/ic_search"
+    android:title="@string/search"
+    app:actionViewClass="android.support.v7.widget.SearchView"
+    app:showAsAction="ifRoom|collapseActionView"/>
 
   <item
-    android:id="@+id/action_about"
-    android:orderInCategory="5"
-    android:title="@string/action_about"
-    android:visible="false"
+    android:id="@+id/action_disable_ads"
+    android:title="@string/action_disable_ads"
     app:showAsAction="never" />
 
 </menu>

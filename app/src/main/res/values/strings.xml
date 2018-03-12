@@ -10,4 +10,6 @@
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
   <string name="action_about">About</string>
   <string name="action_disable_ads">Disable ads</string>
+  <string name="search">Search</string>
+  <string name="search_hint">Application name</string>
 </resources>

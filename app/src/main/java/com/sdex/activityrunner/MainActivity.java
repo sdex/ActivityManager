@@ -2,6 +2,9 @@ package com.sdex.activityrunner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -14,15 +17,20 @@ import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsController;
 import com.sdex.commons.ads.DisableAdsActivity;
+import com.sdex.commons.util.UIUtils;
 
 public class MainActivity extends BaseActivity {
 
   private AdsController adsController;
+  private AppsListFragment appsListFragment;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
     adsController = new AdsController(this);
 
     AppLoaderIntentService.enqueueWork(this, new Intent());
@@ -47,25 +55,57 @@ public class MainActivity extends BaseActivity {
     }
 
     if (savedInstanceState == null) {
+      appsListFragment = new AppsListFragment();
       getSupportFragmentManager().beginTransaction()
-        .replace(R.id.container, new AppsListFragment())
+        .replace(R.id.container, appsListFragment, AppsListFragment.TAG)
         .commit();
+    } else {
+      appsListFragment = (AppsListFragment) getSupportFragmentManager()
+        .findFragmentByTag(AppsListFragment.TAG);
     }
   }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.main, menu);
+    MenuItem searchItem = menu.findItem(R.id.action_search);
+    SearchView searchView = (SearchView) searchItem.getActionView();
+    String hint = getString(R.string.search_hint);
+    searchView.setQueryHint(hint);
+    searchView.setOnQueryTextListener(new OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String query) {
+        return false;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String newText) {
+        if (appsListFragment != null) {
+          appsListFragment.filter(newText);
+        }
+        return false;
+      }
+    });
+    searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+      @Override
+      public boolean onMenuItemActionExpand(MenuItem item) {
+        UIUtils.setMenuItemsVisibility(menu, item, false);
+        return true;
+      }
+
+      @Override
+      public boolean onMenuItemActionCollapse(MenuItem item) {
+        UIUtils.setMenuItemsVisibility(menu, true);
+        invalidateOptionsMenu();
+        return true;
+      }
+    });
     return super.onCreateOptionsMenu(menu);
   }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
-      case R.id.action_about: {
-        startActivity(new Intent(this, AboutActivity.class));
-        return true;
-      }
       case R.id.action_disable_ads: {
         Intent intent = DisableAdsActivity.getStartIntent(this, R.string.ad_rewarded_unit_id);
         startActivityForResult(intent, DisableAdsActivity.REQUEST_CODE);
