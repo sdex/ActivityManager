@@ -24,11 +24,8 @@ public class MainActivity extends BaseActivity {
       getString(R.string.ad_app_id));
 
     AdView adView = findViewById(R.id.ad_view);
-    Builder bannerAdBuilder = new Builder();
-    if (BuildConfig.DEBUG) {
-      bannerAdBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
-    }
-    adView.loadAd(bannerAdBuilder.build());
+    adView.loadAd(new Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+      .build());
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()

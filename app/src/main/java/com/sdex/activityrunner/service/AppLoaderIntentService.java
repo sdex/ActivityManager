@@ -170,7 +170,7 @@ public class AppLoaderIntentService extends JobIntentService {
 
   private String saveIcon(Bitmap bitmap, String id) {
     File file = new File(getImagesDir(), String.valueOf(id.hashCode()));
-    if (!file.exists()) {
+    if (!file.exists() && bitmap != null) {
       IOUtils.writeToFile(file, bitmap);
     }
     return file.getAbsolutePath();

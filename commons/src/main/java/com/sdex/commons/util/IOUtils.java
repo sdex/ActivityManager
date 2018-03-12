@@ -2,6 +2,7 @@ package com.sdex.commons.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,7 +48,7 @@ public final class IOUtils {
     return null;
   }
 
-  public static void writeToFile(File file, Bitmap bitmap) {
+  public static void writeToFile(@NonNull File file, @NonNull Bitmap bitmap) {
     FileOutputStream out = null;
     try {
       out = new FileOutputStream(file);

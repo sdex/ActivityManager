@@ -8,20 +8,27 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 2
-    versionName "1.0.1"
+    versionCode 3
+    versionName "1.1.0"
   }
+
   buildTypes {
     release {
-      minifyEnabled false
+      minifyEnabled true
+      shrinkResources true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation project(":commons")
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation project(':commons')
   implementation "com.android.support:support-v4:$versions.support"
   implementation "com.android.support:appcompat-v7:$versions.support"
   implementation "com.android.support:support-media-compat:$versions.support"
@@ -34,8 +41,8 @@ dependencies {
   annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
   implementation "android.arch.persistence.room:runtime:$versions.room"
   annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
-  implementation 'com.github.bumptech.glide:glide:4.6.1'
-  annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+  implementation "com.github.bumptech.glide:glide:$versions.glide"
+  annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
 }
 
 apply plugin: 'com.google.gms.google-services'
