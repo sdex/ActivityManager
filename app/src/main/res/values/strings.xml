@@ -7,6 +7,7 @@
   <string name="context_action_edit">Edit shortcut</string>
   <string name="label_name">Label</string>
   <string name="starting_activity">Starting activity: %s</string>
+  <string name="starting_activity_failed">Failed to start activity: %s</string>
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
   <string name="action_about">About</string>
   <string name="app_description">A simple tool for launching hidden activities within an app and creating shortcuts to them on the homescreen.</string>

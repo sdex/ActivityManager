@@ -9,6 +9,7 @@ import com.sdex.activityrunner.info.MyPackageInfo;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class PackageManagerCache {
 
   private static PackageManagerCache instance = null;

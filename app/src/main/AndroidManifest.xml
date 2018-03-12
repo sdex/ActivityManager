@@ -4,6 +4,8 @@
   package="com.sdex.activityrunner">
 
   <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+  <!-- JobIntentService uses a wake lock to start a service in pre-O devices -->
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
 
   <application
     android:allowBackup="false"
@@ -13,18 +15,21 @@
     android:supportsRtl="true"
     android:theme="@style/CommonsAppTheme"
     tools:ignore="GoogleAppIndexingWarning">
-    <activity
-      android:name=".MainActivity"
-      android:screenOrientation="portrait">
+
+    <activity android:name=".MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity
-      android:name=".AboutActivity"
-      android:screenOrientation="portrait" />
+
+    <activity android:name=".AboutActivity" />
+
+    <service
+      android:exported="false"
+      android:name=".service.AppLoaderIntentService"
+      android:permission="android.permission.BIND_JOB_SERVICE" />
   </application>
 
 </manifest>

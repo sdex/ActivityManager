@@ -1,9 +1,16 @@
 package com.sdex.activityrunner;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -15,40 +22,68 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.ExpandableListView.OnChildClickListener;
-import com.sdex.activityrunner.info.MyActivityInfo;
-import com.sdex.activityrunner.loader.AllTasksListAsyncProvider;
-import com.sdex.activityrunner.loader.AsyncProvider;
+import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.db.ItemModel;
+import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.IntentUtils;
+import java.util.List;
 
-@Deprecated
-public class AllTasksListFragment extends Fragment implements
-  AllTasksListAsyncProvider.Listener<AllTasksListAdapter> {
+public class AppsListFragment extends Fragment {
 
   private ExpandableListView list;
+  private ApplicationsListAdapter adapter;
+  private SwipeRefreshLayout refreshLayout;
+  private ContentLoadingProgressBar progressBar;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_apps_list, container, false);
-
+    progressBar = view.findViewById(R.id.progress);
+    progressBar.show();
+    refreshLayout = view.findViewById(R.id.refresh);
     list = view.findViewById(R.id.expandableListView1);
-
     list.setOnChildClickListener(new OnChildClickListener() {
       @Override
       public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
         int childPosition, long id) {
         ExpandableListAdapter adapter = parent.getExpandableListAdapter();
-        MyActivityInfo info = (MyActivityInfo) adapter.getChild(groupPosition, childPosition);
+        ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
         IntentUtils.launchActivity(getActivity(),
           info.getComponentName(), info.getName());
         return false;
       }
     });
+    adapter = new ApplicationsListAdapter(getActivity());
+    list.setAdapter(adapter);
 
-    AllTasksListAsyncProvider provider = new AllTasksListAsyncProvider(this.getActivity(), this);
-    provider.execute();
-
+    refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        refreshLayout.setRefreshing(true);
+        final Intent work = new Intent();
+        work.putExtra(AppLoaderIntentService.ARG_REASON, AppLoaderIntentService.REFRESH_USER);
+        AppLoaderIntentService.enqueueWork(getActivity(), work);
+      }
+    });
     return view;
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    ApplicationListViewModel viewModel = ViewModelProviders.of(this)
+      .get(ApplicationListViewModel.class);
+    viewModel.getItems().observe(this, new Observer<List<ItemModel>>() {
+      @Override
+      public void onChanged(@Nullable List<ItemModel> itemModels) {
+        if (itemModels != null && !itemModels.isEmpty()) {
+          adapter.addItems(itemModels);
+          refreshLayout.setRefreshing(false);
+          progressBar.hide();
+        }
+      }
+    });
   }
 
   @Override
@@ -63,7 +98,7 @@ public class AllTasksListFragment extends Fragment implements
     ExpandableListView list = getView().findViewById(R.id.expandableListView1);
     switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
       case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
-        MyActivityInfo activity = (MyActivityInfo) list.getExpandableListAdapter()
+        ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
           .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
             ExpandableListView.getPackedPositionChild(info.packedPosition));
         menu.setHeaderTitle(activity.getName());
@@ -82,14 +117,14 @@ public class AllTasksListFragment extends Fragment implements
 
     switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
       case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
-        MyActivityInfo activity = (MyActivityInfo) list.getExpandableListAdapter()
+        ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
           .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
             ExpandableListView.getPackedPositionChild(info.packedPosition));
         switch (item.getItemId()) {
           case 0:
             DialogFragment dialog = new ShortcutEditDialogFragment();
             Bundle args = new Bundle();
-            args.putParcelable("activityInfo", activity.getComponentName());
+            args.putSerializable("activityInfo", activity);
             dialog.setArguments(args);
             dialog.show(getFragmentManager(), "ShortcutEditor");
             break;
@@ -101,11 +136,5 @@ public class AllTasksListFragment extends Fragment implements
         break;
     }
     return super.onContextItemSelected(item);
-  }
-
-  @Override
-  public void onProviderFinished(AsyncProvider<AllTasksListAdapter> task,
-    AllTasksListAdapter value) {
-    list.setAdapter(value);
   }
 }
