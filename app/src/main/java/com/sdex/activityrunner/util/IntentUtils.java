@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.util;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +16,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.ActivityModel;
 
-public class LauncherIconCreator {
+public class IntentUtils {
 
   private static Intent getActivityIntent(ComponentName activity) {
     Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -52,10 +53,17 @@ public class LauncherIconCreator {
   }
 
   public static void launchActivity(Context context, ComponentName activity, String name) {
-    Intent intent = LauncherIconCreator.getActivityIntent(activity);
-    Toast.makeText(context,
-      String.format(context.getText(R.string.starting_activity).toString(), name),
-      Toast.LENGTH_LONG).show();
-    context.startActivity(intent);
+    try {
+      Intent intent = getActivityIntent(activity);
+      context.startActivity(intent);
+      Toast.makeText(context, context.getString(R.string.starting_activity, name),
+        Toast.LENGTH_SHORT).show();
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(context, context.getString(R.string.starting_activity_failed, name),
+        Toast.LENGTH_SHORT).show();
+    } catch (SecurityException e) {
+      Toast.makeText(context, context.getString(R.string.starting_activity_failed, name),
+        Toast.LENGTH_SHORT).show();
+    }
   }
 }

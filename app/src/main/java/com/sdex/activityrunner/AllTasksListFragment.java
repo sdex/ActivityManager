@@ -18,7 +18,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import com.sdex.activityrunner.info.MyActivityInfo;
 import com.sdex.activityrunner.loader.AllTasksListAsyncProvider;
 import com.sdex.activityrunner.loader.AsyncProvider;
-import com.sdex.activityrunner.util.LauncherIconCreator;
+import com.sdex.activityrunner.util.IntentUtils;
 
 @Deprecated
 public class AllTasksListFragment extends Fragment implements
@@ -39,7 +39,7 @@ public class AllTasksListFragment extends Fragment implements
         int childPosition, long id) {
         ExpandableListAdapter adapter = parent.getExpandableListAdapter();
         MyActivityInfo info = (MyActivityInfo) adapter.getChild(groupPosition, childPosition);
-        LauncherIconCreator.launchActivity(getActivity(),
+        IntentUtils.launchActivity(getActivity(),
           info.getComponentName(), info.getName());
         return false;
       }
@@ -94,7 +94,7 @@ public class AllTasksListFragment extends Fragment implements
             dialog.show(getFragmentManager(), "ShortcutEditor");
             break;
           case 1:
-            LauncherIconCreator.launchActivity(getActivity(),
+            IntentUtils.launchActivity(getActivity(),
               activity.getComponentName(), activity.getName());
             break;
         }

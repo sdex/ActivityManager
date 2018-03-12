@@ -25,7 +25,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import com.sdex.activityrunner.db.ActivityModel;
 import com.sdex.activityrunner.db.ItemModel;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
-import com.sdex.activityrunner.util.LauncherIconCreator;
+import com.sdex.activityrunner.util.IntentUtils;
 import java.util.List;
 
 public class AppsListFragment extends Fragment {
@@ -49,7 +49,7 @@ public class AppsListFragment extends Fragment {
         int childPosition, long id) {
         ExpandableListAdapter adapter = parent.getExpandableListAdapter();
         ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
-        LauncherIconCreator.launchActivity(getActivity(),
+        IntentUtils.launchActivity(getActivity(),
           info.getComponentName(), info.getName());
         return false;
       }
@@ -129,7 +129,7 @@ public class AppsListFragment extends Fragment {
             dialog.show(getFragmentManager(), "ShortcutEditor");
             break;
           case 1:
-            LauncherIconCreator.launchActivity(getActivity(),
+            IntentUtils.launchActivity(getActivity(),
               activity.getComponentName(), activity.getName());
             break;
         }

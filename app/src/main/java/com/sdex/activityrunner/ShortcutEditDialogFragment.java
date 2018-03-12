@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.request.RequestOptions;
 import com.sdex.activityrunner.db.ActivityModel;
 import com.sdex.activityrunner.util.GlideApp;
-import com.sdex.activityrunner.util.LauncherIconCreator;
+import com.sdex.activityrunner.util.IntentUtils;
 
 public class ShortcutEditDialogFragment extends DialogFragment {
 
@@ -44,7 +44,7 @@ public class ShortcutEditDialogFragment extends DialogFragment {
           @Override
           public void onClick(DialogInterface dialog, int which) {
             activityModel.setName(textName.getText().toString());
-            LauncherIconCreator.createLauncherIcon(getActivity(), activityModel);
+            IntentUtils.createLauncherIcon(getActivity(), activityModel);
           }
         })
       .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
