@@ -27,6 +27,9 @@ public class AppsListFragment extends Fragment {
 
   public static final String TAG = "AppsListFragment";
 
+  private static final int ACTION_CREATE_SHORTCUT = 0;
+  private static final int ACTION_LAUNCH_ACTIVITY = 1;
+
   private ExpandableListView list;
   private ApplicationsListAdapter adapter;
   private SwipeRefreshLayout refreshLayout;
@@ -40,12 +43,13 @@ public class AppsListFragment extends Fragment {
     progressBar = view.findViewById(R.id.progress);
     progressBar.show();
     refreshLayout = view.findViewById(R.id.refresh);
-    list = view.findViewById(R.id.expandableListView1);
+    list = view.findViewById(R.id.list);
     list.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
       ExpandableListAdapter adapter = parent.getExpandableListAdapter();
       ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
-      IntentUtils.launchActivity(getActivity(),
-        info.getComponentName(), info.getName());
+      if (getActivity() != null) {
+        IntentUtils.launchActivity(getActivity(), info.getComponentName(), info.getName());
+      }
       return false;
     });
     adapter = new ApplicationsListAdapter(getActivity());
@@ -82,45 +86,51 @@ public class AppsListFragment extends Fragment {
   @Override
   public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
     ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) menuInfo;
-    ExpandableListView list = getView().findViewById(R.id.expandableListView1);
-    switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
-      case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
-        ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
-          .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
-            ExpandableListView.getPackedPositionChild(info.packedPosition));
-        menu.setHeaderTitle(activity.getName());
-        menu.add(Menu.NONE, 0, Menu.NONE, R.string.context_action_shortcut);
-        menu.add(Menu.NONE, 1, Menu.NONE, R.string.context_action_launch);
-        break;
+    if (getView() != null) {
+      ExpandableListView list = getView().findViewById(R.id.list);
+      switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
+        case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
+          ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
+            .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
+              ExpandableListView.getPackedPositionChild(info.packedPosition));
+          menu.setHeaderTitle(activity.getName());
+          menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, Menu.NONE, R.string.context_action_shortcut);
+          menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY, Menu.NONE, R.string.context_action_launch);
+          break;
+      }
     }
-
     super.onCreateContextMenu(menu, v, menuInfo);
   }
 
   @Override
   public boolean onContextItemSelected(MenuItem item) {
     ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item.getMenuInfo();
-    ExpandableListView list = getView().findViewById(R.id.expandableListView1);
-
-    switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
-      case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
-        ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
-          .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
-            ExpandableListView.getPackedPositionChild(info.packedPosition));
-        switch (item.getItemId()) {
-          case 0:
-            DialogFragment dialog = new ShortcutEditDialogFragment();
-            Bundle args = new Bundle();
-            args.putSerializable("activityInfo", activity);
-            dialog.setArguments(args);
-            dialog.show(getFragmentManager(), "ShortcutEditor");
-            break;
-          case 1:
-            IntentUtils.launchActivity(getActivity(),
-              activity.getComponentName(), activity.getName());
-            break;
-        }
-        break;
+    if (getView() != null) {
+      ExpandableListView list = getView().findViewById(R.id.list);
+      switch (ExpandableListView.getPackedPositionType(info.packedPosition)) {
+        case ExpandableListView.PACKED_POSITION_TYPE_CHILD:
+          ActivityModel activityModel = (ActivityModel) list.getExpandableListAdapter()
+            .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
+              ExpandableListView.getPackedPositionChild(info.packedPosition));
+          switch (item.getItemId()) {
+            case ACTION_CREATE_SHORTCUT:
+              if (getFragmentManager() != null) {
+                DialogFragment dialog = new AddShortcutDialogFragment();
+                Bundle args = new Bundle();
+                args.putSerializable(AddShortcutDialogFragment.ARG_ACTIVITY_MODEL, activityModel);
+                dialog.setArguments(args);
+                dialog.show(getFragmentManager(), AddShortcutDialogFragment.TAG);
+              }
+              break;
+            case ACTION_LAUNCH_ACTIVITY:
+              if (getActivity() != null) {
+                IntentUtils.launchActivity(getActivity(),
+                  activityModel.getComponentName(), activityModel.getName());
+              }
+              break;
+          }
+          break;
+      }
     }
     return super.onContextItemSelected(item);
   }
