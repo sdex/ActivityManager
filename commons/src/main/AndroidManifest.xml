@@ -8,10 +8,6 @@
   <application>
     <activity
       android:configChanges="orientation|screenSize|keyboardHidden"
-      android:name=".apps.AppsListActivity"
-      android:theme="@style/CommonsAppTheme" />
-    <activity
-      android:configChanges="orientation|screenSize|keyboardHidden"
       android:label="Disable ads"
       android:name=".ads.DisableAdsActivity"
       android:theme="@style/CommonsAppTheme" />
