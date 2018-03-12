@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item
+    android:id="@+id/action_disable_ads"
+    android:title="@string/action_disable_ads"
+    app:showAsAction="ifRoom" />
+
   <item
     android:id="@+id/action_about"
     android:orderInCategory="5"
     android:title="@string/action_about"
+    android:visible="false"
     app:showAsAction="never" />
 
 </menu>
