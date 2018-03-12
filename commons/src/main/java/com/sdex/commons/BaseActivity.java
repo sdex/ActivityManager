@@ -1,16 +1,12 @@
 package com.sdex.commons;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.sdex.commons.apps.AppsListActivity;
 import com.sdex.commons.util.AppUtils;
 
 public class BaseActivity extends AppCompatActivity {
-
-  private static final String TAG = "BaseActivity";
 
   protected void enableBackButton() {
     ActionBar supportActionBar = getSupportActionBar();
@@ -34,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
       AppUtils.openPlayStore(this);
       return true;
     } else if (itemId == R.id.more_apps) {
-      startActivity(new Intent(this, AppsListActivity.class));
+      AppUtils.openLink(this, AppUtils.DEV_PAGE);
       return true;
     }
     return super.onOptionsItemSelected(item);

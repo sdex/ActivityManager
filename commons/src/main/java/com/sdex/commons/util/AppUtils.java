@@ -7,12 +7,17 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.widget.Toast;
 
-/**
- * Author: Yuriy Mysochenko
- * Date: 10/25/2017
- */
-
 public class AppUtils {
+
+  public static final String DEV_PAGE = "https://play.google.com/store/apps/dev?id=8437279387942631019";
+
+  public static void openLink(Context context, String url) {
+    try {
+      context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+    } catch (Exception e) {
+      Toast.makeText(context, "Failed to open link", Toast.LENGTH_SHORT).show();
+    }
+  }
 
   public static void openApp(Context context, String appPackageName) {
     if (isAppInstalled(context, appPackageName)) {
