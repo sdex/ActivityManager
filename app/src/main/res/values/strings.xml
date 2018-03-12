@@ -1,7 +1,6 @@
 <resources>
   <string name="app_name">Activity Runner</string>
 
-  <string name="dialog_progress_loading">Loading apps…</string>
   <string name="context_action_launch">Launch activity</string>
   <string name="context_action_shortcut">Create shortcut</string>
   <string name="context_action_edit">Edit shortcut</string>
@@ -10,5 +9,4 @@
   <string name="starting_activity_failed">Failed to start activity: %s</string>
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
   <string name="action_about">About</string>
-  <string name="app_description">A simple tool for launching hidden activities within an app and creating shortcuts to them on the homescreen.</string>
 </resources>
