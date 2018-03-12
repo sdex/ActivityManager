@@ -2,7 +2,6 @@ package com.sdex.activityrunner;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -40,19 +39,11 @@ public class ShortcutEditDialogFragment extends DialogFragment {
     builder.setTitle(R.string.context_action_edit)
       .setView(view)
       .setPositiveButton(R.string.context_action_shortcut,
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            activityModel.setName(textName.getText().toString());
-            IntentUtils.createLauncherIcon(getActivity(), activityModel);
-          }
+        (dialog, which) -> {
+          activityModel.setName(textName.getText().toString());
+          IntentUtils.createLauncherIcon(getActivity(), activityModel);
         })
-      .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-          getDialog().cancel();
-        }
-      });
+      .setNegativeButton(android.R.string.cancel, (dialog, which) -> getDialog().cancel());
     return builder.create();
   }
 }

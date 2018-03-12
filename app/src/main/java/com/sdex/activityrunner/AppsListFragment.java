@@ -1,6 +1,5 @@
 package com.sdex.activityrunner;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -21,12 +19,9 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
-import android.widget.ExpandableListView.OnChildClickListener;
 import com.sdex.activityrunner.db.ActivityModel;
-import com.sdex.activityrunner.db.ItemModel;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.IntentUtils;
-import java.util.List;
 
 public class AppsListFragment extends Fragment {
 
@@ -46,28 +41,21 @@ public class AppsListFragment extends Fragment {
     progressBar.show();
     refreshLayout = view.findViewById(R.id.refresh);
     list = view.findViewById(R.id.expandableListView1);
-    list.setOnChildClickListener(new OnChildClickListener() {
-      @Override
-      public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
-        int childPosition, long id) {
-        ExpandableListAdapter adapter = parent.getExpandableListAdapter();
-        ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
-        IntentUtils.launchActivity(getActivity(),
-          info.getComponentName(), info.getName());
-        return false;
-      }
+    list.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+      ExpandableListAdapter adapter = parent.getExpandableListAdapter();
+      ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
+      IntentUtils.launchActivity(getActivity(),
+        info.getComponentName(), info.getName());
+      return false;
     });
     adapter = new ApplicationsListAdapter(getActivity());
     list.setAdapter(adapter);
 
-    refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-      @Override
-      public void onRefresh() {
-        refreshLayout.setRefreshing(true);
-        final Intent work = new Intent();
-        work.putExtra(AppLoaderIntentService.ARG_REASON, AppLoaderIntentService.REFRESH_USER);
-        AppLoaderIntentService.enqueueWork(getActivity(), work);
-      }
+    refreshLayout.setOnRefreshListener(() -> {
+      refreshLayout.setRefreshing(true);
+      final Intent work = new Intent();
+      work.putExtra(AppLoaderIntentService.ARG_REASON, AppLoaderIntentService.REFRESH_USER);
+      AppLoaderIntentService.enqueueWork(getActivity(), work);
     });
     return view;
   }
@@ -76,14 +64,11 @@ public class AppsListFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel.class);
-    viewModel.getItems().observe(this, new Observer<List<ItemModel>>() {
-      @Override
-      public void onChanged(@Nullable List<ItemModel> itemModels) {
-        if (itemModels != null && !itemModels.isEmpty()) {
-          adapter.addItems(itemModels);
-          refreshLayout.setRefreshing(false);
-          progressBar.hide();
-        }
+    viewModel.getItems().observe(this, itemModels -> {
+      if (itemModels != null && !itemModels.isEmpty()) {
+        adapter.addItems(itemModels);
+        refreshLayout.setRefreshing(false);
+        progressBar.hide();
       }
     });
   }
@@ -142,12 +127,8 @@ public class AppsListFragment extends Fragment {
 
   public void filter(String text) {
     if (adapter != null) {
-      viewModel.getItems(text).observe(this, new Observer<List<ItemModel>>() {
-        @Override
-        public void onChanged(@Nullable List<ItemModel> itemModels) {
-          adapter.addItems(itemModels);
-        }
-      });
+      viewModel.getItems(text).observe(this,
+        itemModels -> adapter.addItems(itemModels));
     }
   }
 }
