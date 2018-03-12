@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "844840999406-onpchv8tbegihl2n2lf8c2ed4p2r3asl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sdex.activityrunner",
+            "certificate_hash": "e06fcc179d50ee1d2a2aa904f0c630f7a7ce457c"
+          }
+        },
+        {
           "client_id": "844840999406-11gci51vfdhdn8t3r7l80jnki2auvbju.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

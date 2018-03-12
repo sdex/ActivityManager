@@ -27,17 +27,20 @@ public class MainActivity extends BaseActivity {
 
     AppLoaderIntentService.enqueueWork(this, new Intent());
 
-    FrameLayout adsContainer = findViewById(R.id.ads_container);
+    MobileAds.initialize(getApplicationContext(),
+      getString(R.string.ad_app_id));
 
-    if (adsController.isAdsActive() && adsContainer.getChildCount() == 0) {
-      MobileAds.initialize(getApplicationContext(),
-        getString(R.string.ad_app_id));
-
-      AdView adView = new AdView(this);
-      adView.setAdUnitId(getString(R.string.ad_banner_unit_id));
-      adView.setAdSize(AdSize.SMART_BANNER);
-      adsContainer.addView(adView);
-
+    if (adsController.isAdsActive()) {
+      AdView adView;
+      FrameLayout adsContainer = findViewById(R.id.ads_container);
+      if (adsContainer.getChildCount() == 0) {
+        adView = new AdView(this);
+        adView.setAdUnitId(getString(R.string.ad_banner_unit_id));
+        adView.setAdSize(AdSize.SMART_BANNER);
+        adsContainer.addView(adView);
+      } else {
+        adView = (AdView) adsContainer.getChildAt(0);
+      }
       AdRequest adRequest = new Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
         .build();
       adView.loadAd(adRequest);
