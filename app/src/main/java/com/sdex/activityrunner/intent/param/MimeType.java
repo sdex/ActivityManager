@@ -1,13 +1,14 @@
 package com.sdex.activityrunner.intent.param;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MimeType {
 
   private static final Map<String, String> mimeTypeToExtensionMap = new HashMap<>();
+  private static ArrayList<String> list;
 
   static {
     add("application/andrew-inset", "ez");
@@ -333,7 +334,12 @@ public class MimeType {
     }
   }
 
-  public static List<String> list() {
-    return new ArrayList<>(mimeTypeToExtensionMap.keySet());
+  public static ArrayList<String> list() {
+    if (list == null) {
+      list = new ArrayList<>(mimeTypeToExtensionMap.keySet());
+      Collections.sort(list);
+      list.add(0, "NONE"); // TODO localization
+    }
+    return list;
   }
 }

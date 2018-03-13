@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Action {
 
+  private static ArrayList<String> list;
   private static final Map<String, String> ACTIONS = new HashMap<String, String>() {
     {
 //      put("ACTION_AIRPLANE_MODE_CHANGED", Intent.ACTION_AIRPLANE_MODE_CHANGED);
@@ -164,7 +165,12 @@ public class Action {
     }
   };
 
-  public static List<String> list() {
-    return new ArrayList<>(ACTIONS.keySet());
+  public static ArrayList<String> list() {
+    if (list == null) {
+      list = new ArrayList<>(ACTIONS.keySet());
+      Collections.sort(list);
+      list.add(0, "NONE"); // TODO localization
+    }
+    return list;
   }
 }

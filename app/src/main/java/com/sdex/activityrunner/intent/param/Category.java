@@ -5,7 +5,6 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Category {
@@ -60,7 +59,7 @@ public class Category {
     }
   };
 
-  public static List<String> list() {
+  public static ArrayList<String> list() {
     return new ArrayList<>(CATEGORIES.keySet());
   }
 }

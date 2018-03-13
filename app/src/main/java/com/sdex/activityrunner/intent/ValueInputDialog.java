@@ -64,4 +64,9 @@ public class ValueInputDialog extends DialogFragment {
         + " must implement OnValueInputDialogCallback");
     }
   }
+
+  public interface OnValueInputDialogCallback {
+
+    void onValueSet(int type, String value);
+  }
 }

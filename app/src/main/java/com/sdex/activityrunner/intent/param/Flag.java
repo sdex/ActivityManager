@@ -5,7 +5,6 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Flag {
@@ -41,7 +40,7 @@ public class Flag {
     }
   };
 
-  public static List<String> list() {
+  public static ArrayList<String> list() {
     return new ArrayList<>(FLAGS.keySet());
   }
 }
