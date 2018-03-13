@@ -40,9 +40,13 @@ public class DisableAdsActivity extends BaseActivity {
   }
 
   @Override
+  protected int getLayout() {
+    return R.layout.activity_disable_ads;
+  }
+
+  @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_disable_ads);
     enableBackButton();
 
     int adsIdRes = getIntent().getIntExtra(ARG_ADS_ID, 0);

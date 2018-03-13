@@ -20,6 +20,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.IntentUtils;
 
@@ -29,6 +30,7 @@ public class AppsListFragment extends Fragment {
 
   private static final int ACTION_CREATE_SHORTCUT = 0;
   private static final int ACTION_LAUNCH_ACTIVITY = 1;
+  private static final int ACTION_LAUNCH_ACTIVITY_PARAMS = 2;
 
   private ExpandableListView list;
   private ApplicationsListAdapter adapter;
@@ -94,8 +96,12 @@ public class AppsListFragment extends Fragment {
             .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
               ExpandableListView.getPackedPositionChild(info.packedPosition));
           menu.setHeaderTitle(activity.getName());
-          menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, Menu.NONE, R.string.context_action_shortcut);
-          menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY, Menu.NONE, R.string.context_action_launch);
+          menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, Menu.NONE,
+            R.string.context_action_shortcut);
+          menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY, Menu.NONE,
+            R.string.context_action_launch);
+          menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_PARAMS, Menu.NONE,
+            R.string.context_action_launch_params);
           break;
       }
     }
@@ -126,6 +132,11 @@ public class AppsListFragment extends Fragment {
               if (getActivity() != null) {
                 IntentUtils.launchActivity(getActivity(),
                   activityModel.getComponentName(), activityModel.getName());
+              }
+              break;
+            case ACTION_LAUNCH_ACTIVITY_PARAMS:
+              if (getActivity() != null) {
+                LaunchParamsActivity.start(getActivity(), activityModel);
               }
               break;
           }

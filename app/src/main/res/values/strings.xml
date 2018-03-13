@@ -2,6 +2,7 @@
   <string name="app_name">Activity Runner</string>
 
   <string name="context_action_launch">Launch activity</string>
+  <string name="context_action_launch_params">Launch activity with params</string>
   <string name="context_action_shortcut">Create shortcut</string>
   <string name="context_action_edit">Edit shortcut</string>
   <string name="label_name">Label</string>
@@ -11,4 +12,9 @@
   <string name="action_disable_ads">Disable ads</string>
   <string name="search">Search</string>
   <string name="search_hint">Application name</string>
+  <string name="launch_param_package_name">Package name</string>
+  <string name="launch_param_class_name">Class name</string>
+  <string name="launch_param_action">Action</string>
+  <string name="launch_param_data">Data</string>
+  <string name="launch_param_mime_type">Mime type</string>
 </resources>

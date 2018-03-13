@@ -1,17 +1,27 @@
 package com.sdex.commons;
 
+import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.sdex.commons.util.AppUtils;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
-  protected void enableBackButton() {
-    ActionBar supportActionBar = getSupportActionBar();
-    if (supportActionBar != null) {
-      supportActionBar.setDisplayHomeAsUpEnabled(true);
+  @LayoutRes
+  protected abstract int getLayout();
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(getLayout());
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    if (toolbar != null) {
+      setSupportActionBar(toolbar);
     }
   }
 
@@ -34,5 +44,20 @@ public class BaseActivity extends AppCompatActivity {
       return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override
+  public void setTitle(CharSequence title) {
+    super.setTitle(title);
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().setTitle(title);
+    }
+  }
+
+  protected void enableBackButton() {
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar != null) {
+      supportActionBar.setDisplayHomeAsUpEnabled(true);
+    }
   }
 }

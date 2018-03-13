@@ -15,7 +15,6 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
-
     <activity android:name=".MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -28,6 +27,8 @@
       android:exported="false"
       android:name=".service.AppLoaderIntentService"
       android:permission="android.permission.BIND_JOB_SERVICE" />
+
+    <activity android:name=".intent.LaunchParamsActivity"></activity>
   </application>
 
 </manifest>
