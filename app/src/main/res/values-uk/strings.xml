@@ -1,0 +1,14 @@
+<resources>
+  <string name="app_name">Activity Runner</string>
+
+  <string name="context_action_launch">Запустити</string>
+  <string name="context_action_shortcut">Створити ярлик</string>
+  <string name="context_action_edit">Ярлик</string>
+  <string name="label_name">Назва</string>
+  <string name="starting_activity">Запуск: %s</string>
+  <string name="starting_activity_failed">Помилка запуску: %s</string>
+  <string name="creating_activity_shortcut">Створення ярлика: %s</string>
+  <string name="action_disable_ads">Відключити рекламу</string>
+  <string name="search">Пошук</string>
+  <string name="search_hint">Назва програми</string>
+</resources>
