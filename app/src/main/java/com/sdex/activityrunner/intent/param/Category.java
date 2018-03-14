@@ -59,6 +59,7 @@ public class Category {
     }
   };
 
+  // TODO cache
   public static ArrayList<String> list() {
     return new ArrayList<>(CATEGORIES.keySet());
   }

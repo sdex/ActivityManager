@@ -17,4 +17,6 @@
   <string name="launch_param_action">Action</string>
   <string name="launch_param_data">Data</string>
   <string name="launch_param_mime_type">Mime type</string>
+  <string name="launch_param_categories">Categories</string>
+  <string name="launch_param_flags">Flags</string>
 </resources>

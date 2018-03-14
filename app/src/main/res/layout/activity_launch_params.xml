@@ -282,6 +282,110 @@
 
       </android.support.constraint.ConstraintLayout>
 
+      <android.support.constraint.ConstraintLayout
+        android:id="@+id/container_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+          android:id="@+id/imageView5"
+          android:layout_width="@dimen/launch_params_item_height"
+          android:layout_height="@dimen/launch_params_item_height"
+          android:padding="8dp"
+          android:src="@drawable/ic_settings_applications"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+          android:id="@+id/linearLayout5"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/launch_params_item_height"
+          android:gravity="center_vertical"
+          android:orientation="vertical"
+          app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/imageView5"
+          app:layout_constraintTop_toTopOf="parent">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/launch_param_categories"
+            android:textAppearance="?android:attr/textAppearanceListItem" />
+
+          <TextView
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceListItemSecondary"
+            tools:text="CATEGORY_OPENABLE" />
+        </LinearLayout>
+
+        <View
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:background="#E0E0E0"
+          app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
+          app:layout_constraintStart_toStartOf="@+id/linearLayout5" />
+
+      </android.support.constraint.ConstraintLayout>
+
+      <android.support.constraint.ConstraintLayout
+        android:id="@+id/container_flags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+          android:id="@+id/imageView6"
+          android:layout_width="@dimen/launch_params_item_height"
+          android:layout_height="@dimen/launch_params_item_height"
+          android:padding="8dp"
+          android:src="@drawable/ic_settings_applications"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+          android:id="@+id/linearLayout6"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/launch_params_item_height"
+          android:gravity="center_vertical"
+          android:orientation="vertical"
+          app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@+id/imageView6"
+          app:layout_constraintTop_toTopOf="parent">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/launch_param_flags"
+            android:textAppearance="?android:attr/textAppearanceListItem" />
+
+          <TextView
+            android:id="@+id/flags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceListItemSecondary"
+            tools:text="FLAG_ACTIVITY_NO_HISTORY" />
+        </LinearLayout>
+
+        <View
+          android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:background="#E0E0E0"
+          app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
+          app:layout_constraintStart_toStartOf="@+id/linearLayout6" />
+
+      </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 
   </ScrollView>

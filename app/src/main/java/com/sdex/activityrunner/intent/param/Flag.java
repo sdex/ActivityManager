@@ -40,6 +40,7 @@ public class Flag {
     }
   };
 
+  // TODO cache
   public static ArrayList<String> list() {
     return new ArrayList<>(FLAGS.keySet());
   }
