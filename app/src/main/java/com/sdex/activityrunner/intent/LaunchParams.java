@@ -84,8 +84,7 @@ public class LaunchParams {
   }
 
   public void setCategories(ArrayList<Integer> categories) {
-    this.categories.clear();
-    this.categories.addAll(categories);
+    this.categories = categories;
   }
 
   public ArrayList<Integer> getFlags() {
@@ -102,7 +101,6 @@ public class LaunchParams {
   }
 
   public void setFlags(ArrayList<Integer> flags) {
-    this.flags.clear();
-    this.flags.addAll(flags);
+    this.flags = flags;
   }
 }

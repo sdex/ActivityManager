@@ -4,4 +4,6 @@
   <color name="colorPrimaryDark">#455A64</color>
   <color name="colorAccent">#607D8B</color>
   <color name="colorControlActivated">#ffffff</color>
+
+  <color name="launch_params_divider_color">#E0E0E0</color>
 </resources>

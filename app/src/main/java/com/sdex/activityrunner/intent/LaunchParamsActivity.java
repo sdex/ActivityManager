@@ -82,13 +82,13 @@ public class LaunchParamsActivity extends BaseActivity
     bindInputValueDialog(R.id.container_data,
       R.string.launch_param_data, launchParams.getData());
     bindSingleSelectionDialog(R.id.container_action, R.string.launch_param_action,
-      new ActionSource(), launchParams.getAction());
+      new ActionSource());
     bindSingleSelectionDialog(R.id.container_mime_type, R.string.launch_param_mime_type,
-      new MimeTypeSource(), launchParams.getMimeType());
-    bindMultiSelectionDialog(R.id.container_categories, R.string.launch_param_categories,
-      new CategoriesSource(), launchParams.getCategories());
-    bindMultiSelectionDialog(R.id.container_flags, R.string.launch_param_flags,
-      new FlagsSource(), launchParams.getFlags());
+      new MimeTypeSource());
+    bindMultiSelectionDialog(R.id.categories_click_interceptor, R.string.launch_param_categories,
+      new CategoriesSource());
+    bindMultiSelectionDialog(R.id.flags_click_interceptor, R.string.launch_param_flags,
+      new FlagsSource());
 
     showLaunchParams();
   }
@@ -152,22 +152,44 @@ public class LaunchParamsActivity extends BaseActivity
     });
   }
 
-  private void bindSingleSelectionDialog(int viewId, int type,
-    SelectionDialogSource source, int initialPosition) {
+  private void bindSingleSelectionDialog(int viewId, int type, SelectionDialogSource source) {
     findViewById(viewId).setOnClickListener(v -> {
+      int initialPosition = getSingleSelectionInitialPosition(type);
       SingleSelectionDialog dialog =
         SingleSelectionDialog.newInstance(type, source, initialPosition);
       dialog.show(getSupportFragmentManager(), SingleSelectionDialog.TAG);
     });
   }
 
-  private void bindMultiSelectionDialog(int viewId, int type,
-    SelectionDialogSource source, ArrayList<Integer> initialPositions) {
+  private void bindMultiSelectionDialog(int viewId, int type, SelectionDialogSource source) {
     findViewById(viewId).setOnClickListener(v -> {
+      ArrayList<Integer> initialPositions = getMultiSelectionInitialPositions(type);
       MultiSelectionDialog dialog =
         MultiSelectionDialog.newInstance(type, source, initialPositions);
       dialog.show(getSupportFragmentManager(), MultiSelectionDialog.TAG);
     });
+  }
+
+  private int getSingleSelectionInitialPosition(int type) {
+    switch (type) {
+      case R.string.launch_param_action:
+        return launchParams.getAction();
+      case R.string.launch_param_mime_type:
+        return launchParams.getMimeType();
+      default:
+        throw new IllegalStateException("Unknown type " + type);
+    }
+  }
+
+  private ArrayList<Integer> getMultiSelectionInitialPositions(int type) {
+    switch (type) {
+      case R.string.launch_param_categories:
+        return launchParams.getCategories();
+      case R.string.launch_param_flags:
+        return launchParams.getFlags();
+      default:
+        throw new IllegalStateException("Unknown type " + type);
+    }
   }
 
   private void showLaunchParams() {

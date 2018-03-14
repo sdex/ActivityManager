@@ -19,7 +19,7 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
-      android:padding="8dp"
+      android:padding="@dimen/launch_params_activity_padding"
       android:baselineAligned="false"
       android:orientation="vertical">
 
@@ -33,7 +33,7 @@
           android:id="@+id/imageView"
           android:layout_width="@dimen/launch_params_item_height"
           android:layout_height="@dimen/launch_params_item_height"
-          android:padding="8dp"
+          android:padding="@dimen/launch_params_icon_padding"
           android:src="@drawable/ic_settings_applications"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +69,7 @@
         <View
           android:layout_width="0dp"
           android:layout_height="1dp"
-          android:background="#E0E0E0"
+          android:background="@color/launch_params_divider_color"
           app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
           app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
@@ -79,14 +79,13 @@
         android:id="@+id/container_class_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:background="?attr/selectableItemBackground">
 
         <ImageView
           android:id="@+id/imageView1"
           android:layout_width="@dimen/launch_params_item_height"
           android:layout_height="@dimen/launch_params_item_height"
-          android:padding="8dp"
+          android:padding="@dimen/launch_params_icon_padding"
           android:src="@drawable/ic_settings_applications"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -121,7 +120,7 @@
         <View
           android:layout_width="0dp"
           android:layout_height="1dp"
-          android:background="#E0E0E0"
+          android:background="@color/launch_params_divider_color"
           app:layout_constraintBottom_toBottomOf="@+id/linearLayout1"
           app:layout_constraintStart_toStartOf="@+id/linearLayout1" />
 
@@ -131,14 +130,13 @@
         android:id="@+id/container_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:background="?attr/selectableItemBackground">
 
         <ImageView
           android:id="@+id/imageView2"
           android:layout_width="@dimen/launch_params_item_height"
           android:layout_height="@dimen/launch_params_item_height"
-          android:padding="8dp"
+          android:padding="@dimen/launch_params_icon_padding"
           android:src="@drawable/ic_settings_applications"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -173,7 +171,7 @@
         <View
           android:layout_width="0dp"
           android:layout_height="1dp"
-          android:background="#E0E0E0"
+          android:background="@color/launch_params_divider_color"
           app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
           app:layout_constraintStart_toStartOf="@+id/linearLayout2" />
 
@@ -183,14 +181,13 @@
         android:id="@+id/container_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:background="?attr/selectableItemBackground">
 
         <ImageView
           android:id="@+id/imageView3"
           android:layout_width="@dimen/launch_params_item_height"
           android:layout_height="@dimen/launch_params_item_height"
-          android:padding="8dp"
+          android:padding="@dimen/launch_params_icon_padding"
           android:src="@drawable/ic_settings_applications"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -225,7 +222,7 @@
         <View
           android:layout_width="0dp"
           android:layout_height="1dp"
-          android:background="#E0E0E0"
+          android:background="@color/launch_params_divider_color"
           app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
           app:layout_constraintStart_toStartOf="@+id/linearLayout3" />
 
@@ -235,14 +232,13 @@
         android:id="@+id/container_mime_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:background="?attr/selectableItemBackground">
 
         <ImageView
           android:id="@+id/imageView4"
           android:layout_width="@dimen/launch_params_item_height"
           android:layout_height="@dimen/launch_params_item_height"
-          android:padding="8dp"
+          android:padding="@dimen/launch_params_icon_padding"
           android:src="@drawable/ic_settings_applications"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -277,7 +273,7 @@
         <View
           android:layout_width="0dp"
           android:layout_height="1dp"
-          android:background="#E0E0E0"
+          android:background="@color/launch_params_divider_color"
           app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
           app:layout_constraintStart_toStartOf="@+id/linearLayout4" />
 
@@ -286,15 +282,13 @@
       <android.support.constraint.ConstraintLayout
         android:id="@+id/container_categories"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackground">
+        android:layout_height="wrap_content">
 
         <ImageView
           android:id="@+id/imageView5"
           android:layout_width="@dimen/launch_params_item_height"
           android:layout_height="@dimen/launch_params_item_height"
-          android:padding="8dp"
+          android:padding="@dimen/launch_params_icon_padding"
           android:src="@drawable/ic_settings_applications"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -311,9 +305,9 @@
           app:layout_constraintTop_toTopOf="parent">
 
           <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@string/launch_param_categories"
             android:textAppearance="?android:attr/textAppearanceListItem" />
 
@@ -330,24 +324,32 @@
         <View
           android:layout_width="0dp"
           android:layout_height="1dp"
-          android:background="#E0E0E0"
+          android:background="@color/launch_params_divider_color"
           app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
           app:layout_constraintStart_toStartOf="@+id/linearLayout5" />
+
+        <View
+          android:id="@+id/categories_click_interceptor"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:background="?attr/selectableItemBackground"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
       </android.support.constraint.ConstraintLayout>
 
       <android.support.constraint.ConstraintLayout
         android:id="@+id/container_flags"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackground">
+        android:layout_height="wrap_content">
 
         <ImageView
           android:id="@+id/imageView6"
           android:layout_width="@dimen/launch_params_item_height"
           android:layout_height="@dimen/launch_params_item_height"
-          android:padding="8dp"
+          android:padding="@dimen/launch_params_icon_padding"
           android:src="@drawable/ic_settings_applications"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -366,6 +368,7 @@
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="@string/launch_param_flags"
             android:textAppearance="?android:attr/textAppearanceListItem" />
 
@@ -377,6 +380,16 @@
             android:layout_marginBottom="4dp"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
         </LinearLayout>
+
+        <View
+          android:id="@+id/flags_click_interceptor"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="?attr/selectableItemBackground"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
       </android.support.constraint.ConstraintLayout>
 

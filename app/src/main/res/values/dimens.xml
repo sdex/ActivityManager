@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <dimen name="launch_params_activity_padding">8dp</dimen>
   <dimen name="launch_params_item_height">60dp</dimen>
+  <dimen name="launch_params_item_padding_vertical">4dp</dimen>
+  <dimen name="launch_params_icon_padding">8dp</dimen>
 </resources>
