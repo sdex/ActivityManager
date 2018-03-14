@@ -20,17 +20,16 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import com.sdex.activityrunner.db.ActivityModel;
-import com.sdex.activityrunner.db.ItemModel;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.IntentUtils;
-import com.sdex.activityrunner.util.ObjectsCompat;
 
 public class AppsListFragment extends Fragment {
 
   public static final String TAG = "AppsListFragment";
 
   private static final int ACTION_CREATE_SHORTCUT = 0;
+  private static final int ACTION_OPEN_INFO = 3;
   private static final int ACTION_LAUNCH_ACTIVITY = 1;
   private static final int ACTION_LAUNCH_ACTIVITY_PARAMS = 2;
 
@@ -58,13 +57,6 @@ public class AppsListFragment extends Fragment {
       }
       return false;
     });
-    list.setOnItemLongClickListener((parent, view1, position, id) -> {
-      ItemModel item = (ItemModel) adapter.getGroup(position);
-      final String packageName = item.getApplicationModel().getPackageName();
-      IntentUtils.openApplicationInfo(ObjectsCompat.requireNonNull(getActivity()), packageName);
-      return true;
-    });
-
     refreshLayout.setOnRefreshListener(() -> {
       refreshLayout.setRefreshing(true);
       final Intent work = new Intent();
@@ -106,6 +98,8 @@ public class AppsListFragment extends Fragment {
           menu.setHeaderTitle(activity.getName());
           menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, Menu.NONE,
             R.string.context_action_shortcut);
+          menu.add(Menu.NONE, ACTION_OPEN_INFO, Menu.NONE,
+            R.string.context_action_open_info);
           menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY, Menu.NONE,
             R.string.context_action_launch);
           menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_PARAMS, Menu.NONE,
@@ -134,6 +128,12 @@ public class AppsListFragment extends Fragment {
                 args.putSerializable(AddShortcutDialogFragment.ARG_ACTIVITY_MODEL, activityModel);
                 dialog.setArguments(args);
                 dialog.show(getFragmentManager(), AddShortcutDialogFragment.TAG);
+              }
+              break;
+            case ACTION_OPEN_INFO:
+              if (getActivity() != null) {
+                final String packageName = activityModel.getPackageName();
+                IntentUtils.openApplicationInfo(getActivity(), packageName);
               }
               break;
             case ACTION_LAUNCH_ACTIVITY:

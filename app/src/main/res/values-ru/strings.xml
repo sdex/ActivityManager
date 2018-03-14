@@ -2,6 +2,7 @@
   <string name="context_action_launch">Запустить</string>
   <string name="context_action_launch_params">Запустить с параметрами</string>
   <string name="context_action_shortcut">Создать ярлык</string>
+  <string name="context_action_open_info">Инфо</string>
   <string name="context_action_edit">Ярлык</string>
   <string name="label_name">Название</string>
 

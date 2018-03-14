@@ -2,6 +2,7 @@
   <string name="context_action_launch">Запустити</string>
   <string name="context_action_launch_params">Запустити з параметрами</string>
   <string name="context_action_shortcut">Створити ярлик</string>
+  <string name="context_action_open_info">Інфо</string>
   <string name="context_action_edit">Ярлик</string>
   <string name="label_name">Назва</string>
 

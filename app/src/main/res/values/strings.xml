@@ -5,6 +5,7 @@
   <string name="context_action_launch">Launch activity</string>
   <string name="context_action_launch_params">Launch activity with params</string>
   <string name="context_action_shortcut">Create shortcut</string>
+  <string name="context_action_open_info">Open info</string>
   <string name="context_action_edit">Edit shortcut</string>
   <string name="label_name">Label</string>
 
