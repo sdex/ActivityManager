@@ -12,6 +12,7 @@ import com.google.android.gms.ads.AdRequest.Builder;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsController;
@@ -106,6 +107,10 @@ public class MainActivity extends BaseActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
+      case R.id.action_launch_intent: {
+        LaunchParamsActivity.start(this, null);
+        return true;
+      }
       case R.id.action_disable_ads: {
         Intent intent = DisableAdsActivity.getStartIntent(this, R.string.ad_rewarded_unit_id);
         startActivityForResult(intent, DisableAdsActivity.REQUEST_CODE);

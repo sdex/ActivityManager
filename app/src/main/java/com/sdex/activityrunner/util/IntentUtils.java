@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.pm.ShortcutInfoCompat;
 import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -64,6 +65,19 @@ public class IntentUtils {
     } catch (SecurityException e) {
       Toast.makeText(context, context.getString(R.string.starting_activity_failed, name),
         Toast.LENGTH_SHORT).show();
+    }
+  }
+
+  public static void launchActivity(Context context, Intent intent) {
+    try {
+      context.startActivity(intent);
+      Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show();
+    } catch (Exception e) {
+      new AlertDialog.Builder(context)
+        .setTitle(R.string.starting_activity_intent_failed)
+        .setMessage(e.getMessage())
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
     }
   }
 }

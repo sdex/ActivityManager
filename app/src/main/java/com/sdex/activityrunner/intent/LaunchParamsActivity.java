@@ -16,6 +16,7 @@ import com.sdex.activityrunner.intent.dialog.source.CategoriesSource;
 import com.sdex.activityrunner.intent.dialog.source.FlagsSource;
 import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource;
 import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
+import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
 import java.util.ArrayList;
 
@@ -51,12 +52,13 @@ public class LaunchParamsActivity extends BaseActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     enableBackButton();
-    ActivityModel activityModel = (ActivityModel)
+    final ActivityModel activityModel = (ActivityModel)
       getIntent().getSerializableExtra(ARG_ACTIVITY_MODEL);
-    setTitle(activityModel.getName());
-
-    launchParams.setPackageName(activityModel.getPackageName());
-    launchParams.setClassName(activityModel.getClassName());
+    if (activityModel != null) {
+      setTitle(activityModel.getName());
+      launchParams.setPackageName(activityModel.getPackageName());
+      launchParams.setClassName(activityModel.getClassName());
+    }
 
     packageNameView = findViewById(R.id.package_name);
     classNameView = findViewById(R.id.class_name);
@@ -89,6 +91,12 @@ public class LaunchParamsActivity extends BaseActivity
       new CategoriesSource());
     bindMultiSelectionDialog(R.id.flags_click_interceptor, R.string.launch_param_flags,
       new FlagsSource());
+
+    findViewById(R.id.launch).setOnClickListener(v -> {
+      LaunchParamsIntentConverter converter = new LaunchParamsIntentConverter(launchParams);
+      final Intent intent = converter.convert();
+      IntentUtils.launchActivity(LaunchParamsActivity.this, intent);
+    });
 
     showLaunchParams();
   }

@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Category {
 
+  private static ArrayList<String> list;
   private static final Map<String, String> CATEGORIES = new HashMap<String, String>() {
     {
       put("CATEGORY_ALTERNATIVE", Intent.CATEGORY_ALTERNATIVE);
@@ -59,8 +62,19 @@ public class Category {
     }
   };
 
-  // TODO cache
   public static ArrayList<String> list() {
-    return new ArrayList<>(CATEGORIES.keySet());
+    if (list == null) {
+      list = new ArrayList<>(CATEGORIES.keySet());
+      Collections.sort(list);
+    }
+    return list;
+  }
+
+  public static List<String> list(List<String> keys) {
+    List<String> list = new ArrayList<>(keys.size());
+    for (String key : keys) {
+      list.add(CATEGORIES.get(key));
+    }
+    return list;
   }
 }

@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Flag {
 
+  private static ArrayList<String> list;
   private static final Map<String, Integer> FLAGS = new HashMap<String, Integer>() {
     {
       put("FLAG_ACTIVITY_BROUGHT_TO_FRONT", Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
@@ -40,8 +43,19 @@ public class Flag {
     }
   };
 
-  // TODO cache
   public static ArrayList<String> list() {
-    return new ArrayList<>(FLAGS.keySet());
+    if (list == null) {
+      list = new ArrayList<>(FLAGS.keySet());
+      Collections.sort(list);
+    }
+    return list;
+  }
+
+  public static List<Integer> list(List<String> keys) {
+    List<Integer> list = new ArrayList<>(keys.size());
+    for (String key : keys) {
+      list.add(FLAGS.get(key));
+    }
+    return list;
   }
 }
