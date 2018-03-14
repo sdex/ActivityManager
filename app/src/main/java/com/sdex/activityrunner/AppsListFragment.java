@@ -20,9 +20,11 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.db.ItemModel;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.IntentUtils;
+import com.sdex.activityrunner.util.ObjectsCompat;
 
 public class AppsListFragment extends Fragment {
 
@@ -46,6 +48,8 @@ public class AppsListFragment extends Fragment {
     progressBar.show();
     refreshLayout = view.findViewById(R.id.refresh);
     list = view.findViewById(R.id.list);
+    adapter = new ApplicationsListAdapter(getActivity());
+    list.setAdapter(adapter);
     list.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
       ExpandableListAdapter adapter = parent.getExpandableListAdapter();
       ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
@@ -54,8 +58,12 @@ public class AppsListFragment extends Fragment {
       }
       return false;
     });
-    adapter = new ApplicationsListAdapter(getActivity());
-    list.setAdapter(adapter);
+    list.setOnItemLongClickListener((parent, view1, position, id) -> {
+      ItemModel item = (ItemModel) adapter.getGroup(position);
+      final String packageName = item.getApplicationModel().getPackageName();
+      IntentUtils.openApplicationInfo(ObjectsCompat.requireNonNull(getActivity()), packageName);
+      return true;
+    });
 
     refreshLayout.setOnRefreshListener(() -> {
       refreshLayout.setRefreshing(true);
