@@ -1,15 +1,26 @@
 <resources>
-  <string name="app_name">Activity Runner</string>
-
   <string name="context_action_launch">Запустити</string>
   <string name="context_action_launch_params">Запустити з параметрами</string>
   <string name="context_action_shortcut">Створити ярлик</string>
   <string name="context_action_edit">Ярлик</string>
   <string name="label_name">Назва</string>
+
   <string name="starting_activity">Запуск: %s</string>
   <string name="starting_activity_failed">Помилка запуску: %s</string>
   <string name="creating_activity_shortcut">Створення ярлика: %s</string>
+  <string name="starting_activity_intent">Запуск</string>
+  <string name="starting_activity_intent_failed">Помилка запуску</string>
+
   <string name="action_disable_ads">Відключити рекламу</string>
-  <string name="search">Пошук</string>
-  <string name="search_hint">Назва програми</string>
+  <string name="action_launch_intent">Запустити intent</string>
+  <string name="action_search">Пошук</string>
+  <string name="action_search_hint">Назва програми</string>
+
+  <string name="launch_param_package_name">Ім\'я пакету</string>
+  <string name="launch_param_class_name">Ім\'я класу</string>
+  <string name="launch_param_action">Дія</string>
+  <string name="launch_param_data">Дані</string>
+  <string name="launch_param_mime_type">Тип даних</string>
+  <string name="launch_param_categories">Категорії</string>
+  <string name="launch_param_flags">Параметри</string>
 </resources>

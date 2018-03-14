@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity {
     getMenuInflater().inflate(R.menu.main, menu);
     MenuItem searchItem = menu.findItem(R.id.action_search);
     SearchView searchView = (SearchView) searchItem.getActionView();
-    String hint = getString(R.string.search_hint);
+    String hint = getString(R.string.action_search_hint);
     searchView.setQueryHint(hint);
     searchView.setOnQueryTextListener(new OnQueryTextListener() {
       @Override

@@ -1,21 +1,24 @@
 <resources>
-  <string name="app_name">Activity Runner</string>
+  <string name="app_name" translatable="false">Activity Runner</string>
+  <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
 
   <string name="context_action_launch">Launch activity</string>
   <string name="context_action_launch_params">Launch activity with params</string>
   <string name="context_action_shortcut">Create shortcut</string>
   <string name="context_action_edit">Edit shortcut</string>
   <string name="label_name">Label</string>
+
   <string name="starting_activity">Starting activity: %s</string>
   <string name="starting_activity_failed">Failed to start activity: %s</string>
   <string name="starting_activity_intent">Starting activity</string>
   <string name="starting_activity_intent_failed">Failed to start activity</string>
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
+
   <string name="action_disable_ads">Disable ads</string>
   <string name="action_launch_intent">Start intent</string>
-  <string name="search">Search</string>
-  <string name="search_hint">Application name</string>
-  <string name="intent_launcher_activity">Intent launcher</string>
+  <string name="action_search">Search</string>
+  <string name="action_search_hint">Application name</string>
+
   <string name="launch_param_package_name">Package name</string>
   <string name="launch_param_class_name">Class name</string>
   <string name="launch_param_action">Action</string>
