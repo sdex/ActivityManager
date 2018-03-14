@@ -3,6 +3,7 @@ package com.sdex.activityrunner.intent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.widget.TextView;
 import com.sdex.activityrunner.R;
@@ -32,6 +33,8 @@ public class LaunchParamsActivity extends BaseActivity
   private TextView dataView;
   private TextView actionView;
   private TextView mimeTypeView;
+  private LaunchParamsListAdapter categoriesAdapter;
+  private LaunchParamsListAdapter flagsAdapter;
 
   public static void start(Context context, ActivityModel activityModel) {
     Intent starter = new Intent(context, LaunchParamsActivity.class);
@@ -61,7 +64,16 @@ public class LaunchParamsActivity extends BaseActivity
     actionView = findViewById(R.id.action);
     mimeTypeView = findViewById(R.id.mime_type);
 
-    showLaunchParams();
+    RecyclerView listCategoriesView = findViewById(R.id.list_categories);
+    configureRecyclerView(listCategoriesView);
+    RecyclerView listFlagsView = findViewById(R.id.list_flags);
+    configureRecyclerView(listFlagsView);
+    categoriesAdapter = new LaunchParamsListAdapter();
+    categoriesAdapter.setHasStableIds(true);
+    listCategoriesView.setAdapter(categoriesAdapter);
+    flagsAdapter = new LaunchParamsListAdapter();
+    flagsAdapter.setHasStableIds(true);
+    listFlagsView.setAdapter(flagsAdapter);
 
     bindInputValueDialog(R.id.container_package_name,
       R.string.launch_param_package_name, launchParams.getPackageName());
@@ -77,6 +89,8 @@ public class LaunchParamsActivity extends BaseActivity
       new CategoriesSource(), launchParams.getCategories());
     bindMultiSelectionDialog(R.id.container_flags, R.string.launch_param_flags,
       new FlagsSource(), launchParams.getFlags());
+
+    showLaunchParams();
   }
 
   @Override
@@ -126,6 +140,11 @@ public class LaunchParamsActivity extends BaseActivity
     showLaunchParams();
   }
 
+  private void configureRecyclerView(RecyclerView recyclerView) {
+    recyclerView.setNestedScrollingEnabled(false);
+    recyclerView.setHasFixedSize(true);
+  }
+
   private void bindInputValueDialog(int viewId, int type, String initialValue) {
     findViewById(viewId).setOnClickListener(v -> {
       ValueInputDialog dialog = ValueInputDialog.newInstance(type, initialValue);
@@ -157,5 +176,7 @@ public class LaunchParamsActivity extends BaseActivity
     dataView.setText(launchParams.getData());
     actionView.setText(launchParams.getActionValue());
     mimeTypeView.setText(launchParams.getMimeTypeValue());
+    categoriesAdapter.setItems(launchParams.getCategoriesValues());
+    flagsAdapter.setItems(launchParams.getFlagsValues());
   }
 }

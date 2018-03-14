@@ -10,9 +10,10 @@
 
   <include layout="@layout/toolbar" />
 
-  <ScrollView
+  <android.support.v4.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -25,8 +26,7 @@
       <android.support.constraint.ConstraintLayout
         android:id="@+id/container_package_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="@dimen/launch_params_item_height"
         android:background="?attr/selectableItemBackground">
 
         <ImageView
@@ -53,7 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/launch_param_package_name"
-            android:textAppearance="?android:attr/textAppearanceListItem" />
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            app:layout_constraintStart_toEndOf="@+id/imageView" />
 
           <TextView
             android:id="@+id/package_name"
@@ -301,28 +302,29 @@
         <LinearLayout
           android:id="@+id/linearLayout5"
           android:layout_width="0dp"
-          android:layout_height="@dimen/launch_params_item_height"
+          android:layout_height="wrap_content"
           android:gravity="center_vertical"
+          android:minHeight="@dimen/launch_params_item_height"
           android:orientation="vertical"
-          app:layout_constraintBottom_toBottomOf="@+id/imageView5"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toEndOf="@+id/imageView5"
           app:layout_constraintTop_toTopOf="parent">
 
           <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/launch_param_categories"
             android:textAppearance="?android:attr/textAppearanceListItem" />
 
-          <TextView
-            android:id="@+id/category"
+          <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_categories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="?attr/textAppearanceListItemSecondary"
-            tools:text="CATEGORY_OPENABLE" />
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
         </LinearLayout>
 
         <View
@@ -353,10 +355,10 @@
         <LinearLayout
           android:id="@+id/linearLayout6"
           android:layout_width="0dp"
-          android:layout_height="@dimen/launch_params_item_height"
+          android:layout_height="wrap_content"
           android:gravity="center_vertical"
+          android:minHeight="@dimen/launch_params_item_height"
           android:orientation="vertical"
-          app:layout_constraintBottom_toBottomOf="@+id/imageView6"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toEndOf="@+id/imageView6"
           app:layout_constraintTop_toTopOf="parent">
@@ -367,27 +369,19 @@
             android:text="@string/launch_param_flags"
             android:textAppearance="?android:attr/textAppearanceListItem" />
 
-          <TextView
-            android:id="@+id/flags"
+          <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_flags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="?attr/textAppearanceListItemSecondary"
-            tools:text="FLAG_ACTIVITY_NO_HISTORY" />
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
         </LinearLayout>
-
-        <View
-          android:layout_width="0dp"
-          android:layout_height="1dp"
-          android:background="#E0E0E0"
-          app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
-          app:layout_constraintStart_toStartOf="@+id/linearLayout6" />
 
       </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 
-  </ScrollView>
+  </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

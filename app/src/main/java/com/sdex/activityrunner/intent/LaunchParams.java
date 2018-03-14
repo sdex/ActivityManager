@@ -1,6 +1,8 @@
 package com.sdex.activityrunner.intent;
 
 import com.sdex.activityrunner.intent.param.Action;
+import com.sdex.activityrunner.intent.param.Category;
+import com.sdex.activityrunner.intent.param.Flag;
 import com.sdex.activityrunner.intent.param.MimeType;
 import java.util.ArrayList;
 
@@ -72,6 +74,15 @@ public class LaunchParams {
     return categories;
   }
 
+  public ArrayList<String> getCategoriesValues() {
+    final ArrayList<String> list = Category.list();
+    final ArrayList<String> result = new ArrayList<>(categories.size());
+    for (Integer position : categories) {
+      result.add(list.get(position));
+    }
+    return result;
+  }
+
   public void setCategories(ArrayList<Integer> categories) {
     this.categories.clear();
     this.categories.addAll(categories);
@@ -79,6 +90,15 @@ public class LaunchParams {
 
   public ArrayList<Integer> getFlags() {
     return flags;
+  }
+
+  public ArrayList<String> getFlagsValues() {
+    final ArrayList<String> list = Flag.list();
+    final ArrayList<String> result = new ArrayList<>(flags.size());
+    for (Integer position : flags) {
+      result.add(list.get(position));
+    }
+    return result;
   }
 
   public void setFlags(ArrayList<Integer> flags) {
