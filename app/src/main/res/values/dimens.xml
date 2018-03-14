@@ -3,7 +3,7 @@
   <dimen name="launch_params_activity_padding">8dp</dimen>
   <dimen name="launch_params_item_height">60dp</dimen>
   <dimen name="launch_params_item_padding_vertical">4dp</dimen>
-  <dimen name="launch_params_icon_padding">8dp</dimen>
+  <dimen name="launch_params_icon_padding">14dp</dimen>
   <dimen name="launch_params_fab_margin">26dp</dimen>
   <!-- fab size 56dp + 26dp + 8dp-->
   <dimen name="launch_params_bottom_margin">90dp</dimen>

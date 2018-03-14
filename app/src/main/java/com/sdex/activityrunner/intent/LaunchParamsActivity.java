@@ -26,8 +26,9 @@ public class LaunchParamsActivity extends BaseActivity
   MultiSelectionDialog.OnItemsSelectedCallback {
 
   private static final String ARG_ACTIVITY_MODEL = "arg_activity_model";
+  public static final String STATE_LAUNCH_PARAMS = "state_launch_params";
 
-  private final LaunchParams launchParams = new LaunchParams();
+  private LaunchParams launchParams = new LaunchParams();
 
   private TextView packageNameView;
   private TextView classNameView;
@@ -58,6 +59,10 @@ public class LaunchParamsActivity extends BaseActivity
       setTitle(activityModel.getName());
       launchParams.setPackageName(activityModel.getPackageName());
       launchParams.setClassName(activityModel.getClassName());
+    }
+
+    if (savedInstanceState != null) {
+      launchParams = savedInstanceState.getParcelable(STATE_LAUNCH_PARAMS);
     }
 
     packageNameView = findViewById(R.id.package_name);
@@ -99,6 +104,12 @@ public class LaunchParamsActivity extends BaseActivity
     });
 
     showLaunchParams();
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putParcelable(STATE_LAUNCH_PARAMS, launchParams);
   }
 
   @Override

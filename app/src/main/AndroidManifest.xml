@@ -23,12 +23,15 @@
       </intent-filter>
     </activity>
 
+    <activity
+      android:label="@string/intent_launcher_activity"
+      android:name=".intent.LaunchParamsActivity" />
+
     <service
       android:exported="false"
       android:name=".service.AppLoaderIntentService"
       android:permission="android.permission.BIND_JOB_SERVICE" />
 
-    <activity android:name=".intent.LaunchParamsActivity"></activity>
   </application>
 
 </manifest>

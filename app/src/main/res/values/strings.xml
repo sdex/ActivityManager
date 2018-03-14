@@ -15,6 +15,7 @@
   <string name="action_launch_intent">Start intent</string>
   <string name="search">Search</string>
   <string name="search_hint">Application name</string>
+  <string name="intent_launcher_activity">Intent launcher</string>
   <string name="launch_param_package_name">Package name</string>
   <string name="launch_param_class_name">Class name</string>
   <string name="launch_param_action">Action</string>

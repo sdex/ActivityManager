@@ -1,12 +1,14 @@
 package com.sdex.activityrunner.intent;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.sdex.activityrunner.intent.param.Action;
 import com.sdex.activityrunner.intent.param.Category;
 import com.sdex.activityrunner.intent.param.Flag;
 import com.sdex.activityrunner.intent.param.MimeType;
 import java.util.ArrayList;
 
-public class LaunchParams {
+public class LaunchParams implements Parcelable {
 
   private String packageName;
   private String className;
@@ -103,4 +105,48 @@ public class LaunchParams {
   public void setFlags(ArrayList<Integer> flags) {
     this.flags = flags;
   }
+
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(this.packageName);
+    dest.writeString(this.className);
+    dest.writeInt(this.action);
+    dest.writeString(this.data);
+    dest.writeInt(this.mimeType);
+    dest.writeList(this.categories);
+    dest.writeList(this.flags);
+  }
+
+  public LaunchParams() {
+  }
+
+  protected LaunchParams(Parcel in) {
+    this.packageName = in.readString();
+    this.className = in.readString();
+    this.action = in.readInt();
+    this.data = in.readString();
+    this.mimeType = in.readInt();
+    this.categories = new ArrayList<>();
+    in.readList(this.categories, Integer.class.getClassLoader());
+    this.flags = new ArrayList<>();
+    in.readList(this.flags, Integer.class.getClassLoader());
+  }
+
+  public static final Creator<LaunchParams> CREATOR = new Creator<LaunchParams>() {
+    @Override
+    public LaunchParams createFromParcel(Parcel source) {
+      return new LaunchParams(source);
+    }
+
+    @Override
+    public LaunchParams[] newArray(int size) {
+      return new LaunchParams[size];
+    }
+  };
 }

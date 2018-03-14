@@ -38,7 +38,7 @@
             android:layout_width="@dimen/launch_params_item_height"
             android:layout_height="@dimen/launch_params_item_height"
             android:padding="@dimen/launch_params_icon_padding"
-            android:src="@drawable/ic_settings_applications"
+            android:src="@drawable/ic_assignment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +90,7 @@
             android:layout_width="@dimen/launch_params_item_height"
             android:layout_height="@dimen/launch_params_item_height"
             android:padding="@dimen/launch_params_icon_padding"
-            android:src="@drawable/ic_settings_applications"
+            android:src="@drawable/ic_assignment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -141,7 +141,7 @@
             android:layout_width="@dimen/launch_params_item_height"
             android:layout_height="@dimen/launch_params_item_height"
             android:padding="@dimen/launch_params_icon_padding"
-            android:src="@drawable/ic_settings_applications"
+            android:src="@drawable/ic_assignment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -192,7 +192,7 @@
             android:layout_width="@dimen/launch_params_item_height"
             android:layout_height="@dimen/launch_params_item_height"
             android:padding="@dimen/launch_params_icon_padding"
-            android:src="@drawable/ic_settings_applications"
+            android:src="@drawable/ic_assignment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -243,7 +243,7 @@
             android:layout_width="@dimen/launch_params_item_height"
             android:layout_height="@dimen/launch_params_item_height"
             android:padding="@dimen/launch_params_icon_padding"
-            android:src="@drawable/ic_settings_applications"
+            android:src="@drawable/ic_assignment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -293,7 +293,7 @@
             android:layout_width="@dimen/launch_params_item_height"
             android:layout_height="@dimen/launch_params_item_height"
             android:padding="@dimen/launch_params_icon_padding"
-            android:src="@drawable/ic_settings_applications"
+            android:src="@drawable/ic_assignment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -354,7 +354,7 @@
             android:layout_width="@dimen/launch_params_item_height"
             android:layout_height="@dimen/launch_params_item_height"
             android:padding="@dimen/launch_params_icon_padding"
-            android:src="@drawable/ic_settings_applications"
+            android:src="@drawable/ic_assignment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
