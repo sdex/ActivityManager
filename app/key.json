@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "api-project-992588438630",
+  "private_key_id": "5b58019a7e66f715fd4b20e5d167a637d881b0a2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDACIFRGZsJv/Ym\naCfDyyuxcBHxS3UY0VhCED6CG1aJAu0moSODxx/tJswKQ3q66Zotf+hFJ71ZNorw\njFLZMlPKsLk2GaJSZWLja+pc9lAnnnbv+SvRzXZMbAjogqjRMrTQh58fVLWYExEj\nzy9HHMUw/txL5FAOwAzWhsVLndxfulrcEqQ/4//0FQmJV17eLjW5+Mc0kvnVg35o\niOsQ5NK0Eq1sSmoY/nmGDJmB7MzlHVlLa4HCWcF4ckFpePv61SIYpd90CQaSBaDk\nhrUeC2kueSe1mRo4qncNcxMsYCGAdB5OVcKzwx6uZzAZ6aC62sVmeaM5weqJQwk8\nkjwdje/XAgMBAAECggEAP2pvniMpFmqstJk/zIJLPxEF89vZ4yS7EzH/GoNBrARp\n4ZBkRI/dJLljt136aUBcuHrdbv0FJDGFZ5PHhk9+6Vg8CbgkaTZvFjBcmG+FH9hO\nacgs5t+Fmg4xUOtZKaCnopeu/i9AuuRNDDjO4ZqIKjp38J4IrB5S/wNJo0OR85Bq\nEojwUwD49b+VIQKOWUrhr1P2mifQSHjAdIyI4mnH+wIujdmjR93r1PAAArWr7/A1\nSI+X4az4KD70UaHnIw29QMVdMJDiDr7BYlG9GYDTAOfxRW6L9mwwvemo+taomPgL\neXeeSy7BZa+YGN3RAXrOZlD6K3rPdZI9+ZimVq0S+QKBgQDj7GLfDd8Llvrin0sl\nYrlA7olxHTRVv9Da8VE45f8RsNuV1QJ6cRcS4yltIyR8Uzi+dGj8VzIZRWXZs+6y\nrPAvWuqBk/b8ixecfnBndgJ8fnK23udTWWgK0172DWE0jE7yy9CTHSjhkXdNw6Mo\nkoZnuYf/8aO/hRuc/4xptT63vwKBgQDXsFCa6jFV9u6r7nIfnW0B+B8cGy92oUxb\nkWsA0oMrgHdSEjCCE2xdFhyPbp5pBjCZ0ENasky2R15e17RT7UYoYjT3BtBpql+T\nb1p15/smbRN3xY0S8q4gPSY08yPENu17T6sIxO20xYkpUh5ZLMwMhKtGk2Ok1xQt\nWoiX8NwN6QKBgCSGDtn7mRB8YzvJlvsotNMI5pFvwqEzGb7cCM37XUJyet2pwrno\nQXBPYqYQiZo6o88xTFmTh32xNz8JrGiJefu8r/OPyHZzu5biVBTgPknA4ZUYZy1e\nGGQTtxXq0vbevQ//RS8t7w0miF23yf+Ia21Xt8l16W2ZYPFpqhCOcLx1AoGBALRo\nfLNnCgcueSoEUx7QjZolENhwgL3IYtcAhjD049RiKuvR3RMf7fbahN8QFp4gGEy/\nn2bgVjvs7CmGYQYGJDWpF0Y8Q9zuLe1jKZYPiMn2WF9JNRvRMwYyP5/wc00u6GrJ\nE3VNSsp2o6iVUF8kkjQyUBTDOYhqgi0BWdlFFLrpAoGAI3CtEwP0xdRfx55Qipml\nfkefFPVTluQihbbOilSgWmN/NApKTW6krlDrFmHXv2SalnPrC7ZvZq2cdWs6MURD\nBqMijwgPY7Serys15auPs6ih5GNuNp8puA/1xPRn6XjQR71d9kPYdgiYVt4/fMmw\nfPeWHjLahor2zUSAm0ZjFLk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "id-gradle-play-publisher@api-project-992588438630.iam.gserviceaccount.com",
+  "client_id": "101280296589827708364",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/id-gradle-play-publisher%40api-project-992588438630.iam.gserviceaccount.com"
+}
