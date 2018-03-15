@@ -1,7 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
 android {
+  playAccountConfigs {
+    defaultAccountConfig {
+      jsonFile = file('key.json')
+    }
+  }
+
   compileSdkVersion app.compileSdk
   buildToolsVersion app.buildTools
 
@@ -9,14 +16,26 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 8
-    versionName "1.3.1"
+    versionCode 101
+    versionName "1.2.3"
+
+    playAccountConfig = playAccountConfigs.defaultAccountConfig
+  }
+
+  signingConfigs {
+    release {
+      keyAlias 'key0'
+      keyPassword 'kb83vf82su686dg'
+      storeFile file('keystore/keystore.jks')
+      storePassword '4ks8vk0eklq8tv9j4'
+    }
   }
 
   buildTypes {
     release {
       minifyEnabled true
       shrinkResources true
+      signingConfig signingConfigs.release
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
@@ -24,6 +43,11 @@ android {
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  play {
+    track = 'beta'
+    uploadImages = false
   }
 }
 
