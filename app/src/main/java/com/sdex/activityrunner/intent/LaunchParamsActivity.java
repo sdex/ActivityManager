@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -22,6 +23,7 @@ import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource;
 import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
+import com.sdex.commons.ads.AdsHandler;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +84,11 @@ public class LaunchParamsActivity extends BaseActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     ButterKnife.bind(this);
+
+    FrameLayout adsContainer = findViewById(R.id.ads_container);
+    AdsHandler adsHandler = new AdsHandler(this, adsContainer);
+    adsHandler.init(this, R.string.ad_banner_unit_id);
+
     enableBackButton();
     final ActivityModel activityModel = (ActivityModel)
       getIntent().getSerializableExtra(ARG_ACTIVITY_MODEL);
