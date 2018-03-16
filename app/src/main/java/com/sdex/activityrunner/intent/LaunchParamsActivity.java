@@ -4,8 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.ActivityModel;
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog;
@@ -19,6 +23,7 @@ import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LaunchParamsActivity extends BaseActivity
   implements ValueInputDialog.OnValueInputDialogCallback,
@@ -26,15 +31,39 @@ public class LaunchParamsActivity extends BaseActivity
   MultiSelectionDialog.OnItemsSelectedCallback {
 
   private static final String ARG_ACTIVITY_MODEL = "arg_activity_model";
-  public static final String STATE_LAUNCH_PARAMS = "state_launch_params";
+  private static final String STATE_LAUNCH_PARAMS = "state_launch_params";
+
+  @BindView(R.id.image_package_name)
+  ImageView packageNameImageView;
+  @BindView(R.id.package_name)
+  TextView packageNameView;
+  @BindView(R.id.image_class_name)
+  ImageView classNameImageView;
+  @BindView(R.id.class_name)
+  TextView classNameView;
+  @BindView(R.id.image_data)
+  ImageView dataImageView;
+  @BindView(R.id.data)
+  TextView dataView;
+  @BindView(R.id.image_action)
+  ImageView actionImageView;
+  @BindView(R.id.action)
+  TextView actionView;
+  @BindView(R.id.image_mime_type)
+  ImageView mimeTypeImageView;
+  @BindView(R.id.mime_type)
+  TextView mimeTypeView;
+  @BindView(R.id.image_categories)
+  ImageView categoriesImageView;
+  @BindView(R.id.image_flags)
+  ImageView flagsImageView;
+  @BindView(R.id.list_categories)
+  RecyclerView listCategoriesView;
+  @BindView(R.id.list_flags)
+  RecyclerView listFlagsView;
 
   private LaunchParams launchParams = new LaunchParams();
 
-  private TextView packageNameView;
-  private TextView classNameView;
-  private TextView dataView;
-  private TextView actionView;
-  private TextView mimeTypeView;
   private LaunchParamsListAdapter categoriesAdapter;
   private LaunchParamsListAdapter flagsAdapter;
 
@@ -52,6 +81,7 @@ public class LaunchParamsActivity extends BaseActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    ButterKnife.bind(this);
     enableBackButton();
     final ActivityModel activityModel = (ActivityModel)
       getIntent().getSerializableExtra(ARG_ACTIVITY_MODEL);
@@ -65,15 +95,7 @@ public class LaunchParamsActivity extends BaseActivity
       launchParams = savedInstanceState.getParcelable(STATE_LAUNCH_PARAMS);
     }
 
-    packageNameView = findViewById(R.id.package_name);
-    classNameView = findViewById(R.id.class_name);
-    dataView = findViewById(R.id.data);
-    actionView = findViewById(R.id.action);
-    mimeTypeView = findViewById(R.id.mime_type);
-
-    RecyclerView listCategoriesView = findViewById(R.id.list_categories);
     configureRecyclerView(listCategoriesView);
-    RecyclerView listFlagsView = findViewById(R.id.list_flags);
     configureRecyclerView(listFlagsView);
     categoriesAdapter = new LaunchParamsListAdapter();
     categoriesAdapter.setHasStableIds(true);
@@ -212,12 +234,36 @@ public class LaunchParamsActivity extends BaseActivity
   }
 
   private void showLaunchParams() {
-    packageNameView.setText(launchParams.getPackageName());
-    classNameView.setText(launchParams.getClassName());
-    dataView.setText(launchParams.getData());
-    actionView.setText(launchParams.getActionValue());
-    mimeTypeView.setText(launchParams.getMimeTypeValue());
-    categoriesAdapter.setItems(launchParams.getCategoriesValues());
-    flagsAdapter.setItems(launchParams.getFlagsValues());
+    final String packageName = launchParams.getPackageName();
+    packageNameView.setText(packageName);
+    updateIcon(packageNameImageView, packageName);
+    final String className = launchParams.getClassName();
+    classNameView.setText(className);
+    updateIcon(classNameImageView, className);
+    final String data = launchParams.getData();
+    dataView.setText(data);
+    updateIcon(dataImageView, data);
+    final String actionValue = launchParams.getActionValue();
+    actionView.setText(actionValue);
+    updateIcon(actionImageView, actionValue);
+    final String mimeTypeValue = launchParams.getMimeTypeValue();
+    mimeTypeView.setText(mimeTypeValue);
+    updateIcon(mimeTypeImageView, mimeTypeValue);
+    final ArrayList<String> categoriesValues = launchParams.getCategoriesValues();
+    categoriesAdapter.setItems(categoriesValues);
+    updateIcon(categoriesImageView, categoriesValues);
+    final ArrayList<String> flagsValues = launchParams.getFlagsValues();
+    flagsAdapter.setItems(flagsValues);
+    updateIcon(flagsImageView, flagsValues);
+  }
+
+  private void updateIcon(ImageView imageView, String text) {
+    imageView.setImageResource(TextUtils.isEmpty(text) ?
+      R.drawable.ic_assignment : R.drawable.ic_assignment_done);
+  }
+
+  private void updateIcon(ImageView imageView, List list) {
+    imageView.setImageResource((list == null || list.isEmpty()) ?
+      R.drawable.ic_assignment : R.drawable.ic_assignment_done);
   }
 }

@@ -47,7 +47,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/image_package_name"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -61,9 +61,9 @@
                 android:layout_height="@dimen/launch_params_item_height"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintBottom_toBottomOf="@+id/image_package_name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/image_package_name"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -71,7 +71,7 @@
                   android:layout_height="wrap_content"
                   android:text="@string/launch_param_package_name"
                   android:textAppearance="?android:attr/textAppearanceListItem"
-                  app:layout_constraintStart_toEndOf="@+id/imageView" />
+                  app:layout_constraintStart_toEndOf="@+id/image_package_name" />
 
                 <TextView
                   android:id="@+id/package_name"
@@ -99,7 +99,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/image_class_name"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -113,9 +113,9 @@
                 android:layout_height="@dimen/launch_params_item_height"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView1"
+                app:layout_constraintBottom_toBottomOf="@+id/image_class_name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView1"
+                app:layout_constraintStart_toEndOf="@+id/image_class_name"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -154,7 +154,7 @@
             android:background="?attr/selectableItemBackground">
 
             <ImageView
-              android:id="@+id/imageView2"
+              android:id="@+id/image_action"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
@@ -168,9 +168,9 @@
               android:layout_height="@dimen/launch_params_item_height"
               android:gravity="center_vertical"
               android:orientation="vertical"
-              app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+              app:layout_constraintBottom_toBottomOf="@+id/image_action"
               app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@+id/imageView2"
+              app:layout_constraintStart_toEndOf="@+id/image_action"
               app:layout_constraintTop_toTopOf="parent">
 
               <TextView
@@ -213,7 +213,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/image_data"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -227,9 +227,9 @@
                 android:layout_height="@dimen/launch_params_item_height"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintBottom_toBottomOf="@+id/image_data"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/image_data"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -264,7 +264,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/image_mime_type"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -278,9 +278,9 @@
                 android:layout_height="@dimen/launch_params_item_height"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintBottom_toBottomOf="@+id/image_mime_type"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/image_mime_type"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -319,7 +319,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-              android:id="@+id/imageView5"
+              android:id="@+id/image_categories"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
@@ -335,7 +335,7 @@
               android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
               app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@+id/imageView5"
+              app:layout_constraintStart_toEndOf="@+id/image_categories"
               app:layout_constraintTop_toTopOf="parent">
 
               <TextView
@@ -382,7 +382,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-              android:id="@+id/imageView6"
+              android:id="@+id/image_flags"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
@@ -398,7 +398,7 @@
               android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
               app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@+id/imageView6"
+              app:layout_constraintStart_toEndOf="@+id/image_flags"
               app:layout_constraintTop_toTopOf="parent">
 
               <TextView
