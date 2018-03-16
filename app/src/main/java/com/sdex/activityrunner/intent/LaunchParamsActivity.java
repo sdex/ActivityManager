@@ -104,12 +104,9 @@ public class LaunchParamsActivity extends BaseActivity
     flagsAdapter.setHasStableIds(true);
     listFlagsView.setAdapter(flagsAdapter);
 
-    bindInputValueDialog(R.id.container_package_name,
-      R.string.launch_param_package_name, launchParams.getPackageName());
-    bindInputValueDialog(R.id.container_class_name,
-      R.string.launch_param_class_name, launchParams.getClassName());
-    bindInputValueDialog(R.id.container_data,
-      R.string.launch_param_data, launchParams.getData());
+    bindInputValueDialog(R.id.container_package_name, R.string.launch_param_package_name);
+    bindInputValueDialog(R.id.container_class_name, R.string.launch_param_class_name);
+    bindInputValueDialog(R.id.container_data, R.string.launch_param_data);
     bindSingleSelectionDialog(R.id.container_action, R.string.launch_param_action,
       new ActionSource());
     bindSingleSelectionDialog(R.id.container_mime_type, R.string.launch_param_mime_type,
@@ -186,8 +183,9 @@ public class LaunchParamsActivity extends BaseActivity
     recyclerView.setHasFixedSize(true);
   }
 
-  private void bindInputValueDialog(int viewId, int type, String initialValue) {
+  private void bindInputValueDialog(int viewId, int type) {
     findViewById(viewId).setOnClickListener(v -> {
+      String initialValue = getValueInitialPosition(type);
       ValueInputDialog dialog = ValueInputDialog.newInstance(type, initialValue);
       dialog.show(getSupportFragmentManager(), ValueInputDialog.TAG);
     });
@@ -209,6 +207,19 @@ public class LaunchParamsActivity extends BaseActivity
         MultiSelectionDialog.newInstance(type, source, initialPositions);
       dialog.show(getSupportFragmentManager(), MultiSelectionDialog.TAG);
     });
+  }
+
+  private String getValueInitialPosition(int type) {
+    switch (type) {
+      case R.string.launch_param_package_name:
+        return launchParams.getPackageName();
+      case R.string.launch_param_class_name:
+        return launchParams.getClassName();
+      case R.string.launch_param_data:
+        return launchParams.getData();
+      default:
+        throw new IllegalStateException("Unknown type " + type);
+    }
   }
 
   private int getSingleSelectionInitialPosition(int type) {

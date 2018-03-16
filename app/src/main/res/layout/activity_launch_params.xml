@@ -43,7 +43,7 @@
             <android.support.constraint.ConstraintLayout
               android:id="@+id/container_package_name"
               android:layout_width="match_parent"
-              android:layout_height="@dimen/launch_params_item_height"
+              android:layout_height="wrap_content"
               android:background="?attr/selectableItemBackground">
 
               <ImageView
@@ -58,10 +58,10 @@
               <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/launch_params_item_height"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/image_package_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_package_name"
                 app:layout_constraintTop_toTopOf="parent">
@@ -77,10 +77,8 @@
                   android:id="@+id/package_name"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:ellipsize="end"
-                  android:maxLines="1"
-                  android:textAppearance="?attr/textAppearanceListItemSecondary"
-                  tools:text="com.sdex.activityrunner" />
+                  android:paddingBottom="6dp"
+                  tools:text="com.sdex.activityrunner\nqw\n\nqw" />
               </LinearLayout>
 
               <View
@@ -110,10 +108,10 @@
               <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/launch_params_item_height"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/image_class_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_class_name"
                 app:layout_constraintTop_toTopOf="parent">
@@ -128,9 +126,6 @@
                   android:id="@+id/class_name"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:ellipsize="end"
-                  android:maxLines="1"
-                  android:textAppearance="?attr/textAppearanceListItemSecondary"
                   tools:text="MainActivity" />
               </LinearLayout>
 
@@ -165,10 +160,10 @@
             <LinearLayout
               android:id="@+id/linearLayout2"
               android:layout_width="0dp"
-              android:layout_height="@dimen/launch_params_item_height"
+              android:layout_height="wrap_content"
               android:gravity="center_vertical"
+              android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
-              app:layout_constraintBottom_toBottomOf="@+id/image_action"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toEndOf="@+id/image_action"
               app:layout_constraintTop_toTopOf="parent">
@@ -183,9 +178,6 @@
                 android:id="@+id/action"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="?attr/textAppearanceListItemSecondary"
                 tools:text="android.intent.action.MAIN" />
             </LinearLayout>
 
@@ -224,10 +216,10 @@
               <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/launch_params_item_height"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/image_data"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_data"
                 app:layout_constraintTop_toTopOf="parent">
@@ -242,9 +234,6 @@
                   android:id="@+id/data"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:ellipsize="end"
-                  android:maxLines="1"
-                  android:textAppearance="?attr/textAppearanceListItemSecondary"
                   tools:text="122" />
               </LinearLayout>
 
@@ -275,10 +264,10 @@
               <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/launch_params_item_height"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/image_mime_type"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_mime_type"
                 app:layout_constraintTop_toTopOf="parent">
@@ -293,9 +282,6 @@
                   android:id="@+id/mime_type"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:ellipsize="end"
-                  android:maxLines="1"
-                  android:textAppearance="?attr/textAppearanceListItemSecondary"
                   tools:text="image/png" />
               </LinearLayout>
 
