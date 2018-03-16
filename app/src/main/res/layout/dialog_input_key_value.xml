@@ -1,23 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:padding="12dp"
   android:orientation="vertical">
 
-  <EditText
-    android:id="@+id/key"
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="Input key"
-    android:inputType="text" />
+    android:padding="12dp"
+    android:orientation="vertical">
 
-  <EditText
-    android:id="@+id/value"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:hint="Input value"
-    android:inputType="text" />
+    <EditText
+      android:id="@+id/key"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Input key"
+      android:inputType="text" />
 
-</LinearLayout>
+    <EditText
+      android:id="@+id/value"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:hint="Input value"
+      android:inputType="text" />
+
+    <RadioGroup
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp">
+
+      <RadioButton
+        android:id="@+id/rb_string"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="String" />
+
+      <RadioButton
+        android:id="@+id/rb_int"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="int" />
+
+      <RadioButton
+        android:id="@+id/rb_long"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="long" />
+
+      <RadioButton
+        android:id="@+id/rb_float"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="float" />
+
+      <RadioButton
+        android:id="@+id/rb_double"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="double" />
+
+      <RadioButton
+        android:id="@+id/rb_boolean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="boolean" />
+
+    </RadioGroup>
+
+    <CheckBox
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="Array" />
+
+  </LinearLayout>
+
+</ScrollView>
