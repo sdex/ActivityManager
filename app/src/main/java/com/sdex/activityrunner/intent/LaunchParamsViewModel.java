@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import com.sdex.activityrunner.db.AppDatabase;
 import com.sdex.activityrunner.db.history.HistoryModel;
+import com.sdex.activityrunner.intent.converter.LaunchParamsToHistoryConverter;
 
 public class LaunchParamsViewModel extends AndroidViewModel {
 
@@ -30,8 +31,8 @@ public class LaunchParamsViewModel extends AndroidViewModel {
 
     @Override
     protected Void doInBackground(final LaunchParams... params) {
-      LaunchParamsHistoryConverter historyConverter =
-        new LaunchParamsHistoryConverter(params[0]);
+      LaunchParamsToHistoryConverter historyConverter =
+        new LaunchParamsToHistoryConverter(params[0]);
       final HistoryModel historyModel = historyConverter.convert();
       database.getHistoryRecordDao().insert(historyModel);
       return null;

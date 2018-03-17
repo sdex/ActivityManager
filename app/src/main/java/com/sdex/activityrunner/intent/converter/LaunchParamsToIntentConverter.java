@@ -1,21 +1,24 @@
-package com.sdex.activityrunner.intent;
+package com.sdex.activityrunner.intent.converter;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import com.sdex.activityrunner.intent.LaunchParams;
+import com.sdex.activityrunner.intent.LaunchParamsExtra;
+import com.sdex.activityrunner.intent.LaunchParamsExtraType;
 import com.sdex.activityrunner.intent.param.Action;
 import com.sdex.activityrunner.intent.param.Category;
 import com.sdex.activityrunner.intent.param.Flag;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaunchParamsIntentConverter implements LaunchParamsConverter<Intent> {
+public class LaunchParamsToIntentConverter implements Converter<Intent> {
 
   private static final String TAG = "LaunchParamsIntent";
 
   private final LaunchParams launchParams;
 
-  public LaunchParamsIntentConverter(LaunchParams launchParams) {
+  public LaunchParamsToIntentConverter(LaunchParams launchParams) {
     this.launchParams = launchParams;
   }
 

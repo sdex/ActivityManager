@@ -1,14 +1,14 @@
-package com.sdex.activityrunner.intent;
+package com.sdex.activityrunner.intent.converter;
 
 import com.sdex.activityrunner.db.history.HistoryModel;
+import com.sdex.activityrunner.intent.LaunchParams;
 import java.util.ArrayList;
-import java.util.List;
 
-public class LaunchParamsHistoryConverter implements LaunchParamsConverter<HistoryModel> {
+public class LaunchParamsToHistoryConverter implements Converter<HistoryModel> {
 
   private final LaunchParams launchParams;
 
-  public LaunchParamsHistoryConverter(LaunchParams launchParams) {
+  public LaunchParamsToHistoryConverter(LaunchParams launchParams) {
     this.launchParams = launchParams;
   }
 
@@ -22,6 +22,8 @@ public class LaunchParamsHistoryConverter implements LaunchParamsConverter<Histo
     final ArrayList<Integer> categories = launchParams.getCategories();
     final ArrayList<Integer> flags = launchParams.getFlags();
 
+    IntegerListSerializer serializer = new IntegerListSerializer();
+
     final HistoryModel historyModel = new HistoryModel();
     historyModel.setTimestamp(System.currentTimeMillis());
     historyModel.setPackageName(packageName);
@@ -29,22 +31,11 @@ public class LaunchParamsHistoryConverter implements LaunchParamsConverter<Histo
     historyModel.setAction(action);
     historyModel.setData(data);
     historyModel.setMimeType(mimeType);
-    historyModel.setCategories(join(categories));
-    historyModel.setFlags(join(flags));
+    historyModel.setCategories(serializer.serialize(categories));
+    historyModel.setFlags(serializer.serialize(flags));
 
     // TODO save extras
 
     return historyModel;
-  }
-
-  private String join(List<Integer> list) {
-    StringBuilder stringBuilder = new StringBuilder();
-    for (int i = 0; i < list.size(); i++) {
-      stringBuilder.append(list.get(i));
-      if (i != list.size() - 1) {
-        stringBuilder.append(",");
-      }
-    }
-    return stringBuilder.toString();
   }
 }

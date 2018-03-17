@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback;
+import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter;
 import com.sdex.activityrunner.intent.dialog.KeyValueInputDialog;
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog;
@@ -164,7 +165,7 @@ public class LaunchParamsActivity extends BaseActivity
 
     findViewById(R.id.launch).setOnClickListener(v -> {
       viewModel.addToHistory(launchParams);
-      LaunchParamsIntentConverter converter = new LaunchParamsIntentConverter(launchParams);
+      LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
       final Intent intent = converter.convert();
       IntentUtils.launchActivity(LaunchParamsActivity.this, intent);
     });
@@ -176,6 +177,15 @@ public class LaunchParamsActivity extends BaseActivity
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putParcelable(STATE_LAUNCH_PARAMS, launchParams);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == HistoryActivity.REQUEST_CODE && resultCode == RESULT_OK) {
+      launchParams = data.getParcelableExtra(HistoryActivity.RESULT);
+      showLaunchParams();
+    }
   }
 
   @Override

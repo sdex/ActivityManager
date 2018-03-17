@@ -13,11 +13,15 @@ import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.sdex.activityrunner.R;
-import com.sdex.activityrunner.intent.history.HistoryListAdapter.Callback;
+import com.sdex.activityrunner.db.history.HistoryModel;
+import com.sdex.activityrunner.intent.LaunchParams;
+import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
 
 public class HistoryActivity extends BaseActivity {
+
+  public static final String RESULT = "result";
 
   public static final int REQUEST_CODE = 111;
 
@@ -40,6 +44,7 @@ public class HistoryActivity extends BaseActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     ButterKnife.bind(this);
+    viewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
 
     FrameLayout adsContainer = findViewById(R.id.ads_container);
     AdsHandler adsHandler = new AdsHandler(this, adsContainer);
@@ -47,28 +52,31 @@ public class HistoryActivity extends BaseActivity {
 
     enableBackButton();
 
-    adapter = new HistoryListAdapter(new Callback() {
-      @Override
-      public void onItemClicked(int position) {
-        Intent data = new Intent();
-        // TODO return item
-//        setResult(RESULT_OK, );
-        finish();
-      }
-
-      @Override
-      public boolean onItemLongClicked(int position) {
-        // TODO show dialog delete
-        return false;
-      }
+    adapter = new HistoryListAdapter((item, position) -> {
+      HistoryToLaunchParamsConverter historyToLaunchParamsConverter =
+        new HistoryToLaunchParamsConverter(item);
+      LaunchParams launchParams = historyToLaunchParamsConverter.convert();
+      Intent data = new Intent();
+      data.putExtra(RESULT, launchParams);
+      setResult(RESULT_OK, data);
+      finish();
     });
     adapter.setHasStableIds(true);
     recyclerView.setAdapter(adapter);
-
-    viewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
+    registerForContextMenu(recyclerView);
 
     viewModel.getHistory().observe(this,
       historyModels -> adapter.setItems(historyModels));
+  }
+
+  @Override
+  public boolean onContextItemSelected(MenuItem item) {
+    if (item.getItemId() == HistoryListAdapter.MENU_ITEM_REMOVE) {
+      final int position = adapter.getContextMenuItemPosition();
+      final HistoryModel historyModel = adapter.getItem(position);
+      viewModel.deleteItem(historyModel);
+    }
+    return super.onContextItemSelected(item);
   }
 
   @Override
