@@ -2,6 +2,7 @@ package com.sdex.activityrunner.intent.history;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.history.HistoryModel;
+import com.sdex.activityrunner.intent.dialog.source.ActionSource;
+import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,17 +90,40 @@ public class HistoryListAdapter extends
   public static class ViewHolder extends RecyclerView.ViewHolder
     implements View.OnCreateContextMenuListener {
 
-    public final TextView title;
+    private final ActionSource actionSource = new ActionSource();
+    private final MimeTypeSource mimeTypeSource = new MimeTypeSource();
+
+    public final TextView packageName;
+    public final TextView className;
+    public final TextView action;
+    public final TextView data;
+    public final TextView mimeType;
 
     public ViewHolder(View itemView) {
       super(itemView);
-      this.title = itemView.findViewById(R.id.title);
+      this.packageName = itemView.findViewById(R.id.package_name);
+      this.className = itemView.findViewById(R.id.class_name);
+      this.action = itemView.findViewById(R.id.action);
+      this.data = itemView.findViewById(R.id.data);
+      this.mimeType = itemView.findViewById(R.id.mime_type);
     }
 
     public void bind(HistoryModel item, Callback callback) {
-      title.setText(item.toString());
+      packageName.setText(getValueOrPlaceholder(item.getPackageName()));
+      className.setText(getValueOrPlaceholder(item.getClassName()));
+      action.setText(actionSource.getItem(item.getAction()));
+      data.setText(getValueOrPlaceholder(item.getData()));
+      mimeType.setText(mimeTypeSource.getItem(item.getMimeType()));
+
       itemView.setOnClickListener(v -> callback.onItemClicked(item, getAdapterPosition()));
       itemView.setOnCreateContextMenuListener(this);
+    }
+
+    private String getValueOrPlaceholder(String value) {
+      if (TextUtils.isEmpty(value)) {
+        return "NONE"; // TODO localization
+      }
+      return value;
     }
 
     @Override

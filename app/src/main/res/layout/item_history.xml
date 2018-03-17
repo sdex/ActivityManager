@@ -8,12 +8,101 @@
   android:background="?attr/selectableItemBackground">
 
   <TextView
-    android:id="@+id/title"
+    android:id="@+id/title_package_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Package name: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/package_name"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textColor="@android:color/black"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/title_package_name"
     app:layout_constraintTop_toTopOf="parent"
-    tools:text="TextView" />
+    tools:text="com.sdex.activityrunner" />
+
+  <TextView
+    android:id="@+id/title_class_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:text="Class name: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_package_name" />
+
+  <TextView
+    android:id="@+id/class_name"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textColor="@android:color/black"
+    app:layout_constraintStart_toEndOf="@+id/title_class_name"
+    app:layout_constraintTop_toTopOf="@+id/title_class_name"
+    tools:text="com.sdex.activityrunner.MainActivity" />
+
+  <TextView
+    android:id="@+id/title_action"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:text="Action: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_class_name" />
+
+  <TextView
+    android:id="@+id/action"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textColor="@android:color/black"
+    app:layout_constraintStart_toEndOf="@+id/title_action"
+    app:layout_constraintTop_toTopOf="@+id/title_action"
+    tools:text="android.intent.action.MAIN" />
+
+  <TextView
+    android:id="@+id/title_data"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:text="Data: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_action" />
+
+  <TextView
+    android:id="@+id/data"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textColor="@android:color/black"
+    app:layout_constraintStart_toEndOf="@+id/title_data"
+    app:layout_constraintTop_toTopOf="@+id/title_data"
+    tools:text="test" />
+
+  <TextView
+    android:id="@+id/title_mime_type"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:text="Mime type: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_data" />
+
+  <TextView
+    android:id="@+id/mime_type"
+    android:layout_width="wrap_content"
+    android:textColor="@android:color/black"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toEndOf="@+id/title_mime_type"
+    app:layout_constraintTop_toTopOf="@+id/title_mime_type"
+    tools:text="image/jpeg" />
 
 </android.support.constraint.ConstraintLayout>

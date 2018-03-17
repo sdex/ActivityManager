@@ -72,6 +72,7 @@ public class HistoryActivity extends BaseActivity {
       dividerItemDecoration.setDrawable(dividerDrawable);
       recyclerView.addItemDecoration(dividerItemDecoration);
     }
+    recyclerView.setHasFixedSize(true);
     recyclerView.setAdapter(adapter);
     registerForContextMenu(recyclerView);
 
