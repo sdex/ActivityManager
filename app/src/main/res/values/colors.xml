@@ -5,5 +5,5 @@
   <color name="colorAccent">#607D8B</color>
   <color name="colorControlActivated">#ffffff</color>
 
-  <color name="launch_params_divider_color">#E0E0E0</color>
+  <color name="list_divider_color">#E0E0E0</color>
 </resources>
