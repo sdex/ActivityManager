@@ -1,7 +1,7 @@
 <resources>
   <string name="app_name" translatable="false">Activity Runner</string>
   <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
-  <string name="history_activity" translatable="false">History</string>
+  <string name="history_activity">History</string>
 
   <string name="context_action_launch">Launch activity</string>
   <string name="context_action_launch_params">Launch activity with params</string>

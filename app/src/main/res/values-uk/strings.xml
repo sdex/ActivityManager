@@ -1,4 +1,6 @@
 <resources>
+  <string name="history_activity">Історія</string>
+
   <string name="context_action_launch">Запустити</string>
   <string name="context_action_launch_params">Запустити з параметрами</string>
   <string name="context_action_shortcut">Створити ярлик</string>
@@ -14,6 +16,8 @@
 
   <string name="action_disable_ads">Відключити рекламу</string>
   <string name="action_launch_intent">Запустити intent</string>
+  <string name="action_history">Історія</string>
+  <string name="action_clear_history">Очистити історію</string>
   <string name="action_search">Пошук</string>
   <string name="action_search_hint">Назва програми</string>
 
@@ -22,6 +26,7 @@
   <string name="launch_param_action">Дія</string>
   <string name="launch_param_data">Дані</string>
   <string name="launch_param_mime_type">Тип даних</string>
+  <string name="launch_param_extras">Додаткові дані</string>
   <string name="launch_param_categories">Категорії</string>
   <string name="launch_param_flags">Параметри</string>
 </resources>
