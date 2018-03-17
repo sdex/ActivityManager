@@ -21,7 +21,6 @@ public class AdsHandler {
   }
 
   public void init(Context context, @StringRes int adBannerUnitId) {
-    container.removeAllViews();
     if (adsController.isAdsActive()) {
       final AdView adView = new AdView(context);
       adView.setAdUnitId(context.getString(adBannerUnitId));
@@ -33,6 +32,7 @@ public class AdsHandler {
         @Override
         public void onAdLoaded() {
           super.onAdLoaded();
+          container.removeAllViews();
           container.addView(adView);
         }
       });
