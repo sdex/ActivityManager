@@ -56,9 +56,13 @@ public class KeyValueInputDialog extends DialogFragment {
     final TextInputLayout valueLayout = view.findViewById(R.id.value_layout);
 
     if (initialExtra != null) {
+      keyLayout.setHintAnimationEnabled(false);
+      valueLayout.setHintAnimationEnabled(false);
       keyView.setText(initialExtra.getKey());
       valueView.setText(initialExtra.getValue());
       keyView.setSelection(keyView.getText().length());
+      keyLayout.setHintAnimationEnabled(true);
+      valueLayout.setHintAnimationEnabled(true);
       setSelectedType(view, initialExtra.getType());
     } else {
       RadioButton stringRadioBtn = view.findViewById(R.id.rb_string);
