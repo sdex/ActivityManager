@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.sdex.activityrunner.db.ActivityModel;
 import com.sdex.activityrunner.util.GlideApp;
 import com.sdex.activityrunner.util.IntentUtils;
+import com.sdex.activityrunner.util.ObjectsCompat;
 
 public class AddShortcutDialogFragment extends DialogFragment {
 
@@ -19,22 +20,28 @@ public class AddShortcutDialogFragment extends DialogFragment {
 
   public static final String ARG_ACTIVITY_MODEL = "arg_activity_model";
 
+  public static AddShortcutDialogFragment newInstance(ActivityModel activityModel) {
+    Bundle args = new Bundle(1);
+    args.putSerializable(AddShortcutDialogFragment.ARG_ACTIVITY_MODEL, activityModel);
+    AddShortcutDialogFragment fragment = new AddShortcutDialogFragment();
+    fragment.setArguments(args);
+    return fragment;
+  }
+
   @NonNull
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
-    final ActivityModel activityModel;
-    if (getArguments() != null) {
-      activityModel = (ActivityModel) getArguments().getSerializable(ARG_ACTIVITY_MODEL);
-    } else {
-      activityModel = null;
-    }
+    final ActivityModel activityModel =
+      (ActivityModel) ObjectsCompat.requireNonNull(getArguments())
+        .getSerializable(ARG_ACTIVITY_MODEL);
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    AlertDialog.Builder builder =
+      new AlertDialog.Builder(ObjectsCompat.requireNonNull(getActivity()));
     View view = View.inflate(getActivity(), R.layout.dialog_add_shortcut, null);
-
     final EditText textName = view.findViewById(R.id.editText_name);
     if (activityModel != null) {
       textName.setText(activityModel.getName());
+      textName.setSelection(textName.getText().length());
       final ImageView imageIcon = view.findViewById(R.id.iconButton);
       GlideApp.with(this)
         .load(activityModel.getIconPath())

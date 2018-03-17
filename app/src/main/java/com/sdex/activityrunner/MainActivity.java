@@ -7,21 +7,16 @@ import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdRequest.Builder;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
-import com.sdex.commons.ads.AdsController;
+import com.sdex.commons.ads.AdsHandler;
 import com.sdex.commons.ads.DisableAdsActivity;
 import com.sdex.commons.util.UIUtils;
 
 public class MainActivity extends BaseActivity {
 
-  private AdsController adsController;
+  private AdsHandler adsHandler;
   private AppsListFragment appsListFragment;
 
   @Override
@@ -32,28 +27,11 @@ public class MainActivity extends BaseActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    adsController = new AdsController(this);
-
     AppLoaderIntentService.enqueueWork(this, new Intent());
 
-    MobileAds.initialize(getApplicationContext(),
-      getString(R.string.ad_app_id));
-
-    if (adsController.isAdsActive()) {
-      AdView adView;
-      FrameLayout adsContainer = findViewById(R.id.ads_container);
-      if (adsContainer.getChildCount() == 0) {
-        adView = new AdView(this);
-        adView.setAdUnitId(getString(R.string.ad_banner_unit_id));
-        adView.setAdSize(AdSize.SMART_BANNER);
-        adsContainer.addView(adView);
-      } else {
-        adView = (AdView) adsContainer.getChildAt(0);
-      }
-      AdRequest adRequest = new Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .build();
-      adView.loadAd(adRequest);
-    }
+    FrameLayout adsContainer = findViewById(R.id.ads_container);
+    adsHandler = new AdsHandler(this, adsContainer);
+    adsHandler.init(this, R.string.ad_banner_unit_id);
 
     if (savedInstanceState == null) {
       appsListFragment = new AppsListFragment();
@@ -124,15 +102,6 @@ public class MainActivity extends BaseActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == DisableAdsActivity.REQUEST_CODE && resultCode == RESULT_OK) {
-      if (!adsController.isAdsActive()) {
-        hideBottomAds();
-      }
-    }
-  }
-
-  private void hideBottomAds() {
-    FrameLayout adsContainer = findViewById(R.id.ads_container);
-    adsContainer.removeAllViews();
+    adsHandler.onActivityResult(requestCode, resultCode, data);
   }
 }

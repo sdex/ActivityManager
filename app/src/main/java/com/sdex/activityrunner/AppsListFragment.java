@@ -123,10 +123,7 @@ public class AppsListFragment extends Fragment {
           switch (item.getItemId()) {
             case ACTION_CREATE_SHORTCUT:
               if (getFragmentManager() != null) {
-                DialogFragment dialog = new AddShortcutDialogFragment();
-                Bundle args = new Bundle();
-                args.putSerializable(AddShortcutDialogFragment.ARG_ACTIVITY_MODEL, activityModel);
-                dialog.setArguments(args);
+                DialogFragment dialog = AddShortcutDialogFragment.newInstance(activityModel);
                 dialog.show(getFragmentManager(), AddShortcutDialogFragment.TAG);
               }
               break;

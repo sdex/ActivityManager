@@ -10,6 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="Input value"
-    android:inputType="text" />
+    android:inputType="textMultiLine"
+    android:maxLines="5" />
 
 </LinearLayout>
