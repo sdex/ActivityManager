@@ -11,22 +11,37 @@
     android:padding="12dp"
     android:orientation="vertical">
 
-    <EditText
-      android:id="@+id/key"
+    <android.support.design.widget.TextInputLayout
+      android:id="@+id/key_layout"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:hint="Input key"
-      android:inputType="text" />
+      android:layout_height="wrap_content">
 
-    <EditText
-      android:id="@+id/value"
+      <EditText
+        android:id="@+id/key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input key"
+        android:inputType="text" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+      android:id="@+id/value_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:hint="Input value"
-      android:inputType="text" />
+      android:layout_marginTop="16dp">
+
+      <EditText
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Input value"
+        android:inputType="text" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <RadioGroup
+      android:id="@+id/radio_group"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp">
@@ -73,7 +88,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"
-      android:text="Array" />
+      android:text="Array"
+      android:visibility="gone" />
 
   </LinearLayout>
 

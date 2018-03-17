@@ -3,6 +3,7 @@ package com.sdex.activityrunner.intent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
+import com.sdex.activityrunner.intent.dialog.KeyValueInputDialog;
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog;
@@ -32,7 +34,8 @@ import java.util.List;
 public class LaunchParamsActivity extends BaseActivity
   implements ValueInputDialog.OnValueInputDialogCallback,
   SingleSelectionDialog.OnItemSelectedCallback,
-  MultiSelectionDialog.OnItemsSelectedCallback {
+  MultiSelectionDialog.OnItemsSelectedCallback,
+  KeyValueInputDialog.OnKeyValueInputDialogCallback {
 
   private static final String ARG_ACTIVITY_MODEL = "arg_activity_model";
   private static final String STATE_LAUNCH_PARAMS = "state_launch_params";
@@ -57,10 +60,14 @@ public class LaunchParamsActivity extends BaseActivity
   ImageView mimeTypeImageView;
   @BindView(R.id.mime_type)
   TextView mimeTypeView;
+  @BindView(R.id.image_extras)
+  ImageView extrasImageView;
   @BindView(R.id.image_categories)
   ImageView categoriesImageView;
   @BindView(R.id.image_flags)
   ImageView flagsImageView;
+  @BindView(R.id.list_extras)
+  RecyclerView listExtrasView;
   @BindView(R.id.list_categories)
   RecyclerView listCategoriesView;
   @BindView(R.id.list_flags)
@@ -70,6 +77,7 @@ public class LaunchParamsActivity extends BaseActivity
 
   private LaunchParamsListAdapter categoriesAdapter;
   private LaunchParamsListAdapter flagsAdapter;
+  private LaunchParamsExtraListAdapter extraAdapter;
 
   public static void start(Context context, ActivityModel activityModel) {
     Intent starter = new Intent(context, LaunchParamsActivity.class);
@@ -104,8 +112,17 @@ public class LaunchParamsActivity extends BaseActivity
       launchParams = savedInstanceState.getParcelable(STATE_LAUNCH_PARAMS);
     }
 
+    configureRecyclerView(listExtrasView);
     configureRecyclerView(listCategoriesView);
     configureRecyclerView(listFlagsView);
+
+    extraAdapter = new LaunchParamsExtraListAdapter(position -> {
+      final LaunchParamsExtra extra = launchParams.getExtras().get(position);
+      DialogFragment dialog = KeyValueInputDialog.newInstance(extra, position);
+      dialog.show(getSupportFragmentManager(), KeyValueInputDialog.TAG);
+    });
+    extraAdapter.setHasStableIds(true);
+    listExtrasView.setAdapter(extraAdapter);
     categoriesAdapter = new LaunchParamsListAdapter();
     categoriesAdapter.setHasStableIds(true);
     listCategoriesView.setAdapter(categoriesAdapter);
@@ -120,6 +137,7 @@ public class LaunchParamsActivity extends BaseActivity
       new ActionSource());
     bindSingleSelectionDialog(R.id.container_mime_type, R.string.launch_param_mime_type,
       new MimeTypeSource());
+    bindKeyValueDialog(R.id.container_extras);
     bindMultiSelectionDialog(R.id.categories_click_interceptor, R.string.launch_param_categories,
       new CategoriesSource());
     bindMultiSelectionDialog(R.id.flags_click_interceptor, R.string.launch_param_flags,
@@ -202,6 +220,17 @@ public class LaunchParamsActivity extends BaseActivity
     showLaunchParams();
   }
 
+  @Override
+  public void onValueSet(LaunchParamsExtra extra, int position) {
+    final ArrayList<LaunchParamsExtra> extras = launchParams.getExtras();
+    if (position == -1) {
+      extras.add(extra);
+    } else {
+      extras.set(position, extra);
+    }
+    showLaunchParams();
+  }
+
   private void configureRecyclerView(RecyclerView recyclerView) {
     recyclerView.setNestedScrollingEnabled(false);
     recyclerView.setHasFixedSize(true);
@@ -230,6 +259,13 @@ public class LaunchParamsActivity extends BaseActivity
       MultiSelectionDialog dialog =
         MultiSelectionDialog.newInstance(type, source, initialPositions);
       dialog.show(getSupportFragmentManager(), MultiSelectionDialog.TAG);
+    });
+  }
+
+  private void bindKeyValueDialog(int viewId) {
+    findViewById(viewId).setOnClickListener(v -> {
+      DialogFragment dialog = KeyValueInputDialog.newInstance(null, -1);
+      dialog.show(getSupportFragmentManager(), KeyValueInputDialog.TAG);
     });
   }
 
@@ -284,6 +320,9 @@ public class LaunchParamsActivity extends BaseActivity
     final String mimeTypeValue = launchParams.getMimeTypeValue();
     mimeTypeView.setText(mimeTypeValue);
     updateIcon(mimeTypeImageView, mimeTypeValue);
+    final ArrayList<LaunchParamsExtra> extras = launchParams.getExtras();
+    extraAdapter.setItems(extras);
+    updateIcon(extrasImageView, extras);
     final ArrayList<String> categoriesValues = launchParams.getCategoriesValues();
     categoriesAdapter.setItems(categoriesValues);
     updateIcon(categoriesImageView, categoriesValues);

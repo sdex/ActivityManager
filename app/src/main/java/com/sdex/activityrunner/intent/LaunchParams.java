@@ -17,6 +17,10 @@ public class LaunchParams implements Parcelable {
   private int mimeType;
   private ArrayList<Integer> categories = new ArrayList<>(0);
   private ArrayList<Integer> flags = new ArrayList<>(0);
+  private ArrayList<LaunchParamsExtra> extras = new ArrayList<>(0);
+
+  public LaunchParams() {
+  }
 
   public String getPackageName() {
     return packageName;
@@ -106,6 +110,13 @@ public class LaunchParams implements Parcelable {
     this.flags = flags;
   }
 
+  public ArrayList<LaunchParamsExtra> getExtras() {
+    return extras;
+  }
+
+  public void setExtras(ArrayList<LaunchParamsExtra> extras) {
+    this.extras = extras;
+  }
 
   @Override
   public int describeContents() {
@@ -121,9 +132,7 @@ public class LaunchParams implements Parcelable {
     dest.writeInt(this.mimeType);
     dest.writeList(this.categories);
     dest.writeList(this.flags);
-  }
-
-  public LaunchParams() {
+    dest.writeTypedList(this.extras);
   }
 
   protected LaunchParams(Parcel in) {
@@ -132,10 +141,11 @@ public class LaunchParams implements Parcelable {
     this.action = in.readInt();
     this.data = in.readString();
     this.mimeType = in.readInt();
-    this.categories = new ArrayList<>();
+    this.categories = new ArrayList<Integer>();
     in.readList(this.categories, Integer.class.getClassLoader());
-    this.flags = new ArrayList<>();
+    this.flags = new ArrayList<Integer>();
     in.readList(this.flags, Integer.class.getClassLoader());
+    this.extras = in.createTypedArrayList(LaunchParamsExtra.CREATOR);
   }
 
   public static final Creator<LaunchParams> CREATOR = new Creator<LaunchParams>() {

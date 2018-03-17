@@ -300,6 +300,68 @@
           app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
           <android.support.constraint.ConstraintLayout
+            android:id="@+id/container_extras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+              android:id="@+id/image_extras"
+              android:layout_width="@dimen/launch_params_item_height"
+              android:layout_height="@dimen/launch_params_item_height"
+              android:padding="@dimen/launch_params_icon_padding"
+              android:src="@drawable/ic_assignment"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+              android:id="@+id/linearLayout_extras"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:minHeight="@dimen/launch_params_item_height"
+              android:orientation="vertical"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toEndOf="@+id/image_extras"
+              app:layout_constraintTop_toTopOf="parent">
+
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/launch_param_extras" />
+
+              <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_extras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+            <View
+              android:id="@+id/extras_click_interceptor"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:background="?attr/selectableItemBackground"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="4dp"
+          app:cardBackgroundColor="@android:color/white"
+          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+          <android.support.constraint.ConstraintLayout
             android:id="@+id/container_categories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
