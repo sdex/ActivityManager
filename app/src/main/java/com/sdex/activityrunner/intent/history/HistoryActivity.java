@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -14,6 +15,8 @@ import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
 
 public class HistoryActivity extends BaseActivity {
+
+  private static final String TAG = "HistoryActivity";
 
   public static final int REQUEST_CODE = 111;
 
@@ -40,6 +43,10 @@ public class HistoryActivity extends BaseActivity {
     enableBackButton();
 
     viewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
+
+    viewModel.getHistory().observe(this, historyModels -> {
+      Log.d(TAG, "onCreate: ");
+    });
   }
 
   @Override

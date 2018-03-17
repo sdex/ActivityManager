@@ -137,9 +137,9 @@ public class LaunchParams implements Parcelable {
     this.action = in.readInt();
     this.data = in.readString();
     this.mimeType = in.readInt();
-    this.categories = new ArrayList<Integer>();
+    this.categories = new ArrayList<>();
     in.readList(this.categories, Integer.class.getClassLoader());
-    this.flags = new ArrayList<Integer>();
+    this.flags = new ArrayList<>();
     in.readList(this.flags, Integer.class.getClassLoader());
     this.extras = in.createTypedArrayList(LaunchParamsExtra.CREATOR);
   }

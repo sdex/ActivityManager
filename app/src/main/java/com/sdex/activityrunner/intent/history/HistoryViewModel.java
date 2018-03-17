@@ -2,10 +2,12 @@ package com.sdex.activityrunner.intent.history;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import com.sdex.activityrunner.db.AppDatabase;
 import com.sdex.activityrunner.db.history.HistoryModel;
+import java.util.List;
 
 public class HistoryViewModel extends AndroidViewModel {
 
@@ -14,6 +16,10 @@ public class HistoryViewModel extends AndroidViewModel {
   public HistoryViewModel(@NonNull Application application) {
     super(application);
     database = AppDatabase.getDatabase(application);
+  }
+
+  public LiveData<List<HistoryModel>> getHistory() {
+    return database.getHistoryRecordDao().getHistory();
   }
 
   public void deleteItem(HistoryModel model) {

@@ -12,11 +12,11 @@ import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.db.history.HistoryModelDao;
 
 @Database(entities = {ApplicationModel.class, ActivityModel.class, HistoryModel.class},
-  version = 2,
+  version = 3,
   exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-  private static final String DB_NAME = "application_db";
+  private static final String DB_NAME = "applications.db";
   private static AppDatabase appDatabase;
 
   public static AppDatabase getDatabase(Context context) {

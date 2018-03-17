@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.intent;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -82,6 +83,7 @@ public class LaunchParamsActivity extends BaseActivity
   private LaunchParamsListAdapter categoriesAdapter;
   private LaunchParamsListAdapter flagsAdapter;
   private LaunchParamsExtraListAdapter extraAdapter;
+  private LaunchParamsViewModel viewModel;
 
   public static void start(Context context, ActivityModel activityModel) {
     Intent starter = new Intent(context, LaunchParamsActivity.class);
@@ -98,6 +100,8 @@ public class LaunchParamsActivity extends BaseActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     ButterKnife.bind(this);
+
+    viewModel = ViewModelProviders.of(this).get(LaunchParamsViewModel.class);
 
     FrameLayout adsContainer = findViewById(R.id.ads_container);
     AdsHandler adsHandler = new AdsHandler(this, adsContainer);
@@ -159,10 +163,10 @@ public class LaunchParamsActivity extends BaseActivity
       new FlagsSource());
 
     findViewById(R.id.launch).setOnClickListener(v -> {
+      viewModel.addToHistory(launchParams);
       LaunchParamsIntentConverter converter = new LaunchParamsIntentConverter(launchParams);
       final Intent intent = converter.convert();
       IntentUtils.launchActivity(LaunchParamsActivity.this, intent);
-      // TODO save to db
     });
 
     showLaunchParams();

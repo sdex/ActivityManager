@@ -9,7 +9,7 @@ import com.sdex.activityrunner.intent.param.Flag;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaunchParamsIntentConverter {
+public class LaunchParamsIntentConverter implements LaunchParamsConverter<Intent> {
 
   private static final String TAG = "LaunchParamsIntent";
 
@@ -19,6 +19,7 @@ public class LaunchParamsIntentConverter {
     this.launchParams = launchParams;
   }
 
+  @Override
   public Intent convert() {
     Intent intent = new Intent();
     final String packageName = launchParams.getPackageName();
