@@ -91,4 +91,18 @@ public class HistoryModel {
   public void setFlags(String flags) {
     this.flags = flags;
   }
+
+  @Override
+  public String toString() {
+    return
+      "id=" + id +
+      ", timestamp=" + timestamp +
+      ", packageName='" + packageName + '\'' +
+      ", className='" + className + '\'' +
+      ", action=" + action +
+      ", data='" + data + '\'' +
+      ", mimeType=" + mimeType +
+      ", categories='" + categories + '\'' +
+      ", flags='" + flags;
+  }
 }
