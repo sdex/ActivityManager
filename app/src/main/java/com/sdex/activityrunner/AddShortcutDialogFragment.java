@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.bumptech.glide.request.RequestOptions;
-import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.util.GlideApp;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.activityrunner.util.ObjectsCompat;

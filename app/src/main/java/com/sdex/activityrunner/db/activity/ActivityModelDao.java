@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.db;
+package com.sdex.activityrunner.db.activity;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

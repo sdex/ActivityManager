@@ -36,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     int itemId = item.getItemId();
     if (itemId == android.R.id.home) {
       onBackPressed();
+      return true;
     } else if (itemId == R.id.rate) {
       AppUtils.openPlayStore(this);
       return true;

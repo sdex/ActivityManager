@@ -28,6 +28,10 @@
       android:label="@string/intent_launcher_activity"
       android:name=".intent.LaunchParamsActivity" />
 
+    <activity
+      android:label="@string/history_activity"
+      android:name=".intent.history.HistoryActivity" />
+
     <service
       android:exported="false"
       android:name=".service.AppLoaderIntentService"

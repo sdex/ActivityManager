@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.db;
+package com.sdex.activityrunner.db.application;
 
 import android.arch.persistence.room.Entity;
 import android.support.annotation.NonNull;

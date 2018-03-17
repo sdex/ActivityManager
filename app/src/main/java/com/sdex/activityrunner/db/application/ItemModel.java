@@ -1,7 +1,8 @@
-package com.sdex.activityrunner.db;
+package com.sdex.activityrunner.db.application;
 
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Relation;
+import com.sdex.activityrunner.db.activity.ActivityModel;
 import java.util.List;
 
 public class ItemModel {

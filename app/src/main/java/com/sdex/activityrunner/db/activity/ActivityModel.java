@@ -1,10 +1,11 @@
-package com.sdex.activityrunner.db;
+package com.sdex.activityrunner.db.activity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.content.ComponentName;
 import android.support.annotation.NonNull;
+import com.sdex.activityrunner.db.application.ApplicationModel;
 import java.io.Serializable;
 
 @Entity(primaryKeys = {"className"},

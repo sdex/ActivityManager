@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name" translatable="false">Activity Runner</string>
   <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
+  <string name="history_activity" translatable="false">History</string>
 
   <string name="context_action_launch">Launch activity</string>
   <string name="context_action_launch_params">Launch activity with params</string>
@@ -17,6 +18,8 @@
 
   <string name="action_disable_ads">Disable ads</string>
   <string name="action_launch_intent">Start intent</string>
+  <string name="action_history">History</string>
+  <string name="action_clear_history">Clear history</string>
   <string name="action_search">Search</string>
   <string name="action_search_hint">Application name</string>
 

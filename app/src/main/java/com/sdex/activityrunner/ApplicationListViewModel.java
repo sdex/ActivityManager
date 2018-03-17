@@ -5,8 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import com.sdex.activityrunner.db.AppDatabase;
-import com.sdex.activityrunner.db.ApplicationModelDao;
-import com.sdex.activityrunner.db.ItemModel;
+import com.sdex.activityrunner.db.application.ApplicationModelDao;
+import com.sdex.activityrunner.db.application.ItemModel;
 import java.util.List;
 
 public class ApplicationListViewModel extends AndroidViewModel {

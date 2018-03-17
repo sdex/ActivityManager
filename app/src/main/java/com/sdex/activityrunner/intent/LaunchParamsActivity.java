@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.sdex.activityrunner.R;
-import com.sdex.activityrunner.db.ActivityModel;
+import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog;
@@ -21,6 +22,7 @@ import com.sdex.activityrunner.intent.dialog.source.CategoriesSource;
 import com.sdex.activityrunner.intent.dialog.source.FlagsSource;
 import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource;
 import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
+import com.sdex.activityrunner.intent.history.HistoryActivity;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
@@ -127,6 +129,7 @@ public class LaunchParamsActivity extends BaseActivity
       LaunchParamsIntentConverter converter = new LaunchParamsIntentConverter(launchParams);
       final Intent intent = converter.convert();
       IntentUtils.launchActivity(LaunchParamsActivity.this, intent);
+      // TODO save to db
     });
 
     showLaunchParams();
@@ -140,7 +143,21 @@ public class LaunchParamsActivity extends BaseActivity
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.launch_param, menu);
     return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_history: {
+        final Intent intent = HistoryActivity.getLaunchIntent(this);
+        startActivityForResult(intent, HistoryActivity.REQUEST_CODE);
+        return true;
+      }
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 
   @Override
