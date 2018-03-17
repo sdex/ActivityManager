@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.sdex.activityrunner.R;
 import java.util.ArrayList;
@@ -40,31 +41,35 @@ public class LaunchParamsExtraListAdapter extends
   }
 
   public void setItems(List<LaunchParamsExtra> items) {
-    this.items.clear();
-    this.items.addAll(items);
+    this.items = items;
     notifyDataSetChanged();
   }
 
   public interface Callback {
 
     void onItemSelected(int position);
+
+    void removeItem(int position);
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
 
     public final TextView keyView;
     public final TextView valueView;
+    public final ImageView removeView;
 
     public ViewHolder(View itemView) {
       super(itemView);
       this.keyView = itemView.findViewById(R.id.key);
       this.valueView = itemView.findViewById(R.id.value);
+      this.removeView = itemView.findViewById(R.id.remove);
     }
 
     public void bind(LaunchParamsExtra item, Callback callback) {
       keyView.setText(item.getKey());
       valueView.setText(item.getValue());
       itemView.setOnClickListener(v -> callback.onItemSelected(getAdapterPosition()));
+      removeView.setOnClickListener(v -> callback.removeItem(getAdapterPosition()));
     }
   }
 }

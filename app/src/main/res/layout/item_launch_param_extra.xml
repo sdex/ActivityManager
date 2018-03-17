@@ -26,22 +26,35 @@
 
   <TextView
     android:id="@+id/key"
-    android:layout_width="wrap_content"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
+    app:layout_constraintEnd_toStartOf="@+id/remove"
     app:layout_constraintStart_toEndOf="@+id/textView"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="code" />
 
   <TextView
     android:id="@+id/value"
-    android:layout_width="wrap_content"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
+    app:layout_constraintEnd_toStartOf="@+id/remove"
     app:layout_constraintStart_toEndOf="@+id/textView3"
     app:layout_constraintTop_toTopOf="@+id/textView3"
     tools:text="55" />
+
+  <ImageView
+    android:id="@+id/remove"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_margin="2dp"
+    android:scaleType="fitCenter"
+    android:src="@drawable/ic_close"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

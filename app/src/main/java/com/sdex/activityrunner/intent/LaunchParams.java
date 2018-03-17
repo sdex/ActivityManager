@@ -114,10 +114,6 @@ public class LaunchParams implements Parcelable {
     return extras;
   }
 
-  public void setExtras(ArrayList<LaunchParamsExtra> extras) {
-    this.extras = extras;
-  }
-
   @Override
   public int describeContents() {
     return 0;

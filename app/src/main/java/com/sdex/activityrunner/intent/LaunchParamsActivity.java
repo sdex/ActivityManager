@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
+import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback;
 import com.sdex.activityrunner.intent.dialog.KeyValueInputDialog;
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog;
@@ -66,6 +68,8 @@ public class LaunchParamsActivity extends BaseActivity
   ImageView categoriesImageView;
   @BindView(R.id.image_flags)
   ImageView flagsImageView;
+  @BindView(R.id.add_extra)
+  TextView addExtraView;
   @BindView(R.id.list_extras)
   RecyclerView listExtrasView;
   @BindView(R.id.list_categories)
@@ -116,10 +120,21 @@ public class LaunchParamsActivity extends BaseActivity
     configureRecyclerView(listCategoriesView);
     configureRecyclerView(listFlagsView);
 
-    extraAdapter = new LaunchParamsExtraListAdapter(position -> {
-      final LaunchParamsExtra extra = launchParams.getExtras().get(position);
-      DialogFragment dialog = KeyValueInputDialog.newInstance(extra, position);
-      dialog.show(getSupportFragmentManager(), KeyValueInputDialog.TAG);
+    extraAdapter = new LaunchParamsExtraListAdapter(new Callback() {
+      @Override
+      public void onItemSelected(int position) {
+        final LaunchParamsExtra extra = launchParams.getExtras().get(position);
+        DialogFragment dialog = KeyValueInputDialog.newInstance(extra, position);
+        dialog.show(getSupportFragmentManager(), KeyValueInputDialog.TAG);
+      }
+
+      @Override
+      public void removeItem(int position) {
+        launchParams.getExtras().remove(position);
+        extraAdapter.notifyDataSetChanged();
+        listExtrasView.requestLayout();
+        updateExtrasAdd();
+      }
     });
     extraAdapter.setHasStableIds(true);
     listExtrasView.setAdapter(extraAdapter);
@@ -323,12 +338,22 @@ public class LaunchParamsActivity extends BaseActivity
     final ArrayList<LaunchParamsExtra> extras = launchParams.getExtras();
     extraAdapter.setItems(extras);
     updateIcon(extrasImageView, extras);
+    updateExtrasAdd();
     final ArrayList<String> categoriesValues = launchParams.getCategoriesValues();
     categoriesAdapter.setItems(categoriesValues);
     updateIcon(categoriesImageView, categoriesValues);
     final ArrayList<String> flagsValues = launchParams.getFlagsValues();
     flagsAdapter.setItems(flagsValues);
     updateIcon(flagsImageView, flagsValues);
+  }
+
+  private void updateExtrasAdd() {
+    final ArrayList<LaunchParamsExtra> extras = launchParams.getExtras();
+    if (extras.isEmpty()) {
+      addExtraView.setVisibility(View.GONE);
+    } else {
+      addExtraView.setVisibility(View.VISIBLE);
+    }
   }
 
   private void updateIcon(ImageView imageView, String text) {

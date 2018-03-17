@@ -338,6 +338,13 @@
                 android:layout_marginBottom="4dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
+              <TextView
+                android:id="@+id/add_extra"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="+ Add extra" />
+
             </LinearLayout>
 
             <View
