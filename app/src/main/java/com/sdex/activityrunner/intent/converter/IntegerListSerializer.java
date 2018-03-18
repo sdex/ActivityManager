@@ -4,9 +4,12 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IntegerListSerializer {
+public final class IntegerListSerializer {
 
   private static final String DELIMITER = ",";
+
+  public IntegerListSerializer() {
+  }
 
   public String serialize(List<Integer> list) {
     StringBuilder stringBuilder = new StringBuilder();

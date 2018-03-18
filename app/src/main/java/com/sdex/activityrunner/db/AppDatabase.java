@@ -12,7 +12,7 @@ import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.db.history.HistoryModelDao;
 
 @Database(entities = {ApplicationModel.class, ActivityModel.class, HistoryModel.class},
-  version = 3,
+  version = 4,
   exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 

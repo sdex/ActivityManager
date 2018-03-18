@@ -13,16 +13,17 @@ public class HistoryToLaunchParamsConverter implements Converter<LaunchParams> {
 
   @Override
   public LaunchParams convert() {
-    IntegerListSerializer serializer = new IntegerListSerializer();
+    IntegerListSerializer integerListSerializer = new IntegerListSerializer();
+    ExtrasSerializer extrasSerializer = new ExtrasSerializer();
     LaunchParams params = new LaunchParams();
     params.setPackageName(historyModel.getPackageName());
     params.setClassName(historyModel.getClassName());
     params.setAction(historyModel.getAction());
     params.setData(historyModel.getData());
     params.setMimeType(historyModel.getMimeType());
-    params.setCategories(serializer.deserialize(historyModel.getCategories()));
-    params.setFlags(serializer.deserialize(historyModel.getFlags()));
-    // TODO restore extras
+    params.setCategories(integerListSerializer.deserialize(historyModel.getCategories()));
+    params.setFlags(integerListSerializer.deserialize(historyModel.getFlags()));
+    params.setExtras(extrasSerializer.deserialize(historyModel.getExtras()));
     return params;
   }
 }

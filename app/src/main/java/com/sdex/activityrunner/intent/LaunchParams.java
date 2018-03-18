@@ -110,6 +110,10 @@ public class LaunchParams implements Parcelable {
     this.flags = flags;
   }
 
+  public void setExtras(ArrayList<LaunchParamsExtra> extras) {
+    this.extras = extras;
+  }
+
   public ArrayList<LaunchParamsExtra> getExtras() {
     return extras;
   }

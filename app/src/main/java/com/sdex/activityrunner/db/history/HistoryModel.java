@@ -16,6 +16,7 @@ public class HistoryModel {
   private int mimeType;
   private String categories;
   private String flags;
+  private String extras;
 
   public HistoryModel() {
   }
@@ -92,17 +93,11 @@ public class HistoryModel {
     this.flags = flags;
   }
 
-  @Override
-  public String toString() {
-    return
-      "id=" + id +
-      ", timestamp=" + timestamp +
-      ", packageName='" + packageName + '\'' +
-      ", className='" + className + '\'' +
-      ", action=" + action +
-      ", data='" + data + '\'' +
-      ", mimeType=" + mimeType +
-      ", categories='" + categories + '\'' +
-      ", flags='" + flags;
+  public String getExtras() {
+    return extras;
+  }
+
+  public void setExtras(String extras) {
+    this.extras = extras;
   }
 }
