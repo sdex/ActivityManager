@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.intent.converter;
 
+import android.text.TextUtils;
 import com.sdex.activityrunner.intent.LaunchParamsExtra;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,9 @@ public final class ExtrasSerializer {
   }
 
   public ArrayList<LaunchParamsExtra> deserialize(String input) {
+    if (TextUtils.isEmpty(input)) {
+      return new ArrayList<>();
+    }
     final String[] extras = input.split(DELIMITER_EXTRA);
     ArrayList<LaunchParamsExtra> output = new ArrayList<>(extras.length);
     for (String extra : extras) {
