@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
+def keystorePropertiesFile = file("keystore/keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
   playAccountConfigs {
     defaultAccountConfig {
@@ -24,10 +28,10 @@ android {
 
   signingConfigs {
     release {
-      keyAlias 'key0'
-      keyPassword 'kb83vf82su686dg'
-      storeFile file('keystore/keystore.jks')
-      storePassword '4ks8vk0eklq8tv9j4'
+      keyAlias keystoreProperties['KEY_ALIAS']
+      keyPassword keystoreProperties['KEY_PASSWORD']
+      storeFile file(keystoreProperties['STORE_FILE'])
+      storePassword keystoreProperties['STORE_PASSWORD']
     }
   }
 
