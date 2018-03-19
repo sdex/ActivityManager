@@ -21,8 +21,8 @@ public interface HistoryModelDao {
   @Delete
   void delete(HistoryModel... models);
 
-  @Query("SELECT * FROM HistoryModel ORDER BY id DESC")
-  LiveData<List<HistoryModel>> getHistory();
+  @Query("SELECT * FROM HistoryModel ORDER BY id DESC LIMIT :limit")
+  LiveData<List<HistoryModel>> getHistory(int limit);
 
   @Query("DELETE FROM HistoryModel")
   void clean();
