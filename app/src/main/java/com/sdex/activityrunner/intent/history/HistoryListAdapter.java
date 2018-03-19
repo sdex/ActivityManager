@@ -98,6 +98,9 @@ public class HistoryListAdapter extends
     public final TextView action;
     public final TextView data;
     public final TextView mimeType;
+    public final TextView extras;
+    public final TextView categories;
+    public final TextView flags;
 
     public ViewHolder(View itemView) {
       super(itemView);
@@ -106,6 +109,9 @@ public class HistoryListAdapter extends
       this.action = itemView.findViewById(R.id.action);
       this.data = itemView.findViewById(R.id.data);
       this.mimeType = itemView.findViewById(R.id.mime_type);
+      this.extras = itemView.findViewById(R.id.extras);
+      this.categories = itemView.findViewById(R.id.categories);
+      this.flags = itemView.findViewById(R.id.flags);
     }
 
     public void bind(HistoryModel item, Callback callback) {
@@ -114,9 +120,16 @@ public class HistoryListAdapter extends
       action.setText(actionSource.getItem(item.getAction()));
       data.setText(getValueOrPlaceholder(item.getData()));
       mimeType.setText(mimeTypeSource.getItem(item.getMimeType()));
+      extras.setText(isNotEmpty(item.getExtras()));
+      categories.setText(isNotEmpty(item.getCategories()));
+      flags.setText(isNotEmpty(item.getFlags()));
 
       itemView.setOnClickListener(v -> callback.onItemClicked(item, getAdapterPosition()));
       itemView.setOnCreateContextMenuListener(this);
+    }
+
+    private String isNotEmpty(String value) {
+      return TextUtils.isEmpty(value) ? "no" : "yes";
     }
 
     private String getValueOrPlaceholder(String value) {
@@ -128,6 +141,7 @@ public class HistoryListAdapter extends
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+      menu.setHeaderTitle("History record");
       menu.add(Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE, "Remove"); // TODO localization
     }
   }

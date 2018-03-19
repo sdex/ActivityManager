@@ -99,10 +99,75 @@
   <TextView
     android:id="@+id/mime_type"
     android:layout_width="wrap_content"
-    android:textColor="@android:color/black"
     android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textColor="@android:color/black"
     app:layout_constraintStart_toEndOf="@+id/title_mime_type"
     app:layout_constraintTop_toTopOf="@+id/title_mime_type"
     tools:text="image/jpeg" />
+
+  <TextView
+    android:id="@+id/title_extras"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:text="Has extras: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_mime_type" />
+
+  <TextView
+    android:id="@+id/extras"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textAllCaps="true"
+    android:textColor="@android:color/black"
+    app:layout_constraintStart_toEndOf="@+id/title_extras"
+    app:layout_constraintTop_toTopOf="@+id/title_extras"
+    tools:text="yes" />
+
+  <TextView
+    android:id="@+id/title_categories"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:text="Has categories: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_extras" />
+
+  <TextView
+    android:id="@+id/categories"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textAllCaps="true"
+    android:textColor="@android:color/black"
+    app:layout_constraintStart_toEndOf="@+id/title_categories"
+    app:layout_constraintTop_toTopOf="@+id/title_categories"
+    tools:text="no" />
+
+  <TextView
+    android:id="@+id/title_flags"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:text="Has flags: "
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title_categories" />
+
+  <TextView
+    android:id="@+id/flags"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:textAllCaps="true"
+    android:textColor="@android:color/black"
+    app:layout_constraintStart_toEndOf="@+id/title_flags"
+    app:layout_constraintTop_toTopOf="@+id/title_flags"
+    tools:text="yes" />
 
 </android.support.constraint.ConstraintLayout>
