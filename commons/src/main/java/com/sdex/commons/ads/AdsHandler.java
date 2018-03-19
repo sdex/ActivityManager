@@ -12,16 +12,21 @@ import com.google.android.gms.ads.AdView;
 
 public class AdsHandler {
 
-  private AdsController adsController;
+  private AppPreferences appPreferences;
   private FrameLayout container;
 
   public AdsHandler(Context context, FrameLayout container) {
-    this.adsController = new AdsController(context);
+    this.appPreferences = new AppPreferences(context);
+    this.container = container;
+  }
+
+  public AdsHandler(AppPreferences appPreferences, FrameLayout container) {
+    this.appPreferences = appPreferences;
     this.container = container;
   }
 
   public void init(Context context, @StringRes int adBannerUnitId) {
-    if (adsController.isAdsActive()) {
+    if (appPreferences.isAdsActive()) {
       final AdView adView = new AdView(context);
       adView.setAdUnitId(context.getString(adBannerUnitId));
       adView.setAdSize(AdSize.SMART_BANNER);
@@ -41,7 +46,7 @@ public class AdsHandler {
   }
 
   public void detachBottomBannerIfNeed() {
-    if (!adsController.isAdsActive()) {
+    if (!appPreferences.isAdsActive()) {
       container.removeAllViews();
     }
   }

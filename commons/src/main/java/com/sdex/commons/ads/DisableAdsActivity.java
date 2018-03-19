@@ -30,7 +30,7 @@ public class DisableAdsActivity extends BaseActivity {
   private TextView ready;
   private TextView status;
   private ProgressBar progress;
-  private AdsController adsController;
+  private AppPreferences appPreferences;
   private String adsId;
 
   public static Intent getStartIntent(Context context, @StringRes int adsId) {
@@ -54,7 +54,7 @@ public class DisableAdsActivity extends BaseActivity {
       adsId = getString(adsIdRes);
     }
 
-    adsController = new AdsController(DisableAdsActivity.this);
+    appPreferences = new AppPreferences(DisableAdsActivity.this);
 
     rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
     rewardedVideoAd.setRewardedVideoAdListener(rewardedVideoAdListener);
@@ -102,10 +102,10 @@ public class DisableAdsActivity extends BaseActivity {
   }
 
   private void updateAdsStatus() {
-    if (adsController.isAdsActive()) {
+    if (appPreferences.isAdsActive()) {
       status.setText(R.string.commons_ads_active);
     } else {
-      String adsDueTime = adsController.getAdsDueTime();
+      String adsDueTime = appPreferences.getAdsDueTime();
       status.setText(getString(R.string.commons_ads_disabled, adsDueTime));
     }
   }
@@ -148,7 +148,7 @@ public class DisableAdsActivity extends BaseActivity {
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
-      adsController.onVideoWatched();
+      appPreferences.onVideoWatched();
       setResult(RESULT_OK);
 
       toggleVideoReadiness(false);

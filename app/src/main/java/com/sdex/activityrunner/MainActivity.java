@@ -7,16 +7,28 @@ import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClient.BillingResponse;
+import com.android.billingclient.api.BillingClient.SkuType;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.Purchase.PurchasesResult;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
+import com.sdex.commons.ads.AppPreferences;
 import com.sdex.commons.ads.DisableAdsActivity;
 import com.sdex.commons.util.UIUtils;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
   private AdsHandler adsHandler;
+  private AppPreferences appPreferences;
+  private BillingClient billingClient;
+  private boolean isProVersionEnabled;
+
   private AppsListFragment appsListFragment;
 
   @Override
@@ -30,7 +42,8 @@ public class MainActivity extends BaseActivity {
     AppLoaderIntentService.enqueueWork(this, new Intent());
 
     FrameLayout adsContainer = findViewById(R.id.ads_container);
-    adsHandler = new AdsHandler(this, adsContainer);
+    appPreferences = new AppPreferences(this);
+    adsHandler = new AdsHandler(appPreferences, adsContainer);
     adsHandler.init(this, R.string.ad_banner_unit_id);
 
     if (savedInstanceState == null) {
@@ -42,6 +55,46 @@ public class MainActivity extends BaseActivity {
       appsListFragment = (AppsListFragment) getSupportFragmentManager()
         .findFragmentByTag(AppsListFragment.TAG);
     }
+
+    billingClient = BillingClient.newBuilder(this)
+      .setListener((responseCode, purchases) -> {
+        if (responseCode == BillingResponse.OK && purchases != null) {
+          handlePurchases(purchases);
+        } else if (responseCode == BillingResponse.USER_CANCELED) {
+          // Handle an error caused by a user cancelling the purchase flow.
+        } else {
+          // Handle any other error codes.
+        }
+      })
+      .build();
+    billingClient.startConnection(new BillingClientStateListener() {
+      @Override
+      public void onBillingSetupFinished(@BillingResponse int billingResponseCode) {
+        if (billingResponseCode == BillingResponse.OK) {
+          PurchasesResult purchasesResult = billingClient.queryPurchases(SkuType.INAPP);
+          List<Purchase> purchases = purchasesResult.getPurchasesList();
+          handlePurchases(purchases);
+        }
+      }
+
+      @Override
+      public void onBillingServiceDisconnected() {
+        // Try to restart the connection on the next request to
+        // Google Play by calling the startConnection() method.
+      }
+    });
+  }
+
+  private void handlePurchases(List<Purchase> purchases) {
+    for (Purchase purchase : purchases) {
+      if (PurchaseActivity.SKU_PRO.equals(purchase.getSku())) {
+        isProVersionEnabled = true;
+        invalidateOptionsMenu();
+      }
+    }
+
+    appPreferences.setProVersion(isProVersionEnabled);
+    adsHandler.detachBottomBannerIfNeed();
   }
 
   @Override
@@ -83,10 +136,23 @@ public class MainActivity extends BaseActivity {
   }
 
   @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    if (isProVersionEnabled) {
+      menu.findItem(R.id.action_upgrade).setVisible(false);
+      menu.findItem(R.id.action_disable_ads).setVisible(false);
+    }
+    return super.onPrepareOptionsMenu(menu);
+  }
+
+  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_launch_intent: {
         LaunchParamsActivity.start(this, null);
+        return true;
+      }
+      case R.id.action_upgrade: {
+        PurchaseActivity.start(this);
         return true;
       }
       case R.id.action_disable_ads: {
@@ -103,5 +169,11 @@ public class MainActivity extends BaseActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     adsHandler.onActivityResult(requestCode, resultCode, data);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    adsHandler.detachBottomBannerIfNeed();
   }
 }

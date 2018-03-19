@@ -24,20 +24,20 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-
     <activity
       android:label="@string/intent_launcher_activity"
       android:name=".intent.LaunchParamsActivity" />
-
     <activity
       android:label="@string/history_activity"
       android:name=".intent.history.HistoryActivity" />
+
+    <activity
+      android:name=".PurchaseActivity" />
 
     <service
       android:exported="false"
       android:name=".service.AppLoaderIntentService"
       android:permission="android.permission.BIND_JOB_SERVICE" />
-
   </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.sdex.activityrunner.PurchaseActivity;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback;
@@ -32,6 +34,7 @@ import com.sdex.activityrunner.intent.history.HistoryActivity;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
+import com.sdex.commons.ads.AppPreferences;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +46,8 @@ public class LaunchParamsActivity extends BaseActivity
 
   private static final String ARG_ACTIVITY_MODEL = "arg_activity_model";
   private static final String STATE_LAUNCH_PARAMS = "state_launch_params";
+
+  private static final int EXTRAS_LIMIT = 3;
 
   @BindView(R.id.image_package_name)
   ImageView packageNameImageView;
@@ -86,6 +91,9 @@ public class LaunchParamsActivity extends BaseActivity
   private LaunchParamsExtraListAdapter extraAdapter;
   private LaunchParamsViewModel viewModel;
 
+  private AppPreferences appPreferences;
+  private AdsHandler adsHandler;
+
   public static void start(Context context, ActivityModel activityModel) {
     Intent starter = new Intent(context, LaunchParamsActivity.class);
     starter.putExtra(ARG_ACTIVITY_MODEL, activityModel);
@@ -104,8 +112,10 @@ public class LaunchParamsActivity extends BaseActivity
 
     viewModel = ViewModelProviders.of(this).get(LaunchParamsViewModel.class);
 
+    appPreferences = new AppPreferences(this);
+
     FrameLayout adsContainer = findViewById(R.id.ads_container);
-    AdsHandler adsHandler = new AdsHandler(this, adsContainer);
+    adsHandler = new AdsHandler(appPreferences, adsContainer);
     adsHandler.init(this, R.string.ad_banner_unit_id);
 
     enableBackButton();
@@ -186,6 +196,12 @@ public class LaunchParamsActivity extends BaseActivity
       launchParams = data.getParcelableExtra(HistoryActivity.RESULT);
       showLaunchParams();
     }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    adsHandler.detachBottomBannerIfNeed();
   }
 
   @Override
@@ -293,6 +309,17 @@ public class LaunchParamsActivity extends BaseActivity
 
   private void bindKeyValueDialog(int viewId) {
     findViewById(viewId).setOnClickListener(v -> {
+      final int size = launchParams.getExtras().size();
+      if (size >= EXTRAS_LIMIT && !appPreferences.isProVersion()) {
+        new AlertDialog.Builder(this)
+          .setTitle("Upgrade to PRO")
+          .setMessage("Get PRO version to add unlimited extras")
+          .setPositiveButton("Get PRO",
+            (dialog, which) -> PurchaseActivity.start(this))
+          .show();
+        return;
+
+      }
       DialogFragment dialog = KeyValueInputDialog.newInstance(null, -1);
       dialog.show(getSupportFragmentManager(), KeyValueInputDialog.TAG);
     });

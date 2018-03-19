@@ -16,6 +16,11 @@
     app:showAsAction="ifRoom" />
 
   <item
+    android:id="@+id/action_upgrade"
+    android:title="Upgrade to PRO"
+    app:showAsAction="ifRoom" />
+
+  <item
     android:id="@+id/action_disable_ads"
     android:title="@string/action_disable_ads"
     app:showAsAction="never" />
