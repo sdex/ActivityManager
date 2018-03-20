@@ -6,14 +6,16 @@ import com.sdex.activityrunner.intent.LaunchParamsExtra;
 import com.sdex.activityrunner.intent.LaunchParamsExtraType;
 import com.sdex.activityrunner.intent.converter.ExtrasSerializer;
 import java.util.ArrayList;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ExtrasSerializerTest {
 
-  @Test
-  public void serialize() {
-    ArrayList<LaunchParamsExtra> list = new ArrayList<>();
+  private final static ArrayList<LaunchParamsExtra> list = new ArrayList<>();
+  private final static String expected = "k0†3.3†4†true‡k1†v1†0†false‡k2†888†1†false";
 
+  @BeforeClass
+  public static void setUp() {
     LaunchParamsExtra extra0 = new LaunchParamsExtra();
     extra0.setKey("k0");
     extra0.setValue("3.3");
@@ -34,11 +36,28 @@ public class ExtrasSerializerTest {
     extra2.setType(LaunchParamsExtraType.INT);
     extra2.setArray(false);
     list.add(extra2);
+  }
 
-    final String expected = "k0†3.3†4†true‡k1†v1†0†false‡k2†888†1†false";
+  @Test
+  public void serialize() {
     ExtrasSerializer extrasSerializer = new ExtrasSerializer();
     final String serialized = extrasSerializer.serialize(list);
     assertEquals(serialized, expected);
+  }
+
+  @Test
+  public void deserialize() {
+    ExtrasSerializer extrasSerializer = new ExtrasSerializer();
+    final ArrayList<LaunchParamsExtra> deserialize = extrasSerializer.deserialize(expected);
+    assertEquals(list.size(), deserialize.size());
+    for (int i = 0; i < deserialize.size(); i++) {
+      LaunchParamsExtra extra = deserialize.get(i);
+      LaunchParamsExtra expected = list.get(i);
+      assertEquals(expected.getKey(), extra.getKey());
+      assertEquals(expected.getValue(), extra.getValue());
+      assertEquals(expected.getType(), extra.getType());
+      assertEquals(expected.isArray(), extra.isArray());
+    }
   }
 
 }
