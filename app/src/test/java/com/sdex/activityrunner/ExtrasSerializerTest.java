@@ -11,8 +11,8 @@ import org.junit.Test;
 
 public class ExtrasSerializerTest {
 
-  private final static ArrayList<LaunchParamsExtra> list = new ArrayList<>();
-  private final static String expected = "k0†3.3†4†true‡k1†v1†0†false‡k2†888†1†false";
+  private final static ArrayList<LaunchParamsExtra> EXPECTED_LIST = new ArrayList<>();
+  private final static String EXPECTED_STRING = "k0†3.3†4†true‡k1†v1†0†false‡k2†888†1†false";
 
   @BeforeClass
   public static void setUp() {
@@ -21,38 +21,45 @@ public class ExtrasSerializerTest {
     extra0.setValue("3.3");
     extra0.setType(LaunchParamsExtraType.DOUBLE);
     extra0.setArray(true);
-    list.add(extra0);
+    EXPECTED_LIST.add(extra0);
 
     LaunchParamsExtra extra1 = new LaunchParamsExtra();
     extra1.setKey("k1");
     extra1.setValue("v1");
     extra1.setType(LaunchParamsExtraType.STRING);
     extra1.setArray(false);
-    list.add(extra1);
+    EXPECTED_LIST.add(extra1);
 
     LaunchParamsExtra extra2 = new LaunchParamsExtra();
     extra2.setKey("k2");
     extra2.setValue("888");
     extra2.setType(LaunchParamsExtraType.INT);
     extra2.setArray(false);
-    list.add(extra2);
+    EXPECTED_LIST.add(extra2);
   }
 
   @Test
   public void serialize() {
     ExtrasSerializer extrasSerializer = new ExtrasSerializer();
-    final String serialized = extrasSerializer.serialize(list);
-    assertEquals(serialized, expected);
+    String actual = extrasSerializer.serialize(EXPECTED_LIST);
+    assertEquals(actual, EXPECTED_STRING);
+  }
+
+  @Test
+  public void serializeEmpty() {
+    ExtrasSerializer extrasSerializer = new ExtrasSerializer();
+    String actual = extrasSerializer.serialize(new ArrayList<>());
+    assertEquals(actual, "");
   }
 
   @Test
   public void deserialize() {
     ExtrasSerializer extrasSerializer = new ExtrasSerializer();
-    final ArrayList<LaunchParamsExtra> deserialize = extrasSerializer.deserialize(expected);
-    assertEquals(list.size(), deserialize.size());
-    for (int i = 0; i < deserialize.size(); i++) {
-      LaunchParamsExtra extra = deserialize.get(i);
-      LaunchParamsExtra expected = list.get(i);
+    ArrayList<LaunchParamsExtra> actual = extrasSerializer.deserialize(EXPECTED_STRING);
+    assertEquals(EXPECTED_LIST.size(), actual.size());
+    for (int i = 0; i < actual.size(); i++) {
+      LaunchParamsExtra extra = actual.get(i);
+      LaunchParamsExtra expected = EXPECTED_LIST.get(i);
       assertEquals(expected.getKey(), extra.getKey());
       assertEquals(expected.getValue(), extra.getValue());
       assertEquals(expected.getType(), extra.getType());
@@ -60,4 +67,10 @@ public class ExtrasSerializerTest {
     }
   }
 
+  @Test
+  public void deserializeEmpty() {
+    ExtrasSerializer extrasSerializer = new ExtrasSerializer();
+    ArrayList<LaunchParamsExtra> actual = extrasSerializer.deserialize("");
+    assertEquals(actual.size(), 0);
+  }
 }

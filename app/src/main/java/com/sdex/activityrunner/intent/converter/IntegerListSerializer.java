@@ -1,6 +1,5 @@
 package com.sdex.activityrunner.intent.converter;
 
-import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public final class IntegerListSerializer {
   }
 
   public ArrayList<Integer> deserialize(String input) {
-    if (TextUtils.isEmpty(input)) {
+    if (input == null || input.isEmpty()) {
       return new ArrayList<>(0);
     }
     final String[] split = input.split(DELIMITER);
