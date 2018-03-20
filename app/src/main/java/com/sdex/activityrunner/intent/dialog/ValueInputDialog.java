@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.util.ObjectsCompat;
@@ -46,6 +47,15 @@ public class ValueInputDialog extends DialogFragment {
     final EditText valueView = view.findViewById(R.id.value);
     valueView.setText(initialValue);
     valueView.setSelection(initialValue.length());
+    valueView.setOnEditorActionListener((v, actionId, event) -> {
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        final String newValue = valueView.getText().toString();
+        callback.onValueSet(type, newValue);
+        dismiss();
+        return true;
+      }
+      return false;
+    });
     builder.setTitle(type)
       .setView(view)
       .setPositiveButton(android.R.string.ok, (dialog, which) -> {

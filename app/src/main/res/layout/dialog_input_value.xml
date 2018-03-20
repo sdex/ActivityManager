@@ -5,12 +5,18 @@
   android:padding="12dp"
   android:orientation="vertical">
 
-  <EditText
-    android:id="@+id/value"
+  <android.support.design.widget.TextInputLayout
+    android:id="@+id/value_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Input value"
-    android:inputType="textMultiLine"
-    android:maxLines="5" />
+    android:layout_height="wrap_content">
+
+    <EditText
+      android:id="@+id/value"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Input value"
+      android:inputType="text" />
+
+  </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>
