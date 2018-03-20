@@ -38,11 +38,11 @@ public class AddShortcutDialogFragment extends DialogFragment {
     AlertDialog.Builder builder =
       new AlertDialog.Builder(ObjectsCompat.requireNonNull(getActivity()));
     View view = View.inflate(getActivity(), R.layout.dialog_add_shortcut, null);
-    final EditText textName = view.findViewById(R.id.editText_name);
+    final EditText textName = view.findViewById(R.id.shortcut_name);
     if (activityModel != null) {
       textName.setText(activityModel.getName());
       textName.setSelection(textName.getText().length());
-      final ImageView imageIcon = view.findViewById(R.id.iconButton);
+      final ImageView imageIcon = view.findViewById(R.id.app_icon);
       GlideApp.with(this)
         .load(activityModel.getIconPath())
         .apply(new RequestOptions()

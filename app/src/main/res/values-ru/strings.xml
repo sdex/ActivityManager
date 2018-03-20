@@ -6,7 +6,7 @@
   <string name="context_action_shortcut">Создать ярлык</string>
   <string name="context_action_open_info">Инфо</string>
   <string name="context_action_edit">Ярлык</string>
-  <string name="label_name">Название</string>
+  <string name="shortcut_name">Название</string>
 
   <string name="starting_activity">Запуск: %s</string>
   <string name="starting_activity_failed">Ошибка запуска: %s</string>
@@ -14,6 +14,7 @@
   <string name="starting_activity_intent">Запуск</string>
   <string name="starting_activity_intent_failed">Ошибка запуска</string>
 
+  <string name="action_upgrade">Приобрести PRO</string>
   <string name="action_disable_ads">Отключить рекламу</string>
   <string name="action_launch_intent">Запустить intent</string>
   <string name="action_history">История</string>
@@ -29,4 +30,21 @@
   <string name="launch_param_extras">Дополнительные данные</string>
   <string name="launch_param_categories">Категории</string>
   <string name="launch_param_flags">Флаги</string>
+
+  <string name="item_history_has_extras">Содержит дополнительные данные</string>
+  <string name="item_history_has_categories">Содержит категории</string>
+  <string name="item_history_has_flags">Содержит флаги</string>
+
+  <string name="pro_version_title">PRO version features:</string>
+  <string name="pro_version_ads">* Без рекламы</string>
+  <string name="pro_version_extras">* Неограниченные дополнительные параметры</string>
+  <string name="pro_version_history">* Неограниченная история</string>
+  <string name="pro_version_get">Получить PRO версию</string>
+
+  <string name="input_key">Введите ключ</string>
+  <string name="input_value">Введите значение</string>
+  <string name="key">Ключ</string>
+  <string name="value">Значение</string>
+
+  <string name="type_array">Массив</string>
 </resources>

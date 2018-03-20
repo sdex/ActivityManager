@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- launch params -->
   <dimen name="launch_params_activity_padding">8dp</dimen>
   <dimen name="launch_params_item_height">60dp</dimen>
   <dimen name="launch_params_item_padding_vertical">4dp</dimen>
@@ -8,4 +9,10 @@
   <dimen name="launch_params_fab_margin">26dp</dimen>
   <!-- fab size 56dp + 26dp + 8dp-->
   <dimen name="launch_params_bottom_margin">90dp</dimen>
+
+  <!-- history -->
+  <dimen name="item_history_text_margin_top">4dp</dimen>
+  <dimen name="item_history_padding">8dp</dimen>
+
+
 </resources>

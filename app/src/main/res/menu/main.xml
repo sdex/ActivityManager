@@ -17,7 +17,7 @@
 
   <item
     android:id="@+id/action_upgrade"
-    android:title="Upgrade to PRO"
+    android:title="@string/action_upgrade"
     app:showAsAction="ifRoom" />
 
   <item

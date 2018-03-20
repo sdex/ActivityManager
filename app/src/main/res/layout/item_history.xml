@@ -4,15 +4,23 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:padding="8dp"
+  android:padding="@dimen/item_history_padding"
   android:background="?attr/selectableItemBackground">
 
   <TextView
     android:id="@+id/title_package_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Package name: "
+    android:text="@string/launch_param_package_name"
     app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/c1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_package_name"
     app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
@@ -23,7 +31,7 @@
     android:maxLines="1"
     android:textColor="@android:color/black"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/title_package_name"
+    app:layout_constraintStart_toEndOf="@+id/c1"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="com.sdex.activityrunner" />
 
@@ -31,10 +39,18 @@
     android:id="@+id/title_class_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:text="Class name: "
+    android:layout_marginTop="@dimen/item_history_text_margin_top"
+    android:text="@string/launch_param_class_name"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_package_name" />
+
+  <TextView
+    android:id="@+id/c2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_class_name"
+    app:layout_constraintTop_toTopOf="@+id/title_class_name" />
 
   <TextView
     android:id="@+id/class_name"
@@ -43,7 +59,8 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:textColor="@android:color/black"
-    app:layout_constraintStart_toEndOf="@+id/title_class_name"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/c2"
     app:layout_constraintTop_toTopOf="@+id/title_class_name"
     tools:text="com.sdex.activityrunner.MainActivity" />
 
@@ -51,19 +68,28 @@
     android:id="@+id/title_action"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:text="Action: "
+    android:layout_marginTop="@dimen/item_history_text_margin_top"
+    android:text="@string/launch_param_action"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_class_name" />
 
   <TextView
-    android:id="@+id/action"
+    android:id="@+id/c3"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_action"
+    app:layout_constraintTop_toTopOf="@+id/title_action" />
+
+  <TextView
+    android:id="@+id/action"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
     android:textColor="@android:color/black"
-    app:layout_constraintStart_toEndOf="@+id/title_action"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/c3"
     app:layout_constraintTop_toTopOf="@+id/title_action"
     tools:text="android.intent.action.MAIN" />
 
@@ -71,19 +97,28 @@
     android:id="@+id/title_data"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:text="Data: "
+    android:layout_marginTop="@dimen/item_history_text_margin_top"
+    android:text="@string/launch_param_data"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_action" />
 
   <TextView
-    android:id="@+id/data"
+    android:id="@+id/c4"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_data"
+    app:layout_constraintTop_toTopOf="@+id/title_data" />
+
+  <TextView
+    android:id="@+id/data"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
     android:textColor="@android:color/black"
-    app:layout_constraintStart_toEndOf="@+id/title_data"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/c4"
     app:layout_constraintTop_toTopOf="@+id/title_data"
     tools:text="test" />
 
@@ -91,19 +126,28 @@
     android:id="@+id/title_mime_type"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:text="Mime type: "
+    android:layout_marginTop="@dimen/item_history_text_margin_top"
+    android:text="@string/launch_param_mime_type"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_data" />
 
   <TextView
-    android:id="@+id/mime_type"
+    android:id="@+id/c5"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_mime_type"
+    app:layout_constraintTop_toTopOf="@+id/title_mime_type" />
+
+  <TextView
+    android:id="@+id/mime_type"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
     android:textColor="@android:color/black"
-    app:layout_constraintStart_toEndOf="@+id/title_mime_type"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/c5"
     app:layout_constraintTop_toTopOf="@+id/title_mime_type"
     tools:text="image/jpeg" />
 
@@ -111,20 +155,29 @@
     android:id="@+id/title_extras"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:text="Has extras: "
+    android:layout_marginTop="@dimen/item_history_text_margin_top"
+    android:text="@string/item_history_has_extras"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_mime_type" />
 
   <TextView
-    android:id="@+id/extras"
+    android:id="@+id/c6"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_extras"
+    app:layout_constraintTop_toTopOf="@+id/title_extras" />
+
+  <TextView
+    android:id="@+id/extras"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
     android:textAllCaps="true"
     android:textColor="@android:color/black"
-    app:layout_constraintStart_toEndOf="@+id/title_extras"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/c6"
     app:layout_constraintTop_toTopOf="@+id/title_extras"
     tools:text="yes" />
 
@@ -132,20 +185,29 @@
     android:id="@+id/title_categories"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:text="Has categories: "
+    android:layout_marginTop="@dimen/item_history_text_margin_top"
+    android:text="@string/item_history_has_categories"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_extras" />
 
   <TextView
-    android:id="@+id/categories"
+    android:id="@+id/c7"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_categories"
+    app:layout_constraintTop_toTopOf="@+id/title_categories" />
+
+  <TextView
+    android:id="@+id/categories"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
     android:textAllCaps="true"
     android:textColor="@android:color/black"
-    app:layout_constraintStart_toEndOf="@+id/title_categories"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/c7"
     app:layout_constraintTop_toTopOf="@+id/title_categories"
     tools:text="no" />
 
@@ -153,20 +215,29 @@
     android:id="@+id/title_flags"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:text="Has flags: "
+    android:layout_marginTop="@dimen/item_history_text_margin_top"
+    android:text="@string/item_history_has_flags"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_categories" />
 
   <TextView
-    android:id="@+id/flags"
+    android:id="@+id/c8"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/colon_space"
+    app:layout_constraintStart_toEndOf="@+id/title_flags"
+    app:layout_constraintTop_toTopOf="@+id/title_flags" />
+
+  <TextView
+    android:id="@+id/flags"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
     android:textAllCaps="true"
     android:textColor="@android:color/black"
-    app:layout_constraintStart_toEndOf="@+id/title_flags"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/c8"
     app:layout_constraintTop_toTopOf="@+id/title_flags"
     tools:text="yes" />
 

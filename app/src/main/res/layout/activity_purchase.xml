@@ -10,50 +10,49 @@
 
   <include layout="@layout/toolbar" />
 
-  <FrameLayout
+  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1">
 
-    <ScrollView
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="wrap_content"
+      android:padding="8dp"
+      android:orientation="vertical">
 
-      <LinearLayout
+      <TextView
+        android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="vertical">
+        android:text="@string/pro_version_title"
+        android:textAppearance="?android:textAppearanceMedium" />
 
-        <TextView
-          android:id="@+id/textView8"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="PRO version features:" />
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pro_version_ads"
+        android:textAppearance="?android:textAppearanceMedium" />
 
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="* Remove advertisement" />
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pro_version_extras"
+        android:textAppearance="?android:textAppearanceMedium" />
 
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="* Unlimited extra parameters" />
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pro_version_history"
+        android:textAppearance="?android:textAppearanceMedium" />
 
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="* Unlimited history" />
-
-      </LinearLayout>
-    </ScrollView>
-  </FrameLayout>
+    </LinearLayout>
+  </ScrollView>
 
   <Button
     android:id="@+id/get_pro"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Get PRO" />
+    android:text="@string/pro_version_get" />
 
 </LinearLayout>

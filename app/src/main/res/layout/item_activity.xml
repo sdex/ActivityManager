@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
+  android:layout_height="wrap_content"
   android:background="?android:attr/activatedBackgroundIndicator"
   android:minHeight="?android:attr/listPreferredItemHeight"
   android:orientation="horizontal">
@@ -11,31 +11,34 @@
     android:id="@android:id/icon"
     android:layout_width="40dp"
     android:layout_height="40dp"
+    android:layout_marginStart="35dp"
     android:layout_marginLeft="35dp"
     android:layout_gravity="center_vertical"
+    tools:ignore="ContentDescription"
     tools:src="@mipmap/ic_launcher" />
 
   <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="left|center_vertical"
-    android:paddingLeft="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_gravity="start|center_vertical"
     android:orientation="vertical">
 
     <TextView
       android:id="@android:id/text1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="left|center_vertical"
+      android:layout_gravity="start|center_vertical"
       android:textAppearance="?android:attr/textAppearanceListItem"
       android:textIsSelectable="false"
-      tools:text="App name" />
+      tools:text="Activity name" />
 
     <TextView
       android:id="@android:id/text2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="left|center_vertical"
+      android:layout_gravity="start|center_vertical"
       android:textAppearance="?attr/textAppearanceListItemSecondary"
       android:textColor="@android:color/darker_gray"
       android:textIsSelectable="false"

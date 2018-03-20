@@ -3,12 +3,15 @@
   <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
   <string name="history_activity">History</string>
 
+  <string name="colon_space" translatable="false">": "</string>
+  <string name="equal_space" translatable="false">"="</string>
+
   <string name="context_action_launch">Launch activity</string>
   <string name="context_action_launch_params">Launch activity with params</string>
   <string name="context_action_shortcut">Create shortcut</string>
   <string name="context_action_open_info">Open info</string>
   <string name="context_action_edit">Edit shortcut</string>
-  <string name="label_name">Label</string>
+  <string name="shortcut_name">Label</string>
 
   <string name="starting_activity">Starting activity: %s</string>
   <string name="starting_activity_failed">Failed to start activity: %s</string>
@@ -16,6 +19,7 @@
   <string name="starting_activity_intent_failed">Failed to start activity</string>
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
 
+  <string name="action_upgrade">Upgrade to PRO</string>
   <string name="action_disable_ads">Disable ads</string>
   <string name="action_launch_intent">Start intent</string>
   <string name="action_history">History</string>
@@ -29,6 +33,30 @@
   <string name="launch_param_data">Data</string>
   <string name="launch_param_mime_type">Mime type</string>
   <string name="launch_param_extras">Extras</string>
+  <string name="launch_param_extras_add">+ Add extra</string>
   <string name="launch_param_categories">Categories</string>
   <string name="launch_param_flags">Flags</string>
+
+  <string name="item_history_has_extras">Has extras</string>
+  <string name="item_history_has_categories">Has categories</string>
+  <string name="item_history_has_flags">Has flags</string>
+
+  <string name="pro_version_title">PRO version features:</string>
+  <string name="pro_version_ads">* Without advertisement</string>
+  <string name="pro_version_extras">* Unlimited extra parameters</string>
+  <string name="pro_version_history">* Unlimited history</string>
+  <string name="pro_version_get">Get PRO</string>
+
+  <string name="input_key">Input key</string>
+  <string name="input_value">Input value</string>
+  <string name="key">Key</string>
+  <string name="value">Value</string>
+
+  <string name="type_string" translatable="false">String</string>
+  <string name="type_int" translatable="false">int</string>
+  <string name="type_long" translatable="false">long</string>
+  <string name="type_float" translatable="false">float</string>
+  <string name="type_double" translatable="false">double</string>
+  <string name="type_boolean" translatable="false">boolean</string>
+  <string name="type_array">Array</string>
 </resources>

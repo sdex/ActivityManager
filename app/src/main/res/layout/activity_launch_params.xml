@@ -343,7 +343,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
-                android:text="+ Add extra" />
+                android:text="@string/launch_param_extras_add" />
 
             </LinearLayout>
 

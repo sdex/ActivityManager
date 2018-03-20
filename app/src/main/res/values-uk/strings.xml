@@ -6,7 +6,7 @@
   <string name="context_action_shortcut">Створити ярлик</string>
   <string name="context_action_open_info">Інфо</string>
   <string name="context_action_edit">Ярлик</string>
-  <string name="label_name">Назва</string>
+  <string name="shortcut_name">Назва</string>
 
   <string name="starting_activity">Запуск: %s</string>
   <string name="starting_activity_failed">Помилка запуску: %s</string>
@@ -14,6 +14,7 @@
   <string name="starting_activity_intent">Запуск</string>
   <string name="starting_activity_intent_failed">Помилка запуску</string>
 
+  <string name="action_upgrade">Придбати PRO</string>
   <string name="action_disable_ads">Відключити рекламу</string>
   <string name="action_launch_intent">Запустити intent</string>
   <string name="action_history">Історія</string>
@@ -29,4 +30,21 @@
   <string name="launch_param_extras">Додаткові дані</string>
   <string name="launch_param_categories">Категорії</string>
   <string name="launch_param_flags">Параметри</string>
+
+  <string name="item_history_has_extras">Містить додаткові дані</string>
+  <string name="item_history_has_categories">Містить категорії</string>
+  <string name="item_history_has_flags">Містить парамерти</string>
+
+  <string name="pro_version_title">Версія PRO:</string>
+  <string name="pro_version_ads">* Без реклами</string>
+  <string name="pro_version_extras">* Необмежені додаткові параметри</string>
+  <string name="pro_version_history">* Необмежена історія</string>
+  <string name="pro_version_get">Отримати PRO версію</string>
+
+  <string name="input_key">Введіть ключ</string>
+  <string name="input_value">Введіть значення</string>
+  <string name="key">Ключ</string>
+  <string name="value">Значення</string>
+
+  <string name="type_array">Масив</string>
 </resources>
