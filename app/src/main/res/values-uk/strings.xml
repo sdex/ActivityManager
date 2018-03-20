@@ -28,6 +28,7 @@
   <string name="launch_param_data">Дані</string>
   <string name="launch_param_mime_type">Тип даних</string>
   <string name="launch_param_extras">Додаткові дані</string>
+  <string name="launch_param_extras_add">+ Додати</string>
   <string name="launch_param_categories">Категорії</string>
   <string name="launch_param_flags">Параметри</string>
 

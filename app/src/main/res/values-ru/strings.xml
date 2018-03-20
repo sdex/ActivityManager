@@ -28,6 +28,7 @@
   <string name="launch_param_data">Данные</string>
   <string name="launch_param_mime_type">Тип данных</string>
   <string name="launch_param_extras">Дополнительные данные</string>
+  <string name="launch_param_extras_add">+ Добавить</string>
   <string name="launch_param_categories">Категории</string>
   <string name="launch_param_flags">Флаги</string>
 
