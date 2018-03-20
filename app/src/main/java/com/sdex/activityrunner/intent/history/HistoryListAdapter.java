@@ -14,6 +14,7 @@ import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.dialog.source.ActionSource;
 import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource;
+import com.sdex.activityrunner.intent.param.None;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,21 +129,21 @@ public class HistoryListAdapter extends
       itemView.setOnCreateContextMenuListener(this);
     }
 
-    private String isNotEmpty(String value) {
-      return TextUtils.isEmpty(value) ? "no" : "yes";
+    private int isNotEmpty(String value) {
+      return TextUtils.isEmpty(value) ? R.string.no : R.string.yes;
     }
 
     private String getValueOrPlaceholder(String value) {
       if (TextUtils.isEmpty(value)) {
-        return "NONE"; // TODO localization
+        return None.VALUE;
       }
       return value;
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-      menu.setHeaderTitle("History record");
-      menu.add(Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE, "Remove"); // TODO localization
+      menu.setHeaderTitle(R.string.history_item_dialog_title);
+      menu.add(Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE, R.string.history_item_dialog_remove);
     }
   }
 }

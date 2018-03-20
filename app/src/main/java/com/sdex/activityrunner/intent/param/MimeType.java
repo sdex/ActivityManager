@@ -338,7 +338,7 @@ public class MimeType {
     if (list == null) {
       list = new ArrayList<>(mimeTypeToExtensionMap.keySet());
       Collections.sort(list);
-      list.add(0, "NONE"); // TODO localization
+      list.add(0, None.VALUE);
     }
     return list;
   }

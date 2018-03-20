@@ -190,7 +190,7 @@ public class Action {
     if (list == null) {
       list = new ArrayList<>(ACTIONS.keySet());
       Collections.sort(list);
-      list.add(0, "NONE"); // TODO localization
+      list.add(0, None.VALUE);
     }
     return list;
   }

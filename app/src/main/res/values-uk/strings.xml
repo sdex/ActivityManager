@@ -47,4 +47,9 @@
   <string name="value">Значення</string>
 
   <string name="type_array">Масив</string>
+
+  <string name="history_item_dialog_title">Запис</string>
+  <string name="history_item_dialog_remove">Видалити</string>
+  <string name="no">Ні</string>
+  <string name="yes">Так</string>
 </resources>
