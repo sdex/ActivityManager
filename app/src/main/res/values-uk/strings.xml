@@ -41,7 +41,12 @@
   <string name="pro_version_ads">* Без реклами</string>
   <string name="pro_version_extras">* Необмежені додаткові параметри</string>
   <string name="pro_version_history">* Необмежена історія</string>
+  <string name="pro_version_shortcut">* Ярлики для будь яких Intent</string>
   <string name="pro_version_get">Отримати PRO версію</string>
+  <string name="pro_version_dialog_title">Придбати PRO</string>
+  <string name="pro_version_unlock_extras">Придбайте PRO для можливості додавати необмежену кількість додаткових даних</string>
+  <string name="pro_version_unlock_intent_shortcuts">Придбайте PRO для можливості створювати ярлики для будь яких intent</string>
+
 
   <string name="input_key">Введіть ключ</string>
   <string name="input_value">Введіть значення</string>
@@ -50,6 +55,8 @@
 
   <string name="type_array">Масив</string>
 
+  <string name="history_dialog_clear_title">Очистити історію</string>
+  <string name="history_dialog_clear_message">Ви впевнені?</string>
   <string name="history_item_dialog_title">Запис</string>
   <string name="history_item_dialog_remove">Видалити</string>
   <string name="history_item_dialog_add_shortcut">Створити ярлик</string>

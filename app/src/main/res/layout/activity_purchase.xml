@@ -37,6 +37,12 @@
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/pro_version_shortcut"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/pro_version_extras"
         android:textAppearance="?android:textAppearanceMedium" />
 

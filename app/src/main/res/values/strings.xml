@@ -46,7 +46,11 @@
   <string name="pro_version_ads">* Without advertisement</string>
   <string name="pro_version_extras">* Unlimited extra parameters</string>
   <string name="pro_version_history">* Unlimited history</string>
+  <string name="pro_version_shortcut">* Create shortcuts for any Intent</string>
   <string name="pro_version_get">Get PRO</string>
+  <string name="pro_version_dialog_title">Upgrade to PRO</string>
+  <string name="pro_version_unlock_extras">Get PRO version to add unlimited extras</string>
+  <string name="pro_version_unlock_intent_shortcuts">Get PRO version to create intent shortcuts</string>
 
   <string name="input_key">Input key</string>
   <string name="input_value">Input value</string>
@@ -61,6 +65,8 @@
   <string name="type_boolean" translatable="false">boolean</string>
   <string name="type_array">Array</string>
 
+  <string name="history_dialog_clear_title">Clear history</string>
+  <string name="history_dialog_clear_message">Are you sure?</string>
   <string name="history_item_dialog_title">History record</string>
   <string name="history_item_dialog_remove">Remove</string>
   <string name="history_item_dialog_add_shortcut">Create shortcut</string>

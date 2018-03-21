@@ -37,11 +37,15 @@
   <string name="item_history_has_categories">Содержит категории</string>
   <string name="item_history_has_flags">Содержит флаги</string>
 
-  <string name="pro_version_title">PRO version features:</string>
+  <string name="pro_version_title">PRO версия:</string>
   <string name="pro_version_ads">* Без рекламы</string>
   <string name="pro_version_extras">* Неограниченные дополнительные параметры</string>
   <string name="pro_version_history">* Неограниченная история</string>
+  <string name="pro_version_shortcut">* Ярлыки для произвольных Intent</string>
   <string name="pro_version_get">Получить PRO версию</string>
+  <string name="pro_version_dialog_title">Приобрести</string>
+  <string name="pro_version_unlock_extras">Приобретите PRO версию для возможности добавлять неограниченное количество дополнительных параметров</string>
+  <string name="pro_version_unlock_intent_shortcuts">Приобретите PRO версию для возможности создавать ярлыки для произвольных intent</string>
 
   <string name="input_key">Введите ключ</string>
   <string name="input_value">Введите значение</string>
@@ -50,6 +54,8 @@
 
   <string name="type_array">Массив</string>
 
+  <string name="history_dialog_clear_title">Очистить историю</string>
+  <string name="history_dialog_clear_message">Вы уверенны?</string>
   <string name="history_item_dialog_title">Запись</string>
   <string name="history_item_dialog_remove">Удалить</string>
   <string name="history_item_dialog_add_shortcut">Создать ярлык</string>

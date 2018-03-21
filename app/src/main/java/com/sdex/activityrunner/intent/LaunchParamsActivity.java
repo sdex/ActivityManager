@@ -312,9 +312,9 @@ public class LaunchParamsActivity extends BaseActivity
       final int size = launchParams.getExtras().size();
       if (size >= EXTRAS_LIMIT && !appPreferences.isProVersion()) {
         new AlertDialog.Builder(this)
-          .setTitle("Upgrade to PRO")
-          .setMessage("Get PRO version to add unlimited extras")
-          .setPositiveButton("Get PRO",
+          .setTitle(R.string.pro_version_dialog_title)
+          .setMessage(R.string.pro_version_unlock_extras)
+          .setPositiveButton(R.string.pro_version_get,
             (dialog, which) -> PurchaseActivity.start(this))
           .show();
         return;

@@ -17,12 +17,14 @@ import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.sdex.activityrunner.AddShortcutDialogFragment;
+import com.sdex.activityrunner.PurchaseActivity;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
+import com.sdex.commons.ads.AppPreferences;
 
 public class HistoryActivity extends BaseActivity {
 
@@ -33,6 +35,7 @@ public class HistoryActivity extends BaseActivity {
   @BindView(R.id.list)
   RecyclerView recyclerView;
 
+  private AppPreferences appPreferences;
   private HistoryListAdapter adapter;
   private HistoryViewModel viewModel;
 
@@ -50,9 +53,10 @@ public class HistoryActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     ButterKnife.bind(this);
     viewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
+    appPreferences = new AppPreferences(this);
 
     FrameLayout adsContainer = findViewById(R.id.ads_container);
-    AdsHandler adsHandler = new AdsHandler(this, adsContainer);
+    AdsHandler adsHandler = new AdsHandler(appPreferences, adsContainer);
     adsHandler.init(this, R.string.ad_banner_unit_id);
 
     enableBackButton();
@@ -90,10 +94,19 @@ public class HistoryActivity extends BaseActivity {
       final HistoryModel historyModel = adapter.getItem(position);
       viewModel.deleteItem(historyModel);
     } else if (itemId == HistoryListAdapter.MENU_ITEM_ADD_SHORTCUT) {
-      final int position = adapter.getContextMenuItemPosition();
-      final HistoryModel historyModel = adapter.getItem(position);
-      DialogFragment dialog = AddShortcutDialogFragment.newInstance(historyModel);
-      dialog.show(getSupportFragmentManager(), AddShortcutDialogFragment.TAG);
+      if (appPreferences.isProVersion()) {
+        final int position = adapter.getContextMenuItemPosition();
+        final HistoryModel historyModel = adapter.getItem(position);
+        DialogFragment dialog = AddShortcutDialogFragment.newInstance(historyModel);
+        dialog.show(getSupportFragmentManager(), AddShortcutDialogFragment.TAG);
+      } else {
+        new AlertDialog.Builder(this)
+          .setTitle(R.string.pro_version_dialog_title)
+          .setMessage(R.string.pro_version_unlock_intent_shortcuts)
+          .setPositiveButton(R.string.pro_version_get,
+            (dialog, which) -> PurchaseActivity.start(this))
+          .show();
+      }
     }
     return super.onContextItemSelected(item);
   }
@@ -109,8 +122,8 @@ public class HistoryActivity extends BaseActivity {
     switch (item.getItemId()) {
       case R.id.action_clear_history: {
         new AlertDialog.Builder(this)
-          .setTitle("Clear history")
-          .setMessage("Are you sure?")
+          .setTitle(R.string.history_dialog_clear_title)
+          .setMessage(R.string.history_dialog_clear_message)
           .setPositiveButton(android.R.string.yes, (dialog, which) -> {
             viewModel.clear();
             finish();
