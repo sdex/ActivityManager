@@ -21,7 +21,7 @@ import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback;
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter;
-import com.sdex.activityrunner.intent.dialog.KeyValueInputDialog;
+import com.sdex.activityrunner.intent.dialog.ExtraInputDialog;
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog;
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog;
@@ -42,7 +42,7 @@ public class LaunchParamsActivity extends BaseActivity
   implements ValueInputDialog.OnValueInputDialogCallback,
   SingleSelectionDialog.OnItemSelectedCallback,
   MultiSelectionDialog.OnItemsSelectedCallback,
-  KeyValueInputDialog.OnKeyValueInputDialogCallback {
+  ExtraInputDialog.OnKeyValueInputDialogCallback {
 
   private static final String ARG_ACTIVITY_MODEL = "arg_activity_model";
   private static final String STATE_LAUNCH_PARAMS = "state_launch_params";
@@ -139,8 +139,8 @@ public class LaunchParamsActivity extends BaseActivity
       @Override
       public void onItemSelected(int position) {
         final LaunchParamsExtra extra = launchParams.getExtras().get(position);
-        DialogFragment dialog = KeyValueInputDialog.newInstance(extra, position);
-        dialog.show(getSupportFragmentManager(), KeyValueInputDialog.TAG);
+        DialogFragment dialog = ExtraInputDialog.newInstance(extra, position);
+        dialog.show(getSupportFragmentManager(), ExtraInputDialog.TAG);
       }
 
       @Override
@@ -320,8 +320,8 @@ public class LaunchParamsActivity extends BaseActivity
         return;
 
       }
-      DialogFragment dialog = KeyValueInputDialog.newInstance(null, -1);
-      dialog.show(getSupportFragmentManager(), KeyValueInputDialog.TAG);
+      DialogFragment dialog = ExtraInputDialog.newInstance(null, -1);
+      dialog.show(getSupportFragmentManager(), ExtraInputDialog.TAG);
     });
   }
 

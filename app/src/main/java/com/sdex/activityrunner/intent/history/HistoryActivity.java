@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.sdex.activityrunner.AddShortcutDialogFragment;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
@@ -82,10 +84,16 @@ public class HistoryActivity extends BaseActivity {
 
   @Override
   public boolean onContextItemSelected(MenuItem item) {
-    if (item.getItemId() == HistoryListAdapter.MENU_ITEM_REMOVE) {
+    int itemId = item.getItemId();
+    if (itemId == HistoryListAdapter.MENU_ITEM_REMOVE) {
       final int position = adapter.getContextMenuItemPosition();
       final HistoryModel historyModel = adapter.getItem(position);
       viewModel.deleteItem(historyModel);
+    } else if (itemId == HistoryListAdapter.MENU_ITEM_ADD_SHORTCUT) {
+      final int position = adapter.getContextMenuItemPosition();
+      final HistoryModel historyModel = adapter.getItem(position);
+      DialogFragment dialog = AddShortcutDialogFragment.newInstance(historyModel);
+      dialog.show(getSupportFragmentManager(), AddShortcutDialogFragment.TAG);
     }
     return super.onContextItemSelected(item);
   }

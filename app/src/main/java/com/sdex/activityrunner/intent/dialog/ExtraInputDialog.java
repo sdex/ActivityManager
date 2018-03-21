@@ -17,20 +17,20 @@ import com.sdex.activityrunner.intent.LaunchParamsExtra;
 import com.sdex.activityrunner.intent.LaunchParamsExtraType;
 import com.sdex.activityrunner.util.ObjectsCompat;
 
-public class KeyValueInputDialog extends DialogFragment {
+public class ExtraInputDialog extends DialogFragment {
 
-  public static final String TAG = "KeyValueInputDialog";
+  public static final String TAG = "ExtraInputDialog";
 
   private static final String ARG_INITIAL_EXTRA = "arg_initial_extra";
   private static final String ARG_POSITION = "arg_position";
 
   private OnKeyValueInputDialogCallback callback;
 
-  public static KeyValueInputDialog newInstance(LaunchParamsExtra initialExtra, int position) {
+  public static ExtraInputDialog newInstance(LaunchParamsExtra initialExtra, int position) {
     Bundle args = new Bundle(2);
     args.putParcelable(ARG_INITIAL_EXTRA, initialExtra);
     args.putInt(ARG_POSITION, position);
-    KeyValueInputDialog fragment = new KeyValueInputDialog();
+    ExtraInputDialog fragment = new ExtraInputDialog();
     fragment.setArguments(args);
     return fragment;
   }
@@ -48,7 +48,7 @@ public class KeyValueInputDialog extends DialogFragment {
     }
     final AlertDialog.Builder builder =
       new AlertDialog.Builder(ObjectsCompat.requireNonNull(getActivity()));
-    View view = View.inflate(getActivity(), R.layout.dialog_input_key_value, null);
+    View view = View.inflate(getActivity(), R.layout.dialog_input_extra, null);
     final EditText keyView = view.findViewById(R.id.key);
     final EditText valueView = view.findViewById(R.id.value);
 
@@ -68,7 +68,7 @@ public class KeyValueInputDialog extends DialogFragment {
       RadioButton stringRadioBtn = view.findViewById(R.id.rb_string);
       stringRadioBtn.setChecked(true);
     }
-    builder.setTitle("Add extra")
+    builder.setTitle(R.string.dialog_add_extra_title)
       .setView(view)
       .setPositiveButton(android.R.string.ok, null)
       .setNegativeButton(android.R.string.cancel, null);
@@ -83,19 +83,19 @@ public class KeyValueInputDialog extends DialogFragment {
         valueLayout.setError(null);
 
         if (TextUtils.isEmpty(newKey)) {
-          keyLayout.setError("Key cannot be empty");
+          keyLayout.setError(getString(R.string.dialog_add_extra_key_empty));
           keyView.requestFocus();
           return;
         }
 
         if (TextUtils.isEmpty(newValue)) {
-          valueLayout.setError("Value cannot be empty");
+          valueLayout.setError(getString(R.string.dialog_add_extra_value_empty));
           valueView.requestFocus();
           return;
         }
 
         if (!isExtraFormatValid(type, newValue)) {
-          valueLayout.setError("Incorrect value type");
+          valueLayout.setError(getString(R.string.dialog_add_extra_type_incorrect));
           return;
         }
 

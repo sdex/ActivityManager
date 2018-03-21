@@ -32,5 +32,5 @@ public abstract class AppDatabase extends RoomDatabase {
 
   public abstract ActivityModelDao getActivityModelDao();
 
-  public abstract HistoryModelDao getHistoryRecordDao();
+  public abstract HistoryModelDao getHistoryModelDao();
 }

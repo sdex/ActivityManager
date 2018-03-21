@@ -7,6 +7,7 @@
   <string name="context_action_open_info">Інфо</string>
   <string name="context_action_edit">Ярлик</string>
   <string name="shortcut_name">Назва</string>
+  <string name="shortcut_name_empty">Обов\'язкове поле</string>
 
   <string name="starting_activity">Запуск: %s</string>
   <string name="starting_activity_failed">Помилка запуску: %s</string>
@@ -51,6 +52,12 @@
 
   <string name="history_item_dialog_title">Запис</string>
   <string name="history_item_dialog_remove">Видалити</string>
+  <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
   <string name="no">Ні</string>
   <string name="yes">Так</string>
+
+  <string name="dialog_add_extra_title">Додати дані</string>
+  <string name="dialog_add_extra_key_empty">Обов\'язкове поле</string>
+  <string name="dialog_add_extra_value_empty">Обов\'язкове поле</string>
+  <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
 </resources>

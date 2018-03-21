@@ -34,7 +34,7 @@ public class LaunchParamsViewModel extends AndroidViewModel {
       LaunchParamsToHistoryConverter historyConverter =
         new LaunchParamsToHistoryConverter(params[0]);
       final HistoryModel historyModel = historyConverter.convert();
-      database.getHistoryRecordDao().insert(historyModel);
+      database.getHistoryModelDao().insert(historyModel);
       return null;
     }
 

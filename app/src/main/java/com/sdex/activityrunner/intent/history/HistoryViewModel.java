@@ -23,7 +23,7 @@ public class HistoryViewModel extends AndroidViewModel {
 
   public LiveData<List<HistoryModel>> getHistory() {
     int limit = appPreferences.isProVersion() ? Integer.MAX_VALUE : 20;
-    return database.getHistoryRecordDao().getHistory(limit);
+    return database.getHistoryModelDao().getHistory(limit);
   }
 
   public void deleteItem(HistoryModel model) {
@@ -44,7 +44,7 @@ public class HistoryViewModel extends AndroidViewModel {
 
     @Override
     protected Void doInBackground(HistoryModel... params) {
-      database.getHistoryRecordDao().delete(params);
+      database.getHistoryModelDao().delete(params);
       return null;
     }
   }
@@ -59,7 +59,7 @@ public class HistoryViewModel extends AndroidViewModel {
 
     @Override
     protected Void doInBackground(Void... params) {
-      database.getHistoryRecordDao().clean();
+      database.getHistoryModelDao().clean();
       return null;
     }
   }

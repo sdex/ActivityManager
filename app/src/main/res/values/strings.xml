@@ -12,6 +12,7 @@
   <string name="context_action_open_info">Open info</string>
   <string name="context_action_edit">Edit shortcut</string>
   <string name="shortcut_name">Label</string>
+  <string name="shortcut_name_empty">Label cannot be empty</string>
 
   <string name="starting_activity">Starting activity: %s</string>
   <string name="starting_activity_failed">Failed to start activity: %s</string>
@@ -62,6 +63,12 @@
 
   <string name="history_item_dialog_title">History record</string>
   <string name="history_item_dialog_remove">Remove</string>
+  <string name="history_item_dialog_add_shortcut">Create shortcut</string>
   <string name="no">No</string>
   <string name="yes">Yes</string>
+
+  <string name="dialog_add_extra_title">Add extra</string>
+  <string name="dialog_add_extra_key_empty">Key cannot be empty</string>
+  <string name="dialog_add_extra_value_empty">Value cannot be empty</string>
+  <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
 </resources>

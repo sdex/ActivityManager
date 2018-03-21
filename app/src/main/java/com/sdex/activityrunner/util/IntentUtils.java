@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.pm.ShortcutInfoCompat;
@@ -28,15 +29,27 @@ public class IntentUtils {
     return intent;
   }
 
-  private static void createLauncherIcon(Context context, ActivityModel activityModel,
+  public static void createLauncherIcon(Context context, ActivityModel activityModel,
     Bitmap bitmap) {
-    final IconCompat iconCompat = IconCompat.createWithBitmap(bitmap);
-    ShortcutInfoCompat pinShortcutInfo =
-      new ShortcutInfoCompat.Builder(context, activityModel.getName())
-        .setIcon(iconCompat)
-        .setShortLabel(activityModel.getName())
-        .setIntent(getActivityIntent(activityModel.getComponentName()))
-        .build();
+    String name = activityModel.getName();
+    Intent intent = getActivityIntent(activityModel.getComponentName());
+    IconCompat iconCompat = IconCompat.createWithBitmap(bitmap);
+    createLauncherIcon(context, name, intent, iconCompat);
+  }
+
+  public static void createLauncherIcon(Context context, String name, Intent intent,
+    @DrawableRes int icon) {
+    final IconCompat iconCompat = IconCompat.createWithResource(context, icon);
+    createLauncherIcon(context, name, intent, iconCompat);
+  }
+
+  private static void createLauncherIcon(Context context, String name, Intent intent,
+    IconCompat iconCompat) {
+    ShortcutInfoCompat pinShortcutInfo = new ShortcutInfoCompat.Builder(context, name)
+      .setIcon(iconCompat)
+      .setShortLabel(name)
+      .setIntent(intent)
+      .build();
     ShortcutManagerCompat.requestPinShortcut(context, pinShortcutInfo, null);
   }
 

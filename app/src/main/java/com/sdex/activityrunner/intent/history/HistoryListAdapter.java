@@ -22,6 +22,7 @@ public class HistoryListAdapter extends
   RecyclerView.Adapter<HistoryListAdapter.ViewHolder> {
 
   public static final int MENU_ITEM_REMOVE = 0;
+  public static final int MENU_ITEM_ADD_SHORTCUT = 1;
 
   private final Callback callback;
   private List<HistoryModel> items = new ArrayList<>();
@@ -143,7 +144,10 @@ public class HistoryListAdapter extends
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
       menu.setHeaderTitle(R.string.history_item_dialog_title);
-      menu.add(Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE, R.string.history_item_dialog_remove);
+      menu.add(Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE,
+        R.string.history_item_dialog_remove);
+      menu.add(Menu.NONE, MENU_ITEM_ADD_SHORTCUT, Menu.NONE,
+        R.string.history_item_dialog_add_shortcut);
     }
   }
 }
