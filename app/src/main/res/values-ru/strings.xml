@@ -66,4 +66,13 @@
   <string name="dialog_add_extra_key_empty">Обязательное поле</string>
   <string name="dialog_add_extra_value_empty">Обязательное поле</string>
   <string name="dialog_add_extra_type_incorrect">Неправильный тип данных</string>
+
+  <!-- rating dialog -->
+  <string name="rating_dialog_cancel">Отменить</string>
+  <string name="rating_dialog_experience">Вам понравилось приложение?</string>
+  <string name="rating_dialog_feedback_title">Обратная связь</string>
+  <string name="rating_dialog_maybe_later">Напомнить позже</string>
+  <string name="rating_dialog_never">Никогда</string>
+  <string name="rating_dialog_submit">Отправить</string>
+  <string name="rating_dialog_suggestions">Сообщите нам что не так и мы исправим это</string>
 </resources>

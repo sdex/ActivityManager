@@ -67,4 +67,13 @@
   <string name="dialog_add_extra_key_empty">Обов\'язкове поле</string>
   <string name="dialog_add_extra_value_empty">Обов\'язкове поле</string>
   <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
+
+  <!-- rating dialog -->
+  <string name="rating_dialog_cancel">Відмінити</string>
+  <string name="rating_dialog_experience">Вам сподобався додаток?</string>
+  <string name="rating_dialog_feedback_title">Зворотній зв\'язок</string>
+  <string name="rating_dialog_maybe_later">Нагадати пізніше</string>
+  <string name="rating_dialog_never">Ніколи</string>
+  <string name="rating_dialog_submit">Відправити</string>
+  <string name="rating_dialog_suggestions">Повідомте нам що не так і ми це виправимо</string>
 </resources>

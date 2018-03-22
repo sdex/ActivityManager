@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 public class AppUtils {
 
+  public static final String ACTIVITY_RUNNER_FEEDBACK_EMAIL = "activity@byob.mail.ua";
+  public static final String ACTIVITY_RUNNER_FEEDBACK_SUBJECT = "Feedback (Sent from the application)";
+
   public static final String DEV_PAGE = "https://play.google.com/store/apps/dev?id=8437279387942631019";
 
   public static void openLink(Context context, String url) {
@@ -16,6 +19,19 @@ public class AppUtils {
       context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     } catch (Exception e) {
       Toast.makeText(context, "Failed to open link", Toast.LENGTH_SHORT).show();
+    }
+  }
+
+  public static void sendEmail(Context context, String address, String subject, String text) {
+    Intent intent = new Intent(Intent.ACTION_SENDTO);
+    intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+    intent.putExtra(Intent.EXTRA_TEXT, text);
+    intent.setData(Uri.parse("mailto:" + address));
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    try {
+      context.startActivity(intent);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 

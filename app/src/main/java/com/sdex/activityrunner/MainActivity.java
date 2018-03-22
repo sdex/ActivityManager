@@ -13,12 +13,14 @@ import com.android.billingclient.api.BillingClient.SkuType;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.Purchase.PurchasesResult;
+import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
 import com.sdex.commons.ads.AppPreferences;
 import com.sdex.commons.ads.DisableAdsActivity;
+import com.sdex.commons.util.AppUtils;
 import com.sdex.commons.util.UIUtils;
 import java.util.List;
 
@@ -55,7 +57,11 @@ public class MainActivity extends BaseActivity {
       appsListFragment = (AppsListFragment) getSupportFragmentManager()
         .findFragmentByTag(AppsListFragment.TAG);
     }
+    fetchPurchases();
+    showRatingDialog();
+  }
 
+  private void fetchPurchases() {
     billingClient = BillingClient.newBuilder(this)
       .setListener((responseCode, purchases) -> {
         if (responseCode == BillingResponse.OK && purchases != null) {
@@ -83,6 +89,17 @@ public class MainActivity extends BaseActivity {
         // Google Play by calling the startConnection() method.
       }
     });
+  }
+
+  private void showRatingDialog() {
+    final RatingDialog ratingDialog = new RatingDialog.Builder(this)
+      .threshold(3)
+      .session(15)
+      .onRatingBarFormSumbit(feedback ->
+        AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
+          AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, feedback))
+      .build();
+    ratingDialog.show();
   }
 
   private void handlePurchases(List<Purchase> purchases) {
