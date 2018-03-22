@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -95,7 +96,10 @@ public class AppsListFragment extends Fragment {
           ActivityModel activity = (ActivityModel) list.getExpandableListAdapter()
             .getChild(ExpandableListView.getPackedPositionGroup(info.packedPosition),
               ExpandableListView.getPackedPositionChild(info.packedPosition));
-          menu.setHeaderTitle(activity.getName());
+          String title = !TextUtils.isEmpty(activity.getName()) ?
+            activity.getName() :
+            activity.getComponentName().getShortClassName();
+          menu.setHeaderTitle(title);
           menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, Menu.NONE,
             R.string.context_action_shortcut);
           menu.add(Menu.NONE, ACTION_OPEN_INFO, Menu.NONE,

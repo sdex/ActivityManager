@@ -57,8 +57,10 @@
 
   <Button
     android:id="@+id/get_pro"
+    style="@style/Base.Widget.AppCompat.Button.Borderless"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/pro_version_get" />
+    android:text="@string/pro_version_get"
+    android:textColor="@color/blue" />
 
 </LinearLayout>
