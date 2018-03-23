@@ -4,7 +4,8 @@
   <dimen name="launch_params_activity_padding">8dp</dimen>
   <dimen name="launch_params_item_height">60dp</dimen>
   <dimen name="launch_params_item_padding_vertical">4dp</dimen>
-  <dimen name="launch_params_item_corner_radius">2dp</dimen>
+  <dimen name="launch_params_item_corner_radius">1dp</dimen>
+  <dimen name="launch_params_item_card_margin">8dp</dimen>
   <dimen name="launch_params_icon_padding">14dp</dimen>
   <dimen name="launch_params_fab_margin">26dp</dimen>
   <!-- fab size 56dp + 26dp + 8dp-->
@@ -13,6 +14,4 @@
   <!-- history -->
   <dimen name="item_history_text_margin_top">4dp</dimen>
   <dimen name="item_history_padding">8dp</dimen>
-
-
 </resources>

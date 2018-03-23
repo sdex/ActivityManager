@@ -43,10 +43,10 @@
   <string name="item_history_has_flags">Has flags</string>
 
   <string name="pro_version_title">PRO version features:</string>
-  <string name="pro_version_ads">* Without advertisement</string>
-  <string name="pro_version_extras">* Unlimited extra parameters</string>
-  <string name="pro_version_history">* Unlimited history</string>
-  <string name="pro_version_shortcut">* Create shortcuts for any Intent</string>
+  <string name="pro_version_ads">&#x2022; Without advertisement</string>
+  <string name="pro_version_extras">&#x2022; Unlimited extra parameters</string>
+  <string name="pro_version_history">&#x2022; Unlimited history</string>
+  <string name="pro_version_shortcut">&#x2022; Shortcuts for any Intent</string>
   <string name="pro_version_get">Get PRO</string>
   <string name="pro_version_dialog_title">Upgrade to PRO</string>
   <string name="pro_version_unlock_extras">Get PRO version to add unlimited extras</string>

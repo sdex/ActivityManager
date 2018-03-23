@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Button;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponse;
 import com.android.billingclient.api.BillingClient.SkuType;
@@ -11,8 +12,11 @@ import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.Purchase.PurchasesResult;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AppPreferences;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseActivity extends BaseActivity {
@@ -21,6 +25,7 @@ public class PurchaseActivity extends BaseActivity {
 
   private AppPreferences appPreferences;
   private BillingClient billingClient;
+  private Button purchase;
 
   public static void start(Context context) {
     Intent starter = new Intent(context, PurchaseActivity.class);
@@ -36,6 +41,9 @@ public class PurchaseActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     enableBackButton();
+
+    purchase = findViewById(R.id.get_pro);
+    purchase.setOnClickListener(v -> purchase());
 
     appPreferences = new AppPreferences(this);
     billingClient = BillingClient.newBuilder(this)
@@ -56,6 +64,7 @@ public class PurchaseActivity extends BaseActivity {
           PurchasesResult purchasesResult = billingClient.queryPurchases(SkuType.INAPP);
           List<Purchase> purchases = purchasesResult.getPurchasesList();
           handlePurchases(purchases);
+          fetchPrice();
         }
       }
 
@@ -65,8 +74,24 @@ public class PurchaseActivity extends BaseActivity {
         // Google Play by calling the startConnection() method.
       }
     });
+  }
 
-    findViewById(R.id.get_pro).setOnClickListener(v -> purchase());
+  private void fetchPrice() {
+    List<String> skuList = new ArrayList<>();
+    skuList.add(SKU_PRO);
+    SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
+    params.setSkusList(skuList).setType(SkuType.INAPP);
+    billingClient.querySkuDetailsAsync(params.build(), (responseCode, skuDetailsList) -> {
+      if (responseCode == BillingResponse.OK && skuDetailsList != null) {
+        for (SkuDetails skuDetails : skuDetailsList) {
+          String sku = skuDetails.getSku();
+          String price = skuDetails.getPrice();
+          if (SKU_PRO.equals(sku)) {
+            purchase.append(" " + price);
+          }
+        }
+      }
+    });
   }
 
   @Override
