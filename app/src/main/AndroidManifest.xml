@@ -17,6 +17,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
+
     <activity android:name=".MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -24,9 +25,11 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
     <activity
       android:label="@string/intent_launcher_activity"
       android:name=".intent.LaunchParamsActivity" />
+
     <activity
       android:label="@string/history_activity"
       android:name=".intent.history.HistoryActivity" />
@@ -34,6 +37,8 @@
     <activity
       android:label="@string/pro_version_dialog_title"
       android:name=".PurchaseActivity" />
+
+    <activity android:name=".OreoPackageManagerBugActivity" />
 
     <service
       android:exported="false"

@@ -1,6 +1,9 @@
 package com.sdex.activityrunner;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
@@ -59,6 +62,24 @@ public class MainActivity extends BaseActivity {
     }
     fetchPurchases();
     showRatingDialog();
+
+    checkOreoBug();
+  }
+
+  // https://issuetracker.google.com/issues/73289329
+  private void checkOreoBug() {
+    if (VERSION.SDK_INT == VERSION_CODES.O) {
+      MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+      viewModel.getPackages().observe(this, packageInfo -> {
+        if (packageInfo != null) {
+          if (packageInfo.isEmpty()) {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(new Intent(this, OreoPackageManagerBugActivity.class));
+          }
+        }
+      });
+    }
   }
 
   private void fetchPurchases() {
