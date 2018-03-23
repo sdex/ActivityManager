@@ -67,7 +67,7 @@
 
   <string name="history_dialog_clear_title">Clear history</string>
   <string name="history_dialog_clear_message">Are you sure?</string>
-  <string name="history_item_dialog_title">History record</string>
+  <string name="history_item_dialog_title">Intent</string>
   <string name="history_item_dialog_remove">Remove</string>
   <string name="history_item_dialog_add_shortcut">Create shortcut</string>
   <string name="no">No</string>

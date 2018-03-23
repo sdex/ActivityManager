@@ -57,7 +57,7 @@
 
   <string name="history_dialog_clear_title">Очистити історію</string>
   <string name="history_dialog_clear_message">Ви впевнені?</string>
-  <string name="history_item_dialog_title">Запис</string>
+  <string name="history_item_dialog_title">Intent</string>
   <string name="history_item_dialog_remove">Видалити</string>
   <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
   <string name="no">Ні</string>
