@@ -64,7 +64,7 @@ public class PurchaseActivity extends BaseActivity {
           PurchasesResult purchasesResult = billingClient.queryPurchases(SkuType.INAPP);
           List<Purchase> purchases = purchasesResult.getPurchasesList();
           handlePurchases(purchases);
-          fetchPrice();
+//          fetchPrice();
         }
       }
 
