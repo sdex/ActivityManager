@@ -54,4 +54,8 @@ public class AppPreferences {
   private static long now() {
     return System.currentTimeMillis();
   }
+
+  public SharedPreferences getPreferences() {
+    return preferences;
+  }
 }

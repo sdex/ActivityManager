@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +20,9 @@ import com.sdex.activityrunner.util.Utils;
 import com.sdex.commons.util.IOUtils;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class AppLoaderIntentService extends JobIntentService {
@@ -78,22 +81,20 @@ public class AppLoaderIntentService extends JobIntentService {
 
     List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
     for (PackageInfo installedPackage : installedPackages) {
-      try {
-        final String packageName = installedPackage.packageName;
-        PackageInfo info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
-        if (countActivitiesFromInfo(info) > 0) {
-          ApplicationModel model = getApplicationModel(pm, packageName, info);
-          applications.add(model);
+      final String packageName = installedPackage.packageName;
+      addInfo(pm, applications, activities, packageName);
+    }
 
-          for (ActivityInfo activityInfo : info.activities) {
-            if (activityInfo.isEnabled() && activityInfo.exported) {
-              ActivityModel activityModel = getActivityModel(pm, activityInfo);
-              activities.add(activityModel);
-            }
-          }
-        }
-      } catch (Exception e) {
-        e.printStackTrace();
+    // TODO Oreo bug
+    if (installedPackages.isEmpty()) {
+      Set<String> packages = new HashSet<>();
+      Intent intentToResolve = new Intent(Intent.ACTION_MAIN);
+      List<ResolveInfo> ril = pm.queryIntentActivities(intentToResolve, 0);
+      for (ResolveInfo resolveInfo : ril) {
+        packages.add(resolveInfo.activityInfo.applicationInfo.packageName);
+      }
+      for (String packageName : packages) {
+        addInfo(pm, applications, activities, packageName);
       }
     }
 
@@ -106,6 +107,26 @@ public class AppLoaderIntentService extends JobIntentService {
     database.getActivityModelDao().insert(activitiesArray);
 
     saveLastUpdateTime();
+  }
+
+  private void addInfo(PackageManager pm, List<ApplicationModel> applications,
+    List<ActivityModel> activities, String packageName) {
+    try {
+      PackageInfo info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+      if (countActivitiesFromInfo(info) > 0) {
+        ApplicationModel model = getApplicationModel(pm, packageName, info);
+        applications.add(model);
+
+        for (ActivityInfo activityInfo : info.activities) {
+          if (activityInfo.isEnabled() && activityInfo.exported) {
+            ActivityModel activityModel = getActivityModel(pm, activityInfo);
+            activities.add(activityModel);
+          }
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   private void saveLastUpdateTime() {

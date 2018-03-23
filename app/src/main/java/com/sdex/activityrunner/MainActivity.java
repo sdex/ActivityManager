@@ -66,19 +66,23 @@ public class MainActivity extends BaseActivity {
     checkOreoBug();
   }
 
+  // TODO Oreo bug
   // https://issuetracker.google.com/issues/73289329
   private void checkOreoBug() {
     if (VERSION.SDK_INT == VERSION_CODES.O) {
-      MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-      viewModel.getPackages().observe(this, packageInfo -> {
-        if (packageInfo != null) {
-          if (packageInfo.isEmpty()) {
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(new Intent(this, OreoPackageManagerBugActivity.class));
+      boolean warningWasShown = appPreferences.getPreferences().getBoolean(
+        OreoPackageManagerBugActivity.KEY, false);
+      if (!warningWasShown) {
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getPackages().observe(this, packageInfo -> {
+          if (packageInfo != null) {
+            if (packageInfo.isEmpty()) {
+              overridePendingTransition(0, 0);
+              startActivity(new Intent(this, OreoPackageManagerBugActivity.class));
+            }
           }
-        }
-      });
+        });
+      }
     }
   }
 
