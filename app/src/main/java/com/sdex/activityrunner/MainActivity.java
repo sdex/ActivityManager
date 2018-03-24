@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
@@ -89,7 +90,7 @@ public class MainActivity extends BaseActivity {
   private void fetchPurchases() {
     billingClient = BillingClient.newBuilder(this)
       .setListener((responseCode, purchases) -> {
-        if (responseCode == BillingResponse.OK && purchases != null) {
+        if (responseCode == BillingResponse.OK) {
           handlePurchases(purchases);
         } else if (responseCode == BillingResponse.USER_CANCELED) {
           // Handle an error caused by a user cancelling the purchase flow.
@@ -127,11 +128,13 @@ public class MainActivity extends BaseActivity {
     ratingDialog.show();
   }
 
-  private void handlePurchases(List<Purchase> purchases) {
-    for (Purchase purchase : purchases) {
-      if (PurchaseActivity.SKU_PRO.equals(purchase.getSku())) {
-        isProVersionEnabled = true;
-        invalidateOptionsMenu();
+  private void handlePurchases(@Nullable List<Purchase> purchases) {
+    if (purchases != null) {
+      for (Purchase purchase : purchases) {
+        if (PurchaseActivity.SKU_PRO.equals(purchase.getSku())) {
+          isProVersionEnabled = true;
+          invalidateOptionsMenu();
+        }
       }
     }
 
