@@ -6,9 +6,9 @@ ext.app = [
 ext.versions = [
   support            : '27.1.0',
   constraintLayout   : '1.0.2',
-  playServices       : '11.8.0',
-  room               : '1.1.0-alpha3',
-  lifecycle          : '1.1.0',
+  firebase           : '11.8.0',
+  room               : '1.1.0-beta1',
+  lifecycle          : '1.1.1',
   glide              : '4.6.1',
   butterKnife        : '8.8.1'
 ]

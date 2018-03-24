@@ -35,7 +35,7 @@ public class AppLoaderIntentService extends JobIntentService {
   public static final int REFRESH_USER = 20;
 
   private static final long CLEAN_IMAGE_CACHE_PERIOD = TimeUnit.DAYS.toMillis(30);
-  private static final long FORCE_REFRESH_PERIOD = TimeUnit.DAYS.toMillis(7);
+  private static final long FORCE_REFRESH_PERIOD = TimeUnit.DAYS.toMillis(1);
 
   private static final String PREFERENCES_NAME = "preferences";
   private static final String PREFERENCES_KEY_LAST_UPDATE = "last_update";
