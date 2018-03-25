@@ -28,12 +28,27 @@
         android:padding="8dp"
         android:orientation="vertical">
 
-        <TextView
-          android:id="@+id/textView8"
+        <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="@string/pro_version_title"
-          android:textAppearance="?android:textAppearanceMedium" />
+          android:orientation="horizontal">
+
+          <TextView
+            android:id="@+id/textView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/pro_version_title"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+          <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            tools:text="54.99 UAH" />
+
+        </LinearLayout>
 
         <TextView
           android:layout_width="match_parent"

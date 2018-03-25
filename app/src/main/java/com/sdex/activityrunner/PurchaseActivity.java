@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.Button;
+import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponse;
 import com.android.billingclient.api.BillingClient.SkuType;
@@ -23,9 +26,11 @@ public class PurchaseActivity extends BaseActivity {
 
   public static final String SKU_PRO = "ar_lifetime_pro_2";
 
+  @BindView(R.id.price)
+  TextView priceView;
+
   private AppPreferences appPreferences;
   private BillingClient billingClient;
-  private Button purchase;
 
   public static void start(Context context) {
     Intent starter = new Intent(context, PurchaseActivity.class);
@@ -40,10 +45,8 @@ public class PurchaseActivity extends BaseActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    ButterKnife.bind(this);
     enableBackButton();
-
-    purchase = findViewById(R.id.get_pro);
-    purchase.setOnClickListener(v -> purchase());
 
     appPreferences = new AppPreferences(this);
     billingClient = BillingClient.newBuilder(this)
@@ -86,10 +89,8 @@ public class PurchaseActivity extends BaseActivity {
         for (SkuDetails skuDetails : skuDetailsList) {
           String sku = skuDetails.getSku();
           String price = skuDetails.getPrice();
-          if (price != null) {
-            if (SKU_PRO.equals(sku)) {
-              purchase.setText(getString(R.string.pro_version_get_price, price));
-            }
+          if (SKU_PRO.equals(sku)) {
+            priceView.setText(price);
           }
         }
       }
@@ -113,7 +114,8 @@ public class PurchaseActivity extends BaseActivity {
     appPreferences.setProVersion(isProVersionEnabled);
   }
 
-  private void purchase() {
+  @OnClick(R.id.get_pro)
+  void purchase() {
     BillingFlowParams flowParams = BillingFlowParams.newBuilder()
       .setSku(SKU_PRO)
       .setType(SkuType.INAPP)
