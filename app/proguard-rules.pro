@@ -21,3 +21,8 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class android.support.v7.widget.SearchView { *; }
+
+-keep class .R
+-keep class **.R$* {
+    <fields>;
+}

@@ -9,6 +9,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.util.AppUtils;
 
@@ -49,5 +51,17 @@ public class AboutActivity extends BaseActivity {
   @OnClick(R.id.more_apps)
   void moreApps() {
     AppUtils.openLink(this, AppUtils.DEV_PAGE);
+  }
+
+  @OnClick(R.id.open_source)
+  void openSource() {
+    new LibsBuilder()
+      .withAutoDetect(true)
+      .withAboutAppName(getString(R.string.app_name))
+      .withAboutIconShown(true)
+      .withAboutVersionShown(true)
+      .withActivityStyle(Libs.ActivityStyle.LIGHT)
+      .withExcludedLibraries("AndroidIconics", "fastadapter")
+      .start(this);
   }
 }

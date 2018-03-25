@@ -14,4 +14,7 @@
   <!-- history -->
   <dimen name="item_history_text_margin_top">4dp</dimen>
   <dimen name="item_history_padding">8dp</dimen>
+
+  <!-- about -->
+  <dimen name="about_image_size">44dp</dimen>
 </resources>
