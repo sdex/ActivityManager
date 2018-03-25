@@ -38,6 +38,8 @@
       android:label="@string/pro_version_dialog_title"
       android:name=".PurchaseActivity" />
 
+    <activity android:name=".AboutActivity" />
+
     <activity android:name=".OreoPackageManagerBugActivity" />
 
     <service

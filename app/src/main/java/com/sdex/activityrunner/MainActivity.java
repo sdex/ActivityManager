@@ -177,7 +177,7 @@ public class MainActivity extends BaseActivity {
         return true;
       }
     });
-    return super.onCreateOptionsMenu(menu);
+    return true;
   }
 
   @Override
@@ -203,6 +203,10 @@ public class MainActivity extends BaseActivity {
       case R.id.action_disable_ads: {
         Intent intent = DisableAdsActivity.getStartIntent(this, R.string.ad_rewarded_unit_id);
         startActivityForResult(intent, DisableAdsActivity.REQUEST_CODE);
+        return true;
+      }
+      case R.id.action_about: {
+        AboutActivity.start(this);
         return true;
       }
       default:

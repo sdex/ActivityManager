@@ -17,6 +17,7 @@
 
   <string name="action_upgrade">Приобрести PRO</string>
   <string name="action_disable_ads">Отключить рекламу</string>
+  <string name="action_about">О программе</string>
   <string name="action_launch_intent">Запустить intent</string>
   <string name="action_history">История</string>
   <string name="action_clear_history">Очистить историю</string>
