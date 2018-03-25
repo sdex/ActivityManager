@@ -64,7 +64,7 @@ public class PurchaseActivity extends BaseActivity {
           PurchasesResult purchasesResult = billingClient.queryPurchases(SkuType.INAPP);
           List<Purchase> purchases = purchasesResult.getPurchasesList();
           handlePurchases(purchases);
-//          fetchPrice();
+          fetchPrice();
         }
       }
 
@@ -86,8 +86,10 @@ public class PurchaseActivity extends BaseActivity {
         for (SkuDetails skuDetails : skuDetailsList) {
           String sku = skuDetails.getSku();
           String price = skuDetails.getPrice();
-          if (SKU_PRO.equals(sku)) {
-            purchase.append(" " + price);
+          if (price != null) {
+            if (SKU_PRO.equals(sku)) {
+              purchase.setText(getString(R.string.pro_version_get_price, price));
+            }
           }
         }
       }

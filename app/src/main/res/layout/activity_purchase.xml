@@ -60,25 +60,19 @@
           android:text="@string/pro_version_history"
           android:textAppearance="?android:textAppearanceMedium" />
 
+        <Button
+          android:id="@+id/get_pro"
+          style="@style/Widget.AppCompat.Button.Borderless"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end"
+          android:text="@string/pro_version_get"
+          android:textColor="@color/blue" />
+
       </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
   </ScrollView>
-
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
-
-    <Button
-      android:id="@+id/get_pro"
-      style="@style/Widget.AppCompat.Button.Borderless"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/pro_version_get"
-      android:textColor="@color/blue" />
-
-  </LinearLayout>
 
 </LinearLayout>
