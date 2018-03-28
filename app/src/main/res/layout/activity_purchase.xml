@@ -16,77 +16,157 @@
     android:layout_weight="1"
     android:padding="8dp">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      app:cardBackgroundColor="@color/white"
-      app:cardCornerRadius="1dp">
+      android:orientation="vertical">
 
-      <LinearLayout
+      <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="vertical">
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
 
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="horizontal">
+          android:padding="8dp"
+          android:orientation="vertical">
 
-          <TextView
-            android:id="@+id/textView8"
-            android:layout_width="0dp"
+          <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:text="@string/pro_version_title" />
+            android:orientation="horizontal">
+
+            <TextView
+              android:id="@+id/textView8"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="@string/pro_version_title"
+              android:textSize="20sp" />
+
+            <TextView
+              android:id="@+id/price"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/red"
+              tools:text="54.99 UAH" />
+
+          </LinearLayout>
 
           <TextView
-            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/pro_version_ads"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pro_version_shortcut"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pro_version_extras"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pro_version_history"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+          <Button
+            android:id="@+id/get_pro"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/red"
-            tools:text="54.99 UAH" />
+            android:layout_gravity="end"
+            android:text="@string/pro_version_get"
+            android:textColor="@color/blue" />
 
         </LinearLayout>
 
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="8dp"
-          android:text="@string/pro_version_ads"
-          android:textAppearance="?android:textAppearanceMedium" />
+      </android.support.v7.widget.CardView>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="Support development"
+        android:textSize="20sp" />
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
 
         <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/pro_version_shortcut"
-          android:textAppearance="?android:textAppearanceMedium" />
-
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/pro_version_extras"
-          android:textAppearance="?android:textAppearanceMedium" />
-
-        <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/pro_version_history"
-          android:textAppearance="?android:textAppearanceMedium" />
-
-        <Button
-          android:id="@+id/get_pro"
-          style="@style/Widget.AppCompat.Button.Borderless"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_gravity="end"
-          android:text="@string/pro_version_get"
-          android:textColor="@color/blue" />
+          android:padding="16dp"
+          android:drawableLeft="@drawable/ic_star_border"
+          android:drawablePadding="8dp"
+          android:drawableStart="@drawable/ic_star_border"
+          android:text="Support with $5.00"
+          android:textSize="18sp" />
 
-      </LinearLayout>
+      </android.support.v7.widget.CardView>
 
-    </android.support.v7.widget.CardView>
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:drawableLeft="@drawable/ic_star_half"
+          android:drawablePadding="8dp"
+          android:drawableStart="@drawable/ic_star_half"
+          android:text="Support with $10.00"
+          android:textSize="18sp" />
+
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:drawableLeft="@drawable/ic_star"
+          android:drawablePadding="8dp"
+          android:drawableStart="@drawable/ic_star"
+          android:text="Support with $20.00"
+          android:textSize="18sp" />
+
+      </android.support.v7.widget.CardView>
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    </LinearLayout>
 
   </ScrollView>
 
