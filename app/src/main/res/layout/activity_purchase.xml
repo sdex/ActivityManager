@@ -38,8 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/pro_version_title"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textSize="20sp"
+            android:text="@string/pro_version_title" />
 
           <TextView
             android:id="@+id/price"

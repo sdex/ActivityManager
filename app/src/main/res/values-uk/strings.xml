@@ -15,7 +15,7 @@
   <string name="starting_activity_intent">Запуск</string>
   <string name="starting_activity_intent_failed">Помилка запуску</string>
 
-  <string name="action_upgrade">Придбати PRO</string>
+  <string name="action_upgrade">Придбати преміум</string>
   <string name="action_disable_ads">Відключити рекламу</string>
   <string name="action_about">Про програму</string>
   <string name="action_launch_intent">Запустити intent</string>
@@ -38,15 +38,15 @@
   <string name="item_history_has_categories">Містить категорії</string>
   <string name="item_history_has_flags">Містить парамерти</string>
 
-  <string name="pro_version_title">Версія PRO:</string>
+  <string name="pro_version_title">Activity Runner Преміум</string>
   <string name="pro_version_ads">&#x2022; Без реклами</string>
   <string name="pro_version_extras">&#x2022; Необмежені додаткові параметри</string>
   <string name="pro_version_history">&#x2022; Необмежена історія</string>
   <string name="pro_version_shortcut">&#x2022; Ярлики для будь яких Intent</string>
-  <string name="pro_version_get">Отримати PRO версію</string>
-  <string name="pro_version_dialog_title">Придбати PRO</string>
-  <string name="pro_version_unlock_extras">Придбайте PRO для можливості додавати необмежену кількість додаткових даних</string>
-  <string name="pro_version_unlock_intent_shortcuts">Придбайте PRO для можливості створювати ярлики для будь яких intent</string>
+  <string name="pro_version_get">Отримати преміум</string>
+  <string name="pro_version_dialog_title">Придбати преміум</string>
+  <string name="pro_version_unlock_extras">Придбайте преміум версію для можливості додавати необмежену кількість додаткових даних</string>
+  <string name="pro_version_unlock_intent_shortcuts">Придбайте преміум версію для можливості створювати ярлики для будь яких intent</string>
 
 
   <string name="input_key">Введіть ключ</string>
