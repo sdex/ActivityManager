@@ -2,6 +2,7 @@
   <string name="app_name" translatable="false">Activity Runner</string>
   <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
   <string name="history_activity">History</string>
+  <string name="settings_activity">Settings</string>
 
   <string name="colon_space" translatable="false">": "</string>
   <string name="equal_space" translatable="false">"="</string>
@@ -28,6 +29,7 @@
   <string name="action_clear_history">Clear history</string>
   <string name="action_search">Search</string>
   <string name="action_search_hint">Application name</string>
+  <string name="action_settings">Settings</string>
 
   <string name="launch_param_package_name">Package name</string>
   <string name="launch_param_class_name">Class name</string>
@@ -87,4 +89,24 @@
   <string name="rating_dialog_never">Never</string>
   <string name="rating_dialog_submit">Submit</string>
   <string name="rating_dialog_suggestions">Suggest us what went wrong and we\'ll work on it!</string>
+
+  <!-- settings -->
+  <string name="pref_header_sort">Sorting</string>
+  <string-array name="pref_sort_order_list_titles">
+    <item>Ascending</item>
+    <item>Descending</item>
+  </string-array>
+  <string-array name="pref_sort_order_list_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+  <string-array name="pref_sort_by_list_titles">
+    <item>App name</item>
+    <item>Package name</item>
+  </string-array>
+  <string-array name="pref_sort_by_list_values">
+    <item>0</item>
+    <item>1</item>
+  </string-array>
+
 </resources>

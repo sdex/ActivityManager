@@ -1,0 +1,8 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <header
+    android:fragment="com.sdex.activityrunner.SettingsActivity$SortPreferenceFragment"
+    android:icon="@drawable/ic_sort"
+    android:title="@string/pref_header_sort" />
+
+</preference-headers>

@@ -42,10 +42,15 @@
 
     <activity android:name=".OreoPackageManagerBugActivity" />
 
+    <activity
+      android:label="@string/settings_activity"
+      android:name=".SettingsActivity" />
+
     <service
       android:exported="false"
       android:name=".service.AppLoaderIntentService"
       android:permission="android.permission.BIND_JOB_SERVICE" />
+
   </application>
 
 </manifest>

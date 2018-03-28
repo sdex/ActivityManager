@@ -24,6 +24,8 @@ android {
     versionName "1.4.8"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
+
+    vectorDrawables.useSupportLibrary = true
   }
 
   signingConfigs {
@@ -53,6 +55,7 @@ android {
     track = 'beta'
     uploadImages = false
   }
+
 }
 
 dependencies {
@@ -60,6 +63,7 @@ dependencies {
   implementation project(':commons')
   implementation "com.android.support:support-v4:$versions.support"
   implementation "com.android.support:appcompat-v7:$versions.support"
+  implementation "com.android.support:support-vector-drawable:$versions.support"
   implementation "com.android.support:support-media-compat:$versions.support"
   implementation "com.android.support:recyclerview-v7:$versions.support"
   implementation "com.android.support:cardview-v7:$versions.support"

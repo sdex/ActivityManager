@@ -23,11 +23,12 @@ public interface ApplicationModelDao {
   void delete(ApplicationModel... models);
 
   @Transaction
-  @Query("SELECT * FROM ApplicationModel ORDER BY name")
-  LiveData<List<ItemModel>> getAllApplicationModels();
+  @Query("SELECT * FROM ApplicationModel ORDER BY :orderBy")
+  LiveData<List<ItemModel>> getAllApplicationModels(String orderBy);
 
   @Transaction
-  @Query("SELECT * FROM ApplicationModel WHERE name LIKE '%' || :text || '%' ORDER BY name")
+  @Query("SELECT * FROM ApplicationModel WHERE name LIKE '%' || :text || '%' "
+    + "ORDER BY name")
   LiveData<List<ItemModel>> getApplicationModels(String text);
 
   @Query("SELECT COUNT(*) FROM ApplicationModel")
