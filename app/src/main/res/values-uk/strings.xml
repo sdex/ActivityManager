@@ -48,6 +48,15 @@
   <string name="pro_version_unlock_extras">Придбайте преміум версію для можливості додавати необмежену кількість додаткових даних</string>
   <string name="pro_version_unlock_intent_shortcuts">Придбайте преміум версію для можливості створювати ярлики для будь яких intent</string>
 
+  <string name="donate_title">Підтримати розробку</string>
+  <string name="donate_5">Пожертвувати $5.00</string>
+  <string name="donate_10">Пожертвувати $10.00</string>
+  <string name="donate_20">Пожертвувати $20.00</string>
+
+  <string name="about_rate">Оцінити додаток</string>
+  <string name="about_more_apps">Більше корисних додатків</string>
+  <string name="about_version">Версія</string>
+  <string name="about_open_source">Бібліотеки з відкритим кодом</string>
 
   <string name="input_key">Введіть ключ</string>
   <string name="input_value">Введіть значення</string>

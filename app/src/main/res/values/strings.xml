@@ -53,6 +53,17 @@
   <string name="pro_version_unlock_extras">Get premium version to add unlimited extras</string>
   <string name="pro_version_unlock_intent_shortcuts">Get premium version to create intent shortcuts</string>
 
+  <string name="donate_title">Support development</string>
+  <string name="donate_5">Support with $5.00</string>
+  <string name="donate_10">Support with $10.00</string>
+  <string name="donate_20">Support with $20.00</string>
+
+  <string name="about_rate">Rate this app</string>
+  <string name="about_more_apps">More apps</string>
+  <string name="about_version">Version</string>
+  <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
+  <string name="about_open_source">Open source libraries</string>
+
   <string name="input_key">Input key</string>
   <string name="input_value">Input value</string>
   <string name="key">Key</string>
