@@ -61,6 +61,12 @@ public class AboutActivity extends BaseActivity {
     PurchaseActivity.start(this);
   }
 
+  @OnClick(R.id.contact)
+  void contact() {
+    AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
+      AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, "");
+  }
+
   @OnClick(R.id.open_source)
   void openSource() {
     new LibsBuilder()

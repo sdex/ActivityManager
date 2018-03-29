@@ -176,6 +176,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
+
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/contact"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:padding="8dp">
+
+          <ImageView
+            android:id="@+id/imageView45"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_contact_email"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+            app:layout_constraintStart_toEndOf="@+id/imageView45"
+            app:layout_constraintTop_toTopOf="@+id/imageView45" />
+
+        </android.support.constraint.ConstraintLayout>
+
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="1dp">

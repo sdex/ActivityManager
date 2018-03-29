@@ -140,8 +140,8 @@ public class PurchaseActivity extends BaseActivity {
   }
 
   public static boolean isPremiumVersion(String sku) {
-    return SKU_PRO.equals(sku) || SKU_DONATE_5.equals(sku)
-      || SKU_DONATE_10.equals(sku) || SKU_DONATE_20.equals(sku);
+    return SKU_PRO.equals(sku)/* || SKU_DONATE_5.equals(sku)
+      || SKU_DONATE_10.equals(sku) || SKU_DONATE_20.equals(sku)*/;
   }
 
   void showPurchaseDialog(String sku) {

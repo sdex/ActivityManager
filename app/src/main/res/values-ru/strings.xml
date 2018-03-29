@@ -56,6 +56,7 @@
   <string name="about_rate">Оценить приложение</string>
   <string name="about_more_apps">Больше полезных приложений</string>
   <string name="about_version">Версия</string>
+  <string name="about_contact_email">Связаться с автором</string>
   <string name="about_open_source">Библиотеки с открытым кодом</string>
 
   <string name="input_key">Введите ключ</string>
