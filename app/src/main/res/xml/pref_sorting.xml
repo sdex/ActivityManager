@@ -7,7 +7,7 @@
     android:key="sort_order"
     android:negativeButtonText="@null"
     android:positiveButtonText="@null"
-    android:title="Sort order" />
+    android:title="@string/pref_sort_order" />
 
   <ListPreference
     android:defaultValue="0"
@@ -16,12 +16,12 @@
     android:key="sort_by"
     android:negativeButtonText="@null"
     android:positiveButtonText="@null"
-    android:title="Sort by" />
+    android:title="@string/pref_sort_by" />
 
   <SwitchPreference
     android:defaultValue="true"
     android:key="sort_case_sensitive"
     android:summary=""
-    android:title="Case sensitive" />
+    android:title="@string/pref_case_sensitive" />
 
 </PreferenceScreen>

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 @Entity(primaryKeys = {"packageName"})
 public class ApplicationModel {
 
+  public static final String TABLE = "ApplicationModel";
   public static final String NAME = "name";
   public static final String PACKAGE_NAME = "packageName";
 

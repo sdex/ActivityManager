@@ -104,6 +104,9 @@
 
   <!-- settings -->
   <string name="pref_header_sort">Sorting</string>
+  <string name="pref_sort_order">Sort order</string>
+  <string name="pref_sort_by">Sort by</string>
+  <string name="pref_case_sensitive">Case sensitive</string>
   <string-array name="pref_sort_order_list_titles">
     <item>Ascending</item>
     <item>Descending</item>

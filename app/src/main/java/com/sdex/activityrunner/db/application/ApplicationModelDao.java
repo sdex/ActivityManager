@@ -1,13 +1,18 @@
 package com.sdex.activityrunner.db.application;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.db.SupportSQLiteQuery;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.RawQuery;
 import android.arch.persistence.room.Transaction;
 import android.arch.persistence.room.Update;
+
+import com.sdex.activityrunner.db.activity.ActivityModel;
+
 import java.util.List;
 
 @Dao
@@ -21,15 +26,10 @@ public interface ApplicationModelDao {
 
   @Delete
   void delete(ApplicationModel... models);
-
+  
   @Transaction
-  @Query("SELECT * FROM ApplicationModel ORDER BY :orderBy")
-  LiveData<List<ItemModel>> getAllApplicationModels(String orderBy);
-
-  @Transaction
-  @Query("SELECT * FROM ApplicationModel WHERE name LIKE '%' || :text || '%' "
-    + "ORDER BY name")
-  LiveData<List<ItemModel>> getApplicationModels(String text);
+  @RawQuery(observedEntities = {ApplicationModel.class, ActivityModel.class})
+  LiveData<List<ItemModel>> getApplicationModels(SupportSQLiteQuery query);
 
   @Query("SELECT COUNT(*) FROM ApplicationModel")
   int count();

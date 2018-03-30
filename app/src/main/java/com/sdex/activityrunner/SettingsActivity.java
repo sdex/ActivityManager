@@ -9,13 +9,17 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+
 import java.util.List;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
   public static final String KEY_SORT_ORDER = "sort_order";
+  public static final String KEY_SORT_ORDER_DEFAULT = "0";
   public static final String KEY_SORT_BY = "sort_by";
   public static final String KEY_SORT_BY_DEFAULT = "0";
+  public static final String KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive";
+  public static final boolean KEY_SORT_CASE_SENSITIVE_DEFAULT = true;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
