@@ -1,5 +1,6 @@
 <resources>
   <string name="history_activity">История</string>
+  <string name="settings_activity">Настройки</string>
 
   <string name="context_action_launch">Запустить</string>
   <string name="context_action_launch_params">Запустить с параметрами</string>
@@ -23,6 +24,7 @@
   <string name="action_clear_history">Очистить историю</string>
   <string name="action_search">Поиск</string>
   <string name="action_search_hint">Название программы</string>
+  <string name="action_settings">Настройки</string>
 
   <string name="launch_param_package_name">Имя пакета</string>
   <string name="launch_param_class_name">Имя класса</string>
@@ -87,4 +89,18 @@
   <string name="rating_dialog_never">Никогда</string>
   <string name="rating_dialog_submit">Отправить</string>
   <string name="rating_dialog_suggestions">Сообщите нам что не так и мы исправим это</string>
+
+  <!-- settings -->
+  <string name="pref_header_sort">Сортировка</string>
+  <string name="pref_sort_order">Порядок сортировки</string>
+  <string name="pref_sort_by">Сортировать по полю</string>
+  <string name="pref_case_sensitive">Учитывать регистр</string>
+  <string-array name="pref_sort_order_list_titles">
+    <item>Восходящий</item>
+    <item>Нисходящий</item>
+  </string-array>
+  <string-array name="pref_sort_by_list_titles">
+    <item>Имени приложения</item>
+    <item>Имени пакета</item>
+  </string-array>
 </resources>
