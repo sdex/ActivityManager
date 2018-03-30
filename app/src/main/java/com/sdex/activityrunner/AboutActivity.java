@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.Menu;
 import android.widget.TextView;
 
 import com.mikepenz.aboutlibraries.Libs;
@@ -39,11 +38,6 @@ public class AboutActivity extends BaseActivity {
 
     versionName.setText(getString(R.string.about_version_format,
       BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE));
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    return true;
   }
 
   @OnClick(R.id.rate_app)

@@ -14,8 +14,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import com.sdex.activityrunner.PurchaseActivity;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
@@ -35,8 +34,12 @@ import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
 import com.sdex.commons.ads.AppPreferences;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class LaunchParamsActivity extends BaseActivity
   implements ValueInputDialog.OnValueInputDialogCallback,
@@ -207,7 +210,7 @@ public class LaunchParamsActivity extends BaseActivity
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.launch_param, menu);
-    return true;
+    return super.onCreateOptionsMenu(menu);
   }
 
   @Override

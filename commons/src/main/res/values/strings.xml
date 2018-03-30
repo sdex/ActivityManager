@@ -1,8 +1,5 @@
 <resources>
 
-  <string name="sdex_commons_more_apps">More apps</string>
-  <string name="sdex_commons_rate">Rate</string>
-
   <string name="commons_ads_status">status</string>
   <string name="commons_ads_disable_temporary">disable temporary</string>
   <string name="commons_ads_disable_temporary_description">You can watch the video and disable ads for an hour</string>

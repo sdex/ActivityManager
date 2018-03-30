@@ -20,12 +20,10 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 1410
-    versionName "1.4.10"
+    versionCode 1411
+    versionName "1.4.11"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
-
-    vectorDrawables.useSupportLibrary = true
   }
 
   signingConfigs {

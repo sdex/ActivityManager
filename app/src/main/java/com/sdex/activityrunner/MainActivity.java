@@ -179,7 +179,7 @@ public class MainActivity extends BaseActivity {
         return true;
       }
     });
-    return true;
+    return super.onCreateOptionsMenu(menu);
   }
 
   @Override

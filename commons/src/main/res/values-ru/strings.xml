@@ -1,0 +1,12 @@
+<resources>
+
+  <string name="commons_ads_status">статус</string>
+  <string name="commons_ads_disable_temporary">временно отключить</string>
+  <string name="commons_ads_disable_temporary_description">Вы можете посмотреть видео и реклама будет отключена на час</string>
+  <string name="commons_ads_watch">смотреть</string>
+  <string name="commons_ads_not_ready">Видео ещё не готово</string>
+  <string name="commons_ads_ready">Видео готово</string>
+  <string name="commons_ads_active">Реклама активна</string>
+  <string name="commons_ads_disabled">Реклама отключена до %1$s</string>
+
+</resources>

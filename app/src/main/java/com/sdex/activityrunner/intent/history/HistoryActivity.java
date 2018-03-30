@@ -14,8 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import com.sdex.activityrunner.AddShortcutDialogFragment;
 import com.sdex.activityrunner.PurchaseActivity;
 import com.sdex.activityrunner.R;
@@ -25,6 +24,9 @@ import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsHandler;
 import com.sdex.commons.ads.AppPreferences;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HistoryActivity extends BaseActivity {
 
@@ -114,7 +116,7 @@ public class HistoryActivity extends BaseActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.history, menu);
-    return true;
+    return super.onCreateOptionsMenu(menu);
   }
 
   @Override
