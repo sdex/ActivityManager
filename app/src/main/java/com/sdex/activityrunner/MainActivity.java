@@ -11,6 +11,7 @@ import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponse;
 import com.android.billingclient.api.BillingClient.SkuType;
@@ -26,6 +27,7 @@ import com.sdex.commons.ads.AppPreferences;
 import com.sdex.commons.ads.DisableAdsActivity;
 import com.sdex.commons.util.AppUtils;
 import com.sdex.commons.util.UIUtils;
+
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
@@ -131,13 +133,13 @@ public class MainActivity extends BaseActivity {
   private void handlePurchases(@Nullable List<Purchase> purchases) {
     if (purchases != null) {
       for (Purchase purchase : purchases) {
-        if (PurchaseActivity.SKU_PRO.equals(purchase.getSku())) {
+        if (PurchaseActivity.isPremiumVersion(purchase.getSku())) {
           isProVersionEnabled = true;
           invalidateOptionsMenu();
+          break;
         }
       }
     }
-
     appPreferences.setProVersion(isProVersionEnabled);
     adsHandler.detachBottomBannerIfNeed();
   }
@@ -227,6 +229,8 @@ public class MainActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    isProVersionEnabled = appPreferences.isProVersion();
+    invalidateOptionsMenu();
     adsHandler.detachBottomBannerIfNeed();
   }
 }

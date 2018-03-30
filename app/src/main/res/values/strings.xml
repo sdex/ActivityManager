@@ -21,7 +21,7 @@
   <string name="starting_activity_intent_failed">Failed to start activity</string>
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
 
-  <string name="action_upgrade">Upgrade to PRO</string>
+  <string name="action_upgrade">Upgrade to premium</string>
   <string name="action_disable_ads">Disable ads</string>
   <string name="action_about">About</string>
   <string name="action_launch_intent">Start intent</string>
@@ -45,15 +45,27 @@
   <string name="item_history_has_categories">Has categories</string>
   <string name="item_history_has_flags">Has flags</string>
 
-  <string name="pro_version_title">PRO version:</string>
-  <string name="pro_version_ads">&#x2022; Without advertisement</string>
+  <string name="pro_version_title">Activity Runner Premium</string>
+  <string name="pro_version_ads">&#x2022; Ad-Free experience</string>
   <string name="pro_version_extras">&#x2022; Unlimited extra parameters</string>
   <string name="pro_version_history">&#x2022; Unlimited history</string>
   <string name="pro_version_shortcut">&#x2022; Shortcuts for any Intent</string>
-  <string name="pro_version_get">Get PRO</string>
-  <string name="pro_version_dialog_title">Upgrade to PRO</string>
-  <string name="pro_version_unlock_extras">Get PRO version to add unlimited extras</string>
-  <string name="pro_version_unlock_intent_shortcuts">Get PRO version to create intent shortcuts</string>
+  <string name="pro_version_get">Get premium</string>
+  <string name="pro_version_dialog_title">Upgrade to premium</string>
+  <string name="pro_version_unlock_extras">Get premium version to add unlimited extras</string>
+  <string name="pro_version_unlock_intent_shortcuts">Get premium version to create intent shortcuts</string>
+
+  <string name="donate_title">Support development</string>
+  <string name="donate_5">Support with $5.00</string>
+  <string name="donate_10">Support with $10.00</string>
+  <string name="donate_20">Support with $20.00</string>
+
+  <string name="about_rate">Rate this app</string>
+  <string name="about_more_apps">More apps</string>
+  <string name="about_version">Version</string>
+  <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
+  <string name="about_contact_email">Contact me</string>
+  <string name="about_open_source">Open source libraries</string>
 
   <string name="input_key">Input key</string>
   <string name="input_value">Input value</string>

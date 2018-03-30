@@ -30,8 +30,49 @@
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:padding="8dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:padding="8dp">
+
+          <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+              android:id="@+id/imageView2"
+              android:layout_width="@dimen/about_image_size"
+              android:layout_height="@dimen/about_image_size"
+              android:layout_margin="4dp"
+              android:padding="8dp"
+              android:src="@drawable/ic_lightbulb_outline"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+              android:id="@+id/textView11"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/about_version"
+              app:layout_constraintBottom_toTopOf="@+id/guideline2"
+              app:layout_constraintStart_toEndOf="@+id/imageView2" />
+
+            <android.support.constraint.Guideline
+              android:id="@+id/guideline2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+              android:id="@+id/version_name"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:layout_constraintStart_toEndOf="@+id/imageView2"
+              app:layout_constraintTop_toTopOf="@+id/guideline2"
+              tools:text="1.4.5 (145)" />
+
+          </android.support.constraint.ConstraintLayout>
 
           <android.support.constraint.ConstraintLayout
             android:id="@+id/rate_app"
@@ -54,7 +95,7 @@
               android:id="@+id/textView12"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Rate this app"
+              android:text="@string/about_rate"
               app:layout_constraintBottom_toBottomOf="@+id/imageView3"
               app:layout_constraintStart_toEndOf="@+id/imageView3"
               app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -82,7 +123,7 @@
               android:id="@+id/textView13"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="More apps"
+              android:text="@string/about_more_apps"
               app:layout_constraintBottom_toBottomOf="@+id/imageView4"
               app:layout_constraintStart_toEndOf="@+id/imageView4"
               app:layout_constraintTop_toTopOf="@+id/imageView4" />
@@ -100,67 +141,94 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="1dp">
 
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/donate"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:padding="8dp">
+
+          <ImageView
+            android:id="@+id/imageView44"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/donate_title"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView44"
+            app:layout_constraintStart_toEndOf="@+id/imageView44"
+            app:layout_constraintTop_toTopOf="@+id/imageView44" />
+
+        </android.support.constraint.ConstraintLayout>
+
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
+
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/contact"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:padding="8dp">
+
+          <ImageView
+            android:id="@+id/imageView45"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_email"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_contact_email"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+            app:layout_constraintStart_toEndOf="@+id/imageView45"
+            app:layout_constraintTop_toTopOf="@+id/imageView45" />
+
+        </android.support.constraint.ConstraintLayout>
+
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
+
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:padding="8dp"
-          android:orientation="vertical">
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_about"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/imageView2" />
-
-          <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground">
-
-            <ImageView
-              android:id="@+id/imageView2"
-              android:layout_width="@dimen/about_image_size"
-              android:layout_height="@dimen/about_image_size"
-              android:layout_margin="4dp"
-              android:padding="8dp"
-              android:src="@drawable/ic_lightbulb_outline"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-              android:id="@+id/textView11"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Version"
-              app:layout_constraintBottom_toTopOf="@+id/guideline2"
-              app:layout_constraintStart_toEndOf="@+id/imageView2" />
-
-            <android.support.constraint.Guideline
-              android:id="@+id/guideline2"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              app:layout_constraintGuide_percent="0.5" />
-
-            <TextView
-              android:id="@+id/version_name"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              app:layout_constraintStart_toEndOf="@+id/imageView2"
-              app:layout_constraintTop_toTopOf="@+id/guideline2"
-              tools:text="1.4.5" />
-
-          </android.support.constraint.ConstraintLayout>
-
+          android:orientation="vertical"
+          android:padding="8dp">
 
           <android.support.constraint.ConstraintLayout
             android:id="@+id/open_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:visibility="gone">
+            android:background="?attr/selectableItemBackground">
 
             <ImageView
               android:id="@+id/imageView5"
@@ -177,7 +245,7 @@
               android:id="@+id/textView15"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Open source libraries"
+              android:text="@string/about_open_source"
               app:layout_constraintBottom_toBottomOf="@+id/imageView5"
               app:layout_constraintStart_toEndOf="@+id/imageView5"
               app:layout_constraintTop_toTopOf="@+id/imageView5" />
@@ -187,6 +255,10 @@
         </LinearLayout>
 
       </android.support.v7.widget.CardView>
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     </LinearLayout>
 

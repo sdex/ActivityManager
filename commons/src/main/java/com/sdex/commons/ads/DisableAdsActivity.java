@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
@@ -163,6 +164,11 @@ public class DisableAdsActivity extends BaseActivity {
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
       loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
     }
   };
 }

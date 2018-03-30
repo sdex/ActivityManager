@@ -35,7 +35,7 @@
       android:name=".intent.history.HistoryActivity" />
 
     <activity
-      android:label="@string/pro_version_dialog_title"
+      android:label="@string/donate_title"
       android:name=".PurchaseActivity" />
 
     <activity android:name=".AboutActivity" />

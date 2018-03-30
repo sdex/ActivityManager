@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.util.AppUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AboutActivity extends BaseActivity {
 
@@ -35,7 +37,8 @@ public class AboutActivity extends BaseActivity {
     ButterKnife.bind(this);
     enableBackButton();
 
-    versionName.setText(BuildConfig.VERSION_NAME);
+    versionName.setText(getString(R.string.about_version_format,
+      BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE));
   }
 
   @Override
@@ -51,6 +54,17 @@ public class AboutActivity extends BaseActivity {
   @OnClick(R.id.more_apps)
   void moreApps() {
     AppUtils.openLink(this, AppUtils.DEV_PAGE);
+  }
+
+  @OnClick(R.id.donate)
+  void donate() {
+    PurchaseActivity.start(this);
+  }
+
+  @OnClick(R.id.contact)
+  void contact() {
+    AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
+      AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, "");
   }
 
   @OnClick(R.id.open_source)
