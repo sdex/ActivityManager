@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <SwitchPreference
+    android:defaultValue="false"
+    android:key="additional_not_exported"
+    android:summary="@string/pref_additional_not_exported_summary"
+    android:title="@string/pref_additional_not_exported_title" />
+
+</PreferenceScreen>

@@ -20,6 +20,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
   public static final String KEY_SORT_BY_DEFAULT = "0";
   public static final String KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive";
   public static final boolean KEY_SORT_CASE_SENSITIVE_DEFAULT = true;
+  public static final String KEY_ADDITIONAL_NOT_EXPORTED = "additional_not_exported";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
   protected boolean isValidFragment(String fragmentName) {
     return PreferenceFragment.class.getName().equals(fragmentName)
-      || SortPreferenceFragment.class.getName().equals(fragmentName);
+      || SortPreferenceFragment.class.getName().equals(fragmentName)
+      || AdditionalPreferenceFragment.class.getName().equals(fragmentName);
   }
 
   public static class SortPreferenceFragment extends PreferenceFragment {
@@ -50,6 +52,26 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
       setHasOptionsMenu(true);
       bindPreferenceSummaryToValue(findPreference(KEY_SORT_ORDER));
       bindPreferenceSummaryToValue(findPreference(KEY_SORT_BY));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+      int id = item.getItemId();
+      if (id == android.R.id.home) {
+        startActivity(new Intent(getActivity(), SettingsActivity.class));
+        return true;
+      }
+      return super.onOptionsItemSelected(item);
+    }
+  }
+
+  public static class AdditionalPreferenceFragment extends PreferenceFragment {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      addPreferencesFromResource(R.xml.pref_additional);
+      setHasOptionsMenu(true);
     }
 
     @Override

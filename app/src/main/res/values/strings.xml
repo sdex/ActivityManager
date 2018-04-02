@@ -104,6 +104,9 @@
 
   <!-- settings -->
   <string name="pref_header_sort">Sorting</string>
+  <string name="pref_header_assitional">Additional parameters</string>
+  <string name="pref_additional_not_exported_title">Show not exported activities</string>
+  <string name="pref_additional_not_exported_summary">You can\'t run them</string>
   <string name="pref_sort_order">Sort order</string>
   <string name="pref_sort_by">Sort by</string>
   <string name="pref_case_sensitive">Case sensitive</string>
