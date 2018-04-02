@@ -21,6 +21,8 @@ android {
 
 dependencies {
   //implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation "com.android.support:support-v4:$versions.support"
   implementation "com.android.support:appcompat-v7:$versions.support"
-  implementation "com.google.firebase:firebase-ads:$versions.firebase"
+  implementation "com.android.support:support-media-compat:$versions.support"
+  implementation "com.google.firebase:firebase-ads:$versions.playServices"
 }

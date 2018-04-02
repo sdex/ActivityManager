@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 def keystorePropertiesFile = file("keystore/keystore.properties")
 def keystoreProperties = new Properties()
@@ -67,8 +68,9 @@ dependencies {
   implementation "com.android.support:cardview-v7:$versions.support"
   implementation "com.android.support:design:$versions.support"
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
-  implementation "com.google.firebase:firebase-core:$versions.firebase"
-  implementation "com.google.firebase:firebase-ads:$versions.firebase"
+  implementation "com.google.firebase:firebase-core:$versions.playServices"
+  implementation "com.google.firebase:firebase-ads:$versions.playServices"
+  implementation "com.google.firebase:firebase-perf:$versions.playServices"
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
   annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
   implementation "android.arch.persistence.room:runtime:$versions.room"
