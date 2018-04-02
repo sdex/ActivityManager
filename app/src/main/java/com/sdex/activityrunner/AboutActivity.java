@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 
-import com.mikepenz.aboutlibraries.Libs;
-import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.util.AppUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.psdev.licensesdialog.LicensesDialog;
 
 public class AboutActivity extends BaseActivity {
 
@@ -63,13 +62,9 @@ public class AboutActivity extends BaseActivity {
 
   @OnClick(R.id.open_source)
   void openSource() {
-    new LibsBuilder()
-      .withAutoDetect(true)
-      .withAboutAppName(getString(R.string.app_name))
-      .withAboutIconShown(true)
-      .withAboutVersionShown(true)
-      .withActivityStyle(Libs.ActivityStyle.LIGHT)
-      .withExcludedLibraries("AndroidIconics", "fastadapter")
-      .start(this);
+    new LicensesDialog.Builder(this)
+      .setNotices(R.raw.notices)
+      .build()
+      .show();
   }
 }

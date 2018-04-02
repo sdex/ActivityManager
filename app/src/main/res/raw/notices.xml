@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+
+  <notice>
+    <name>Butter Knife</name>
+    <url>http://jakewharton.github.io/butterknife</url>
+    <copyright>Copyright 2013 Jake Wharton</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>LicensesDialog</name>
+    <url>https://psdev.de/LicensesDialog</url>
+    <copyright>Copyright 2013-2017 Philip Schiffer</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>Smart App Rate</name>
+    <url>https://github.com/codemybrainsout/smart-app-rate</url>
+    <copyright>Copyright (C) 2016 Code My Brains Out</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>Glide</name>
+    <url>https://bumptech.github.io/glide</url>
+    <copyright>Copyright 2014 Google, Inc. All rights reserved.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+</notices>
