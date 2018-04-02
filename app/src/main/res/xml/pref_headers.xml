@@ -6,8 +6,8 @@
     android:title="@string/pref_header_sort" />
 
   <header
-    android:fragment="com.sdex.activityrunner.SettingsActivity$AdditionalPreferenceFragment"
+    android:fragment="com.sdex.activityrunner.SettingsActivity$AdvancedPreferenceFragment"
     android:icon="@drawable/ic_settings_gray"
-    android:title="@string/pref_header_assitional" />
+    android:title="@string/pref_header_advanced" />
 
 </preference-headers>

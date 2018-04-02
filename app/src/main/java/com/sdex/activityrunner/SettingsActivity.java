@@ -8,7 +8,11 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
+
+import com.sdex.commons.ads.AppPreferences;
 
 import java.util.List;
 
@@ -20,7 +24,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
   public static final String KEY_SORT_BY_DEFAULT = "0";
   public static final String KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive";
   public static final boolean KEY_SORT_CASE_SENSITIVE_DEFAULT = true;
-  public static final String KEY_ADDITIONAL_NOT_EXPORTED = "additional_not_exported";
+  public static final String KEY_ADVANCED_NOT_EXPORTED = "advanced_not_exported";
+  public static final boolean KEY_ADVANCED_NOT_EXPORTED_DEFAULT = false;
+  public static final String KEY_ADVANCED_ROOT_INTEGRATION = "advanced_root_integration";
+  public static final boolean KEY_ADVANCED_ROOT_INTEGRATION_DEFAULT = false;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
   protected boolean isValidFragment(String fragmentName) {
     return PreferenceFragment.class.getName().equals(fragmentName)
       || SortPreferenceFragment.class.getName().equals(fragmentName)
-      || AdditionalPreferenceFragment.class.getName().equals(fragmentName);
+      || AdvancedPreferenceFragment.class.getName().equals(fragmentName);
   }
 
   public static class SortPreferenceFragment extends PreferenceFragment {
@@ -65,13 +72,29 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
   }
 
-  public static class AdditionalPreferenceFragment extends PreferenceFragment {
+  public static class AdvancedPreferenceFragment extends PreferenceFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-      addPreferencesFromResource(R.xml.pref_additional);
+      addPreferencesFromResource(R.xml.pref_advanced);
       setHasOptionsMenu(true);
+      AppPreferences appPreferences = new AppPreferences(getActivity());
+      SwitchPreference rootIntegration =
+        (SwitchPreference) findPreference(KEY_ADVANCED_ROOT_INTEGRATION);
+      rootIntegration.setOnPreferenceChangeListener((preference, newValue) -> {
+        if (appPreferences.isProVersion()) {
+          return true;
+        } else {
+          new AlertDialog.Builder(getActivity())
+            .setTitle(R.string.pro_version_dialog_title)
+            .setMessage(R.string.pro_version_unlock_root_integration)
+            .setPositiveButton(R.string.pro_version_get,
+              (dialog, which) -> PurchaseActivity.start(getActivity()))
+            .show();
+          return false;
+        }
+      });
     }
 
     @Override
