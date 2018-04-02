@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
+
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
@@ -71,6 +72,11 @@ public class AppsListFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel.class);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
     viewModel.getItems().observe(this, itemModels -> {
       if (itemModels != null && !itemModels.isEmpty()) {
         adapter.addItems(itemModels);
