@@ -4,6 +4,7 @@
 
   <string name="context_action_launch">Запустить</string>
   <string name="context_action_launch_params">Запустить с параметрами</string>
+  <string name="context_action_launch_root">Запустить с правами ROOT</string>
   <string name="context_action_shortcut">Создать ярлык</string>
   <string name="context_action_open_info">Инфо</string>
   <string name="context_action_edit">Ярлык</string>
@@ -49,6 +50,7 @@
   <string name="pro_version_dialog_title">Приобрести премиум</string>
   <string name="pro_version_unlock_extras">Приобретите премиум версию для возможности добавлять неограниченное количество дополнительных параметров</string>
   <string name="pro_version_unlock_intent_shortcuts">Приобретите премиум версию для возможности создавать ярлыки для произвольных intent</string>
+  <string name="pro_version_unlock_root_integration">Приобретите премиум версию для возможности интеграции с ROOT</string>
 
   <string name="donate_title">Поддержать разработку</string>
   <string name="donate_5">Пожертвовать $5.00</string>
@@ -92,9 +94,16 @@
 
   <!-- settings -->
   <string name="pref_header_sort">Сортировка</string>
+  <string name="pref_header_advanced">Дополнительно</string>
+  <string name="pref_advanced_not_exported_title">Показывать скрытые Activity</string>
+  <string name="pref_advanced_not_exported_summary">Можно запустить только от имени ROOT</string>
+  <string name="pref_advanced_root_integration_title">Интеграция с ROOT</string>
+  <string name="pref_advanced_root_integration_summary">Запускать приложения от имени ROOT</string>
   <string name="pref_sort_order">Порядок сортировки</string>
   <string name="pref_sort_by">Сортировать по полю</string>
   <string name="pref_case_sensitive">Учитывать регистр</string>
+  <string name="settings_error_root_not_available">ROOT недоступен на устройстве</string>
+  <string name="settings_error_root_not_granted">ROOT права не были предоставлены</string>
   <string-array name="pref_sort_order_list_titles">
     <item>Восходящий</item>
     <item>Нисходящий</item>

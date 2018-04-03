@@ -4,6 +4,7 @@
 
   <string name="context_action_launch">Запустити</string>
   <string name="context_action_launch_params">Запустити з параметрами</string>
+  <string name="context_action_launch_root">Запустити з правами ROOT</string>
   <string name="context_action_shortcut">Створити ярлик</string>
   <string name="context_action_open_info">Інфо</string>
   <string name="context_action_edit">Ярлик</string>
@@ -49,6 +50,7 @@
   <string name="pro_version_dialog_title">Придбати преміум</string>
   <string name="pro_version_unlock_extras">Придбайте преміум версію для можливості додавати необмежену кількість додаткових даних</string>
   <string name="pro_version_unlock_intent_shortcuts">Придбайте преміум версію для можливості створювати ярлики для будь яких intent</string>
+  <string name="pro_version_unlock_root_integration">Придбайте преміум версію для можливості інтеграції з ROOT</string>
 
   <string name="donate_title">Підтримати розробку</string>
   <string name="donate_5">Пожертвувати $5.00</string>
@@ -92,9 +94,16 @@
 
   <!-- settings -->
   <string name="pref_header_sort">Сортування</string>
+  <string name="pref_header_advanced">Додаткові можливості</string>
+  <string name="pref_advanced_not_exported_title">Показувати приховані Activity</string>
+  <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені ROOT</string>
+  <string name="pref_advanced_root_integration_title">Інтеграція з ROOT</string>
+  <string name="pref_advanced_root_integration_summary">Запуск додатків від імені ROOT</string>
   <string name="pref_sort_order">Порядок сортування</string>
   <string name="pref_sort_by">Сортувати по полю</string>
   <string name="pref_case_sensitive">Враховувати регістр</string>
+  <string name="settings_error_root_not_available">ROOT недоступний на цьому пристрої</string>
+  <string name="settings_error_root_not_granted">ROOT права не були надані</string>
   <string-array name="pref_sort_order_list_titles">
     <item>По зростанню</item>
     <item>По спаданню</item>
