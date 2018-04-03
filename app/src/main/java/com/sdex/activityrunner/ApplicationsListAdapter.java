@@ -1,18 +1,21 @@
 package com.sdex.activityrunner;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.db.application.ApplicationModel;
 import com.sdex.activityrunner.db.application.ItemModel;
 import com.sdex.activityrunner.util.GlideApp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,13 +43,21 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
 
   @Override
   public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
-    View convertView, ViewGroup parent) {
+                           View convertView, ViewGroup parent) {
     ActivityModel activityModel = (ActivityModel) getChild(groupPosition, childPosition);
     LayoutInflater inflater = LayoutInflater.from(context);
-    View view = inflater.inflate(R.layout.item_application, parent, false);
+    View view = inflater.inflate(R.layout.item_activity, parent, false);
 
     TextView text1 = view.findViewById(android.R.id.text1);
     text1.setText(activityModel.getName());
+
+    if (activityModel.isExported()) {
+      text1.setTextColor(ContextCompat.getColor(parent.getContext(),
+        android.R.color.black));
+    } else {
+      text1.setTextColor(ContextCompat.getColor(parent.getContext(),
+        android.R.color.holo_red_dark));
+    }
 
     TextView text2 = view.findViewById(android.R.id.text2);
     text2.setText(activityModel.getComponentName().getShortClassName());
@@ -82,11 +93,11 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
 
   @Override
   public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
-    ViewGroup parent) {
+                           ViewGroup parent) {
     ItemModel itemModel = (ItemModel) getGroup(groupPosition);
     final ApplicationModel applicationModel = itemModel.getApplicationModel();
     LayoutInflater inflater = LayoutInflater.from(context);
-    View view = inflater.inflate(R.layout.item_activity, parent, false);
+    View view = inflater.inflate(R.layout.item_application, parent, false);
 
     TextView text = view.findViewById(android.R.id.text1);
     text.setText(applicationModel.getName());

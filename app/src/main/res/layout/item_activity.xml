@@ -31,6 +31,7 @@
       android:layout_height="wrap_content"
       android:layout_gravity="start|center_vertical"
       android:textAppearance="?android:attr/textAppearanceListItem"
+      android:textColor="@android:color/black"
       android:textIsSelectable="false"
       tools:text="Activity name" />
 

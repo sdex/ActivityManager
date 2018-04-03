@@ -13,11 +13,13 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.JobIntentService;
+
 import com.sdex.activityrunner.db.AppDatabase;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.db.application.ApplicationModel;
 import com.sdex.activityrunner.util.Utils;
 import com.sdex.commons.util.IOUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -110,18 +112,18 @@ public class AppLoaderIntentService extends JobIntentService {
   }
 
   private void addInfo(PackageManager pm, List<ApplicationModel> applications,
-    List<ActivityModel> activities, String packageName) {
+                       List<ActivityModel> activities, String packageName) {
     try {
       PackageInfo info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
-      if (countActivitiesFromInfo(info) > 0) {
-        ApplicationModel model = getApplicationModel(pm, packageName, info);
-        applications.add(model);
-
+      ApplicationModel model = getApplicationModel(pm, packageName, info);
+      applications.add(model);
+      if (info.activities != null) {
+        model.setActivitiesCount(info.activities.length);
+        model.setExportedActivitiesCount(getExportedActivitiesCount(info.activities));
         for (ActivityInfo activityInfo : info.activities) {
-          if (activityInfo.isEnabled() && activityInfo.exported) {
-            ActivityModel activityModel = getActivityModel(pm, activityInfo);
-            activities.add(activityModel);
-          }
+          ActivityModel activityModel = getActivityModel(pm, activityInfo);
+          activityModel.setExported(activityInfo.exported && activityInfo.isEnabled());
+          activities.add(activityModel);
         }
       }
     } catch (Exception e) {
@@ -137,7 +139,7 @@ public class AppLoaderIntentService extends JobIntentService {
 
   @NonNull
   private ApplicationModel getApplicationModel(PackageManager pm, String packageName,
-    PackageInfo info) {
+                                               PackageInfo info) {
     final ApplicationInfo applicationInfo = info.applicationInfo;
     final Bitmap bitmap = getBitmap(pm, applicationInfo);
     final String iconPath = saveIcon(bitmap, packageName);
@@ -161,7 +163,8 @@ public class AppLoaderIntentService extends JobIntentService {
     }
     final Bitmap bitmap = getBitmap(pm, activityInfo);
     final String iconPath = saveIcon(bitmap, activityInfo.packageName + activityName);
-    return new ActivityModel(activityName, activityInfo.packageName, activityInfo.name, iconPath);
+    return new ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
+      iconPath, activityInfo.exported);
   }
 
   private Bitmap getBitmap(PackageManager pm, ActivityInfo act) {
@@ -218,14 +221,11 @@ public class AppLoaderIntentService extends JobIntentService {
     return now - lastUpdate > FORCE_REFRESH_PERIOD;
   }
 
-  private static int countActivitiesFromInfo(PackageInfo info) {
+  private static int getExportedActivitiesCount(@NonNull ActivityInfo[] activities) {
     int count = 0;
-    final ActivityInfo[] activities = info.activities;
-    if (activities != null) {
-      for (ActivityInfo activity : activities) {
-        if (activity.isEnabled() && activity.exported) {
-          count++;
-        }
+    for (ActivityInfo activity : activities) {
+      if (activity.isEnabled() && activity.exported) {
+        count++;
       }
     }
     return count;
