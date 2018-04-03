@@ -4,45 +4,59 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:background="?android:attr/activatedBackgroundIndicator"
-  android:minHeight="?android:attr/listPreferredItemHeight"
-  android:orientation="horizontal">
-
-  <ImageView
-    android:id="@android:id/icon"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:layout_marginStart="35dp"
-    android:layout_marginLeft="35dp"
-    android:layout_gravity="center_vertical"
-    tools:ignore="ContentDescription"
-    tools:src="@mipmap/ic_launcher" />
+  android:orientation="vertical">
 
   <LinearLayout
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_gravity="start|center_vertical"
-    android:orientation="vertical">
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:orientation="horizontal">
 
-    <TextView
-      android:id="@android:id/text1"
+    <ImageView
+      android:id="@android:id/icon"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:layout_gravity="center_vertical"
+      android:layout_marginStart="60dp"
+      android:layout_marginLeft="60dp"
+      tools:ignore="ContentDescription"
+      tools:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="start|center_vertical"
-      android:textAppearance="?android:attr/textAppearanceListItem"
-      android:textIsSelectable="false"
-      tools:text="Activity name" />
+      android:layout_marginStart="10dp"
+      android:layout_marginLeft="10dp"
+      android:orientation="vertical">
 
-    <TextView
-      android:id="@android:id/text2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="start|center_vertical"
-      android:textAppearance="?attr/textAppearanceListItemSecondary"
-      android:textColor="@android:color/darker_gray"
-      android:textIsSelectable="false"
-      tools:text="com.app.package" />
+      <TextView
+        android:id="@android:id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textColor="@android:color/black"
+        android:textIsSelectable="false"
+        tools:text="Activity name" />
+
+      <TextView
+        android:id="@android:id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:textAppearance="?attr/textAppearanceListItemSecondary"
+        android:textColor="@android:color/darker_gray"
+        android:textIsSelectable="false"
+        tools:text="com.app.package" />
+    </LinearLayout>
+
   </LinearLayout>
+
+  <View
+    android:id="@+id/divider"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/list_divider_color" />
 
 </LinearLayout>

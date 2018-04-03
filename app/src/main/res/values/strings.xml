@@ -9,6 +9,7 @@
 
   <string name="context_action_launch">Launch activity</string>
   <string name="context_action_launch_params">Launch activity with params</string>
+  <string name="context_action_launch_root">Launch activity with ROOT</string>
   <string name="context_action_shortcut">Create shortcut</string>
   <string name="context_action_open_info">Open info</string>
   <string name="context_action_edit">Edit shortcut</string>
@@ -55,6 +56,7 @@
   <string name="pro_version_dialog_title">Upgrade to premium</string>
   <string name="pro_version_unlock_extras">Get premium version to add unlimited extras</string>
   <string name="pro_version_unlock_intent_shortcuts">Get premium version to create intent shortcuts</string>
+  <string name="pro_version_unlock_root_integration">Get premium version to enable ROOT integration</string>
 
   <string name="donate_title">Support development</string>
   <string name="donate_5">Support with $5.00</string>
@@ -105,9 +107,16 @@
 
   <!-- settings -->
   <string name="pref_header_sort">Sorting</string>
+  <string name="pref_header_advanced">Advanced</string>
+  <string name="pref_advanced_not_exported_title">Show not exported activities</string>
+  <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
+  <string name="pref_advanced_root_integration_title">ROOT integration</string>
+  <string name="pref_advanced_root_integration_summary">Run any activity with root permission</string>
   <string name="pref_sort_order">Sort order</string>
   <string name="pref_sort_by">Sort by</string>
   <string name="pref_case_sensitive">Case sensitive</string>
+  <string name="settings_error_root_not_available">ROOT is not available</string>
+  <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
   <string-array name="pref_sort_order_list_titles">
     <item>Ascending</item>
     <item>Descending</item>

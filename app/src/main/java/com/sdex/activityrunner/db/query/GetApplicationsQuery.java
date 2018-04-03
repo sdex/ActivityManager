@@ -23,8 +23,9 @@ public class GetApplicationsQuery {
   public String toString() {
     StringBuilder queryStringBuilder = new StringBuilder();
     queryStringBuilder.append("SELECT * FROM ").append(ApplicationModel.TABLE).append(" ");
+    queryStringBuilder.append("WHERE ").append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ");
     if (!TextUtils.isEmpty(searchText)) {
-      queryStringBuilder.append("WHERE ").append(ApplicationModel.NAME)
+      queryStringBuilder.append(" AND ").append(ApplicationModel.NAME)
         .append(" LIKE '%").append(searchText).append("%' ");
     }
     queryStringBuilder.append("ORDER BY ").append(sortBy).append(" ")

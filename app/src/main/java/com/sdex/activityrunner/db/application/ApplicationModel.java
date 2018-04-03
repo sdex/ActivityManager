@@ -9,6 +9,8 @@ public class ApplicationModel {
   public static final String TABLE = "ApplicationModel";
   public static final String NAME = "name";
   public static final String PACKAGE_NAME = "packageName";
+  public static final String ACTIVITIES_COUNT = "activitiesCount";
+  public static final String EXPORTED_ACTIVITIES_COUNT = "exportedActivitiesCount";
 
   @NonNull
   private String name;
@@ -16,6 +18,10 @@ public class ApplicationModel {
   private String packageName;
   @NonNull
   private String iconPath;
+  @NonNull
+  private int activitiesCount;
+  @NonNull
+  private int exportedActivitiesCount;
 
   public ApplicationModel(@NonNull String name, @NonNull String packageName,
     @NonNull String iconPath) {
@@ -37,5 +43,23 @@ public class ApplicationModel {
   @NonNull
   public String getIconPath() {
     return iconPath;
+  }
+
+  @NonNull
+  public int getActivitiesCount() {
+    return activitiesCount;
+  }
+
+  public void setActivitiesCount(@NonNull int activitiesCount) {
+    this.activitiesCount = activitiesCount;
+  }
+
+  @NonNull
+  public int getExportedActivitiesCount() {
+    return exportedActivitiesCount;
+  }
+
+  public void setExportedActivitiesCount(@NonNull int exportedActivitiesCount) {
+    this.exportedActivitiesCount = exportedActivitiesCount;
   }
 }

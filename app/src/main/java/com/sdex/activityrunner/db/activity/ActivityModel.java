@@ -5,7 +5,9 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.content.ComponentName;
 import android.support.annotation.NonNull;
+
 import com.sdex.activityrunner.db.application.ApplicationModel;
+
 import java.io.Serializable;
 
 @Entity(primaryKeys = {"className"},
@@ -24,13 +26,16 @@ public class ActivityModel implements Serializable {
   private String className;
   @NonNull
   private String iconPath;
+  @NonNull
+  private boolean exported;
 
   public ActivityModel(@NonNull String name, @NonNull String packageName,
-    @NonNull String className, @NonNull String iconPath) {
+    @NonNull String className, @NonNull String iconPath, @NonNull boolean exported) {
     this.name = name;
     this.packageName = packageName;
     this.className = className;
     this.iconPath = iconPath;
+    this.exported = exported;
   }
 
   @NonNull
@@ -67,6 +72,15 @@ public class ActivityModel implements Serializable {
 
   public void setIconPath(@NonNull String iconPath) {
     this.iconPath = iconPath;
+  }
+
+  @NonNull
+  public boolean isExported() {
+    return exported;
+  }
+
+  public void setExported(@NonNull boolean exported) {
+    this.exported = exported;
   }
 
   public ComponentName getComponentName() {
