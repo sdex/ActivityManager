@@ -28,15 +28,17 @@ import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.preferences.AdvancedPreferences;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.IntentUtils;
+import com.sdex.activityrunner.util.RunActivityTask;
 
 public class AppsListFragment extends Fragment {
 
   public static final String TAG = "AppsListFragment";
 
   private static final int ACTION_CREATE_SHORTCUT = 0;
-  private static final int ACTION_OPEN_INFO = 3;
-  private static final int ACTION_LAUNCH_ACTIVITY = 1;
-  private static final int ACTION_LAUNCH_ACTIVITY_PARAMS = 2;
+  private static final int ACTION_OPEN_INFO = 1;
+  private static final int ACTION_LAUNCH_ACTIVITY = 2;
+  private static final int ACTION_LAUNCH_ACTIVITY_PARAMS = 3;
+  private static final int ACTION_LAUNCH_ACTIVITY_BY_ROOT = 4;
 
   private ExpandableListView list;
   private ApplicationsListAdapter adapter;
@@ -122,6 +124,10 @@ public class AppsListFragment extends Fragment {
             R.string.context_action_launch);
           menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_PARAMS, Menu.NONE,
             R.string.context_action_launch_params);
+          if (advancedPreferences.isRootIntegrationEnabled()) {
+            menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_BY_ROOT, Menu.NONE,
+              R.string.context_action_launch_root);
+          }
           break;
       }
     }
@@ -160,6 +166,13 @@ public class AppsListFragment extends Fragment {
             case ACTION_LAUNCH_ACTIVITY_PARAMS:
               if (getActivity() != null) {
                 LaunchParamsActivity.start(getActivity(), activityModel);
+              }
+              break;
+            case ACTION_LAUNCH_ACTIVITY_BY_ROOT:
+              if (getActivity() != null) {
+                RunActivityTask runActivityTask =
+                  new RunActivityTask(activityModel.getComponentName());
+                runActivityTask.execute();
               }
               break;
           }

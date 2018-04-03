@@ -16,4 +16,9 @@ public class AdvancedPreferences {
     return sharedPreferences.getBoolean(SettingsActivity.KEY_ADVANCED_NOT_EXPORTED,
       SettingsActivity.KEY_ADVANCED_NOT_EXPORTED_DEFAULT);
   }
+
+  public boolean isRootIntegrationEnabled() {
+    return sharedPreferences.getBoolean(SettingsActivity.KEY_ADVANCED_ROOT_INTEGRATION,
+      SettingsActivity.KEY_ADVANCED_ROOT_INTEGRATION_DEFAULT);
+  }
 }
