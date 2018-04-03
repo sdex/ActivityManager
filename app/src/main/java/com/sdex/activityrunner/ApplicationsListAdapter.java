@@ -21,9 +21,13 @@ import java.util.List;
 
 public class ApplicationsListAdapter extends BaseExpandableListAdapter {
 
+  public static final int CHILD_TYPE_NOT_EXPORTED = 0;
+  public static final int CHILD_TYPE_EXPORTED = 1;
+
   private List<ItemModel> items;
   private Context context;
   private RequestManager glide;
+  private boolean showNotExported;
 
   public ApplicationsListAdapter(Context context) {
     this.context = context;
@@ -33,7 +37,7 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
 
   @Override
   public Object getChild(int groupPosition, int childPosition) {
-    return this.items.get(groupPosition).getActivityModels().get(childPosition);
+    return items.get(groupPosition).getActivityModels().get(childPosition);
   }
 
   @Override
@@ -42,11 +46,30 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
   }
 
   @Override
+  public int getChildTypeCount() {
+    return 2;
+  }
+
+  @Override
+  public int getChildType(int groupPosition, int childPosition) {
+    return items.get(groupPosition).getActivityModels().get(childPosition).isExported() ?
+      CHILD_TYPE_EXPORTED : CHILD_TYPE_NOT_EXPORTED;
+  }
+
+  @Override
   public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                            View convertView, ViewGroup parent) {
     ActivityModel activityModel = (ActivityModel) getChild(groupPosition, childPosition);
     LayoutInflater inflater = LayoutInflater.from(context);
+
+    if (getChildType(groupPosition, childPosition) == CHILD_TYPE_NOT_EXPORTED
+      && !showNotExported) {
+      return inflater.inflate(R.layout.item_activity_not_exported_hide, parent, false);
+    }
+
     View view = inflater.inflate(R.layout.item_activity, parent, false);
+
+    View divider = view.findViewById(R.id.divider);
 
     TextView text1 = view.findViewById(android.R.id.text1);
     text1.setText(activityModel.getName());
@@ -67,6 +90,12 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
       .apply(new RequestOptions()
         .fitCenter())
       .into(icon);
+
+    if (isLastChild) {
+      divider.setVisibility(View.GONE);
+    } else {
+      divider.setVisibility(View.VISIBLE);
+    }
 
     return view;
   }
@@ -124,9 +153,13 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
     return true;
   }
 
-  public void addItems(List<ItemModel> itemModels) {
+  public void setItems(List<ItemModel> itemModels) {
     this.items.clear();
     this.items.addAll(itemModels);
     notifyDataSetChanged();
+  }
+
+  public void setShowNotExported(boolean showNotExported) {
+    this.showNotExported = showNotExported;
   }
 }

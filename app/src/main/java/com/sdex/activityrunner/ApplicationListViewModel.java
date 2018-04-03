@@ -11,7 +11,6 @@ import android.support.annotation.NonNull;
 import com.sdex.activityrunner.db.AppDatabase;
 import com.sdex.activityrunner.db.application.ItemModel;
 import com.sdex.activityrunner.db.query.GetApplicationsQuery;
-import com.sdex.activityrunner.preferences.AdvancedPreferences;
 import com.sdex.activityrunner.preferences.SortingPreferences;
 
 import java.util.List;
@@ -20,7 +19,6 @@ public class ApplicationListViewModel extends AndroidViewModel {
 
   private final AppDatabase appDatabase;
   private final SortingPreferences sortingPreferences;
-  private final AdvancedPreferences advancedPreferences;
 
   public ApplicationListViewModel(@NonNull Application application) {
     super(application);
@@ -28,12 +26,11 @@ public class ApplicationListViewModel extends AndroidViewModel {
     SharedPreferences sharedPreferences =
       PreferenceManager.getDefaultSharedPreferences(application);
     sortingPreferences = new SortingPreferences(sharedPreferences);
-    advancedPreferences = new AdvancedPreferences(sharedPreferences);
   }
 
   public LiveData<List<ItemModel>> getItems(String searchText) {
     GetApplicationsQuery query =
-      new GetApplicationsQuery(searchText, sortingPreferences, advancedPreferences);
+      new GetApplicationsQuery(searchText, sortingPreferences);
     return appDatabase.getApplicationModelDao()
       .getApplicationModels(new SimpleSQLiteQuery(query.toString()));
   }

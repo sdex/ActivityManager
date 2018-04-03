@@ -2,7 +2,9 @@ package com.sdex.activityrunner;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -23,6 +25,7 @@ import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
+import com.sdex.activityrunner.preferences.AdvancedPreferences;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.activityrunner.util.IntentUtils;
 
@@ -40,10 +43,11 @@ public class AppsListFragment extends Fragment {
   private SwipeRefreshLayout refreshLayout;
   private ContentLoadingProgressBar progressBar;
   private ApplicationListViewModel viewModel;
+  private AdvancedPreferences advancedPreferences;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-    Bundle savedInstanceState) {
+                           Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_apps_list, container, false);
     progressBar = view.findViewById(R.id.progress);
     progressBar.show();
@@ -65,6 +69,9 @@ public class AppsListFragment extends Fragment {
       work.putExtra(AppLoaderIntentService.ARG_REASON, AppLoaderIntentService.REFRESH_USER);
       AppLoaderIntentService.enqueueWork(getActivity(), work);
     });
+    SharedPreferences sharedPreferences =
+      PreferenceManager.getDefaultSharedPreferences(getActivity());
+    advancedPreferences = new AdvancedPreferences(sharedPreferences);
     return view;
   }
 
@@ -79,7 +86,8 @@ public class AppsListFragment extends Fragment {
     super.onResume();
     viewModel.getItems().observe(this, itemModels -> {
       if (itemModels != null && !itemModels.isEmpty()) {
-        adapter.addItems(itemModels);
+        adapter.setShowNotExported(advancedPreferences.isShowNotExported());
+        adapter.setItems(itemModels);
         refreshLayout.setRefreshing(false);
         progressBar.hide();
       }
@@ -164,7 +172,7 @@ public class AppsListFragment extends Fragment {
   public void filter(String text) {
     if (adapter != null) {
       viewModel.getItems(text).observe(this,
-        itemModels -> adapter.addItems(itemModels));
+        itemModels -> adapter.setItems(itemModels));
     }
   }
 }
