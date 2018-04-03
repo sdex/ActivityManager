@@ -91,6 +91,13 @@
             android:text="@string/pro_version_get"
             android:textColor="@color/blue" />
 
+          <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:text="@string/pro_version_donate" />
+
         </LinearLayout>
 
       </android.support.v7.widget.CardView>

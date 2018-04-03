@@ -64,14 +64,15 @@ public class PurchaseActivity extends BaseActivity {
         if (responseCode == BillingResponse.OK && purchases != null) {
           handlePurchases(purchases);
 
-          for (Purchase purchase : purchases) {
-            String sku = purchase.getSku();
-            if (!SKU_PRO.equals(sku)) { // consume donate
-              billingClient.consumeAsync(purchase.getPurchaseToken(),
-                (responseCode1, purchaseToken) -> {
-                });
-            }
-          }
+          // do not consume donation
+//          for (Purchase purchase : purchases) {
+//            String sku = purchase.getSku();
+//            if (!SKU_PRO.equals(sku)) { // consume donate
+//              billingClient.consumeAsync(purchase.getPurchaseToken(),
+//                (responseCode1, purchaseToken) -> {
+//                });
+//            }
+//          }
 
         } else if (responseCode == BillingResponse.USER_CANCELED) {
           // Handle an error caused by a user cancelling the purchase flow.
@@ -126,16 +127,21 @@ public class PurchaseActivity extends BaseActivity {
       String sku = purchase.getSku();
       if (isPremiumVersion(sku)) {
         isProVersionEnabled = true;
-        invalidateOptionsMenu();
-        break;
+      }
+      if (SKU_DONATE_5.equals(sku)) {
+        findViewById(R.id.donate_5_usd).setVisibility(View.GONE);
+      } else if (SKU_DONATE_10.equals(sku)) {
+        findViewById(R.id.donate_10_usd).setVisibility(View.GONE);
+      } else if (SKU_DONATE_20.equals(sku)) {
+        findViewById(R.id.donate_20_usd).setVisibility(View.GONE);
       }
     }
     appPreferences.setProVersion(isProVersionEnabled);
   }
 
   public static boolean isPremiumVersion(String sku) {
-    return SKU_PRO.equals(sku)/* || SKU_DONATE_5.equals(sku)
-      || SKU_DONATE_10.equals(sku) || SKU_DONATE_20.equals(sku)*/;
+    return SKU_PRO.equals(sku) || SKU_DONATE_5.equals(sku)
+      || SKU_DONATE_10.equals(sku) || SKU_DONATE_20.equals(sku);
   }
 
   void showPurchaseDialog(String sku) {

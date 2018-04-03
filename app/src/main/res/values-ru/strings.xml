@@ -46,6 +46,7 @@
   <string name="pro_version_history">&#x2022; Неограниченная история</string>
   <string name="pro_version_shortcut">&#x2022; Ярлыки для произвольных Intent</string>
   <string name="pro_version_get">Получить премиум</string>
+  <string name="pro_version_donate">* любое пожертвование разблокирует премиум</string>
   <string name="pro_version_dialog_title">Приобрести премиум</string>
   <string name="pro_version_unlock_extras">Приобретите премиум версию для возможности добавлять неограниченное количество дополнительных параметров</string>
   <string name="pro_version_unlock_intent_shortcuts">Приобретите премиум версию для возможности создавать ярлыки для произвольных intent</string>
