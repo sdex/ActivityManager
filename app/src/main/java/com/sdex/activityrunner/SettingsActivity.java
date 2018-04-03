@@ -11,7 +11,9 @@ import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.sdex.activityrunner.util.CheckRootTask;
 import com.sdex.commons.ads.AppPreferences;
 
 import java.util.List;
@@ -84,6 +86,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         (SwitchPreference) findPreference(KEY_ADVANCED_ROOT_INTEGRATION);
       rootIntegration.setOnPreferenceChangeListener((preference, newValue) -> {
         if (appPreferences.isProVersion()) {
+          CheckRootTask checkRootTask = new CheckRootTask(status -> {
+            if (getActivity() != null && isAdded()) {
+              if (status == CheckRootTask.ROOT_IS_NOT_AVAILABLE) {
+                rootIntegration.setChecked(false);
+                Toast.makeText(getActivity(), R.string.settings_error_root_not_available,
+                  Toast.LENGTH_SHORT).show();
+              } else if (status == CheckRootTask.ACCESS_IS_NOT_GIVEN) {
+                rootIntegration.setChecked(false);
+                Toast.makeText(getActivity(), R.string.settings_error_root_not_granted,
+                  Toast.LENGTH_SHORT).show();
+              }
+            }
+          });
+          checkRootTask.execute();
           return true;
         } else {
           new AlertDialog.Builder(getActivity())

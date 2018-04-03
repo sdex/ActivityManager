@@ -113,6 +113,8 @@
   <string name="pref_sort_order">Sort order</string>
   <string name="pref_sort_by">Sort by</string>
   <string name="pref_case_sensitive">Case sensitive</string>
+  <string name="settings_error_root_not_available">ROOT is not available</string>
+  <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
   <string-array name="pref_sort_order_list_titles">
     <item>Ascending</item>
     <item>Descending</item>
