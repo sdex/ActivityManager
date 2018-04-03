@@ -1,7 +1,6 @@
 package com.sdex.activityrunner;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -10,7 +9,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.sdex.activityrunner.util.CheckRootTask;
@@ -62,16 +60,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
       bindPreferenceSummaryToValue(findPreference(KEY_SORT_ORDER));
       bindPreferenceSummaryToValue(findPreference(KEY_SORT_BY));
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-      int id = item.getItemId();
-      if (id == android.R.id.home) {
-        startActivity(new Intent(getActivity(), SettingsActivity.class));
-        return true;
-      }
-      return super.onOptionsItemSelected(item);
-    }
   }
 
   public static class AdvancedPreferenceFragment extends PreferenceFragment {
@@ -111,16 +99,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
           return false;
         }
       });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-      int id = item.getItemId();
-      if (id == android.R.id.home) {
-        startActivity(new Intent(getActivity(), SettingsActivity.class));
-        return true;
-      }
-      return super.onOptionsItemSelected(item);
     }
   }
 
