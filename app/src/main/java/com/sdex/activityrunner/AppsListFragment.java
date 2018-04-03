@@ -116,16 +116,18 @@ public class AppsListFragment extends Fragment {
             activity.getName() :
             activity.getComponentName().getShortClassName();
           menu.setHeaderTitle(title);
-          menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, Menu.NONE,
-            R.string.context_action_shortcut);
-          menu.add(Menu.NONE, ACTION_OPEN_INFO, Menu.NONE,
+          menu.add(Menu.NONE, ACTION_OPEN_INFO, 1,
             R.string.context_action_open_info);
-          menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY, Menu.NONE,
-            R.string.context_action_launch);
-          menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_PARAMS, Menu.NONE,
-            R.string.context_action_launch_params);
+          if (activity.isExported()) {
+            menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, 0,
+              R.string.context_action_shortcut);
+            menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY, 2,
+              R.string.context_action_launch);
+            menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_PARAMS, 3,
+              R.string.context_action_launch_params);
+          }
           if (advancedPreferences.isRootIntegrationEnabled()) {
-            menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_BY_ROOT, Menu.NONE,
+            menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY_BY_ROOT, 4,
               R.string.context_action_launch_root);
           }
           break;
