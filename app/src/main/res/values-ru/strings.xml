@@ -105,6 +105,7 @@
   <string name="pref_case_sensitive">Учитывать регистр</string>
   <string name="settings_error_root_not_available">ROOT недоступен на устройстве</string>
   <string name="settings_error_root_not_granted">ROOT права не были предоставлены</string>
+  <string name="settings_error_root_not_active">Нужно активировать ROOT в настройках</string>integration in settings
   <string-array name="pref_sort_order_list_titles">
     <item>Восходящий</item>
     <item>Нисходящий</item>

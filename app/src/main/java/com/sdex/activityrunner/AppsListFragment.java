@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
+import android.widget.Toast;
 
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
@@ -60,9 +61,21 @@ public class AppsListFragment extends Fragment {
     list.setAdapter(adapter);
     list.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
       ExpandableListAdapter adapter = parent.getExpandableListAdapter();
-      ActivityModel info = (ActivityModel) adapter.getChild(groupPosition, childPosition);
+      ActivityModel activityModel = (ActivityModel) adapter.getChild(groupPosition, childPosition);
       if (getActivity() != null) {
-        IntentUtils.launchActivity(getActivity(), info.getComponentName(), info.getName());
+        if (activityModel.isExported()) {
+          IntentUtils.launchActivity(getActivity(),
+            activityModel.getComponentName(), activityModel.getName());
+        } else {
+          if (advancedPreferences.isRootIntegrationEnabled()) {
+            RunActivityTask runActivityTask =
+              new RunActivityTask(activityModel.getComponentName());
+            runActivityTask.execute();
+          } else {
+            Toast.makeText(getActivity(), R.string.settings_error_root_not_active,
+              Toast.LENGTH_SHORT).show();
+          }
+        }
       }
       return false;
     });
