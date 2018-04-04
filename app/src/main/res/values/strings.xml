@@ -50,6 +50,7 @@
   <string name="pro_version_ads">&#x2022; Ad-Free experience</string>
   <string name="pro_version_extras">&#x2022; Unlimited extra parameters</string>
   <string name="pro_version_history">&#x2022; Unlimited history</string>
+  <string name="pro_version_root">&#x2022; Integration with ROOT</string>
   <string name="pro_version_shortcut">&#x2022; Shortcuts for any Intent</string>
   <string name="pro_version_get">Get premium</string>
   <string name="pro_version_donate">* any donation unlocks premium</string>

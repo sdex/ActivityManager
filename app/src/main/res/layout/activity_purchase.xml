@@ -82,6 +82,12 @@
             android:text="@string/pro_version_history"
             android:textAppearance="?android:textAppearanceMedium" />
 
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pro_version_root"
+            android:textAppearance="?android:textAppearanceMedium" />
+
           <Button
             android:id="@+id/get_pro"
             style="@style/Widget.AppCompat.Button.Borderless"
