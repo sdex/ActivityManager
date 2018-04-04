@@ -22,7 +22,7 @@ import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
 import com.sdex.commons.BaseActivity;
-import com.sdex.commons.ads.AdsHandler;
+import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
 
 import butterknife.BindView;
@@ -58,8 +58,8 @@ public class HistoryActivity extends BaseActivity {
     appPreferences = new AppPreferences(this);
 
     FrameLayout adsContainer = findViewById(R.id.ads_container);
-    AdsHandler adsHandler = new AdsHandler(appPreferences, adsContainer);
-    adsHandler.init(this, R.string.ad_banner_unit_id);
+    AdsDelegate adsDelegate = new AdsDelegate(appPreferences, adsContainer);
+    adsDelegate.initBanner(this, R.string.ad_banner_unit_id);
 
     enableBackButton();
 

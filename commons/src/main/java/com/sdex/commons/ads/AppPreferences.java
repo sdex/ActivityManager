@@ -2,6 +2,7 @@ package com.sdex.commons.ads;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -9,8 +10,10 @@ import java.util.Locale;
 public class AppPreferences {
 
   public static final long ADS_PERIOD = 60 * 60 * 1000; // 1 hour
+  public static final long ADS_INTERSTITIAL_PERIOD = 60 * 60 * 1000; // 1 hour
 
   private static final String PREFERENCES_NAME = "ads_preferences";
+  private static final String KEY_TIME_INTERSTITIAL = "ads_time_interstitial";
   private static final String KEY_TIME = "ads_time";
   private static final String KEY_PRO = "pro";
 
@@ -29,6 +32,21 @@ public class AppPreferences {
     preferences.edit()
       .putLong(KEY_TIME, dueTo)
       .apply();
+  }
+
+  public void onInterstitialAdShown() {
+    preferences.edit()
+      .putLong(KEY_TIME_INTERSTITIAL, now())
+      .apply();
+  }
+
+  public boolean isInterstitialAdActive() {
+    if (isAdsActive()) {
+      long now = now();
+      long lastTimeAdShown = preferences.getLong(KEY_TIME_INTERSTITIAL, 0);
+      return (now - lastTimeAdShown > ADS_INTERSTITIAL_PERIOD);
+    }
+    return false;
   }
 
   public String getAdsDueTime() {

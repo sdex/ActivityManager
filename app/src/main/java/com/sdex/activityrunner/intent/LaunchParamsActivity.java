@@ -32,7 +32,7 @@ import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
 import com.sdex.activityrunner.intent.history.HistoryActivity;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
-import com.sdex.commons.ads.AdsHandler;
+import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
 
 import java.util.ArrayList;
@@ -95,7 +95,7 @@ public class LaunchParamsActivity extends BaseActivity
   private LaunchParamsViewModel viewModel;
 
   private AppPreferences appPreferences;
-  private AdsHandler adsHandler;
+  private AdsDelegate adsDelegate;
 
   public static void start(Context context, ActivityModel activityModel) {
     Intent starter = new Intent(context, LaunchParamsActivity.class);
@@ -118,8 +118,8 @@ public class LaunchParamsActivity extends BaseActivity
     appPreferences = new AppPreferences(this);
 
     FrameLayout adsContainer = findViewById(R.id.ads_container);
-    adsHandler = new AdsHandler(appPreferences, adsContainer);
-    adsHandler.init(this, R.string.ad_banner_unit_id);
+    adsDelegate = new AdsDelegate(appPreferences, adsContainer);
+    adsDelegate.initBanner(this, R.string.ad_banner_unit_id);
 
     enableBackButton();
     final ActivityModel activityModel = (ActivityModel)
@@ -204,7 +204,7 @@ public class LaunchParamsActivity extends BaseActivity
   @Override
   protected void onResume() {
     super.onResume();
-    adsHandler.detachBottomBannerIfNeed();
+    adsDelegate.detachBottomBannerIfNeed();
   }
 
   @Override

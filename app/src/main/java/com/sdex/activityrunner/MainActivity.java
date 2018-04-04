@@ -22,7 +22,7 @@ import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
-import com.sdex.commons.ads.AdsHandler;
+import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
 import com.sdex.commons.ads.DisableAdsActivity;
 import com.sdex.commons.util.AppUtils;
@@ -32,7 +32,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-  private AdsHandler adsHandler;
+  private AdsDelegate adsDelegate;
   private AppPreferences appPreferences;
   private BillingClient billingClient;
   private boolean isProVersionEnabled;
@@ -51,8 +51,9 @@ public class MainActivity extends BaseActivity {
 
     FrameLayout adsContainer = findViewById(R.id.ads_container);
     appPreferences = new AppPreferences(this);
-    adsHandler = new AdsHandler(appPreferences, adsContainer);
-    adsHandler.init(this, R.string.ad_banner_unit_id);
+    adsDelegate = new AdsDelegate(appPreferences, adsContainer);
+    adsDelegate.initBanner(this, R.string.ad_banner_unit_id);
+    adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id);
 
     if (savedInstanceState == null) {
       appsListFragment = new AppsListFragment();
@@ -141,7 +142,7 @@ public class MainActivity extends BaseActivity {
       }
     }
     appPreferences.setProVersion(isProVersionEnabled);
-    adsHandler.detachBottomBannerIfNeed();
+    adsDelegate.detachBottomBannerIfNeed();
   }
 
   @Override
@@ -223,13 +224,19 @@ public class MainActivity extends BaseActivity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    adsHandler.onActivityResult(requestCode, resultCode, data);
+    adsDelegate.onActivityResult(requestCode, resultCode, data);
   }
 
   @Override
   protected void onResume() {
     super.onResume();
     isProVersionEnabled = appPreferences.isProVersion();
-    adsHandler.detachBottomBannerIfNeed();
+    adsDelegate.detachBottomBannerIfNeed();
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    adsDelegate.showInterstitial();
   }
 }
