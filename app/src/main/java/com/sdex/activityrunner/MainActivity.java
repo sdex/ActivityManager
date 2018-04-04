@@ -230,7 +230,6 @@ public class MainActivity extends BaseActivity {
   protected void onResume() {
     super.onResume();
     isProVersionEnabled = appPreferences.isProVersion();
-    invalidateOptionsMenu();
     adsHandler.detachBottomBannerIfNeed();
   }
 }

@@ -46,6 +46,7 @@ public class AppsListFragment extends Fragment {
   private ContentLoadingProgressBar progressBar;
   private ApplicationListViewModel viewModel;
   private AdvancedPreferences advancedPreferences;
+  private String searchText;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -86,7 +87,7 @@ public class AppsListFragment extends Fragment {
   @Override
   public void onResume() {
     super.onResume();
-    viewModel.getItems().observe(this, itemModels -> {
+    viewModel.getItems(searchText).observe(this, itemModels -> {
       if (itemModels != null && !itemModels.isEmpty()) {
         adapter.setShowNotExported(advancedPreferences.isShowNotExported());
         adapter.setItems(itemModels);
@@ -186,6 +187,7 @@ public class AppsListFragment extends Fragment {
 
   public void filter(String text) {
     if (adapter != null) {
+      this.searchText = text;
       viewModel.getItems(text).observe(this,
         itemModels -> adapter.setItems(itemModels));
     }
