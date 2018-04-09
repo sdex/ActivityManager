@@ -41,7 +41,9 @@ public class AdsDelegate {
           bannerContainer.addView(adView);
         }
       });
-      adView.loadAd(adRequest);
+      if (adView.getAdSize() != null && adView.getAdUnitId() != null) {
+        adView.loadAd(adRequest);
+      }
     }
   }
 
