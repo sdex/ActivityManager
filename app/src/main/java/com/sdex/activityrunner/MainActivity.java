@@ -34,7 +34,6 @@ public class MainActivity extends BaseActivity {
 
   private AdsDelegate adsDelegate;
   private AppPreferences appPreferences;
-  private BillingClient billingClient;
   private boolean isProVersionEnabled;
 
   private AppsListFragment appsListFragment;
@@ -91,7 +90,7 @@ public class MainActivity extends BaseActivity {
   }
 
   private void fetchPurchases() {
-    billingClient = BillingClient.newBuilder(this)
+    BillingClient billingClient = BillingClient.newBuilder(this)
       .setListener((responseCode, purchases) -> {
         if (responseCode == BillingResponse.OK) {
           handlePurchases(purchases);
@@ -120,17 +119,6 @@ public class MainActivity extends BaseActivity {
     });
   }
 
-  private void showRatingDialog() {
-    final RatingDialog ratingDialog = new RatingDialog.Builder(this)
-      .threshold(3)
-      .session(15)
-      .onRatingBarFormSumbit(feedback ->
-        AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
-          AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, feedback))
-      .build();
-    ratingDialog.show();
-  }
-
   private void handlePurchases(@Nullable List<Purchase> purchases) {
     if (purchases != null) {
       for (Purchase purchase : purchases) {
@@ -142,7 +130,18 @@ public class MainActivity extends BaseActivity {
       }
     }
     appPreferences.setProVersion(isProVersionEnabled);
-    adsDelegate.detachBottomBannerIfNeed();
+    adsDelegate.detachBottomBannerIfNeed(isProVersionEnabled);
+  }
+
+  private void showRatingDialog() {
+    final RatingDialog ratingDialog = new RatingDialog.Builder(this)
+      .threshold(3)
+      .session(15)
+      .onRatingBarFormSumbit(feedback ->
+        AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
+          AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, feedback))
+      .build();
+    ratingDialog.show();
   }
 
   @Override
@@ -231,7 +230,7 @@ public class MainActivity extends BaseActivity {
   protected void onResume() {
     super.onResume();
     isProVersionEnabled = appPreferences.isProVersion();
-    adsDelegate.detachBottomBannerIfNeed();
+    adsDelegate.detachBottomBannerIfNeed(isProVersionEnabled);
   }
 
   @Override

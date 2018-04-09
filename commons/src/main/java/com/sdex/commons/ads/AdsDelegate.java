@@ -58,7 +58,11 @@ public class AdsDelegate {
   }
 
   public void detachBottomBannerIfNeed() {
-    if (!appPreferences.isAdsActive() && bannerContainer != null) {
+    detachBottomBannerIfNeed(!appPreferences.isAdsActive());
+  }
+
+  public void detachBottomBannerIfNeed(boolean detach) {
+    if (detach && bannerContainer != null) {
       bannerContainer.removeAllViews();
     }
   }
@@ -71,11 +75,11 @@ public class AdsDelegate {
   }
 
   public void showInterstitial() {
-    if (interstitialAd != null) {
-      if (interstitialAd.isLoaded()) {
-        appPreferences.onInterstitialAdShown();
-        interstitialAd.show();
-      }
+    if (appPreferences.isInterstitialAdActive() && interstitialAd != null
+      && interstitialAd.isLoaded()) {
+      appPreferences.onInterstitialAdShown();
+      interstitialAd.show();
     }
   }
+
 }
