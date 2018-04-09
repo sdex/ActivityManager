@@ -4,10 +4,10 @@ ext.app = [
 ]
 
 ext.versions = [
-  support            : '27.1.0',
+  support            : '27.1.1',
   constraintLayout   : '1.0.2',
   playServices       : '12.0.1',
-  room               : '1.1.0-beta1',
+  room               : '1.1.0-beta2',
   lifecycle          : '1.1.1',
   glide              : '4.6.1',
   butterKnife        : '8.8.1'

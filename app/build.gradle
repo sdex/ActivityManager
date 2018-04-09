@@ -62,6 +62,7 @@ dependencies {
   implementation project(':commons')
   implementation(name: 'RootTools', ext: 'aar')
   implementation(name: 'RootShell', ext: 'aar')
+  implementation "eu.chainfire:libsuperuser:1.0.0.201704021214"
   implementation "com.android.support:support-v4:$versions.support"
   implementation "com.android.support:appcompat-v7:$versions.support"
   implementation "com.android.support:support-vector-drawable:$versions.support"
@@ -70,9 +71,10 @@ dependencies {
   implementation "com.android.support:cardview-v7:$versions.support"
   implementation "com.android.support:design:$versions.support"
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
-  implementation "com.google.firebase:firebase-core:$versions.playServices"
   implementation "com.google.firebase:firebase-ads:$versions.playServices"
+  implementation "com.google.firebase:firebase-core:$versions.playServices"
   implementation "com.google.firebase:firebase-perf:$versions.playServices"
+  implementation "com.crashlytics.sdk.android:crashlytics:2.9.1"
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
   annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
   implementation "android.arch.persistence.room:runtime:$versions.room"
@@ -82,9 +84,6 @@ dependencies {
   implementation "com.jakewharton:butterknife:$versions.butterKnife"
   annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
   implementation "com.android.billingclient:billing:1.0"
-  implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
-    transitive = true
-  }
   implementation "de.psdev.licensesdialog:licensesdialog:1.7.0"
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   testImplementation "junit:junit:4.12"

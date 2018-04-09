@@ -2,7 +2,7 @@ package com.sdex.activityrunner.util;
 
 import android.os.AsyncTask;
 
-import com.stericson.RootTools.RootTools;
+import eu.chainfire.libsuperuser.Shell;
 
 /**
  * Author: Yuriy Mysochenko
@@ -22,12 +22,7 @@ public class CheckRootTask extends AsyncTask<Void, Void, Integer> {
 
   @Override
   protected Integer doInBackground(Void[] params) {
-    boolean rootAvailable = RootTools.isRootAvailable();
-    if (!rootAvailable) {
-      return ROOT_IS_NOT_AVAILABLE;
-    }
-    boolean accessGiven = RootTools.isAccessGiven();
-    if (!accessGiven) {
+    if (!Shell.SU.available()) {
       return ACCESS_IS_NOT_GIVEN;
     }
     return 0;
