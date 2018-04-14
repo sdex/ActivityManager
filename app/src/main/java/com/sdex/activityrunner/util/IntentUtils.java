@@ -14,6 +14,7 @@ import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
+
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.sdex.activityrunner.R;
@@ -58,6 +59,7 @@ public class IntentUtils {
       .asBitmap()
       .error(R.mipmap.ic_launcher)
       .load(activityModel.getIconPath())
+      .override(100)
       .into(new SimpleTarget<Bitmap>() {
         @Override
         public void onResourceReady(@NonNull Bitmap resource,
