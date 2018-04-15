@@ -1,2 +1,3 @@
-1.5.4
-- bugfixes and performance improvements
+1.5.5
+- fixed crash for creating shortcut with big icon
+- better error handling

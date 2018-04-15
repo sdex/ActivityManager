@@ -18,6 +18,7 @@
 
   <string name="starting_activity">Starting activity: %s</string>
   <string name="starting_activity_failed">Failed to start activity: %s</string>
+  <string name="starting_activity_failed_security">You don\'t have permissions to run this activity: %s</string>
   <string name="starting_activity_intent">Starting activity</string>
   <string name="starting_activity_intent_failed">Failed to start activity</string>
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>

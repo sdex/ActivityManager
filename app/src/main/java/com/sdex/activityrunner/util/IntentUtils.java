@@ -31,7 +31,7 @@ public class IntentUtils {
   }
 
   public static void createLauncherIcon(Context context, ActivityModel activityModel,
-    Bitmap bitmap) {
+                                        Bitmap bitmap) {
     String name = activityModel.getName();
     Intent intent = getActivityIntent(activityModel.getComponentName());
     IconCompat iconCompat = IconCompat.createWithBitmap(bitmap);
@@ -39,13 +39,13 @@ public class IntentUtils {
   }
 
   public static void createLauncherIcon(Context context, String name, Intent intent,
-    @DrawableRes int icon) {
+                                        @DrawableRes int icon) {
     final IconCompat iconCompat = IconCompat.createWithResource(context, icon);
     createLauncherIcon(context, name, intent, iconCompat);
   }
 
   private static void createLauncherIcon(Context context, String name, Intent intent,
-    IconCompat iconCompat) {
+                                         IconCompat iconCompat) {
     ShortcutInfoCompat pinShortcutInfo = new ShortcutInfoCompat.Builder(context, name)
       .setIcon(iconCompat)
       .setShortLabel(name)
@@ -63,7 +63,7 @@ public class IntentUtils {
       .into(new SimpleTarget<Bitmap>() {
         @Override
         public void onResourceReady(@NonNull Bitmap resource,
-          @Nullable Transition<? super Bitmap> transition) {
+                                    @Nullable Transition<? super Bitmap> transition) {
           createLauncherIcon(context, activityModel, resource);
         }
       });
@@ -75,10 +75,10 @@ public class IntentUtils {
       context.startActivity(intent);
       Toast.makeText(context, context.getString(R.string.starting_activity, name),
         Toast.LENGTH_SHORT).show();
-    } catch (ActivityNotFoundException e) {
-      Toast.makeText(context, context.getString(R.string.starting_activity_failed, name),
-        Toast.LENGTH_SHORT).show();
     } catch (SecurityException e) {
+      Toast.makeText(context, context.getString(R.string.starting_activity_failed_security, name),
+        Toast.LENGTH_SHORT).show();
+    } catch (Exception e) {
       Toast.makeText(context, context.getString(R.string.starting_activity_failed, name),
         Toast.LENGTH_SHORT).show();
     }
