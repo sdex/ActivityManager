@@ -88,6 +88,7 @@ dependencies {
   implementation "com.android.billingclient:billing:1.0"
   implementation "de.psdev.licensesdialog:licensesdialog:1.7.0"
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
+  implementation "com.pddstudio:highlightjs-android:1.5.0"
   testImplementation "junit:junit:4.12"
 }
 

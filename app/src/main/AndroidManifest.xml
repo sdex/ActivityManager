@@ -39,6 +39,8 @@
       android:label="@string/donate_title"
       android:name=".PurchaseActivity" />
 
+    <activity android:name=".manifest.ManifestViewerActivity" />
+
     <activity android:name=".AboutActivity" />
 
     <activity android:name=".OreoPackageManagerBugActivity" />

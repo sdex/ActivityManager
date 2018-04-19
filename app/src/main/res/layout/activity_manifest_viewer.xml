@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white"
+  android:orientation="vertical"
+  tools:context=".intent.history.HistoryActivity"
+  tools:ignore="ContentDescription">
+
+  <include layout="@layout/toolbar" />
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+
+    <com.pddstudio.highlightjs.HighlightJsView
+      android:id="@+id/highlight_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+  </FrameLayout>
+
+  <FrameLayout
+    android:id="@+id/ads_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+</LinearLayout>
