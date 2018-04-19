@@ -11,8 +11,11 @@
   <string name="context_action_launch_params">Launch activity with params</string>
   <string name="context_action_launch_root">Launch activity with ROOT</string>
   <string name="context_action_shortcut">Create shortcut</string>
-  <string name="context_action_open_info">Open info</string>
   <string name="context_action_edit">Edit shortcut</string>
+
+  <string name="context_action_open_info">Open info</string>
+  <string name="context_action_open_manifest">Open manifest</string>
+
   <string name="shortcut_name">Label</string>
   <string name="shortcut_name_empty">Label cannot be empty</string>
 

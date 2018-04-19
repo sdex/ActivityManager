@@ -35,8 +35,7 @@ public class AppsListFragment extends Fragment {
 
   public static final String TAG = "AppsListFragment";
 
-  private static final int ACTION_CREATE_SHORTCUT = 0;
-  private static final int ACTION_OPEN_INFO = 1;
+  private static final int ACTION_CREATE_SHORTCUT = 1;
   private static final int ACTION_LAUNCH_ACTIVITY = 2;
   private static final int ACTION_LAUNCH_ACTIVITY_PARAMS = 3;
   private static final int ACTION_LAUNCH_ACTIVITY_BY_ROOT = 4;
@@ -130,10 +129,8 @@ public class AppsListFragment extends Fragment {
             activity.getName() :
             activity.getComponentName().getShortClassName();
           menu.setHeaderTitle(title);
-          menu.add(Menu.NONE, ACTION_OPEN_INFO, 1,
-            R.string.context_action_open_info);
           if (activity.isExported()) {
-            menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, 0,
+            menu.add(Menu.NONE, ACTION_CREATE_SHORTCUT, 1,
               R.string.context_action_shortcut);
             menu.add(Menu.NONE, ACTION_LAUNCH_ACTIVITY, 2,
               R.string.context_action_launch);
@@ -165,12 +162,6 @@ public class AppsListFragment extends Fragment {
               if (getFragmentManager() != null) {
                 DialogFragment dialog = AddShortcutDialogFragment.newInstance(activityModel);
                 dialog.show(getFragmentManager(), AddShortcutDialogFragment.TAG);
-              }
-              break;
-            case ACTION_OPEN_INFO:
-              if (getActivity() != null) {
-                final String packageName = activityModel.getPackageName();
-                IntentUtils.openApplicationInfo(getActivity(), packageName);
               }
               break;
             case ACTION_LAUNCH_ACTIVITY:
