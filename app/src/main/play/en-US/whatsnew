@@ -1,3 +1,2 @@
-1.5.5
-- fixed crash for creating shortcut with big icon
-- better error handling
+1.6.0
+- add manifest viewer
