@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@color/background_gray"
   android:orientation="vertical"
   tools:context=".intent.LaunchParamsActivity"
   tools:ignore="ContentDescription">
@@ -23,9 +24,9 @@
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/launch_params_activity_padding"
         android:baselineAligned="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/launch_params_activity_padding">
 
         <android.support.v7.widget.CardView
           android:layout_width="match_parent"
@@ -332,8 +333,8 @@
                 android:id="@+id/list_extras"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
               <TextView
@@ -401,8 +402,8 @@
                 android:id="@+id/list_categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
             </LinearLayout>
@@ -463,8 +464,8 @@
                 android:id="@+id/list_flags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
             </LinearLayout>
 
@@ -494,8 +495,8 @@
       android:id="@+id/launch"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/launch_params_fab_margin"
       android:layout_gravity="bottom|end"
+      android:layout_margin="@dimen/launch_params_fab_margin"
       android:clickable="true"
       android:focusable="true"
       android:src="@drawable/ic_done"

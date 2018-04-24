@@ -11,8 +11,6 @@ import android.arch.persistence.room.RawQuery;
 import android.arch.persistence.room.Transaction;
 import android.arch.persistence.room.Update;
 
-import com.sdex.activityrunner.db.activity.ActivityModel;
-
 import java.util.List;
 
 @Dao
@@ -28,8 +26,8 @@ public interface ApplicationModelDao {
   void delete(ApplicationModel... models);
   
   @Transaction
-  @RawQuery(observedEntities = {ApplicationModel.class, ActivityModel.class})
-  LiveData<List<ItemModel>> getApplicationModels(SupportSQLiteQuery query);
+  @RawQuery(observedEntities = {ApplicationModel.class})
+  LiveData<List<ApplicationModel>> getApplicationModels(SupportSQLiteQuery query);
 
   @Query("SELECT COUNT(*) FROM ApplicationModel")
   int count();

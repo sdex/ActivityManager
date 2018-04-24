@@ -41,6 +41,8 @@
 
     <activity android:name=".manifest.ManifestViewerActivity" />
 
+    <activity android:name=".app.ActivitiesListActivity" />
+
     <activity android:name=".AboutActivity" />
 
     <activity android:name=".OreoPackageManagerBugActivity" />

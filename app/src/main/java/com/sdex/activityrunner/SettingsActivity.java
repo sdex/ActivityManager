@@ -1,6 +1,7 @@
 package com.sdex.activityrunner;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -28,6 +29,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
   public static final boolean KEY_ADVANCED_NOT_EXPORTED_DEFAULT = false;
   public static final String KEY_ADVANCED_ROOT_INTEGRATION = "advanced_root_integration";
   public static final boolean KEY_ADVANCED_ROOT_INTEGRATION_DEFAULT = false;
+
+  public static void start(Context context) {
+      Intent starter = new Intent(context, SettingsActivity.class);
+      context.startActivity(starter);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

@@ -73,8 +73,6 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
 
     View view = inflater.inflate(R.layout.item_activity, parent, false);
 
-    View divider = view.findViewById(R.id.divider);
-
     TextView text1 = view.findViewById(android.R.id.text1);
     text1.setText(activityModel.getName());
 
@@ -94,12 +92,6 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
       .apply(new RequestOptions()
         .fitCenter())
       .into(icon);
-
-    if (isLastChild) {
-      divider.setVisibility(View.GONE);
-    } else {
-      divider.setVisibility(View.VISIBLE);
-    }
 
     return view;
   }
@@ -146,7 +138,7 @@ public class ApplicationsListAdapter extends BaseExpandableListAdapter {
 
     view.findViewById(R.id.app_menu).setOnClickListener(v -> {
       PopupMenu popup = new PopupMenu(context, v);
-      popup.inflate(R.menu.app_menu);
+      popup.inflate(R.menu.application_item_menu);
       popup.show();
       popup.setOnMenuItemClickListener(item -> {
         final String packageName = applicationModel.getPackageName();

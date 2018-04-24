@@ -109,7 +109,7 @@
   <string name="pref_case_sensitive">Враховувати регістр</string>
   <string name="settings_error_root_not_available">ROOT недоступний на цьому пристрої</string>
   <string name="settings_error_root_not_granted">ROOT права не були надані</string>
-  <string name="settings_error_root_not_active">Потрібно активувати ROOT в налаштуваннях</string>
+  <string name="settings_error_root_not_active">Потрібно активувати інтеграцію з ROOT</string>
   <string-array name="pref_sort_order_list_titles">
     <item>По зростанню</item>
     <item>По спаданню</item>

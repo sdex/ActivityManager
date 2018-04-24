@@ -86,4 +86,22 @@ public class ActivityModel implements Serializable {
   public ComponentName getComponentName() {
     return new ComponentName(packageName, className);
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ActivityModel that = (ActivityModel) o;
+
+    if (!packageName.equals(that.packageName)) return false;
+    return className.equals(that.className);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = packageName.hashCode();
+    result = 31 * result + className.hashCode();
+    return result;
+  }
 }

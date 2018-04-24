@@ -3,8 +3,10 @@ package com.sdex.activityrunner.db.application;
 import android.arch.persistence.room.Entity;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 @Entity(primaryKeys = {"packageName"})
-public class ApplicationModel {
+public class ApplicationModel implements Serializable {
 
   public static final String TABLE = "ApplicationModel";
   public static final String NAME = "name";
@@ -24,7 +26,7 @@ public class ApplicationModel {
   private int exportedActivitiesCount;
 
   public ApplicationModel(@NonNull String name, @NonNull String packageName,
-    @NonNull String iconPath) {
+                          @NonNull String iconPath) {
     this.name = name;
     this.packageName = packageName;
     this.iconPath = iconPath;
@@ -61,5 +63,18 @@ public class ApplicationModel {
 
   public void setExportedActivitiesCount(@NonNull int exportedActivitiesCount) {
     this.exportedActivitiesCount = exportedActivitiesCount;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ApplicationModel that = (ApplicationModel) o;
+    return packageName.equals(that.packageName);
+  }
+
+  @Override
+  public int hashCode() {
+    return packageName.hashCode();
   }
 }

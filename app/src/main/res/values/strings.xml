@@ -121,7 +121,7 @@
   <string name="pref_case_sensitive">Case sensitive</string>
   <string name="settings_error_root_not_available">ROOT is not available</string>
   <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
-  <string name="settings_error_root_not_active">You need to enable ROOT in settings</string>
+  <string name="settings_error_root_not_active">You need to enable ROOT integration</string>
   <string-array name="pref_sort_order_list_titles">
     <item>Ascending</item>
     <item>Descending</item>
@@ -140,7 +140,11 @@
   </string-array>
 
   <plurals name="history_records">
-    <item quantity="one">$d record</item>
-    <item quantity="other">$d records</item>
+    <item quantity="one">%d record</item>
+    <item quantity="other">%d records</item>
+  </plurals>
+  <plurals name="activities_count">
+    <item quantity="one">%d activity</item>
+    <item quantity="other">%d activities</item>
   </plurals>
 </resources>

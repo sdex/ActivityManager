@@ -3,68 +3,53 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:background="?android:attr/activatedBackgroundIndicator"
-  android:descendantFocusability="blocksDescendants"
-  android:orientation="vertical">
+  android:background="?selectableItemBackground"
+  android:minHeight="?android:attr/listPreferredItemHeight"
+  android:orientation="horizontal">
+
+  <ImageView
+    android:id="@android:id/icon"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center_vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    tools:ignore="ContentDescription"
+    tools:src="@mipmap/ic_launcher" />
 
   <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:orientation="horizontal">
+    android:layout_gravity="center_vertical"
+    android:layout_weight="1"
+    android:orientation="vertical">
 
-    <ImageView
-      android:id="@android:id/icon"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:layout_gravity="center_vertical"
-      android:layout_marginLeft="40dp"
-      android:layout_marginStart="40dp"
-      tools:ignore="ContentDescription"
-      tools:src="@mipmap/ic_launcher" />
-
-    <LinearLayout
-      android:layout_width="0dp"
+    <TextView
+      android:id="@android:id/text1"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="start|center_vertical"
-      android:layout_marginLeft="10dp"
-      android:layout_marginStart="10dp"
-      android:layout_weight="1"
-      android:orientation="vertical">
+      android:textAppearance="?android:attr/textAppearanceListItem"
+      android:textIsSelectable="false"
+      tools:text="Application name" />
 
-      <TextView
-        android:id="@android:id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|center_vertical"
-        android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textIsSelectable="false"
-        tools:text="Application name" />
-
-      <TextView
-        android:id="@android:id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|center_vertical"
-        android:textAppearance="?attr/textAppearanceListItemSecondary"
-        android:textColor="@android:color/darker_gray"
-        android:textIsSelectable="false"
-        tools:text="package name" />
-    </LinearLayout>
-
-    <ImageButton
-      android:id="@+id/app_menu"
-      android:layout_width="40dp"
-      android:layout_height="match_parent"
-      android:background="?selectableItemBackground"
-      android:src="@drawable/ic_more_vert"
-      tools:ignore="ContentDescription" />
-
+    <TextView
+      android:id="@android:id/text2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="start|center_vertical"
+      android:textAppearance="?attr/textAppearanceListItemSecondary"
+      android:textColor="@android:color/darker_gray"
+      android:textIsSelectable="false"
+      tools:text="com.android.application" />
   </LinearLayout>
 
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/list_divider_color" />
+  <ImageButton
+    android:id="@+id/app_menu"
+    android:layout_width="44dp"
+    android:layout_height="match_parent"
+    android:background="?selectableItemBackgroundBorderless"
+    android:src="@drawable/ic_more_vert"
+    tools:ignore="ContentDescription" />
 
 </LinearLayout>

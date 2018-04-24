@@ -6,6 +6,8 @@
   <color name="colorControlActivated">#ffffff</color>
   <color name="blue">#03A9F4</color>
   <color name="red">#f44336</color>
+  <color name="yellow">#FFFF00</color>
   <color name="list_divider_color">#E0E0E0</color>
-  <color name="background">#EEEEEE</color>
+  <color name="background">#ffffff</color>
+  <color name="background_gray">#eeeeee</color>
 </resources>

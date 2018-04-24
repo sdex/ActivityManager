@@ -9,7 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
 import com.sdex.activityrunner.db.AppDatabase;
-import com.sdex.activityrunner.db.application.ItemModel;
+import com.sdex.activityrunner.db.application.ApplicationModel;
 import com.sdex.activityrunner.db.query.GetApplicationsQuery;
 import com.sdex.activityrunner.preferences.SortingPreferences;
 
@@ -28,14 +28,14 @@ public class ApplicationListViewModel extends AndroidViewModel {
     sortingPreferences = new SortingPreferences(sharedPreferences);
   }
 
-  public LiveData<List<ItemModel>> getItems(String searchText) {
+  public LiveData<List<ApplicationModel>> getItems(String searchText) {
     GetApplicationsQuery query =
       new GetApplicationsQuery(searchText, sortingPreferences);
     return appDatabase.getApplicationModelDao()
       .getApplicationModels(new SimpleSQLiteQuery(query.toString()));
   }
 
-  public LiveData<List<ItemModel>> getItems() {
+  public LiveData<List<ApplicationModel>> getItems() {
     return getItems(null);
   }
 }
