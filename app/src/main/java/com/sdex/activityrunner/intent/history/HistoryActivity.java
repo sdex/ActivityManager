@@ -84,8 +84,19 @@ public class HistoryActivity extends BaseActivity {
     recyclerView.setAdapter(adapter);
     registerForContextMenu(recyclerView);
 
-    viewModel.getHistory().observe(this,
-      historyModels -> adapter.setItems(historyModels));
+    viewModel.getHistory().observe(this, historyModels -> {
+      if (historyModels != null) {
+        int size = historyModels.size();
+        String subtitle = getResources().getQuantityString(R.plurals.history_records, size, size);
+        setSubtitle(subtitle);
+        adapter.setItems(historyModels);
+        boolean historyWarningShown = false;
+        if (size == HistoryViewModel.MAX_FREE_RECORDS &&
+          !appPreferences.isProVersion() && !historyWarningShown) {
+          // TODO show history warning
+        }
+      }
+    });
   }
 
   @Override

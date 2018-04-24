@@ -41,6 +41,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
   }
 
+  public void setSubtitle(CharSequence subtitle) {
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().setSubtitle(subtitle);
+    }
+  }
+
   protected void enableBackButton() {
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar != null) {

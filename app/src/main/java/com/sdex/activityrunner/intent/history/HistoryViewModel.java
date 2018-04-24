@@ -5,12 +5,16 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+
 import com.sdex.activityrunner.db.AppDatabase;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.commons.ads.AppPreferences;
+
 import java.util.List;
 
 public class HistoryViewModel extends AndroidViewModel {
+
+  public static final int MAX_FREE_RECORDS = 20;
 
   private final AppDatabase database;
   private final AppPreferences appPreferences;
@@ -22,7 +26,7 @@ public class HistoryViewModel extends AndroidViewModel {
   }
 
   public LiveData<List<HistoryModel>> getHistory() {
-    int limit = appPreferences.isProVersion() ? Integer.MAX_VALUE : 20;
+    int limit = appPreferences.isProVersion() ? Integer.MAX_VALUE : MAX_FREE_RECORDS;
     return database.getHistoryModelDao().getHistory(limit);
   }
 

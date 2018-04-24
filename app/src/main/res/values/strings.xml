@@ -140,4 +140,8 @@
     <item>1</item>
   </string-array>
 
+  <plurals name="history_records">
+    <item quantity="one">$d record</item>
+    <item quantity="other">$d records</item>
+  </plurals>
 </resources>
