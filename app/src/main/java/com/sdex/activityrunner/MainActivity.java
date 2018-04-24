@@ -210,12 +210,6 @@ public class MainActivity extends BaseActivity {
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    isProVersionEnabled = appPreferences.isProVersion();
-  }
-
-  @Override
   public void onBackPressed() {
     super.onBackPressed();
     adsDelegate.showInterstitial();
