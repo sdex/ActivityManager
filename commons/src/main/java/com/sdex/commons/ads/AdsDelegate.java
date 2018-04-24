@@ -20,6 +20,9 @@ public class AdsDelegate {
   private FrameLayout bannerContainer;
   private InterstitialAd interstitialAd;
 
+  public AdsDelegate(AppPreferences appPreferences) {
+    this(appPreferences, null);
+  }
   public AdsDelegate(AppPreferences appPreferences, @Nullable FrameLayout bannerContainer) {
     this.appPreferences = appPreferences;
     this.bannerContainer = bannerContainer;

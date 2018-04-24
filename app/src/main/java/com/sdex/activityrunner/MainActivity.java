@@ -10,7 +10,6 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponse;
@@ -24,7 +23,6 @@ import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
-import com.sdex.commons.ads.DisableAdsActivity;
 import com.sdex.commons.util.AppUtils;
 import com.sdex.commons.util.UIUtils;
 
@@ -48,10 +46,8 @@ public class MainActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     AppLoaderIntentService.enqueueWork(this, new Intent());
 
-    FrameLayout adsContainer = findViewById(R.id.ads_container);
     appPreferences = new AppPreferences(this);
-    adsDelegate = new AdsDelegate(appPreferences, adsContainer);
-    adsDelegate.initBanner(this, R.string.ad_banner_unit_id);
+    adsDelegate = new AdsDelegate(appPreferences);
     adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id);
 
     if (savedInstanceState == null) {
@@ -130,7 +126,6 @@ public class MainActivity extends BaseActivity {
       }
     }
     appPreferences.setProVersion(isProVersionEnabled);
-    adsDelegate.detachBottomBannerIfNeed(isProVersionEnabled);
   }
 
   private void showRatingDialog() {
@@ -186,7 +181,6 @@ public class MainActivity extends BaseActivity {
   public boolean onPrepareOptionsMenu(Menu menu) {
     if (isProVersionEnabled) {
       menu.findItem(R.id.action_upgrade).setVisible(false);
-      menu.findItem(R.id.action_disable_ads).setVisible(false);
     }
     return super.onPrepareOptionsMenu(menu);
   }
@@ -200,11 +194,6 @@ public class MainActivity extends BaseActivity {
       }
       case R.id.action_upgrade: {
         PurchaseActivity.start(this);
-        return true;
-      }
-      case R.id.action_disable_ads: {
-        Intent intent = DisableAdsActivity.getStartIntent(this, R.string.ad_rewarded_unit_id);
-        startActivityForResult(intent, DisableAdsActivity.REQUEST_CODE);
         return true;
       }
       case R.id.action_about: {
@@ -221,16 +210,9 @@ public class MainActivity extends BaseActivity {
   }
 
   @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    adsDelegate.onActivityResult(requestCode, resultCode, data);
-  }
-
-  @Override
   protected void onResume() {
     super.onResume();
     isProVersionEnabled = appPreferences.isProVersion();
-    adsDelegate.detachBottomBannerIfNeed(isProVersionEnabled);
   }
 
   @Override

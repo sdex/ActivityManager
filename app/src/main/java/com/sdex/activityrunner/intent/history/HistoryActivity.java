@@ -13,7 +13,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.sdex.activityrunner.AddShortcutDialogFragment;
 import com.sdex.activityrunner.PurchaseActivity;
@@ -22,7 +21,6 @@ import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
 import com.sdex.commons.BaseActivity;
-import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
 
 import butterknife.BindView;
@@ -56,10 +54,6 @@ public class HistoryActivity extends BaseActivity {
     ButterKnife.bind(this);
     viewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
     appPreferences = new AppPreferences(this);
-
-    FrameLayout adsContainer = findViewById(R.id.ads_container);
-    AdsDelegate adsDelegate = new AdsDelegate(appPreferences, adsContainer);
-    adsDelegate.initBanner(this, R.string.ad_banner_unit_id);
 
     enableBackButton();
 

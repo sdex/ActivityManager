@@ -27,7 +27,6 @@
   <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
 
   <string name="action_upgrade">Upgrade to premium</string>
-  <string name="action_disable_ads">Disable ads</string>
   <string name="action_about">About</string>
   <string name="action_launch_intent">Start intent</string>
   <string name="action_history">History</string>

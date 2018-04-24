@@ -22,7 +22,6 @@
   <string name="starting_activity_intent_failed">Ошибка запуска</string>
 
   <string name="action_upgrade">Приобрести премиум</string>
-  <string name="action_disable_ads">Отключить рекламу</string>
   <string name="action_about">О программе</string>
   <string name="action_launch_intent">Запустить intent</string>
   <string name="action_history">История</string>

@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +31,6 @@ import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
 import com.sdex.activityrunner.intent.history.HistoryActivity;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.commons.BaseActivity;
-import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
 
 import java.util.ArrayList;
@@ -95,7 +93,6 @@ public class LaunchParamsActivity extends BaseActivity
   private LaunchParamsViewModel viewModel;
 
   private AppPreferences appPreferences;
-  private AdsDelegate adsDelegate;
 
   public static void start(Context context, ActivityModel activityModel) {
     Intent starter = new Intent(context, LaunchParamsActivity.class);
@@ -116,10 +113,6 @@ public class LaunchParamsActivity extends BaseActivity
     viewModel = ViewModelProviders.of(this).get(LaunchParamsViewModel.class);
 
     appPreferences = new AppPreferences(this);
-
-    FrameLayout adsContainer = findViewById(R.id.ads_container);
-    adsDelegate = new AdsDelegate(appPreferences, adsContainer);
-    adsDelegate.initBanner(this, R.string.ad_banner_unit_id);
 
     enableBackButton();
     final ActivityModel activityModel = (ActivityModel)
@@ -199,12 +192,6 @@ public class LaunchParamsActivity extends BaseActivity
       launchParams = data.getParcelableExtra(HistoryActivity.RESULT);
       showLaunchParams();
     }
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    adsDelegate.detachBottomBannerIfNeed();
   }
 
   @Override
