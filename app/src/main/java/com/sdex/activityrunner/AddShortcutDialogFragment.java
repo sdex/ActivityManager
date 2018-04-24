@@ -11,13 +11,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import com.bumptech.glide.request.RequestOptions;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.db.history.HistoryModel;
+import com.sdex.activityrunner.glide.GlideApp;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter;
-import com.sdex.activityrunner.util.GlideApp;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.activityrunner.util.ObjectsCompat;
 

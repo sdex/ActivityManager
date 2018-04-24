@@ -19,7 +19,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
-import com.sdex.activityrunner.util.GlideApp;
+import com.sdex.activityrunner.glide.GlideApp;
 
 public class ActivitiesListAdapter extends ListAdapter<ActivityModel,
   ActivitiesListAdapter.ViewHolder> {

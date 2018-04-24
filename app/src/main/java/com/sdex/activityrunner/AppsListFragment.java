@@ -22,7 +22,7 @@ public class AppsListFragment extends Fragment {
 
   public static final String TAG = "AppsListFragment";
 
-  private ApplicationsListAdapter2 adapter;
+  private ApplicationsListAdapter adapter;
   private SwipeRefreshLayout refreshLayout;
   private ContentLoadingProgressBar progressBar;
   private ApplicationListViewModel viewModel;
@@ -43,7 +43,7 @@ public class AppsListFragment extends Fragment {
       dividerItemDecoration.setDrawable(dividerDrawable);
       list.addItemDecoration(dividerItemDecoration);
     }
-    adapter = new ApplicationsListAdapter2(getActivity());
+    adapter = new ApplicationsListAdapter(getActivity());
     list.setAdapter(adapter);
     refreshLayout.setOnRefreshListener(() -> {
       refreshLayout.setRefreshing(true);

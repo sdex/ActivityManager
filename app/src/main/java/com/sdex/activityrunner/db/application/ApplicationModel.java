@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.db.application;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class ApplicationModel implements Serializable {
   private String name;
   @NonNull
   private String packageName;
+  @Deprecated
   @NonNull
   private String iconPath;
   @NonNull
@@ -25,11 +27,17 @@ public class ApplicationModel implements Serializable {
   @NonNull
   private int exportedActivitiesCount;
 
+  @Deprecated
   public ApplicationModel(@NonNull String name, @NonNull String packageName,
                           @NonNull String iconPath) {
     this.name = name;
     this.packageName = packageName;
     this.iconPath = iconPath;
+  }
+
+  @Ignore
+  public ApplicationModel(@NonNull String name, @NonNull String packageName) {
+    this(name, packageName, "");
   }
 
   @NonNull
@@ -42,6 +50,7 @@ public class ApplicationModel implements Serializable {
     return packageName;
   }
 
+  @Deprecated
   @NonNull
   public String getIconPath() {
     return iconPath;
