@@ -2,7 +2,7 @@
   <string name="history_activity">Історія</string>
   <string name="settings_activity">Налаштування</string>
 
-  <string name="context_action_launch">Запустити</string>
+  <string name="context_action_launch">Відкрити в GooglePlay</string>
   <string name="context_action_launch_params">Запустити з параметрами</string>
   <string name="context_action_launch_root">Запустити з правами ROOT</string>
   <string name="context_action_shortcut">Створити ярлик</string>

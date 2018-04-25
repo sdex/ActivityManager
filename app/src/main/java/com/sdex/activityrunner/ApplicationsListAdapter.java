@@ -19,6 +19,7 @@ import com.sdex.activityrunner.db.application.ApplicationModel;
 import com.sdex.activityrunner.glide.GlideApp;
 import com.sdex.activityrunner.manifest.ManifestViewerActivity;
 import com.sdex.activityrunner.util.IntentUtils;
+import com.sdex.commons.util.AppUtils;
 
 public class ApplicationsListAdapter extends ListAdapter<ApplicationModel,
   ApplicationsListAdapter.AppViewHolder> {
@@ -78,7 +79,7 @@ public class ApplicationsListAdapter extends ListAdapter<ApplicationModel,
           final String packageName = item.getPackageName();
           switch (menuItem.getItemId()) {
             case R.id.action_open_app: {
-              // TODO open the app
+              AppUtils.openPlayStore(context, packageName);
               return true;
             }
             case R.id.action_open_app_info: {

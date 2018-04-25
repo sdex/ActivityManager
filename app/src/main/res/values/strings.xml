@@ -7,7 +7,7 @@
   <string name="colon_space" translatable="false">": "</string>
   <string name="equal_space" translatable="false">"="</string>
 
-  <string name="context_action_launch">Run</string>
+  <string name="context_action_launch">Open in GooglePlay</string>
   <string name="context_action_launch_params">Launch activity with params</string>
   <string name="context_action_launch_root">Launch activity with ROOT</string>
   <string name="context_action_shortcut">Create shortcut</string>
