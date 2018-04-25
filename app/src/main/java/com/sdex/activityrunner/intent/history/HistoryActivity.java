@@ -84,10 +84,16 @@ public class HistoryActivity extends BaseActivity {
         String subtitle = getResources().getQuantityString(R.plurals.history_records, size, size);
         setSubtitle(subtitle);
         adapter.setItems(historyModels);
-        boolean historyWarningShown = false;
+        boolean historyWarningShown = appPreferences.isHistoryWarningShown();
         if (size == HistoryViewModel.MAX_FREE_RECORDS &&
           !appPreferences.isProVersion() && !historyWarningShown) {
-          // TODO show history warning
+          appPreferences.setHistoryWarningShown(true);
+          new AlertDialog.Builder(this)
+            .setTitle(R.string.pro_version_dialog_title)
+            .setMessage(R.string.pro_version_unlock_history)
+            .setPositiveButton(R.string.pro_version_get,
+              (dialog, which) -> PurchaseActivity.start(this))
+            .show();
         }
       }
     });
