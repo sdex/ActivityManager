@@ -201,7 +201,7 @@ public class MainActivity extends BaseActivity {
         return true;
       }
       case R.id.action_settings: {
-        SettingsActivity.start(this);
+        SettingsActivity.start(this, SettingsActivity.NORMAL);
         return true;
       }
       default:

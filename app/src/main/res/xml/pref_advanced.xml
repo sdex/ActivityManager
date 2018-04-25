@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
   <SwitchPreference
-    android:defaultValue="false"
+    android:defaultValue="true"
     android:key="advanced_not_exported"
     android:summary="@string/pref_advanced_not_exported_summary"
     android:title="@string/pref_advanced_not_exported_title" />

@@ -19,25 +19,27 @@ import java.util.List;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
+  public static final int NORMAL = 0;
+  public static final int ADVANCED = 1;
+
   public static final String KEY_SORT_ORDER = "sort_order";
   public static final String KEY_SORT_ORDER_DEFAULT = "0";
   public static final String KEY_SORT_BY = "sort_by";
   public static final String KEY_SORT_BY_DEFAULT = "0";
   public static final String KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive";
-  public static final boolean KEY_SORT_CASE_SENSITIVE_DEFAULT = true;
+  public static final boolean KEY_SORT_CASE_SENSITIVE_DEFAULT = false;
   public static final String KEY_ADVANCED_NOT_EXPORTED = "advanced_not_exported";
-  public static final boolean KEY_ADVANCED_NOT_EXPORTED_DEFAULT = false;
+  public static final boolean KEY_ADVANCED_NOT_EXPORTED_DEFAULT = true;
   public static final String KEY_ADVANCED_ROOT_INTEGRATION = "advanced_root_integration";
   public static final boolean KEY_ADVANCED_ROOT_INTEGRATION_DEFAULT = false;
 
-  public static void start(Context context) {
-      Intent starter = new Intent(context, SettingsActivity.class);
-      context.startActivity(starter);
-  }
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  public static void start(Context context, int state) {
+    Intent starter = new Intent(context, SettingsActivity.class);
+    if (state == ADVANCED) {
+      starter.putExtra(EXTRA_SHOW_FRAGMENT,
+        "com.sdex.activityrunner.SettingsActivity$AdvancedPreferenceFragment");
+    }
+    context.startActivity(starter);
   }
 
   @Override
