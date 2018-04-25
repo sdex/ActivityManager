@@ -55,6 +55,7 @@
   <string name="pro_version_unlock_extras">Приобретите премиум версию для возможности добавлять неограниченное количество дополнительных параметров</string>
   <string name="pro_version_unlock_intent_shortcuts">Приобретите премиум версию для возможности создавать ярлыки для произвольных intent</string>
   <string name="pro_version_unlock_root_integration">Приобретите премиум версию для возможности интеграции с ROOT</string>
+  <string name="pro_version_unlock_history">Достигнут лимит на количество записей. Старые записи будут перезаписаны новыми. Приобретите премиум версию для неограниченного количества записей в истории</string>
 
   <string name="donate_title">Поддержать разработку</string>
   <string name="donate_5">Пожертвовать $5.00</string>
@@ -117,4 +118,17 @@
     <item>Имени приложения</item>
     <item>Имени пакета</item>
   </string-array>
+
+  <plurals name="history_records">
+    <item quantity="one">%d запись</item>
+    <item quantity="few">%d записи</item>
+    <item quantity="many">%d записей</item>
+    <item quantity="other">%d записей</item>
+  </plurals>
+  <plurals name="activities_count">
+    <item quantity="one">%d активность</item>
+    <item quantity="few">%d активности</item>
+    <item quantity="many">%d активностей</item>
+    <item quantity="other">%d активностей</item>
+  </plurals>
 </resources>

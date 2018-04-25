@@ -55,6 +55,7 @@
   <string name="pro_version_unlock_extras">Придбайте преміум версію для можливості додавати необмежену кількість додаткових даних</string>
   <string name="pro_version_unlock_intent_shortcuts">Придбайте преміум версію для можливості створювати ярлики для будь яких intent</string>
   <string name="pro_version_unlock_root_integration">Придбайте преміум версію для можливості інтеграції з ROOT</string>
+  <string name="pro_version_unlock_history">Досягнуто ліміт записів. Старі записи будуть перезаписані новими. Придбайте преміум версію для необмеженої кількості записів в історії</string>
 
   <string name="donate_title">Підтримати розробку</string>
   <string name="donate_5">Пожертвувати $5.00</string>
@@ -117,4 +118,17 @@
     <item>Імені додатка</item>
     <item>Імені пакета</item>
   </string-array>
+
+  <plurals name="history_records">
+    <item quantity="one">%d запис</item>
+    <item quantity="few">%d записи</item>
+    <item quantity="many">%d записів</item>
+    <item quantity="other">%d записів</item>
+  </plurals>
+  <plurals name="activities_count">
+    <item quantity="one">%d активність</item>
+    <item quantity="few">%d активності</item>
+    <item quantity="many">%d активностей</item>
+    <item quantity="other">%d активностей</item>
+  </plurals>
 </resources>
