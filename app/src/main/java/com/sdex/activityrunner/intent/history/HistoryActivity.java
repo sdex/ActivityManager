@@ -14,9 +14,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.sdex.activityrunner.AddShortcutDialogFragment;
 import com.sdex.activityrunner.GetPremiumDialog;
 import com.sdex.activityrunner.R;
+import com.sdex.activityrunner.app.AddShortcutDialogFragment;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;

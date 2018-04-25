@@ -15,13 +15,12 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.sdex.activityrunner.AddShortcutDialogFragment;
 import com.sdex.activityrunner.R;
-import com.sdex.activityrunner.SettingsActivity;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.db.application.ApplicationModel;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
 import com.sdex.activityrunner.preferences.AdvancedPreferences;
+import com.sdex.activityrunner.preferences.SettingsActivity;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.activityrunner.util.RunActivityTask;
 import com.sdex.commons.BaseActivity;

@@ -1,4 +1,4 @@
-package com.sdex.activityrunner;
+package com.sdex.activityrunner.preferences;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import com.sdex.activityrunner.PurchaseActivity;
+import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.util.CheckRootTask;
 import com.sdex.commons.ads.AppPreferences;
 
@@ -37,7 +39,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     Intent starter = new Intent(context, SettingsActivity.class);
     if (state == ADVANCED) {
       starter.putExtra(EXTRA_SHOW_FRAGMENT,
-        "com.sdex.activityrunner.SettingsActivity$AdvancedPreferenceFragment");
+        "com.sdex.activityrunner.preferences.SettingsActivity$AdvancedPreferenceFragment");
     }
     context.startActivity(starter);
   }

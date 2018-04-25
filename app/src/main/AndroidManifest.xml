@@ -49,7 +49,7 @@
 
     <activity
       android:label="@string/settings_activity"
-      android:name=".SettingsActivity" />
+      android:name=".preferences.SettingsActivity" />
 
     <service
       android:exported="false"

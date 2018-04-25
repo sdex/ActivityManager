@@ -19,6 +19,7 @@ import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.Purchase.PurchasesResult;
 import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.sdex.activityrunner.intent.LaunchParamsActivity;
+import com.sdex.activityrunner.preferences.SettingsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsDelegate;

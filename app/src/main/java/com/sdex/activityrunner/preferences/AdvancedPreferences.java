@@ -2,8 +2,6 @@ package com.sdex.activityrunner.preferences;
 
 import android.content.SharedPreferences;
 
-import com.sdex.activityrunner.SettingsActivity;
-
 public class AdvancedPreferences {
 
   private final SharedPreferences sharedPreferences;

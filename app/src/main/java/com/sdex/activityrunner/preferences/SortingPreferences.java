@@ -2,7 +2,6 @@ package com.sdex.activityrunner.preferences;
 
 import android.content.SharedPreferences;
 
-import com.sdex.activityrunner.SettingsActivity;
 import com.sdex.activityrunner.db.application.ApplicationModel;
 
 public class SortingPreferences {

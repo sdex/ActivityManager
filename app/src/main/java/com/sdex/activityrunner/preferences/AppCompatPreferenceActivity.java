@@ -1,4 +1,4 @@
-package com.sdex.activityrunner;
+package com.sdex.activityrunner.preferences;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.sdex.activityrunner.R;
 
 public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
 
