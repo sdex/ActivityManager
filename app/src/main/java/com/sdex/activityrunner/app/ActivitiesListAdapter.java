@@ -73,9 +73,8 @@ public class ActivitiesListAdapter extends ListAdapter<ActivityModel,
       name.setText(item.getName());
       packageName.setText(item.getComponentName().getShortClassName());
 
-      glide.load(item.getIconPath())
-        .apply(new RequestOptions()
-          .fitCenter())
+      glide.load(item)
+        .apply(new RequestOptions().fitCenter())
         .into(icon);
 
       Context context = itemView.getContext();

@@ -2,6 +2,7 @@ package com.sdex.activityrunner.db.activity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.content.ComponentName;
 import android.support.annotation.NonNull;
@@ -24,11 +25,13 @@ public class ActivityModel implements Serializable {
   private String packageName;
   @NonNull
   private String className;
+  @Deprecated
   @NonNull
   private String iconPath;
   @NonNull
   private boolean exported;
 
+  @Deprecated
   public ActivityModel(@NonNull String name, @NonNull String packageName,
     @NonNull String className, @NonNull String iconPath, @NonNull boolean exported) {
     this.name = name;
@@ -36,6 +39,12 @@ public class ActivityModel implements Serializable {
     this.className = className;
     this.iconPath = iconPath;
     this.exported = exported;
+  }
+
+  @Ignore
+  public ActivityModel(@NonNull String name, @NonNull String packageName,
+    @NonNull String className, @NonNull boolean exported) {
+    this(name, packageName, className, "", exported);
   }
 
   @NonNull
@@ -65,11 +74,13 @@ public class ActivityModel implements Serializable {
     this.className = className;
   }
 
+  @Deprecated
   @NonNull
   public String getIconPath() {
     return iconPath;
   }
 
+  @Deprecated
   public void setIconPath(@NonNull String iconPath) {
     this.iconPath = iconPath;
   }

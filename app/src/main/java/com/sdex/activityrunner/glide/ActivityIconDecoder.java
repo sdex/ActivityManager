@@ -1,7 +1,9 @@
 package com.sdex.activityrunner.glide;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -12,24 +14,27 @@ import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.resource.drawable.DrawableResource;
 import com.bumptech.glide.util.Util;
-import com.sdex.activityrunner.db.application.ApplicationModel;
+import com.sdex.activityrunner.db.activity.ActivityModel;
 
-class ApplicationIconDecoder implements ResourceDecoder<ApplicationModel, Drawable> {
+class ActivityIconDecoder implements ResourceDecoder<ActivityModel, Drawable> {
 
   private final Context context;
 
-  public ApplicationIconDecoder(Context context) {
+  public ActivityIconDecoder(Context context) {
     this.context = context;
   }
 
   @Nullable
   @Override
-  public Resource<Drawable> decode(@NonNull ApplicationModel source, int width, int height,
+  public Resource<Drawable> decode(@NonNull ActivityModel source, int width, int height,
                                    @NonNull Options options) {
     PackageManager packageManager = context.getPackageManager();
     Drawable icon;
     try {
-      icon = packageManager.getApplicationIcon(source.getPackageName());
+      Intent intent = new Intent();
+      intent.setComponent(source.getComponentName());
+      ResolveInfo resolveInfo = packageManager.resolveActivity(intent, 0);
+      icon = resolveInfo.loadIcon(packageManager);
     } catch (Exception e) {
       icon = packageManager.getDefaultActivityIcon();
     }
@@ -55,7 +60,7 @@ class ApplicationIconDecoder implements ResourceDecoder<ApplicationModel, Drawab
   }
 
   @Override
-  public boolean handles(@NonNull ApplicationModel source, @NonNull Options options) {
+  public boolean handles(@NonNull ActivityModel source, @NonNull Options options) {
     return true;
   }
 }

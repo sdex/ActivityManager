@@ -9,16 +9,14 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.JobIntentService;
+import android.util.Log;
 
 import com.sdex.activityrunner.db.AppDatabase;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.db.application.ApplicationModel;
-import com.sdex.activityrunner.util.Utils;
-import com.sdex.commons.util.IOUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 
 public class AppLoaderIntentService extends JobIntentService {
 
+  private static final String TAG = "AppLoaderIntentService";
+
   static final int JOB_ID = 1212;
 
   public static final String ARG_REASON = "arg_reason";
@@ -36,7 +36,6 @@ public class AppLoaderIntentService extends JobIntentService {
   public static final int REFRESH_AUTO = 10;
   public static final int REFRESH_USER = 20;
 
-  private static final long CLEAN_IMAGE_CACHE_PERIOD = TimeUnit.DAYS.toMillis(30);
   private static final long FORCE_REFRESH_PERIOD = TimeUnit.DAYS.toMillis(1);
 
   private static final String PREFERENCES_NAME = "preferences";
@@ -62,19 +61,14 @@ public class AppLoaderIntentService extends JobIntentService {
         updateApplications();
       }
     } else {
-      if (needCleanImages()) {
-        final File imageDir = getImagesDir();
-        for (File file : imageDir.listFiles()) {
-          //noinspection ResultOfMethodCallIgnored
-          file.delete();
-        }
-      }
       database.getApplicationModelDao().clean();
       updateApplications();
     }
+    cleanImages();
   }
 
   private void updateApplications() {
+    long start = System.currentTimeMillis();
     final AppDatabase database = AppDatabase.getDatabase(this);
     PackageManager pm = getPackageManager();
 
@@ -109,6 +103,7 @@ public class AppLoaderIntentService extends JobIntentService {
     database.getActivityModelDao().insert(activitiesArray);
 
     saveLastUpdateTime();
+    Log.d(TAG, "updateApplications: " + (System.currentTimeMillis() - start) + " ms");
   }
 
   private void addInfo(PackageManager pm, List<ApplicationModel> applications,
@@ -141,15 +136,13 @@ public class AppLoaderIntentService extends JobIntentService {
   private ApplicationModel getApplicationModel(PackageManager pm, String packageName,
                                                PackageInfo info) {
     final ApplicationInfo applicationInfo = info.applicationInfo;
-    final Bitmap bitmap = getBitmap(pm, applicationInfo);
-    final String iconPath = saveIcon(bitmap, packageName);
     final String name;
     if (applicationInfo != null) {
       name = pm.getApplicationLabel(applicationInfo).toString();
     } else {
       name = info.packageName;
     }
-    return new ApplicationModel(name, packageName, iconPath);
+    return new ApplicationModel(name, packageName);
   }
 
   @NonNull
@@ -161,42 +154,8 @@ public class AppLoaderIntentService extends JobIntentService {
       ComponentName componentName = new ComponentName(activityInfo.packageName, activityInfo.name);
       activityName = componentName.getShortClassName();
     }
-    final Bitmap bitmap = getBitmap(pm, activityInfo);
-    final String iconPath = saveIcon(bitmap, activityInfo.packageName + activityName);
     return new ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
-      iconPath, activityInfo.exported);
-  }
-
-  private Bitmap getBitmap(PackageManager pm, ActivityInfo act) {
-    try {
-      try {
-        return Utils.getBitmap(act.loadIcon(pm));
-      } catch (Exception e) {
-        return Utils.getBitmap(pm.getDefaultActivityIcon());
-      }
-    } catch (Exception e) {
-      return Utils.getBitmap(pm.getDefaultActivityIcon());
-    }
-  }
-
-  private Bitmap getBitmap(PackageManager pm, ApplicationInfo app) {
-    if (app != null) {
-      try {
-        return Utils.getBitmap(pm.getApplicationIcon(app));
-      } catch (Exception e) {
-        return Utils.getBitmap(pm.getDefaultActivityIcon());
-      }
-    } else {
-      return Utils.getBitmap(pm.getDefaultActivityIcon());
-    }
-  }
-
-  private String saveIcon(Bitmap bitmap, String id) {
-    File file = new File(getImagesDir(), String.valueOf(id.hashCode()));
-    if (!file.exists() && bitmap != null) {
-      IOUtils.writeToFile(file, bitmap);
-    }
-    return file.getAbsolutePath();
+      activityInfo.exported);
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -209,10 +168,13 @@ public class AppLoaderIntentService extends JobIntentService {
     return imagesDir;
   }
 
-  private boolean needCleanImages() {
-    final long now = System.currentTimeMillis();
-    final long lastUpdate = preferences.getLong(PREFERENCES_KEY_LAST_UPDATE, now);
-    return now - lastUpdate > CLEAN_IMAGE_CACHE_PERIOD;
+  // legacy
+  private void cleanImages() {
+    final File imageDir = getImagesDir();
+    for (File file : imageDir.listFiles()) {
+      //noinspection ResultOfMethodCallIgnored
+      file.delete();
+    }
   }
 
   private boolean needForceRefresh() {
