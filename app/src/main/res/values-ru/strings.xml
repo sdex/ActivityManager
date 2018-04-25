@@ -17,7 +17,6 @@
   <string name="starting_activity">Запуск: %s</string>
   <string name="starting_activity_failed">Ошибка запуска: %s</string>
   <string name="starting_activity_failed_security">Нет прав для запуска: %s</string>
-  <string name="creating_activity_shortcut">Создание ярлыка: %s</string>
   <string name="starting_activity_intent">Запуск</string>
   <string name="starting_activity_intent_failed">Ошибка запуска</string>
 

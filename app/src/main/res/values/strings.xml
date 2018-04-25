@@ -24,7 +24,6 @@
   <string name="starting_activity_failed_security">You don\'t have permissions to run this activity: %s</string>
   <string name="starting_activity_intent">Starting activity</string>
   <string name="starting_activity_intent_failed">Failed to start activity</string>
-  <string name="creating_activity_shortcut">Creating activity shortcut: %s</string>
 
   <string name="action_upgrade">Upgrade to premium</string>
   <string name="action_about">About</string>
