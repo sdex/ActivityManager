@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -14,7 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sdex.activityrunner.PurchaseActivity;
+import com.sdex.activityrunner.GetPremiumDialog;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback;
@@ -301,14 +300,10 @@ public class LaunchParamsActivity extends BaseActivity
     findViewById(viewId).setOnClickListener(v -> {
       final int size = launchParams.getExtras().size();
       if (size >= EXTRAS_LIMIT && !appPreferences.isProVersion()) {
-        new AlertDialog.Builder(this)
-          .setTitle(R.string.pro_version_dialog_title)
-          .setMessage(R.string.pro_version_unlock_extras)
-          .setPositiveButton(R.string.pro_version_get,
-            (dialog, which) -> PurchaseActivity.start(this))
-          .show();
+        GetPremiumDialog dialog =
+          GetPremiumDialog.newInstance(R.string.pro_version_unlock_extras);
+        dialog.show(getSupportFragmentManager(), GetPremiumDialog.TAG);
         return;
-
       }
       DialogFragment dialog = ExtraInputDialog.newInstance(null, -1);
       dialog.show(getSupportFragmentManager(), ExtraInputDialog.TAG);

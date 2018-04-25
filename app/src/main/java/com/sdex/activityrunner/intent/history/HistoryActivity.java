@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.sdex.activityrunner.AddShortcutDialogFragment;
-import com.sdex.activityrunner.PurchaseActivity;
+import com.sdex.activityrunner.GetPremiumDialog;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
@@ -88,12 +88,9 @@ public class HistoryActivity extends BaseActivity {
         if (size == HistoryViewModel.MAX_FREE_RECORDS &&
           !appPreferences.isProVersion() && !historyWarningShown) {
           appPreferences.setHistoryWarningShown(true);
-          new AlertDialog.Builder(this)
-            .setTitle(R.string.pro_version_dialog_title)
-            .setMessage(R.string.pro_version_unlock_history)
-            .setPositiveButton(R.string.pro_version_get,
-              (dialog, which) -> PurchaseActivity.start(this))
-            .show();
+          GetPremiumDialog dialog =
+            GetPremiumDialog.newInstance(R.string.pro_version_unlock_history);
+          dialog.show(getSupportFragmentManager(), GetPremiumDialog.TAG);
         }
       }
     });
@@ -113,12 +110,9 @@ public class HistoryActivity extends BaseActivity {
         DialogFragment dialog = AddShortcutDialogFragment.newInstance(historyModel);
         dialog.show(getSupportFragmentManager(), AddShortcutDialogFragment.TAG);
       } else {
-        new AlertDialog.Builder(this)
-          .setTitle(R.string.pro_version_dialog_title)
-          .setMessage(R.string.pro_version_unlock_intent_shortcuts)
-          .setPositiveButton(R.string.pro_version_get,
-            (dialog, which) -> PurchaseActivity.start(this))
-          .show();
+        GetPremiumDialog dialog =
+          GetPremiumDialog.newInstance(R.string.pro_version_unlock_intent_shortcuts);
+        dialog.show(getSupportFragmentManager(), GetPremiumDialog.TAG);
       }
     }
     return super.onContextItemSelected(item);
