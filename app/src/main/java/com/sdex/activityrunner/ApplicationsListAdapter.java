@@ -77,6 +77,10 @@ public class ApplicationsListAdapter extends ListAdapter<ApplicationModel,
         popup.setOnMenuItemClickListener(menuItem -> {
           final String packageName = item.getPackageName();
           switch (menuItem.getItemId()) {
+            case R.id.action_open_app: {
+              // TODO open the app
+              return true;
+            }
             case R.id.action_open_app_info: {
               IntentUtils.openApplicationInfo(context, packageName);
               return true;
