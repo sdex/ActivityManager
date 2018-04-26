@@ -21,7 +21,7 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 1701
+    versionCode 1703
     versionName "1.7.0"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
