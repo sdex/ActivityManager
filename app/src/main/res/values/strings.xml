@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name" translatable="false">mActivity</string>
+  <string name="app_name" translatable="false">Activity Runner</string>
   <string name="intent_launcher_activity" translatable="false">Intent builder</string>
   <string name="history_activity">History</string>
   <string name="settings_activity">Settings</string>
@@ -48,7 +48,7 @@
   <string name="item_history_has_categories">Has categories</string>
   <string name="item_history_has_flags">Has flags</string>
 
-  <string name="pro_version_title">mActivity Premium</string>
+  <string name="pro_version_title">Activity Runner Premium</string>
   <string name="pro_version_ads">&#x2022; Ad-Free experience</string>
   <string name="pro_version_extras">&#x2022; Unlimited extra parameters</string>
   <string name="pro_version_history">&#x2022; Unlimited history</string>
