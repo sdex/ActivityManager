@@ -10,10 +10,10 @@
   <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
 
   <application
+    android:name=".RunnerApplication"
     android:allowBackup="false"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
-    android:name=".RunnerApplication"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
@@ -28,16 +28,17 @@
     </activity>
 
     <activity
-      android:label="@string/intent_launcher_activity"
-      android:name=".intent.LaunchParamsActivity" />
+      android:name=".intent.IntentBuilderActivity"
+      android:exported="true"
+      android:label="@string/intent_launcher_activity" />
 
     <activity
-      android:label="@string/history_activity"
-      android:name=".intent.history.HistoryActivity" />
+      android:name=".intent.history.HistoryActivity"
+      android:label="@string/history_activity" />
 
     <activity
-      android:label="@string/donate_title"
-      android:name=".PurchaseActivity" />
+      android:name=".PurchaseActivity"
+      android:label="@string/donate_title" />
 
     <activity android:name=".manifest.ManifestViewerActivity" />
 
@@ -48,12 +49,12 @@
     <activity android:name=".OreoPackageManagerBugActivity" />
 
     <activity
-      android:label="@string/settings_activity"
-      android:name=".preferences.SettingsActivity" />
+      android:name=".preferences.SettingsActivity"
+      android:label="@string/settings_activity" />
 
     <service
-      android:exported="false"
       android:name=".service.AppLoaderIntentService"
+      android:exported="false"
       android:permission="android.permission.BIND_JOB_SERVICE" />
 
   </application>

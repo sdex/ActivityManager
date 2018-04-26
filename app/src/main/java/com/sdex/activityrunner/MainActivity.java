@@ -18,7 +18,7 @@ import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.Purchase.PurchasesResult;
 import com.codemybrainsout.ratingdialog.RatingDialog;
-import com.sdex.activityrunner.intent.LaunchParamsActivity;
+import com.sdex.activityrunner.intent.IntentBuilderActivity;
 import com.sdex.activityrunner.preferences.SettingsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
 import com.sdex.commons.BaseActivity;
@@ -190,7 +190,7 @@ public class MainActivity extends BaseActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_launch_intent: {
-        LaunchParamsActivity.start(this, null);
+        IntentBuilderActivity.start(this, null);
         return true;
       }
       case R.id.action_upgrade: {

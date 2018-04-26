@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.ContentLoadingProgressBar;
 
 import com.pddstudio.highlightjs.HighlightJsView;
 import com.pddstudio.highlightjs.models.Language;
@@ -22,6 +23,8 @@ public class ManifestViewerActivity extends BaseActivity {
 
   @BindView(R.id.highlight_view)
   HighlightJsView highlightJsView;
+  @BindView(R.id.progress)
+  ContentLoadingProgressBar progressBar;
 
   public static void start(Context context, String packageName, String name) {
     Intent starter = new Intent(context, ManifestViewerActivity.class);
@@ -40,17 +43,30 @@ public class ManifestViewerActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     ButterKnife.bind(this);
     enableBackButton();
+
+    progressBar.show();
+
     highlightJsView.setHighlightLanguage(Language.XML);
     highlightJsView.setTheme(Theme.GITHUB_GIST);
     highlightJsView.setShowLineNumbers(true);
     highlightJsView.setZoomSupportEnabled(true);
+    highlightJsView.setOnContentChangedListener(() -> {
+      // hide progress
+    });
 
     String packageName = getIntent().getStringExtra(ARG_PACKAGE_NAME);
     String name = getIntent().getStringExtra(ARG_NAME);
 
+    if (packageName == null) {
+      return;
+    }
+
     setTitle(name);
 
     ViewModelProviders.of(this).get(ManifestViewModel.class)
-      .loadManifest(packageName).observe(this, s -> highlightJsView.setSource(s));
+      .loadManifest(packageName).observe(this, s -> {
+      highlightJsView.setSource(s);
+      progressBar.hide();
+    });
   }
 }

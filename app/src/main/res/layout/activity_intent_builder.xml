@@ -6,7 +6,7 @@
   android:layout_height="match_parent"
   android:background="@color/background_gray"
   android:orientation="vertical"
-  tools:context=".intent.LaunchParamsActivity"
+  tools:context=".intent.IntentBuilderActivity"
   tools:ignore="ContentDescription">
 
   <include layout="@layout/toolbar" />

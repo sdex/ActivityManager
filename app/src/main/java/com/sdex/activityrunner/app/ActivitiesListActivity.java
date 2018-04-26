@@ -18,7 +18,7 @@ import android.view.View;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.db.application.ApplicationModel;
-import com.sdex.activityrunner.intent.LaunchParamsActivity;
+import com.sdex.activityrunner.intent.IntentBuilderActivity;
 import com.sdex.activityrunner.preferences.AdvancedPreferences;
 import com.sdex.activityrunner.preferences.SettingsActivity;
 import com.sdex.activityrunner.util.IntentUtils;
@@ -47,6 +47,9 @@ public class ActivitiesListActivity extends BaseActivity
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     ApplicationModel item = (ApplicationModel) getIntent().getSerializableExtra(ARG_APPLICATION);
+    if (item == null) {
+      return;
+    }
     setTitle(item.getName());
     enableBackButton();
     RecyclerView list = findViewById(R.id.list);
@@ -91,7 +94,7 @@ public class ActivitiesListActivity extends BaseActivity
 
   @Override
   public void launchActivityWithParams(ActivityModel item) {
-    LaunchParamsActivity.start(this, item);
+    IntentBuilderActivity.start(this, item);
   }
 
   private void tryRunWithRoot(ActivityModel item) {

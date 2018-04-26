@@ -38,7 +38,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LaunchParamsActivity extends BaseActivity
+public class IntentBuilderActivity extends BaseActivity
   implements ValueInputDialog.OnValueInputDialogCallback,
   SingleSelectionDialog.OnItemSelectedCallback,
   MultiSelectionDialog.OnItemsSelectedCallback,
@@ -94,14 +94,14 @@ public class LaunchParamsActivity extends BaseActivity
   private AppPreferences appPreferences;
 
   public static void start(Context context, ActivityModel activityModel) {
-    Intent starter = new Intent(context, LaunchParamsActivity.class);
+    Intent starter = new Intent(context, IntentBuilderActivity.class);
     starter.putExtra(ARG_ACTIVITY_MODEL, activityModel);
     context.startActivity(starter);
   }
 
   @Override
   protected int getLayout() {
-    return R.layout.activity_launch_params;
+    return R.layout.activity_intent_builder;
   }
 
   @Override
@@ -172,7 +172,7 @@ public class LaunchParamsActivity extends BaseActivity
       viewModel.addToHistory(launchParams);
       LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
       final Intent intent = converter.convert();
-      IntentUtils.launchActivity(LaunchParamsActivity.this, intent);
+      IntentUtils.launchActivity(IntentBuilderActivity.this, intent);
     });
 
     showLaunchParams();

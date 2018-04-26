@@ -64,9 +64,11 @@ public class AppsListFragment extends Fragment {
   public void onResume() {
     super.onResume();
     viewModel.getItems(searchText).observe(this, itemModels -> {
-      adapter.submitList(itemModels);
-      refreshLayout.setRefreshing(false);
-      progressBar.hide();
+      if (itemModels != null) {
+        adapter.submitList(itemModels);
+        refreshLayout.setRefreshing(false);
+        progressBar.hide();
+      }
     });
   }
 
