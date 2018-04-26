@@ -9,6 +9,6 @@ ext.versions = [
   playServices       : '15.0.0',
   room               : '1.1.0-beta3',
   lifecycle          : '1.1.1',
-  glide              : '4.6.1',
+  glide              : '4.7.1',
   butterKnife        : '8.8.1'
 ]
