@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -57,15 +58,15 @@ public class IntentUtils {
 
   public static void createLauncherIcon(final Context context, final ActivityModel activityModel) {
     GlideApp.with(context)
-      .asBitmap()
+      .asDrawable()
+      .load(activityModel)
       .error(R.mipmap.ic_launcher)
-      .load(activityModel.getIconPath())
       .override(100)
-      .into(new SimpleTarget<Bitmap>() {
+      .into(new SimpleTarget<Drawable>() {
         @Override
-        public void onResourceReady(@NonNull Bitmap resource,
-                                    @Nullable Transition<? super Bitmap> transition) {
-          createLauncherIcon(context, activityModel, resource);
+        public void onResourceReady(@NonNull Drawable resource,
+                                    @Nullable Transition<? super Drawable> transition) {
+          createLauncherIcon(context, activityModel, Utils.getBitmap(resource));
         }
       });
   }

@@ -67,7 +67,7 @@ public class AddShortcutDialogFragment extends DialogFragment {
     }
     final ImageView imageIcon = view.findViewById(R.id.app_icon);
     GlideApp.with(this)
-      .load(activityModel != null ? activityModel.getIconPath() : R.mipmap.ic_launcher)
+      .load(activityModel != null ? activityModel : R.mipmap.ic_launcher)
       .apply(new RequestOptions()
         .fitCenter())
       .into(imageIcon);
