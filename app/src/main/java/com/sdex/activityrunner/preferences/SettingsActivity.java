@@ -31,7 +31,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
   public static final String KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive";
   public static final boolean KEY_SORT_CASE_SENSITIVE_DEFAULT = false;
   public static final String KEY_ADVANCED_NOT_EXPORTED = "advanced_not_exported";
-  public static final boolean KEY_ADVANCED_NOT_EXPORTED_DEFAULT = true;
+  public static final boolean KEY_ADVANCED_NOT_EXPORTED_DEFAULT = false;
   public static final String KEY_ADVANCED_ROOT_INTEGRATION = "advanced_root_integration";
   public static final boolean KEY_ADVANCED_ROOT_INTEGRATION_DEFAULT = false;
 
