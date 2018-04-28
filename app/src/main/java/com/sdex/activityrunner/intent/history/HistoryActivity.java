@@ -3,13 +3,10 @@ package com.sdex.activityrunner.intent.history;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +17,7 @@ import com.sdex.activityrunner.app.AddShortcutDialogFragment;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
+import com.sdex.activityrunner.util.RecyclerViewHelper;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AppPreferences;
 
@@ -67,13 +65,7 @@ public class HistoryActivity extends BaseActivity {
       finish();
     });
     adapter.setHasStableIds(true);
-    final Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.list_divider);
-    if (dividerDrawable != null) {
-      DividerItemDecoration dividerItemDecoration =
-        new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-      dividerItemDecoration.setDrawable(dividerDrawable);
-      recyclerView.addItemDecoration(dividerItemDecoration);
-    }
+    RecyclerViewHelper.addDivider(recyclerView);
     recyclerView.setHasFixedSize(true);
     recyclerView.setAdapter(adapter);
     registerForContextMenu(recyclerView);

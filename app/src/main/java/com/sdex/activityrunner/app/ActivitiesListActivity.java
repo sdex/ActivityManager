@@ -4,14 +4,12 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -22,6 +20,7 @@ import com.sdex.activityrunner.intent.IntentBuilderActivity;
 import com.sdex.activityrunner.preferences.AdvancedPreferences;
 import com.sdex.activityrunner.preferences.SettingsActivity;
 import com.sdex.activityrunner.util.IntentUtils;
+import com.sdex.activityrunner.util.RecyclerViewHelper;
 import com.sdex.activityrunner.util.RunActivityTask;
 import com.sdex.commons.BaseActivity;
 
@@ -53,13 +52,7 @@ public class ActivitiesListActivity extends BaseActivity
     setTitle(item.getName());
     enableBackButton();
     RecyclerView list = findViewById(R.id.list);
-    final Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.list_divider);
-    if (dividerDrawable != null) {
-      DividerItemDecoration dividerItemDecoration =
-        new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-      dividerItemDecoration.setDrawable(dividerDrawable);
-      list.addItemDecoration(dividerItemDecoration);
-    }
+    RecyclerViewHelper.addDivider(list);
     ActivitiesListAdapter adapter = new ActivitiesListAdapter(this, this);
     list.setAdapter(adapter);
     ActivitiesListViewModel viewModel =
