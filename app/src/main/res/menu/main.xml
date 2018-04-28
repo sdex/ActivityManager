@@ -17,6 +17,7 @@
 
   <item
     android:id="@+id/action_upgrade"
+    android:icon="@drawable/ic_stars"
     android:title="@string/action_upgrade"
     app:showAsAction="ifRoom" />
 

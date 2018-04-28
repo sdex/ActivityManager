@@ -61,7 +61,6 @@ public class AppLoaderIntentService extends JobIntentService {
         updateApplications();
       }
     } else {
-      database.getApplicationModelDao().clean();
       updateApplications();
     }
     cleanImages();
@@ -98,6 +97,8 @@ public class AppLoaderIntentService extends JobIntentService {
       .toArray(new ApplicationModel[applications.size()]);
     final ActivityModel[] activitiesArray = activities
       .toArray(new ActivityModel[activities.size()]);
+
+    database.getApplicationModelDao().clean();
 
     database.getApplicationModelDao().insert(applicationsArray);
     database.getActivityModelDao().insert(activitiesArray);
