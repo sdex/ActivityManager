@@ -2,10 +2,12 @@ package com.sdex.activityrunner.intent;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.sdex.activityrunner.intent.param.Action;
 import com.sdex.activityrunner.intent.param.Category;
 import com.sdex.activityrunner.intent.param.Flag;
 import com.sdex.activityrunner.intent.param.MimeType;
+
 import java.util.ArrayList;
 
 public class LaunchParams implements Parcelable {
@@ -23,6 +25,9 @@ public class LaunchParams implements Parcelable {
   }
 
   public String getPackageName() {
+    if (packageName == null || packageName.isEmpty()) {
+      return null;
+    }
     return packageName;
   }
 
@@ -31,6 +36,9 @@ public class LaunchParams implements Parcelable {
   }
 
   public String getClassName() {
+    if (className == null || className.isEmpty()) {
+      return null;
+    }
     return className;
   }
 
