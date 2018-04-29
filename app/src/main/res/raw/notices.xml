@@ -29,6 +29,11 @@
     <license>Apache Software License 2.0</license>
   </notice>
 
-  <!-- TODO add highlightjs-android -->
+  <notice>
+    <name>HighlightJs View - Android</name>
+    <url>https://github.com/PDDStudio/highlightjs-android</url>
+    <copyright>Copyright 2016 Patrick J</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
 
 </notices>
