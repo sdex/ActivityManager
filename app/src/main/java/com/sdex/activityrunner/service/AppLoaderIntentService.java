@@ -80,7 +80,6 @@ public class AppLoaderIntentService extends JobIntentService {
       addInfo(pm, applications, activities, packageName);
     }
 
-    // TODO Oreo bug
     if (installedPackages.isEmpty()) {
       Set<String> packages = new HashSet<>();
       Intent intentToResolve = new Intent(Intent.ACTION_MAIN);

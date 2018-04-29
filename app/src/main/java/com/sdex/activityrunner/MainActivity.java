@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -21,6 +26,7 @@ import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.sdex.activityrunner.intent.IntentBuilderActivity;
 import com.sdex.activityrunner.preferences.SettingsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
+import com.sdex.activityrunner.util.RecyclerViewHelper;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
@@ -31,11 +37,16 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
+  private static final String STATE_SEARCH_TEXT = "state_search_text";
+
   private AdsDelegate adsDelegate;
   private AppPreferences appPreferences;
   private boolean isProVersionEnabled;
-
-  private AppsListFragment appsListFragment;
+  private ApplicationsListAdapter adapter;
+  private SwipeRefreshLayout refreshLayout;
+  private ContentLoadingProgressBar progressBar;
+  private ApplicationListViewModel viewModel;
+  private String searchText;
 
   @Override
   protected int getLayout() {
@@ -47,26 +58,62 @@ public class MainActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     AppLoaderIntentService.enqueueWork(this, new Intent());
 
+    viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel.class);
+
     appPreferences = new AppPreferences(this);
     adsDelegate = new AdsDelegate(appPreferences);
     adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id);
 
-    if (savedInstanceState == null) {
-      appsListFragment = new AppsListFragment();
-      getSupportFragmentManager().beginTransaction()
-        .replace(R.id.container, appsListFragment, AppsListFragment.TAG)
-        .commit();
-    } else {
-      appsListFragment = (AppsListFragment) getSupportFragmentManager()
-        .findFragmentByTag(AppsListFragment.TAG);
-    }
     fetchPurchases();
     showRatingDialog();
+
+    if (savedInstanceState != null) {
+      searchText = savedInstanceState.getString(STATE_SEARCH_TEXT);
+    }
+
+    progressBar = findViewById(R.id.progress);
+    progressBar.show();
+    refreshLayout = findViewById(R.id.refresh);
+    RecyclerView list = findViewById(R.id.list);
+    RecyclerViewHelper.addDivider(list);
+    adapter = new ApplicationsListAdapter(this);
+    list.setAdapter(adapter);
+    refreshLayout.setOnRefreshListener(() -> {
+      refreshLayout.setRefreshing(true);
+      final Intent work = new Intent();
+      work.putExtra(AppLoaderIntentService.ARG_REASON, AppLoaderIntentService.REFRESH_USER);
+      AppLoaderIntentService.enqueueWork(this, work);
+    });
 
     checkOreoBug();
   }
 
-  // TODO Oreo bug
+  @Override
+  public void onSaveInstanceState(@NonNull Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putString(STATE_SEARCH_TEXT, searchText);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    viewModel.getItems(searchText).observe(this, itemModels -> {
+      if (itemModels != null) {
+        adapter.submitList(itemModels);
+        refreshLayout.setRefreshing(false);
+        progressBar.hide();
+      }
+    });
+  }
+
+  private void filter(String text) {
+    if (adapter != null) {
+      this.searchText = text;
+      viewModel.getItems(text).observe(this,
+        itemModels -> adapter.submitList(itemModels));
+    }
+  }
+
   // https://issuetracker.google.com/issues/73289329
   private void checkOreoBug() {
     if (VERSION.SDK_INT == VERSION_CODES.O) {
@@ -91,10 +138,6 @@ public class MainActivity extends BaseActivity {
       .setListener((responseCode, purchases) -> {
         if (responseCode == BillingResponse.OK) {
           handlePurchases(purchases);
-        } else if (responseCode == BillingResponse.USER_CANCELED) {
-          // Handle an error caused by a user cancelling the purchase flow.
-        } else {
-          // Handle any other error codes.
         }
       })
       .build();
@@ -147,6 +190,13 @@ public class MainActivity extends BaseActivity {
     SearchView searchView = (SearchView) searchItem.getActionView();
     String hint = getString(R.string.action_search_hint);
     searchView.setQueryHint(hint);
+
+    if (!TextUtils.isEmpty(searchText)) {
+      searchView.post(() -> searchView.setQuery(searchText, false));
+      searchItem.expandActionView();
+      UIUtils.setMenuItemsVisibility(menu, searchItem, false);
+    }
+
     searchView.setOnQueryTextListener(new OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
@@ -155,9 +205,7 @@ public class MainActivity extends BaseActivity {
 
       @Override
       public boolean onQueryTextChange(String newText) {
-        if (appsListFragment != null) {
-          appsListFragment.filter(newText);
-        }
+        filter(newText);
         return false;
       }
     });
