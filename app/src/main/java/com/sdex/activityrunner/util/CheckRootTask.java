@@ -2,7 +2,8 @@ package com.sdex.activityrunner.util;
 
 import android.os.AsyncTask;
 
-import eu.chainfire.libsuperuser.Shell;
+import com.topjohnwu.superuser.Shell;
+
 
 /**
  * Author: Yuriy Mysochenko
@@ -22,7 +23,7 @@ public class CheckRootTask extends AsyncTask<Void, Void, Integer> {
 
   @Override
   protected Integer doInBackground(Void[] params) {
-    if (!Shell.SU.available()) {
+    if (!Shell.rootAccess()) {
       return ACCESS_IS_NOT_GIVEN;
     }
     return 0;

@@ -97,7 +97,7 @@ public class ActivitiesListActivity extends BaseActivity
       runActivityTask.execute();
     } else {
       View view = findViewById(R.id.container);
-      Snackbar.make(view, R.string.settings_error_root_not_active, Snackbar.LENGTH_SHORT)
+      Snackbar.make(view, R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG)
         .setAction(R.string.action_settings,
           v -> SettingsActivity.start(ActivitiesListActivity.this, SettingsActivity.ADVANCED))
         .setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
