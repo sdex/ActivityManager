@@ -46,7 +46,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/image_package_name"
+                android:id="@+id/packageNameImageView"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -62,17 +62,17 @@
                 android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image_package_name"
+                app:layout_constraintStart_toEndOf="@+id/packageNameImageView"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:text="@string/launch_param_package_name"
-                  app:layout_constraintStart_toEndOf="@+id/image_package_name" />
+                  app:layout_constraintStart_toEndOf="@+id/packageNameImageView" />
 
                 <TextView
-                  android:id="@+id/package_name"
+                  android:id="@+id/packageNameView"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:paddingBottom="6dp"
@@ -96,7 +96,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/image_class_name"
+                android:id="@+id/classNameImageView"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -112,7 +112,7 @@
                 android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image_class_name"
+                app:layout_constraintStart_toEndOf="@+id/classNameImageView"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -121,7 +121,7 @@
                   android:text="@string/launch_param_class_name" />
 
                 <TextView
-                  android:id="@+id/class_name"
+                  android:id="@+id/classNameView"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceListItem"
@@ -148,7 +148,7 @@
             android:background="?attr/selectableItemBackground">
 
             <ImageView
-              android:id="@+id/image_action"
+              android:id="@+id/actionImageView"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
@@ -164,7 +164,7 @@
               android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
               app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@+id/image_action"
+              app:layout_constraintStart_toEndOf="@+id/actionImageView"
               app:layout_constraintTop_toTopOf="parent">
 
               <TextView
@@ -173,7 +173,7 @@
                 android:text="@string/launch_param_action" />
 
               <TextView
-                android:id="@+id/action"
+                android:id="@+id/actionView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceListItem"
@@ -204,7 +204,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/image_data"
+                android:id="@+id/dataImageView"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -220,7 +220,7 @@
                 android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image_data"
+                app:layout_constraintStart_toEndOf="@+id/dataImageView"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -229,7 +229,7 @@
                   android:text="@string/launch_param_data" />
 
                 <TextView
-                  android:id="@+id/data"
+                  android:id="@+id/dataView"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceListItem"
@@ -252,7 +252,7 @@
               android:background="?attr/selectableItemBackground">
 
               <ImageView
-                android:id="@+id/image_mime_type"
+                android:id="@+id/mimeTypeImageView"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
@@ -268,7 +268,7 @@
                 android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image_mime_type"
+                app:layout_constraintStart_toEndOf="@+id/mimeTypeImageView"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -277,7 +277,7 @@
                   android:text="@string/launch_param_mime_type" />
 
                 <TextView
-                  android:id="@+id/mime_type"
+                  android:id="@+id/mimeTypeView"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceListItem"
@@ -304,7 +304,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-              android:id="@+id/image_extras"
+              android:id="@+id/extrasImageView"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
@@ -320,7 +320,7 @@
               android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
               app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@+id/image_extras"
+              app:layout_constraintStart_toEndOf="@+id/extrasImageView"
               app:layout_constraintTop_toTopOf="parent">
 
               <TextView
@@ -330,7 +330,7 @@
                 android:text="@string/launch_param_extras" />
 
               <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_extras"
+                android:id="@+id/listExtrasView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -338,7 +338,7 @@
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
               <TextView
-                android:id="@+id/add_extra"
+                android:id="@+id/addExtraView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
@@ -373,7 +373,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-              android:id="@+id/image_categories"
+              android:id="@+id/categoriesImageView"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
@@ -389,7 +389,7 @@
               android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
               app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@+id/image_categories"
+              app:layout_constraintStart_toEndOf="@+id/categoriesImageView"
               app:layout_constraintTop_toTopOf="parent">
 
               <TextView
@@ -399,7 +399,7 @@
                 android:text="@string/launch_param_categories" />
 
               <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_categories"
+                android:id="@+id/listCategoriesView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -435,7 +435,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-              android:id="@+id/image_flags"
+              android:id="@+id/flagsImageView"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
@@ -451,7 +451,7 @@
               android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
               app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toEndOf="@+id/image_flags"
+              app:layout_constraintStart_toEndOf="@+id/flagsImageView"
               app:layout_constraintTop_toTopOf="parent">
 
               <TextView
@@ -461,7 +461,7 @@
                 android:text="@string/launch_param_flags" />
 
               <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_flags"
+                android:id="@+id/listFlagsView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"

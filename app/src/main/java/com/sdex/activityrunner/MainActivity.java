@@ -26,7 +26,6 @@ import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.sdex.activityrunner.intent.IntentBuilderActivity;
 import com.sdex.activityrunner.preferences.SettingsActivity;
 import com.sdex.activityrunner.service.AppLoaderIntentService;
-import com.sdex.activityrunner.util.RecyclerViewHelper;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AdsDelegate;
 import com.sdex.commons.ads.AppPreferences;
@@ -75,7 +74,8 @@ public class MainActivity extends BaseActivity {
     progressBar.show();
     refreshLayout = findViewById(R.id.refresh);
     RecyclerView list = findViewById(R.id.list);
-    RecyclerViewHelper.addDivider(list);
+    // TODO divider
+    //RecyclerViewHelper.INSTANCE.addDivider(list);
     adapter = new ApplicationsListAdapter(this);
     list.setAdapter(adapter);
     refreshLayout.setOnRefreshListener(() -> {
@@ -238,7 +238,7 @@ public class MainActivity extends BaseActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_launch_intent: {
-        IntentBuilderActivity.start(this, null);
+        IntentBuilderActivity.Companion.start(this, null);
         return true;
       }
       case R.id.action_upgrade: {
@@ -246,7 +246,7 @@ public class MainActivity extends BaseActivity {
         return true;
       }
       case R.id.action_about: {
-        AboutActivity.start(this);
+        startActivity(new Intent(this, AboutActivity.class));
         return true;
       }
       case R.id.action_settings: {

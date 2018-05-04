@@ -77,14 +77,14 @@
     android:layout_height="0dp"
     android:padding="5dp"
     android:src="@drawable/img_oreo_instant_bug"
-    app:layout_constraintBottom_toTopOf="@+id/button3"
+    app:layout_constraintBottom_toTopOf="@+id/openApps"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView10"
     tools:ignore="ContentDescription" />
 
   <Button
-    android:id="@+id/button2"
+    android:id="@+id/proceed"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
@@ -94,12 +94,12 @@
     app:layout_constraintStart_toStartOf="parent" />
 
   <Button
-    android:id="@+id/button3"
+    android:id="@+id/openApps"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:text="Go to apps"
-    app:layout_constraintBottom_toTopOf="@+id/button2"
+    app:layout_constraintBottom_toTopOf="@+id/proceed"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent" />
 

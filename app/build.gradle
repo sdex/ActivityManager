@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
 
@@ -59,7 +62,7 @@ android {
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
   implementation project(':commons')
-  implementation "com.github.topjohnwu:libsu:1.1.1"
+
   implementation "com.android.support:support-v4:$versions.support"
   implementation "com.android.support:appcompat-v7:$versions.support"
   implementation "com.android.support:support-vector-drawable:$versions.support"
@@ -69,24 +72,38 @@ dependencies {
   implementation "com.android.support:cardview-v7:$versions.support"
   implementation "com.android.support:design:$versions.support"
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+
   implementation "com.google.firebase:firebase-ads:$versions.playServices"
   implementation "com.google.firebase:firebase-core:$versions.playServices"
   implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
     transitive = true
   }
+
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
   annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
+  kapt "android.arch.lifecycle:compiler:$versions.lifecycle"
+
   implementation "android.arch.persistence.room:runtime:$versions.room"
   annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
+  kapt "android.arch.persistence.room:compiler:$versions.room"
+
   implementation "com.github.bumptech.glide:glide:$versions.glide"
   annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
+  kapt "com.github.bumptech.glide:compiler:$versions.glide"
+
   implementation "com.jakewharton:butterknife:$versions.butterKnife"
   annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+
   implementation "com.android.billingclient:billing:1.0"
   implementation "de.psdev.licensesdialog:licensesdialog:1.7.0"
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   implementation "com.pddstudio:highlightjs-android:1.5.0"
+  implementation "com.github.topjohnwu:libsu:1.1.1"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   testImplementation "junit:junit:4.12"
 }
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+  mavenCentral()
+}

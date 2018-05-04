@@ -8,7 +8,7 @@
   android:orientation="horizontal">
 
   <ImageView
-    android:id="@android:id/icon"
+    android:id="@+id/icon"
     android:layout_width="50dp"
     android:layout_height="50dp"
     android:layout_gravity="center_vertical"
@@ -25,7 +25,7 @@
     android:orientation="vertical">
 
     <TextView
-      android:id="@android:id/text1"
+      android:id="@+id/name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="start|center_vertical"
@@ -35,7 +35,7 @@
       tools:text="Activity name" />
 
     <TextView
-      android:id="@android:id/text2"
+      android:id="@+id/packageName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="start|center_vertical"
@@ -46,7 +46,7 @@
   </LinearLayout>
 
   <ImageButton
-    android:id="@+id/app_menu"
+    android:id="@+id/appMenu"
     android:layout_width="44dp"
     android:layout_height="match_parent"
     android:background="?selectableItemBackgroundBorderless"
