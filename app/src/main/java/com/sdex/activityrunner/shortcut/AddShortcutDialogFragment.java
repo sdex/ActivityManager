@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.app;
+package com.sdex.activityrunner.shortcut;
 
 import android.app.Dialog;
 import android.content.Intent;

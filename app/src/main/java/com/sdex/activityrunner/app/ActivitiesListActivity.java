@@ -19,6 +19,7 @@ import com.sdex.activityrunner.db.application.ApplicationModel;
 import com.sdex.activityrunner.intent.IntentBuilderActivity;
 import com.sdex.activityrunner.preferences.AdvancedPreferences;
 import com.sdex.activityrunner.preferences.SettingsActivity;
+import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment;
 import com.sdex.activityrunner.util.IntentUtils;
 import com.sdex.activityrunner.util.RecyclerViewHelper;
 import com.sdex.activityrunner.util.RunActivityTask;
@@ -72,6 +73,10 @@ public class ActivitiesListActivity extends BaseActivity
 
   @Override
   public void showShortcutDialog(ActivityModel item) {
+    if (!item.isExported() && !advancedPreferences.isRootIntegrationEnabled()) {
+      showRootSettings();
+      return;
+    }
     DialogFragment dialog = AddShortcutDialogFragment.newInstance(item);
     dialog.show(getSupportFragmentManager(), AddShortcutDialogFragment.TAG);
   }
@@ -96,12 +101,16 @@ public class ActivitiesListActivity extends BaseActivity
         new RunActivityTask(item.getComponentName());
       runActivityTask.execute();
     } else {
-      View view = findViewById(R.id.container);
-      Snackbar.make(view, R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG)
-        .setAction(R.string.action_settings,
-          v -> SettingsActivity.start(ActivitiesListActivity.this, SettingsActivity.ADVANCED))
-        .setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
-        .show();
+      showRootSettings();
     }
+  }
+
+  private void showRootSettings() {
+    View view = findViewById(R.id.container);
+    Snackbar.make(view, R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG)
+      .setAction(R.string.action_settings,
+        v -> SettingsActivity.start(ActivitiesListActivity.this, SettingsActivity.ADVANCED))
+      .setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
+      .show();
   }
 }

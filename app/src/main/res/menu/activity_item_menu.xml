@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <group android:id="@+id/menu_group_activity_exported">
+  <item
+    android:id="@+id/action_activity_add_shortcut"
+    android:title="@string/context_action_shortcut" />
 
-    <item
-      android:id="@+id/action_activity_add_shortcut"
-      android:title="@string/context_action_shortcut" />
+  <group android:id="@+id/menu_group_activity_exported">
 
     <item
       android:id="@+id/action_activity_launch_with_params"

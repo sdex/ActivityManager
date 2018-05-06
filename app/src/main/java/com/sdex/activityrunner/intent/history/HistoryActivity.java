@@ -13,10 +13,10 @@ import android.view.MenuItem;
 
 import com.sdex.activityrunner.GetPremiumDialog;
 import com.sdex.activityrunner.R;
-import com.sdex.activityrunner.app.AddShortcutDialogFragment;
 import com.sdex.activityrunner.db.history.HistoryModel;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
+import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment;
 import com.sdex.activityrunner.util.RecyclerViewHelper;
 import com.sdex.commons.BaseActivity;
 import com.sdex.commons.ads.AppPreferences;
