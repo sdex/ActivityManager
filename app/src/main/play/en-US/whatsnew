@@ -1,3 +1,2 @@
-1.7.2
-- performance improvements
-- magisk support
+1.8.0
+- shortcuts for run non-exported activities with ROOT

@@ -18,9 +18,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.sdex.activityrunner.BuildConfig;
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.glide.GlideApp;
+import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity;
 
 public class IntentUtils {
 
@@ -34,10 +36,24 @@ public class IntentUtils {
 
   public static void createLauncherIcon(Context context, ActivityModel activityModel,
                                         Bitmap bitmap) {
-    String name = activityModel.getName();
-    Intent intent = getActivityIntent(activityModel.getComponentName());
+    ComponentName componentName;
+    if (activityModel.isExported()) {
+      componentName = activityModel.getComponentName();
+    } else {
+      componentName = new ComponentName(BuildConfig.APPLICATION_ID,
+        ShortcutHandlerActivity.class.getCanonicalName());
+    }
+
+    Intent intent = getActivityIntent(componentName);
+
+    if (!activityModel.isExported()) {
+      ComponentName originComponent = activityModel.getComponentName();
+      intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, originComponent.getPackageName());
+      intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, originComponent.getClassName());
+    }
+
     IconCompat iconCompat = IconCompat.createWithBitmap(bitmap);
-    createLauncherIcon(context, name, intent, iconCompat);
+    createLauncherIcon(context, activityModel.getName(), intent, iconCompat);
   }
 
   public static void createLauncherIcon(Context context, String name, Intent intent,

@@ -44,6 +44,11 @@
 
     <activity android:name=".app.ActivitiesListActivity" />
 
+    <activity
+      android:name=".shortcut.ShortcutHandlerActivity"
+      android:exported="true"
+      android:theme="@android:style/Theme.Translucent" />
+
     <activity android:name=".AboutActivity" />
 
     <activity android:name=".OreoPackageManagerBugActivity" />
