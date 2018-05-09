@@ -37,7 +37,7 @@ public class IntentUtils {
   public static void createLauncherIcon(Context context, ActivityModel activityModel,
                                         Bitmap bitmap) {
     ComponentName componentName;
-    if (activityModel.isExported()) {
+    if (activityModel.getExported()) {
       componentName = activityModel.getComponentName();
     } else {
       componentName = new ComponentName(BuildConfig.APPLICATION_ID,
@@ -46,7 +46,7 @@ public class IntentUtils {
 
     Intent intent = getActivityIntent(componentName);
 
-    if (!activityModel.isExported()) {
+    if (!activityModel.getExported()) {
       ComponentName originComponent = activityModel.getComponentName();
       intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, originComponent.getPackageName());
       intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, originComponent.getClassName());

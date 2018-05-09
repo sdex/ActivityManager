@@ -56,7 +56,7 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
 
       val context = itemView.context
 
-      @ColorRes val color: Int = if (item.isExported) {
+      @ColorRes val color: Int = if (item.exported) {
         android.R.color.black
       } else {
         R.color.red
@@ -69,8 +69,8 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
         val popup = PopupMenu(context, v)
         popup.inflate(R.menu.activity_item_menu)
         val menu = popup.menu
-        menu.setGroupVisible(R.id.menu_group_activity_exported, item.isExported)
-        menu.setGroupVisible(R.id.menu_group_activity_not_exported, !item.isExported)
+        menu.setGroupVisible(R.id.menu_group_activity_exported, item.exported)
+        menu.setGroupVisible(R.id.menu_group_activity_not_exported, !item.exported)
         popup.show()
         popup.setOnMenuItemClickListener { menuItem ->
           when (menuItem.itemId) {

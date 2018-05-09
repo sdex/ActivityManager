@@ -54,7 +54,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
   }
 
   override fun launchActivity(item: ActivityModel) {
-    if (item.isExported) {
+    if (item.exported) {
       IntentUtils.launchActivity(this, item.componentName, item.name)
     } else {
       tryRunWithRoot(item)

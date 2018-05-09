@@ -50,7 +50,7 @@ public class AppLoaderIntentService extends JobIntentService {
   @Override
   protected void onHandleWork(@Nullable Intent intent) {
     preferences = getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
-    final AppDatabase database = AppDatabase.getDatabase(this);
+    final AppDatabase database = AppDatabase.Companion.getDatabase(this);
     int action = REFRESH_AUTO;
     if (intent != null) {
       action = intent.getIntExtra(ARG_REASON, REFRESH_AUTO);
@@ -68,7 +68,7 @@ public class AppLoaderIntentService extends JobIntentService {
 
   private void updateApplications() {
     long start = System.currentTimeMillis();
-    final AppDatabase database = AppDatabase.getDatabase(this);
+    final AppDatabase database = AppDatabase.Companion.getDatabase(this);
     PackageManager pm = getPackageManager();
 
     List<ApplicationModel> applications = new ArrayList<>();
