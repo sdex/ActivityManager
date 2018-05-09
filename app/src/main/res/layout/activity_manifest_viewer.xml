@@ -15,7 +15,7 @@
     android:layout_weight="1">
 
     <com.pddstudio.highlightjs.HighlightJsView
-      android:id="@+id/highlight_view"
+      android:id="@+id/highlightView"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
 
