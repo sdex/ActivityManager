@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
-import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -299,7 +298,7 @@ class IntentBuilderActivity : BaseActivity(),
   }
 
   private fun updateIcon(imageView: ImageView, text: String?) {
-    imageView.setImageResource(if (TextUtils.isEmpty(text))
+    imageView.setImageResource(if (text.isNullOrBlank())
       R.drawable.ic_assignment
     else
       R.drawable.ic_assignment_done)

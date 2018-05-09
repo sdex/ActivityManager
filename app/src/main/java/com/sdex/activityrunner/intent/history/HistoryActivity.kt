@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.sdex.activityrunner.GetPremiumDialog
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.activityrunner.util.addDivider
@@ -18,7 +19,7 @@ import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_history.*
 
-class HistoryActivity : BaseActivity() {
+class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
   private var appPreferences: AppPreferences? = null
   private var adapter: HistoryListAdapter? = null
@@ -35,14 +36,7 @@ class HistoryActivity : BaseActivity() {
 
     enableBackButton()
 
-    adapter = HistoryListAdapter { item, _ ->
-      val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(item)
-      val launchParams = historyToLaunchParamsConverter.convert()
-      val data = Intent()
-      data.putExtra(RESULT, launchParams)
-      setResult(Activity.RESULT_OK, data)
-      finish()
-    }
+    adapter = HistoryListAdapter(this)
     adapter!!.setHasStableIds(true)
     list.addDivider()
     list.setHasFixedSize(true)
@@ -105,6 +99,15 @@ class HistoryActivity : BaseActivity() {
       }
       else -> super.onOptionsItemSelected(item)
     }
+  }
+
+  override fun onItemClicked(item: HistoryModel, position: Int) {
+    val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(item)
+    val launchParams = historyToLaunchParamsConverter.convert()
+    val data = Intent()
+    data.putExtra(RESULT, launchParams)
+    setResult(Activity.RESULT_OK, data)
+    finish()
   }
 
   companion object {

@@ -1,11 +1,9 @@
 package com.sdex.activityrunner.db.query
 
-import android.text.TextUtils
-
 import com.sdex.activityrunner.db.application.ApplicationModel
 import com.sdex.activityrunner.preferences.SortingPreferences
 
-class GetApplicationsQuery(private val searchText: String, sortingPreferences: SortingPreferences) {
+class GetApplicationsQuery(private val searchText: String?, sortingPreferences: SortingPreferences) {
 
   private val sortBy: String = sortingPreferences.sortBy
   private val sortOrder: String = sortingPreferences.sortOrder
@@ -15,7 +13,7 @@ class GetApplicationsQuery(private val searchText: String, sortingPreferences: S
     val queryStringBuilder = StringBuilder()
     queryStringBuilder.append("SELECT * FROM ").append(ApplicationModel.TABLE).append(" ")
     queryStringBuilder.append("WHERE ").append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ")
-    if (!TextUtils.isEmpty(searchText)) {
+    if (!searchText.isNullOrBlank()) {
       queryStringBuilder.append(" AND ").append(ApplicationModel.NAME)
         .append(" LIKE '%").append(searchText).append("%' ")
     }
