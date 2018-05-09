@@ -132,10 +132,13 @@ class IntentBuilderActivity : BaseActivity(),
     outState.putParcelable(STATE_LAUNCH_PARAMS, launchParams)
   }
 
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (requestCode == HistoryActivity.getRequestCode() && resultCode == Activity.RESULT_OK) {
-      launchParams = data.getParcelableExtra(HistoryActivity.getResult())
+      val result = data?.getParcelableExtra<LaunchParams>(HistoryActivity.getResult())
+      if (result != null) {
+        launchParams = result
+      }
       showLaunchParams()
     }
   }
