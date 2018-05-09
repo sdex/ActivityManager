@@ -60,7 +60,9 @@ class IntentBuilderActivity : BaseActivity(),
 
     enableBackButton()
     val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
-    title = activityModel?.name
+    if (activityModel != null) {
+      title = activityModel.name
+    }
     launchParams.packageName = activityModel?.packageName
     launchParams.className = activityModel?.className
 
