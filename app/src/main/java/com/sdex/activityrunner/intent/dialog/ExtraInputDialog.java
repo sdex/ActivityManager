@@ -12,10 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
 import com.sdex.activityrunner.R;
 import com.sdex.activityrunner.intent.LaunchParamsExtra;
 import com.sdex.activityrunner.intent.LaunchParamsExtraType;
-import com.sdex.activityrunner.util.ObjectsCompat;
 
 public class ExtraInputDialog extends DialogFragment {
 
@@ -46,8 +46,7 @@ public class ExtraInputDialog extends DialogFragment {
     } else {
       throw new NullPointerException();
     }
-    final AlertDialog.Builder builder =
-      new AlertDialog.Builder(ObjectsCompat.requireNonNull(getActivity()));
+    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     View view = View.inflate(getActivity(), R.layout.dialog_input_extra, null);
     final EditText keyView = view.findViewById(R.id.key);
     final EditText valueView = view.findViewById(R.id.value);

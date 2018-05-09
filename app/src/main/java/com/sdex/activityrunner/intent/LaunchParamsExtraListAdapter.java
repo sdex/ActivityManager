@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.sdex.activityrunner.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

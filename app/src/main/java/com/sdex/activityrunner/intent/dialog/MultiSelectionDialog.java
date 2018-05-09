@@ -7,8 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.SparseBooleanArray;
+
 import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
-import com.sdex.activityrunner.util.ObjectsCompat;
+
 import java.util.ArrayList;
 
 public class MultiSelectionDialog extends DialogFragment {
@@ -41,9 +42,8 @@ public class MultiSelectionDialog extends DialogFragment {
     final ArrayList<Integer> initialPositions;
     if (getArguments() != null) {
       type = getArguments().getInt(ARG_TYPE);
-      source = ObjectsCompat.requireNonNull(getArguments().getParcelable(ARG_SOURCE));
-      initialPositions = ObjectsCompat.requireNonNull(
-        getArguments().getIntegerArrayList(ARG_INITIAL_POSITIONS));
+      source = getArguments().getParcelable(ARG_SOURCE);
+      initialPositions = (getArguments().getIntegerArrayList(ARG_INITIAL_POSITIONS));
     } else {
       throw new NullPointerException();
     }
@@ -54,8 +54,7 @@ public class MultiSelectionDialog extends DialogFragment {
       checkedItems[i] = checked;
       selectedItems.put(i, checked);
     }
-    final AlertDialog.Builder builder =
-      new AlertDialog.Builder(ObjectsCompat.requireNonNull(getActivity()));
+    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setMultiChoiceItems(list.toArray(new String[list.size()]), checkedItems,
       (dialog, which, isChecked) -> selectedItems.put(which, isChecked));
     builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {

@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+
 import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource;
-import com.sdex.activityrunner.util.ObjectsCompat;
+
 import java.util.ArrayList;
 
 public class SingleSelectionDialog extends DialogFragment {
@@ -44,9 +45,8 @@ public class SingleSelectionDialog extends DialogFragment {
     } else {
       throw new NullPointerException();
     }
-    final ArrayList<String> list = ObjectsCompat.requireNonNull(source).getList();
-    final AlertDialog.Builder builder =
-      new AlertDialog.Builder(ObjectsCompat.requireNonNull(getActivity()));
+    final ArrayList<String> list = source.getList();
+    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setSingleChoiceItems(list.toArray(new String[list.size()]),
       initialPosition, (dialog, which) -> {
         callback.onItemSelected(type, which);

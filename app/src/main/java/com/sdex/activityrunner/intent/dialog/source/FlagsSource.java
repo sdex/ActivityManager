@@ -1,7 +1,9 @@
 package com.sdex.activityrunner.intent.dialog.source;
 
 import android.os.Parcel;
+
 import com.sdex.activityrunner.intent.param.Flag;
+
 import java.util.ArrayList;
 
 public class FlagsSource implements SelectionDialogSource {

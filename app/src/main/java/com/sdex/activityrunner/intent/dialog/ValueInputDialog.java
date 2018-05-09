@@ -9,8 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+
 import com.sdex.activityrunner.R;
-import com.sdex.activityrunner.util.ObjectsCompat;
 
 public class ValueInputDialog extends DialogFragment {
 
@@ -41,8 +41,7 @@ public class ValueInputDialog extends DialogFragment {
     } else {
       throw new NullPointerException();
     }
-    final AlertDialog.Builder builder =
-      new AlertDialog.Builder(ObjectsCompat.requireNonNull(getActivity()));
+    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     View view = View.inflate(getActivity(), R.layout.dialog_input_value, null);
     final EditText valueView = view.findViewById(R.id.value);
     valueView.setText(initialValue);
