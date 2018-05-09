@@ -14,7 +14,7 @@ class GetPremiumDialog : DialogFragment() {
       .setTitle(R.string.pro_version_dialog_title)
       .setMessage(message)
       .setPositiveButton(R.string.pro_version_get
-      ) { dialog, which -> PurchaseActivity.start(activity) }
+      ) { _, _ -> PurchaseActivity.start(activity!!) }
       .create()
   }
 

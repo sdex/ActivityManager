@@ -86,11 +86,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         if (appPreferences.isProVersion()) {
           CheckRootTask checkRootTask = new CheckRootTask(status -> {
             if (getActivity() != null && isAdded()) {
-              if (status == CheckRootTask.ROOT_IS_NOT_AVAILABLE) {
-                rootIntegration.setChecked(false);
-                Toast.makeText(getActivity(), R.string.settings_error_root_not_available,
-                  Toast.LENGTH_SHORT).show();
-              } else if (status == CheckRootTask.ACCESS_IS_NOT_GIVEN) {
+              if (status != CheckRootTask.RESULT_OK) {
                 rootIntegration.setChecked(false);
                 Toast.makeText(getActivity(), R.string.settings_error_root_not_granted,
                   Toast.LENGTH_SHORT).show();
@@ -104,7 +100,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             .setTitle(R.string.pro_version_dialog_title)
             .setMessage(R.string.pro_version_unlock_root_integration)
             .setPositiveButton(R.string.pro_version_get,
-              (dialog, which) -> PurchaseActivity.start(getActivity()))
+              (dialog, which) -> PurchaseActivity.Companion.start(getActivity()))
             .show();
           return false;
         }

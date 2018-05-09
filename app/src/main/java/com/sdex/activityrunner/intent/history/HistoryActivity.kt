@@ -113,14 +113,6 @@ class HistoryActivity : BaseActivity() {
 
     const val REQUEST_CODE = 111
 
-    fun getResult() : String {
-      return RESULT
-    }
-
-    fun getRequestCode() : Int {
-      return REQUEST_CODE
-    }
-
     fun getLaunchIntent(context: Context): Intent {
       return Intent(context, HistoryActivity::class.java)
     }

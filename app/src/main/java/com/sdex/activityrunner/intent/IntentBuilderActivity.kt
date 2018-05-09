@@ -134,8 +134,8 @@ class IntentBuilderActivity : BaseActivity(),
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == HistoryActivity.getRequestCode() && resultCode == Activity.RESULT_OK) {
-      val result = data?.getParcelableExtra<LaunchParams>(HistoryActivity.getResult())
+    if (requestCode == HistoryActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+      val result = data?.getParcelableExtra<LaunchParams>(HistoryActivity.RESULT)
       if (result != null) {
         launchParams = result
       }
@@ -152,7 +152,7 @@ class IntentBuilderActivity : BaseActivity(),
     return when (item.itemId) {
       R.id.action_history -> {
         val intent = HistoryActivity.getLaunchIntent(this)
-        startActivityForResult(intent, HistoryActivity.getRequestCode())
+        startActivityForResult(intent, HistoryActivity.REQUEST_CODE)
         true
       }
       else -> super.onOptionsItemSelected(item)

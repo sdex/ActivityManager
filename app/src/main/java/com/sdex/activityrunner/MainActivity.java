@@ -162,7 +162,7 @@ public class MainActivity extends BaseActivity {
   private void handlePurchases(@Nullable List<Purchase> purchases) {
     if (purchases != null) {
       for (Purchase purchase : purchases) {
-        if (PurchaseActivity.isPremiumVersion(purchase.getSku())) {
+        if (PurchaseActivity.Companion.isPremiumVersion(purchase.getSku())) {
           isProVersionEnabled = true;
           invalidateOptionsMenu();
           break;
@@ -242,7 +242,7 @@ public class MainActivity extends BaseActivity {
         return true;
       }
       case R.id.action_upgrade: {
-        PurchaseActivity.start(this);
+        PurchaseActivity.Companion.start(this);
         return true;
       }
       case R.id.action_about: {

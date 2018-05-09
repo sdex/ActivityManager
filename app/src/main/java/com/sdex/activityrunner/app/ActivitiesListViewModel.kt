@@ -16,7 +16,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   init {
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
-
   }
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
