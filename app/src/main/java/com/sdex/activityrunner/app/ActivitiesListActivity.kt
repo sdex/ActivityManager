@@ -14,6 +14,7 @@ import com.sdex.activityrunner.db.application.ApplicationModel
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
+import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
 import com.sdex.activityrunner.util.addDivider
