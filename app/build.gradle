@@ -91,9 +91,6 @@ dependencies {
   annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
   kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
-  implementation "com.jakewharton:butterknife:$versions.butterKnife"
-  annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
-
   implementation "com.android.billingclient:billing:1.0"
   implementation "de.psdev.licensesdialog:licensesdialog:1.7.0"
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"

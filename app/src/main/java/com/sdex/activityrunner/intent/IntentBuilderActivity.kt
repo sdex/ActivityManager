@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import butterknife.ButterKnife
 import com.sdex.activityrunner.GetPremiumDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.activity.ActivityModel
@@ -50,7 +49,6 @@ class IntentBuilderActivity : BaseActivity(),
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    ButterKnife.bind(this)
 
     viewModel = ViewModelProviders.of(this).get(LaunchParamsViewModel::class.java)
 
