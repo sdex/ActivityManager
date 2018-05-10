@@ -1,12 +1,12 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
 
   <header
-    android:fragment="com.sdex.activityrunner.preferences.SettingsActivity$SortPreferenceFragment"
+    android:fragment="com.sdex.activityrunner.preferences.SortPreferenceFragment"
     android:icon="@drawable/ic_sort"
     android:title="@string/pref_header_sort" />
 
   <header
-    android:fragment="com.sdex.activityrunner.preferences.SettingsActivity$AdvancedPreferenceFragment"
+    android:fragment="com.sdex.activityrunner.preferences.AdvancedPreferenceFragment"
     android:icon="@drawable/ic_settings_gray"
     android:title="@string/pref_header_advanced" />
 

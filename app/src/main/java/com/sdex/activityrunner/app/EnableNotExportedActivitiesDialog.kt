@@ -14,7 +14,9 @@ class EnableNotExportedActivitiesDialog : DialogFragment() {
     return AlertDialog.Builder(activity!!)
       .setTitle("Non-exported activities")
       .setMessage("You can enable displaying non-exported activities in settings")
-      .setPositiveButton(R.string.action_settings) { _, _ -> SettingsActivity.start(activity, SettingsActivity.ADVANCED) }
+      .setPositiveButton(R.string.action_settings) { _, _ ->
+        SettingsActivity.start(activity!!, SettingsActivity.ADVANCED)
+      }
       .setNegativeButton(android.R.string.cancel, null)
       .create()
   }

@@ -1,6 +1,8 @@
 package com.sdex.activityrunner.util
 
 import android.annotation.TargetApi
+import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Bitmap.Config
 import android.graphics.Canvas
@@ -79,4 +81,8 @@ object Utils {
     return outputBitmap
   }
 
+  fun isXLargeTablet(context: Context): Boolean {
+    return context.resources.configuration.screenLayout and
+      Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
+  }
 }
