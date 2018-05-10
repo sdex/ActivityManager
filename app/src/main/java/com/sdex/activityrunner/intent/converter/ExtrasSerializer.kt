@@ -28,11 +28,8 @@ class ExtrasSerializer {
     val output = ArrayList<LaunchParamsExtra>(extras.size)
     for (extra in extras) {
       val values = extra.split(DELIMITER_KEY_VALUE.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-      val paramsExtra = LaunchParamsExtra()
-      paramsExtra.key = values[0]
-      paramsExtra.value = values[1]
-      paramsExtra.type = Integer.parseInt(values[2])
-      paramsExtra.isArray = java.lang.Boolean.parseBoolean(values[3])
+      val paramsExtra = LaunchParamsExtra(values[0], values[1], Integer.parseInt(values[2]),
+        java.lang.Boolean.parseBoolean(values[3]))
       output.add(paramsExtra)
     }
     return output

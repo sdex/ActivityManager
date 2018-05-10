@@ -54,7 +54,7 @@ class AddShortcutDialogFragment : DialogFragment() {
           }
           if (activityModel != null) {
             activityModel.name = shortcutName
-            IntentUtils.createLauncherIcon(activity, activityModel)
+            IntentUtils.createLauncherIcon(activity!!, activityModel)
           } else {
             createHistoryModelShortcut(historyModel!!, shortcutName)
           }
@@ -69,7 +69,7 @@ class AddShortcutDialogFragment : DialogFragment() {
     val launchParams = historyToLaunchParamsConverter.convert()
     val converter = LaunchParamsToIntentConverter(launchParams)
     val intent = converter.convert()
-    IntentUtils.createLauncherIcon(activity, shortcutName, intent, R.mipmap.ic_launcher)
+    IntentUtils.createLauncherIcon(activity!!, shortcutName, intent, R.mipmap.ic_launcher)
   }
 
   companion object {

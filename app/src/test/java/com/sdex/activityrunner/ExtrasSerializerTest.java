@@ -1,13 +1,15 @@
 package com.sdex.activityrunner;
 
-import static org.junit.Assert.assertEquals;
-
 import com.sdex.activityrunner.intent.LaunchParamsExtra;
 import com.sdex.activityrunner.intent.LaunchParamsExtraType;
 import com.sdex.activityrunner.intent.converter.ExtrasSerializer;
-import java.util.ArrayList;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class ExtrasSerializerTest {
 
@@ -16,25 +18,16 @@ public class ExtrasSerializerTest {
 
   @BeforeClass
   public static void setUp() {
-    LaunchParamsExtra extra0 = new LaunchParamsExtra();
-    extra0.setKey("k0");
-    extra0.setValue("3.3");
-    extra0.setType(LaunchParamsExtraType.DOUBLE);
-    extra0.setArray(true);
+    LaunchParamsExtra extra0 = new LaunchParamsExtra("k0", "3.3",
+      LaunchParamsExtraType.Companion.getDOUBLE(), true);
     EXPECTED_LIST.add(extra0);
 
-    LaunchParamsExtra extra1 = new LaunchParamsExtra();
-    extra1.setKey("k1");
-    extra1.setValue("v1");
-    extra1.setType(LaunchParamsExtraType.STRING);
-    extra1.setArray(false);
+    LaunchParamsExtra extra1 = new LaunchParamsExtra("k1", "v1",
+      LaunchParamsExtraType.Companion.getSTRING(), false);
     EXPECTED_LIST.add(extra1);
 
-    LaunchParamsExtra extra2 = new LaunchParamsExtra();
-    extra2.setKey("k2");
-    extra2.setValue("888");
-    extra2.setType(LaunchParamsExtraType.INT);
-    extra2.setArray(false);
+    LaunchParamsExtra extra2 = new LaunchParamsExtra("k2", "888",
+      LaunchParamsExtraType.Companion.getINT(), false);
     EXPECTED_LIST.add(extra2);
   }
 

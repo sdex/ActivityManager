@@ -21,7 +21,9 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
     if (packageName != null && className != null) {
       intent.setClassName(packageName, className)
     }
-    intent.action = Action.getAction(launchParams.actionValue)
+    if (launchParams.actionValue != null) {
+      intent.action = Action.getAction(launchParams.actionValue)
+    }
     val data = launchParams.data
     if (data != null) {
       intent.data = Uri.parse(data)
@@ -33,7 +35,7 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
     }
     val flags = Flag.list(launchParams.flagsValues)
     for (flag in flags) {
-      intent.addFlags(flag!!)
+      intent.addFlags(flag)
     }
     val extras = launchParams.extras
     addExtras(intent, extras)

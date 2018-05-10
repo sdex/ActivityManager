@@ -68,10 +68,7 @@ class ExtraInputDialog : DialogFragment() {
             return@setOnClickListener
           }
 
-          val extra = LaunchParamsExtra()
-          extra.key = newKey
-          extra.value = newValue
-          extra.type = type
+          val extra = LaunchParamsExtra(newKey, newValue, type, view.array.isChecked)
           callback!!.onValueSet(extra, position)
           dismiss()
         }
@@ -89,7 +86,6 @@ class ExtraInputDialog : DialogFragment() {
 
   }
 
-  @LaunchParamsExtraType
   private fun getSelectedType(view: View): Int {
     if (view.rb_string.isChecked) {
       return LaunchParamsExtraType.STRING
@@ -111,7 +107,7 @@ class ExtraInputDialog : DialogFragment() {
     } else -1
   }
 
-  private fun setSelectedType(view: View, @LaunchParamsExtraType type: Int) {
+  private fun setSelectedType(view: View, type: Int) {
     var radioButton: RadioButton? = null
     when (type) {
       LaunchParamsExtraType.STRING -> radioButton = view.rb_string

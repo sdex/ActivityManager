@@ -50,7 +50,7 @@ public class LaunchParams implements Parcelable {
     if (action == 0) {
       return null;
     }
-    return Action.list().get(action);
+    return Action.INSTANCE.list().get(action);
   }
 
   public int getAction() {
@@ -73,7 +73,7 @@ public class LaunchParams implements Parcelable {
     if (mimeType == 0) {
       return null;
     }
-    return MimeType.list().get(mimeType);
+    return MimeType.INSTANCE.list().get(mimeType);
   }
 
   public int getMimeType() {
@@ -89,7 +89,7 @@ public class LaunchParams implements Parcelable {
   }
 
   public ArrayList<String> getCategoriesValues() {
-    final ArrayList<String> list = Category.list();
+    final ArrayList<String> list = Category.INSTANCE.list();
     final ArrayList<String> result = new ArrayList<>(categories.size());
     for (Integer position : categories) {
       result.add(list.get(position));
@@ -106,7 +106,7 @@ public class LaunchParams implements Parcelable {
   }
 
   public ArrayList<String> getFlagsValues() {
-    final ArrayList<String> list = Flag.list();
+    final ArrayList<String> list = Flag.INSTANCE.list();
     final ArrayList<String> result = new ArrayList<>(flags.size());
     for (Integer position : flags) {
       result.add(list.get(position));

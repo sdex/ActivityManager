@@ -88,7 +88,7 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
       return if (value.isNullOrBlank()) None.VALUE else value!!
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {
       menu.setHeaderTitle(R.string.history_item_dialog_title)
       menu.add(Menu.NONE, MENU_ITEM_ADD_SHORTCUT, Menu.NONE,
         R.string.history_item_dialog_add_shortcut)

@@ -8,10 +8,8 @@ import com.sdex.activityrunner.R
 fun RecyclerView.addDivider() {
   val context = this.context
   val dividerDrawable = ContextCompat.getDrawable(context, R.drawable.list_divider)
-  if (dividerDrawable != null) {
-    val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-    dividerItemDecoration.setDrawable(dividerDrawable)
-    this.addItemDecoration(dividerItemDecoration)
-  }
+  val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+  dividerDrawable?.let { dividerItemDecoration.setDrawable(it) }
+  this.addItemDecoration(dividerItemDecoration)
 }
 
