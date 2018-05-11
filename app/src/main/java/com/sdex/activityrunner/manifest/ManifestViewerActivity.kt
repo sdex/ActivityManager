@@ -8,6 +8,7 @@ import android.os.Bundle
 import com.pddstudio.highlightjs.models.Language
 import com.pddstudio.highlightjs.models.Theme
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 

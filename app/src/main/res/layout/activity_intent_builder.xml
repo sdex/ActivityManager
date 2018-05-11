@@ -505,7 +505,7 @@
   </FrameLayout>
 
   <FrameLayout
-    android:id="@+id/ads_container"
+    android:id="@+id/adsContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 

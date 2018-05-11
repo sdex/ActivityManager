@@ -47,7 +47,7 @@ public class DisableAdsActivity extends BaseActivity {
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    enableBackButton();
+//    enableBackButton();
 
     int adsIdRes = getIntent().getIntExtra(ARG_ADS_ID, 0);
     if (adsIdRes != 0) {

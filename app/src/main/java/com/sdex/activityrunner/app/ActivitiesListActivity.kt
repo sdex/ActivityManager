@@ -11,13 +11,14 @@ import android.support.v4.content.ContextCompat
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.activity.ActivityModel
 import com.sdex.activityrunner.db.application.ApplicationModel
+import com.sdex.activityrunner.extensions.addDivider
+import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
-import com.sdex.activityrunner.util.addDivider
 import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.activity_activities_list.*
 

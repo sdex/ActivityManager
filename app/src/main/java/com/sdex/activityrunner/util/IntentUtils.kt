@@ -13,6 +13,7 @@ import android.support.v4.content.pm.ShortcutManagerCompat
 import android.support.v4.graphics.drawable.IconCompat
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
+import androidx.core.graphics.drawable.toBitmap
 
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -73,7 +74,7 @@ object IntentUtils {
       .override(100)
       .into(object : SimpleTarget<Drawable>() {
         override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-          createLauncherIcon(context, activityModel, Utils.getBitmap(resource))
+          createLauncherIcon(context, activityModel, resource.toBitmap())
         }
       })
   }

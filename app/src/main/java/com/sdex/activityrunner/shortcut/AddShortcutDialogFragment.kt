@@ -2,11 +2,9 @@ package com.sdex.activityrunner.shortcut
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
@@ -16,6 +14,7 @@ import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.util.IntentUtils
+import kotlinx.android.synthetic.main.dialog_add_shortcut.view.*
 
 class AddShortcutDialogFragment : DialogFragment() {
 
@@ -25,11 +24,9 @@ class AddShortcutDialogFragment : DialogFragment() {
 
     val builder = AlertDialog.Builder(activity!!)
     val view = View.inflate(activity, R.layout.dialog_add_shortcut, null)
-    val labelViewLayout = view.findViewById<TextInputLayout>(R.id.value_layout)
-    val textName = view.findViewById<EditText>(R.id.shortcut_name)
 
-    textName.setText(activityModel?.name)
-    textName.setSelection(textName.text.length)
+    view.shortcut_name.setText(activityModel?.name)
+    view.shortcut_name.setSelection(view.shortcut_name.text.length)
 
     val imageIcon = view.findViewById<ImageView>(R.id.app_icon)
     GlideApp.with(this)
@@ -46,17 +43,18 @@ class AddShortcutDialogFragment : DialogFragment() {
     alertDialog.setOnShowListener { _ ->
       alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
         .setOnClickListener { _ ->
-          labelViewLayout.error = null
-          val shortcutName = textName.text.toString()
+          view.value_layout.error = null
+          val shortcutName = view.shortcut_name.text.toString()
           if (shortcutName.isBlank()) {
-            labelViewLayout.error = getString(R.string.shortcut_name_empty)
+            view.value_layout.error = getString(R.string.shortcut_name_empty)
             return@setOnClickListener
           }
-          if (activityModel != null) {
+          activityModel?.let {
             activityModel.name = shortcutName
             IntentUtils.createLauncherIcon(activity!!, activityModel)
-          } else {
-            createHistoryModelShortcut(historyModel!!, shortcutName)
+          }
+          historyModel?.let {
+            createHistoryModelShortcut(historyModel, shortcutName)
           }
           dismiss()
         }

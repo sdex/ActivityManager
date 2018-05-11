@@ -17,10 +17,10 @@ import com.android.billingclient.api.BillingClient.SkuType
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.Purchase
 import com.codemybrainsout.ratingdialog.RatingDialog
+import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.service.AppLoaderIntentService
-import com.sdex.activityrunner.util.addDivider
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AdsDelegate
 import com.sdex.commons.ads.AppPreferences

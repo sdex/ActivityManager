@@ -9,11 +9,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageView
 import com.sdex.activityrunner.GetPremiumDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.activity.ActivityModel
+import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
@@ -54,7 +54,6 @@ class IntentBuilderActivity : BaseActivity(),
 
     appPreferences = AppPreferences(this)
 
-    val adsContainer = findViewById<FrameLayout>(R.id.ads_container)
     adsDelegate = AdsDelegate(appPreferences, adsContainer)
     adsDelegate!!.initBanner(this, R.string.ad_banner_unit_id)
 
@@ -98,17 +97,17 @@ class IntentBuilderActivity : BaseActivity(),
     flagsAdapter!!.setHasStableIds(true)
     listFlagsView.adapter = flagsAdapter
 
-    bindInputValueDialog(R.id.container_package_name, R.string.launch_param_package_name)
-    bindInputValueDialog(R.id.container_class_name, R.string.launch_param_class_name)
-    bindInputValueDialog(R.id.container_data, R.string.launch_param_data)
-    bindSingleSelectionDialog(R.id.container_action, R.string.launch_param_action,
+    bindInputValueDialog(container_package_name, R.string.launch_param_package_name)
+    bindInputValueDialog(container_class_name, R.string.launch_param_class_name)
+    bindInputValueDialog(container_data, R.string.launch_param_data)
+    bindSingleSelectionDialog(container_action, R.string.launch_param_action,
       ActionSource())
-    bindSingleSelectionDialog(R.id.container_mime_type, R.string.launch_param_mime_type,
+    bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type,
       MimeTypeSource())
-    bindKeyValueDialog(R.id.container_extras)
-    bindMultiSelectionDialog(R.id.categories_click_interceptor, R.string.launch_param_categories,
+    bindKeyValueDialog(container_extras)
+    bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories,
       CategoriesSource())
-    bindMultiSelectionDialog(R.id.flags_click_interceptor, R.string.launch_param_flags,
+    bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags,
       FlagsSource())
 
     findViewById<View>(R.id.launch).setOnClickListener {
@@ -195,35 +194,35 @@ class IntentBuilderActivity : BaseActivity(),
 
   private fun configureRecyclerView(recyclerView: RecyclerView) {
     recyclerView.isNestedScrollingEnabled = false
-    recyclerView.setHasFixedSize(true)
+    recyclerView.setHasFixedSize(false)
   }
 
-  private fun bindInputValueDialog(viewId: Int, type: Int) {
-    findViewById<View>(viewId).setOnClickListener {
+  private fun bindInputValueDialog(view: View, type: Int) {
+    view.setOnClickListener {
       val initialValue = getValueInitialPosition(type)
       val dialog = ValueInputDialog.newInstance(type, initialValue)
       dialog.show(supportFragmentManager, ValueInputDialog.TAG)
     }
   }
 
-  private fun bindSingleSelectionDialog(viewId: Int, type: Int, source: SelectionDialogSource) {
-    findViewById<View>(viewId).setOnClickListener {
+  private fun bindSingleSelectionDialog(view: View, type: Int, source: SelectionDialogSource) {
+    view.setOnClickListener {
       val initialPosition = getSingleSelectionInitialPosition(type)
       val dialog = SingleSelectionDialog.newInstance(type, source, initialPosition)
       dialog.show(supportFragmentManager, SingleSelectionDialog.TAG)
     }
   }
 
-  private fun bindMultiSelectionDialog(viewId: Int, type: Int, source: SelectionDialogSource) {
-    findViewById<View>(viewId).setOnClickListener {
+  private fun bindMultiSelectionDialog(view: View, type: Int, source: SelectionDialogSource) {
+    view.setOnClickListener {
       val initialPositions = getMultiSelectionInitialPositions(type)
       val dialog = MultiSelectionDialog.newInstance(type, source, initialPositions)
       dialog.show(supportFragmentManager, MultiSelectionDialog.TAG)
     }
   }
 
-  private fun bindKeyValueDialog(viewId: Int) {
-    findViewById<View>(viewId).setOnClickListener {
+  private fun bindKeyValueDialog(view: View) {
+    view.setOnClickListener {
       val size = launchParams.extras.size
       if (size >= EXTRAS_LIMIT && !appPreferences!!.isProVersion) {
         val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_extras)

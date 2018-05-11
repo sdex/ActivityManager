@@ -36,7 +36,7 @@ public class AppLoaderIntentService extends JobIntentService {
   public static final int REFRESH_AUTO = 10;
   public static final int REFRESH_USER = 20;
 
-  private static final long FORCE_REFRESH_PERIOD = TimeUnit.DAYS.toMillis(1);
+  private static final long FORCE_REFRESH_PERIOD = TimeUnit.HOURS.toMillis(6);
 
   private static final String PREFERENCES_NAME = "preferences";
   private static final String PREFERENCES_KEY_LAST_UPDATE = "last_update";

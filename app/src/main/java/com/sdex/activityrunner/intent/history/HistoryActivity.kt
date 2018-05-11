@@ -12,9 +12,10 @@ import android.view.MenuItem
 import com.sdex.activityrunner.GetPremiumDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
+import com.sdex.activityrunner.extensions.addDivider
+import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
-import com.sdex.activityrunner.util.addDivider
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_history.*
