@@ -3,7 +3,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.triplet.play'
-//apply plugin: 'io.fabric'
+apply plugin: 'io.fabric'
 
 def keystorePropertiesFile = file("keystore/keystore.properties")
 def keystoreProperties = new Properties()
@@ -23,8 +23,8 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 1800
-    versionName "1.8.0"
+    versionCode 2000
+    versionName "2.0.0-beta1"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
 
@@ -88,9 +88,9 @@ dependencies {
 
   implementation "com.google.firebase:firebase-ads:$versions.playServices"
   implementation "com.google.firebase:firebase-core:$versions.playServices"
-//  implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
-//    transitive = true
-//  }
+  implementation('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
+    transitive = true
+  }
 
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
   annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
