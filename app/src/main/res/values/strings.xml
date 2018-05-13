@@ -25,6 +25,9 @@
   <string name="starting_activity_intent">Starting activity</string>
   <string name="starting_activity_intent_failed">Failed to start activity</string>
 
+  <string name="activities_list_empty_text">There is no public visible activities</string>
+  <string name="activities_list_empty_action">turn on advanced mode</string>
+
   <string name="action_upgrade">Upgrade</string>
   <string name="action_about">About</string>
   <string name="action_launch_intent">Intent builder</string>
@@ -124,6 +127,7 @@
   <string name="settings_error_root_not_available">ROOT is not available</string>
   <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
   <string name="settings_error_root_not_active">You need to enable ROOT integration</string>
+
   <string-array name="pref_sort_order_list_titles">
     <item>Ascending</item>
     <item>Descending</item>

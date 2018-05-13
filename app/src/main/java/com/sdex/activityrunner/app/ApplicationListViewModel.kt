@@ -64,10 +64,10 @@ class ApplicationListViewModel(application: Application) : AndroidViewModel(appl
     try {
       val info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
       val model = getApplicationModel(pm, packageName, info)
-      applications.add(model)
       if (info.activities != null) {
         model.activitiesCount = info.activities.size
         model.exportedActivitiesCount = getExportedActivitiesCount(info.activities)
+        applications.add(model)
       }
     } catch (e: Exception) {
       e.printStackTrace()

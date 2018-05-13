@@ -22,7 +22,41 @@
       android:scrollbars="vertical"
       app:layoutManager="android.support.v7.widget.LinearLayoutManager"
       tools:itemCount="15"
-      tools:listitem="@layout/item_activity" />
+      tools:listitem="@layout/item_activity"
+      tools:visibility="gone" />
+
+    <LinearLayout
+      android:id="@+id/empty"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:visibility="gone"
+      tools:visibility="visible">
+
+      <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_folder_open" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/activities_list_empty_text"
+        android:textSize="18sp" />
+
+      <Button
+        android:id="@+id/turnOnAdvanced"
+        style="?borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/activities_list_empty_action"
+        android:textColor="@color/blue" />
+
+    </LinearLayout>
 
   </FrameLayout>
 

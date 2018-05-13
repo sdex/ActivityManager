@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
@@ -41,10 +43,22 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       adapter.submitList(it)
       val size = it!!.size
       setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
+      if (size == 0) {
+        empty.visibility = VISIBLE
+      } else {
+        empty.visibility = GONE
+      }
     })
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
+
+    turnOnAdvanced.setOnClickListener {
+      sharedPreferences.edit()
+        .putBoolean(SettingsActivity.KEY_ADVANCED_NOT_EXPORTED, true)
+        .apply()
+      viewModel.getItems(item.packageName)
+    }
   }
 
   override fun showShortcutDialog(item: ActivityModel) {

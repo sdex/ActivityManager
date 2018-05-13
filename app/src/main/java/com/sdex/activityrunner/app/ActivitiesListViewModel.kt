@@ -15,6 +15,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
 
   private val packageManager: PackageManager = application.packageManager
   private val advancedPreferences: AdvancedPreferences
+  private var liveData: MutableLiveData<List<ActivityModel>>? = null
 
   init {
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
@@ -22,7 +23,10 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   }
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
-    val liveData = MutableLiveData<List<ActivityModel>>()
+    if (liveData == null) {
+      liveData = MutableLiveData()
+    }
+
     val list = ArrayList<ActivityModel>()
     val showNotExported = advancedPreferences.isShowNotExported
     try {
@@ -42,8 +46,8 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
       e.printStackTrace()
     }
     list.sortBy { it.name }
-    liveData.value = list
-    return liveData
+    liveData!!.value = list
+    return liveData!!
   }
 
   private fun getActivityModel(pm: PackageManager, activityInfo: ActivityInfo): ActivityModel {
