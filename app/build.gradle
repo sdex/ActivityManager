@@ -93,11 +93,9 @@ dependencies {
   }
 
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
-  annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
   kapt "android.arch.lifecycle:compiler:$versions.lifecycle"
 
   implementation "android.arch.persistence.room:runtime:$versions.room"
-  annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
   kapt "android.arch.persistence.room:compiler:$versions.room"
 
   implementation "com.github.bumptech.glide:glide:$versions.glide"
