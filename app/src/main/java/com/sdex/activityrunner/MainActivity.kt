@@ -56,9 +56,7 @@ class MainActivity : BaseActivity() {
     fetchPurchases()
     showRatingDialog()
 
-    if (savedInstanceState != null) {
-      searchText = savedInstanceState.getString(STATE_SEARCH_TEXT)
-    }
+    searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
     progress.show()
 
@@ -84,7 +82,7 @@ class MainActivity : BaseActivity() {
 
   private fun filter(text: String) {
     this.searchText = text
-    viewModel!!.getItems(text).observe(this, Observer { adapter!!.submitList(it) })
+    viewModel!!.getItems(text)
   }
 
   // https://issuetracker.google.com/issues/73289329

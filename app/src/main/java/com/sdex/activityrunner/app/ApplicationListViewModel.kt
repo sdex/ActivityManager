@@ -28,7 +28,7 @@ class ApplicationListViewModel(application: Application) : AndroidViewModel(appl
       liveData = MutableLiveData()
     }
 
-    val list = ArrayList<ApplicationModel>()
+    var list : MutableList<ApplicationModel> = ArrayList()
 
     val installedPackages = packageManager.getInstalledPackages(0)
     for (installedPackage in installedPackages) {
@@ -49,7 +49,7 @@ class ApplicationListViewModel(application: Application) : AndroidViewModel(appl
     }
 
     if (searchText != null) {
-      list.filter { it.name.contains(searchText, true) }
+      list = list.filter { it.name.contains(searchText, true) }.toMutableList()
     }
 
     list.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it.name }))
