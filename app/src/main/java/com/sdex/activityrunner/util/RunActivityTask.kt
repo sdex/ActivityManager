@@ -2,7 +2,6 @@ package com.sdex.activityrunner.util
 
 import android.content.ComponentName
 import android.os.AsyncTask
-import com.topjohnwu.superuser.Shell
 
 class RunActivityTask(private val componentName: ComponentName) : AsyncTask<Void, Void, Int>() {
 
@@ -14,7 +13,7 @@ class RunActivityTask(private val componentName: ComponentName) : AsyncTask<Void
 
     try {
       val command = "am start -n " + componentName.packageName + "/" + className
-      Shell.Sync.su(command)
+      RootUtils.execute(command)
     } catch (e: Exception) {
       e.printStackTrace()
     }
