@@ -1,6 +1,5 @@
 package com.sdex.activityrunner.service;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,10 +14,8 @@ import android.support.v4.app.JobIntentService;
 import android.util.Log;
 
 import com.sdex.activityrunner.db.AppDatabase;
-import com.sdex.activityrunner.db.activity.ActivityModel;
 import com.sdex.activityrunner.db.application.ApplicationModel;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -63,7 +60,6 @@ public class AppLoaderIntentService extends JobIntentService {
     } else {
       updateApplications();
     }
-    cleanImages();
   }
 
   private void updateApplications() {
@@ -72,12 +68,11 @@ public class AppLoaderIntentService extends JobIntentService {
     PackageManager pm = getPackageManager();
 
     List<ApplicationModel> applications = new ArrayList<>();
-    List<ActivityModel> activities = new ArrayList<>();
 
     List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
     for (PackageInfo installedPackage : installedPackages) {
       final String packageName = installedPackage.packageName;
-      addInfo(pm, applications, activities, packageName);
+      addInfo(pm, applications, packageName);
     }
 
     if (installedPackages.isEmpty()) {
@@ -88,26 +83,21 @@ public class AppLoaderIntentService extends JobIntentService {
         packages.add(resolveInfo.activityInfo.applicationInfo.packageName);
       }
       for (String packageName : packages) {
-        addInfo(pm, applications, activities, packageName);
+        addInfo(pm, applications, packageName);
       }
     }
 
-    final ApplicationModel[] applicationsArray = applications
-      .toArray(new ApplicationModel[applications.size()]);
-    final ActivityModel[] activitiesArray = activities
-      .toArray(new ActivityModel[activities.size()]);
+    final ApplicationModel[] applicationsArray = applications.toArray(new ApplicationModel[0]);
 
     database.getApplicationModelDao().clean();
 
     database.getApplicationModelDao().insert(applicationsArray);
-    database.getActivityModelDao().insert(activitiesArray);
 
     saveLastUpdateTime();
     Log.d(TAG, "updateApplications: " + (System.currentTimeMillis() - start) + " ms");
   }
 
-  private void addInfo(PackageManager pm, List<ApplicationModel> applications,
-                       List<ActivityModel> activities, String packageName) {
+  private void addInfo(PackageManager pm, List<ApplicationModel> applications, String packageName) {
     try {
       PackageInfo info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
       ApplicationModel model = getApplicationModel(pm, packageName, info);
@@ -115,11 +105,6 @@ public class AppLoaderIntentService extends JobIntentService {
       if (info.activities != null) {
         model.setActivitiesCount(info.activities.length);
         model.setExportedActivitiesCount(getExportedActivitiesCount(info.activities));
-        for (ActivityInfo activityInfo : info.activities) {
-          ActivityModel activityModel = getActivityModel(pm, activityInfo);
-          activityModel.setExported(activityInfo.exported && activityInfo.isEnabled());
-          activities.add(activityModel);
-        }
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -143,38 +128,6 @@ public class AppLoaderIntentService extends JobIntentService {
       name = info.packageName;
     }
     return new ApplicationModel(name, packageName);
-  }
-
-  @NonNull
-  private ActivityModel getActivityModel(PackageManager pm, ActivityInfo activityInfo) {
-    String activityName;
-    try {
-      activityName = activityInfo.loadLabel(pm).toString();
-    } catch (Exception e) {
-      ComponentName componentName = new ComponentName(activityInfo.packageName, activityInfo.name);
-      activityName = componentName.getShortClassName();
-    }
-    return new ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
-      activityInfo.exported);
-  }
-
-  @SuppressWarnings("ResultOfMethodCallIgnored")
-  private File getImagesDir() {
-    final File filesDir = getFilesDir();
-    File imagesDir = new File(filesDir, "images");
-    if (!imagesDir.exists()) {
-      imagesDir.mkdir();
-    }
-    return imagesDir;
-  }
-
-  // legacy
-  private void cleanImages() {
-    final File imageDir = getImagesDir();
-    for (File file : imageDir.listFiles()) {
-      //noinspection ResultOfMethodCallIgnored
-      file.delete();
-    }
   }
 
   private boolean needForceRefresh() {

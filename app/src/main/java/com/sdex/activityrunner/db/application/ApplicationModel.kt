@@ -7,10 +7,11 @@ import java.io.Serializable
 
 @Entity(primaryKeys = ["packageName"])
 class ApplicationModel @Deprecated("")
-constructor(val name: String, val packageName: String,
+constructor(val name: String,
+            val packageName: String,
             @Deprecated("")
-            @get:Deprecated("")
             val iconPath: String) : Serializable {
+
   var activitiesCount: Int = 0
   var exportedActivitiesCount: Int = 0
 
@@ -34,6 +35,5 @@ constructor(val name: String, val packageName: String,
     const val NAME = "name"
     const val PACKAGE_NAME = "packageName"
     const val ACTIVITIES_COUNT = "activitiesCount"
-    const val EXPORTED_ACTIVITIES_COUNT = "exportedActivitiesCount"
   }
 }

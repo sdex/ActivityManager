@@ -4,22 +4,17 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-
-import com.sdex.activityrunner.db.activity.ActivityModel
-import com.sdex.activityrunner.db.activity.ActivityModelDao
 import com.sdex.activityrunner.db.application.ApplicationModel
 import com.sdex.activityrunner.db.application.ApplicationModelDao
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.db.history.HistoryModelDao
 
-@Database(entities = [(ApplicationModel::class), (ActivityModel::class), (HistoryModel::class)],
-  version = 5,
+@Database(entities = [(ApplicationModel::class), (HistoryModel::class)],
+  version = 6,
   exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
   abstract val applicationModelDao: ApplicationModelDao
-
-  abstract val activityModelDao: ActivityModelDao
 
   abstract val historyModelDao: HistoryModelDao
 
