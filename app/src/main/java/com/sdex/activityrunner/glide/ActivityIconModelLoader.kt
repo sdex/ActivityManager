@@ -6,7 +6,7 @@ import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.data.DataFetcher
 import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.signature.ObjectKey
-import com.sdex.activityrunner.db.activity.ActivityModel
+import com.sdex.activityrunner.app.ActivityModel
 
 internal class ActivityIconModelLoader : ModelLoader<ActivityModel, ActivityModel> {
 

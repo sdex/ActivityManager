@@ -9,7 +9,7 @@ import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.resource.drawable.DrawableResource
 import com.bumptech.glide.util.Util
-import com.sdex.activityrunner.db.activity.ActivityModel
+import com.sdex.activityrunner.app.ActivityModel
 
 internal class ActivityIconDecoder(private val context: Context) : ResourceDecoder<ActivityModel, Drawable> {
 

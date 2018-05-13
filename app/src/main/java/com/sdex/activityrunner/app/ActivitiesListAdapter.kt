@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.db.activity.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
 import kotlinx.android.synthetic.main.item_activity.view.*
 

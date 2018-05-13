@@ -1,4 +1,4 @@
-package com.sdex.activityrunner
+package com.sdex.activityrunner.app
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
@@ -9,7 +9,6 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
-import com.sdex.activityrunner.db.application.ApplicationModel
 import com.sdex.activityrunner.preferences.SortingPreferences
 import java.util.*
 

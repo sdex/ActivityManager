@@ -1,6 +1,6 @@
 package com.sdex.activityrunner.db.query
 
-import com.sdex.activityrunner.db.application.ApplicationModel
+import com.sdex.activityrunner.app.ApplicationModel
 import com.sdex.activityrunner.preferences.SortingPreferences
 
 class GetApplicationsQuery(private val searchText: String?, sortingPreferences: SortingPreferences) {

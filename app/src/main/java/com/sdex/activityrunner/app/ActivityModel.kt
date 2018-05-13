@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.db.activity
+package com.sdex.activityrunner.app
 
 import android.content.ComponentName
 import java.io.Serializable

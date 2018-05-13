@@ -1,10 +1,11 @@
-package com.sdex.activityrunner
+package com.sdex.activityrunner.premium
 
 import android.app.Dialog
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import com.sdex.activityrunner.R
 
 class GetPremiumDialog : DialogFragment() {
 

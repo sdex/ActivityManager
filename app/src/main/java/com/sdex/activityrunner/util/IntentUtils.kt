@@ -19,7 +19,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.db.activity.ActivityModel
+import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
 

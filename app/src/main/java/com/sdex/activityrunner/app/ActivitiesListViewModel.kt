@@ -8,7 +8,6 @@ import android.content.ComponentName
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
-import com.sdex.activityrunner.db.activity.ActivityModel
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.sdex.activityrunner
+package com.sdex.activityrunner.app
 
 import android.content.Context
 import android.support.v7.recyclerview.extensions.ListAdapter
@@ -10,8 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
-import com.sdex.activityrunner.app.ActivitiesListActivity
-import com.sdex.activityrunner.db.application.ApplicationModel
+import com.sdex.activityrunner.R
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.util.IntentUtils

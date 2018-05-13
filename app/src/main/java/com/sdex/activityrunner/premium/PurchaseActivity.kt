@@ -1,4 +1,4 @@
-package com.sdex.activityrunner
+package com.sdex.activityrunner.premium
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.view.View
 import com.android.billingclient.api.*
 import com.android.billingclient.api.BillingClient.BillingResponse
 import com.android.billingclient.api.BillingClient.SkuType
+import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences

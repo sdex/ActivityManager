@@ -2,7 +2,7 @@ package com.sdex.activityrunner.preferences
 
 import android.content.SharedPreferences
 
-import com.sdex.activityrunner.db.application.ApplicationModel
+import com.sdex.activityrunner.app.ApplicationModel
 
 class SortingPreferences(private val sharedPreferences: SharedPreferences) {
 

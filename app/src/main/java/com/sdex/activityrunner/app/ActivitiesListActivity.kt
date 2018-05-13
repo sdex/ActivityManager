@@ -9,8 +9,6 @@ import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.db.activity.ActivityModel
-import com.sdex.activityrunner.db.application.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity

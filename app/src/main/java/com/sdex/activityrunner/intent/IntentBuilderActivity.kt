@@ -10,9 +10,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-import com.sdex.activityrunner.GetPremiumDialog
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.db.activity.ActivityModel
+import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
@@ -24,6 +23,7 @@ import com.sdex.activityrunner.intent.dialog.source.*
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
+import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AdsDelegate

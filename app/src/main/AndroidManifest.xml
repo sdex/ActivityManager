@@ -37,7 +37,7 @@
       android:label="@string/history_activity" />
 
     <activity
-      android:name=".PurchaseActivity"
+      android:name=".premium.PurchaseActivity"
       android:label="@string/donate_title" />
 
     <activity android:name=".manifest.ManifestViewerActivity" />
@@ -51,7 +51,7 @@
 
     <activity android:name=".AboutActivity" />
 
-    <activity android:name=".OreoPackageManagerBugActivity" />
+    <activity android:name=".app.OreoPackageManagerBugActivity" />
 
     <activity
       android:name=".preferences.SettingsActivity"

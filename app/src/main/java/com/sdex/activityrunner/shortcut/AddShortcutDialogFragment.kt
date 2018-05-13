@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.db.activity.ActivityModel
+import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter

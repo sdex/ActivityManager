@@ -10,8 +10,8 @@ import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.bumptech.glide.module.AppGlideModule
-import com.sdex.activityrunner.db.activity.ActivityModel
-import com.sdex.activityrunner.db.application.ApplicationModel
+import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.app.ApplicationModel
 
 @GlideModule
 class MyAppGlideModule : AppGlideModule() {

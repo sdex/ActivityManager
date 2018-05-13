@@ -2,6 +2,7 @@ package com.sdex.activityrunner
 
 import android.os.Bundle
 import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.AppUtils
 import de.psdev.licensesdialog.LicensesDialog

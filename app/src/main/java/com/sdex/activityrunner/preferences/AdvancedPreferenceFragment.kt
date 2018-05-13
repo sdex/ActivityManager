@@ -5,9 +5,8 @@ import android.preference.PreferenceFragment
 import android.preference.SwitchPreference
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
-
-import com.sdex.activityrunner.PurchaseActivity
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.activityrunner.util.CheckRootTask
 import com.sdex.commons.ads.AppPreferences
 

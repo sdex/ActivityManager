@@ -1,9 +1,10 @@
-package com.sdex.activityrunner
+package com.sdex.activityrunner.app
 
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.support.v4.app.FragmentActivity
+import com.sdex.activityrunner.R
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_oreo_package_manager_bug.*
 
