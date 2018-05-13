@@ -5,8 +5,6 @@ import android.view.*
 import android.view.ContextMenu.ContextMenuInfo
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
-import com.sdex.activityrunner.intent.dialog.source.ActionSource
-import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource
 import com.sdex.activityrunner.intent.param.None
 import kotlinx.android.synthetic.main.item_history.view.*
 import java.util.*
@@ -63,15 +61,12 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     View.OnCreateContextMenuListener {
 
-    private val actionSource = ActionSource()
-    private val mimeTypeSource = MimeTypeSource()
-
     fun bind(item: HistoryModel, callback: Callback) {
       itemView.packageName.text = getValueOrPlaceholder(item.packageName)
       itemView.className.text = getValueOrPlaceholder(item.className)
-      itemView.action.text = actionSource.getItem(item.action)
+      itemView.action.text = getValueOrPlaceholder(item.action)
       itemView.data.text = getValueOrPlaceholder(item.data)
-      itemView.mimeType.text = mimeTypeSource.getItem(item.mimeType)
+      itemView.mimeType.text = getValueOrPlaceholder(item.mimeType)
       itemView.extras.setText(isNotEmpty(item.extras))
       itemView.categories.setText(isNotEmpty(item.categories))
       itemView.flags.setText(isNotEmpty(item.flags))
@@ -81,11 +76,11 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
     }
 
     private fun isNotEmpty(value: String?): Int {
-      return if (value.isNullOrBlank()) R.string.no else R.string.yes
+      return if (value.isNullOrEmpty()) R.string.no else R.string.yes
     }
 
     private fun getValueOrPlaceholder(value: String?): String {
-      return if (value.isNullOrBlank()) None.VALUE else value!!
+      return if (value.isNullOrEmpty()) None.VALUE else value!!
     }
 
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {

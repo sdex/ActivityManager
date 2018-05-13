@@ -5,13 +5,13 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.os.AsyncTask
 
-import com.sdex.activityrunner.db.AppDatabase
+import com.sdex.activityrunner.db.HistoryDatabase
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.commons.ads.AppPreferences
 
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
 
-  private val database: AppDatabase = AppDatabase.getDatabase(application)
+  private val database: HistoryDatabase = HistoryDatabase.getDatabase(application)
   private val appPreferences: AppPreferences = AppPreferences(application)
 
   val history: LiveData<List<HistoryModel>>
@@ -28,7 +28,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     ClearTask(database).execute()
   }
 
-  private class DeleteTask internal constructor(private val database: AppDatabase) : AsyncTask<HistoryModel, Void, Void>() {
+  private class DeleteTask internal constructor(private val database: HistoryDatabase) : AsyncTask<HistoryModel, Void, Void>() {
 
     override fun doInBackground(vararg params: HistoryModel): Void? {
       database.historyModelDao.delete(*params)
@@ -36,7 +36,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     }
   }
 
-  private class ClearTask internal constructor(private val database: AppDatabase) : AsyncTask<Void, Void, Void>() {
+  private class ClearTask internal constructor(private val database: HistoryDatabase) : AsyncTask<Void, Void, Void>() {
 
     override fun doInBackground(vararg params: Void): Void? {
       database.historyModelDao.clean()

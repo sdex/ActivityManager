@@ -20,7 +20,6 @@ import com.codemybrainsout.ratingdialog.RatingDialog
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.activityrunner.service.AppLoaderIntentService
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AdsDelegate
 import com.sdex.commons.ads.AppPreferences
@@ -43,7 +42,6 @@ class MainActivity : BaseActivity() {
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    AppLoaderIntentService.enqueueWork(this, Intent())
 
     viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel::class.java)
 
@@ -63,12 +61,6 @@ class MainActivity : BaseActivity() {
     list.addDivider()
     adapter = ApplicationsListAdapter(this)
     list.adapter = adapter
-    refresh.setOnRefreshListener {
-      refresh.isRefreshing = true
-      val work = Intent()
-      work.putExtra(AppLoaderIntentService.ARG_REASON, AppLoaderIntentService.REFRESH_USER)
-      AppLoaderIntentService.enqueueWork(this, work)
-    }
 
     checkOreoBug()
   }
@@ -82,7 +74,6 @@ class MainActivity : BaseActivity() {
     super.onResume()
     viewModel!!.getItems(searchText).observe(this, Observer {
       adapter!!.submitList(it)
-      refresh.isRefreshing = false
       progress.hide()
     })
   }

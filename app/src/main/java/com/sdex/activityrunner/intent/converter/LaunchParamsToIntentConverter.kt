@@ -1,12 +1,9 @@
 package com.sdex.activityrunner.intent.converter
 
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
-import com.sdex.activityrunner.intent.LaunchParams
-import com.sdex.activityrunner.intent.LaunchParamsExtra
-import com.sdex.activityrunner.intent.LaunchParamsExtraType
-import com.sdex.activityrunner.intent.param.Action
+import androidx.core.net.toUri
+import com.sdex.activityrunner.intent.*
 import com.sdex.activityrunner.intent.param.Category
 import com.sdex.activityrunner.intent.param.Flag
 import java.util.*
@@ -15,25 +12,27 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
 
   override fun convert(): Intent {
     val intent = Intent()
-    val packageName = launchParams.packageName
+    val packageName =
+      if (launchParams.packageName.isNullOrEmpty()) null
+      else launchParams.packageName
     intent.`package` = packageName
-    val className = launchParams.className
+    val className =
+      if (launchParams.className.isNullOrEmpty()) null
+      else launchParams.className
     if (packageName != null && className != null) {
       intent.setClassName(packageName, className)
     }
-    if (launchParams.actionValue != null) {
-      intent.action = Action.getAction(launchParams.actionValue)
-    }
+    intent.action = launchParams.action
     val data = launchParams.data
     if (data != null) {
-      intent.data = Uri.parse(data)
+      intent.data = data.toUri()
     }
-    intent.type = launchParams.mimeTypeValue
-    val categories = Category.list(launchParams.categoriesValues)
+    intent.type = launchParams.mimeType
+    val categories = Category.list(launchParams.getCategoriesValues())
     for (category in categories) {
       intent.addCategory(category)
     }
-    val flags = Flag.list(launchParams.flagsValues)
+    val flags = Flag.list(launchParams.getFlagsValues())
     for (flag in flags) {
       intent.addFlags(flag)
     }
@@ -59,7 +58,6 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
       } catch (e: NumberFormatException) {
         Log.d(TAG, "Failed to parse number")
       }
-
     }
   }
 

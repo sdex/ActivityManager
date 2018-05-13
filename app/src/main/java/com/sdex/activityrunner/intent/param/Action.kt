@@ -192,7 +192,12 @@ object Action {
     return list!!
   }
 
-  fun getAction(key: String): String {
-    return ACTIONS[key]!!
+  fun getAction(key: String): String? {
+    return ACTIONS[key]
+  }
+
+  // TODO find and return position
+  fun getActionKeyPosition(value : String): Int {
+    return if (ACTIONS.containsValue(value)) 0 else -1
   }
 }

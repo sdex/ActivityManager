@@ -22,6 +22,8 @@ import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.dialog.source.*
 import com.sdex.activityrunner.intent.history.HistoryActivity
+import com.sdex.activityrunner.intent.param.Action
+import com.sdex.activityrunner.intent.param.MimeType
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AdsDelegate
@@ -168,8 +170,14 @@ class IntentBuilderActivity : BaseActivity(),
 
   override fun onItemSelected(type: Int, position: Int) {
     when (type) {
-      R.string.launch_param_action -> launchParams.action = position
-      R.string.launch_param_mime_type -> launchParams.mimeType = position
+      R.string.launch_param_action -> {
+        launchParams.action = if (position == 0) null
+        else Action.getAction(Action.list()[position])
+      }
+      R.string.launch_param_mime_type -> {
+        launchParams.mimeType = if (position == 0) null
+        else MimeType.list()[position]
+      }
     }
     showLaunchParams()
   }
@@ -245,8 +253,14 @@ class IntentBuilderActivity : BaseActivity(),
 
   private fun getSingleSelectionInitialPosition(type: Int): Int {
     return when (type) {
-      R.string.launch_param_action -> launchParams.action
-      R.string.launch_param_mime_type -> launchParams.mimeType
+      R.string.launch_param_action -> {
+        if (launchParams.action == null) 0
+        else Action.getActionKeyPosition(launchParams.action!!)
+      }
+      R.string.launch_param_mime_type -> {
+        if (launchParams.mimeType == null) 0
+        else MimeType.list().indexOf(launchParams.mimeType!!)
+      }
       else -> throw IllegalStateException("Unknown type $type")
     }
   }
@@ -269,20 +283,20 @@ class IntentBuilderActivity : BaseActivity(),
     val data = launchParams.data
     dataView.text = data
     updateIcon(dataImageView, data)
-    val actionValue = launchParams.actionValue
+    val actionValue = launchParams.action
     actionView.text = actionValue
     updateIcon(actionImageView, actionValue)
-    val mimeTypeValue = launchParams.mimeTypeValue
+    val mimeTypeValue = launchParams.mimeType
     mimeTypeView.text = mimeTypeValue
     updateIcon(mimeTypeImageView, mimeTypeValue)
     val extras = launchParams.extras
     extraAdapter!!.setItems(extras)
     updateIcon(extrasImageView, extras)
     updateExtrasAdd()
-    val categoriesValues = launchParams.categoriesValues
+    val categoriesValues = launchParams.getCategoriesValues()
     categoriesAdapter!!.setItems(categoriesValues)
     updateIcon(categoriesImageView, categoriesValues)
-    val flagsValues = launchParams.flagsValues
+    val flagsValues = launchParams.getFlagsValues()
     flagsAdapter!!.setItems(flagsValues)
     updateIcon(flagsImageView, flagsValues)
   }

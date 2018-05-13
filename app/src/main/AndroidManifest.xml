@@ -57,11 +57,6 @@
       android:name=".preferences.SettingsActivity"
       android:label="@string/settings_activity" />
 
-    <service
-      android:name=".service.AppLoaderIntentService"
-      android:exported="false"
-      android:permission="android.permission.BIND_JOB_SERVICE" />
-
   </application>
 
 </manifest>
