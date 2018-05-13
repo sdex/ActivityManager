@@ -9,10 +9,12 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.VISIBLE
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
@@ -56,7 +58,17 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
         val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_history)
         dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
       }
+      if (size == 0) {
+        empty.visibility = VISIBLE
+      }
     })
+
+    finish.setOnClickListener{
+      val intent = Intent(this, IntentBuilderActivity::class.java)
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+      startActivity(intent)
+      finish()
+    }
   }
 
   override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -92,7 +104,6 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
           .setMessage(R.string.history_dialog_clear_message)
           .setPositiveButton(android.R.string.yes) { _, _ ->
             viewModel!!.clear()
-            finish()
           }
           .setNegativeButton(android.R.string.cancel, null)
           .show()

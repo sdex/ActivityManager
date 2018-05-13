@@ -31,6 +31,7 @@
 
     <activity
       android:name=".intent.history.HistoryActivity"
+      android:exported="true"
       android:label="@string/history_activity" />
 
     <activity
