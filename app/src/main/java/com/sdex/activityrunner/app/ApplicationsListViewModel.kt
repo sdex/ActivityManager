@@ -12,7 +12,7 @@ import android.preference.PreferenceManager
 import com.sdex.activityrunner.preferences.SortingPreferences
 import java.util.*
 
-class ApplicationListViewModel(application: Application) : AndroidViewModel(application) {
+class ApplicationsListViewModel(application: Application) : AndroidViewModel(application) {
 
   private val packageManager: PackageManager = application.packageManager
   private val sortingPreferences: SortingPreferences

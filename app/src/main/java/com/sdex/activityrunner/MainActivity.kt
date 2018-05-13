@@ -17,8 +17,8 @@ import com.android.billingclient.api.BillingClient.SkuType
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.Purchase
 import com.codemybrainsout.ratingdialog.RatingDialog
-import com.sdex.activityrunner.app.ApplicationListViewModel
 import com.sdex.activityrunner.app.ApplicationsListAdapter
+import com.sdex.activityrunner.app.ApplicationsListViewModel
 import com.sdex.activityrunner.app.OreoPackageManagerBugActivity
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
   private var appPreferences: AppPreferences? = null
   private var isProVersionEnabled: Boolean = false
   private var adapter: ApplicationsListAdapter? = null
-  private var viewModel: ApplicationListViewModel? = null
+  private var viewModel: ApplicationsListViewModel? = null
   private var searchText: String? = null
 
   override fun getLayout(): Int {
@@ -47,7 +47,7 @@ class MainActivity : BaseActivity() {
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    viewModel = ViewModelProviders.of(this).get(ApplicationListViewModel::class.java)
+    viewModel = ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
 
     appPreferences = AppPreferences(this)
     adsDelegate = AdsDelegate(appPreferences)
