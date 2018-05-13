@@ -163,7 +163,7 @@
               android:gravity="center_vertical"
               android:minHeight="@dimen/launch_params_item_height"
               android:orientation="vertical"
-              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintEnd_toStartOf="@+id/actionEditImageView"
               app:layout_constraintStart_toEndOf="@+id/actionImageView"
               app:layout_constraintTop_toTopOf="parent">
 
@@ -180,6 +180,16 @@
                 tools:text="android.intent.action.MAIN" />
             </LinearLayout>
 
+            <ImageView
+              android:id="@+id/actionEditImageView"
+              android:layout_width="@dimen/launch_params_item_height"
+              android:layout_height="@dimen/launch_params_item_height"
+              android:background="?attr/selectableItemBackground"
+              android:padding="@dimen/launch_params_icon_edit_padding"
+              android:scaleType="fitCenter"
+              android:src="@drawable/ic_edit"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
 
           </android.support.constraint.ConstraintLayout>
 
@@ -267,7 +277,7 @@
                 android:gravity="center_vertical"
                 android:minHeight="@dimen/launch_params_item_height"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/mimeTypeEditImageView"
                 app:layout_constraintStart_toEndOf="@+id/mimeTypeImageView"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -284,6 +294,16 @@
                   tools:text="image/png" />
               </LinearLayout>
 
+              <ImageView
+                android:id="@+id/mimeTypeEditImageView"
+                android:layout_width="@dimen/launch_params_item_height"
+                android:layout_height="@dimen/launch_params_item_height"
+                android:background="?attr/selectableItemBackground"
+                android:padding="@dimen/launch_params_icon_edit_padding"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -333,8 +353,8 @@
                 android:id="@+id/listExtrasView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
               <TextView
@@ -402,8 +422,8 @@
                 android:id="@+id/listCategoriesView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
             </LinearLayout>
@@ -464,8 +484,8 @@
                 android:id="@+id/listFlagsView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
             </LinearLayout>
 

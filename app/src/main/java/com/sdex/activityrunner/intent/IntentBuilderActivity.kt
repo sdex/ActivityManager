@@ -102,6 +102,8 @@ class IntentBuilderActivity : BaseActivity(),
     bindInputValueDialog(container_package_name, R.string.launch_param_package_name)
     bindInputValueDialog(container_class_name, R.string.launch_param_class_name)
     bindInputValueDialog(container_data, R.string.launch_param_data)
+    bindInputValueDialog(actionEditImageView, R.string.launch_param_action)
+    bindInputValueDialog(mimeTypeEditImageView, R.string.launch_param_mime_type)
     bindSingleSelectionDialog(container_action, R.string.launch_param_action,
       ActionSource())
     bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type,
@@ -164,6 +166,8 @@ class IntentBuilderActivity : BaseActivity(),
       R.string.launch_param_package_name -> launchParams.packageName = value
       R.string.launch_param_class_name -> launchParams.className = value
       R.string.launch_param_data -> launchParams.data = value
+      R.string.launch_param_action -> launchParams.action = value
+      R.string.launch_param_mime_type -> launchParams.mimeType = value
     }
     showLaunchParams()
   }
@@ -247,6 +251,8 @@ class IntentBuilderActivity : BaseActivity(),
       R.string.launch_param_package_name -> launchParams.packageName
       R.string.launch_param_class_name -> launchParams.className
       R.string.launch_param_data -> launchParams.data
+      R.string.launch_param_action -> launchParams.action
+      R.string.launch_param_mime_type -> launchParams.mimeType
       else -> throw IllegalStateException("Unknown type $type")
     }
   }
