@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.glide.GlideApp
@@ -51,6 +52,7 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
 
       glide.load(item)
         .apply(RequestOptions().fitCenter())
+        .transition(DrawableTransitionOptions.withCrossFade())
         .into(itemView.icon)
 
       val context = itemView.context
