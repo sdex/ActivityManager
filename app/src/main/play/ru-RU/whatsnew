@@ -1,7 +1,5 @@
-2.0.0-beta1
-- huge under the hood improvements
+2.0.0
+- a lot of under the hood improvements
 - custom mimeType and action for intent
 - removed caching and refresh (now the list is always up to date)
 - general bugfixes and UI improvements
-
-NOTE: This update is unstable. You are welcome to report bugs.

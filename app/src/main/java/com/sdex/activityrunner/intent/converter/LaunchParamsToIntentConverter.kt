@@ -12,30 +12,40 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
 
   override fun convert(): Intent {
     val intent = Intent()
+    // package name
     val packageName =
       if (launchParams.packageName.isNullOrEmpty()) null
       else launchParams.packageName
     intent.`package` = packageName
+    // class name
     val className =
       if (launchParams.className.isNullOrEmpty()) null
       else launchParams.className
     if (packageName != null && className != null) {
       intent.setClassName(packageName, className)
     }
-    intent.action = launchParams.action
+    // action
+    intent.action =
+      if (launchParams.action.isNullOrEmpty()) null
+      else launchParams.action
+    // data
     val data = launchParams.data
-    if (data != null) {
-      intent.data = data.toUri()
-    }
-    intent.type = launchParams.mimeType
+    intent.data = data?.toUri()
+    // mime type
+    intent.type =
+      if (launchParams.mimeType.isNullOrEmpty()) null
+      else launchParams.mimeType
+    // categories
     val categories = Category.list(launchParams.getCategoriesValues())
     for (category in categories) {
       intent.addCategory(category)
     }
+    // flags
     val flags = Flag.list(launchParams.getFlagsValues())
     for (flag in flags) {
       intent.addFlags(flag)
     }
+    // extras
     val extras = launchParams.extras
     addExtras(intent, extras)
     return intent
