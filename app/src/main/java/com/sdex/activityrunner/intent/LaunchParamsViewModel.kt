@@ -3,7 +3,7 @@ package com.sdex.activityrunner.intent
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.os.AsyncTask
-import com.sdex.activityrunner.db.HistoryDatabase
+import com.sdex.activityrunner.db.history.HistoryDatabase
 import com.sdex.activityrunner.intent.converter.LaunchParamsToHistoryConverter
 
 class LaunchParamsViewModel(application: Application) : AndroidViewModel(application) {

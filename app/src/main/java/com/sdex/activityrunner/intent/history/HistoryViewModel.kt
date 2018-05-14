@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.os.AsyncTask
 
-import com.sdex.activityrunner.db.HistoryDatabase
+import com.sdex.activityrunner.db.history.HistoryDatabase
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.commons.ads.AppPreferences
 

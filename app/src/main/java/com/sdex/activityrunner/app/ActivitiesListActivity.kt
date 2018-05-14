@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity

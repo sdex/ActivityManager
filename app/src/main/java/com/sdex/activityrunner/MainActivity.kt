@@ -24,6 +24,7 @@ import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
+import com.sdex.activityrunner.service.AppLoaderIntentService
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AdsDelegate
 import com.sdex.commons.ads.AppPreferences
@@ -46,6 +47,8 @@ class MainActivity : BaseActivity() {
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    AppLoaderIntentService.enqueueWork(this, Intent())
 
     viewModel = ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
 
@@ -79,7 +82,9 @@ class MainActivity : BaseActivity() {
 
   private fun filter(text: String) {
     this.searchText = text
-    viewModel!!.getItems(text)
+    viewModel!!.getItems(text).observe(this, Observer {
+      adapter!!.submitList(it)
+    })
   }
 
   // https://issuetracker.google.com/issues/73289329

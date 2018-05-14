@@ -11,7 +11,7 @@ import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.bumptech.glide.module.AppGlideModule
 import com.sdex.activityrunner.app.ActivityModel
-import com.sdex.activityrunner.app.ApplicationModel
+import com.sdex.activityrunner.db.cache.ApplicationModel
 
 @GlideModule
 class MyAppGlideModule : AppGlideModule() {

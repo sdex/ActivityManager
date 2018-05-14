@@ -1,9 +1,11 @@
-package com.sdex.activityrunner.app
+package com.sdex.activityrunner.db.cache
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import java.io.Serializable
 
-class ApplicationModel
-constructor(val name: String, val packageName: String) : Serializable {
+@Entity
+class ApplicationModel(val name: String, @PrimaryKey val packageName: String) : Serializable {
 
   var activitiesCount: Int = 0
   var exportedActivitiesCount: Int = 0
@@ -25,5 +27,6 @@ constructor(val name: String, val packageName: String) : Serializable {
     const val NAME = "name"
     const val PACKAGE_NAME = "packageName"
     const val ACTIVITIES_COUNT = "activitiesCount"
+    const val EXPORTED_ACTIVITIES_COUNT = "exportedActivitiesCount"
   }
 }
