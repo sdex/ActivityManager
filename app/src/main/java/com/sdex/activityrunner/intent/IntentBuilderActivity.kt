@@ -35,7 +35,7 @@ class IntentBuilderActivity : BaseActivity(),
   ValueInputDialog.OnValueInputDialogCallback, SingleSelectionDialog.OnItemSelectedCallback,
   MultiSelectionDialog.OnItemsSelectedCallback, ExtraInputDialog.OnKeyValueInputDialogCallback {
 
-  private var launchParams: LaunchParams = LaunchParams()
+  private val launchParams: LaunchParams = LaunchParams()
 
   private var categoriesAdapter: LaunchParamsListAdapter? = null
   private var flagsAdapter: LaunchParamsListAdapter? = null
@@ -52,6 +52,9 @@ class IntentBuilderActivity : BaseActivity(),
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
+    val params = savedInstanceState?.getParcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
+    launchParams.setFrom(params)
+
     viewModel = ViewModelProviders.of(this).get(LaunchParamsViewModel::class.java)
 
     appPreferences = AppPreferences(this)
@@ -61,16 +64,11 @@ class IntentBuilderActivity : BaseActivity(),
 
     enableBackButton()
     val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
-    if (activityModel != null) {
-      title = activityModel.name
-    }
+
+    title = activityModel?.name ?: getString(R.string.intent_launcher_activity)
+
     launchParams.packageName = activityModel?.packageName
     launchParams.className = activityModel?.className
-
-    val params = savedInstanceState?.getParcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
-    if (params != null) {
-      launchParams = params
-    }
 
     configureRecyclerView(listExtrasView)
     configureRecyclerView(listCategoriesView)
@@ -138,9 +136,7 @@ class IntentBuilderActivity : BaseActivity(),
     super.onActivityResult(requestCode, resultCode, data)
     if (requestCode == HistoryActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
       val result = data?.getParcelableExtra<LaunchParams>(HistoryActivity.RESULT)
-      if (result != null) {
-        launchParams = result
-      }
+      launchParams.setFrom(result)
       showLaunchParams()
     }
   }
