@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name" translatable="false">ActivityManager</string>
+  <string name="app_name" translatable="false">Activity Manager</string>
   <string name="intent_launcher_activity" translatable="false">Intent builder</string>
   <string name="history_activity">History</string>
   <string name="settings_activity">Settings</string>

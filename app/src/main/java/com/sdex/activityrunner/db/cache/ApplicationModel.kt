@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import java.io.Serializable
 
-@Entity
+@Entity(tableName = ApplicationModel.TABLE)
 class ApplicationModel(val name: String, @PrimaryKey val packageName: String) : Serializable {
 
   var activitiesCount: Int = 0

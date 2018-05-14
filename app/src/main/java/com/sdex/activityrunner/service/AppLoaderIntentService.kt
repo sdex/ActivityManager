@@ -15,9 +15,33 @@ class AppLoaderIntentService : JobIntentService() {
   override fun onHandleWork(intent: Intent) {
     val applicationsModelDao = CacheDatabase.getDatabase(applicationContext).applicationsModelDao
 
-    val list = getApplicationsList()
-    applicationsModelDao.clean()
-    applicationsModelDao.insert(*list.toTypedArray())
+    val oldList = applicationsModelDao.getApplicationModels()
+    val newList = getApplicationsList()
+
+    val listToInsert = getListToInsert(oldList, newList)
+    val listToDelete = getListToDelete(oldList, newList)
+
+    if (listToInsert.isNotEmpty()) {
+      applicationsModelDao.insert(*listToInsert.toTypedArray())
+    }
+
+    if (listToDelete.isNotEmpty()) {
+      applicationsModelDao.delete(*listToDelete.toTypedArray())
+    }
+  }
+
+  private fun getListToInsert(oldList: MutableList<ApplicationModel>,
+                              newList: MutableList<ApplicationModel>): MutableList<ApplicationModel> {
+    val newListCopy = newList.toMutableList()
+    newListCopy.removeAll(oldList)
+    return newListCopy
+  }
+
+  private fun getListToDelete(oldList: MutableList<ApplicationModel>,
+                              newList: MutableList<ApplicationModel>): MutableList<ApplicationModel> {
+    val oldListCopy = oldList.toMutableList()
+    oldListCopy.removeAll(newList)
+    return oldListCopy
   }
 
   private fun getApplicationsList(): MutableList<ApplicationModel> {

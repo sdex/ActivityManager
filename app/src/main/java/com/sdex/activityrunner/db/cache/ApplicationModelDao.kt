@@ -19,9 +19,12 @@ interface ApplicationModelDao {
   @RawQuery(observedEntities = [(ApplicationModel::class)])
   fun getApplicationModels(query: SupportSQLiteQuery): LiveData<List<ApplicationModel>>
 
-  @Query("SELECT COUNT(*) FROM ApplicationModel")
+  @Query("SELECT * FROM " + ApplicationModel.TABLE)
+  fun getApplicationModels(): MutableList<ApplicationModel>
+
+  @Query("SELECT COUNT(*) FROM " + ApplicationModel.TABLE)
   fun count(): Int
 
-  @Query("DELETE FROM ApplicationModel")
+  @Query("DELETE FROM " + ApplicationModel.TABLE)
   fun clean()
 }
