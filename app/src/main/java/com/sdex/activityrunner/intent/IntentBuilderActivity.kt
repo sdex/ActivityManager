@@ -37,9 +37,10 @@ class IntentBuilderActivity : BaseActivity(),
 
   private val launchParams: LaunchParams = LaunchParams()
 
-  private var categoriesAdapter: LaunchParamsListAdapter? = null
-  private var flagsAdapter: LaunchParamsListAdapter? = null
-  private var extraAdapter: LaunchParamsExtraListAdapter? = null
+  private val categoriesAdapter = LaunchParamsListAdapter()
+  private val flagsAdapter = LaunchParamsListAdapter()
+  private val extraAdapter = LaunchParamsExtraListAdapter()
+
   private var viewModel: LaunchParamsViewModel? = null
 
   private var appPreferences: AppPreferences? = null
@@ -74,7 +75,7 @@ class IntentBuilderActivity : BaseActivity(),
     configureRecyclerView(listCategoriesView)
     configureRecyclerView(listFlagsView)
 
-    extraAdapter = LaunchParamsExtraListAdapter(object : Callback {
+    extraAdapter.callback = object : Callback {
       override fun onItemSelected(position: Int) {
         val extra = launchParams.extras[position]
         val dialog = ExtraInputDialog.newInstance(extra, position)
@@ -83,18 +84,18 @@ class IntentBuilderActivity : BaseActivity(),
 
       override fun removeItem(position: Int) {
         launchParams.extras.removeAt(position)
-        extraAdapter!!.notifyDataSetChanged()
+        extraAdapter.notifyDataSetChanged()
         listExtrasView.requestLayout()
         updateExtrasAdd()
       }
-    })
-    extraAdapter!!.setHasStableIds(true)
+    }
+    extraAdapter.setHasStableIds(true)
     listExtrasView.adapter = extraAdapter
-    categoriesAdapter = LaunchParamsListAdapter()
-    categoriesAdapter!!.setHasStableIds(true)
+
+    categoriesAdapter.setHasStableIds(true)
     listCategoriesView.adapter = categoriesAdapter
-    flagsAdapter = LaunchParamsListAdapter()
-    flagsAdapter!!.setHasStableIds(true)
+
+    flagsAdapter.setHasStableIds(true)
     listFlagsView.adapter = flagsAdapter
 
     bindInputValueDialog(container_package_name, R.string.launch_param_package_name)
@@ -102,17 +103,13 @@ class IntentBuilderActivity : BaseActivity(),
     bindInputValueDialog(container_data, R.string.launch_param_data)
     bindInputValueDialog(actionEditImageView, R.string.launch_param_action)
     bindInputValueDialog(mimeTypeEditImageView, R.string.launch_param_mime_type)
-    bindSingleSelectionDialog(container_action, R.string.launch_param_action,
-      ActionSource())
-    bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type,
-      MimeTypeSource())
+    bindSingleSelectionDialog(container_action, R.string.launch_param_action, ActionSource())
+    bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type, MimeTypeSource())
     bindKeyValueDialog(container_extras)
-    bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories,
-      CategoriesSource())
-    bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags,
-      FlagsSource())
+    bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories, CategoriesSource())
+    bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags, FlagsSource())
 
-    findViewById<View>(R.id.launch).setOnClickListener {
+    launch.setOnClickListener {
       viewModel!!.addToHistory(launchParams)
       val converter = LaunchParamsToIntentConverter(launchParams)
       val intent = converter.convert()
@@ -292,38 +289,28 @@ class IntentBuilderActivity : BaseActivity(),
     mimeTypeView.text = mimeTypeValue
     updateIcon(mimeTypeImageView, mimeTypeValue)
     val extras = launchParams.extras
-    extraAdapter!!.setItems(extras)
+    extraAdapter.setItems(extras)
     updateIcon(extrasImageView, extras)
     updateExtrasAdd()
     val categoriesValues = launchParams.getCategoriesValues()
-    categoriesAdapter!!.setItems(categoriesValues)
+    categoriesAdapter.setItems(categoriesValues)
     updateIcon(categoriesImageView, categoriesValues)
     val flagsValues = launchParams.getFlagsValues()
-    flagsAdapter!!.setItems(flagsValues)
+    flagsAdapter.setItems(flagsValues)
     updateIcon(flagsImageView, flagsValues)
   }
 
   private fun updateExtrasAdd() {
     val extras = launchParams.extras
-    if (extras.isEmpty()) {
-      addExtraView.visibility = View.GONE
-    } else {
-      addExtraView.visibility = View.VISIBLE
-    }
+    addExtraView.visibility = if (extras.isEmpty()) View.GONE else View.VISIBLE
   }
 
   private fun updateIcon(imageView: ImageView, text: String?) {
-    imageView.setImageResource(if (text.isNullOrBlank())
-      R.drawable.ic_assignment
-    else
-      R.drawable.ic_assignment_done)
+    imageView.isSelected = !text.isNullOrEmpty()
   }
 
-  private fun updateIcon(imageView: ImageView, list: List<*>?) {
-    imageView.setImageResource(if (list == null || list.isEmpty())
-      R.drawable.ic_assignment
-    else
-      R.drawable.ic_assignment_done)
+  private fun updateIcon(imageView: ImageView, list: List<*>) {
+    imageView.isSelected = list.isNotEmpty()
   }
 
   companion object {

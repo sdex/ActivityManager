@@ -8,10 +8,10 @@ import com.sdex.activityrunner.R
 import kotlinx.android.synthetic.main.item_launch_param_extra.view.*
 import java.util.*
 
-class LaunchParamsExtraListAdapter(private val callback: Callback)
-  : RecyclerView.Adapter<LaunchParamsExtraListAdapter.ViewHolder>() {
+class LaunchParamsExtraListAdapter : RecyclerView.Adapter<LaunchParamsExtraListAdapter.ViewHolder>() {
 
   private var items: List<LaunchParamsExtra> = ArrayList()
+  var callback: Callback? = null
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     val inflater = LayoutInflater.from(parent.context)
@@ -42,11 +42,11 @@ class LaunchParamsExtraListAdapter(private val callback: Callback)
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(item: LaunchParamsExtra, callback: Callback) {
+    fun bind(item: LaunchParamsExtra, callback: Callback?) {
       itemView.key.text = item.key
       itemView.value.text = item.value
-      itemView.setOnClickListener { callback.onItemSelected(adapterPosition) }
-      itemView.remove.setOnClickListener { callback.removeItem(adapterPosition) }
+      itemView.setOnClickListener { callback?.onItemSelected(adapterPosition) }
+      itemView.remove.setOnClickListener { callback?.removeItem(adapterPosition) }
     }
   }
 }

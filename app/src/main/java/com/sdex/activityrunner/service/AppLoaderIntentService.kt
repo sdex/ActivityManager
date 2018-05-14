@@ -20,6 +20,7 @@ class AppLoaderIntentService : JobIntentService() {
 
     val listToInsert = getListToInsert(oldList, newList)
     val listToDelete = getListToDelete(oldList, newList)
+    val listToUpdate = getListToUpdate(oldList, newList)
 
     if (listToInsert.isNotEmpty()) {
       applicationsModelDao.insert(*listToInsert.toTypedArray())
@@ -27,6 +28,10 @@ class AppLoaderIntentService : JobIntentService() {
 
     if (listToDelete.isNotEmpty()) {
       applicationsModelDao.delete(*listToDelete.toTypedArray())
+    }
+
+    if (listToUpdate.isNotEmpty()) {
+      applicationsModelDao.update(*listToUpdate.toTypedArray())
     }
   }
 
@@ -42,6 +47,11 @@ class AppLoaderIntentService : JobIntentService() {
     val oldListCopy = oldList.toMutableList()
     oldListCopy.removeAll(newList)
     return oldListCopy
+  }
+
+  private fun getListToUpdate(oldList: MutableList<ApplicationModel>,
+                              newList: MutableList<ApplicationModel>): MutableList<ApplicationModel> {
+    return oldList.intersect(newList).toMutableList()
   }
 
   private fun getApplicationsList(): MutableList<ApplicationModel> {
