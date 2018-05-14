@@ -9,13 +9,15 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
 import com.sdex.activityrunner.preferences.AdvancedPreferences
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 import java.util.*
 
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
 
   private val packageManager: PackageManager = application.packageManager
   private val advancedPreferences: AdvancedPreferences
-  private var liveData: MutableLiveData<List<ActivityModel>>? = null
+  private var liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
 
   init {
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
@@ -23,10 +25,14 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   }
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
-    if (liveData == null) {
-      liveData = MutableLiveData()
+    async(UI) {
+      val list = getActivitiesList(packageName)
+      liveData.postValue(list)
     }
+    return liveData
+  }
 
+  private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
     val list = ArrayList<ActivityModel>()
     val showNotExported = advancedPreferences.isShowNotExported
     try {
@@ -46,8 +52,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
       e.printStackTrace()
     }
     list.sortBy { it.name }
-    liveData!!.value = list
-    return liveData!!
+    return list
   }
 
   private fun getActivityModel(pm: PackageManager, activityInfo: ActivityInfo): ActivityModel {
@@ -60,5 +65,4 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     return ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
       activityInfo.exported)
   }
-
 }

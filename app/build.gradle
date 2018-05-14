@@ -23,8 +23,8 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 2000
-    versionName "2.0.0-beta1"
+    versionCode 2001
+    versionName "2.0.0-beta2"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
 
@@ -106,11 +106,10 @@ dependencies {
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   implementation "com.pddstudio:highlightjs-android:1.5.0"
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
   implementation "androidx.core:core-ktx:0.3"
+
   testImplementation "junit:junit:4.12"
 }
 
 apply plugin: 'com.google.gms.google-services'
-repositories {
-  mavenCentral()
-}

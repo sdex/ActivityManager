@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name" translatable="false">Activity Runner</string>
+  <string name="app_name" translatable="false">ActivityManager</string>
   <string name="intent_launcher_activity" translatable="false">Intent builder</string>
   <string name="history_activity">History</string>
   <string name="settings_activity">Settings</string>
@@ -25,6 +25,7 @@
   <string name="starting_activity_intent">Starting activity</string>
   <string name="starting_activity_intent_failed">Failed to start activity</string>
 
+  <!-- activities list -->
   <string name="activities_list_empty_text">There is no public visible activities</string>
   <string name="activities_list_empty_action">turn on advanced mode</string>
 
@@ -51,6 +52,7 @@
   <string name="item_history_has_categories">Has categories</string>
   <string name="item_history_has_flags">Has flags</string>
 
+  <!-- premium -->
   <string name="pro_version_title">Activity Runner Premium</string>
   <string name="pro_version_ads">&#x2022; Ad-Free experience</string>
   <string name="pro_version_extras">&#x2022; Unlimited extra parameters</string>
@@ -64,12 +66,12 @@
   <string name="pro_version_unlock_intent_shortcuts">Get premium version to create intent shortcuts</string>
   <string name="pro_version_unlock_root_integration">Get premium version to enable ROOT integration</string>
   <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium version to have unlimited history</string>
-
   <string name="donate_title">Support development</string>
   <string name="donate_5">Support with $5.00</string>
   <string name="donate_10">Support with $10.00</string>
   <string name="donate_20">Support with $20.00</string>
 
+  <!-- about -->
   <string name="about_rate">Rate this app</string>
   <string name="about_more_apps">More apps</string>
   <string name="about_version">Version</string>
@@ -90,6 +92,7 @@
   <string name="type_boolean" translatable="false">boolean</string>
   <string name="type_array">Array</string>
 
+  <!-- history -->
   <string name="history_empty_text">Nothing to show</string>
   <string name="history_empty_action">Run some intents</string>
   <string name="history_dialog_clear_title">Clear history</string>

@@ -8,27 +8,29 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.preference.PreferenceManager
-import com.sdex.activityrunner.preferences.SortingPreferences
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 import java.util.*
 
 class ApplicationsListViewModel(application: Application) : AndroidViewModel(application) {
 
   private val packageManager: PackageManager = application.packageManager
-  private val sortingPreferences: SortingPreferences
-  private var liveData: MutableLiveData<List<ApplicationModel>>? = null
-
-  init {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
-    sortingPreferences = SortingPreferences(sharedPreferences)
-  }
+  private var liveData: MutableLiveData<List<ApplicationModel>> = MutableLiveData()
 
   fun getItems(searchText: String?): LiveData<List<ApplicationModel>> {
-    if (liveData == null) {
-      liveData = MutableLiveData()
+    async(UI) {
+      val data: Deferred<MutableList<ApplicationModel>> = bg {
+        getApplicationsList(searchText)
+      }
+      liveData.value = data.await()
     }
+    return liveData
+  }
 
-    var list : MutableList<ApplicationModel> = ArrayList()
+  private fun getApplicationsList(searchText: String?): MutableList<ApplicationModel> {
+    var list: MutableList<ApplicationModel> = ArrayList()
 
     val installedPackages = packageManager.getInstalledPackages(0)
     for (installedPackage in installedPackages) {
@@ -53,9 +55,7 @@ class ApplicationsListViewModel(application: Application) : AndroidViewModel(app
     }
 
     list.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it.name }))
-
-    liveData!!.value = list
-    return liveData!!
+    return list
   }
 
   private fun addInfo(pm: PackageManager,

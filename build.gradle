@@ -2,6 +2,7 @@ apply from: 'dependencies.gradle'
 
 buildscript {
   ext.kotlin_version = '1.2.41'
+  ext.anko_version = '0.10.5'
   repositories {
     google()
     jcenter()
@@ -23,6 +24,7 @@ allprojects {
   repositories {
     google()
     jcenter()
+    mavenCentral()
     maven { url 'https://jitpack.io' }
   }
 }

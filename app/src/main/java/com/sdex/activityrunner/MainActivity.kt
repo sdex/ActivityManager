@@ -58,6 +58,11 @@ class MainActivity : BaseActivity() {
 
     searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
+    viewModel!!.getItems(searchText).observe(this, Observer {
+      adapter!!.submitList(it)
+      progress.hide()
+    })
+
     progress.show()
 
     list.addDivider()
@@ -70,14 +75,6 @@ class MainActivity : BaseActivity() {
   public override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
     outState.putString(STATE_SEARCH_TEXT, searchText)
-  }
-
-  public override fun onResume() {
-    super.onResume()
-    viewModel!!.getItems(searchText).observe(this, Observer {
-      adapter!!.submitList(it)
-      progress.hide()
-    })
   }
 
   private fun filter(text: String) {

@@ -20,6 +20,7 @@ import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
 import com.sdex.commons.BaseActivity
+import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_activities_list.*
 
 class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
@@ -45,6 +46,9 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
       if (size == 0) {
         empty.visibility = VISIBLE
+        if (item.activitiesCount == 0) {
+          // TODO include app without activities?
+        }
       } else {
         empty.visibility = GONE
       }
@@ -58,6 +62,13 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
         .putBoolean(SettingsActivity.KEY_ADVANCED_NOT_EXPORTED, true)
         .apply()
       viewModel.getItems(item.packageName)
+    }
+
+    val appPreferences = AppPreferences(this)
+    if (!advancedPreferences!!.isShowNotExported && !appPreferences.isNotExportedDialogShown) {
+      appPreferences.isNotExportedDialogShown = true
+      val dialog = EnableNotExportedActivitiesDialog()
+      dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
     }
   }
 

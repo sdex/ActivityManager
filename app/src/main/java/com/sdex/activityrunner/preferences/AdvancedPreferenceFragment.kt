@@ -18,7 +18,12 @@ class AdvancedPreferenceFragment : PreferenceFragment() {
     setHasOptionsMenu(true)
     val appPreferences = AppPreferences(activity)
     val rootIntegration = findPreference(SettingsActivity.KEY_ADVANCED_ROOT_INTEGRATION) as SwitchPreference
-    rootIntegration.setOnPreferenceChangeListener { _, _ ->
+    rootIntegration.setOnPreferenceChangeListener { _, newValue ->
+      if (newValue is Boolean) {
+        if (!newValue) {
+          return@setOnPreferenceChangeListener true
+        }
+      }
       if (appPreferences.isProVersion) {
         val checkRootTask = CheckRootTask(object : CheckRootTask.Callback {
           override fun onStatusChanged(status: Int) {
