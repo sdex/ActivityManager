@@ -17,10 +17,12 @@ import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.util.AppUtils
+import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import kotlinx.android.synthetic.main.item_application.view.*
 
 class ApplicationsListAdapter(context: Context) : ListAdapter<ApplicationModel,
-  ApplicationsListAdapter.AppViewHolder>(DIFF_CALLBACK) {
+  ApplicationsListAdapter.AppViewHolder>(DIFF_CALLBACK),
+  FastScrollRecyclerView.SectionedAdapter {
 
   private val glide: RequestManager
 
@@ -36,6 +38,11 @@ class ApplicationsListAdapter(context: Context) : ListAdapter<ApplicationModel,
 
   override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
     holder.bindTo(getItem(position), glide)
+  }
+
+  override fun getSectionName(position: Int): String {
+    val name = getItem(position).name
+    return if (name.isEmpty()) "" else name.first().toUpperCase().toString()
   }
 
   class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

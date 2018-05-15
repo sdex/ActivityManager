@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.support.v4.app.JobIntentService
+import android.util.Log
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
 import java.util.*
@@ -21,6 +22,10 @@ class AppLoaderIntentService : JobIntentService() {
     val listToInsert = getListToInsert(oldList, newList)
     val listToDelete = getListToDelete(oldList, newList)
     val listToUpdate = getListToUpdate(oldList, newList)
+
+    Log.d(TAG, "listToInsert ${listToInsert.size}")
+    Log.d(TAG, "listToDelete ${listToDelete.size}")
+    Log.d(TAG, "listToUpdate ${listToUpdate.size}")
 
     if (listToInsert.isNotEmpty()) {
       applicationsModelDao.insert(*listToInsert.toTypedArray())
@@ -116,6 +121,8 @@ class AppLoaderIntentService : JobIntentService() {
   }
 
   companion object {
+
+    private const val TAG = "AppLoader"
 
     private const val JOB_ID = 1212
 

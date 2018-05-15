@@ -23,7 +23,7 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 2004
+    versionCode 2007
     versionName "2.0.0-rc1"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
@@ -105,6 +105,7 @@ dependencies {
   implementation "de.psdev.licensesdialog:licensesdialog:1.7.0"
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   implementation "com.pddstudio:highlightjs-android:1.5.0"
+  implementation "com.simplecityapps:recyclerview-fastscroll:1.0.18"
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
   implementation "androidx.core:core-ktx:0.3"

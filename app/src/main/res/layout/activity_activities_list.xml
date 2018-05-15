@@ -15,11 +15,13 @@
     android:layout_height="0dp"
     android:layout_weight="1">
 
-    <android.support.v7.widget.RecyclerView
+    <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
       android:id="@+id/list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:scrollbars="vertical"
+      app:fastScrollPopupBgColor="@color/blue"
+      app:fastScrollPopupTextColor="@color/white"
+      app:fastScrollThumbColor="@color/blue"
       app:layoutManager="android.support.v7.widget.LinearLayoutManager"
       tools:itemCount="15"
       tools:listitem="@layout/item_activity"
