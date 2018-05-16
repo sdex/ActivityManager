@@ -8,13 +8,13 @@ import android.arch.persistence.room.*
 interface ApplicationModelDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(vararg model: ApplicationModel)
+  fun insert(model: List<ApplicationModel>) : List<Long>
 
   @Update(onConflict = OnConflictStrategy.REPLACE)
-  fun update(vararg models: ApplicationModel)
+  fun update(models: List<ApplicationModel>) : Int
 
   @Delete
-  fun delete(vararg models: ApplicationModel)
+  fun delete(models: List<ApplicationModel>) : Int
 
   @RawQuery(observedEntities = [(ApplicationModel::class)])
   fun getApplicationModels(query: SupportSQLiteQuery): LiveData<List<ApplicationModel>>

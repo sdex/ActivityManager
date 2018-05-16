@@ -20,6 +20,7 @@ abstract class CacheDatabase : RoomDatabase() {
     fun getDatabase(context: Context): CacheDatabase {
       if (database == null) {
         database = Room.databaseBuilder(context, CacheDatabase::class.java, DB_NAME)
+          .fallbackToDestructiveMigration()
           .build()
       }
       return database!!

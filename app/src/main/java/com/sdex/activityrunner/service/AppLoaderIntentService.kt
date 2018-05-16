@@ -19,24 +19,28 @@ class AppLoaderIntentService : JobIntentService() {
     val oldList = applicationsModelDao.getApplicationModels()
     val newList = getApplicationsList()
 
-    val listToInsert = getListToInsert(oldList, newList)
     val listToDelete = getListToDelete(oldList, newList)
+    val listToInsert = getListToInsert(oldList, newList)
     val listToUpdate = getListToUpdate(oldList, newList)
 
-    Log.d(TAG, "listToInsert ${listToInsert.size}")
     Log.d(TAG, "listToDelete ${listToDelete.size}")
+    Log.d(TAG, "listToInsert ${listToInsert.size}")
     Log.d(TAG, "listToUpdate ${listToUpdate.size}")
 
-    if (listToInsert.isNotEmpty()) {
-      applicationsModelDao.insert(*listToInsert.toTypedArray())
+    if (listToDelete.isNotEmpty()) {
+      val count = applicationsModelDao.delete(listToDelete)
+      Log.d(TAG, "Deleted $count records")
     }
 
-    if (listToDelete.isNotEmpty()) {
-      applicationsModelDao.delete(*listToDelete.toTypedArray())
+    if (listToInsert.isNotEmpty()) {
+      val ids = applicationsModelDao.insert(listToInsert)
+      Log.d(TAG, "Inserted ${ids.size} records")
     }
 
     if (listToUpdate.isNotEmpty()) {
-      applicationsModelDao.update(*listToUpdate.toTypedArray())
+      listToUpdate.sortBy { a -> a.name }
+      val count = applicationsModelDao.update(listToUpdate)
+      Log.d(TAG, "Updated $count records")
     }
   }
 
@@ -107,7 +111,7 @@ class AppLoaderIntentService : JobIntentService() {
     } else {
       info.packageName
     }
-    return ApplicationModel(name, packageName)
+    return ApplicationModel(packageName, name)
   }
 
   private fun getExportedActivitiesCount(activities: Array<ActivityInfo>): Int {

@@ -1,5 +1,5 @@
 2.0.0
-- a lot of under the hood improvements
 - custom mimeType and action for intent
-- removed caching and refresh (now the list is always up to date)
+- allow to run exported activities also on behalf of root
+- add fast scroller for lists
 - general bugfixes and UI improvements
