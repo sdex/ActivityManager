@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@color/background_gray"
   android:orientation="vertical"
   tools:context=".intent.history.HistoryActivity"
   tools:ignore="ContentDescription">
@@ -22,7 +23,7 @@
       android:orientation="vertical">
 
       <android.support.v7.widget.CardView
-        android:id="@+id/purchase_pro"
+        android:id="@+id/purchasePro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
@@ -49,7 +50,7 @@
               android:textSize="20sp" />
 
             <TextView
-              android:id="@+id/price"
+              android:id="@+id/priceView"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:textColor="@color/red"
@@ -101,8 +102,8 @@
             android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:text="@string/pro_version_donate" />
+            android:text="@string/pro_version_donate"
+            android:textStyle="italic" />
 
         </LinearLayout>
 
@@ -120,9 +121,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:drawableStart="@drawable/ic_star_border"
           android:drawableLeft="@drawable/ic_star_border"
           android:drawablePadding="8dp"
+          android:drawableStart="@drawable/ic_star_border"
           android:padding="16dp"
           android:text="@string/donate_5"
           android:textSize="18sp" />
@@ -141,9 +142,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:drawableStart="@drawable/ic_star_half"
           android:drawableLeft="@drawable/ic_star_half"
           android:drawablePadding="8dp"
+          android:drawableStart="@drawable/ic_star_half"
           android:padding="16dp"
           android:text="@string/donate_10"
           android:textSize="18sp" />
@@ -162,9 +163,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:drawableStart="@drawable/ic_star"
           android:drawableLeft="@drawable/ic_star"
           android:drawablePadding="8dp"
+          android:drawableStart="@drawable/ic_star"
           android:padding="16dp"
           android:text="@string/donate_20"
           android:textSize="18sp" />

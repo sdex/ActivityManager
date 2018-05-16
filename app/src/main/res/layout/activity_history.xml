@@ -4,7 +4,6 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@android:color/white"
   android:orientation="vertical"
   tools:context=".intent.history.HistoryActivity"
   tools:ignore="ContentDescription">
@@ -16,19 +15,50 @@
     android:layout_height="0dp"
     android:layout_weight="1">
 
-    <android.support.v7.widget.RecyclerView
+    <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
       android:id="@+id/list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:scrollbars="vertical"
+      app:fastScrollPopupBgColor="@color/blue"
+      app:fastScrollPopupTextColor="@color/white"
+      app:fastScrollThumbColor="@color/blue"
       app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-      tools:listitem="@layout/item_history" />
+      tools:listitem="@layout/item_history"
+      tools:visibility="gone" />
+
+    <LinearLayout
+      android:id="@+id/empty"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:visibility="gone"
+      tools:visibility="visible">
+
+      <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_folder_open" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/history_empty_text"
+        android:textSize="18sp" />
+
+      <Button
+        android:id="@+id/finish"
+        style="?borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/history_empty_action"
+        android:textColor="@color/blue" />
+
+    </LinearLayout>
 
   </FrameLayout>
-
-  <FrameLayout
-    android:id="@+id/ads_container"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
 
 </LinearLayout>

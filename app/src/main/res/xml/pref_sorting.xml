@@ -19,7 +19,7 @@
     android:title="@string/pref_sort_by" />
 
   <SwitchPreference
-    android:defaultValue="true"
+    android:defaultValue="false"
     android:key="sort_case_sensitive"
     android:summary=""
     android:title="@string/pref_case_sensitive" />

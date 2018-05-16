@@ -1,6 +1,8 @@
 apply from: 'dependencies.gradle'
 
 buildscript {
+  ext.kotlin_version = '1.2.41'
+  ext.anko_version = '0.10.5'
   repositories {
     google()
     jcenter()
@@ -10,11 +12,11 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.2.0-alpha10'
+    classpath 'com.android.tools.build:gradle:3.2.0-alpha14'
     classpath 'com.google.gms:google-services:3.2.1'
     classpath 'com.github.triplet.gradle:play-publisher:1.2.0'
-    classpath 'io.fabric.tools:gradle:1.25.1'
-    classpath 'com.google.firebase:firebase-plugins:1.1.5'
+    classpath 'io.fabric.tools:gradle:1.25.2'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
 }
 
@@ -22,9 +24,8 @@ allprojects {
   repositories {
     google()
     jcenter()
-    flatDir {
-      dirs 'libs'
-    }
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
   }
 }
 

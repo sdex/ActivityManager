@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'io.fabric'
-apply plugin: 'com.google.firebase.firebase-perf'
 
 def keystorePropertiesFile = file("keystore/keystore.properties")
 def keystoreProperties = new Properties()
@@ -21,10 +23,16 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 27
-    versionCode 1550
-    versionName "1.5.5"
+    versionCode 2008
+    versionName "2.0.0"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
+
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+      }
+    }
   }
 
   signingConfigs {
@@ -55,39 +63,53 @@ android {
     uploadImages = false
   }
 
+  sourceSets {
+    androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+  }
+}
+
+androidExtensions {
+  experimental = true
 }
 
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
   implementation project(':commons')
-  implementation(name: 'RootTools', ext: 'aar')
-  implementation(name: 'RootShell', ext: 'aar')
-  implementation "eu.chainfire:libsuperuser:1.0.0.201704021214"
+
   implementation "com.android.support:support-v4:$versions.support"
   implementation "com.android.support:appcompat-v7:$versions.support"
   implementation "com.android.support:support-vector-drawable:$versions.support"
   implementation "com.android.support:support-media-compat:$versions.support"
+  implementation "com.android.support:customtabs:$versions.support"
   implementation "com.android.support:recyclerview-v7:$versions.support"
   implementation "com.android.support:cardview-v7:$versions.support"
   implementation "com.android.support:design:$versions.support"
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+
   implementation "com.google.firebase:firebase-ads:$versions.playServices"
   implementation "com.google.firebase:firebase-core:$versions.playServices"
-  implementation "com.google.firebase:firebase-perf:$versions.playServices"
-  implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+  implementation('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
     transitive = true
   }
+
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
-  annotationProcessor "android.arch.lifecycle:compiler:$versions.lifecycle"
+  kapt "android.arch.lifecycle:compiler:$versions.lifecycle"
+
   implementation "android.arch.persistence.room:runtime:$versions.room"
-  annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
+  kapt "android.arch.persistence.room:compiler:$versions.room"
+
   implementation "com.github.bumptech.glide:glide:$versions.glide"
-  annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
-  implementation "com.jakewharton:butterknife:$versions.butterKnife"
-  annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+  kapt "com.github.bumptech.glide:compiler:$versions.glide"
+
   implementation "com.android.billingclient:billing:1.0"
   implementation "de.psdev.licensesdialog:licensesdialog:1.7.0"
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
+  implementation "com.pddstudio:highlightjs-android:1.5.0"
+  implementation "com.simplecityapps:recyclerview-fastscroll:1.0.18"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
+  implementation "androidx.core:core-ktx:0.3"
+
   testImplementation "junit:junit:4.12"
 }
 

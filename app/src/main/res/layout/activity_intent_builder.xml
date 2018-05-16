@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/background_gray"
+  android:orientation="vertical"
+  tools:context=".intent.IntentBuilderActivity"
+  tools:ignore="ContentDescription">
+
+  <include layout="@layout/toolbar" />
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+
+    <android.support.v4.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fillViewport="true">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:padding="@dimen/launch_params_activity_padding">
+
+        <android.support.v7.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:cardBackgroundColor="@android:color/white"
+          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+              android:id="@+id/container_package_name"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?attr/selectableItemBackground">
+
+              <ImageView
+                android:id="@+id/packageNameImageView"
+                android:layout_width="@dimen/launch_params_item_height"
+                android:layout_height="@dimen/launch_params_item_height"
+                android:padding="@dimen/launch_params_icon_padding"
+                android:src="@drawable/selector_intent_field_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+              <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/packageNameImageView"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/launch_param_package_name"
+                  app:layout_constraintStart_toEndOf="@+id/packageNameImageView" />
+
+                <TextView
+                  android:id="@+id/packageNameView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:paddingBottom="6dp"
+                  android:textAppearance="?android:attr/textAppearanceListItem"
+                  tools:text="com.sdex.activityrunner\nqw\n\nqw" />
+              </LinearLayout>
+
+              <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/list_divider_color"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+              android:id="@+id/container_class_name"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?attr/selectableItemBackground">
+
+              <ImageView
+                android:id="@+id/classNameImageView"
+                android:layout_width="@dimen/launch_params_item_height"
+                android:layout_height="@dimen/launch_params_item_height"
+                android:padding="@dimen/launch_params_icon_padding"
+                android:src="@drawable/selector_intent_field_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+              <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/classNameImageView"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/launch_param_class_name" />
+
+                <TextView
+                  android:id="@+id/classNameView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceListItem"
+                  tools:text="MainActivity" />
+              </LinearLayout>
+
+            </android.support.constraint.ConstraintLayout>
+
+          </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/launch_params_item_card_margin"
+          app:cardBackgroundColor="@android:color/white"
+          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+          <android.support.constraint.ConstraintLayout
+            android:id="@+id/container_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+              android:id="@+id/actionImageView"
+              android:layout_width="@dimen/launch_params_item_height"
+              android:layout_height="@dimen/launch_params_item_height"
+              android:padding="@dimen/launch_params_icon_padding"
+              android:src="@drawable/selector_intent_field_image"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+              android:id="@+id/linearLayout2"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:minHeight="@dimen/launch_params_item_height"
+              android:orientation="vertical"
+              app:layout_constraintEnd_toStartOf="@+id/actionEditImageView"
+              app:layout_constraintStart_toEndOf="@+id/actionImageView"
+              app:layout_constraintTop_toTopOf="parent">
+
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/launch_param_action" />
+
+              <TextView
+                android:id="@+id/actionView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                tools:text="android.intent.action.MAIN" />
+            </LinearLayout>
+
+            <ImageView
+              android:id="@+id/actionEditImageView"
+              android:layout_width="@dimen/launch_params_item_height"
+              android:layout_height="@dimen/launch_params_item_height"
+              android:background="?attr/selectableItemBackground"
+              android:padding="@dimen/launch_params_icon_edit_padding"
+              android:scaleType="fitCenter"
+              android:src="@drawable/ic_edit"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/launch_params_item_card_margin"
+          app:cardBackgroundColor="@android:color/white"
+          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+              android:id="@+id/container_data"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?attr/selectableItemBackground">
+
+              <ImageView
+                android:id="@+id/dataImageView"
+                android:layout_width="@dimen/launch_params_item_height"
+                android:layout_height="@dimen/launch_params_item_height"
+                android:padding="@dimen/launch_params_icon_padding"
+                android:src="@drawable/selector_intent_field_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+              <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dataImageView"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/launch_param_data" />
+
+                <TextView
+                  android:id="@+id/dataView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceListItem"
+                  tools:text="122" />
+              </LinearLayout>
+
+              <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/list_divider_color"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout3" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+              android:id="@+id/container_mime_type"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?attr/selectableItemBackground">
+
+              <ImageView
+                android:id="@+id/mimeTypeImageView"
+                android:layout_width="@dimen/launch_params_item_height"
+                android:layout_height="@dimen/launch_params_item_height"
+                android:padding="@dimen/launch_params_icon_padding"
+                android:src="@drawable/selector_intent_field_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+              <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/launch_params_item_height"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/mimeTypeEditImageView"
+                app:layout_constraintStart_toEndOf="@+id/mimeTypeImageView"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/launch_param_mime_type" />
+
+                <TextView
+                  android:id="@+id/mimeTypeView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceListItem"
+                  tools:text="image/png" />
+              </LinearLayout>
+
+              <ImageView
+                android:id="@+id/mimeTypeEditImageView"
+                android:layout_width="@dimen/launch_params_item_height"
+                android:layout_height="@dimen/launch_params_item_height"
+                android:background="?attr/selectableItemBackground"
+                android:padding="@dimen/launch_params_icon_edit_padding"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+          </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/launch_params_item_card_margin"
+          app:cardBackgroundColor="@android:color/white"
+          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+          <android.support.constraint.ConstraintLayout
+            android:id="@+id/container_extras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+              android:id="@+id/extrasImageView"
+              android:layout_width="@dimen/launch_params_item_height"
+              android:layout_height="@dimen/launch_params_item_height"
+              android:padding="@dimen/launch_params_icon_padding"
+              android:src="@drawable/selector_intent_field_image"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+              android:id="@+id/linearLayout_extras"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:minHeight="@dimen/launch_params_item_height"
+              android:orientation="vertical"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toEndOf="@+id/extrasImageView"
+              app:layout_constraintTop_toTopOf="parent">
+
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/launch_param_extras" />
+
+              <android.support.v7.widget.RecyclerView
+                android:id="@+id/listExtrasView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+              <TextView
+                android:id="@+id/addExtraView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="@string/launch_param_extras_add" />
+
+            </LinearLayout>
+
+            <View
+              android:id="@+id/extras_click_interceptor"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:background="?attr/selectableItemBackground"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/launch_params_item_card_margin"
+          app:cardBackgroundColor="@android:color/white"
+          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+          <android.support.constraint.ConstraintLayout
+            android:id="@+id/container_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+              android:id="@+id/categoriesImageView"
+              android:layout_width="@dimen/launch_params_item_height"
+              android:layout_height="@dimen/launch_params_item_height"
+              android:padding="@dimen/launch_params_icon_padding"
+              android:src="@drawable/selector_intent_field_image"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+              android:id="@+id/linearLayout5"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:minHeight="@dimen/launch_params_item_height"
+              android:orientation="vertical"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toEndOf="@+id/categoriesImageView"
+              app:layout_constraintTop_toTopOf="parent">
+
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/launch_param_categories" />
+
+              <android.support.v7.widget.RecyclerView
+                android:id="@+id/listCategoriesView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+            <View
+              android:id="@+id/categories_click_interceptor"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:background="?attr/selectableItemBackground"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/launch_params_item_card_margin"
+          app:cardBackgroundColor="@android:color/white"
+          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+          <android.support.constraint.ConstraintLayout
+            android:id="@+id/container_flags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+              android:id="@+id/flagsImageView"
+              android:layout_width="@dimen/launch_params_item_height"
+              android:layout_height="@dimen/launch_params_item_height"
+              android:padding="@dimen/launch_params_icon_padding"
+              android:src="@drawable/selector_intent_field_image"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+              android:id="@+id/linearLayout6"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:minHeight="@dimen/launch_params_item_height"
+              android:orientation="vertical"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toEndOf="@+id/flagsImageView"
+              app:layout_constraintTop_toTopOf="parent">
+
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/launch_param_flags" />
+
+              <android.support.v7.widget.RecyclerView
+                android:id="@+id/listFlagsView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+            </LinearLayout>
+
+            <View
+              android:id="@+id/flags_click_interceptor"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:background="?attr/selectableItemBackground"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+          </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/launch_params_bottom_margin" />
+
+      </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+      android:id="@+id/launch"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|end"
+      android:layout_margin="@dimen/launch_params_fab_margin"
+      android:clickable="true"
+      android:focusable="true"
+      android:src="@drawable/ic_done"
+      app:fabSize="normal" />
+
+  </FrameLayout>
+
+  <FrameLayout
+    android:id="@+id/adsContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+</LinearLayout>

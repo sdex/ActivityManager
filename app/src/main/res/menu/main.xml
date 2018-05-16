@@ -11,19 +11,15 @@
 
   <item
     android:id="@+id/action_launch_intent"
-    android:icon="@drawable/ic_launch"
+    android:icon="@drawable/ic_exit_to_app"
     android:title="@string/action_launch_intent"
     app:showAsAction="ifRoom" />
 
   <item
     android:id="@+id/action_upgrade"
+    android:icon="@drawable/ic_approval"
     android:title="@string/action_upgrade"
     app:showAsAction="ifRoom" />
-
-  <item
-    android:id="@+id/action_disable_ads"
-    android:title="@string/action_disable_ads"
-    app:showAsAction="never" />
 
   <item
     android:id="@+id/action_about"

@@ -12,12 +12,12 @@
     android:orientation="vertical">
 
     <android.support.design.widget.TextInputLayout
-      android:id="@+id/key_layout"
+      android:id="@+id/keyLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
       <EditText
-        android:id="@+id/key"
+        android:id="@+id/keyView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/input_key"
@@ -26,13 +26,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-      android:id="@+id/value_layout"
+      android:id="@+id/valueLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp">
 
       <EditText
-        android:id="@+id/value"
+        android:id="@+id/valueView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/input_value"
@@ -85,6 +85,7 @@
     </RadioGroup>
 
     <CheckBox
+      android:id="@+id/array"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+    android:id="@+id/action_open_app_manifest"
+    android:title="@string/context_action_open_manifest" />
+
+  <item
+    android:id="@+id/action_open_app_info"
+    android:title="@string/context_action_open_info" />
+
+  <item
+    android:id="@+id/action_open_app"
+    android:title="@string/context_action_launch" />
+
+</menu>

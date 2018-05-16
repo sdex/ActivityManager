@@ -10,12 +10,14 @@ import java.util.Locale;
 public class AppPreferences {
 
   public static final long ADS_PERIOD = 60 * 60 * 1000; // 1 hour
-  public static final long ADS_INTERSTITIAL_PERIOD = 60 * 60 * 1000; // 1 hour
+  public static final long ADS_INTERSTITIAL_PERIOD = 30 * 60 * 1000; // 0.5 hour
 
   private static final String PREFERENCES_NAME = "ads_preferences";
   private static final String KEY_TIME_INTERSTITIAL = "ads_time_interstitial";
   private static final String KEY_TIME = "ads_time";
   private static final String KEY_PRO = "pro";
+  private static final String KEY_HISTORY_WARNING_SHOWN = "history_warning_shown";
+  private static final String KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown";
 
   private static final SimpleDateFormat DATE_FORMAT =
     new SimpleDateFormat("MMM d HH:mm", Locale.ENGLISH);
@@ -75,5 +77,25 @@ public class AppPreferences {
 
   public SharedPreferences getPreferences() {
     return preferences;
+  }
+
+  public boolean isHistoryWarningShown() {
+    return preferences.getBoolean(KEY_HISTORY_WARNING_SHOWN, false);
+  }
+
+  public void setHistoryWarningShown(boolean historyWarningShown) {
+    preferences.edit()
+      .putBoolean(KEY_HISTORY_WARNING_SHOWN, historyWarningShown)
+      .apply();
+  }
+
+  public boolean isNotExportedDialogShown() {
+    return preferences.getBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, false);
+  }
+
+  public void setNotExportedDialogShown(boolean notExportedDialogShown) {
+    preferences.edit()
+      .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, notExportedDialogShown)
+      .apply();
   }
 }

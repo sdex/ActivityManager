@@ -24,7 +24,7 @@
     app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-    android:id="@+id/package_name"
+    android:id="@+id/packageName"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
@@ -53,7 +53,7 @@
     app:layout_constraintTop_toTopOf="@+id/title_class_name" />
 
   <TextView
-    android:id="@+id/class_name"
+    android:id="@+id/className"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
@@ -140,7 +140,7 @@
     app:layout_constraintTop_toTopOf="@+id/title_mime_type" />
 
   <TextView
-    android:id="@+id/mime_type"
+    android:id="@+id/mimeType"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"

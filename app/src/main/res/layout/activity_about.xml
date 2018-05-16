@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@color/background_gray"
   android:orientation="vertical"
   tools:context=".intent.history.HistoryActivity"
   tools:ignore="ContentDescription">
@@ -65,7 +66,7 @@
               app:layout_constraintGuide_percent="0.5" />
 
             <TextView
-              android:id="@+id/version_name"
+              android:id="@+id/versionName"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -75,7 +76,7 @@
           </android.support.constraint.ConstraintLayout>
 
           <android.support.constraint.ConstraintLayout
-            android:id="@+id/rate_app"
+            android:id="@+id/rateApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground">
@@ -103,7 +104,7 @@
           </android.support.constraint.ConstraintLayout>
 
           <android.support.constraint.ConstraintLayout
-            android:id="@+id/more_apps"
+            android:id="@+id/moreApps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground">
@@ -218,7 +219,7 @@
         app:cardCornerRadius="1dp">
 
         <android.support.constraint.ConstraintLayout
-          android:id="@+id/open_source"
+          android:id="@+id/openSource"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
