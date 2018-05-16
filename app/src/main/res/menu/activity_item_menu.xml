@@ -13,12 +13,8 @@
 
   </group>
 
-  <group android:id="@+id/menu_group_activity_not_exported">
-
-    <item
-      android:id="@+id/action_activity_launch_with_root"
-      android:title="@string/context_action_launch_root" />
-
-  </group>
+  <item
+    android:id="@+id/action_activity_launch_with_root"
+    android:title="@string/context_action_launch_root" />
 
 </menu>
