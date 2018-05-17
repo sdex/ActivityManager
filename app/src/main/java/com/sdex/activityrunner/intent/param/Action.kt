@@ -196,8 +196,14 @@ object Action {
     return ACTIONS[key]
   }
 
-  // TODO find and return position
-  fun getActionKeyPosition(value : String): Int {
-    return if (ACTIONS.containsValue(value)) 0 else -1
+  fun getActionKeyPosition(value: String): Int {
+    val split = value.split(".")
+    val last = split.lastOrNull() ?: return -1
+    for (action in list!!) {
+      if (action.contains(last)) {
+        return list!!.indexOf(action)
+      }
+    }
+    return -1
   }
 }
