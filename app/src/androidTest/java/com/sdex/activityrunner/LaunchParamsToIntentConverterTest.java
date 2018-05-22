@@ -4,9 +4,11 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.test.filters.MediumTest;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.sdex.activityrunner.extensions.IntentExtensionsKt;
 import com.sdex.activityrunner.intent.LaunchParams;
 import com.sdex.activityrunner.intent.LaunchParamsExtensionsKt;
 import com.sdex.activityrunner.intent.LaunchParamsExtra;
@@ -21,6 +23,7 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -39,26 +42,13 @@ public class LaunchParamsToIntentConverterTest {
 
   @Test
   public void testCategories() {
-    ArrayList<Integer> categories = new ArrayList<>();
-    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_APP_BROWSER"));
-    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_DEFAULT"));
-    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_LAUNCHER"));
-    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_PREFERENCE"));
-
     LaunchParams launchParams = new LaunchParams();
-    launchParams.setCategories(categories);
-
-    List<String> categoriesValues = Category.INSTANCE.list(
-      LaunchParamsExtensionsKt.getCategoriesValues(launchParams));
+    launchParams.setCategories(getCategories());
 
     LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
     Intent intent = converter.convert();
 
-    Assert.assertEquals(categoriesValues.size(), intent.getCategories().size());
-
-    for (String category : intent.getCategories()) {
-      Assert.assertTrue(categoriesValues.contains(category));
-    }
+    assertCategoriesEquals(launchParams, intent);
   }
 
   @Test
@@ -121,39 +111,75 @@ public class LaunchParamsToIntentConverterTest {
 
   @Test
   public void testExtras() {
-    ArrayList<LaunchParamsExtra> extras = new ArrayList<>();
-    extras.add(new LaunchParamsExtra("k00", "str", LaunchParamsExtraType.STRING, false));
-    extras.add(new LaunchParamsExtra("k01", "str233", LaunchParamsExtraType.STRING, false));
-
-    extras.add(new LaunchParamsExtra("k10", "1", LaunchParamsExtraType.INT, false));
-    extras.add(new LaunchParamsExtra("k11", "0", LaunchParamsExtraType.INT, false));
-    extras.add(new LaunchParamsExtra("k12", "-1", LaunchParamsExtraType.INT, false));
-
-    extras.add(new LaunchParamsExtra("k20", "1", LaunchParamsExtraType.LONG, false));
-    extras.add(new LaunchParamsExtra("k21", "0", LaunchParamsExtraType.LONG, false));
-    extras.add(new LaunchParamsExtra("k22", "-1", LaunchParamsExtraType.LONG, false));
-
-    extras.add(new LaunchParamsExtra("k30", "0.0", LaunchParamsExtraType.FLOAT, false));
-    extras.add(new LaunchParamsExtra("k31", "1.0", LaunchParamsExtraType.FLOAT, false));
-    extras.add(new LaunchParamsExtra("k32", "0.1", LaunchParamsExtraType.FLOAT, false));
-    extras.add(new LaunchParamsExtra("k33", "-0.2", LaunchParamsExtraType.FLOAT, false));
-
-    extras.add(new LaunchParamsExtra("k40", "0.0", LaunchParamsExtraType.DOUBLE, false));
-    extras.add(new LaunchParamsExtra("k41", "1.0", LaunchParamsExtraType.DOUBLE, false));
-    extras.add(new LaunchParamsExtra("k42", "0.1", LaunchParamsExtraType.DOUBLE, false));
-    extras.add(new LaunchParamsExtra("k43", "-0.2", LaunchParamsExtraType.DOUBLE, false));
-
-    extras.add(new LaunchParamsExtra("k50", "true", LaunchParamsExtraType.BOOLEAN, false));
-    extras.add(new LaunchParamsExtra("k51", "false", LaunchParamsExtraType.BOOLEAN, false));
-    extras.add(new LaunchParamsExtra("k52", "kek", LaunchParamsExtraType.BOOLEAN, false));
-    extras.add(new LaunchParamsExtra("k53", "33", LaunchParamsExtraType.BOOLEAN, false));
-
     LaunchParams launchParams = new LaunchParams();
-    launchParams.setExtras(extras);
+    launchParams.setExtras(getExtras());
 
     LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
     Intent intent = converter.convert();
 
+    assertExtrasEquals(intent);
+  }
+
+  @Test
+  public void testFlags() {
+    LaunchParams launchParams = new LaunchParams();
+    launchParams.setFlags(getFlags());
+
+    LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
+    Intent intent = converter.convert();
+
+    assertFlagsEquals(launchParams, intent);
+  }
+
+  @Test
+  public void testSetFrom() {
+    LaunchParams launchParams = new LaunchParams();
+    launchParams.setAction(Intent.ACTION_ASSIST);
+    launchParams.setClassName("cls_name");
+    launchParams.setPackageName("pkg_name");
+    launchParams.setData("data");
+    launchParams.setMimeType("type");
+    launchParams.setFlags(getFlags());
+    launchParams.setCategories(getCategories());
+    launchParams.setExtras(getExtras());
+
+    LaunchParams launchParams2 = new LaunchParams();
+    launchParams2.setFrom(launchParams);
+
+    Assert.assertEquals(launchParams, launchParams2);
+  }
+
+  @Test
+  public void testAll() {
+    LaunchParams launchParams = new LaunchParams();
+
+    LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
+    Intent intent = converter.convert();
+
+    // TODO test all fields
+  }
+
+  private static void assertCategoriesEquals(LaunchParams launchParams, Intent intent) {
+    Set<String> intentCategories = intent.getCategories();
+    List<String> categoriesValues = Category.INSTANCE.list(
+      LaunchParamsExtensionsKt.getCategoriesValues(launchParams));
+
+    Assert.assertEquals(categoriesValues.size(), intentCategories.size());
+
+    for (String category : intentCategories) {
+      Assert.assertTrue(categoriesValues.contains(category));
+    }
+  }
+
+  private static void assertFlagsEquals(LaunchParams launchParams, Intent intent) {
+    List<String> intentFlags = IntentExtensionsKt.getFlagsList(intent);
+    for (Integer position : launchParams.getFlags()) {
+      String flagName = Flag.INSTANCE.list().get(position);
+      Assert.assertTrue(intentFlags.contains(flagName));
+    }
+  }
+
+  private static void assertExtrasEquals(Intent intent) {
     Bundle intentExtras = intent.getExtras();
 
     Assert.assertNotNull(intentExtras);
@@ -193,40 +219,55 @@ public class LaunchParamsToIntentConverterTest {
     Assert.assertFalse(intentExtras.getBoolean("k53"));
   }
 
-  @Test
-  public void testFlags() {
+  @NonNull
+  private ArrayList<Integer> getCategories() {
+    ArrayList<Integer> categories = new ArrayList<>();
+    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_APP_BROWSER"));
+    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_DEFAULT"));
+    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_LAUNCHER"));
+    categories.add(Category.INSTANCE.list().indexOf("CATEGORY_PREFERENCE"));
+    return categories;
+  }
+
+  @NonNull
+  private ArrayList<Integer> getFlags() {
     ArrayList<Integer> flags = new ArrayList<>();
     flags.add(Flag.INSTANCE.list().indexOf("FLAG_ACTIVITY_CLEAR_TASK"));
     flags.add(Flag.INSTANCE.list().indexOf("FLAG_ACTIVITY_NEW_TASK"));
     flags.add(Flag.INSTANCE.list().indexOf("FLAG_ACTIVITY_NO_HISTORY"));
     flags.add(Flag.INSTANCE.list().indexOf("FLAG_ACTIVITY_SINGLE_TOP"));
     flags.add(Flag.INSTANCE.list().indexOf("FLAG_GRANT_READ_URI_PERMISSION"));
-
-    LaunchParams launchParams = new LaunchParams();
-    launchParams.setFlags(flags);
-
-    List<Integer> flagsValues = Flag.INSTANCE.list(
-      LaunchParamsExtensionsKt.getFlagsValues(launchParams));
-
-    LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
-    Intent intent = converter.convert();
-
-    // TODO compare flags
+    return flags;
   }
 
-  @Test
-  public void testSetFrom() {
-    LaunchParams launchParams = new LaunchParams();
+  @NonNull
+  private ArrayList<LaunchParamsExtra> getExtras() {
+    ArrayList<LaunchParamsExtra> extras = new ArrayList<>();
+    extras.add(new LaunchParamsExtra("k00", "str", LaunchParamsExtraType.STRING, false));
+    extras.add(new LaunchParamsExtra("k01", "str233", LaunchParamsExtraType.STRING, false));
 
-    LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
-    Intent intent = converter.convert();
-  }
+    extras.add(new LaunchParamsExtra("k10", "1", LaunchParamsExtraType.INT, false));
+    extras.add(new LaunchParamsExtra("k11", "0", LaunchParamsExtraType.INT, false));
+    extras.add(new LaunchParamsExtra("k12", "-1", LaunchParamsExtraType.INT, false));
 
-  @Test
-  public void testAll() {
-    LaunchParams launchParams = new LaunchParams();
+    extras.add(new LaunchParamsExtra("k20", "1", LaunchParamsExtraType.LONG, false));
+    extras.add(new LaunchParamsExtra("k21", "0", LaunchParamsExtraType.LONG, false));
+    extras.add(new LaunchParamsExtra("k22", "-1", LaunchParamsExtraType.LONG, false));
 
-    LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
-    Intent intent = converter.convert();
+    extras.add(new LaunchParamsExtra("k30", "0.0", LaunchParamsExtraType.FLOAT, false));
+    extras.add(new LaunchParamsExtra("k31", "1.0", LaunchParamsExtraType.FLOAT, false));
+    extras.add(new LaunchParamsExtra("k32", "0.1", LaunchParamsExtraType.FLOAT, false));
+    extras.add(new LaunchParamsExtra("k33", "-0.2", LaunchParamsExtraType.FLOAT, false));
+
+    extras.add(new LaunchParamsExtra("k40", "0.0", LaunchParamsExtraType.DOUBLE, false));
+    extras.add(new LaunchParamsExtra("k41", "1.0", LaunchParamsExtraType.DOUBLE, false));
+    extras.add(new LaunchParamsExtra("k42", "0.1", LaunchParamsExtraType.DOUBLE, false));
+    extras.add(new LaunchParamsExtra("k43", "-0.2", LaunchParamsExtraType.DOUBLE, false));
+
+    extras.add(new LaunchParamsExtra("k50", "true", LaunchParamsExtraType.BOOLEAN, false));
+    extras.add(new LaunchParamsExtra("k51", "false", LaunchParamsExtraType.BOOLEAN, false));
+    extras.add(new LaunchParamsExtra("k52", "kek", LaunchParamsExtraType.BOOLEAN, false));
+    extras.add(new LaunchParamsExtra("k53", "33", LaunchParamsExtraType.BOOLEAN, false));
+    return extras;
   }
 }
