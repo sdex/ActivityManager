@@ -1,5 +1,2 @@
-2.0.0
-- custom mimeType and action for intent
-- allow to run exported activities also on behalf of root
-- add fast scroller for lists
-- general bugfixes and UI improvements
+2.0.1
+- fixed mimeType and data collision for intent builder

@@ -28,13 +28,12 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
     intent.action =
       if (launchParams.action.isNullOrEmpty()) null
       else launchParams.action
-    // data
-    val data = launchParams.data
-    intent.data = data?.toUri()
-    // mime type
-    intent.type =
+    // data and mime type
+    val data = launchParams.data?.toUri()
+    val type =
       if (launchParams.mimeType.isNullOrEmpty()) null
       else launchParams.mimeType
+    intent.setDataAndType(data, type)
     // categories
     val categories = Category.list(launchParams.getCategoriesValues())
     for (category in categories) {
