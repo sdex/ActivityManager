@@ -19,15 +19,15 @@ public class ExtrasSerializerTest {
   @BeforeClass
   public static void setUp() {
     LaunchParamsExtra extra0 = new LaunchParamsExtra("k0", "3.3",
-      LaunchParamsExtraType.Companion.getDOUBLE(), true);
+      LaunchParamsExtraType.DOUBLE, true);
     EXPECTED_LIST.add(extra0);
 
     LaunchParamsExtra extra1 = new LaunchParamsExtra("k1", "v1",
-      LaunchParamsExtraType.Companion.getSTRING(), false);
+      LaunchParamsExtraType.STRING, false);
     EXPECTED_LIST.add(extra1);
 
     LaunchParamsExtra extra2 = new LaunchParamsExtra("k2", "888",
-      LaunchParamsExtraType.Companion.getINT(), false);
+      LaunchParamsExtraType.INT, false);
     EXPECTED_LIST.add(extra2);
   }
 
