@@ -151,12 +151,28 @@ public class LaunchParamsToIntentConverterTest {
 
   @Test
   public void testAll() {
+    ComponentName expected = new ComponentName("pkg_name", "cls_name");
+
     LaunchParams launchParams = new LaunchParams();
+    launchParams.setAction(Intent.ACTION_ASSIST);
+    launchParams.setClassName(expected.getClassName());
+    launchParams.setPackageName(expected.getPackageName());
+    launchParams.setData("data");
+    launchParams.setMimeType("type");
+    launchParams.setFlags(getFlags());
+    launchParams.setCategories(getCategories());
+    launchParams.setExtras(getExtras());
 
     LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
     Intent intent = converter.convert();
 
-    // TODO test all fields
+    Assert.assertEquals(Intent.ACTION_ASSIST, intent.getAction());
+    Assert.assertEquals(expected, intent.getComponent());
+    Assert.assertEquals(Uri.parse("data"), intent.getData());
+    Assert.assertEquals("type", intent.getType());
+    assertFlagsEquals(launchParams, intent);
+    assertCategoriesEquals(launchParams, intent);
+    assertExtrasEquals(intent);
   }
 
   private static void assertCategoriesEquals(LaunchParams launchParams, Intent intent) {
