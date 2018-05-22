@@ -1,11 +1,13 @@
 package com.sdex.activityrunner;
 
-import static org.junit.Assert.assertEquals;
-
 import com.sdex.activityrunner.intent.converter.IntegerListSerializer;
-import java.util.ArrayList;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class IntegerListSerializerTest {
 
@@ -14,6 +16,8 @@ public class IntegerListSerializerTest {
 
   @BeforeClass
   public static void setUp() {
+    EXPECTED_LIST.clear();
+
     EXPECTED_LIST.add(1);
     EXPECTED_LIST.add(2);
     EXPECTED_LIST.add(3);

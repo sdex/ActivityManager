@@ -18,6 +18,8 @@ public class ExtrasSerializerTest {
 
   @BeforeClass
   public static void setUp() {
+    EXPECTED_LIST.clear();
+
     LaunchParamsExtra extra0 = new LaunchParamsExtra("k0", "3.3",
       LaunchParamsExtraType.DOUBLE, true);
     EXPECTED_LIST.add(extra0);
