@@ -8,6 +8,7 @@ import android.content.ComponentName
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.preference.PreferenceManager
+import android.support.annotation.WorkerThread
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -32,6 +33,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     return liveData
   }
 
+  @WorkerThread
   private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
     val list = ArrayList<ActivityModel>()
     val showNotExported = advancedPreferences.isShowNotExported
@@ -56,11 +58,19 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   }
 
   private fun getActivityModel(pm: PackageManager, activityInfo: ActivityInfo): ActivityModel {
-    val activityName = try {
+    var activityName = try {
       activityInfo.loadLabel(pm).toString()
     } catch (e: Exception) {
       val componentName = ComponentName(activityInfo.packageName, activityInfo.name)
       componentName.shortClassName
+    }
+    if (activityName.isNullOrBlank()) {
+      val applicationInfo = activityInfo.applicationInfo
+      activityName = if (applicationInfo != null) {
+        pm.getApplicationLabel(applicationInfo).toString()
+      } else {
+        activityInfo.packageName
+      }
     }
     return ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
       activityInfo.exported)
