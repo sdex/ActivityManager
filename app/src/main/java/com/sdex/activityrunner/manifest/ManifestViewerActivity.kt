@@ -29,7 +29,7 @@ class ManifestViewerActivity : BaseActivity() {
     highlightView.setShowLineNumbers(true)
     highlightView.setZoomSupportEnabled(true)
     highlightView.setOnContentChangedListener {
-      // hide progress
+      progress.hide()
     }
 
     val packageName = intent.getStringExtra(ARG_PACKAGE_NAME)
@@ -44,7 +44,6 @@ class ManifestViewerActivity : BaseActivity() {
     ViewModelProviders.of(this).get(ManifestViewModel::class.java)
       .loadManifest(packageName).observe(this, Observer {
         highlightView.setSource(it)
-        progress.hide()
       })
   }
 
