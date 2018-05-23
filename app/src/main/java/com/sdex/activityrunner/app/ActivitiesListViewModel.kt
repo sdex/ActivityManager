@@ -10,8 +10,10 @@ import android.content.pm.PackageManager
 import android.preference.PreferenceManager
 import android.support.annotation.WorkerThread
 import com.sdex.activityrunner.preferences.AdvancedPreferences
+import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import java.util.*
 
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
@@ -26,9 +28,11 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   }
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
-    async(UI) {
-      val list = getActivitiesList(packageName)
-      liveData.postValue(list)
+    val deferred = async(CommonPool) {
+      getActivitiesList(packageName)
+    }
+    launch(UI) {
+      liveData.value = deferred.await()
     }
     return liveData
   }
