@@ -12,8 +12,7 @@
     android:layout_width="50dp"
     android:layout_height="50dp"
     android:layout_gravity="center_vertical"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
+    android:layout_margin="10dp"
     tools:ignore="ContentDescription"
     tools:src="@mipmap/ic_launcher" />
 
@@ -30,6 +29,7 @@
       android:layout_height="wrap_content"
       android:layout_gravity="start|center_vertical"
       android:textAppearance="?android:attr/textAppearanceListItem"
+      android:textColor="@android:color/black"
       android:textIsSelectable="false"
       tools:text="Application name" />
 
