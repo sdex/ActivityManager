@@ -10,7 +10,7 @@ import kotlinx.coroutines.experimental.launch
 
 class ManifestViewModel(application: Application) : AndroidViewModel(application) {
 
-  private var liveData: MutableLiveData<String> = MutableLiveData()
+  private var liveData = MutableLiveData<String>()
 
   fun loadManifest(packageName: String): MutableLiveData<String> {
     val deferred = async(CommonPool) {
