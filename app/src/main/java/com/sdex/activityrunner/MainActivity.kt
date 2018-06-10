@@ -213,7 +213,7 @@ class MainActivity : BaseActivity() {
         return true
       }
       R.id.action_settings -> {
-        SettingsActivity.start(this, SettingsActivity.NORMAL)
+        SettingsActivity.start(this)
         return true
       }
       else -> return super.onOptionsItemSelected(item)

@@ -99,7 +99,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       val snackbar = Snackbar.make(container, R.string.settings_error_root_not_active,
         Snackbar.LENGTH_LONG)
       snackbar.setAction(R.string.action_settings
-        ) { SettingsActivity.start(this@ActivitiesListActivity, SettingsActivity.ADVANCED) }
+        ) { SettingsActivity.start(this@ActivitiesListActivity) }
       snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
       snackbar.config()
       snackbar.show()

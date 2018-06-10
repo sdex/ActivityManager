@@ -15,7 +15,7 @@ class EnableNotExportedActivitiesDialog : DialogFragment() {
       .setTitle("Non-exported activities")
       .setMessage("You can enable displaying non-exported activities. Such activities can be run only with ROOT permission")
       .setPositiveButton(R.string.action_settings) { _, _ ->
-        SettingsActivity.start(activity!!, SettingsActivity.ADVANCED)
+        SettingsActivity.start(activity!!)
       }
       .setNegativeButton(android.R.string.cancel, null)
       .create()

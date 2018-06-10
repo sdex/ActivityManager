@@ -1,23 +1,26 @@
 package com.sdex.activityrunner.preferences
 
 import android.os.Bundle
-import android.preference.PreferenceFragment
-import android.preference.SwitchPreference
-import android.support.v7.app.AlertDialog
+import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v7.preference.SwitchPreferenceCompat
 import android.widget.Toast
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.premium.PurchaseActivity
+import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.CheckRootTask
 import com.sdex.commons.ads.AppPreferences
 
-class AdvancedPreferenceFragment : PreferenceFragment() {
+class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
+
+  override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+    setPreferencesFromResource(R.xml.pref_advanced, rootKey)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    addPreferencesFromResource(R.xml.pref_advanced)
-    setHasOptionsMenu(true)
+
     val appPreferences = AppPreferences(activity)
-    val rootIntegration = findPreference(SettingsActivity.KEY_ADVANCED_ROOT_INTEGRATION) as SwitchPreference
+    val rootIntegration = findPreference(SettingsActivity.KEY_ADVANCED_ROOT_INTEGRATION)
+      as SwitchPreferenceCompat
     rootIntegration.setOnPreferenceChangeListener { _, newValue ->
       if (newValue is Boolean) {
         if (!newValue) {
@@ -39,12 +42,8 @@ class AdvancedPreferenceFragment : PreferenceFragment() {
         checkRootTask.execute()
         return@setOnPreferenceChangeListener true
       } else {
-        AlertDialog.Builder(activity)
-          .setTitle(R.string.pro_version_dialog_title)
-          .setMessage(R.string.pro_version_unlock_root_integration)
-          .setPositiveButton(R.string.pro_version_get
-          ) { _, _ -> PurchaseActivity.start(activity) }
-          .show()
+        val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_root_integration)
+        dialog.show(childFragmentManager, GetPremiumDialog.TAG)
         return@setOnPreferenceChangeListener false
       }
     }
