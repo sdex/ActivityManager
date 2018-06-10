@@ -9,6 +9,9 @@
   <color name="colorAccent">#03A9F4</color>
   <color name="colorControlActivated">#ffffff</color>
 
+  <color name="textColorPrimary">@color/black</color>
+  <color name="textColorSecondary">@color/darker_gray</color>
+
   <color name="list_divider_color">#E0E0E0</color>
   <color name="background">#ffffff</color>
   <color name="background_gray">#eeeeee</color>
@@ -16,4 +19,6 @@
   <color name="blue">#03A9F4</color>
   <color name="red">#f44336</color>
   <color name="yellow">#FFFF00</color>
+  <color name="black">#ff000000</color>
+  <color name="darker_gray">#aaa</color>
 </resources>
