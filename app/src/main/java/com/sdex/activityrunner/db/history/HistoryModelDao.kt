@@ -1,6 +1,6 @@
 package com.sdex.activityrunner.db.history
 
-import android.arch.lifecycle.LiveData
+import android.arch.paging.DataSource
 import android.arch.persistence.room.*
 
 @Dao
@@ -16,7 +16,7 @@ interface HistoryModelDao {
   fun delete(vararg models: HistoryModel)
 
   @Query("SELECT * FROM HistoryModel ORDER BY id DESC LIMIT :limit")
-  fun getHistory(limit: Int): LiveData<List<HistoryModel>>
+  fun getHistory(limit: Int): DataSource.Factory<Int, HistoryModel>
 
   @Query("DELETE FROM HistoryModel")
   fun clean()
