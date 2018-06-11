@@ -46,11 +46,11 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     list.adapter = adapter
     registerForContextMenu(list)
 
-    viewModel!!.history.observe(this, Observer {
+    viewModel!!.list.observe(this, Observer {
       val size = it!!.size
       val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
       setSubtitle(subtitle)
-      adapter!!.setItems(it)
+      adapter!!.submitList(it)
       val historyWarningShown = appPreferences!!.isHistoryWarningShown
       if (size == HistoryViewModel.MAX_FREE_RECORDS &&
         !appPreferences!!.isProVersion && !historyWarningShown) {
@@ -76,13 +76,17 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     if (itemId == HistoryListAdapter.MENU_ITEM_REMOVE) {
       val position = adapter!!.contextMenuItemPosition
       val historyModel = adapter!!.getItem(position)
-      viewModel!!.deleteItem(historyModel)
+      if (historyModel != null) {
+        viewModel!!.deleteItem(historyModel)
+      }
     } else if (itemId == HistoryListAdapter.MENU_ITEM_ADD_SHORTCUT) {
       if (appPreferences!!.isProVersion) {
         val position = adapter!!.contextMenuItemPosition
         val historyModel = adapter!!.getItem(position)
-        val dialog = AddShortcutDialogFragment.newInstance(historyModel)
-        dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
+        if (historyModel != null) {
+          val dialog = AddShortcutDialogFragment.newInstance(historyModel)
+          dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
+        }
       } else {
         val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_intent_shortcuts)
         dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
