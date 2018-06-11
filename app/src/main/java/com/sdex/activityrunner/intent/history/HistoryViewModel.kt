@@ -6,8 +6,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.paging.DataSource
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
-
-
 import com.sdex.activityrunner.db.history.HistoryDatabase
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.commons.ads.AppPreferences
@@ -22,7 +20,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
   init {
     val limit = if (appPreferences.isProVersion) Integer.MAX_VALUE else MAX_FREE_RECORDS
-    val factory : DataSource.Factory<Int, HistoryModel> = database.historyModelDao.getHistory(limit)
+    val factory: DataSource.Factory<Int, HistoryModel> = database.historyModelDao.getHistory(limit)
     val config = PagedList.Config.Builder()
       .setPageSize(50)
       .setEnablePlaceholders(true)
