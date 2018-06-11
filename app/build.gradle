@@ -95,6 +95,8 @@ dependencies {
     transitive = true
   }
 
+  implementation "android.arch.paging:runtime:$versions.paging"
+
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
   kapt "android.arch.lifecycle:compiler:$versions.lifecycle"
 
@@ -114,6 +116,7 @@ dependencies {
   implementation "androidx.core:core-ktx:0.3"
 
   testImplementation "junit:junit:4.12"
+  testImplementation "android.arch.paging:common:$versions.paging"
 
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation 'com.android.support.test:rules:1.0.2'

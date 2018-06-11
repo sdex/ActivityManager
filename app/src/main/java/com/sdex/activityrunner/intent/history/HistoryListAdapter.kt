@@ -1,5 +1,7 @@
 package com.sdex.activityrunner.intent.history
 
+import android.arch.paging.PagedListAdapter
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.view.ContextMenu.ContextMenuInfo
@@ -7,12 +9,10 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.param.None
 import kotlinx.android.synthetic.main.item_history.view.*
-import java.util.*
 
 class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
-  : RecyclerView.Adapter<HistoryListAdapter.ViewHolder>() {
+  : PagedListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-  private var items: List<HistoryModel> = ArrayList()
   var contextMenuItemPosition: Int = 0
 
   override fun onCreateViewHolder(parent: ViewGroup,
@@ -23,34 +23,24 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    val item = items[position]
-    holder.bind(item, callback)
+    holder.bind(getItem(position), callback)
     holder.itemView.setOnLongClickListener {
       contextMenuItemPosition = holder.adapterPosition
       false
     }
   }
 
-  override fun getItemCount(): Int {
-    return items.size
+  public override fun getItem(position: Int): HistoryModel? {
+    return super.getItem(position)
   }
 
   override fun getItemId(position: Int): Long {
-    return items[position].id.toLong()
+    return if (getItem(position) != null) getItem(position)!!.id.toLong() else 0
   }
 
   override fun onViewRecycled(holder: ViewHolder) {
     holder.itemView.setOnLongClickListener(null)
     super.onViewRecycled(holder)
-  }
-
-  fun getItem(position: Int): HistoryModel {
-    return items[position]
-  }
-
-  fun setItems(items: List<HistoryModel>) {
-    this.items = items
-    notifyDataSetChanged()
   }
 
   interface Callback {
@@ -61,18 +51,20 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     View.OnCreateContextMenuListener {
 
-    fun bind(item: HistoryModel, callback: Callback) {
-      itemView.packageName.text = getValueOrPlaceholder(item.packageName)
-      itemView.className.text = getValueOrPlaceholder(item.className)
-      itemView.action.text = getValueOrPlaceholder(item.action)
-      itemView.data.text = getValueOrPlaceholder(item.data)
-      itemView.mimeType.text = getValueOrPlaceholder(item.mimeType)
-      itemView.extras.setText(isNotEmpty(item.extras))
-      itemView.categories.setText(isNotEmpty(item.categories))
-      itemView.flags.setText(isNotEmpty(item.flags))
+    fun bind(item: HistoryModel?, callback: Callback) {
+      if (item != null) {
+        itemView.packageName.text = getValueOrPlaceholder(item.packageName)
+        itemView.className.text = getValueOrPlaceholder(item.className)
+        itemView.action.text = getValueOrPlaceholder(item.action)
+        itemView.data.text = getValueOrPlaceholder(item.data)
+        itemView.mimeType.text = getValueOrPlaceholder(item.mimeType)
+        itemView.extras.setText(isNotEmpty(item.extras))
+        itemView.categories.setText(isNotEmpty(item.categories))
+        itemView.flags.setText(isNotEmpty(item.flags))
 
-      itemView.setOnClickListener { callback.onItemClicked(item, adapterPosition) }
-      itemView.setOnCreateContextMenuListener(this)
+        itemView.setOnClickListener { callback.onItemClicked(item, adapterPosition) }
+        itemView.setOnCreateContextMenuListener(this)
+      }
     }
 
     private fun isNotEmpty(value: String?): Int {
@@ -96,5 +88,16 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
 
     const val MENU_ITEM_REMOVE = 0
     const val MENU_ITEM_ADD_SHORTCUT = 1
+
+    val DIFF_CALLBACK: DiffUtil.ItemCallback<HistoryModel> = object : DiffUtil.ItemCallback<HistoryModel>() {
+
+      override fun areItemsTheSame(oldItem: HistoryModel, newItem: HistoryModel): Boolean {
+        return oldItem.id == newItem.id
+      }
+
+      override fun areContentsTheSame(oldItem: HistoryModel, newItem: HistoryModel): Boolean {
+        return oldItem == newItem
+      }
+    }
   }
 }

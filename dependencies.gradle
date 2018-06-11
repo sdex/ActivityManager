@@ -8,6 +8,7 @@ ext.versions = [
   constraintLayout   : '1.1.1',
   playServices       : '12.0.1',
   room               : '1.1.1-rc1',
+  paging             : '1.0.0',
   lifecycle          : '1.1.1',
   glide              : '4.7.1',
   butterKnife        : '8.8.1'
