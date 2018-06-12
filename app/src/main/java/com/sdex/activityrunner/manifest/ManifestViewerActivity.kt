@@ -52,7 +52,7 @@ class ManifestViewerActivity : BaseActivity() {
     private const val ARG_PACKAGE_NAME = "arg_package_name"
     private const val ARG_NAME = "arg_name"
 
-    fun start(context: Context, packageName: String, name: String) {
+    fun start(context: Context, packageName: String, name: String?) {
       val starter = Intent(context, ManifestViewerActivity::class.java)
       starter.putExtra(ARG_PACKAGE_NAME, packageName)
       starter.putExtra(ARG_NAME, name)
