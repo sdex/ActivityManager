@@ -117,16 +117,33 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="1dp">
 
-        <TextView
+        <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:drawableLeft="@drawable/ic_star_border"
-          android:drawablePadding="8dp"
-          android:drawableStart="@drawable/ic_star_border"
-          android:padding="16dp"
-          android:text="@string/donate_5"
-          android:textSize="18sp" />
+          android:orientation="horizontal"
+          android:padding="16dp">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:drawableStart="@drawable/ic_star_border"
+            android:drawableLeft="@drawable/ic_star_border"
+            android:drawablePadding="8dp"
+            android:text="@string/donate"
+            android:textSize="18sp" />
+
+          <TextView
+            android:id="@+id/donate_5_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="18sp"
+            tools:text="$5.00" />
+
+        </LinearLayout>
 
       </android.support.v7.widget.CardView>
 
@@ -138,16 +155,33 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="1dp">
 
-        <TextView
+        <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:drawableLeft="@drawable/ic_star_half"
-          android:drawablePadding="8dp"
-          android:drawableStart="@drawable/ic_star_half"
-          android:padding="16dp"
-          android:text="@string/donate_10"
-          android:textSize="18sp" />
+          android:orientation="horizontal"
+          android:padding="16dp">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:drawableStart="@drawable/ic_star_half"
+            android:drawableLeft="@drawable/ic_star_half"
+            android:drawablePadding="8dp"
+            android:text="@string/donate"
+            android:textSize="18sp" />
+
+          <TextView
+            android:id="@+id/donate_10_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="18sp"
+            tools:text="$10.00" />
+
+        </LinearLayout>
 
       </android.support.v7.widget.CardView>
 
@@ -159,16 +193,33 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="1dp">
 
-        <TextView
+        <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:drawableLeft="@drawable/ic_star"
-          android:drawablePadding="8dp"
-          android:drawableStart="@drawable/ic_star"
-          android:padding="16dp"
-          android:text="@string/donate_20"
-          android:textSize="18sp" />
+          android:orientation="horizontal"
+          android:padding="16dp">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:drawableStart="@drawable/ic_star"
+            android:drawableLeft="@drawable/ic_star"
+            android:drawablePadding="8dp"
+            android:text="@string/donate"
+            android:textSize="18sp" />
+
+          <TextView
+            android:id="@+id/donate_20_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="18sp"
+            tools:text="$20.00" />
+
+        </LinearLayout>
 
       </android.support.v7.widget.CardView>
 

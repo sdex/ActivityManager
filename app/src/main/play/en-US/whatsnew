@@ -1,2 +1,2 @@
-2.0.1
-- fixed mimeType and data collision for intent builder
+2.0.2
+- bugfixes and performance improvements

@@ -23,7 +23,7 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 28
-    versionCode 2010
+    versionCode 2011
     versionName "2.0.2"
 
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
