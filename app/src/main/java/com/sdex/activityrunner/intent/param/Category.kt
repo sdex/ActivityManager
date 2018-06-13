@@ -59,11 +59,15 @@ object Category {
   }
 
   fun list(): ArrayList<String> {
+    initList()
+    return list!!
+  }
+
+  private fun initList() {
     if (list == null) {
       list = ArrayList(CATEGORIES.keys)
       list!!.sort()
-    }
-    return list!!
+      }
   }
 
   fun list(keys: List<String>): List<String> {

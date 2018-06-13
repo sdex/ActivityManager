@@ -183,12 +183,16 @@ object Action {
     }
   }
 
-  fun list(): ArrayList<String> {
+  private fun initList() {
     if (list == null) {
       list = ArrayList(ACTIONS.keys)
       list!!.sort()
       list!!.add(0, None.VALUE)
     }
+  }
+
+  fun list(): ArrayList<String> {
+    initList()
     return list!!
   }
 
@@ -199,6 +203,7 @@ object Action {
   fun getActionKeyPosition(value: String): Int {
     val split = value.split(".")
     val last = split.lastOrNull() ?: return -1
+    initList()
     for (action in list!!) {
       if (action.contains(last)) {
         return list!!.indexOf(action)
