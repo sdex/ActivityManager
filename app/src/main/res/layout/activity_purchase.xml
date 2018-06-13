@@ -53,8 +53,8 @@
               android:id="@+id/priceView"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:textColor="@color/red"
-              tools:text="54.99 UAH" />
+              android:text="$2.00"
+              android:textColor="@color/red" />
 
           </LinearLayout>
 
@@ -139,9 +139,9 @@
             android:id="@+id/donate_5_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="$5.00"
             android:textColor="@color/red"
-            android:textSize="18sp"
-            tools:text="$5.00" />
+            android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -177,9 +177,9 @@
             android:id="@+id/donate_10_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="$10.00"
             android:textColor="@color/red"
-            android:textSize="18sp"
-            tools:text="$10.00" />
+            android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -215,9 +215,9 @@
             android:id="@+id/donate_20_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="$20.00"
             android:textColor="@color/red"
-            android:textSize="18sp"
-            tools:text="$20.00" />
+            android:textSize="18sp" />
 
         </LinearLayout>
 
