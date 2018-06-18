@@ -6,7 +6,7 @@ import java.io.Serializable
 
 @Entity(tableName = ApplicationModel.TABLE)
 data class ApplicationModel(@PrimaryKey val packageName: String,
-                            val name: String,
+                            val name: String?,
                             var activitiesCount: Int = 0,
                             var exportedActivitiesCount: Int = 0) : Serializable {
 

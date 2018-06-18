@@ -99,8 +99,11 @@ class PurchaseActivity : BaseActivity() {
         for (skuDetails in skuDetailsList) {
           val sku = skuDetails.sku
           val price = skuDetails.price
-          if (SKU_PRO == sku) {
-            priceView.text = price
+          when {
+            SKU_PRO == sku -> priceView.text = price
+            SKU_DONATE_5 == sku -> donate_5_price.text = price
+            SKU_DONATE_10 == sku -> donate_10_price.text = price
+            SKU_DONATE_20 == sku -> donate_20_price.text = price
           }
         }
       }

@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.util
 
+import android.app.ActivityManager
 import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Context
@@ -14,7 +15,6 @@ import android.support.v4.graphics.drawable.IconCompat
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
-
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sdex.activityrunner.BuildConfig
@@ -49,7 +49,11 @@ object IntentUtils {
     }
 
     val iconCompat = IconCompat.createWithBitmap(bitmap)
-    createLauncherIcon(context, activityModel.name, intent, iconCompat)
+    try {
+      createLauncherIcon(context, activityModel.name, intent, iconCompat)
+    } catch (e: Exception) { // android.os.TransactionTooLargeException
+      createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+    }
   }
 
   fun createLauncherIcon(context: Context, name: String, intent: Intent, @DrawableRes icon: Int) {
@@ -67,11 +71,12 @@ object IntentUtils {
   }
 
   fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
+    val size = (context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).launcherLargeIconSize
     GlideApp.with(context)
       .asDrawable()
       .load(activityModel)
       .error(R.mipmap.ic_launcher)
-      .override(100)
+      .override(size)
       .into(object : SimpleTarget<Drawable>() {
         override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
           createLauncherIcon(context, activityModel, resource.toBitmap())
@@ -113,8 +118,13 @@ object IntentUtils {
       intent.data = Uri.parse("package:$packageName")
       context.startActivity(intent)
     } catch (e: ActivityNotFoundException) {
-      val intent = Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
-      context.startActivity(intent)
+      try {
+        val intent = Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
+        context.startActivity(intent)
+      } catch (e: ActivityNotFoundException) {
+        Toast.makeText(context, R.string.starting_activity_intent_failed,
+          Toast.LENGTH_SHORT).show()
+      }
     }
   }
 }

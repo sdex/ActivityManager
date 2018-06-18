@@ -29,4 +29,11 @@
     <license>Apache Software License 2.0</license>
   </notice>
 
+  <notice>
+    <name>RecyclerView-FastScroll</name>
+    <url>https://github.com/timusus/RecyclerView-FastScroll</url>
+    <copyright> Copyright 2016 Tim Malseed</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
 </notices>

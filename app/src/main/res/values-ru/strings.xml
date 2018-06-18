@@ -58,9 +58,6 @@
   <string name="pro_version_unlock_history">Достигнут лимит на количество записей. Старые записи будут перезаписаны новыми. Приобретите премиум версию для неограниченного количества записей в истории</string>
 
   <string name="donate_title">Поддержать разработку</string>
-  <string name="donate_5">Пожертвовать $5.00</string>
-  <string name="donate_10">Пожертвовать $10.00</string>
-  <string name="donate_20">Пожертвовать $20.00</string>
 
   <string name="about_rate">Оценить приложение</string>
   <string name="about_more_apps">Больше полезных приложений</string>

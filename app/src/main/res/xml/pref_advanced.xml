@@ -1,15 +1,20 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <SwitchPreference
-    android:defaultValue="false"
-    android:key="advanced_not_exported"
-    android:summary="@string/pref_advanced_not_exported_summary"
-    android:title="@string/pref_advanced_not_exported_title" />
+  <android.support.v7.preference.PreferenceCategory
+    android:title="@string/pref_header_advanced">
 
-  <SwitchPreference
-    android:defaultValue="false"
-    android:key="advanced_root_integration"
-    android:summary="@string/pref_advanced_root_integration_summary"
-    android:title="@string/pref_advanced_root_integration_title" />
+    <android.support.v7.preference.SwitchPreferenceCompat
+      android:defaultValue="false"
+      android:key="advanced_not_exported"
+      android:summary="@string/pref_advanced_not_exported_summary"
+      android:title="@string/pref_advanced_not_exported_title" />
 
-</PreferenceScreen>
+    <android.support.v7.preference.SwitchPreferenceCompat
+      android:defaultValue="false"
+      android:key="advanced_root_integration"
+      android:summary="@string/pref_advanced_root_integration_summary"
+      android:title="@string/pref_advanced_root_integration_title" />
+
+  </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

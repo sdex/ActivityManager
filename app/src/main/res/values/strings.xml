@@ -67,9 +67,7 @@
   <string name="pro_version_unlock_root_integration">Get premium version to enable ROOT integration</string>
   <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium version to have unlimited history</string>
   <string name="donate_title">Support development</string>
-  <string name="donate_5">Support with $5.00</string>
-  <string name="donate_10">Support with $10.00</string>
-  <string name="donate_20">Support with $20.00</string>
+  <string name="donate">Support with</string>
 
   <!-- about -->
   <string name="about_rate">Rate this app</string>

@@ -20,6 +20,14 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-dontskipnonpubliclibraryclassmembers
+-dontwarn
+-ignorewarnings
+
+-keep class * {
+    public private *;
+}
+
 -keep class android.support.v7.widget.SearchView { *; }
 
 -keep class .R

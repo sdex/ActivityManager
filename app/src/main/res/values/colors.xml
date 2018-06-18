@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
   <color name="ic_launcher_background">#03A9F4</color>
-  <color name="colorPrimary">#607D8B</color>
-  <color name="colorPrimaryDark">#455A64</color>
-  <color name="colorAccent">#607D8B</color>
+  <color name="preference_fallback_accent_color" tools:override="true">@color/blue</color>
+
+  <color name="colorPrimary">#0079bf</color>
+  <color name="colorPrimaryDark">#026aa7</color>
+  <color name="colorAccent">#03A9F4</color>
   <color name="colorControlActivated">#ffffff</color>
-  <color name="blue">#03A9F4</color>
-  <color name="red">#f44336</color>
-  <color name="yellow">#FFFF00</color>
+
+  <color name="textColorPrimary">@color/black</color>
+  <color name="textColorSecondary">@color/darker_gray</color>
+
   <color name="list_divider_color">#E0E0E0</color>
   <color name="background">#ffffff</color>
   <color name="background_gray">#eeeeee</color>
+
+  <color name="blue">#03A9F4</color>
+  <color name="red">#f44336</color>
+  <color name="yellow">#FFFF00</color>
+  <color name="black">#ff000000</color>
+  <color name="darker_gray">#aaa</color>
 </resources>

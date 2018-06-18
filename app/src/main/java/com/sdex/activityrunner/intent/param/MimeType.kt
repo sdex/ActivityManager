@@ -331,12 +331,16 @@ object MimeType {
     }
   }
 
-  fun list(): ArrayList<String> {
+  private fun initList() {
     if (list == null) {
       list = ArrayList(mimeTypeToExtensionMap.keys)
       list!!.sort()
       list!!.add(0, None.VALUE)
     }
+  }
+
+  fun list(): ArrayList<String> {
+    initList()
     return list!!
   }
 }

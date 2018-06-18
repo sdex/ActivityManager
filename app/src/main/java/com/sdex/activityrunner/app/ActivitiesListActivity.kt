@@ -13,6 +13,7 @@ import android.view.View.VISIBLE
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
+import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
@@ -95,11 +96,13 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       val runActivityTask = RunActivityTask(item.componentName)
       runActivityTask.execute()
     } else {
-      Snackbar.make(container, R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG)
-        .setAction(R.string.action_settings
-        ) { SettingsActivity.start(this@ActivitiesListActivity, SettingsActivity.ADVANCED) }
-        .setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
-        .show()
+      val snackbar = Snackbar.make(container, R.string.settings_error_root_not_active,
+        Snackbar.LENGTH_LONG)
+      snackbar.setAction(R.string.action_settings
+        ) { SettingsActivity.start(this@ActivitiesListActivity) }
+      snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
+      snackbar.config()
+      snackbar.show()
     }
   }
 
