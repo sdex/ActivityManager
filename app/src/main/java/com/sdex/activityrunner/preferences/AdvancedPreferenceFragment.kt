@@ -5,6 +5,7 @@ import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.SwitchPreferenceCompat
 import android.widget.Toast
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.app.root.GetRootDialog
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.CheckRootTask
 import com.sdex.commons.ads.AppPreferences
@@ -30,7 +31,7 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
       if (appPreferences.isProVersion) {
         val checkRootTask = CheckRootTask(object : CheckRootTask.Callback {
           override fun onStatusChanged(status: Int) {
-            if (activity != null && isAdded) {
+            if (activity != null && !activity!!.isFinishing && isAdded) {
               if (status != CheckRootTask.RESULT_OK) {
                 rootIntegration.isChecked = false
                 Toast.makeText(activity, R.string.settings_error_root_not_granted,
@@ -42,7 +43,7 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
         checkRootTask.execute()
         return@setOnPreferenceChangeListener true
       } else {
-        val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_root_integration)
+        val dialog = GetRootDialog.newInstance()
         dialog.show(childFragmentManager, GetPremiumDialog.TAG)
         return@setOnPreferenceChangeListener false
       }

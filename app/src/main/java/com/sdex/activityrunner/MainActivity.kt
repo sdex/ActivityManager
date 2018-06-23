@@ -19,7 +19,7 @@ import com.android.billingclient.api.Purchase
 import com.codemybrainsout.ratingdialog.RatingDialog
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.ApplicationsListViewModel
-import com.sdex.activityrunner.app.OreoPackageManagerBugActivity
+import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.SettingsActivity

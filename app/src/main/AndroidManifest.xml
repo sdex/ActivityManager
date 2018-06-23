@@ -53,7 +53,11 @@
 
     <activity android:name=".AboutActivity" />
 
-    <activity android:name=".app.OreoPackageManagerBugActivity" />
+    <activity android:name=".app.legacy.OreoPackageManagerBugActivity" />
+
+    <activity
+      android:name=".app.root.CheckRootActivity"
+      android:label="@string/root_check_compatibility" />
 
     <activity
       android:name=".preferences.SettingsActivity"

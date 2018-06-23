@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.app
+package com.sdex.activityrunner.app.legacy
 
 import android.content.Intent
 import android.os.Bundle

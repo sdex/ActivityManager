@@ -2,11 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
   compileSdkVersion app.compileSdk
-  buildToolsVersion app.buildTools
 
   defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 27
+    targetSdkVersion 28
     versionCode 1
     versionName "1.0"
   }
@@ -24,6 +23,7 @@ dependencies {
   implementation "com.android.support:support-v4:$versions.support"
   implementation "com.android.support:appcompat-v7:$versions.support"
   implementation "com.android.support:support-media-compat:$versions.support"
-  implementation "com.google.firebase:firebase-core:$versions.playServices"
-  implementation "com.google.firebase:firebase-ads:$versions.playServices"
+  implementation "com.android.support:customtabs:$versions.support"
+  implementation "com.google.firebase:firebase-core:16.0.1"
+  implementation "com.google.firebase:firebase-ads:15.0.1"
 }
