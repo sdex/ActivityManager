@@ -164,7 +164,7 @@
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/donate_title"
+            android:text="@string/purchase_activity"
             app:layout_constraintBottom_toBottomOf="@+id/imageView44"
             app:layout_constraintStart_toEndOf="@+id/imageView44"
             app:layout_constraintTop_toTopOf="@+id/imageView44" />

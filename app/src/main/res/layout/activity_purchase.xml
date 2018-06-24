@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/container"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/background_gray"
@@ -36,27 +37,12 @@
           android:orientation="vertical"
           android:padding="8dp">
 
-          <LinearLayout
+          <TextView
+            android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-              android:id="@+id/textView8"
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:text="@string/pro_version_title"
-              android:textSize="20sp" />
-
-            <TextView
-              android:id="@+id/priceView"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="$2.00"
-              android:textColor="@color/red" />
-
-          </LinearLayout>
+            android:text="@string/pro_version_title"
+            android:textSize="20sp" />
 
           <TextView
             android:layout_width="match_parent"
@@ -89,135 +75,88 @@
             android:text="@string/pro_version_root"
             android:textAppearance="?android:textAppearanceMedium" />
 
+          <RadioGroup
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <RadioButton
+              android:id="@+id/sku_2"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="$1.99" />
+
+            <RadioButton
+              android:id="@+id/sku_5"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:checked="true"
+              android:text="$4.99" />
+
+            <RadioButton
+              android:id="@+id/sku_10"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="$9.99" />
+
+            <RadioButton
+              android:id="@+id/sku_20"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="$19.99" />
+
+          </RadioGroup>
+
+          <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/pro_version_description"
+            android:textStyle="italic" />
+
           <Button
             android:id="@+id/get_pro"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginTop="15dp"
             android:text="@string/pro_version_get"
             android:textColor="@color/blue" />
 
+        </LinearLayout>
+
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:id="@+id/proActive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp"
+        tools:visibility="visible">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="15dp">
+
           <TextView
-            android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pro_version_donate"
-            android:textStyle="italic" />
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
-
-      <android.support.v7.widget.CardView
-        android:id="@+id/donate_5_usd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="1dp">
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="?attr/selectableItemBackground"
-          android:orientation="horizontal"
-          android:padding="16dp">
+            android:text="@string/pro_version_done_title"
+            android:textSize="20sp" />
 
           <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:drawableStart="@drawable/ic_star_border"
-            android:drawableLeft="@drawable/ic_star_border"
-            android:drawablePadding="8dp"
-            android:text="@string/donate"
-            android:textSize="18sp" />
-
-          <TextView
-            android:id="@+id/donate_5_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$5.00"
-            android:textColor="@color/red"
-            android:textSize="18sp" />
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
-
-      <android.support.v7.widget.CardView
-        android:id="@+id/donate_10_usd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="1dp">
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="?attr/selectableItemBackground"
-          android:orientation="horizontal"
-          android:padding="16dp">
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:drawableStart="@drawable/ic_star_half"
-            android:drawableLeft="@drawable/ic_star_half"
-            android:drawablePadding="8dp"
-            android:text="@string/donate"
-            android:textSize="18sp" />
-
-          <TextView
-            android:id="@+id/donate_10_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$10.00"
-            android:textColor="@color/red"
-            android:textSize="18sp" />
-
-        </LinearLayout>
-
-      </android.support.v7.widget.CardView>
-
-      <android.support.v7.widget.CardView
-        android:id="@+id/donate_20_usd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="1dp">
-
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="?attr/selectableItemBackground"
-          android:orientation="horizontal"
-          android:padding="16dp">
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:drawableStart="@drawable/ic_star"
-            android:drawableLeft="@drawable/ic_star"
-            android:drawablePadding="8dp"
-            android:text="@string/donate"
-            android:textSize="18sp" />
-
-          <TextView
-            android:id="@+id/donate_20_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$20.00"
-            android:textColor="@color/red"
-            android:textSize="18sp" />
+            android:layout_marginTop="15dp"
+            android:text="@string/pro_version_done"
+            android:textSize="20sp" />
 
         </LinearLayout>
 

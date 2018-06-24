@@ -129,15 +129,16 @@ class MainActivity : BaseActivity() {
   }
 
   private fun handlePurchases(purchases: List<Purchase>?) {
+    isProVersionEnabled = false
     if (purchases != null) {
       for (purchase in purchases) {
         if (PurchaseActivity.isPremiumVersion(purchase.sku)) {
           isProVersionEnabled = true
-          invalidateOptionsMenu()
           break
         }
       }
     }
+    invalidateOptionsMenu()
     appPreferences!!.isProVersion = isProVersionEnabled
   }
 

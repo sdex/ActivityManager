@@ -14,4 +14,14 @@
     <item name="colorAccent">@android:color/white</item>
   </style>
 
+  <style name="TranslucentTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:colorBackgroundCacheHint">@null</item>
+    <item name="android:windowAnimationStyle">@android:style/Animation</item>
+  </style>
+
 </resources>

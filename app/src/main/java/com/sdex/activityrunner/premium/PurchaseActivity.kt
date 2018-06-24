@@ -3,16 +3,22 @@ package com.sdex.activityrunner.premium
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.View
-import com.android.billingclient.api.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponse
 import com.android.billingclient.api.BillingClient.SkuType
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.Purchase
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_purchase.*
-import java.util.*
 
 class PurchaseActivity : BaseActivity() {
 
@@ -31,23 +37,16 @@ class PurchaseActivity : BaseActivity() {
 
     if (appPreferences!!.isProVersion) {
       purchasePro.visibility = View.GONE
+      proActive.visibility = VISIBLE
     }
 
     billingClient = BillingClient.newBuilder(this)
       .setListener { responseCode, purchases ->
         if (responseCode == BillingResponse.OK && purchases != null) {
           handlePurchases(purchases)
-
-          // do not consume donation
-          //          for (Purchase purchase : purchases) {
-          //            String sku = purchase.getSku();
-          //            if (!SKU_PRO.equals(sku)) { // consume donate
-          //              billingClient.consumeAsync(purchase.getPurchaseToken(),
-          //                (responseCode1, purchaseToken) -> {
-          //                });
-          //            }
-          //          }
-
+          val snackbar = Snackbar.make(container, R.string.pro_version_done, Snackbar.LENGTH_LONG)
+          snackbar.config()
+          snackbar.show()
         } else if (responseCode == BillingResponse.USER_CANCELED) {
           // Handle an error caused by a user cancelling the purchase flow.
         } else {
@@ -62,7 +61,6 @@ class PurchaseActivity : BaseActivity() {
           val purchasesResult = billingClient!!.queryPurchases(SkuType.INAPP)
           val purchases = purchasesResult.purchasesList
           handlePurchases(purchases)
-          fetchPrice()
         }
       }
 
@@ -73,40 +71,16 @@ class PurchaseActivity : BaseActivity() {
     })
 
     get_pro.setOnClickListener {
-      showPurchaseDialog(SKU_PRO)
-    }
-    donate_5_usd.setOnClickListener {
-      showPurchaseDialog(SKU_DONATE_5)
-    }
-    donate_10_usd.setOnClickListener {
-      showPurchaseDialog(SKU_DONATE_10)
-    }
-    donate_20_usd.setOnClickListener {
-      showPurchaseDialog(SKU_DONATE_20)
-    }
-  }
-
-  private fun fetchPrice() {
-    val skuList = ArrayList<String>()
-    skuList.add(SKU_PRO)
-    skuList.add(SKU_DONATE_5)
-    skuList.add(SKU_DONATE_10)
-    skuList.add(SKU_DONATE_20)
-    val params = SkuDetailsParams.newBuilder()
-    params.setSkusList(skuList).setType(SkuType.INAPP)
-    billingClient!!.querySkuDetailsAsync(params.build()) { responseCode, skuDetailsList ->
-      if (responseCode == BillingResponse.OK && skuDetailsList != null) {
-        for (skuDetails in skuDetailsList) {
-          val sku = skuDetails.sku
-          val price = skuDetails.price
-          when {
-            SKU_PRO == sku -> priceView.text = price
-            SKU_DONATE_5 == sku -> donate_5_price.text = price
-            SKU_DONATE_10 == sku -> donate_10_price.text = price
-            SKU_DONATE_20 == sku -> donate_20_price.text = price
-          }
+      val sku = when (amount.checkedRadioButtonId) {
+        R.id.sku_2 -> SKU_PRO
+        R.id.sku_5 -> SKU_DONATE_5
+        R.id.sku_10 -> SKU_DONATE_10
+        R.id.sku_20 -> SKU_DONATE_20
+        else -> {
+          throw IllegalArgumentException()
         }
       }
+      showPurchaseDialog(sku)
     }
   }
 
@@ -116,11 +90,9 @@ class PurchaseActivity : BaseActivity() {
       val sku = purchase.sku
       if (isPremiumVersion(sku)) {
         isProVersionEnabled = true
-      }
-      when {
-        SKU_DONATE_5 == sku -> donate_5_usd.visibility = View.GONE
-        SKU_DONATE_10 == sku -> donate_10_usd.visibility = View.GONE
-        SKU_DONATE_20 == sku -> donate_20_usd.visibility = View.GONE
+
+        proActive.visibility = VISIBLE
+        purchasePro.visibility = GONE
       }
     }
     appPreferences!!.isProVersion = isProVersionEnabled

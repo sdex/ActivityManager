@@ -43,21 +43,19 @@
   <string name="item_history_has_categories">Содержит категории</string>
   <string name="item_history_has_flags">Содержит флаги</string>
 
-  <string name="pro_version_title">Activity Runner Премиум</string>
+  <string name="purchase_activity">Поддержать разработку</string>
+  <string name="pro_version_title">Activity Manager Премиум</string>
   <string name="pro_version_ads">&#x2022; Без рекламы</string>
   <string name="pro_version_extras">&#x2022; Неограниченные дополнительные параметры</string>
   <string name="pro_version_history">&#x2022; Неограниченная история</string>
   <string name="pro_version_root">&#x2022; Интеграция ROOT</string>
   <string name="pro_version_shortcut">&#x2022; Ярлыки для произвольных Intent</string>
   <string name="pro_version_get">Получить премиум</string>
-  <string name="pro_version_donate">* любое пожертвование разблокирует премиум</string>
   <string name="pro_version_dialog_title">Приобрести премиум</string>
   <string name="pro_version_unlock_extras">Приобретите премиум версию для возможности добавлять неограниченное количество дополнительных параметров</string>
   <string name="pro_version_unlock_intent_shortcuts">Приобретите премиум версию для возможности создавать ярлыки для произвольных intent</string>
   <string name="pro_version_unlock_root_integration">Приобретите премиум версию для возможности интеграции с ROOT</string>
   <string name="pro_version_unlock_history">Достигнут лимит на количество записей. Старые записи будут перезаписаны новыми. Приобретите премиум версию для неограниченного количества записей в истории</string>
-
-  <string name="donate_title">Поддержать разработку</string>
 
   <string name="about_rate">Оценить приложение</string>
   <string name="about_more_apps">Больше полезных приложений</string>

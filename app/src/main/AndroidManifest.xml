@@ -40,7 +40,7 @@
 
     <activity
       android:name=".premium.PurchaseActivity"
-      android:label="@string/donate_title" />
+      android:label="@string/purchase_activity" />
 
     <activity android:name=".manifest.ManifestViewerActivity" />
 
@@ -67,6 +67,11 @@
       android:name=".service.AppLoaderIntentService"
       android:exported="false"
       android:permission="android.permission.BIND_JOB_SERVICE" />
+
+    <activity
+      android:name="com.google.android.gms.ads.AdActivity"
+      android:theme="@style/TranslucentTheme"
+      tools:replace="android:theme" />
 
   </application>
 
