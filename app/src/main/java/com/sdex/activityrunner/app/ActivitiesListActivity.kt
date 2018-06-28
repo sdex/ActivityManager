@@ -35,7 +35,11 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel
+    val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
+    if (item == null) {
+      finish()
+      return
+    }
     title = item.name
     enableBackButton()
     list.addDivider()
