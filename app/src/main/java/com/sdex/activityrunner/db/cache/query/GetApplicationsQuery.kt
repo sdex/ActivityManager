@@ -16,8 +16,9 @@ class GetApplicationsQuery(private val searchText: String?,
     queryStringBuilder.append("WHERE ")
       .append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ") // TODO ???
     if (!searchText.isNullOrEmpty()) {
+      val escapedSearchText = searchText!!.replace("'", "''")
       queryStringBuilder.append(" AND ").append(ApplicationModel.NAME)
-        .append(" LIKE '%").append(searchText).append("%' ")
+        .append(" LIKE '%").append(escapedSearchText).append("%' ")
     }
     queryStringBuilder.append("ORDER BY ").append(sortBy).append(" ")
       .append(sortCaseSensitive).append(" ").append(sortOrder)
