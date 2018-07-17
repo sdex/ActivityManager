@@ -22,8 +22,8 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 28
-    versionCode 2015
-    versionName "2.1.1"
+    versionCode 2016
+    versionName "2.1.2"
 
     multiDexEnabled true
 
