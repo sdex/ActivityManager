@@ -6,7 +6,6 @@
   <string name="context_action_launch_params">Запустити з параметрами</string>
   <string name="context_action_launch_root">Запустити з правами ROOT</string>
   <string name="context_action_shortcut">Створити ярлик</string>
-  <string name="context_action_edit">Ярлик</string>
 
   <string name="context_action_open_info">Вікрити інфо</string>
   <string name="context_action_open_manifest">Вікрити маніфест</string>

@@ -35,9 +35,9 @@ class AddShortcutDialogFragment : DialogFragment() {
       .apply(RequestOptions()
         .fitCenter())
       .into(imageIcon)
-    builder.setTitle(R.string.context_action_edit)
+    builder.setTitle(R.string.context_action_shortcut)
       .setView(view)
-      .setPositiveButton(R.string.context_action_shortcut, null)
+      .setPositiveButton(R.string.shortcut_create, null)
       .setNegativeButton(android.R.string.cancel, null)
     val alertDialog = builder.create()
     alertDialog.setOnShowListener { _ ->
