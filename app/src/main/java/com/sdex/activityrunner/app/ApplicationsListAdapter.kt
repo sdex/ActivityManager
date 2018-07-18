@@ -1,13 +1,15 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
+import android.support.design.widget.BottomSheetDialog
+import android.support.v4.app.FragmentActivity
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
-import android.support.v7.widget.PopupMenu
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -20,14 +22,14 @@ import com.sdex.commons.util.AppUtils
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import kotlinx.android.synthetic.main.item_application.view.*
 
-class ApplicationsListAdapter(context: Context) : ListAdapter<ApplicationModel,
+class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<ApplicationModel,
   ApplicationsListAdapter.AppViewHolder>(DIFF_CALLBACK),
   FastScrollRecyclerView.SectionedAdapter {
 
   private val glide: RequestManager
 
   init {
-    this.glide = GlideApp.with(context)
+    this.glide = GlideApp.with(activity)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
@@ -60,30 +62,33 @@ class ApplicationsListAdapter(context: Context) : ListAdapter<ApplicationModel,
 
       itemView.setOnClickListener { ActivitiesListActivity.start(context, item) }
 
-      itemView.appMenu.setOnClickListener { v ->
-        val popup = PopupMenu(context, v)
-        popup.inflate(R.menu.application_item_menu)
-        popup.show()
-        popup.setOnMenuItemClickListener { menuItem ->
-          val packageName = item.packageName
-          when (menuItem.itemId) {
-            R.id.action_open_app -> {
-              AppUtils.openPlayStore(context, packageName)
-              return@setOnMenuItemClickListener true
-            }
-            R.id.action_open_app_info -> {
-              IntentUtils.openApplicationInfo(context, packageName)
-              return@setOnMenuItemClickListener true
-            }
-            R.id.action_open_app_manifest -> {
-              ManifestViewerActivity.start(context, packageName, item.name)
-              return@setOnMenuItemClickListener true
-            }
-          }
-          false
-        }
+      itemView.setOnLongClickListener {
+        showApplicationMenu(context, item)
+        true
       }
 
+      itemView.appMenu.setOnClickListener { showApplicationMenu(context, item) }
+    }
+
+    private fun showApplicationMenu(context: Context, applicationModel: ApplicationModel) {
+      val view = View.inflate(context, R.layout.dialog_application_menu, null)
+      val dialog = BottomSheetDialog(context)
+      dialog.setContentView(view)
+      val packageName = applicationModel.packageName
+      view.findViewById<TextView>(R.id.application_name).text = applicationModel.name
+      view.findViewById<View>(R.id.action_open_app_manifest).setOnClickListener {
+        ManifestViewerActivity.start(context, packageName, applicationModel.name)
+        dialog.dismiss()
+      }
+      view.findViewById<View>(R.id.action_open_app_info).setOnClickListener {
+        IntentUtils.openApplicationInfo(context, packageName)
+        dialog.dismiss()
+      }
+      view.findViewById<View>(R.id.action_open_app_play_store).setOnClickListener {
+        AppUtils.openPlayStore(context, packageName)
+        dialog.dismiss()
+      }
+      dialog.show()
     }
   }
 
