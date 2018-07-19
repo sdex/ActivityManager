@@ -41,6 +41,8 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
 
     fun launchActivity(item: ActivityModel)
 
+    fun launchActivityWithRoot(item: ActivityModel)
+
     fun launchActivityWithParams(item: ActivityModel)
   }
 
@@ -83,7 +85,7 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
               return@setOnMenuItemClickListener true
             }
             R.id.action_activity_launch_with_root -> {
-              callback.launchActivity(item)
+              callback.launchActivityWithRoot(item)
               return@setOnMenuItemClickListener true
             }
           }

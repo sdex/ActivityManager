@@ -91,6 +91,10 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
     }
   }
 
+  override fun launchActivityWithRoot(item: ActivityModel) {
+    tryRunWithRoot(item)
+  }
+
   override fun launchActivityWithParams(item: ActivityModel) {
     IntentBuilderActivity.start(this, item)
   }
