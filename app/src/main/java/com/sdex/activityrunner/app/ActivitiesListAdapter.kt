@@ -2,14 +2,15 @@ package com.sdex.activityrunner.app
 
 import android.content.Context
 import android.support.annotation.ColorRes
+import android.support.design.widget.BottomSheetDialog
 import android.support.v4.content.ContextCompat
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
-import android.support.v7.widget.PopupMenu
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -68,31 +69,38 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
 
       itemView.setOnClickListener { callback.launchActivity(item) }
 
-      itemView.appMenu.setOnClickListener { v ->
-        val popup = PopupMenu(context, v)
-        popup.inflate(R.menu.activity_item_menu)
-        val menu = popup.menu
-        menu.setGroupVisible(R.id.menu_group_activity_exported, item.exported)
-        popup.show()
-        popup.setOnMenuItemClickListener { menuItem ->
-          when (menuItem.itemId) {
-            R.id.action_activity_add_shortcut -> {
-              callback.showShortcutDialog(item)
-              return@setOnMenuItemClickListener true
-            }
-            R.id.action_activity_launch_with_params -> {
-              callback.launchActivityWithParams(item)
-              return@setOnMenuItemClickListener true
-            }
-            R.id.action_activity_launch_with_root -> {
-              callback.launchActivityWithRoot(item)
-              return@setOnMenuItemClickListener true
-            }
-          }
-          false
-        }
+      itemView.setOnLongClickListener {
+        showActivityMenu(context, item, callback)
+        true
       }
 
+      itemView.appMenu.setOnClickListener { v ->
+        showActivityMenu(context, item, callback)
+      }
+
+    }
+
+    private fun showActivityMenu(context: Context, activityModel: ActivityModel,
+                                 callback: Callback) {
+      val view = View.inflate(context, R.layout.dialog_activity_menu, null)
+      val dialog = BottomSheetDialog(context)
+      dialog.setContentView(view)
+      view.findViewById<TextView>(R.id.activity_name).text = activityModel.name
+      view.findViewById<View>(R.id.action_activity_add_shortcut).setOnClickListener {
+        callback.showShortcutDialog(activityModel)
+        dialog.dismiss()
+      }
+      val itemParams = view.findViewById<View>(R.id.action_activity_launch_with_params)
+      itemParams.visibility = if (activityModel.exported) View.VISIBLE else View.GONE
+      itemParams.setOnClickListener {
+        callback.launchActivityWithParams(activityModel)
+        dialog.dismiss()
+      }
+      view.findViewById<View>(R.id.action_activity_launch_with_root).setOnClickListener {
+        callback.launchActivityWithRoot(activityModel)
+        dialog.dismiss()
+      }
+      dialog.show()
     }
   }
 

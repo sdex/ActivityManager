@@ -11,8 +11,8 @@
   <string name="context_action_launch_root">Launch activity with ROOT</string>
   <string name="context_action_shortcut">Create shortcut</string>
 
-  <string name="context_action_open_manifest">Manifest viewer</string>
-  <string name="context_action_open_info">Application info</string>
+  <string name="context_action_open_manifest">Open manifest viewer</string>
+  <string name="context_action_open_info">Open application info</string>
   <string name="context_action_launch">Open in GooglePlay</string>
 
   <string name="shortcut_name">Label</string>
