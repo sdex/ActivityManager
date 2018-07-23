@@ -9,22 +9,19 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.view.View
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.db.history.HistoryModel
-import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
+import com.sdex.activityrunner.intent.LaunchParams
 import com.sdex.activityrunner.intent.converter.LaunchParamsToWebIntentConverter
 import kotlinx.android.synthetic.main.dialog_export_intent_as_uri.view.*
 
 class ExportIntentAsUriDialog : DialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    val historyModel = arguments?.getSerializable(ARG_HISTORY_MODEL) as HistoryModel?
+    val launchParams = arguments?.getParcelable(ARG_LAUNCH_PARAMS) as LaunchParams?
 
     val builder = AlertDialog.Builder(activity!!)
     val view = View.inflate(activity, R.layout.dialog_export_intent_as_uri, null)
 
-    val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(historyModel!!)
-    val launchParamsToWebIntentConverter =
-      LaunchParamsToWebIntentConverter(historyToLaunchParamsConverter.convert())
+    val launchParamsToWebIntentConverter = LaunchParamsToWebIntentConverter(launchParams!!)
     val value = launchParamsToWebIntentConverter.convert()
     view.value.text = value
 
@@ -44,11 +41,11 @@ class ExportIntentAsUriDialog : DialogFragment() {
 
     const val TAG = "ExportIntentAsUriDialog"
 
-    private const val ARG_HISTORY_MODEL = "arg_history_model"
+    private const val ARG_LAUNCH_PARAMS = "arg_launch_params"
 
-    fun newInstance(historyModel: HistoryModel): ExportIntentAsUriDialog {
+    fun newInstance(launchParams: LaunchParams): ExportIntentAsUriDialog {
       val args = Bundle(1)
-      args.putSerializable(ARG_HISTORY_MODEL, historyModel)
+      args.putParcelable(ARG_LAUNCH_PARAMS, launchParams)
       val fragment = ExportIntentAsUriDialog()
       fragment.arguments = args
       return fragment

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.intent.param.None
 import java.util.*
 
 class LaunchParamsListAdapter : RecyclerView.Adapter<LaunchParamsListAdapter.ViewHolder>() {
@@ -25,9 +26,15 @@ class LaunchParamsListAdapter : RecyclerView.Adapter<LaunchParamsListAdapter.Vie
     return items.size
   }
 
-  fun setItems(items: List<String>) {
+  fun setItems(items: Collection<String>?, showEmpty: Boolean = false) {
     this.items.clear()
-    this.items.addAll(items)
+    if (items == null || items.isEmpty()) {
+      if (showEmpty) {
+        this.items.add(None.VALUE)
+      }
+    } else {
+      this.items.addAll(items)
+    }
     notifyDataSetChanged()
   }
 

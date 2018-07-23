@@ -17,4 +17,7 @@
 
   <!-- about -->
   <dimen name="about_image_size">44dp</dimen>
+
+  <!-- analyzer -->
+  <dimen name="analyzer_item_padding_horizontal">8dp</dimen>
 </resources>

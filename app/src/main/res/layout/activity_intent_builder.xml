@@ -184,7 +184,7 @@
               android:id="@+id/actionEditImageView"
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
-              android:background="?attr/selectableItemBackground"
+              android:background="?attr/selectableItemBackgroundBorderless"
               android:padding="@dimen/launch_params_icon_edit_padding"
               android:scaleType="fitCenter"
               android:src="@drawable/ic_edit"
@@ -298,7 +298,7 @@
                 android:id="@+id/mimeTypeEditImageView"
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
-                android:background="?attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="@dimen/launch_params_icon_edit_padding"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_edit"
@@ -355,7 +355,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_launch_param_extra" />
 
               <TextView
                 android:id="@+id/addExtraView"
@@ -424,7 +426,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_launch_param" />
 
             </LinearLayout>
 
@@ -486,7 +490,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_launch_param" />
             </LinearLayout>
 
             <View

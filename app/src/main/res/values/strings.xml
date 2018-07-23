@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name" translatable="false">Activity Manager</string>
   <string name="intent_launcher_activity" translatable="false">Intent builder</string>
+  <string name="intent_analyzer_activity" translatable="false">Analyze intent</string>
   <string name="history_activity">History</string>
   <string name="settings_activity">Settings</string>
 
@@ -66,7 +67,7 @@
   <string name="pro_version_done">Thank you for supporting us!</string>
   <string name="pro_version_dialog_title">Upgrade to premium</string>
   <string name="pro_version_unlock_extras">Get premium version to add unlimited extras</string>
-  <string name="pro_version_unlock_intent_shortcuts">Get premium version to create intent shortcuts</string>
+  <string name="pro_version_unlock_intent_shortcuts">Get premium version to create Intent shortcuts</string>
   <string name="pro_version_unlock_root_integration">Get premium version to enable ROOT integration</string>
   <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium version to have unlimited history</string>
 

@@ -4,8 +4,9 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:padding="8dp"
-  android:background="?attr/selectableItemBackground">
+  android:background="?attr/selectableItemBackground"
+  android:paddingTop="8dp"
+  android:paddingBottom="8dp">
 
   <TextView
     android:id="@+id/textView"
@@ -66,8 +67,8 @@
     android:id="@+id/remove"
     android:layout_width="40dp"
     android:layout_height="40dp"
+    android:background="?attr/selectableItemBackgroundBorderless"
     android:padding="6dp"
-    android:background="?attr/selectableItemBackground"
     android:scaleType="fitCenter"
     android:src="@drawable/ic_close"
     app:layout_constraintBottom_toBottomOf="parent"

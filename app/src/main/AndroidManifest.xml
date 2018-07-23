@@ -34,6 +34,11 @@
       android:label="@string/intent_launcher_activity" />
 
     <activity
+      android:name=".intent.analyzer.IntentAnalyzerActivity"
+      android:exported="true"
+      android:label="@string/intent_analyzer_activity" />
+
+    <activity
       android:name=".intent.history.HistoryActivity"
       android:exported="true"
       android:label="@string/history_activity" />

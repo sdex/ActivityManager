@@ -200,24 +200,24 @@ class MainActivity : BaseActivity() {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when (item.itemId) {
+    return when (item.itemId) {
       R.id.action_launch_intent -> {
         IntentBuilderActivity.start(this, null)
-        return true
+        true
       }
       R.id.action_upgrade -> {
         PurchaseActivity.start(this)
-        return true
+        true
       }
       R.id.action_about -> {
         startActivity(Intent(this, AboutActivity::class.java))
-        return true
+        true
       }
       R.id.action_settings -> {
         SettingsActivity.start(this)
-        return true
+        true
       }
-      else -> return super.onOptionsItemSelected(item)
+      else -> super.onOptionsItemSelected(item)
     }
   }
 

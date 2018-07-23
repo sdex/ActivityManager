@@ -3,6 +3,8 @@ package com.sdex.activityrunner.intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.sdex.activityrunner.R
 import kotlinx.android.synthetic.main.item_launch_param_extra.view.*
@@ -11,6 +13,7 @@ import java.util.*
 class LaunchParamsExtraListAdapter : RecyclerView.Adapter<LaunchParamsExtraListAdapter.ViewHolder>() {
 
   private var items: List<LaunchParamsExtra> = ArrayList()
+  private var viewMode = false
   var callback: Callback? = null
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,15 +24,16 @@ class LaunchParamsExtraListAdapter : RecyclerView.Adapter<LaunchParamsExtraListA
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     val item = items[position]
-    holder.bind(item, callback)
+    holder.bind(item, callback, viewMode)
   }
 
   override fun getItemCount(): Int {
     return items.size
   }
 
-  fun setItems(items: List<LaunchParamsExtra>) {
+  fun setItems(items: List<LaunchParamsExtra>, viewMode: Boolean = false) {
     this.items = items
+    this.viewMode = viewMode
     notifyDataSetChanged()
   }
 
@@ -42,11 +46,17 @@ class LaunchParamsExtraListAdapter : RecyclerView.Adapter<LaunchParamsExtraListA
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(item: LaunchParamsExtra, callback: Callback?) {
+    fun bind(item: LaunchParamsExtra, callback: Callback?, viewMode: Boolean) {
       itemView.key.text = item.key
       itemView.value.text = item.value
-      itemView.setOnClickListener { callback?.onItemSelected(adapterPosition) }
-      itemView.remove.setOnClickListener { callback?.removeItem(adapterPosition) }
+      if (viewMode) {
+        itemView.setOnClickListener(null)
+        itemView.remove.visibility = GONE
+      } else {
+        itemView.setOnClickListener { callback?.onItemSelected(adapterPosition) }
+        itemView.remove.setOnClickListener { callback?.removeItem(adapterPosition) }
+        itemView.remove.visibility = VISIBLE
+      }
     }
   }
 }

@@ -90,7 +90,9 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
   }
 
   private fun showExportUriDialog(historyModel: HistoryModel) {
-    val dialog = ExportIntentAsUriDialog.newInstance(historyModel)
+    val converter = HistoryToLaunchParamsConverter(historyModel)
+    val launchParams = converter.convert()
+    val dialog = ExportIntentAsUriDialog.newInstance(launchParams)
     dialog.show(supportFragmentManager, ExportIntentAsUriDialog.TAG)
   }
 
