@@ -74,12 +74,12 @@ class AddShortcutDialogFragment : DialogFragment() {
 
     const val TAG = "AddShortcutDialogFragment"
 
-    const val ARG_ACTIVITY_MODEL = "arg_activity_model"
-    const val ARG_HISTORY_MODEL = "arg_history_model"
+    private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
+    private const val ARG_HISTORY_MODEL = "arg_history_model"
 
     fun newInstance(activityModel: ActivityModel): AddShortcutDialogFragment {
       val args = Bundle(1)
-      args.putSerializable(AddShortcutDialogFragment.ARG_ACTIVITY_MODEL, activityModel)
+      args.putSerializable(ARG_ACTIVITY_MODEL, activityModel)
       val fragment = AddShortcutDialogFragment()
       fragment.arguments = args
       return fragment
@@ -87,7 +87,7 @@ class AddShortcutDialogFragment : DialogFragment() {
 
     fun newInstance(historyModel: HistoryModel): AddShortcutDialogFragment {
       val args = Bundle(1)
-      args.putSerializable(AddShortcutDialogFragment.ARG_HISTORY_MODEL, historyModel)
+      args.putSerializable(ARG_HISTORY_MODEL, historyModel)
       val fragment = AddShortcutDialogFragment()
       fragment.arguments = args
       return fragment

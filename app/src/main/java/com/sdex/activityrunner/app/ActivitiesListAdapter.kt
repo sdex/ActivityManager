@@ -74,10 +74,7 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
         true
       }
 
-      itemView.appMenu.setOnClickListener { v ->
-        showActivityMenu(context, item, callback)
-      }
-
+      itemView.appMenu.setOnClickListener { showActivityMenu(context, item, callback) }
     }
 
     private fun showActivityMenu(context: Context, activityModel: ActivityModel,

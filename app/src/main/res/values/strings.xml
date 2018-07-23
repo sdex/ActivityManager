@@ -99,6 +99,7 @@
   <string name="history_item_dialog_title">Intent</string>
   <string name="history_item_dialog_remove">Remove</string>
   <string name="history_item_dialog_add_shortcut">Create shortcut</string>
+  <string name="history_item_dialog_export_uri">Export as URI</string>
   <string name="no">No</string>
   <string name="yes">Yes</string>
 
@@ -106,6 +107,7 @@
   <string name="dialog_add_extra_key_empty">Key cannot be empty</string>
   <string name="dialog_add_extra_value_empty">Value cannot be empty</string>
   <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
+  <string name="dialog_export_intent_copy">Copy</string>
 
   <!-- rating dialog -->
   <string name="rating_dialog_cancel">Cancel</string>

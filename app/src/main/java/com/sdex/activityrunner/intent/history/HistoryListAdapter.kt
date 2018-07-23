@@ -79,6 +79,8 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
       menu.setHeaderTitle(R.string.history_item_dialog_title)
       menu.add(Menu.NONE, MENU_ITEM_ADD_SHORTCUT, Menu.NONE,
         R.string.history_item_dialog_add_shortcut)
+      menu.add(Menu.NONE, MENU_ITEM_EXPORT_URI, Menu.NONE,
+        R.string.history_item_dialog_export_uri)
       menu.add(Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE,
         R.string.history_item_dialog_remove)
     }
@@ -88,6 +90,7 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
 
     const val MENU_ITEM_REMOVE = 0
     const val MENU_ITEM_ADD_SHORTCUT = 1
+    const val MENU_ITEM_EXPORT_URI = 2
 
     val DIFF_CALLBACK: DiffUtil.ItemCallback<HistoryModel> = object : DiffUtil.ItemCallback<HistoryModel>() {
 

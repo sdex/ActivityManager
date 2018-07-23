@@ -16,6 +16,10 @@ import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
+import com.sdex.activityrunner.intent.dialog.ExportIntentAsUriDialog
+import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_ADD_SHORTCUT
+import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
+import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.commons.BaseActivity
@@ -63,7 +67,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
       }
     })
 
-    finish.setOnClickListener{
+    finish.setOnClickListener {
       val intent = Intent(this, IntentBuilderActivity::class.java)
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
       startActivity(intent)
@@ -73,26 +77,31 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
   override fun onContextItemSelected(item: MenuItem): Boolean {
     val itemId = item.itemId
-    if (itemId == HistoryListAdapter.MENU_ITEM_REMOVE) {
-      val position = adapter!!.contextMenuItemPosition
-      val historyModel = adapter!!.getItem(position)
-      if (historyModel != null) {
-        viewModel!!.deleteItem(historyModel)
-      }
-    } else if (itemId == HistoryListAdapter.MENU_ITEM_ADD_SHORTCUT) {
-      if (appPreferences!!.isProVersion) {
-        val position = adapter!!.contextMenuItemPosition
-        val historyModel = adapter!!.getItem(position)
-        if (historyModel != null) {
-          val dialog = AddShortcutDialogFragment.newInstance(historyModel)
-          dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
-        }
-      } else {
-        val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_intent_shortcuts)
-        dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
+    val position = adapter!!.contextMenuItemPosition
+    val historyModel = adapter!!.getItem(position)
+    if (historyModel != null) {
+      when (itemId) {
+        MENU_ITEM_REMOVE -> viewModel!!.deleteItem(historyModel)
+        MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
+        MENU_ITEM_EXPORT_URI -> showExportUriDialog(historyModel)
       }
     }
     return super.onContextItemSelected(item)
+  }
+
+  private fun showExportUriDialog(historyModel: HistoryModel) {
+    val dialog = ExportIntentAsUriDialog.newInstance(historyModel)
+    dialog.show(supportFragmentManager, ExportIntentAsUriDialog.TAG)
+  }
+
+  private fun showShortcutDialog(historyModel: HistoryModel) {
+    if (appPreferences!!.isProVersion) {
+      val dialog = AddShortcutDialogFragment.newInstance(historyModel)
+      dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
+    } else {
+      val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_intent_shortcuts)
+      dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
+    }
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
