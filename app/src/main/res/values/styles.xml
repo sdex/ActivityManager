@@ -11,6 +11,14 @@
     <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogStyle</item>
   </style>
 
+  <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
   <style name="AppBottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
     <item name="bottomSheetStyle">@style/AppBottomSheetStyle</item>
   </style>

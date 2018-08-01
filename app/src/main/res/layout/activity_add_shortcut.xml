@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:padding="12dp">
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:layout_marginTop="15dp"
+    android:text="@string/context_action_shortcut"
+    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+    android:textSize="20sp" />
+
+  <ImageView
+    android:id="@+id/icon"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
+    android:scaleType="fitCenter"
+    tools:ignore="ContentDescription"
+    tools:src="@mipmap/ic_launcher" />
+
+  <android.support.design.widget.TextInputLayout
+    android:id="@+id/value_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <EditText
+      android:id="@+id/label"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/shortcut_name"
+      android:inputType="text" />
+
+  </android.support.design.widget.TextInputLayout>
+
+  <LinearLayout
+    style="?buttonBarStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:gravity="end"
+    android:orientation="horizontal">
+
+    <Button
+      android:id="@+id/cancel"
+      style="?buttonBarButtonStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@android:string/cancel" />
+
+    <Button
+      android:id="@+id/create"
+      style="?buttonBarButtonStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/shortcut_create" />
+  </LinearLayout>
+
+</LinearLayout>

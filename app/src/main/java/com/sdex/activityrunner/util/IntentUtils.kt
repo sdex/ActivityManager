@@ -9,11 +9,10 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.annotation.DrawableRes
-import android.support.v4.content.pm.ShortcutInfoCompat
-import android.support.v4.content.pm.ShortcutManagerCompat
 import android.support.v4.graphics.drawable.IconCompat
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
+import androidx.core.content.systemService
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -22,6 +21,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
+import com.sdex.activityrunner.shortcut.ShortcutManager
 
 object IntentUtils {
 
@@ -34,6 +34,16 @@ object IntentUtils {
   }
 
   fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
+    val intent = activityModelToIntent(activityModel)
+    val iconCompat = IconCompat.createWithBitmap(bitmap)
+    try {
+      createShortcut(context, activityModel.name, intent, iconCompat)
+    } catch (e: Exception) { // android.os.TransactionTooLargeException
+      createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+    }
+  }
+
+  private fun activityModelToIntent(activityModel: ActivityModel): Intent {
     val componentName: ComponentName = if (activityModel.exported) {
       activityModel.componentName
     } else {
@@ -47,27 +57,32 @@ object IntentUtils {
       intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, originComponent.packageName)
       intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, originComponent.className)
     }
-
-    val iconCompat = IconCompat.createWithBitmap(bitmap)
-    try {
-      createLauncherIcon(context, activityModel.name, intent, iconCompat)
-    } catch (e: Exception) { // android.os.TransactionTooLargeException
-      createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
-    }
+    return intent
   }
 
   fun createLauncherIcon(context: Context, name: String, intent: Intent, @DrawableRes icon: Int) {
     val iconCompat = IconCompat.createWithResource(context, icon)
-    createLauncherIcon(context, name, intent, iconCompat)
+    createShortcut(context, name, intent, iconCompat)
   }
 
-  private fun createLauncherIcon(context: Context, name: String, intent: Intent, icon: IconCompat) {
-    val pinShortcutInfo = ShortcutInfoCompat.Builder(context, name)
-      .setIcon(icon)
-      .setShortLabel(name)
-      .setIntent(intent)
-      .build()
-    ShortcutManagerCompat.requestPinShortcut(context, pinShortcutInfo, null)
+  private fun createShortcut(context: Context, name: String,
+                             intent: Intent, icon: IconCompat): Boolean {
+    return ShortcutManager.createShortcut(context, name, intent, icon)
+  }
+
+  fun createLauncherIcon(context: Context, activityModel: ActivityModel, uri: Uri) {
+    val am: ActivityManager = context.systemService()
+    val size = am.launcherLargeIconSize
+    GlideApp.with(context)
+      .asDrawable()
+      .load(uri)
+      .error(R.mipmap.ic_launcher)
+      .override(size)
+      .into(object : SimpleTarget<Drawable>() {
+        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+          createLauncherIcon(context, activityModel, resource.toBitmap())
+        }
+      })
   }
 
   fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
