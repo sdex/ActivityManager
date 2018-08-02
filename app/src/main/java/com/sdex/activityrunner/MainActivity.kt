@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.SearchView.OnQueryTextListener
 import android.text.TextUtils
@@ -22,6 +23,7 @@ import com.sdex.activityrunner.app.ApplicationsListViewModel
 import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
+import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.activityrunner.service.AppLoaderIntentService
@@ -35,11 +37,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
 
   private var adsDelegate: AdsDelegate? = null
+  private var advancedPreferences: AdvancedPreferences? = null
   private var appPreferences: AppPreferences? = null
   private var isProVersionEnabled: Boolean = false
   private var adapter: ApplicationsListAdapter? = null
   private var viewModel: ApplicationsListViewModel? = null
   private var searchText: String? = null
+  private var isShowSystemAppIndicator: Boolean = false
 
   override fun getLayout(): Int {
     return R.layout.activity_main
@@ -55,6 +59,10 @@ class MainActivity : BaseActivity() {
     appPreferences = AppPreferences(this)
     adsDelegate = AdsDelegate(appPreferences)
     adsDelegate!!.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
+
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+    advancedPreferences = AdvancedPreferences(sharedPreferences)
+    isShowSystemAppIndicator = advancedPreferences!!.isShowSystemAppIndicator
 
     fetchPurchases()
     showRatingDialog()
@@ -73,6 +81,17 @@ class MainActivity : BaseActivity() {
     list.adapter = adapter
 
     checkOreoBug()
+  }
+
+  override fun onStart() {
+    super.onStart()
+    if (advancedPreferences!!.isShowSystemAppIndicator != isShowSystemAppIndicator) {
+      isShowSystemAppIndicator = advancedPreferences!!.isShowSystemAppIndicator
+      viewModel!!.getItems(searchText).observe(this, Observer {
+        adapter!!.submitList(it)
+        adapter!!.notifyDataSetChanged()
+      })
+    }
   }
 
   public override fun onSaveInstanceState(outState: Bundle) {
