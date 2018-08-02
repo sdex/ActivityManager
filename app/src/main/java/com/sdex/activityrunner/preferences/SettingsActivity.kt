@@ -31,6 +31,8 @@ class SettingsActivity : BaseActivity() {
     const val KEY_SORT_BY_DEFAULT = "0"
     const val KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive"
     const val KEY_SORT_CASE_SENSITIVE_DEFAULT = false
+    const val KEY_ADVANCED_SYSTEM_APP = "advanced_system_app"
+    const val KEY_ADVANCED_SYSTEM_APP_DEFAULT = false
     const val KEY_ADVANCED_NOT_EXPORTED = "advanced_not_exported"
     const val KEY_ADVANCED_NOT_EXPORTED_DEFAULT = false
     const val KEY_ADVANCED_ROOT_INTEGRATION = "advanced_root_integration"

@@ -122,16 +122,18 @@
   <!-- settings -->
   <string name="pref_header_sort">Sorting</string>
   <string name="pref_header_advanced">Advanced</string>
+  <string name="pref_advanced_system_apps_title">Show system app indicator</string>
+  <string name="pref_advanced_system_apps_summary">Gray dot near app name</string>
   <string name="pref_advanced_not_exported_title">Show not exported activities</string>
   <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
-  <string name="pref_advanced_root_integration_title">ROOT integration</string>
+  <string name="pref_advanced_root_integration_title">Allow ROOT operations</string>
   <string name="pref_advanced_root_integration_summary">Run any activity with root permission</string>
   <string name="pref_sort_order">Sort order</string>
   <string name="pref_sort_by">Sort by</string>
   <string name="pref_case_sensitive">Case sensitive</string>
   <string name="settings_error_root_not_available">ROOT is not available</string>
   <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
-  <string name="settings_error_root_not_active">You need to enable ROOT integration</string>
+  <string name="settings_error_root_not_active">You need to enable ROOT operations</string>
 
   <!-- root -->
   <string name="root_check_compatibility">Check root</string>

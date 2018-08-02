@@ -8,7 +8,8 @@ import java.io.Serializable
 data class ApplicationModel(@PrimaryKey val packageName: String,
                             val name: String?,
                             var activitiesCount: Int = 0,
-                            var exportedActivitiesCount: Int = 0) : Serializable {
+                            var exportedActivitiesCount: Int = 0,
+                            var system: Boolean = false) : Serializable {
 
   companion object {
 
