@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.sdex.activityrunner.R
@@ -108,7 +107,6 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
         Snackbar.LENGTH_LONG)
       snackbar.setAction(R.string.action_settings
         ) { SettingsActivity.start(this@ActivitiesListActivity) }
-      snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
       snackbar.config()
       snackbar.show()
     }
