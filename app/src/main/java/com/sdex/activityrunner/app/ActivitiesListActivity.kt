@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_activities_list.*
 class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
   private var advancedPreferences: AdvancedPreferences? = null
+  private var isShowNotExported: Boolean = false
 
   override fun getLayout(): Int {
     return R.layout.activity_activities_list
@@ -61,6 +62,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
+    isShowNotExported = advancedPreferences!!.isShowNotExported
 
     turnOnAdvanced.setOnClickListener {
       sharedPreferences.edit()
@@ -74,6 +76,17 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       appPreferences.isNotExportedDialogShown = true
       val dialog = EnableNotExportedActivitiesDialog()
       dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
+    }
+  }
+
+  override fun onStart() {
+    super.onStart()
+    if (advancedPreferences!!.isShowNotExported != isShowNotExported) {
+      val viewModel = ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
+      val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
+      if (item != null) {
+        viewModel.getItems(item.packageName)
+      }
     }
   }
 
@@ -106,7 +119,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       val snackbar = Snackbar.make(container, R.string.settings_error_root_not_active,
         Snackbar.LENGTH_LONG)
       snackbar.setAction(R.string.action_settings
-        ) { SettingsActivity.start(this@ActivitiesListActivity) }
+      ) { SettingsActivity.start(this@ActivitiesListActivity) }
       snackbar.config()
       snackbar.show()
     }
