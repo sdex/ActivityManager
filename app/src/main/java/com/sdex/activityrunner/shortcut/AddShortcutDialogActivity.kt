@@ -3,11 +3,13 @@ package com.sdex.activityrunner.shortcut
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import androidx.core.content.systemService
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.history.HistoryModel
@@ -40,7 +42,12 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       .error(R.mipmap.ic_launcher)
       .apply(RequestOptions()
         .fitCenter())
-      .into(icon)
+      .into(object : SimpleTarget<Drawable>() {
+        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+          icon.setImageDrawable(resource)
+          showFeatureDiscovery()
+        }
+      })
 
     icon.setOnClickListener {
       contentManager?.pickContent(ContentManager.Content.IMAGE)
@@ -50,7 +57,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       finish()
     }
 
-    create.setOnClickListener {
+    create.setOnClickListener { _ ->
       value_layout.error = null
       val shortcutName = label.text.toString()
       if (shortcutName.isBlank()) {
@@ -73,6 +80,10 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
       finish()
     }
+  }
+
+  private fun showFeatureDiscovery() {
+
   }
 
   private fun createHistoryModelShortcut(historyModel: HistoryModel, shortcutName: String) {
@@ -106,7 +117,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
   override fun onContentLoaded(uri: Uri?, contentType: String?) {
     iconUri = uri
-    val am: ActivityManager = systemService()
+    val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     val size = am.launcherLargeIconSize
     GlideApp.with(this)
       .load(uri)

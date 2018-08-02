@@ -12,7 +12,6 @@ import android.support.annotation.DrawableRes
 import android.support.v4.graphics.drawable.IconCompat
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
-import androidx.core.content.systemService
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -71,7 +70,7 @@ object IntentUtils {
   }
 
   fun createLauncherIcon(context: Context, activityModel: ActivityModel, uri: Uri) {
-    val am: ActivityManager = context.systemService()
+    val am: ActivityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     val size = am.launcherLargeIconSize
     GlideApp.with(context)
       .asDrawable()

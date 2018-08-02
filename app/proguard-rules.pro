@@ -30,6 +30,10 @@
 
 -keep class android.support.v7.widget.SearchView { *; }
 
+-keep class android.support.v7.widget.Toolbar { *** mMenuView; }
+-keep class android.support.v7.widget.ActionMenuView { *** mPresenter; }
+-keep class android.support.v7.widget.ActionMenuPresenter { *** mOverflowButton; }
+
 -keep class .R
 -keep class **.R$* {
     <fields>;
