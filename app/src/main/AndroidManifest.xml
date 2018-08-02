@@ -57,7 +57,7 @@
       android:name=".shortcut.AddShortcutDialogActivity"
       android:excludeFromRecents="true"
       android:theme="@style/AppDialogTheme"
-      android:windowSoftInputMode="adjustResize" />
+      android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
 
     <activity
       android:name=".shortcut.ShortcutHandlerActivity"

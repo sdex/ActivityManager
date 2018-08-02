@@ -13,11 +13,14 @@ import com.bumptech.glide.request.transition.Transition
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.history.HistoryModel
+import com.sdex.activityrunner.extensions.doAfterMeasure
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.content.ContentManager
+import com.tomergoldst.tooltips.ToolTip
+import com.tomergoldst.tooltips.ToolTipsManager
 import kotlinx.android.synthetic.main.activity_add_shortcut.*
 
 class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickContentListener {
@@ -45,7 +48,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       .into(object : SimpleTarget<Drawable>() {
         override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
           icon.setImageDrawable(resource)
-          showFeatureDiscovery()
+          showTooltip()
         }
       })
 
@@ -82,8 +85,24 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     }
   }
 
-  private fun showFeatureDiscovery() {
-
+  @Suppress("DEPRECATION")
+  private fun showTooltip() {
+    // TODO check preference
+    icon.doAfterMeasure {
+      val toolTipsManager =
+        ToolTipsManager(ToolTipsManager.TipListener { _, _, byUser ->
+          run {
+            if (byUser) {
+              // TODO save preference
+            }
+          }
+        })
+      val builder = ToolTip.Builder(this@AddShortcutDialogActivity,
+        icon, content, "Tap to change the icon", ToolTip.POSITION_BELOW)
+      builder.setBackgroundColor(resources.getColor(R.color.colorAccent))
+      builder.setTextAppearance(R.style.TooltipTextAppearance)
+      toolTipsManager.show(builder.build())
+    }
   }
 
   private fun createHistoryModelShortcut(historyModel: HistoryModel, shortcutName: String) {
