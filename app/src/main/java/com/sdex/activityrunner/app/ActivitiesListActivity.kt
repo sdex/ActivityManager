@@ -17,16 +17,17 @@ import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
+import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_activities_list.*
+import kotlin.properties.Delegates
 
 class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
-  private var advancedPreferences: AdvancedPreferences? = null
+  private var advancedPreferences: AdvancedPreferences by Delegates.notNull()
   private var isShowNotExported: Boolean = false
 
   override fun getLayout(): Int {
@@ -62,17 +63,15 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
-    isShowNotExported = advancedPreferences!!.isShowNotExported
+    isShowNotExported = advancedPreferences.showNotExported
 
     turnOnAdvanced.setOnClickListener {
-      sharedPreferences.edit()
-        .putBoolean(SettingsActivity.KEY_ADVANCED_NOT_EXPORTED, true)
-        .apply()
+      advancedPreferences.showNotExported = true
       viewModel.getItems(item.packageName)
     }
 
     val appPreferences = AppPreferences(this)
-    if (!advancedPreferences!!.isShowNotExported && !appPreferences.isNotExportedDialogShown) {
+    if (!advancedPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
       appPreferences.isNotExportedDialogShown = true
       val dialog = EnableNotExportedActivitiesDialog()
       dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
@@ -81,7 +80,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
   override fun onStart() {
     super.onStart()
-    if (advancedPreferences!!.isShowNotExported != isShowNotExported) {
+    if (advancedPreferences.showNotExported != isShowNotExported) {
       val viewModel = ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
       val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
       if (item != null) {
@@ -91,8 +90,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
   }
 
   override fun showShortcutDialog(item: ActivityModel) {
-    val dialog = AddShortcutDialogFragment.newInstance(item)
-    dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
+    AddShortcutDialogActivity.start(this, item)
   }
 
   override fun launchActivity(item: ActivityModel) {
@@ -112,7 +110,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
   }
 
   private fun tryRunWithRoot(item: ActivityModel) {
-    if (advancedPreferences!!.isRootIntegrationEnabled) {
+    if (advancedPreferences.isRootIntegrationEnabled) {
       val runActivityTask = RunActivityTask(item.componentName)
       runActivityTask.execute()
     } else {

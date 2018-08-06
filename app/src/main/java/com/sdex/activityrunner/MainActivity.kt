@@ -33,17 +33,18 @@ import com.sdex.commons.ads.AppPreferences
 import com.sdex.commons.util.AppUtils
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.properties.Delegates
 
 class MainActivity : BaseActivity() {
 
-  private var adsDelegate: AdsDelegate? = null
-  private var advancedPreferences: AdvancedPreferences? = null
-  private var appPreferences: AppPreferences? = null
+  private var adsDelegate: AdsDelegate by Delegates.notNull()
+  private var advancedPreferences: AdvancedPreferences  by Delegates.notNull()
+  private var appPreferences: AppPreferences by Delegates.notNull()
+  private var adapter: ApplicationsListAdapter by Delegates.notNull()
+  private var viewModel: ApplicationsListViewModel by Delegates.notNull()
   private var isProVersionEnabled: Boolean = false
-  private var adapter: ApplicationsListAdapter? = null
-  private var viewModel: ApplicationsListViewModel? = null
-  private var searchText: String? = null
   private var isShowSystemAppIndicator: Boolean = false
+  private var searchText: String? = null
 
   override fun getLayout(): Int {
     return R.layout.activity_main
@@ -58,19 +59,19 @@ class MainActivity : BaseActivity() {
 
     appPreferences = AppPreferences(this)
     adsDelegate = AdsDelegate(appPreferences)
-    adsDelegate!!.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
+    adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
-    isShowSystemAppIndicator = advancedPreferences!!.isShowSystemAppIndicator
+    isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
 
     fetchPurchases()
     showRatingDialog()
 
     searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-    viewModel!!.getItems(searchText).observe(this, Observer {
-      adapter!!.submitList(it)
+    viewModel.getItems(searchText).observe(this, Observer {
+      adapter.submitList(it)
       progress.hide()
     })
 
@@ -85,11 +86,11 @@ class MainActivity : BaseActivity() {
 
   override fun onStart() {
     super.onStart()
-    if (advancedPreferences!!.isShowSystemAppIndicator != isShowSystemAppIndicator) {
-      isShowSystemAppIndicator = advancedPreferences!!.isShowSystemAppIndicator
-      viewModel!!.getItems(searchText).observe(this, Observer {
-        adapter!!.submitList(it)
-        adapter!!.notifyDataSetChanged()
+    if (advancedPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
+      isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
+      viewModel.getItems(searchText).observe(this, Observer {
+        adapter.submitList(it)
+        adapter.notifyDataSetChanged()
       })
     }
   }
@@ -101,15 +102,15 @@ class MainActivity : BaseActivity() {
 
   private fun filter(text: String) {
     this.searchText = text
-    viewModel!!.getItems(text).observe(this, Observer {
-      adapter!!.submitList(it)
+    viewModel.getItems(text).observe(this, Observer {
+      adapter.submitList(it)
     })
   }
 
   // https://issuetracker.google.com/issues/73289329
   private fun checkOreoBug() {
     if (VERSION.SDK_INT == VERSION_CODES.O) {
-      val warningWasShown = appPreferences!!.preferences.getBoolean(
+      val warningWasShown = appPreferences.preferences.getBoolean(
         OreoPackageManagerBugActivity.KEY, false)
       if (!warningWasShown) {
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
@@ -158,7 +159,7 @@ class MainActivity : BaseActivity() {
       }
     }
     invalidateOptionsMenu()
-    appPreferences!!.isProVersion = isProVersionEnabled
+    appPreferences.isProVersion = isProVersionEnabled
   }
 
   private fun showRatingDialog() {
@@ -242,7 +243,7 @@ class MainActivity : BaseActivity() {
 
   override fun onBackPressed() {
     super.onBackPressed()
-    adsDelegate!!.showInterstitial()
+    adsDelegate.showInterstitial()
   }
 
   companion object {

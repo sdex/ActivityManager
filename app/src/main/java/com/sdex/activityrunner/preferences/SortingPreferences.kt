@@ -1,15 +1,13 @@
 package com.sdex.activityrunner.preferences
 
 import android.content.SharedPreferences
-
 import com.sdex.activityrunner.db.cache.ApplicationModel
 
 class SortingPreferences(private val sharedPreferences: SharedPreferences) {
 
   val sortBy: String
     get() {
-      val sortBy = sharedPreferences.getString(SettingsActivity.KEY_SORT_BY,
-        SettingsActivity.KEY_SORT_BY_DEFAULT)
+      val sortBy = sharedPreferences.getString(KEY_SORT_BY, KEY_SORT_BY_DEFAULT)
       val position = Integer.parseInt(sortBy)
       if (position == 0) {
         return ApplicationModel.NAME
@@ -21,8 +19,7 @@ class SortingPreferences(private val sharedPreferences: SharedPreferences) {
 
   val sortOrder: String
     get() {
-      val sortOrder = sharedPreferences.getString(SettingsActivity.KEY_SORT_ORDER,
-        SettingsActivity.KEY_SORT_ORDER_DEFAULT)
+      val sortOrder = sharedPreferences.getString(KEY_SORT_ORDER, KEY_SORT_ORDER_DEFAULT)
       val position = Integer.parseInt(sortOrder)
       if (position == 0) {
         return "ASC"
@@ -34,10 +31,20 @@ class SortingPreferences(private val sharedPreferences: SharedPreferences) {
 
   val sortCaseSensitive: String
     get() {
-      val caseSensitive = sharedPreferences.getBoolean(SettingsActivity.KEY_SORT_CASE_SENSITIVE,
-        SettingsActivity.KEY_SORT_CASE_SENSITIVE_DEFAULT)
+      val caseSensitive = sharedPreferences.getBoolean(KEY_SORT_CASE_SENSITIVE,
+        KEY_SORT_CASE_SENSITIVE_DEFAULT)
       return if (!caseSensitive) {
         "COLLATE NOCASE"
       } else ""
     }
+
+  companion object {
+
+    const val KEY_SORT_ORDER = "sort_order"
+    const val KEY_SORT_ORDER_DEFAULT = "0"
+    const val KEY_SORT_BY = "sort_by"
+    const val KEY_SORT_BY_DEFAULT = "0"
+    const val KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive"
+    const val KEY_SORT_CASE_SENSITIVE_DEFAULT = false
+  }
 }

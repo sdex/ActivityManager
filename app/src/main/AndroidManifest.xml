@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="com.sdex.activityrunner">
+  package="com.sdex.activityrunner"
+  android:installLocation="auto">
 
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="com.android.vending.BILLING" />
-  <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
   <!-- JobIntentService uses a wake lock to start a service in pre-O devices -->
   <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+  <uses-permission android:name="com.android.vending.BILLING" />
 
   <application
     android:name=".RunnerApplication"
@@ -52,6 +54,12 @@
     <activity android:name=".app.ActivitiesListActivity" />
 
     <activity
+      android:name=".shortcut.AddShortcutDialogActivity"
+      android:excludeFromRecents="true"
+      android:theme="@style/AppDialogTheme"
+      android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+
+    <activity
       android:name=".shortcut.ShortcutHandlerActivity"
       android:exported="true"
       android:theme="@android:style/Theme.Translucent" />
@@ -62,6 +70,7 @@
 
     <activity
       android:name=".app.root.CheckRootActivity"
+      android:exported="true"
       android:label="@string/root_check_compatibility" />
 
     <activity

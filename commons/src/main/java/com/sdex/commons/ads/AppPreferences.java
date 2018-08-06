@@ -10,7 +10,7 @@ import java.util.Locale;
 public class AppPreferences {
 
   public static final long ADS_PERIOD = 60 * 60 * 1000; // 1 hour
-  public static final long ADS_INTERSTITIAL_PERIOD = 30 * 60 * 1000; // 0.5 hour
+  public static final long ADS_INTERSTITIAL_PERIOD = 45 * 60 * 1000; // 45 minutes
 
   private static final String PREFERENCES_NAME = "ads_preferences";
   private static final String KEY_TIME_INTERSTITIAL = "ads_time_interstitial";
