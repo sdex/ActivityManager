@@ -112,6 +112,16 @@ object IntentUtils {
     }
   }
 
+  fun launchApplication(context: Context, packageName: String) {
+    val intent = context.packageManager.getLaunchIntentForPackage(packageName)
+    if (intent != null) {
+      launchActivity(context, intent)
+    } else {
+      Toast.makeText(context, R.string.starting_activity_launch_intent_failed,
+        Toast.LENGTH_SHORT).show()
+    }
+  }
+
   fun openApplicationInfo(context: Context, packageName: String) {
     try {
       val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)

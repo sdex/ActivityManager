@@ -91,6 +91,10 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
       dialog.setContentView(view)
       val packageName = applicationModel.packageName
       view.findViewById<TextView>(R.id.application_name).text = applicationModel.name
+      view.findViewById<View>(R.id.action_open_app).setOnClickListener {
+        IntentUtils.launchApplication(context, packageName)
+        dialog.dismiss()
+      }
       view.findViewById<View>(R.id.action_open_app_manifest).setOnClickListener {
         ManifestViewerActivity.start(context, packageName, applicationModel.name)
         dialog.dismiss()

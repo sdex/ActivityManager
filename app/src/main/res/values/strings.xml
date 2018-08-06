@@ -12,6 +12,7 @@
   <string name="context_action_launch_root">Launch activity with ROOT</string>
   <string name="context_action_shortcut">Create shortcut</string>
 
+  <string name="context_action_open">Launch the application</string>
   <string name="context_action_open_manifest">Open manifest viewer</string>
   <string name="context_action_open_info">Open application info</string>
   <string name="context_action_launch">Open in GooglePlay</string>
@@ -22,6 +23,7 @@
 
   <string name="starting_activity">Starting activity: %s</string>
   <string name="starting_activity_failed">Failed to start activity: %s</string>
+  <string name="starting_activity_launch_intent_failed">Cannot find launcher activity</string>
   <string name="starting_activity_failed_security">You don\'t have permissions to run this activity: %s</string>
   <string name="starting_activity_intent">Starting activity</string>
   <string name="starting_activity_intent_failed">Failed to start activity</string>
