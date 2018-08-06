@@ -9,6 +9,8 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.support.annotation.DrawableRes
+import android.support.customtabs.CustomTabsIntent
+import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.IconCompat
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
@@ -149,6 +151,19 @@ object IntentUtils {
         Toast.makeText(context, R.string.starting_activity_intent_failed,
           Toast.LENGTH_SHORT).show()
       }
+    }
+  }
+
+  fun openBrowser(context: Context, url: String) {
+    try {
+      val builder = CustomTabsIntent.Builder()
+      builder.setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+      builder.setShowTitle(true)
+      val customTabsIntent = builder.build()
+      customTabsIntent.launchUrl(context, Uri.parse(url))
+    } catch (e: ActivityNotFoundException) {
+      Toast.makeText(context, R.string.starting_activity_intent_failed,
+        Toast.LENGTH_SHORT).show()
     }
   }
 }

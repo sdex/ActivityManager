@@ -4,16 +4,14 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.pddstudio.highlightjs.models.Language
 import com.pddstudio.highlightjs.models.Theme
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
@@ -61,11 +59,7 @@ class ManifestViewerActivity : BaseActivity() {
     return when (item.itemId) {
       R.id.action_help -> {
         val url = "https://developer.android.com/guide/topics/manifest/manifest-intro"
-        val builder = CustomTabsIntent.Builder()
-        builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-        builder.setShowTitle(true)
-        val customTabsIntent = builder.build()
-        customTabsIntent.launchUrl(this, Uri.parse(url))
+        IntentUtils.openBrowser(this, url)
         true
       }
       else -> super.onOptionsItemSelected(item)
