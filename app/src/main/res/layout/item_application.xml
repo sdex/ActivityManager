@@ -40,6 +40,17 @@
       tools:text="com.android.application" />
   </LinearLayout>
 
+  <ImageView
+    android:id="@+id/system"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_margin="4dp"
+    android:src="@drawable/ic_app_system"
+    android:visibility="invisible"
+    tools:ignore="ContentDescription"
+    tools:visibility="visible" />
+
   <ImageButton
     android:id="@+id/appMenu"
     android:layout_width="44dp"

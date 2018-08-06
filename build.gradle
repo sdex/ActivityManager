@@ -1,7 +1,7 @@
 apply from: 'dependencies.gradle'
 
 buildscript {
-  ext.kotlin_version = '1.2.51'
+  ext.kotlin_version = '1.2.60'
   ext.anko_version = '0.10.5'
   repositories {
     google()

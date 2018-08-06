@@ -3,6 +3,7 @@ package com.sdex.activityrunner.service
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.support.v4.app.JobIntentService
@@ -111,7 +112,11 @@ class AppLoaderIntentService : JobIntentService() {
     } else {
       info.packageName
     }
-    return ApplicationModel(packageName, name)
+    val model = ApplicationModel(packageName, name)
+    applicationInfo?.let {
+      model.system = (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+    }
+    return model
   }
 
   private fun getExportedActivitiesCount(activities: Array<ActivityInfo>): Int {

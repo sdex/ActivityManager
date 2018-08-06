@@ -5,6 +5,12 @@
 
     <android.support.v7.preference.SwitchPreferenceCompat
       android:defaultValue="false"
+      android:key="advanced_system_app"
+      android:summary="@string/pref_advanced_system_apps_summary"
+      android:title="@string/pref_advanced_system_apps_title" />
+
+    <android.support.v7.preference.SwitchPreferenceCompat
+      android:defaultValue="false"
       android:key="advanced_not_exported"
       android:summary="@string/pref_advanced_not_exported_summary"
       android:title="@string/pref_advanced_not_exported_title" />

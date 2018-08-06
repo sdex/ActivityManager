@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.sdex.activityrunner.R
@@ -29,6 +28,7 @@ import kotlin.properties.Delegates
 class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
   private var advancedPreferences: AdvancedPreferences by Delegates.notNull()
+  private var isShowNotExported: Boolean = false
 
   override fun getLayout(): Int {
     return R.layout.activity_activities_list
@@ -63,6 +63,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
+    isShowNotExported = advancedPreferences!!.isShowNotExported
 
     turnOnAdvanced.setOnClickListener {
       advancedPreferences.showNotExported = true
@@ -74,6 +75,17 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       appPreferences.isNotExportedDialogShown = true
       val dialog = EnableNotExportedActivitiesDialog()
       dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
+    }
+  }
+
+  override fun onStart() {
+    super.onStart()
+    if (advancedPreferences!!.isShowNotExported != isShowNotExported) {
+      val viewModel = ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
+      val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
+      if (item != null) {
+        viewModel.getItems(item.packageName)
+      }
     }
   }
 
@@ -105,8 +117,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       val snackbar = Snackbar.make(container, R.string.settings_error_root_not_active,
         Snackbar.LENGTH_LONG)
       snackbar.setAction(R.string.action_settings
-        ) { SettingsActivity.start(this@ActivitiesListActivity) }
-      snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.yellow))
+      ) { SettingsActivity.start(this@ActivitiesListActivity) }
       snackbar.config()
       snackbar.show()
     }

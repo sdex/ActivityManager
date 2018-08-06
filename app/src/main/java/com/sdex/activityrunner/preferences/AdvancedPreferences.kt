@@ -4,6 +4,10 @@ import android.content.SharedPreferences
 
 class AdvancedPreferences(private val sharedPreferences: SharedPreferences) {
 
+  val isShowSystemAppIndicator: Boolean
+    get() = sharedPreferences.getBoolean(SettingsActivity.KEY_ADVANCED_SYSTEM_APP,
+      SettingsActivity.KEY_ADVANCED_SYSTEM_APP_DEFAULT)
+
   var showNotExported: Boolean
     get() = sharedPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
     set(show) {

@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 
 @Database(entities = [(ApplicationModel::class)],
-  version = 2,
+  version = 3,
   exportSchema = true)
 abstract class CacheDatabase : RoomDatabase() {
 
