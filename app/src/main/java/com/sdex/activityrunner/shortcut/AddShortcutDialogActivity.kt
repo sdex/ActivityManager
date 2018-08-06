@@ -17,6 +17,7 @@ import com.sdex.activityrunner.extensions.doAfterMeasure
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
+import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.content.ContentManager
 import com.tomergoldst.tooltips.ToolTip
@@ -27,12 +28,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
   private var contentManager: ContentManager? = null
   private var iconUri: Uri? = null
+  private val toolTipsManager = ToolTipsManager()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_add_shortcut)
-
-    contentManager = ContentManager(this, this)
 
     val activityModel = intent?.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
     val historyModel = intent?.getSerializableExtra(ARG_HISTORY_MODEL) as HistoryModel?
@@ -53,7 +53,9 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       })
 
     icon.setOnClickListener {
+      contentManager = ContentManager(this, this)
       contentManager?.pickContent(ContentManager.Content.IMAGE)
+      toolTipsManager.dismissAll()
     }
 
     cancel.setOnClickListener {
@@ -87,21 +89,16 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
   @Suppress("DEPRECATION")
   private fun showTooltip() {
-    // TODO check preference
-    icon.doAfterMeasure {
-      val toolTipsManager =
-        ToolTipsManager(ToolTipsManager.TipListener { _, _, byUser ->
-          run {
-            if (byUser) {
-              // TODO save preference
-            }
-          }
-        })
-      val builder = ToolTip.Builder(this@AddShortcutDialogActivity,
-        icon, content, "Tap to change the icon", ToolTip.POSITION_BELOW)
-      builder.setBackgroundColor(resources.getColor(R.color.colorAccent))
-      builder.setTextAppearance(R.style.TooltipTextAppearance)
-      toolTipsManager.show(builder.build())
+    val preferences = TooltipPreferences(this)
+    if (preferences.showChangeIcon) {
+      icon.doAfterMeasure {
+        val builder = ToolTip.Builder(this@AddShortcutDialogActivity,
+          icon, content, "Tap to change the icon", ToolTip.POSITION_BELOW)
+        builder.setBackgroundColor(resources.getColor(R.color.colorAccent))
+        builder.setTextAppearance(R.style.TooltipTextAppearance)
+        toolTipsManager.show(builder.build())
+        preferences.showChangeIcon = false
+      }
     }
   }
 
