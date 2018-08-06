@@ -20,7 +20,7 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
     super.onCreate(savedInstanceState)
 
     val appPreferences = AppPreferences(activity)
-    val rootIntegration = findPreference(SettingsActivity.KEY_ADVANCED_ROOT_INTEGRATION)
+    val rootIntegration = findPreference(AdvancedPreferences.KEY_ROOT_INTEGRATION)
       as SwitchPreferenceCompat
     rootIntegration.setOnPreferenceChangeListener { _, newValue ->
       if (newValue is Boolean) {

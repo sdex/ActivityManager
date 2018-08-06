@@ -15,8 +15,8 @@ public class SortPreferenceFragment extends PreferenceFragment {
     super.onCreate(savedInstanceState);
     addPreferencesFromResource(R.xml.pref_sorting);
     setHasOptionsMenu(true);
-    bindPreferenceSummaryToValue(findPreference(SettingsActivity.KEY_SORT_ORDER));
-    bindPreferenceSummaryToValue(findPreference(SettingsActivity.KEY_SORT_BY));
+    bindPreferenceSummaryToValue(findPreference(SortingPreferences.KEY_SORT_ORDER));
+    bindPreferenceSummaryToValue(findPreference(SortingPreferences.KEY_SORT_BY));
   }
 
   private Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener =

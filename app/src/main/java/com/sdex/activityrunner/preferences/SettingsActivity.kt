@@ -25,17 +25,6 @@ class SettingsActivity : BaseActivity() {
 
   companion object {
 
-    const val KEY_SORT_ORDER = "sort_order"
-    const val KEY_SORT_ORDER_DEFAULT = "0"
-    const val KEY_SORT_BY = "sort_by"
-    const val KEY_SORT_BY_DEFAULT = "0"
-    const val KEY_SORT_CASE_SENSITIVE = "sort_case_sensitive"
-    const val KEY_SORT_CASE_SENSITIVE_DEFAULT = false
-    const val KEY_ADVANCED_NOT_EXPORTED = "advanced_not_exported"
-    const val KEY_ADVANCED_NOT_EXPORTED_DEFAULT = false
-    const val KEY_ADVANCED_ROOT_INTEGRATION = "advanced_root_integration"
-    const val KEY_ADVANCED_ROOT_INTEGRATION_DEFAULT = false
-
     fun start(context: Context) {
       val starter = Intent(context, SettingsActivity::class.java)
       context.startActivity(starter)

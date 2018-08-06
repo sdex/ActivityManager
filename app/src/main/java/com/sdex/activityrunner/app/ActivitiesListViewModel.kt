@@ -40,7 +40,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   @WorkerThread
   private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
     val list = ArrayList<ActivityModel>()
-    val showNotExported = advancedPreferences.isShowNotExported
+    val showNotExported = advancedPreferences.showNotExported
     try {
       val info = packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
       if (info.activities != null) {

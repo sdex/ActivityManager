@@ -24,10 +24,11 @@ import com.sdex.activityrunner.util.RunActivityTask
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_activities_list.*
+import kotlin.properties.Delegates
 
 class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
-  private var advancedPreferences: AdvancedPreferences? = null
+  private var advancedPreferences: AdvancedPreferences by Delegates.notNull()
 
   override fun getLayout(): Int {
     return R.layout.activity_activities_list
@@ -64,14 +65,12 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
     advancedPreferences = AdvancedPreferences(sharedPreferences)
 
     turnOnAdvanced.setOnClickListener {
-      sharedPreferences.edit()
-        .putBoolean(SettingsActivity.KEY_ADVANCED_NOT_EXPORTED, true)
-        .apply()
+      advancedPreferences.showNotExported = true
       viewModel.getItems(item.packageName)
     }
 
     val appPreferences = AppPreferences(this)
-    if (!advancedPreferences!!.isShowNotExported && !appPreferences.isNotExportedDialogShown) {
+    if (!advancedPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
       appPreferences.isNotExportedDialogShown = true
       val dialog = EnableNotExportedActivitiesDialog()
       dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
@@ -99,7 +98,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
   }
 
   private fun tryRunWithRoot(item: ActivityModel) {
-    if (advancedPreferences!!.isRootIntegrationEnabled) {
+    if (advancedPreferences.isRootIntegrationEnabled) {
       val runActivityTask = RunActivityTask(item.componentName)
       runActivityTask.execute()
     } else {
