@@ -38,13 +38,13 @@ import kotlin.properties.Delegates
 class MainActivity : BaseActivity() {
 
   private var adsDelegate: AdsDelegate by Delegates.notNull()
-  private var advancedPreferences: AdvancedPreferences? = null
+  private var advancedPreferences: AdvancedPreferences  by Delegates.notNull()
   private var appPreferences: AppPreferences by Delegates.notNull()
-  private var isProVersionEnabled: Boolean = false
   private var adapter: ApplicationsListAdapter by Delegates.notNull()
   private var viewModel: ApplicationsListViewModel by Delegates.notNull()
-  private var searchText: String? = null
+  private var isProVersionEnabled: Boolean = false
   private var isShowSystemAppIndicator: Boolean = false
+  private var searchText: String? = null
 
   override fun getLayout(): Int {
     return R.layout.activity_main
@@ -63,7 +63,7 @@ class MainActivity : BaseActivity() {
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
-    isShowSystemAppIndicator = advancedPreferences!!.isShowSystemAppIndicator
+    isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
 
     fetchPurchases()
     showRatingDialog()
@@ -86,11 +86,11 @@ class MainActivity : BaseActivity() {
 
   override fun onStart() {
     super.onStart()
-    if (advancedPreferences!!.isShowSystemAppIndicator != isShowSystemAppIndicator) {
-      isShowSystemAppIndicator = advancedPreferences!!.isShowSystemAppIndicator
-      viewModel!!.getItems(searchText).observe(this, Observer {
-        adapter!!.submitList(it)
-        adapter!!.notifyDataSetChanged()
+    if (advancedPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
+      isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
+      viewModel.getItems(searchText).observe(this, Observer {
+        adapter.submitList(it)
+        adapter.notifyDataSetChanged()
       })
     }
   }

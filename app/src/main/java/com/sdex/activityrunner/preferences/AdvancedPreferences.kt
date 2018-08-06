@@ -5,8 +5,8 @@ import android.content.SharedPreferences
 class AdvancedPreferences(private val sharedPreferences: SharedPreferences) {
 
   val isShowSystemAppIndicator: Boolean
-    get() = sharedPreferences.getBoolean(SettingsActivity.KEY_ADVANCED_SYSTEM_APP,
-      SettingsActivity.KEY_ADVANCED_SYSTEM_APP_DEFAULT)
+    get() = sharedPreferences.getBoolean(KEY_SHOW_SYSTEM_APP_LABEL,
+      KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT)
 
   var showNotExported: Boolean
     get() = sharedPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
@@ -22,5 +22,8 @@ class AdvancedPreferences(private val sharedPreferences: SharedPreferences) {
     const val KEY_SHOW_NOT_EXPORTED_DEFAULT = false
     const val KEY_ROOT_INTEGRATION = "advanced_root_integration"
     const val KEY_ROOT_INTEGRATION_DEFAULT = false
+    const val KEY_SHOW_SYSTEM_APP_LABEL = "advanced_system_app"
+    const val KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT = false
+
   }
 }

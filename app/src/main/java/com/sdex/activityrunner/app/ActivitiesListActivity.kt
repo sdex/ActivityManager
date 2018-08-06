@@ -63,7 +63,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     advancedPreferences = AdvancedPreferences(sharedPreferences)
-    isShowNotExported = advancedPreferences!!.isShowNotExported
+    isShowNotExported = advancedPreferences.showNotExported
 
     turnOnAdvanced.setOnClickListener {
       advancedPreferences.showNotExported = true
@@ -80,7 +80,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
   override fun onStart() {
     super.onStart()
-    if (advancedPreferences!!.isShowNotExported != isShowNotExported) {
+    if (advancedPreferences.showNotExported != isShowNotExported) {
       val viewModel = ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
       val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
       if (item != null) {

@@ -25,9 +25,6 @@ class SettingsActivity : BaseActivity() {
 
   companion object {
 
-    const val KEY_ADVANCED_SYSTEM_APP = "advanced_system_app"
-    const val KEY_ADVANCED_SYSTEM_APP_DEFAULT = false
-
     fun start(context: Context) {
       val starter = Intent(context, SettingsActivity::class.java)
       context.startActivity(starter)
