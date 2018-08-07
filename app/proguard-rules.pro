@@ -24,9 +24,9 @@
 -dontwarn
 -ignorewarnings
 
--keep class * {
-    public private *;
-}
+#-keep class * {
+#    public private *;
+#}
 
 -keep class android.support.v7.widget.SearchView { *; }
 
