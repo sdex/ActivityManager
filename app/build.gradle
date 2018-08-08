@@ -22,8 +22,8 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 28
-    versionCode 2032
-    versionName "2.3.2"
+    versionCode 2033
+    versionName "2.3.3"
 
     multiDexEnabled true
 
@@ -113,7 +113,6 @@ dependencies {
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   implementation "com.pddstudio:highlightjs-android:1.5.0"
   implementation "com.simplecityapps:recyclerview-fastscroll:1.0.18"
-  implementation 'com.tomergoldst.android:tooltips:1.0.10'
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
