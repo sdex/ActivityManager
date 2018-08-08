@@ -22,8 +22,8 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 28
-    versionCode 2033
-    versionName "2.3.3"
+    versionCode 2034
+    versionName "2.3.4"
 
     multiDexEnabled true
 
@@ -48,6 +48,11 @@ android {
   }
 
   buildTypes {
+    debug {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
     release {
       minifyEnabled true
       shrinkResources true

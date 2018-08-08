@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -29,16 +30,21 @@ class AddShortcutDialogActivity : AppCompatActivity() {
     label.setText(activityModel?.name)
     label.setSelection(label.text.length)
 
-    GlideApp.with(this)
-      .load(activityModel)
-      .error(R.mipmap.ic_launcher)
-      .apply(RequestOptions()
-        .fitCenter())
-      .into(object : SimpleTarget<Drawable>() {
-        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-          icon.setImageDrawable(resource)
-        }
-      })
+    activityModel?.let {
+      GlideApp.with(this)
+        .load(activityModel)
+        .error(R.mipmap.ic_launcher)
+        .apply(RequestOptions()
+          .fitCenter())
+        .into(object : SimpleTarget<Drawable>() {
+          override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+            icon.setImageDrawable(resource)
+          }
+        })
+    }
+    historyModel?.let {
+      icon.setImageResource(R.mipmap.ic_launcher)
+    }
 
     cancel.setOnClickListener {
       finish()
@@ -69,7 +75,11 @@ class AddShortcutDialogActivity : AppCompatActivity() {
     val launchParams = historyToLaunchParamsConverter.convert()
     val converter = LaunchParamsToIntentConverter(launchParams)
     val intent = converter.convert()
-    IntentUtils.createLauncherIcon(this, shortcutName, intent, R.mipmap.ic_launcher)
+    if (intent.action != null) {
+      IntentUtils.createLauncherIcon(this, shortcutName, intent, R.mipmap.ic_launcher)
+    } else {
+      Toast.makeText(this, "Intent action must be set", Toast.LENGTH_SHORT).show()
+    }
   }
 
   companion object {
