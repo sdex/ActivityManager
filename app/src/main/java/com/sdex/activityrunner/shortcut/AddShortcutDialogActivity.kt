@@ -3,10 +3,15 @@ package com.sdex.activityrunner.shortcut
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.View.*
+import android.widget.Toast
+import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -27,7 +32,9 @@ import kotlinx.android.synthetic.main.activity_add_shortcut.*
 class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickContentListener {
 
   private var contentManager: ContentManager? = null
+  private var bitmap: Bitmap? = null
   private var iconUri: Uri? = null
+  private var iconType: Int = ICON_SQUARE
   private val toolTipsManager = ToolTipsManager()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,10 +50,10 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     GlideApp.with(this)
       .load(activityModel)
       .error(R.mipmap.ic_launcher)
-      .apply(RequestOptions()
-        .fitCenter())
+      .apply(RequestOptions().centerCrop())
       .into(object : SimpleTarget<Drawable>() {
         override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+          bitmap = resource.toBitmap()
           icon.setImageDrawable(resource)
           showTooltip()
         }
@@ -56,6 +63,19 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       contentManager = ContentManager(this, this)
       contentManager?.pickContent(ContentManager.Content.IMAGE)
       toolTipsManager.dismissAll()
+    }
+
+    radioGroup.setOnCheckedChangeListener { _, id ->
+      run {
+        iconType = when (id) {
+          R.id.squareIcon -> ICON_SQUARE
+          R.id.circleIcon -> ICON_CIRCLE
+          else -> {
+            ICON_SQUARE
+          }
+        }
+        loadIcon()
+      }
     }
 
     cancel.setOnClickListener {
@@ -69,9 +89,9 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
         value_layout.error = getString(R.string.shortcut_name_empty)
         return@setOnClickListener
       }
-      if (iconUri != null) {
+      if (bitmap != null) {
         activityModel?.let {
-          IntentUtils.createLauncherIcon(this, activityModel, iconUri!!)
+          IntentUtils.createLauncherIcon(this, activityModel, bitmap!!)
         }
       } else {
         activityModel?.let {
@@ -85,6 +105,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
       finish()
     }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    bitmap = null
   }
 
   @Suppress("DEPRECATION")
@@ -133,30 +158,62 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
   override fun onContentLoaded(uri: Uri?, contentType: String?) {
     iconUri = uri
-    val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-    val size = am.launcherLargeIconSize
-    GlideApp.with(this)
-      .load(uri)
-      .error(R.mipmap.ic_launcher)
-      .apply(RequestOptions()
-        .fitCenter())
-      .override(size)
-      .into(icon)
+    radioGroup.visibility = VISIBLE
+    loadIcon()
+  }
+
+  private fun loadIcon() {
+    if (iconUri != null) {
+      val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+      val size = am.launcherLargeIconSize
+
+      val requestOptions = if (iconType == ICON_SQUARE) {
+        RequestOptions().centerCrop().override(size)
+      } else {
+        RequestOptions().circleCrop().override(size)
+      }
+
+      GlideApp.with(this)
+        .asBitmap()
+        .load(iconUri)
+        .error(R.mipmap.ic_launcher)
+        .apply(requestOptions)
+        .into(object : SimpleTarget<Bitmap>(size, size) {
+          override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+            bitmap = resource
+            icon.setImageBitmap(resource)
+            hideProgress()
+          }
+        })
+    }
   }
 
   override fun onStartContentLoading() {
-
+    progress.visibility = VISIBLE
+    icon.visibility = INVISIBLE
   }
 
   override fun onError(error: String?) {
-
+    Log.e(TAG, "Failed to load image: $error")
+    Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
+    hideProgress()
   }
 
   override fun onCanceled() {
+    hideProgress()
+  }
 
+  private fun hideProgress() {
+    progress.visibility = GONE
+    icon.visibility = VISIBLE
   }
 
   companion object {
+
+    private const val TAG = "AddShortcutDialog"
+
+    private const val ICON_SQUARE = 0
+    private const val ICON_CIRCLE = 1
 
     private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
     private const val ARG_HISTORY_MODEL = "arg_history_model"
