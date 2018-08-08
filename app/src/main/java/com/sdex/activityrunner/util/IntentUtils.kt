@@ -71,23 +71,9 @@ object IntentUtils {
     return ShortcutManager.createShortcut(context, name, intent, icon)
   }
 
-  fun createLauncherIcon(context: Context, activityModel: ActivityModel, uri: Uri) {
+  fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
     val am: ActivityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     val size = am.launcherLargeIconSize
-    GlideApp.with(context)
-      .asDrawable()
-      .load(uri)
-      .error(R.mipmap.ic_launcher)
-      .override(size)
-      .into(object : SimpleTarget<Drawable>() {
-        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-          createLauncherIcon(context, activityModel, resource.toBitmap())
-        }
-      })
-  }
-
-  fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
-    val size = (context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).launcherLargeIconSize
     GlideApp.with(context)
       .asDrawable()
       .load(activityModel)
