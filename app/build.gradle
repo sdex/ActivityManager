@@ -109,7 +109,7 @@ dependencies {
   kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
   implementation "com.android.billingclient:billing:1.0"
-  implementation "de.psdev.licensesdialog:licensesdialog:1.7.0"
+  implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   implementation "com.pddstudio:highlightjs-android:1.5.0"
   implementation "com.simplecityapps:recyclerview-fastscroll:1.0.18"
