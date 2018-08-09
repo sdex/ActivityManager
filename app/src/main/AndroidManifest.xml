@@ -53,12 +53,6 @@
     <activity android:name=".app.ActivitiesListActivity" />
 
     <activity
-      android:name=".shortcut.AddShortcutDialogActivity"
-      android:excludeFromRecents="true"
-      android:theme="@style/AppDialogTheme"
-      android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-
-    <activity
       android:name=".shortcut.ShortcutHandlerActivity"
       android:exported="true"
       android:theme="@android:style/Theme.Translucent" />

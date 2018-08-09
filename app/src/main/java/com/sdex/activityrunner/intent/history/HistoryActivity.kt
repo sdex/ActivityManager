@@ -21,7 +21,7 @@ import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.premium.GetPremiumDialog
-import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
+import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_history.*
@@ -98,7 +98,8 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
   private fun showShortcutDialog(historyModel: HistoryModel) {
     if (appPreferences!!.isProVersion) {
-      AddShortcutDialogActivity.start(this, historyModel)
+      val dialog = AddShortcutDialogFragment.newInstance(historyModel)
+      dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
     } else {
       val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_intent_shortcuts)
       dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
