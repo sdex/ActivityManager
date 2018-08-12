@@ -3,7 +3,7 @@ ext.app = [
 ]
 
 ext.versions = [
-  support            : '28.0.0-beta01',
+  support            : '28.0.0-rc01',
   constraintLayout   : '1.1.2',
   playServices       : '12.0.1',
   room               : '1.1.1',

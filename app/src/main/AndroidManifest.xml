@@ -8,7 +8,6 @@
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <!-- JobIntentService uses a wake lock to start a service in pre-O devices -->
   <uses-permission android:name="android.permission.WAKE_LOCK" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
   <uses-permission android:name="com.android.vending.BILLING" />
 
@@ -52,12 +51,6 @@
     <activity android:name=".manifest.ManifestViewerActivity" />
 
     <activity android:name=".app.ActivitiesListActivity" />
-
-    <activity
-      android:name=".shortcut.AddShortcutDialogActivity"
-      android:excludeFromRecents="true"
-      android:theme="@style/AppDialogTheme"
-      android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
 
     <activity
       android:name=".shortcut.ShortcutHandlerActivity"

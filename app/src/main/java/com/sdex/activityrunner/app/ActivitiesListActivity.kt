@@ -17,7 +17,7 @@ import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
+import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
 import com.sdex.commons.BaseActivity
@@ -90,7 +90,8 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
   }
 
   override fun showShortcutDialog(item: ActivityModel) {
-    AddShortcutDialogActivity.start(this, item)
+    val dialog = AddShortcutDialogFragment.newInstance(item)
+    dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
   }
 
   override fun launchActivity(item: ActivityModel) {

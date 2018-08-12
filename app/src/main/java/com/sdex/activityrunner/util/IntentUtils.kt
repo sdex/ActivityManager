@@ -72,7 +72,8 @@ object IntentUtils {
   }
 
   fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
-    val size = (context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).launcherLargeIconSize
+    val am: ActivityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val size = am.launcherLargeIconSize
     GlideApp.with(context)
       .asDrawable()
       .load(activityModel)
