@@ -52,6 +52,8 @@
 
     <activity android:name=".app.ActivitiesListActivity" />
 
+    <activity android:name=".shortcut.AddShortcutDialogActivity" />
+
     <activity
       android:name=".shortcut.ShortcutHandlerActivity"
       android:exported="true"

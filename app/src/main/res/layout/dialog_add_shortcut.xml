@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="12dp"
+  android:orientation="vertical">
+
+  <ImageView
+    android:id="@+id/app_icon"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:layout_margin="8dp"
+    android:layout_gravity="center"
+    android:scaleType="fitCenter"
+    tools:ignore="ContentDescription"
+    tools:src="@mipmap/ic_launcher" />
+
+  <android.support.design.widget.TextInputLayout
+    android:id="@+id/value_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+      android:id="@+id/shortcut_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="@string/shortcut_name"
+      android:inputType="text" />
+
+  </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
