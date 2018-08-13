@@ -2,22 +2,22 @@ package com.sdex.activityrunner
 
 import android.app.Application
 import android.content.Context
+import android.os.StrictMode
 import android.support.multidex.MultiDex
 
-class RunnerApplication : Application() {
+class ActivityManagerApplication : Application() {
 
   override fun onCreate() {
     super.onCreate()
     if (BuildConfig.DEBUG) {
-//      StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
-//        .detectAll()
-//        .penaltyLog()
-//        .penaltyDeath()
-//        .build())
-//      StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
-//        .detectAll()
-//        .penaltyLog()
-//        .build())
+      StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
+        .detectAll()
+        .penaltyLog()
+        .build())
+      StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
+        .detectAll()
+        .penaltyLog()
+        .build())
     }
   }
 
