@@ -2,13 +2,12 @@ package com.sdex.activityrunner.app
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
-
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.preferences.SettingsActivity
+import com.sdex.commons.BaseDialogFragment
 
-class EnableNotExportedActivitiesDialog : DialogFragment() {
+class EnableNotExportedActivitiesDialog : BaseDialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val alertDialog = AlertDialog.Builder(activity!!)
