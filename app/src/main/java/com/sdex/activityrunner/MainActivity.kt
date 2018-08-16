@@ -214,7 +214,8 @@ class MainActivity : BaseActivity() {
 
   override fun onPrepareOptionsMenu(menu: Menu): Boolean {
     if (isProVersionEnabled) {
-      menu.findItem(R.id.action_upgrade).isVisible = false
+      val itemUpgrade = menu.findItem(R.id.action_upgrade)
+      itemUpgrade?.isVisible = false
     }
     return super.onPrepareOptionsMenu(menu)
   }
