@@ -3,11 +3,11 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource
+import com.sdex.commons.BaseDialogFragment
 
-class SingleSelectionDialog : DialogFragment() {
+class SingleSelectionDialog : BaseDialogFragment() {
 
   private var callback: OnItemSelectedCallback? = null
 

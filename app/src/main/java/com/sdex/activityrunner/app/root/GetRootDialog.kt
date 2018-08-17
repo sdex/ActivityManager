@@ -2,12 +2,12 @@ package com.sdex.activityrunner.app.root
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.premium.PurchaseActivity
+import com.sdex.commons.BaseDialogFragment
 
-class GetRootDialog : DialogFragment() {
+class GetRootDialog : BaseDialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     return AlertDialog.Builder(activity!!)

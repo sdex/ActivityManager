@@ -3,13 +3,13 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.util.SparseBooleanArray
 import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource
+import com.sdex.commons.BaseDialogFragment
 import java.util.*
 
-class MultiSelectionDialog : DialogFragment() {
+class MultiSelectionDialog : BaseDialogFragment() {
 
   private var callback: OnItemsSelectedCallback? = null
   private val selectedItems = SparseBooleanArray()

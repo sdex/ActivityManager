@@ -3,7 +3,6 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
@@ -11,9 +10,10 @@ import android.widget.RadioButton
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
+import com.sdex.commons.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_input_extra.view.*
 
-class ExtraInputDialog : DialogFragment() {
+class ExtraInputDialog : BaseDialogFragment() {
 
   private var callback: OnKeyValueInputDialogCallback? = null
 

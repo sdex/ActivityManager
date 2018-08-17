@@ -2,7 +2,6 @@ package com.sdex.activityrunner.shortcut
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.ImageView
@@ -14,9 +13,10 @@ import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.commons.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_add_shortcut.view.*
 
-class AddShortcutDialogFragment : DialogFragment() {
+class AddShortcutDialogFragment : BaseDialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val activityModel = arguments?.getSerializable(ARG_ACTIVITY_MODEL) as ActivityModel?

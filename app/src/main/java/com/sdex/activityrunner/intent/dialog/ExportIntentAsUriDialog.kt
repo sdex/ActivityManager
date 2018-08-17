@@ -5,15 +5,15 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.view.View
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.LaunchParams
 import com.sdex.activityrunner.intent.converter.LaunchParamsToWebIntentConverter
+import com.sdex.commons.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_export_intent_as_uri.view.*
 
-class ExportIntentAsUriDialog : DialogFragment() {
+class ExportIntentAsUriDialog : BaseDialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val launchParams = arguments?.getParcelable(ARG_LAUNCH_PARAMS) as LaunchParams?
