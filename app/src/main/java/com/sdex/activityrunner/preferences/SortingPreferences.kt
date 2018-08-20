@@ -8,7 +8,7 @@ class SortingPreferences(private val sharedPreferences: SharedPreferences) {
   val sortBy: String
     get() {
       val sortBy = sharedPreferences.getString(KEY_SORT_BY, KEY_SORT_BY_DEFAULT)
-      val position = Integer.parseInt(sortBy)
+      val position = Integer.parseInt(sortBy ?: KEY_SORT_BY_DEFAULT)
       if (position == 0) {
         return ApplicationModel.NAME
       } else if (position == 1) {
@@ -20,7 +20,7 @@ class SortingPreferences(private val sharedPreferences: SharedPreferences) {
   val sortOrder: String
     get() {
       val sortOrder = sharedPreferences.getString(KEY_SORT_ORDER, KEY_SORT_ORDER_DEFAULT)
-      val position = Integer.parseInt(sortOrder)
+      val position = Integer.parseInt(sortOrder ?: KEY_SORT_ORDER_DEFAULT)
       if (position == 0) {
         return "ASC"
       } else if (position == 1) {

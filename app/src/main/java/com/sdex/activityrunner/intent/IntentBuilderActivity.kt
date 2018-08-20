@@ -29,6 +29,7 @@ import com.sdex.commons.ads.AdsDelegate
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_intent_builder.*
 import java.util.*
+import kotlin.properties.Delegates
 
 class IntentBuilderActivity : BaseActivity(),
   ValueInputDialog.OnValueInputDialogCallback, SingleSelectionDialog.OnItemSelectedCallback,
@@ -40,10 +41,10 @@ class IntentBuilderActivity : BaseActivity(),
   private val flagsAdapter = LaunchParamsListAdapter()
   private val extraAdapter = LaunchParamsExtraListAdapter()
 
-  private var viewModel: LaunchParamsViewModel? = null
+  private var viewModel: LaunchParamsViewModel by Delegates.notNull()
 
-  private var appPreferences: AppPreferences? = null
-  private var adsDelegate: AdsDelegate? = null
+  private var appPreferences: AppPreferences by Delegates.notNull()
+  private var adsDelegate: AdsDelegate by Delegates.notNull()
 
   override fun getLayout(): Int {
     return R.layout.activity_intent_builder
@@ -60,7 +61,7 @@ class IntentBuilderActivity : BaseActivity(),
     appPreferences = AppPreferences(this)
 
     adsDelegate = AdsDelegate(appPreferences, adsContainer)
-    adsDelegate!!.initBanner(this, R.string.ad_banner_unit_id)
+    adsDelegate.initBanner(this, R.string.ad_banner_unit_id)
 
     enableBackButton()
     val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
@@ -109,7 +110,7 @@ class IntentBuilderActivity : BaseActivity(),
     bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags)
 
     launch.setOnClickListener {
-      viewModel!!.addToHistory(launchParams)
+      viewModel.addToHistory(launchParams)
       val converter = LaunchParamsToIntentConverter(launchParams)
       val intent = converter.convert()
       IntentUtils.launchActivity(this@IntentBuilderActivity, intent)
@@ -120,7 +121,7 @@ class IntentBuilderActivity : BaseActivity(),
 
   override fun onResume() {
     super.onResume()
-    adsDelegate!!.detachBottomBannerIfNeed()
+    adsDelegate.detachBottomBannerIfNeed()
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
@@ -228,7 +229,7 @@ class IntentBuilderActivity : BaseActivity(),
   private fun bindKeyValueDialog(view: View) {
     view.setOnClickListener {
       val size = launchParams.extras.size
-      if (size >= EXTRAS_LIMIT && !appPreferences!!.isProVersion) {
+      if (size >= EXTRAS_LIMIT && !appPreferences.isProVersion) {
         val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_extras)
         dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
       } else {
