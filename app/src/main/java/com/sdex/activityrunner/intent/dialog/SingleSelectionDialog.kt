@@ -4,7 +4,9 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import com.sdex.activityrunner.intent.dialog.source.SelectionDialogSource
+import com.sdex.activityrunner.R
+import com.sdex.activityrunner.intent.dialog.source.ActionSource
+import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource
 import com.sdex.commons.BaseDialogFragment
 
 class SingleSelectionDialog : BaseDialogFragment() {
@@ -13,10 +15,15 @@ class SingleSelectionDialog : BaseDialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val type: Int = arguments!!.getInt(ARG_TYPE)
-    val source: SelectionDialogSource? = arguments!!.getParcelable(ARG_SOURCE)
     val initialPosition: Int = arguments!!.getInt(ARG_INITIAL_POSITION)
 
-    val list = source!!.list
+    val source = when (type) {
+      R.string.launch_param_action -> ActionSource()
+      R.string.launch_param_mime_type -> MimeTypeSource()
+      else -> throw IllegalStateException("Wrong type: $type")
+    }
+
+    val list = source.list
     val builder = AlertDialog.Builder(activity!!)
     builder.setSingleChoiceItems(list.toTypedArray(),
       initialPosition) { _, which ->
@@ -46,14 +53,11 @@ class SingleSelectionDialog : BaseDialogFragment() {
     const val TAG = "SingleSelectionDialog"
 
     private const val ARG_TYPE = "arg_type"
-    private const val ARG_SOURCE = "arg_source"
     private const val ARG_INITIAL_POSITION = "arg_initial_position"
 
-    fun newInstance(type: Int, source: SelectionDialogSource,
-                    initialPosition: Int): SingleSelectionDialog {
-      val args = Bundle(3)
+    fun newInstance(type: Int, initialPosition: Int): SingleSelectionDialog {
+      val args = Bundle(2)
       args.putInt(ARG_TYPE, type)
-      args.putParcelable(ARG_SOURCE, source)
       args.putInt(ARG_INITIAL_POSITION, initialPosition)
       val fragment = SingleSelectionDialog()
       fragment.arguments = args

@@ -19,7 +19,6 @@ import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog
-import com.sdex.activityrunner.intent.dialog.source.*
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
@@ -103,11 +102,11 @@ class IntentBuilderActivity : BaseActivity(),
     bindInputValueDialog(container_data, R.string.launch_param_data)
     bindInputValueDialog(actionEditImageView, R.string.launch_param_action)
     bindInputValueDialog(mimeTypeEditImageView, R.string.launch_param_mime_type)
-    bindSingleSelectionDialog(container_action, R.string.launch_param_action, ActionSource())
-    bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type, MimeTypeSource())
+    bindSingleSelectionDialog(container_action, R.string.launch_param_action)
+    bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type)
     bindKeyValueDialog(container_extras)
-    bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories, CategoriesSource())
-    bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags, FlagsSource())
+    bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories)
+    bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags)
 
     launch.setOnClickListener {
       viewModel!!.addToHistory(launchParams)
@@ -210,18 +209,18 @@ class IntentBuilderActivity : BaseActivity(),
     }
   }
 
-  private fun bindSingleSelectionDialog(view: View, type: Int, source: SelectionDialogSource) {
+  private fun bindSingleSelectionDialog(view: View, type: Int) {
     view.setOnClickListener {
       val initialPosition = getSingleSelectionInitialPosition(type)
-      val dialog = SingleSelectionDialog.newInstance(type, source, initialPosition)
+      val dialog = SingleSelectionDialog.newInstance(type, initialPosition)
       dialog.show(supportFragmentManager, SingleSelectionDialog.TAG)
     }
   }
 
-  private fun bindMultiSelectionDialog(view: View, type: Int, source: SelectionDialogSource) {
+  private fun bindMultiSelectionDialog(view: View, type: Int) {
     view.setOnClickListener {
       val initialPositions = getMultiSelectionInitialPositions(type)
-      val dialog = MultiSelectionDialog.newInstance(type, source, initialPositions)
+      val dialog = MultiSelectionDialog.newInstance(type, initialPositions)
       dialog.show(supportFragmentManager, MultiSelectionDialog.TAG)
     }
   }
