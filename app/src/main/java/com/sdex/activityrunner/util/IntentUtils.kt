@@ -15,8 +15,10 @@ import android.support.v4.graphics.drawable.IconCompat
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
@@ -48,7 +50,7 @@ object IntentUtils {
     val componentName: ComponentName = if (activityModel.exported) {
       activityModel.componentName
     } else {
-      ComponentName(BuildConfig.APPLICATION_ID, ShortcutHandlerActivity::class.java.canonicalName)
+      ComponentName(BuildConfig.APPLICATION_ID, ShortcutHandlerActivity::class.java.canonicalName!!)
     }
 
     val intent = getActivityIntent(componentName)
@@ -79,11 +81,20 @@ object IntentUtils {
       .load(activityModel)
       .error(R.mipmap.ic_launcher)
       .override(size)
-      .into(object : SimpleTarget<Drawable>() {
-        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-          createLauncherIcon(context, activityModel, resource.toBitmap())
+      .listener(object : RequestListener<Drawable> {
+        override fun onLoadFailed(e: GlideException?, model: Any?,
+                                  target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+          return false
+        }
+
+        override fun onResourceReady(resource: Drawable?, model: Any?,
+                                     target: Target<Drawable>?, dataSource: DataSource?,
+                                     isFirstResource: Boolean): Boolean {
+          createLauncherIcon(context, activityModel, resource?.toBitmap())
+          return false
         }
       })
+      .submit()
   }
 
   fun launchActivity(context: Context, activity: ComponentName, name: String) {

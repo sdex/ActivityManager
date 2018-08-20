@@ -9,6 +9,6 @@ ext.versions = [
   room               : '1.1.1',
   paging             : '1.0.1',
   lifecycle          : '1.1.1',
-  glide              : '4.7.1',
+  glide              : '4.8.0',
   butterKnife        : '8.8.1'
 ]
