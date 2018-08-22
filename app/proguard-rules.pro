@@ -30,6 +30,14 @@
 -keep class android.support.v7.widget.ActionMenuView { *** mPresenter; }
 -keep class android.support.v7.widget.ActionMenuPresenter { *** mOverflowButton; }
 
+-keep public class android.support.v7.widget.** { *; }
+-keep public class android.support.v7.internal.widget.** { *; }
+-keep public class android.support.v7.internal.view.menu.** { *; }
+
+-keep public class * extends android.support.v4.view.ActionProvider {
+    public <init>(android.content.Context);
+}
+
 -keep class .R
 -keep class **.R$* {
     <fields>;
@@ -51,3 +59,14 @@
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
     static void checkParameterIsNotNull(java.lang.Object, java.lang.String);
 }
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+-keep public class * extends java.lang.Exception
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**
