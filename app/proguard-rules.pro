@@ -30,6 +30,14 @@
 -keep class android.support.v7.widget.ActionMenuView { *** mPresenter; }
 -keep class android.support.v7.widget.ActionMenuPresenter { *** mOverflowButton; }
 
+-keep public class android.support.v7.widget.** { *; }
+-keep public class android.support.v7.internal.widget.** { *; }
+-keep public class android.support.v7.internal.view.menu.** { *; }
+
+-keep public class * extends android.support.v4.view.ActionProvider {
+    public <init>(android.content.Context);
+}
+
 -keep class .R
 -keep class **.R$* {
     <fields>;
@@ -58,8 +66,7 @@
   **[] $VALUES;
   public *;
 }
--keepattributes *Annotation*
--keepattributes SourceFile,LineNumberTable
+
 -keep public class * extends java.lang.Exception
 -keep class com.crashlytics.** { *; }
 -dontwarn com.crashlytics.**
