@@ -41,7 +41,9 @@ class IntentBuilderActivity : BaseActivity(),
   private val flagsAdapter = LaunchParamsListAdapter()
   private val extraAdapter = LaunchParamsExtraListAdapter()
 
-  private var viewModel: LaunchParamsViewModel by Delegates.notNull()
+  private val viewModel: LaunchParamsViewModel by lazy {
+    ViewModelProviders.of(this).get(LaunchParamsViewModel::class.java)
+  }
 
   private var appPreferences: AppPreferences by Delegates.notNull()
   private var adsDelegate: AdsDelegate by Delegates.notNull()
@@ -55,8 +57,6 @@ class IntentBuilderActivity : BaseActivity(),
 
     val params = savedInstanceState?.getParcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
     launchParams.setFrom(params)
-
-    viewModel = ViewModelProviders.of(this).get(LaunchParamsViewModel::class.java)
 
     appPreferences = AppPreferences(this)
 

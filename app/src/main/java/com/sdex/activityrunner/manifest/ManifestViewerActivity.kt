@@ -17,6 +17,10 @@ import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {
 
+  private val viewModel: ManifestViewModel by lazy {
+    ViewModelProviders.of(this).get(ManifestViewModel::class.java)
+  }
+
   override fun getLayout(): Int {
     return R.layout.activity_manifest_viewer
   }
@@ -44,10 +48,9 @@ class ManifestViewerActivity : BaseActivity() {
 
     title = name
 
-    ViewModelProviders.of(this).get(ManifestViewModel::class.java)
-      .loadManifest(packageName).observe(this, Observer {
-        highlightView.setSource(it)
-      })
+    viewModel.loadManifest(packageName).observe(this, Observer {
+      highlightView.setSource(it)
+    })
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

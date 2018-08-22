@@ -25,12 +25,16 @@ import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_history.*
+import kotlin.properties.Delegates
 
 class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
-  private var appPreferences: AppPreferences? = null
-  private var adapter: HistoryListAdapter? = null
-  private var viewModel: HistoryViewModel? = null
+  private var appPreferences: AppPreferences by Delegates.notNull()
+  private var adapter: HistoryListAdapter by Delegates.notNull()
+
+  private val viewModel: HistoryViewModel by lazy {
+    ViewModelProviders.of(this).get(HistoryViewModel::class.java)
+  }
 
   override fun getLayout(): Int {
     return R.layout.activity_history
@@ -38,27 +42,27 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    viewModel = ViewModelProviders.of(this).get(HistoryViewModel::class.java)
+
     appPreferences = AppPreferences(this)
 
     enableBackButton()
 
     adapter = HistoryListAdapter(this)
-    adapter!!.setHasStableIds(true)
+    adapter.setHasStableIds(true)
     list.addDivider()
     list.setHasFixedSize(true)
     list.adapter = adapter
     registerForContextMenu(list)
 
-    viewModel!!.list.observe(this, Observer {
+    viewModel.list.observe(this, Observer {
       val size = it!!.size
       val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
       setSubtitle(subtitle)
-      adapter!!.submitList(it)
-      val historyWarningShown = appPreferences!!.isHistoryWarningShown
+      adapter.submitList(it)
+      val historyWarningShown = appPreferences.isHistoryWarningShown
       if (size == HistoryViewModel.MAX_FREE_RECORDS &&
-        !appPreferences!!.isProVersion && !historyWarningShown) {
-        appPreferences!!.isHistoryWarningShown = true
+        !appPreferences.isProVersion && !historyWarningShown) {
+        appPreferences.isHistoryWarningShown = true
         val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_history)
         dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
       }
@@ -77,11 +81,11 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
   override fun onContextItemSelected(item: MenuItem): Boolean {
     val itemId = item.itemId
-    val position = adapter!!.contextMenuItemPosition
-    val historyModel = adapter!!.getItem(position)
+    val position = adapter.contextMenuItemPosition
+    val historyModel = adapter.getItem(position)
     if (historyModel != null) {
       when (itemId) {
-        MENU_ITEM_REMOVE -> viewModel!!.deleteItem(historyModel)
+        MENU_ITEM_REMOVE -> viewModel.deleteItem(historyModel)
         MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
         MENU_ITEM_EXPORT_URI -> showExportUriDialog(historyModel)
       }
@@ -97,7 +101,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
   }
 
   private fun showShortcutDialog(historyModel: HistoryModel) {
-    if (appPreferences!!.isProVersion) {
+    if (appPreferences.isProVersion) {
       val dialog = AddShortcutDialogFragment.newInstance(historyModel)
       dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
     } else {
@@ -118,7 +122,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
           .setTitle(R.string.history_dialog_clear_title)
           .setMessage(R.string.history_dialog_clear_message)
           .setPositiveButton(android.R.string.yes) { _, _ ->
-            viewModel!!.clear()
+            viewModel.clear()
           }
           .setNegativeButton(android.R.string.cancel, null)
           .show()

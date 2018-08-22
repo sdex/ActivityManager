@@ -33,15 +33,22 @@ import com.sdex.commons.ads.AppPreferences
 import com.sdex.commons.util.AppUtils
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.properties.Delegates
+
+const val RATING_DIALOG_THRESHOLD = 3f
+const val RATING_DIALOG_SESSIONS = 10
 
 class MainActivity : BaseActivity() {
 
-  private var adsDelegate: AdsDelegate by Delegates.notNull()
-  private var advancedPreferences: AdvancedPreferences  by Delegates.notNull()
-  private var appPreferences: AppPreferences by Delegates.notNull()
-  private var adapter: ApplicationsListAdapter by Delegates.notNull()
-  private var viewModel: ApplicationsListViewModel by Delegates.notNull()
+  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
+  private val adsDelegate: AdsDelegate by lazy { AdsDelegate(appPreferences) }
+  private val advancedPreferences: AdvancedPreferences by lazy {
+    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
+  }
+  private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
+  private val viewModel: ApplicationsListViewModel by lazy {
+    ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
+  }
+
   private var isProVersionEnabled: Boolean = false
   private var isShowSystemAppIndicator: Boolean = false
   private var searchText: String? = null
@@ -52,17 +59,10 @@ class MainActivity : BaseActivity() {
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
     AppLoaderIntentService.enqueueWork(this, Intent())
 
-    viewModel = ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
-
-    appPreferences = AppPreferences(this)
-    adsDelegate = AdsDelegate(appPreferences)
     adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
 
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-    advancedPreferences = AdvancedPreferences(sharedPreferences)
     isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
 
     fetchPurchases()
@@ -78,7 +78,6 @@ class MainActivity : BaseActivity() {
     progress.show()
 
     list.addDivider()
-    adapter = ApplicationsListAdapter(this)
     list.adapter = adapter
 
     checkOreoBug()
@@ -164,8 +163,8 @@ class MainActivity : BaseActivity() {
 
   private fun showRatingDialog() {
     val ratingDialog = RatingDialog.Builder(this)
-      .threshold(3f)
-      .session(10)
+      .threshold(RATING_DIALOG_THRESHOLD)
+      .session(RATING_DIALOG_SESSIONS)
       .onRatingBarFormSumbit { feedback ->
         AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
           AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, feedback)
