@@ -3,15 +3,15 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:padding="12dp"
-  android:orientation="vertical">
+  android:orientation="vertical"
+  android:padding="12dp">
 
   <ImageView
     android:id="@+id/app_icon"
     android:layout_width="80dp"
     android:layout_height="80dp"
-    android:layout_margin="8dp"
     android:layout_gravity="center"
+    android:layout_margin="8dp"
     android:scaleType="fitCenter"
     tools:ignore="ContentDescription"
     tools:src="@mipmap/ic_launcher" />
@@ -26,7 +26,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:hint="@string/shortcut_name"
-      android:inputType="text" />
+      android:inputType="text"
+      tools:ignore="Autofill" />
 
   </android.support.design.widget.TextInputLayout>
 
