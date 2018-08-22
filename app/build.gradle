@@ -76,7 +76,7 @@ android {
   }
 
   lintOptions {
-    disable 'MissingTranslation'
+    baseline file("lint-baseline.xml")
   }
 }
 
