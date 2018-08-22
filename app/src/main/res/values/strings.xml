@@ -68,10 +68,10 @@
   <string name="pro_version_done_title">Premium version is active.</string>
   <string name="pro_version_done">Thank you for supporting us!</string>
   <string name="pro_version_dialog_title">Upgrade to premium</string>
-  <string name="pro_version_unlock_extras">Get premium version to add unlimited extras</string>
-  <string name="pro_version_unlock_intent_shortcuts">Get premium version to create Intent shortcuts</string>
-  <string name="pro_version_unlock_root_integration">Get premium version to enable ROOT integration</string>
-  <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium version to have unlimited history</string>
+  <string name="pro_version_unlock_extras">You have reached the limit of extra parameters. Get premium to add unlimited extras</string>
+  <string name="pro_version_unlock_intent_shortcuts">Get premium to create Intent shortcuts</string>
+  <string name="pro_version_unlock_root_integration">Get premium to enable ROOT operations. To use this feature the device should be rooted already</string>
+  <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium to have unlimited history</string>
 
   <!-- about -->
   <string name="about_rate">Rate this app</string>
@@ -140,7 +140,7 @@
   <!-- root -->
   <string name="root_check_compatibility">Check root</string>
   <string name="root_check_compatibility_text">Check ROOT permission availability to make sure Activity Manager can use it</string>
-  <string name="root_check_compatibility_status_ok">OK. ROOT permission granted</string>
+  <string name="root_check_compatibility_status_ok">OK. ROOT permission is granted</string>
   <string name="root_check_compatibility_status_fail">Failed to obtain permission. Is the device rooted?</string>
 
   <string-array name="pref_sort_order_list_titles">
