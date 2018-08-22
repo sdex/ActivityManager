@@ -74,6 +74,10 @@ android {
   sourceSets {
     androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
   }
+
+  lintOptions {
+    disable 'MissingTranslation'
+  }
 }
 
 androidExtensions {
