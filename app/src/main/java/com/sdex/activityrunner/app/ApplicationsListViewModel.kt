@@ -13,15 +13,11 @@ import com.sdex.activityrunner.preferences.SortingPreferences
 class ApplicationsListViewModel(application: Application) : AndroidViewModel(application) {
 
   private val cacheDatabase: CacheDatabase = CacheDatabase.getDatabase(application)
-  private var sortingPreferences: SortingPreferences? = null
-
-  init {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
-    sortingPreferences = SortingPreferences(sharedPreferences)
-  }
+  private val sortingPreferences: SortingPreferences =
+    SortingPreferences(PreferenceManager.getDefaultSharedPreferences(application))
 
   fun getItems(searchText: String?): LiveData<List<ApplicationModel>> {
-    val query = GetApplicationsQuery(searchText, sortingPreferences!!)
+    val query = GetApplicationsQuery(searchText, sortingPreferences)
     return cacheDatabase.applicationsModelDao
       .getApplicationModels(SimpleSQLiteQuery(query.toString()))
   }

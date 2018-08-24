@@ -19,13 +19,8 @@ import java.util.*
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
 
   private val packageManager: PackageManager = application.packageManager
-  private val advancedPreferences: AdvancedPreferences
-  private var liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
-
-  init {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
-    advancedPreferences = AdvancedPreferences(sharedPreferences)
-  }
+  private val advancedPreferences: AdvancedPreferences = AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(application))
+  private val liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
     val deferred = async(CommonPool) {
