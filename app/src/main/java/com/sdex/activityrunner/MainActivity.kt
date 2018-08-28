@@ -59,7 +59,7 @@ class MainActivity : BaseActivity() {
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    AppLoaderIntentService.enqueueWork(this, Intent())
+    AppLoaderIntentService.enqueueWork(applicationContext, Intent())
 
     adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
 
