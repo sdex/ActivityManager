@@ -95,5 +95,7 @@
     <TextView
       style="@style/BottomDialogTextStyle"
       android:text="@string/context_action_launch" />
+
   </LinearLayout>
+
 </LinearLayout>
