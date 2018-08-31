@@ -7,6 +7,7 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.SearchView.OnQueryTextListener
 import android.text.TextUtils
@@ -249,5 +250,9 @@ class MainActivity : BaseActivity() {
   companion object {
 
     private const val STATE_SEARCH_TEXT = "state_search_text"
+
+    init {
+      AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+    }
   }
 }

@@ -70,10 +70,10 @@
     android:background="?attr/selectableItemBackgroundBorderless"
     android:padding="6dp"
     android:scaleType="fitCenter"
-    android:src="@drawable/ic_close"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/ic_close"
     tools:ignore="ContentDescription" />
 
 </android.support.constraint.ConstraintLayout>

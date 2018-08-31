@@ -3,6 +3,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical">
 
   <TextView
@@ -33,7 +34,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      android:src="@drawable/ic_label" />
+      app:srcCompat="@drawable/ic_label" />
 
     <TextView
       style="@style/BottomDialogTextStyle"
@@ -52,7 +53,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      android:src="@drawable/ic_settings_gray" />
+      app:srcCompat="@drawable/ic_settings_gray" />
 
     <TextView
       style="@style/BottomDialogTextStyle"
@@ -71,7 +72,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      android:src="@drawable/ic_verified_user" />
+      app:srcCompat="@drawable/ic_verified_user" />
 
     <TextView
       style="@style/BottomDialogTextStyle"

@@ -45,7 +45,7 @@
               android:layout_height="@dimen/about_image_size"
               android:layout_margin="4dp"
               android:padding="8dp"
-              android:src="@drawable/ic_lightbulb_outline"
+              app:srcCompat="@drawable/ic_lightbulb_outline"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
@@ -87,7 +87,7 @@
               android:layout_height="@dimen/about_image_size"
               android:layout_margin="4dp"
               android:padding="8dp"
-              android:src="@drawable/ic_star"
+              app:srcCompat="@drawable/ic_star"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
@@ -115,7 +115,7 @@
               android:layout_height="@dimen/about_image_size"
               android:layout_margin="4dp"
               android:padding="8dp"
-              android:src="@drawable/ic_apps"
+              app:srcCompat="@drawable/ic_apps"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
@@ -155,7 +155,7 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
-            android:src="@drawable/ic_favorite"
+            app:srcCompat="@drawable/ic_favorite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -193,7 +193,7 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
-            android:src="@drawable/ic_email"
+            app:srcCompat="@drawable/ic_email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -231,7 +231,7 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
-            android:src="@drawable/ic_star_border"
+            app:srcCompat="@drawable/ic_star_border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
