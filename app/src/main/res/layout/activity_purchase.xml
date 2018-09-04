@@ -85,26 +85,26 @@
               android:id="@+id/sku_2"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="$1.99" />
+              android:text="@string/pro_version_price_2" />
 
             <RadioButton
               android:id="@+id/sku_5"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:checked="true"
-              android:text="$4.99" />
+              android:text="@string/pro_version_price_5" />
 
             <RadioButton
               android:id="@+id/sku_10"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="$9.99" />
+              android:text="@string/pro_version_price_10" />
 
             <RadioButton
               android:id="@+id/sku_20"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="$19.99" />
+              android:text="@string/pro_version_price_20" />
 
           </RadioGroup>
 
