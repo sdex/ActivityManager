@@ -1,0 +1,9 @@
+<resources>
+
+  <style name="AppTheme" parent="BaseTheme">
+    <item name="android:windowLightNavigationBar">true</item>
+    <item name="android:navigationBarColor">@color/white</item>
+    <item name="android:navigationBarDividerColor">@color/list_divider_color</item>
+  </style>
+
+</resources>

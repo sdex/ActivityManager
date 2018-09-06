@@ -1,5 +1,7 @@
 package com.sdex.activityrunner
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.premium.PurchaseActivity
@@ -43,6 +45,14 @@ class AboutActivity : BaseActivity() {
         .setNotices(R.raw.notices)
         .build()
         .show()
+    }
+  }
+
+  companion object {
+
+    fun start(context: Context) {
+      val starter = Intent(context, AboutActivity::class.java)
+      context.startActivity(starter)
     }
   }
 }

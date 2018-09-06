@@ -6,7 +6,7 @@
   android:layout_height="match_parent"
   android:background="@color/background_gray"
   android:orientation="vertical"
-  tools:context=".intent.history.HistoryActivity"
+  tools:context=".AboutActivity"
   tools:ignore="ContentDescription">
 
   <include layout="@layout/toolbar" />

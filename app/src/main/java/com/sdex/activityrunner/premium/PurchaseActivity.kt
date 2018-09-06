@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_purchase.*
 
 class PurchaseActivity : BaseActivity() {
 
-  private var appPreferences: AppPreferences? = null
+  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   private var billingClient: BillingClient? = null
 
   override fun getLayout(): Int {
@@ -33,9 +33,7 @@ class PurchaseActivity : BaseActivity() {
     super.onCreate(savedInstanceState)
     enableBackButton()
 
-    appPreferences = AppPreferences(this)
-
-    if (appPreferences!!.isProVersion) {
+    if (appPreferences.isProVersion) {
       purchasePro.visibility = View.GONE
       proActive.visibility = VISIBLE
     }
@@ -95,7 +93,7 @@ class PurchaseActivity : BaseActivity() {
         purchasePro.visibility = GONE
       }
     }
-    appPreferences!!.isProVersion = isProVersionEnabled
+    appPreferences.isProVersion = isProVersionEnabled
   }
 
   private fun showPurchaseDialog(sku: String) {

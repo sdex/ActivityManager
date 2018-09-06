@@ -231,7 +231,7 @@ class MainActivity : BaseActivity() {
         true
       }
       R.id.action_about -> {
-        startActivity(Intent(this, AboutActivity::class.java))
+        AboutActivity.start(this)
         true
       }
       R.id.action_settings -> {

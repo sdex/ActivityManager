@@ -1,6 +1,6 @@
 <resources>
 
-  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="windowNoTitle">true</item>
     <item name="windowActionModeOverlay">true</item>
     <item name="colorPrimary">@color/colorPrimary</item>
@@ -10,6 +10,8 @@
     <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogStyle</item>
   </style>
+
+  <style name="AppTheme" parent="BaseTheme" />
 
   <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
     <item name="windowNoTitle">true</item>
