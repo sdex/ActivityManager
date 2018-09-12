@@ -13,6 +13,8 @@ import android.support.v7.widget.SearchView.OnQueryTextListener
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponse
 import com.android.billingclient.api.BillingClient.SkuType
@@ -27,16 +29,13 @@ import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
-import com.sdex.activityrunner.service.AppLoaderIntentService
+import com.sdex.activityrunner.service.ApplicationsListWorker
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AdsDelegate
 import com.sdex.commons.ads.AppPreferences
 import com.sdex.commons.util.AppUtils
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
-
-const val RATING_DIALOG_THRESHOLD = 3f
-const val RATING_DIALOG_SESSIONS = 10
 
 class MainActivity : BaseActivity() {
 
@@ -60,7 +59,11 @@ class MainActivity : BaseActivity() {
 
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    AppLoaderIntentService.enqueueWork(applicationContext, Intent())
+
+    val request = OneTimeWorkRequest.Builder(ApplicationsListWorker::class.java)
+      .addTag(ApplicationsListWorker.TAG)
+      .build()
+    WorkManager.getInstance().enqueue(request)
 
     adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
 
@@ -163,9 +166,11 @@ class MainActivity : BaseActivity() {
   }
 
   private fun showRatingDialog() {
+    val threshold = 3f
+    val sessions = 10
     val ratingDialog = RatingDialog.Builder(this)
-      .threshold(RATING_DIALOG_THRESHOLD)
-      .session(RATING_DIALOG_SESSIONS)
+      .threshold(threshold)
+      .session(sessions)
       .onRatingBarFormSumbit { feedback ->
         AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
           AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, feedback)

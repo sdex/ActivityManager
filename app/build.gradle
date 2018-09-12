@@ -51,8 +51,8 @@ android {
 
   buildTypes {
     debug {
-      minifyEnabled true
-      shrinkResources true
+      minifyEnabled false
+      shrinkResources false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
     release {
@@ -107,6 +107,8 @@ dependencies {
   implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
     transitive = true
   }
+
+  implementation "android.arch.work:work-runtime-ktx:$versions.workManager"
 
   implementation "android.arch.paging:runtime:$versions.paging"
 
