@@ -32,7 +32,6 @@ class ManifestReader {
     } catch (e: XmlPullParserException) {
       e.printStackTrace()
     }
-
     return null
   }
 

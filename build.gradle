@@ -1,7 +1,7 @@
 apply from: 'dependencies.gradle'
 
 buildscript {
-  ext.kotlin_version = '1.2.61'
+  ext.kotlin_version = '1.2.70'
   ext.anko_version = '0.10.5'
   repositories {
     google()
@@ -12,7 +12,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.3.0-alpha09'
+    classpath 'com.android.tools.build:gradle:3.3.0-alpha10'
     classpath 'com.google.gms:google-services:4.0.1'
     classpath 'com.github.triplet.gradle:play-publisher:1.2.2'
     classpath 'io.fabric.tools:gradle:1.25.4'

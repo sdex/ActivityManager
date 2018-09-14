@@ -26,7 +26,7 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
     }
     // action
     intent.action =
-      if (launchParams.action.isNullOrEmpty()) null
+      if (launchParams.action.isNullOrEmpty()) Intent.ACTION_MAIN
       else launchParams.action
     // data and mime type
     val data = launchParams.data?.toUri()

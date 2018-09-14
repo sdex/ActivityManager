@@ -4,22 +4,28 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
 
 class ManifestViewModel(application: Application) : AndroidViewModel(application) {
 
   private var liveData = MutableLiveData<String>()
+  private var deferred: Deferred<String?>? = null
 
   fun loadManifest(packageName: String): MutableLiveData<String> {
-    val deferred = async(CommonPool) {
+    deferred = async(CommonPool) {
       val manifestReader = ManifestReader()
-      manifestReader.loadAndroidManifest(getApplication(), packageName)
-    }
-    launch(UI) {
-      liveData.value = deferred.await()
+      val manifestWriter = ManifestWriter()
+      val manifest = manifestReader.loadAndroidManifest(getApplication(), packageName)
+      liveData.postValue(manifest)
+      manifestWriter.saveAndroidManifest(getApplication(), packageName, manifest)
+      manifest
     }
     return liveData
+  }
+
+  override fun onCleared() {
+    super.onCleared()
+    deferred?.cancel()
   }
 }
