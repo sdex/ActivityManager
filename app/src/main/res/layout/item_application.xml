@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
@@ -46,8 +47,8 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     android:layout_margin="4dp"
-    android:src="@drawable/ic_app_system"
     android:visibility="invisible"
+    app:srcCompat="@drawable/ic_app_system"
     tools:ignore="ContentDescription"
     tools:visibility="visible" />
 
@@ -56,7 +57,7 @@
     android:layout_width="44dp"
     android:layout_height="match_parent"
     android:background="?selectableItemBackgroundBorderless"
-    android:src="@drawable/ic_more_vert"
+    app:srcCompat="@drawable/ic_more_vert"
     tools:ignore="ContentDescription" />
 
 </LinearLayout>

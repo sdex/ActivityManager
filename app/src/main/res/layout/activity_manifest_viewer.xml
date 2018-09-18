@@ -4,7 +4,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
-  tools:context=".intent.history.HistoryActivity"
+  tools:context=".manifest.ManifestViewerActivity"
   tools:ignore="ContentDescription">
 
   <include layout="@layout/toolbar" />

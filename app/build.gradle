@@ -22,14 +22,16 @@ android {
     applicationId "com.sdex.activityrunner"
     minSdkVersion 15
     targetSdkVersion 28
-    versionCode 2037
-    versionName "2.3.7"
+    versionCode 2047
+    versionName "2.3.16"
 
     multiDexEnabled true
 
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
+
+    vectorDrawables.useSupportLibrary = true
 
     javaCompileOptions {
       annotationProcessorOptions {
@@ -49,8 +51,8 @@ android {
 
   buildTypes {
     debug {
-      minifyEnabled true
-      shrinkResources true
+      minifyEnabled false
+      shrinkResources false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
     release {
@@ -73,6 +75,10 @@ android {
 
   sourceSets {
     androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+  }
+
+  lintOptions {
+    baseline file("lint-baseline.xml")
   }
 }
 
@@ -98,9 +104,11 @@ dependencies {
 
   implementation "com.google.firebase:firebase-ads:15.0.1"
   implementation "com.google.firebase:firebase-core:16.0.1"
-  implementation('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
+  implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
     transitive = true
   }
+
+  implementation "android.arch.work:work-runtime-ktx:$versions.workManager"
 
   implementation "android.arch.paging:runtime:$versions.paging"
 

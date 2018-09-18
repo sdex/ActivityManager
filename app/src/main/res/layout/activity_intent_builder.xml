@@ -50,7 +50,7 @@
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
-                android:src="@drawable/selector_intent_field_image"
+                app:srcCompat="@drawable/selector_intent_field_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,7 +100,7 @@
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
-                android:src="@drawable/selector_intent_field_image"
+                app:srcCompat="@drawable/selector_intent_field_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -152,7 +152,7 @@
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
-              android:src="@drawable/selector_intent_field_image"
+              app:srcCompat="@drawable/selector_intent_field_image"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
@@ -187,7 +187,7 @@
               android:background="?attr/selectableItemBackgroundBorderless"
               android:padding="@dimen/launch_params_icon_edit_padding"
               android:scaleType="fitCenter"
-              android:src="@drawable/ic_edit"
+              app:srcCompat="@drawable/ic_edit"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
@@ -218,7 +218,7 @@
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
-                android:src="@drawable/selector_intent_field_image"
+                app:srcCompat="@drawable/selector_intent_field_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -266,7 +266,7 @@
                 android:layout_width="@dimen/launch_params_item_height"
                 android:layout_height="@dimen/launch_params_item_height"
                 android:padding="@dimen/launch_params_icon_padding"
-                android:src="@drawable/selector_intent_field_image"
+                app:srcCompat="@drawable/selector_intent_field_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -301,7 +301,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="@dimen/launch_params_icon_edit_padding"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_edit"
+                app:srcCompat="@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -328,7 +328,7 @@
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
-              android:src="@drawable/selector_intent_field_image"
+              app:srcCompat="@drawable/selector_intent_field_image"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
@@ -399,7 +399,7 @@
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
-              android:src="@drawable/selector_intent_field_image"
+              app:srcCompat="@drawable/selector_intent_field_image"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
@@ -463,7 +463,7 @@
               android:layout_width="@dimen/launch_params_item_height"
               android:layout_height="@dimen/launch_params_item_height"
               android:padding="@dimen/launch_params_icon_padding"
-              android:src="@drawable/selector_intent_field_image"
+              app:srcCompat="@drawable/selector_intent_field_image"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
 
@@ -525,7 +525,7 @@
       android:layout_margin="@dimen/launch_params_fab_margin"
       android:clickable="true"
       android:focusable="true"
-      android:src="@drawable/ic_done"
+      app:srcCompat="@drawable/ic_done"
       app:fabSize="normal" />
 
   </FrameLayout>

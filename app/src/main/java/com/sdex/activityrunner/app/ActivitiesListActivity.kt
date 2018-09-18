@@ -23,11 +23,16 @@ import com.sdex.activityrunner.util.RunActivityTask
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_activities_list.*
-import kotlin.properties.Delegates
 
 class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
 
-  private var advancedPreferences: AdvancedPreferences by Delegates.notNull()
+  private val advancedPreferences: AdvancedPreferences by lazy {
+    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
+  }
+  private val viewModel: ActivitiesListViewModel by lazy {
+    ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
+  }
+
   private var isShowNotExported: Boolean = false
 
   override fun getLayout(): Int {
@@ -46,7 +51,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
     list.addDivider()
     val adapter = ActivitiesListAdapter(this, this)
     list.adapter = adapter
-    val viewModel = ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
+
     viewModel.getItems(item.packageName).observe(this, Observer {
       adapter.submitList(it)
       val size = it!!.size
@@ -61,8 +66,6 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       }
     })
 
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-    advancedPreferences = AdvancedPreferences(sharedPreferences)
     isShowNotExported = advancedPreferences.showNotExported
 
     turnOnAdvanced.setOnClickListener {

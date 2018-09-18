@@ -9,8 +9,7 @@ import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.RequestManager
@@ -91,6 +90,10 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
       dialog.setContentView(view)
       val packageName = applicationModel.packageName
       view.findViewById<TextView>(R.id.application_name).text = applicationModel.name
+      val intent = context.packageManager.getLaunchIntentForPackage(packageName)
+      if (intent == null) {
+        view.findViewById<View>(R.id.action_open_app).visibility = GONE
+      }
       view.findViewById<View>(R.id.action_open_app).setOnClickListener {
         IntentUtils.launchApplication(context, packageName)
         dialog.dismiss()

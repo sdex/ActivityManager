@@ -6,19 +6,18 @@ import android.content.pm.ActivityInfo
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.support.v4.app.JobIntentService
 import android.util.Log
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
 import java.util.*
 
-class AppLoaderIntentService : JobIntentService() {
+class ApplicationListLoader {
 
-  override fun onHandleWork(intent: Intent) {
-    val applicationsModelDao = CacheDatabase.getDatabase(applicationContext).applicationsModelDao
+  fun syncDatabase(context: Context) {
+    val applicationsModelDao = CacheDatabase.getDatabase(context).applicationsModelDao
 
     val oldList = applicationsModelDao.getApplicationModels()
-    val newList = getApplicationsList()
+    val newList = getApplicationsList(context)
 
     val listToDelete = getListToDelete(oldList, newList)
     val listToInsert = getListToInsert(oldList, newList)
@@ -64,15 +63,14 @@ class AppLoaderIntentService : JobIntentService() {
     return oldList.intersect(newList).toMutableList()
   }
 
-  private fun getApplicationsList(): MutableList<ApplicationModel> {
+  private fun getApplicationsList(context: Context): MutableList<ApplicationModel> {
     val list: MutableList<ApplicationModel> = ArrayList()
-
+    val packageManager = context.packageManager
     val installedPackages = packageManager.getInstalledPackages(0)
     for (installedPackage in installedPackages) {
       val packageName = installedPackage.packageName
       addInfo(packageManager, list, packageName)
     }
-
     if (installedPackages.isEmpty()) {
       val packages = HashSet<String>()
       val intentToResolve = Intent(Intent.ACTION_MAIN)
@@ -84,7 +82,6 @@ class AppLoaderIntentService : JobIntentService() {
         addInfo(packageManager, list, packageName)
       }
     }
-
     return list
   }
 
@@ -130,13 +127,6 @@ class AppLoaderIntentService : JobIntentService() {
   }
 
   companion object {
-
-    private const val TAG = "AppLoader"
-
-    private const val JOB_ID = 1212
-
-    fun enqueueWork(context: Context, work: Intent) {
-      JobIntentService.enqueueWork(context, AppLoaderIntentService::class.java, JOB_ID, work)
-    }
+    const val TAG = "ApplicationListLoader"
   }
 }

@@ -1,9 +1,8 @@
 package com.sdex.activityrunner.intent.dialog.source
 
-import android.os.Parcelable
 import java.util.*
 
-interface SelectionDialogSource : Parcelable {
+interface SelectionDialogSource {
 
   val list: ArrayList<String>
 

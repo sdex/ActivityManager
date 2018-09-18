@@ -39,7 +39,7 @@
       <ImageView
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:src="@drawable/ic_folder_open" />
+        app:srcCompat="@drawable/ic_folder_open" />
 
       <TextView
         android:layout_width="wrap_content"

@@ -7,11 +7,14 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.SearchView.OnQueryTextListener
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponse
 import com.android.billingclient.api.BillingClient.SkuType
@@ -26,22 +29,26 @@ import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
-import com.sdex.activityrunner.service.AppLoaderIntentService
+import com.sdex.activityrunner.service.ApplicationsListWorker
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AdsDelegate
 import com.sdex.commons.ads.AppPreferences
 import com.sdex.commons.util.AppUtils
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.properties.Delegates
 
 class MainActivity : BaseActivity() {
 
-  private var adsDelegate: AdsDelegate by Delegates.notNull()
-  private var advancedPreferences: AdvancedPreferences  by Delegates.notNull()
-  private var appPreferences: AppPreferences by Delegates.notNull()
-  private var adapter: ApplicationsListAdapter by Delegates.notNull()
-  private var viewModel: ApplicationsListViewModel by Delegates.notNull()
+  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
+  private val adsDelegate: AdsDelegate by lazy { AdsDelegate(appPreferences) }
+  private val advancedPreferences: AdvancedPreferences by lazy {
+    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
+  }
+  private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
+  private val viewModel: ApplicationsListViewModel by lazy {
+    ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
+  }
+
   private var isProVersionEnabled: Boolean = false
   private var isShowSystemAppIndicator: Boolean = false
   private var searchText: String? = null
@@ -53,16 +60,13 @@ class MainActivity : BaseActivity() {
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    AppLoaderIntentService.enqueueWork(this, Intent())
+    val request = OneTimeWorkRequest.Builder(ApplicationsListWorker::class.java)
+      .addTag(ApplicationsListWorker.TAG)
+      .build()
+    WorkManager.getInstance().enqueue(request)
 
-    viewModel = ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
-
-    appPreferences = AppPreferences(this)
-    adsDelegate = AdsDelegate(appPreferences)
     adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
 
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-    advancedPreferences = AdvancedPreferences(sharedPreferences)
     isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
 
     fetchPurchases()
@@ -78,7 +82,6 @@ class MainActivity : BaseActivity() {
     progress.show()
 
     list.addDivider()
-    adapter = ApplicationsListAdapter(this)
     list.adapter = adapter
 
     checkOreoBug()
@@ -163,9 +166,11 @@ class MainActivity : BaseActivity() {
   }
 
   private fun showRatingDialog() {
+    val threshold = 3f
+    val sessions = 10
     val ratingDialog = RatingDialog.Builder(this)
-      .threshold(3f)
-      .session(10)
+      .threshold(threshold)
+      .session(sessions)
       .onRatingBarFormSumbit { feedback ->
         AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
           AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, feedback)
@@ -231,7 +236,7 @@ class MainActivity : BaseActivity() {
         true
       }
       R.id.action_about -> {
-        startActivity(Intent(this, AboutActivity::class.java))
+        AboutActivity.start(this)
         true
       }
       R.id.action_settings -> {
@@ -250,5 +255,9 @@ class MainActivity : BaseActivity() {
   companion object {
 
     private const val STATE_SEARCH_TEXT = "state_search_text"
+
+    init {
+      AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+    }
   }
 }

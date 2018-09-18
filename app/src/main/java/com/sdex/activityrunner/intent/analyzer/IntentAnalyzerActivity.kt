@@ -41,8 +41,12 @@ class IntentAnalyzerActivity : BaseActivity() {
     if (extras != null) {
       val extrasList: MutableList<LaunchParamsExtra> = ArrayList()
       for (key in extras.keySet()) {
-        extrasList.add(LaunchParamsExtra(key, extras.get(key).toString(),
-          LaunchParamsExtraType.STRING))
+        val value = if (extras.get(key) != null) {
+          extras.get(key)!!.toString()
+        } else {
+          ""
+        }
+        extrasList.add(LaunchParamsExtra(key, value, LaunchParamsExtraType.STRING))
       }
       extrasAdapter.setItems(extrasList, true)
     }

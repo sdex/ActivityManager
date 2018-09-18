@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import com.pddstudio.highlightjs.models.Language
@@ -16,6 +17,11 @@ import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {
+
+  private val viewModel: ManifestViewModel by lazy {
+    ViewModelProviders.of(this).get(ManifestViewModel::class.java)
+  }
+  private lateinit var appPackageName: String
 
   override fun getLayout(): Int {
     return R.layout.activity_manifest_viewer
@@ -35,19 +41,19 @@ class ManifestViewerActivity : BaseActivity() {
       progress.hide()
     }
 
-    val packageName = intent.getStringExtra(ARG_PACKAGE_NAME)
+    appPackageName = intent.getStringExtra(ARG_PACKAGE_NAME)
     val name = intent.getStringExtra(ARG_NAME)
 
-    if (packageName == null) {
+    if (TextUtils.isEmpty(appPackageName)) {
+      finish()
       return
     }
 
     title = name
 
-    ViewModelProviders.of(this).get(ManifestViewModel::class.java)
-      .loadManifest(packageName).observe(this, Observer {
-        highlightView.setSource(it)
-      })
+    viewModel.loadManifest(appPackageName).observe(this, Observer {
+      highlightView.setSource(it)
+    })
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,6 +63,11 @@ class ManifestViewerActivity : BaseActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when (item.itemId) {
+      R.id.action_share -> {
+        val shareProvider = ShareProvider()
+        shareProvider.share(this, appPackageName)
+        true
+      }
       R.id.action_help -> {
         val url = "https://developer.android.com/guide/topics/manifest/manifest-intro"
         IntentUtils.openBrowser(this, url)

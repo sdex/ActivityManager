@@ -19,7 +19,6 @@ import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog
-import com.sdex.activityrunner.intent.dialog.source.*
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
@@ -30,6 +29,7 @@ import com.sdex.commons.ads.AdsDelegate
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_intent_builder.*
 import java.util.*
+import kotlin.properties.Delegates
 
 class IntentBuilderActivity : BaseActivity(),
   ValueInputDialog.OnValueInputDialogCallback, SingleSelectionDialog.OnItemSelectedCallback,
@@ -41,10 +41,12 @@ class IntentBuilderActivity : BaseActivity(),
   private val flagsAdapter = LaunchParamsListAdapter()
   private val extraAdapter = LaunchParamsExtraListAdapter()
 
-  private var viewModel: LaunchParamsViewModel? = null
+  private val viewModel: LaunchParamsViewModel by lazy {
+    ViewModelProviders.of(this).get(LaunchParamsViewModel::class.java)
+  }
 
-  private var appPreferences: AppPreferences? = null
-  private var adsDelegate: AdsDelegate? = null
+  private var appPreferences: AppPreferences by Delegates.notNull()
+  private var adsDelegate: AdsDelegate by Delegates.notNull()
 
   override fun getLayout(): Int {
     return R.layout.activity_intent_builder
@@ -56,12 +58,10 @@ class IntentBuilderActivity : BaseActivity(),
     val params = savedInstanceState?.getParcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
     launchParams.setFrom(params)
 
-    viewModel = ViewModelProviders.of(this).get(LaunchParamsViewModel::class.java)
-
     appPreferences = AppPreferences(this)
 
     adsDelegate = AdsDelegate(appPreferences, adsContainer)
-    adsDelegate!!.initBanner(this, R.string.ad_banner_unit_id)
+    adsDelegate.initBanner(this, R.string.ad_banner_unit_id)
 
     enableBackButton()
     val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
@@ -103,14 +103,14 @@ class IntentBuilderActivity : BaseActivity(),
     bindInputValueDialog(container_data, R.string.launch_param_data)
     bindInputValueDialog(actionEditImageView, R.string.launch_param_action)
     bindInputValueDialog(mimeTypeEditImageView, R.string.launch_param_mime_type)
-    bindSingleSelectionDialog(container_action, R.string.launch_param_action, ActionSource())
-    bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type, MimeTypeSource())
+    bindSingleSelectionDialog(container_action, R.string.launch_param_action)
+    bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type)
     bindKeyValueDialog(container_extras)
-    bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories, CategoriesSource())
-    bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags, FlagsSource())
+    bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories)
+    bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags)
 
     launch.setOnClickListener {
-      viewModel!!.addToHistory(launchParams)
+      viewModel.addToHistory(launchParams)
       val converter = LaunchParamsToIntentConverter(launchParams)
       val intent = converter.convert()
       IntentUtils.launchActivity(this@IntentBuilderActivity, intent)
@@ -121,7 +121,7 @@ class IntentBuilderActivity : BaseActivity(),
 
   override fun onResume() {
     super.onResume()
-    adsDelegate!!.detachBottomBannerIfNeed()
+    adsDelegate.detachBottomBannerIfNeed()
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
@@ -210,18 +210,18 @@ class IntentBuilderActivity : BaseActivity(),
     }
   }
 
-  private fun bindSingleSelectionDialog(view: View, type: Int, source: SelectionDialogSource) {
+  private fun bindSingleSelectionDialog(view: View, type: Int) {
     view.setOnClickListener {
       val initialPosition = getSingleSelectionInitialPosition(type)
-      val dialog = SingleSelectionDialog.newInstance(type, source, initialPosition)
+      val dialog = SingleSelectionDialog.newInstance(type, initialPosition)
       dialog.show(supportFragmentManager, SingleSelectionDialog.TAG)
     }
   }
 
-  private fun bindMultiSelectionDialog(view: View, type: Int, source: SelectionDialogSource) {
+  private fun bindMultiSelectionDialog(view: View, type: Int) {
     view.setOnClickListener {
       val initialPositions = getMultiSelectionInitialPositions(type)
-      val dialog = MultiSelectionDialog.newInstance(type, source, initialPositions)
+      val dialog = MultiSelectionDialog.newInstance(type, initialPositions)
       dialog.show(supportFragmentManager, MultiSelectionDialog.TAG)
     }
   }
@@ -229,7 +229,7 @@ class IntentBuilderActivity : BaseActivity(),
   private fun bindKeyValueDialog(view: View) {
     view.setOnClickListener {
       val size = launchParams.extras.size
-      if (size >= EXTRAS_LIMIT && !appPreferences!!.isProVersion) {
+      if (size >= EXTRAS_LIMIT && !appPreferences.isProVersion) {
         val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_extras)
         dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
       } else {
