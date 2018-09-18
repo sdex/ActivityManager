@@ -1,1 +1,2 @@
-- bugfixes and performance improvements
+- allow backup
+- add ability to share manifest file
