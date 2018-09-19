@@ -59,10 +59,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
         }
       })
 
+    contentManager = ContentManager(this, this)
+
     icon.setOnClickListener {
-      contentManager = ContentManager(this, this)
-      contentManager?.pickContent(ContentManager.Content.IMAGE)
       toolTipsManager.dismissAll()
+      contentManager?.pickContent(ContentManager.Content.IMAGE)
     }
 
     radioGroup.setOnCheckedChangeListener { _, id ->
