@@ -33,8 +33,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
   private var contentManager: ContentManager? = null
   private var bitmap: Bitmap? = null
-  private var iconUri: Uri? = null
-  private var iconType: Int = ICON_SQUARE
   private val toolTipsManager = ToolTipsManager()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,19 +62,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     icon.setOnClickListener {
       toolTipsManager.dismissAll()
       contentManager?.pickContent(ContentManager.Content.IMAGE)
-    }
-
-    radioGroup.setOnCheckedChangeListener { _, id ->
-      run {
-        iconType = when (id) {
-          R.id.squareIcon -> ICON_SQUARE
-          R.id.circleIcon -> ICON_CIRCLE
-          else -> {
-            ICON_SQUARE
-          }
-        }
-        loadIcon()
-      }
     }
 
     cancel.setOnClickListener {
@@ -158,35 +143,24 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
   }
 
   override fun onContentLoaded(uri: Uri?, contentType: String?) {
-    iconUri = uri
-    radioGroup.visibility = VISIBLE
-    loadIcon()
+    uri?.let { loadIcon(uri) }
   }
 
-  private fun loadIcon() {
-    if (iconUri != null) {
-      val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-      val size = am.launcherLargeIconSize
-
-      val requestOptions = if (iconType == ICON_SQUARE) {
-        RequestOptions().centerCrop().override(size)
-      } else {
-        RequestOptions().circleCrop().override(size)
-      }
-
-      GlideApp.with(this)
-        .asBitmap()
-        .load(iconUri)
-        .error(R.mipmap.ic_launcher)
-        .apply(requestOptions)
-        .into(object : SimpleTarget<Bitmap>(size, size) {
-          override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-            bitmap = resource
-            icon.setImageBitmap(resource)
-            hideProgress()
-          }
-        })
-    }
+  private fun loadIcon(uri: Uri) {
+    val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val size = am.launcherLargeIconSize
+    GlideApp.with(this)
+      .asBitmap()
+      .load(uri)
+      .error(R.mipmap.ic_launcher)
+      .apply(RequestOptions().centerCrop().override(size))
+      .into(object : SimpleTarget<Bitmap>(size, size) {
+        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+          bitmap = resource
+          icon.setImageBitmap(resource)
+          hideProgress()
+        }
+      })
   }
 
   override fun onStartContentLoading() {
@@ -212,9 +186,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
   companion object {
 
     private const val TAG = "AddShortcutDialog"
-
-    private const val ICON_SQUARE = 0
-    private const val ICON_CIRCLE = 1
 
     private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
     private const val ARG_HISTORY_MODEL = "arg_history_model"

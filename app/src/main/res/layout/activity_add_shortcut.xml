@@ -69,7 +69,7 @@
     android:layout_marginTop="8dp"
     android:text="@android:string/cancel"
     app:layout_constraintEnd_toStartOf="@+id/create"
-    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+    app:layout_constraintTop_toBottomOf="@+id/value_layout" />
 
   <ProgressBar
     android:id="@+id/progress"
@@ -82,29 +82,5 @@
     app:layout_constraintStart_toStartOf="@+id/icon"
     app:layout_constraintTop_toTopOf="@+id/icon"
     tools:visibility="visible" />
-
-  <RadioGroup
-    android:id="@+id/radioGroup"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:visibility="gone"
-    app:layout_constraintStart_toStartOf="@+id/value_layout"
-    app:layout_constraintTop_toBottomOf="@+id/value_layout">
-
-    <RadioButton
-      android:id="@+id/squareIcon"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:checked="true"
-      android:text="Square icon" />
-
-    <RadioButton
-      android:id="@+id/circleIcon"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Circle icon" />
-
-  </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
