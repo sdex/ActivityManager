@@ -80,6 +80,10 @@ android {
   lintOptions {
     baseline file("lint-baseline.xml")
   }
+
+  packagingOptions {
+    exclude 'META-INF/proguard/androidx-annotations.pro'
+  }
 }
 
 androidExtensions {
@@ -102,9 +106,9 @@ dependencies {
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
   implementation "com.android.support:multidex:1.0.3"
 
-  implementation "com.google.firebase:firebase-ads:15.0.1"
-  implementation "com.google.firebase:firebase-core:16.0.1"
-  implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+  implementation "com.google.firebase:firebase-ads:$versions.fb_ads"
+  implementation "com.google.firebase:firebase-core:$versions.fb_core"
+  implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
     transitive = true
   }
 
