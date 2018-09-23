@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.premium.PurchaseActivity
+import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.AppUtils
 import de.psdev.licensesdialog.LicensesDialog
@@ -45,6 +46,10 @@ class AboutActivity : BaseActivity() {
         .setNotices(R.raw.notices)
         .build()
         .show()
+    }
+
+    privacyPolicy.setOnClickListener {
+      IntentUtils.openBrowser(this, AppUtils.ACTIVITY_RUNNER_PP)
     }
   }
 

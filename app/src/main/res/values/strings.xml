@@ -84,6 +84,7 @@
   <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
   <string name="about_contact_email">Contact me</string>
   <string name="about_open_source">Open source libraries</string>
+  <string name="about_open_privacy_policy">Privacy policy</string>
 
   <string name="input_key">Input key</string>
   <string name="input_value">Input value</string>

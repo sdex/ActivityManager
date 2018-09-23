@@ -45,10 +45,10 @@
               android:layout_height="@dimen/about_image_size"
               android:layout_margin="4dp"
               android:padding="8dp"
-              app:srcCompat="@drawable/ic_lightbulb_outline"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+              app:layout_constraintTop_toTopOf="parent"
+              app:srcCompat="@drawable/ic_lightbulb_outline" />
 
             <TextView
               android:id="@+id/textView11"
@@ -87,10 +87,10 @@
               android:layout_height="@dimen/about_image_size"
               android:layout_margin="4dp"
               android:padding="8dp"
-              app:srcCompat="@drawable/ic_star"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+              app:layout_constraintTop_toTopOf="parent"
+              app:srcCompat="@drawable/ic_star" />
 
             <TextView
               android:id="@+id/textView12"
@@ -115,10 +115,10 @@
               android:layout_height="@dimen/about_image_size"
               android:layout_margin="4dp"
               android:padding="8dp"
-              app:srcCompat="@drawable/ic_apps"
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent" />
+              app:layout_constraintTop_toTopOf="parent"
+              app:srcCompat="@drawable/ic_apps" />
 
             <TextView
               android:id="@+id/textView13"
@@ -155,10 +155,10 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
-            app:srcCompat="@drawable/ic_favorite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_favorite" />
 
           <TextView
             android:id="@+id/textView18"
@@ -193,10 +193,10 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
-            app:srcCompat="@drawable/ic_email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_email" />
 
           <TextView
             android:id="@+id/textView19"
@@ -231,10 +231,10 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
-            app:srcCompat="@drawable/ic_star_border"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_star_border" />
 
           <TextView
             android:id="@+id/textView15"
@@ -244,6 +244,43 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView5"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+        </android.support.constraint.ConstraintLayout>
+
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1dp">
+
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/privacyPolicy"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:padding="8dp">
+
+          <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+          <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_open_privacy_policy"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
         </android.support.constraint.ConstraintLayout>
 
