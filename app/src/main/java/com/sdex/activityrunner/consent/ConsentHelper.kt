@@ -32,12 +32,18 @@ class ConsentHelper {
         }
 
         override fun onConsentFormClosed(consentStatus: ConsentStatus?, userPrefersAdFree: Boolean?) {
-          when (consentStatus) {
-//            ConsentStatus.PERSONALIZED -> adManager.updatePersonalized()
-//            ConsentStatus.NON_PERSONALIZED -> adManager.updateNonPersonalized()
-            ConsentStatus.UNKNOWN -> {
-            }
-            else -> {
+          if (userPrefersAdFree!!) {
+            // TODO This is where you write your Intent to launch the purchase flow dialog
+          } else {
+            when (consentStatus) {
+              ConsentStatus.PERSONALIZED -> {//adManager.updatePersonalized()
+              }
+              ConsentStatus.NON_PERSONALIZED -> {
+                //adManager.updateNonPersonalized()
+              }
+              ConsentStatus.UNKNOWN -> {
+              }
+
             }
           }
         }
