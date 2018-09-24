@@ -16,6 +16,7 @@ public class AppPreferences {
   private static final String KEY_TIME_INTERSTITIAL = "ads_time_interstitial";
   private static final String KEY_TIME = "ads_time";
   private static final String KEY_PRO = "pro";
+  private static final String KEY_ADS_PERSONALIZED = "ads_personalized";
   private static final String KEY_HISTORY_WARNING_SHOWN = "history_warning_shown";
   private static final String KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown";
 
@@ -96,6 +97,16 @@ public class AppPreferences {
   public void setNotExportedDialogShown(boolean notExportedDialogShown) {
     preferences.edit()
       .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, notExportedDialogShown)
+      .apply();
+  }
+
+  public boolean isAdsPersonalized() {
+    return preferences.getBoolean(KEY_ADS_PERSONALIZED, false);
+  }
+
+  public void setAdsPersonalized(boolean personalized) {
+    preferences.edit()
+      .putBoolean(KEY_ADS_PERSONALIZED, personalized)
       .apply();
   }
 }

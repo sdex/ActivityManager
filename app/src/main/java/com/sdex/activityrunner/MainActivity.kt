@@ -21,9 +21,6 @@ import com.android.billingclient.api.BillingClient.SkuType
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.Purchase
 import com.codemybrainsout.ratingdialog.RatingDialog
-import com.google.ads.consent.ConsentInfoUpdateListener
-import com.google.ads.consent.ConsentInformation
-import com.google.ads.consent.ConsentStatus
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.ApplicationsListViewModel
 import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
@@ -89,8 +86,6 @@ class MainActivity : BaseActivity() {
     list.adapter = adapter
 
     checkOreoBug()
-
-    requestConsentInfo()
   }
 
   override fun onStart() {
@@ -133,23 +128,6 @@ class MainActivity : BaseActivity() {
     }
   }
 
-  private fun requestConsentInfo() {
-    val consentInformation = ConsentInformation.getInstance(this)
-    val publisherIds = arrayOf(getString(R.string.ad_publisher_id))
-    consentInformation.requestConsentInfoUpdate(publisherIds, object : ConsentInfoUpdateListener {
-      override fun onFailedToUpdateConsentInfo(reason: String?) {
-      }
-
-      override fun onConsentInfoUpdated(consentStatus: ConsentStatus?) {
-        if (consentStatus == ConsentStatus.UNKNOWN) {
-          val consentHelper = ConsentHelper()
-          consentHelper.showForm(this@MainActivity)
-        }
-      }
-
-    });
-  }
-
   private fun fetchPurchases() {
     val billingClient = BillingClient.newBuilder(this)
       .setListener { responseCode, purchases ->
@@ -186,6 +164,11 @@ class MainActivity : BaseActivity() {
     }
     invalidateOptionsMenu()
     appPreferences.isProVersion = isProVersionEnabled
+
+    if (!isProVersionEnabled) {
+      val consentHelper = ConsentHelper()
+      consentHelper.handleConsent(this)
+    }
   }
 
   private fun showRatingDialog() {

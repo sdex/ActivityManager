@@ -3,10 +3,12 @@ package com.sdex.commons.ads;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.widget.FrameLayout;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -19,13 +21,18 @@ public class AdsDelegate {
   @Nullable
   private FrameLayout bannerContainer;
   private InterstitialAd interstitialAd;
+  private Bundle adRequestExtras;
 
   public AdsDelegate(AppPreferences appPreferences) {
     this(appPreferences, null);
   }
+
   public AdsDelegate(AppPreferences appPreferences, @Nullable FrameLayout bannerContainer) {
     this.appPreferences = appPreferences;
     this.bannerContainer = bannerContainer;
+
+    adRequestExtras = new Bundle(1);
+    adRequestExtras.putString("npa", appPreferences.isAdsPersonalized() ? "0" : "1");
   }
 
   public void initBanner(Context context, @StringRes int adBannerUnitId) {
@@ -33,8 +40,9 @@ public class AdsDelegate {
       final AdView adView = new AdView(context);
       adView.setAdUnitId(context.getString(adBannerUnitId));
       adView.setAdSize(AdSize.SMART_BANNER);
-      AdRequest adRequest = new AdRequest.Builder()
+      final AdRequest adRequest = new AdRequest.Builder()
         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+        .addNetworkExtrasBundle(AdMobAdapter.class, adRequestExtras)
         .build();
       adView.setAdListener(new AdListener() {
         @Override
@@ -54,9 +62,11 @@ public class AdsDelegate {
     if (appPreferences.isInterstitialAdActive()) {
       interstitialAd = new InterstitialAd(context);
       interstitialAd.setAdUnitId(context.getString(adInterstitialUnitId));
-      AdRequest.Builder interstitialAdBuilder = new AdRequest.Builder();
-      interstitialAdBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
-      interstitialAd.loadAd(interstitialAdBuilder.build());
+      final AdRequest adRequest = new AdRequest.Builder()
+        .addNetworkExtrasBundle(AdMobAdapter.class, adRequestExtras)
+        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+        .build();
+      interstitialAd.loadAd(adRequest);
     }
   }
 
@@ -64,7 +74,7 @@ public class AdsDelegate {
     detachBottomBannerIfNeed(!appPreferences.isAdsActive());
   }
 
-  public void detachBottomBannerIfNeed(boolean detach) {
+  private void detachBottomBannerIfNeed(boolean detach) {
     if (detach && bannerContainer != null) {
       bannerContainer.removeAllViews();
     }
