@@ -54,6 +54,17 @@
     <item name="android:ellipsize">end</item>
   </style>
 
+  <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+    <item name="android:background">@drawable/background_bottom_dialog</item>
+  </style>
+
+  <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+    <item name="android:windowIsFloating">false</item>
+    <item name="bottomSheetStyle">@style/BottomSheet</item>
+  </style>
+
+  <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
   <style name="TooltipTextAppearance">
     <item name="android:textColor">@color/white</item>
     <item name="android:textSize">18sp</item>
