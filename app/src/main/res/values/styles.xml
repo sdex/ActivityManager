@@ -14,6 +14,7 @@
   <style name="AppTheme" parent="BaseTheme" />
 
   <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="android:windowCloseOnTouchOutside">false</item>
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
     <item name="colorPrimary">@color/colorPrimary</item>
