@@ -54,9 +54,6 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
       setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
       if (size == 0) {
         empty.visibility = VISIBLE
-        if (item.activitiesCount == 0) {
-          // TODO include app without activities?
-        }
       } else {
         empty.visibility = GONE
       }

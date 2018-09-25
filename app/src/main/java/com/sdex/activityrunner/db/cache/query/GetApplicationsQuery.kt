@@ -14,7 +14,7 @@ class GetApplicationsQuery(private val searchText: String?,
     val queryStringBuilder = StringBuilder()
     queryStringBuilder.append("SELECT * FROM ").append(ApplicationModel.TABLE).append(" ")
     queryStringBuilder.append("WHERE ")
-      .append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ") // TODO ???
+      .append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ")
     if (!searchText.isNullOrEmpty()) {
       val escapedSearchText = searchText!!.replace("'", "''")
       queryStringBuilder.append(" AND ").append(ApplicationModel.NAME)
