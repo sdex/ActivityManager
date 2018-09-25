@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import com.pddstudio.highlightjs.models.Language
@@ -21,7 +20,7 @@ class ManifestViewerActivity : BaseActivity() {
   private val viewModel: ManifestViewModel by lazy {
     ViewModelProviders.of(this).get(ManifestViewModel::class.java)
   }
-  private lateinit var appPackageName: String
+  private var appPackageName: String? = null
 
   override fun getLayout(): Int {
     return R.layout.activity_manifest_viewer
@@ -42,16 +41,16 @@ class ManifestViewerActivity : BaseActivity() {
     }
 
     appPackageName = intent.getStringExtra(ARG_PACKAGE_NAME)
-    val name = intent.getStringExtra(ARG_NAME)
+    var name = intent.getStringExtra(ARG_NAME)
 
-    if (TextUtils.isEmpty(appPackageName)) {
-      finish()
-      return
+    if (appPackageName.isNullOrEmpty()) {
+      appPackageName = "com.sdex.activityrunner"
+      name = getString(R.string.app_name)
     }
 
     title = name
 
-    viewModel.loadManifest(appPackageName).observe(this, Observer {
+    viewModel.loadManifest(appPackageName!!).observe(this, Observer {
       highlightView.setSource(it)
     })
   }
@@ -65,7 +64,7 @@ class ManifestViewerActivity : BaseActivity() {
     return when (item.itemId) {
       R.id.action_share -> {
         val shareProvider = ShareProvider()
-        shareProvider.share(this, appPackageName)
+        shareProvider.share(this, appPackageName!!)
         true
       }
       R.id.action_help -> {
