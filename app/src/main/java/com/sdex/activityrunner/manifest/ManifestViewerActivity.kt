@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.pddstudio.highlightjs.models.Language
 import com.pddstudio.highlightjs.models.Theme
 import com.sdex.activityrunner.R
@@ -27,7 +28,14 @@ class ManifestViewerActivity : BaseActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    try {
+      super.onCreate(savedInstanceState)
+    } catch (e: Exception) {
+      // probably android.webkit.WebViewFactory.MissingWebViewPackageException
+      Toast.makeText(this, "Failed to instantiate WebView", Toast.LENGTH_SHORT).show()
+      finish()
+      return
+    }
     enableBackButton()
 
     progress.show()
