@@ -269,6 +269,7 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
+            app:srcCompat="@drawable/ic_receipt"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

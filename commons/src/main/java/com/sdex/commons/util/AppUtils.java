@@ -12,7 +12,7 @@ public class AppUtils {
   public static final String ACTIVITY_RUNNER_FEEDBACK_EMAIL = "activity@byob.mail.ua";
   public static final String ACTIVITY_RUNNER_FEEDBACK_SUBJECT = "Feedback (Sent from the application)";
 
-  public static final String ACTIVITY_RUNNER_PP = "https://raw.githubusercontent.com/sdex/docs/master/am_privacy_policy.html";
+  public static final String ACTIVITY_RUNNER_PP = "https://cdn.rawgit.com/sdex/docs/e350e10/am_privacy_policy.html";
 
   public static final String DEV_PAGE = "https://play.google.com/store/apps/dev?id=8437279387942631019";
 

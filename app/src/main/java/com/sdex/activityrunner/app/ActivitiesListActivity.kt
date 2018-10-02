@@ -1,30 +1,26 @@
 package com.sdex.activityrunner.app
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.design.widget.Snackbar
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
-import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.extensions.enableBackButton
-import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
-import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.activityrunner.shortcut.AddShortcutDialogFragment
-import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.util.RunActivityTask
+import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_activities_list.*
 
-class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
+class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
   private val advancedPreferences: AdvancedPreferences by lazy {
     AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
@@ -49,7 +45,7 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
     title = item.name
     enableBackButton()
     list.addDivider()
-    val adapter = ActivitiesListAdapter(this, this)
+    val adapter = ActivitiesListAdapter(this)
     list.adapter = adapter
 
     viewModel.getItems(item.packageName).observe(this, Observer {
@@ -58,9 +54,6 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
       setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
       if (size == 0) {
         empty.visibility = VISIBLE
-        if (item.activitiesCount == 0) {
-          // TODO include app without activities?
-        }
       } else {
         empty.visibility = GONE
       }
@@ -92,39 +85,12 @@ class ActivitiesListActivity : BaseActivity(), ActivitiesListAdapter.Callback {
     }
   }
 
-  override fun showShortcutDialog(item: ActivityModel) {
-    val dialog = AddShortcutDialogFragment.newInstance(item)
-    dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
+  override fun getView(): View {
+    return container
   }
 
-  override fun launchActivity(item: ActivityModel) {
-    if (item.exported) {
-      IntentUtils.launchActivity(this, item.componentName, item.name)
-    } else {
-      tryRunWithRoot(item)
-    }
-  }
-
-  override fun launchActivityWithRoot(item: ActivityModel) {
-    tryRunWithRoot(item)
-  }
-
-  override fun launchActivityWithParams(item: ActivityModel) {
-    IntentBuilderActivity.start(this, item)
-  }
-
-  private fun tryRunWithRoot(item: ActivityModel) {
-    if (advancedPreferences.isRootIntegrationEnabled) {
-      val runActivityTask = RunActivityTask(item.componentName)
-      runActivityTask.execute()
-    } else {
-      val snackbar = Snackbar.make(container, R.string.settings_error_root_not_active,
-        Snackbar.LENGTH_LONG)
-      snackbar.setAction(R.string.action_settings
-      ) { SettingsActivity.start(this@ActivitiesListActivity) }
-      snackbar.config()
-      snackbar.show()
-    }
+  override fun getActivity(): Activity {
+    return this
   }
 
   companion object {
