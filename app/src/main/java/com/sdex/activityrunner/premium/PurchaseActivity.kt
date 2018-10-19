@@ -107,9 +107,9 @@ class PurchaseActivity : BaseActivity() {
   companion object {
 
     const val SKU_2 = "am_usd_2"
-    const val SKU_5 = "am_usd_2"
-    const val SKU_10 = "am_usd_2"
-    const val SKU_20 = "am_usd_2"
+    const val SKU_5 = "am_usd_5"
+    const val SKU_10 = "am_usd_10"
+    const val SKU_20 = "am_usd_20"
 
     fun start(context: Context) {
       val starter = Intent(context, PurchaseActivity::class.java)
