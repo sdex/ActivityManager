@@ -70,10 +70,10 @@ class PurchaseActivity : BaseActivity() {
 
     get_pro.setOnClickListener {
       val sku = when (amount.checkedRadioButtonId) {
-        R.id.sku_2 -> SKU_PRO
-        R.id.sku_5 -> SKU_DONATE_5
-        R.id.sku_10 -> SKU_DONATE_10
-        R.id.sku_20 -> SKU_DONATE_20
+        R.id.sku_2 -> SKU_2
+        R.id.sku_5 -> SKU_5
+        R.id.sku_10 -> SKU_10
+        R.id.sku_20 -> SKU_20
         else -> {
           throw IllegalArgumentException()
         }
@@ -106,10 +106,10 @@ class PurchaseActivity : BaseActivity() {
 
   companion object {
 
-    const val SKU_PRO = "ar_lifetime_pro_2"
-    const val SKU_DONATE_5 = "ar_donate_5"
-    const val SKU_DONATE_10 = "ar_donate_10"
-    const val SKU_DONATE_20 = "ar_donate_20"
+    const val SKU_2 = "am_usd_2"
+    const val SKU_5 = "am_usd_2"
+    const val SKU_10 = "am_usd_2"
+    const val SKU_20 = "am_usd_2"
 
     fun start(context: Context) {
       val starter = Intent(context, PurchaseActivity::class.java)
@@ -117,8 +117,8 @@ class PurchaseActivity : BaseActivity() {
     }
 
     fun isPremiumVersion(sku: String): Boolean {
-      return (SKU_PRO == sku || SKU_DONATE_5 == sku
-        || SKU_DONATE_10 == sku || SKU_DONATE_20 == sku)
+      return (SKU_2 == sku || SKU_5 == sku
+        || SKU_10 == sku || SKU_20 == sku)
     }
   }
 }
