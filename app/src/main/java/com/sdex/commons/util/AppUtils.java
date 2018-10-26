@@ -9,10 +9,7 @@ import android.widget.Toast;
 
 public class AppUtils {
 
-  public static final String ACTIVITY_RUNNER_FEEDBACK_EMAIL = "activity@byob.mail.ua";
-  public static final String ACTIVITY_RUNNER_FEEDBACK_SUBJECT = "Feedback (Sent from the application)";
-
-  public static final String ACTIVITY_RUNNER_PP = "https://cdn.rawgit.com/sdex/docs/e350e10/am_privacy_policy.html";
+  public static final String PP = "https://cdn.rawgit.com/sdex/docs/58d79c9/am_pp_2.html";
 
   public static void openLink(Context context, String url) {
     try {

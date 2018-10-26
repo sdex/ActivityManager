@@ -25,6 +25,7 @@ import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
 import com.sdex.activityrunner.shortcut.ShortcutManager
+import com.sdex.commons.util.AppUtils
 
 object IntentUtils {
 
@@ -158,9 +159,8 @@ object IntentUtils {
       builder.setShowTitle(true)
       val customTabsIntent = builder.build()
       customTabsIntent.launchUrl(context, Uri.parse(url))
-    } catch (e: ActivityNotFoundException) {
-      Toast.makeText(context, R.string.starting_activity_intent_failed,
-        Toast.LENGTH_SHORT).show()
+    } catch (e: Exception) {
+      AppUtils.openLink(context, url)
     }
   }
 }

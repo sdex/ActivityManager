@@ -40,7 +40,7 @@ class AboutActivity : BaseActivity() {
     }
 
     privacyPolicy.setOnClickListener {
-      IntentUtils.openBrowser(this, AppUtils.ACTIVITY_RUNNER_PP)
+      IntentUtils.openBrowser(this, AppUtils.PP)
     }
   }
 
