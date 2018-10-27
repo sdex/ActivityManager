@@ -18,7 +18,7 @@ android {
   compileSdkVersion app.compileSdk
 
   defaultConfig {
-    applicationId "com.sdex.am"
+    applicationId "com.activitymanager"
     minSdkVersion 15
     targetSdkVersion 28
     versionCode 100
