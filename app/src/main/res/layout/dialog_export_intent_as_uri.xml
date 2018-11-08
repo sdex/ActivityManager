@@ -10,6 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textSize="18sp"
+    android:textColor="?attr/primaryTextColor"
     tools:text="intent:#Intent;action=com.app.open;end" />
 
 </ScrollView>

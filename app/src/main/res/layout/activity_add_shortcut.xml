@@ -15,6 +15,7 @@
     android:layout_marginBottom="15dp"
     android:text="@string/context_action_shortcut"
     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+    android:textColor="?attr/primaryTextColor"
     android:textSize="20sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +49,9 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:hint="@string/shortcut_name"
-      android:inputType="text" />
+      android:inputType="text"
+      android:textColor="?attr/primaryTextColor"
+      android:textColorHint="?attr/secondaryTextColor" />
 
   </android.support.design.widget.TextInputLayout>
 

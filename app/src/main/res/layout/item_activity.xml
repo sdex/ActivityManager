@@ -28,7 +28,7 @@
       android:id="@+id/name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textColor="@color/textColorPrimary"
+      android:textColor="?attr/primaryTextColor"
       android:textSize="16sp"
       tools:text="Activity name" />
 
@@ -36,7 +36,7 @@
       android:id="@+id/packageName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textColor="@color/textColorSecondary"
+      android:textColor="?attr/secondaryTextColor"
       android:textSize="14sp"
       tools:text="com.app.package" />
   </LinearLayout>

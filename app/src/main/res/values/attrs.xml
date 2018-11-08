@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <attr name="primaryTextColor" format="reference" />
+  <attr name="secondaryTextColor" format="reference" />
+  <attr name="bottomDialogTextColor" format="reference" />
+
+  <attr name="primaryBackgroundColor" format="reference" />
+  <attr name="secondaryBackgroundColor" format="reference" />
+
+  <attr name="amCardBackgroundColor" format="reference" />
+  <attr name="iconTintColor" format="reference" />
+  <attr name="listDividerColor" format="reference" />
+
+  <attr name="buttonTextColor" format="reference" />
+  <attr name="buttonNormalColor" format="reference" />
+  <attr name="buttonHighlightColor" format="reference" />
+  <attr name="primaryButtonTheme" format="reference" />
+
+</resources>

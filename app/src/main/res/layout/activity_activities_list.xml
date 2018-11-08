@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/activities_list_empty_text"
+        android:textColor="?attr/primaryTextColor"
         android:textSize="18sp" />
 
       <Button

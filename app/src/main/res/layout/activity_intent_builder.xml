@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/background_gray"
+  android:background="?attr/secondaryBackgroundColor"
   android:orientation="vertical"
   tools:context=".intent.IntentBuilderActivity"
   tools:ignore="ContentDescription">
@@ -31,7 +31,7 @@
         <android.support.v7.widget.CardView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:cardBackgroundColor="@android:color/white"
+          app:cardBackgroundColor="?attr/amCardBackgroundColor"
           app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
           <LinearLayout
@@ -69,6 +69,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:text="@string/launch_param_package_name"
+                  android:textColor="?attr/primaryTextColor"
                   app:layout_constraintStart_toEndOf="@+id/packageNameImageView" />
 
                 <TextView
@@ -76,6 +77,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:paddingBottom="6dp"
+                  android:textColor="?attr/primaryTextColor"
                   android:textAppearance="?android:attr/textAppearanceListItem"
                   tools:text="com.sdex.activityrunner\nqw\n\nqw" />
               </LinearLayout>
@@ -118,11 +120,13 @@
                 <TextView
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:textColor="?attr/primaryTextColor"
                   android:text="@string/launch_param_class_name" />
 
                 <TextView
                   android:id="@+id/classNameView"
                   android:layout_width="match_parent"
+                  android:textColor="?attr/primaryTextColor"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceListItem"
                   tools:text="MainActivity" />
@@ -138,7 +142,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="@android:color/white"
+          app:cardBackgroundColor="?attr/amCardBackgroundColor"
           app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
           <android.support.constraint.ConstraintLayout
@@ -170,12 +174,14 @@
               <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/primaryTextColor"
                 android:text="@string/launch_param_action" />
 
               <TextView
                 android:id="@+id/actionView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/primaryTextColor"
                 android:textAppearance="?android:attr/textAppearanceListItem"
                 tools:text="android.intent.action.MAIN" />
             </LinearLayout>
@@ -199,7 +205,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="@android:color/white"
+          app:cardBackgroundColor="?attr/amCardBackgroundColor"
           app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
           <LinearLayout
@@ -235,11 +241,13 @@
 
                 <TextView
                   android:layout_width="match_parent"
+                  android:textColor="?attr/primaryTextColor"
                   android:layout_height="wrap_content"
                   android:text="@string/launch_param_data" />
 
                 <TextView
                   android:id="@+id/dataView"
+                  android:textColor="?attr/primaryTextColor"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceListItem"
@@ -283,12 +291,14 @@
 
                 <TextView
                   android:layout_width="match_parent"
+                  android:textColor="?attr/primaryTextColor"
                   android:layout_height="wrap_content"
                   android:text="@string/launch_param_mime_type" />
 
                 <TextView
                   android:id="@+id/mimeTypeView"
                   android:layout_width="match_parent"
+                  android:textColor="?attr/primaryTextColor"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceListItem"
                   tools:text="image/png" />
@@ -315,7 +325,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="@android:color/white"
+          app:cardBackgroundColor="?attr/amCardBackgroundColor"
           app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
           <android.support.constraint.ConstraintLayout
@@ -346,6 +356,7 @@
               <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/primaryTextColor"
                 android:layout_marginTop="4dp"
                 android:text="@string/launch_param_extras" />
 
@@ -363,6 +374,7 @@
                 android:id="@+id/addExtraView"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:textColor="?attr/primaryTextColor"
                 android:gravity="center_vertical"
                 android:text="@string/launch_param_extras_add" />
 
@@ -386,7 +398,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="@android:color/white"
+          app:cardBackgroundColor="?attr/amCardBackgroundColor"
           app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
           <android.support.constraint.ConstraintLayout
@@ -418,6 +430,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textColor="?attr/primaryTextColor"
                 android:text="@string/launch_param_categories" />
 
               <android.support.v7.widget.RecyclerView
@@ -450,7 +463,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="@android:color/white"
+          app:cardBackgroundColor="?attr/amCardBackgroundColor"
           app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
           <android.support.constraint.ConstraintLayout
@@ -482,6 +495,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textColor="?attr/primaryTextColor"
                 android:text="@string/launch_param_flags" />
 
               <android.support.v7.widget.RecyclerView

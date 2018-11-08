@@ -39,7 +39,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      app:srcCompat="@drawable/ic_label" />
+      app:srcCompat="@drawable/ic_activity_shortcut" />
 
     <TextView
       style="@style/BottomDialogTextStyle"
@@ -58,7 +58,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      app:srcCompat="@drawable/ic_settings_gray" />
+      app:srcCompat="@drawable/ic_activity_launch_params" />
 
     <TextView
       style="@style/BottomDialogTextStyle"
@@ -77,7 +77,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      app:srcCompat="@drawable/ic_verified_user" />
+      app:srcCompat="@drawable/ic_activity_launch_root" />
 
     <TextView
       style="@style/BottomDialogTextStyle"

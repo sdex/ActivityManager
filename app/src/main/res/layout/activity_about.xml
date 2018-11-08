@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/background_gray"
+  android:background="?attr/secondaryBackgroundColor"
   android:orientation="vertical"
   tools:context=".AboutActivity"
   tools:ignore="ContentDescription">
@@ -25,7 +25,7 @@
       <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
         <LinearLayout
@@ -48,13 +48,14 @@
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_lightbulb_outline" />
+              app:srcCompat="@drawable/ic_about_version" />
 
             <TextView
               android:id="@+id/textView11"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="@string/about_version"
+              android:textColor="?attr/primaryTextColor"
               app:layout_constraintBottom_toTopOf="@+id/guideline2"
               app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
@@ -69,6 +70,7 @@
               android:id="@+id/versionName"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:textColor="?attr/primaryTextColor"
               app:layout_constraintStart_toEndOf="@+id/imageView2"
               app:layout_constraintTop_toTopOf="@+id/guideline2"
               tools:text="1.4.5 (145)" />
@@ -90,13 +92,14 @@
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_star" />
+              app:srcCompat="@drawable/ic_about_rate_app" />
 
             <TextView
               android:id="@+id/textView12"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="@string/about_rate"
+              android:textColor="?attr/primaryTextColor"
               app:layout_constraintBottom_toBottomOf="@+id/imageView3"
               app:layout_constraintStart_toEndOf="@+id/imageView3"
               app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -111,7 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
         <android.support.constraint.ConstraintLayout
@@ -127,16 +130,18 @@
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
             android:padding="8dp"
+            android:textColor="?attr/primaryTextColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_favorite" />
+            app:srcCompat="@drawable/ic_about_support_development" />
 
           <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/purchase_activity"
+            android:textColor="?attr/primaryTextColor"
             app:layout_constraintBottom_toBottomOf="@+id/imageView44"
             app:layout_constraintStart_toEndOf="@+id/imageView44"
             app:layout_constraintTop_toTopOf="@+id/imageView44" />
@@ -149,7 +154,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
         <LinearLayout
@@ -173,13 +178,14 @@
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_star_border" />
+              app:srcCompat="@drawable/ic_about_open_source" />
 
             <TextView
               android:id="@+id/textView15"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="@string/about_open_source"
+              android:textColor="?attr/primaryTextColor"
               app:layout_constraintBottom_toBottomOf="@+id/imageView5"
               app:layout_constraintStart_toEndOf="@+id/imageView5"
               app:layout_constraintTop_toTopOf="@+id/imageView5" />
@@ -201,13 +207,14 @@
               app:layout_constraintBottom_toBottomOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_receipt" />
+              app:srcCompat="@drawable/ic_about_privacy_policy" />
 
             <TextView
               android:id="@+id/textView16"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="@string/about_open_privacy_policy"
+              android:textColor="?attr/primaryTextColor"
               app:layout_constraintBottom_toBottomOf="@+id/imageView6"
               app:layout_constraintStart_toEndOf="@+id/imageView6"
               app:layout_constraintTop_toTopOf="@+id/imageView6" />
