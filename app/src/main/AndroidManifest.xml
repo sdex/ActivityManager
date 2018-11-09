@@ -58,7 +58,7 @@
 
     <activity
       android:name=".shortcut.AddShortcutDialogActivity"
-      android:theme="@style/AppDialogTheme" />
+      android:theme="@style/AppDialogTheme.Dark" />
 
     <activity
       android:name=".shortcut.ShortcutHandlerActivity"

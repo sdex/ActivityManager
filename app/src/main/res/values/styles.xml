@@ -1,6 +1,6 @@
 <resources>
 
-  <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="Base.V0.AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="windowNoTitle">true</item>
     <item name="windowActionModeOverlay">true</item>
     <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,10 +9,7 @@
     <item name="android:windowBackground">@color/background</item>
     <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogStyle</item>
-  </style>
-
-  <style name="AppTheme" parent="BaseTheme">
-    <!-- start own colors -->
+    <!-- own colors -->
     <item name="primaryTextColor">@color/textColorPrimary</item>
     <item name="secondaryTextColor">@color/textColorSecondary</item>
     <item name="bottomDialogTextColor">@color/bottom_dialog_text_light</item>
@@ -21,12 +18,18 @@
     <item name="amCardBackgroundColor">@color/card_background_light</item>
     <item name="iconTintColor">@color/icon_tint_light</item>
     <item name="listDividerColor">@color/list_divider_light</item>
-    <!-- end -->
-    <item name="android:windowBackground">@color/background</item>
   </style>
 
-  <style name="AppTheme.Dark" parent="BaseTheme">
-    <!-- start own colors -->
+  <style name="Base.V0.AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionModeOverlay">true</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:windowBackground">@color/background_dark</item>
+    <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogStyle</item>
+    <!-- own colors -->
     <item name="primaryTextColor">@color/white</item>
     <item name="secondaryTextColor">@color/textColorSecondary</item>
     <item name="bottomDialogTextColor">@color/bottom_dialog_text_dark</item>
@@ -35,18 +38,41 @@
     <item name="amCardBackgroundColor">@color/card_background_dark</item>
     <item name="iconTintColor">@color/icon_tint_dark</item>
     <item name="listDividerColor">@color/list_divider_dark</item>
-    <!-- end -->
-    <item name="android:windowBackground">@color/background_dark</item>
   </style>
 
-  <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+  <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light" />
+
+  <style name="AppTheme.Dark" parent="Base.V0.AppTheme.Dark" />
+
+  <style name="AlertDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert" />
+
+  <style name="AlertDialogTheme.Dark" parent="Theme.AppCompat.Dialog.Alert" />
+
+  <style name="AppDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
     <item name="android:windowCloseOnTouchOutside">false</item>
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
+    <!-- own colors -->
+    <item name="primaryTextColor">@color/textColorPrimary</item>
+    <item name="secondaryTextColor">@color/textColorSecondary</item>
   </style>
+
+  <style name="AppDialogTheme.Dark" parent="Theme.AppCompat.Dialog.Alert">
+    <item name="android:windowCloseOnTouchOutside">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <!-- own colors -->
+    <item name="primaryTextColor">@color/white</item>
+    <item name="secondaryTextColor">@color/textColorSecondary</item>
+  </style>
+
+  <!-- end of light/dark-->
 
   <style name="AppBottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
     <item name="bottomSheetStyle">@style/AppBottomSheetStyle</item>

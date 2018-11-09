@@ -12,9 +12,6 @@
   <color name="textColorPrimary">@color/black</color>
   <color name="textColorSecondary">@color/darker_gray</color>
 
-  <!-- TODO drop-->
-  <color name="list_divider_color">#E0E0E0</color>
-
   <color name="background">#ffffff</color>
   <color name="background_dark">#222222</color>
   <color name="background_gray">#eeeeee</color>

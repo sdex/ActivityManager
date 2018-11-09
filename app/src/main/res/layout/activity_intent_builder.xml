@@ -85,7 +85,7 @@
               <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/list_divider_color"
+                android:background="?attr/listDividerColor"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
@@ -257,7 +257,7 @@
               <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/list_divider_color"
+                android:background="?attr/listDividerColor"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout3" />
 

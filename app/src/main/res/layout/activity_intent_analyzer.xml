@@ -101,7 +101,7 @@
             <View
               android:layout_width="match_parent"
               android:layout_height="1dp"
-              android:background="@color/list_divider_color" />
+              android:background="?attr/listDividerColor" />
 
             <LinearLayout
               android:id="@+id/linearLayout4"

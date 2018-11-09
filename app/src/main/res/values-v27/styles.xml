@@ -8,10 +8,16 @@
 
   <style name="BottomSheetDialogTheme" parent="Base.V27.BottomSheetDialogTheme" />
 
-  <style name="AppTheme" parent="BaseTheme">
+  <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light">
     <item name="android:windowLightNavigationBar">true</item>
-    <item name="android:navigationBarColor">@color/white</item>
-    <item name="android:navigationBarDividerColor">@color/list_divider_color</item>
+    <item name="android:navigationBarColor">@color/background</item>
+    <item name="android:navigationBarDividerColor">@color/list_divider_light</item>
+  </style>
+
+  <style name="AppTheme.Dark" parent="Base.V0.AppTheme.Dark">
+    <item name="android:windowLightNavigationBar">false</item>
+    <item name="android:navigationBarColor">@color/background_dark</item>
+    <item name="android:navigationBarDividerColor">@color/list_divider_dark</item>
   </style>
 
 </resources>
