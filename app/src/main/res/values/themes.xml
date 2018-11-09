@@ -61,10 +61,6 @@
 
   <!-- dialogs themes -->
 
-  <style name="AlertDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert" />
-
-  <style name="AlertDialogTheme.Dark" parent="Theme.AppCompat.Dialog.Alert" />
-
   <style name="AppDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
     <item name="android:windowCloseOnTouchOutside">false</item>
     <item name="windowNoTitle">true</item>
