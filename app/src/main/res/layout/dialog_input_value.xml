@@ -18,7 +18,6 @@
       android:hint="@string/input_value"
       android:inputType="text"
       android:textColor="?attr/primaryTextColor"
-      android:textColorHint="?attr/secondaryTextColor"
       tools:text="test text" />
 
   </android.support.design.widget.TextInputLayout>

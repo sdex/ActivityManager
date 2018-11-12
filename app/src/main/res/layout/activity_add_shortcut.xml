@@ -48,8 +48,7 @@
       android:layout_height="match_parent"
       android:hint="@string/shortcut_name"
       android:inputType="text"
-      android:textColor="?attr/primaryTextColor"
-      android:textColorHint="?attr/secondaryTextColor" />
+      android:textColor="?attr/primaryTextColor" />
 
   </android.support.design.widget.TextInputLayout>
 

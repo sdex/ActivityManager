@@ -28,7 +28,6 @@
       android:hint="@string/shortcut_name"
       android:inputType="text"
       android:textColor="?attr/primaryTextColor"
-      android:textColorHint="?attr/secondaryTextColor"
       tools:ignore="Autofill" />
 
   </android.support.design.widget.TextInputLayout>
