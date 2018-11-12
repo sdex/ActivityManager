@@ -21,6 +21,7 @@
     <item name="amCardBackgroundColor">@color/card_background_light</item>
     <item name="iconTintColor">@color/icon_tint_light</item>
     <item name="listDividerColor">@color/list_divider_light</item>
+    <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Light</item>
   </style>
 
   <style name="Base.V0.AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
@@ -41,6 +42,7 @@
     <item name="amCardBackgroundColor">@color/card_background_dark</item>
     <item name="iconTintColor">@color/icon_tint_dark</item>
     <item name="listDividerColor">@color/list_divider_dark</item>
+    <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Dark</item>
   </style>
 
   <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light" />
@@ -58,6 +60,10 @@
   </style>
 
   <!-- end activities themes -->
+
+  <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.AppCompat.Dark" />
+
+  <style name="AppTheme.PopupOverlay.Light" parent="ThemeOverlay.AppCompat.Light" />
 
   <!-- dialogs themes -->
 
