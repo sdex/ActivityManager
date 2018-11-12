@@ -17,6 +17,9 @@ class AdvancedPreferences(private val sharedPreferences: SharedPreferences) {
   val isRootIntegrationEnabled: Boolean
     get() = sharedPreferences.getBoolean(KEY_ROOT_INTEGRATION, KEY_ROOT_INTEGRATION_DEFAULT)
 
+  val getTheme: String?
+    get() = sharedPreferences.getString(KEY_THEME, KEY_THEME_DEFAULT)
+
   companion object {
     const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
     const val KEY_SHOW_NOT_EXPORTED_DEFAULT = false
@@ -24,6 +27,7 @@ class AdvancedPreferences(private val sharedPreferences: SharedPreferences) {
     const val KEY_ROOT_INTEGRATION_DEFAULT = false
     const val KEY_SHOW_SYSTEM_APP_LABEL = "advanced_system_app"
     const val KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT = false
-
+    const val KEY_THEME = "appearance_theme"
+    const val KEY_THEME_DEFAULT = "0"
   }
 }

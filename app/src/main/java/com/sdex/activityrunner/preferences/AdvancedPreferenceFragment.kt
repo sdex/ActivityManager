@@ -19,7 +19,7 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val appPreferences = AppPreferences(activity)
+    val appPreferences = AppPreferences(activity!!)
     val rootIntegration = findPreference(AdvancedPreferences.KEY_ROOT_INTEGRATION)
       as SwitchPreferenceCompat
     rootIntegration.setOnPreferenceChangeListener { _, newValue ->
@@ -29,18 +29,7 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
         }
       }
       if (appPreferences.isProVersion) {
-        val checkRootTask = CheckRootTask(object : CheckRootTask.Callback {
-          override fun onStatusChanged(status: Int) {
-            if (activity != null && !activity!!.isFinishing && isAdded) {
-              if (status != CheckRootTask.RESULT_OK) {
-                rootIntegration.isChecked = false
-                Toast.makeText(activity, R.string.settings_error_root_not_granted,
-                  Toast.LENGTH_SHORT).show()
-              }
-            }
-          }
-        })
-        checkRootTask.execute()
+        checkRoot(rootIntegration)
         return@setOnPreferenceChangeListener true
       } else {
         val dialog = GetRootDialog.newInstance()
@@ -48,5 +37,26 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
         return@setOnPreferenceChangeListener false
       }
     }
+
+    val themePreference = findPreference(AdvancedPreferences.KEY_THEME)
+    themePreference.setOnPreferenceChangeListener { _, newValue ->
+      activity?.recreate()
+      return@setOnPreferenceChangeListener true
+    }
+  }
+
+  private fun checkRoot(rootIntegration: SwitchPreferenceCompat) {
+    val checkRootTask = CheckRootTask(object : CheckRootTask.Callback {
+      override fun onStatusChanged(status: Int) {
+        if (activity != null && !activity!!.isFinishing && isAdded) {
+          if (status != CheckRootTask.RESULT_OK) {
+            rootIntegration.isChecked = false
+            Toast.makeText(activity, R.string.settings_error_root_not_granted,
+              Toast.LENGTH_SHORT).show()
+          }
+        }
+      }
+    })
+    checkRootTask.execute()
   }
 }

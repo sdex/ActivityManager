@@ -36,7 +36,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
 
   private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-
   private val advancedPreferences: AdvancedPreferences by lazy {
     AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
   }
@@ -86,6 +85,9 @@ class MainActivity : BaseActivity() {
         adapter.submitList(it)
         adapter.notifyDataSetChanged()
       })
+    }
+    if (!advancedPreferences.getTheme.equals(currentTheme)) {
+      recreate()
     }
   }
 

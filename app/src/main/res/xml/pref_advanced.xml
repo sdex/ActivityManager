@@ -1,7 +1,6 @@
 <android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <android.support.v7.preference.PreferenceCategory
-    android:title="@string/pref_header_advanced">
+  <android.support.v7.preference.PreferenceCategory android:title="@string/pref_header_advanced">
 
     <android.support.v7.preference.SwitchPreferenceCompat
       android:defaultValue="false"
@@ -20,6 +19,18 @@
       android:key="advanced_root_integration"
       android:summary="@string/pref_advanced_root_integration_summary"
       android:title="@string/pref_advanced_root_integration_title" />
+
+  </android.support.v7.preference.PreferenceCategory>
+
+  <android.support.v7.preference.PreferenceCategory android:title="@string/pref_header_appearance">
+
+    <android.support.v7.preference.ListPreference
+      android:defaultValue="0"
+      android:entries="@array/pref_appearance_theme_list_titles"
+      android:entryValues="@array/pref_appearance_theme_list_values"
+      android:key="appearance_theme"
+      android:summary="@string/pref_appearance_theme_summary"
+      android:title="@string/pref_appearance_theme_title" />
 
   </android.support.v7.preference.PreferenceCategory>
 

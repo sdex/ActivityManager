@@ -18,7 +18,7 @@
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme.Dark"
+    android:theme="@style/AppTheme.Light"
     tools:ignore="GoogleAppIndexingWarning">
 
     <uses-library
@@ -58,7 +58,7 @@
 
     <activity
       android:name=".shortcut.AddShortcutDialogActivity"
-      android:theme="@style/AppDialogTheme.Dark" />
+      android:theme="@style/AppDialogTheme.Light" />
 
     <activity
       android:name=".shortcut.ShortcutHandlerActivity"

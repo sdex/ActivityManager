@@ -98,20 +98,9 @@
   <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені ROOT</string>
   <string name="pref_advanced_root_integration_title">Інтеграція з ROOT</string>
   <string name="pref_advanced_root_integration_summary">Запуск додатків від імені ROOT</string>
-  <string name="pref_sort_order">Порядок сортування</string>
-  <string name="pref_sort_by">Сортувати по полю</string>
-  <string name="pref_case_sensitive">Враховувати регістр</string>
   <string name="settings_error_root_not_available">ROOT недоступний на цьому пристрої</string>
   <string name="settings_error_root_not_granted">ROOT права не були надані</string>
   <string name="settings_error_root_not_active">Потрібно активувати інтеграцію з ROOT</string>
-  <string-array name="pref_sort_order_list_titles">
-    <item>По зростанню</item>
-    <item>По спаданню</item>
-  </string-array>
-  <string-array name="pref_sort_by_list_titles">
-    <item>Імені додатка</item>
-    <item>Імені пакета</item>
-  </string-array>
 
   <plurals name="history_records">
     <item quantity="one">%d запис</item>
