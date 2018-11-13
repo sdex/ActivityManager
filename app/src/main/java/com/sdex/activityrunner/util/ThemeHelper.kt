@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.util
 
 import android.app.Activity
+import com.pddstudio.highlightjs.models.Theme
 import com.sdex.activityrunner.R
 
 class ThemeHelper {
@@ -24,6 +25,16 @@ class ThemeHelper {
         else -> R.style.AppDialogTheme_Light
       }
       activity.setTheme(style)
+    }
+  }
+
+  fun getWebViewTheme(theme: String?): Theme {
+    theme.let {
+      return when (theme) {
+        "0" -> Theme.GITHUB_GIST
+        "1" -> Theme.DARKULA
+        else -> Theme.GITHUB_GIST
+      }
     }
   }
 }
