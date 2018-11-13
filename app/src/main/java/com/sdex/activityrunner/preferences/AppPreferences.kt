@@ -1,4 +1,4 @@
-package com.sdex.commons.ads
+package com.sdex.activityrunner.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -31,9 +31,9 @@ class AppPreferences(context: Context) {
 
   companion object {
 
-    private val PREFERENCES_NAME = "ads_preferences"
-    private val KEY_PRO = "pro"
-    private val KEY_HISTORY_WARNING_SHOWN = "history_warning_shown"
-    private val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
+    private const val PREFERENCES_NAME = "ads_preferences"
+    private const val KEY_PRO = "pro"
+    private const val KEY_HISTORY_WARNING_SHOWN = "history_warning_shown"
+    private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
   }
 }

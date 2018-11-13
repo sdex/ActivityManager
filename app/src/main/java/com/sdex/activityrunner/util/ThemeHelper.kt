@@ -1,4 +1,4 @@
-package com.sdex.commons.util
+package com.sdex.activityrunner.util
 
 import android.app.Activity
 import com.sdex.activityrunner.R

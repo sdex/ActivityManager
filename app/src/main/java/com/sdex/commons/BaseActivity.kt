@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.preferences.AdvancedPreferences
-import com.sdex.commons.util.ThemeHelper
+import com.sdex.activityrunner.util.ThemeHelper
 
 abstract class BaseActivity : AppCompatActivity() {
 

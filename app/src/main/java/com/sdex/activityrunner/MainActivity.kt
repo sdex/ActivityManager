@@ -25,11 +25,11 @@ import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.activityrunner.service.ApplicationsListJob
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.ads.AppPreferences
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
 

@@ -8,7 +8,7 @@ import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
 import com.sdex.activityrunner.db.history.HistoryDatabase
 import com.sdex.activityrunner.db.history.HistoryModel
-import com.sdex.commons.ads.AppPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 

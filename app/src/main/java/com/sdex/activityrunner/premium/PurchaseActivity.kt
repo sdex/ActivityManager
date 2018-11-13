@@ -16,8 +16,8 @@ import com.android.billingclient.api.Purchase
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_purchase.*
 
 class PurchaseActivity : BaseActivity() {

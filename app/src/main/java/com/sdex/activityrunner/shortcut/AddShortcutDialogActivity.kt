@@ -26,8 +26,8 @@ import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.activityrunner.util.ThemeHelper
 import com.sdex.commons.content.ContentManager
-import com.sdex.commons.util.ThemeHelper
 import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
 import kotlinx.android.synthetic.main.activity_add_shortcut.*

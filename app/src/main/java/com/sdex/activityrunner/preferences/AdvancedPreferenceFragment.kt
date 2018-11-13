@@ -8,7 +8,6 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.root.GetRootDialog
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.CheckRootTask
-import com.sdex.commons.ads.AppPreferences
 
 class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
 
