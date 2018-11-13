@@ -9,19 +9,20 @@
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:windowBackground">@color/background</item>
+    <item name="android:windowBackground">@color/background_light</item>
     <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     <!-- own colors -->
     <item name="primaryTextColor">@color/text_color_primary_light</item>
     <item name="secondaryTextColor">@color/text_color_secondary_light</item>
     <item name="bottomDialogTextColor">@color/bottom_dialog_text_light</item>
-    <item name="primaryBackgroundColor">@color/background</item>
-    <item name="secondaryBackgroundColor">@color/background_gray</item>
+    <item name="primaryBackgroundColor">@color/background_light</item>
+    <item name="secondaryBackgroundColor">@color/background_light_gray</item>
     <item name="amCardBackgroundColor">@color/card_background_light</item>
     <item name="iconTintColor">@color/icon_tint_light</item>
     <item name="listDividerColor">@color/list_divider_light</item>
     <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Light</item>
+    <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Light</item>
   </style>
 
   <style name="Base.V0.AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
@@ -43,6 +44,7 @@
     <item name="iconTintColor">@color/icon_tint_dark</item>
     <item name="listDividerColor">@color/list_divider_dark</item>
     <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Dark</item>
+    <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Dark</item>
   </style>
 
   <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light" />
@@ -100,7 +102,9 @@
     <item name="bottomSheetStyle">@style/BottomSheet</item>
   </style>
 
-  <style name="BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme" />
+  <style name="BottomSheetDialogTheme.Light" parent="Base.V0.BottomSheetDialogTheme" />
+
+  <style name="BottomSheetDialogTheme.Dark" parent="Base.V0.BottomSheetDialogTheme" />
 
   <!-- end dialogs themes -->
 

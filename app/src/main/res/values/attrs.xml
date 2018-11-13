@@ -17,5 +17,6 @@
   <attr name="buttonHighlightColor" format="reference" />
   <attr name="primaryButtonTheme" format="reference" />
   <attr name="popupOverlayStyle" format="reference" />
+  <attr name="bottomDialogStyle" format="reference" />
 
 </resources>

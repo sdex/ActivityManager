@@ -14,9 +14,9 @@
   <color name="text_color_secondary_light">@color/darker_gray</color>
   <color name="text_color_secondary_dark">@color/darker_gray</color>
 
-  <color name="background">#ffffff</color>
+  <color name="background_light">#ffffff</color>
+  <color name="background_light_gray">#eeeeee</color>
   <color name="background_dark">#222222</color>
-  <color name="background_gray">#eeeeee</color>
 
   <color name="card_background_light">#ffffff</color>
   <color name="card_background_dark">#2a2a2a</color>
