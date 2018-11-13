@@ -1,19 +1,16 @@
 package com.sdex.commons
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.ThemeHelper
 
 abstract class BaseActivity : AppCompatActivity() {
 
-  private val advancedPreferences: AdvancedPreferences by lazy {
-    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
-  }
+  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   var currentTheme: String? = null
 
   abstract fun getLayout(): Int
@@ -21,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val themeHelper = ThemeHelper()
-    currentTheme = advancedPreferences.getTheme
+    currentTheme = appPreferences.getTheme
     themeHelper.setTheme(this, currentTheme)
     setContentView(getLayout())
     val toolbar = findViewById<Toolbar>(R.id.toolbar)

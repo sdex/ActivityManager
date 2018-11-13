@@ -1,14 +1,12 @@
 package com.sdex.activityrunner.db.cache.query
 
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.preferences.SortingPreferences
 
-class GetApplicationsQuery(private val searchText: String?,
-                           sortingPreferences: SortingPreferences) {
+class GetApplicationsQuery(private val searchText: String?) {
 
-  private val sortBy: String = sortingPreferences.sortBy
-  private val sortOrder: String = sortingPreferences.sortOrder
-  private val sortCaseSensitive: String = sortingPreferences.sortCaseSensitive
+  private val sortBy: String = ApplicationModel.NAME
+  private val sortOrder: String = "ASC"
+  private val sortCaseSensitive: String = "COLLATE NOCASE"
 
   override fun toString(): String {
     val queryStringBuilder = StringBuilder()

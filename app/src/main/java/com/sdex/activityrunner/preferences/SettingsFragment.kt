@@ -9,7 +9,7 @@ import com.sdex.activityrunner.app.root.GetRootDialog
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.CheckRootTask
 
-class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat() {
 
   override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
     setPreferencesFromResource(R.xml.pref_advanced, rootKey)
@@ -19,7 +19,7 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
     super.onCreate(savedInstanceState)
 
     val appPreferences = AppPreferences(activity!!)
-    val rootIntegration = findPreference(AdvancedPreferences.KEY_ROOT_INTEGRATION)
+    val rootIntegration = findPreference(AppPreferences.KEY_ROOT_INTEGRATION)
       as SwitchPreferenceCompat
     rootIntegration.setOnPreferenceChangeListener { _, newValue ->
       if (newValue is Boolean) {
@@ -37,7 +37,7 @@ class AdvancedPreferenceFragment : PreferenceFragmentCompat() {
       }
     }
 
-    val themePreference = findPreference(AdvancedPreferences.KEY_THEME)
+    val themePreference = findPreference(AppPreferences.KEY_THEME)
     themePreference.setOnPreferenceChangeListener { _, newValue ->
       activity?.recreate()
       return@setOnPreferenceChangeListener true

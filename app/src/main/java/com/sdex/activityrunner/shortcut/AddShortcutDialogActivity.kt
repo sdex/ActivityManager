@@ -7,7 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View.*
@@ -23,7 +22,7 @@ import com.sdex.activityrunner.extensions.doAfterMeasure
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
-import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.ThemeHelper
@@ -34,9 +33,7 @@ import kotlinx.android.synthetic.main.activity_add_shortcut.*
 
 class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickContentListener {
 
-  private val advancedPreferences: AdvancedPreferences by lazy {
-    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
-  }
+  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   private var contentManager: ContentManager? = null
   private var bitmap: Bitmap? = null
   private val toolTipsManager = ToolTipsManager()
@@ -44,7 +41,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val themeHelper = ThemeHelper()
-    themeHelper.setDialogTheme(this, advancedPreferences.getTheme)
+    themeHelper.setDialogTheme(this, appPreferences.getTheme)
     setContentView(R.layout.activity_add_shortcut)
 
     val activityModel = intent?.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?

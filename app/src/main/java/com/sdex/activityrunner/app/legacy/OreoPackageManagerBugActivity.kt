@@ -14,13 +14,10 @@ class OreoPackageManagerBugActivity : FragmentActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_oreo_package_manager_bug)
 
-    val preferences = AppPreferences(this)
+    val appPreferences = AppPreferences(this)
 
     proceed.setOnClickListener {
-      preferences.preferences
-        .edit()
-        .putBoolean(KEY, true)
-        .apply()
+      appPreferences.isOreoBugWarningShown = true
       finish()
     }
 
@@ -34,10 +31,5 @@ class OreoPackageManagerBugActivity : FragmentActivity() {
         e.printStackTrace()
       }
     }
-  }
-
-  companion object {
-
-    const val KEY = "oreo_bug_warning_shown"
   }
 }

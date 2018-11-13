@@ -17,7 +17,7 @@ class SettingsActivity : BaseActivity() {
     super.onCreate(savedInstanceState)
     enableBackButton()
     supportFragmentManager.beginTransaction()
-      .replace(R.id.content, AdvancedPreferenceFragment())
+      .replace(R.id.content, SettingsFragment())
       .commitNow()
   }
 

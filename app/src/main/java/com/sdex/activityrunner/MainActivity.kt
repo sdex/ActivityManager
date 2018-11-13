@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.SearchView.OnQueryTextListener
@@ -24,7 +23,6 @@ import com.sdex.activityrunner.app.ApplicationsListViewModel
 import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
-import com.sdex.activityrunner.preferences.AdvancedPreferences
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
@@ -36,9 +34,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
 
   private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-  private val advancedPreferences: AdvancedPreferences by lazy {
-    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
-  }
   private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
   private val viewModel: ApplicationsListViewModel by lazy {
     ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
@@ -57,7 +52,7 @@ class MainActivity : BaseActivity() {
 
     ApplicationsListJob.enqueueWork(this, Intent())
 
-    isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
+    isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
 
     fetchPurchases()
     showRatingDialog()
@@ -79,14 +74,14 @@ class MainActivity : BaseActivity() {
 
   override fun onStart() {
     super.onStart()
-    if (advancedPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
-      isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
+    if (appPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
+      isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
       viewModel.getItems(searchText).observe(this, Observer {
         adapter.submitList(it)
         adapter.notifyDataSetChanged()
       })
     }
-    if (!advancedPreferences.getTheme.equals(currentTheme)) {
+    if (!appPreferences.getTheme.equals(currentTheme)) {
       recreate()
     }
   }
@@ -106,9 +101,7 @@ class MainActivity : BaseActivity() {
   // https://issuetracker.google.com/issues/73289329
   private fun checkOreoBug() {
     if (VERSION.SDK_INT == VERSION_CODES.O) {
-      val warningWasShown = appPreferences.preferences.getBoolean(
-        OreoPackageManagerBugActivity.KEY, false)
-      if (!warningWasShown) {
+      if (!appPreferences.isOreoBugWarningShown) {
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.packages.observe(this, Observer {
           if (it!!.isEmpty()) {
