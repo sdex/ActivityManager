@@ -92,7 +92,6 @@
   <string name="rating_dialog_suggestions">Сообщите нам что не так и мы исправим это</string>
 
   <!-- settings -->
-  <string name="pref_header_sort">Сортировка</string>
   <string name="pref_header_advanced">Дополнительно</string>
   <string name="pref_advanced_not_exported_title">Показывать скрытые Activity</string>
   <string name="pref_advanced_not_exported_summary">Можно запустить только от имени ROOT</string>

@@ -204,15 +204,6 @@
   </issue>
 
   <issue id="UnusedResources"
-    message="The resource `R.string.pref_header_sort` appears to be unused"
-    errorLine1="  &lt;string name=&quot;pref_header_sort&quot;>Sorting&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="125" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="95" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="95" column="11" />
-  </issue>
-
-  <issue id="UnusedResources"
     message="The resource `R.string.settings_error_root_not_available` appears to be unused"
     errorLine1="  &lt;string name=&quot;settings_error_root_not_available&quot;>ROOT is not available&lt;/string>"
     errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
