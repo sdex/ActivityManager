@@ -19,6 +19,7 @@
       android:layout_height="wrap_content"
       android:padding="20dp"
       android:text="@string/root_check_compatibility_text"
+      android:textColor="?attr/primaryTextColor"
       android:textSize="18sp" />
 
     <Button
@@ -33,6 +34,7 @@
       android:layout_height="wrap_content"
       android:gravity="center"
       android:padding="20dp"
+      android:textColor="?attr/primaryTextColor"
       android:textSize="18sp"
       tools:text="@string/root_check_compatibility_status_ok" />
 

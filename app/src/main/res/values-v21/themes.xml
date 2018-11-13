@@ -1,0 +1,11 @@
+<resources>
+
+  <style name="Base.V21.BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+
+  <style name="BottomSheetDialogTheme.Light" parent="Base.V21.BottomSheetDialogTheme" />
+
+  <style name="BottomSheetDialogTheme.Dark" parent="Base.V21.BottomSheetDialogTheme" />
+
+</resources>

@@ -4,14 +4,15 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:padding="@dimen/item_history_padding"
-  android:background="?attr/selectableItemBackground">
+  android:background="?attr/selectableItemBackground"
+  android:padding="@dimen/item_history_padding">
 
   <TextView
     android:id="@+id/title_package_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/launch_param_package_name"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,6 +21,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_package_name"
     app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +31,7 @@
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c1"
     app:layout_constraintTop_toTopOf="parent"
@@ -41,6 +43,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_history_text_margin_top"
     android:text="@string/launch_param_class_name"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_package_name" />
 
@@ -49,6 +52,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_class_name"
     app:layout_constraintTop_toTopOf="@+id/title_class_name" />
 
@@ -58,7 +62,7 @@
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c2"
     app:layout_constraintTop_toTopOf="@+id/title_class_name"
@@ -70,6 +74,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_history_text_margin_top"
     android:text="@string/launch_param_action"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_class_name" />
 
@@ -78,6 +83,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_action"
     app:layout_constraintTop_toTopOf="@+id/title_action" />
 
@@ -87,7 +93,7 @@
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c3"
     app:layout_constraintTop_toTopOf="@+id/title_action"
@@ -99,6 +105,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_history_text_margin_top"
     android:text="@string/launch_param_data"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_action" />
 
@@ -107,6 +114,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_data"
     app:layout_constraintTop_toTopOf="@+id/title_data" />
 
@@ -116,7 +124,7 @@
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c4"
     app:layout_constraintTop_toTopOf="@+id/title_data"
@@ -128,6 +136,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_history_text_margin_top"
     android:text="@string/launch_param_mime_type"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_data" />
 
@@ -136,6 +145,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_mime_type"
     app:layout_constraintTop_toTopOf="@+id/title_mime_type" />
 
@@ -145,7 +155,7 @@
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:maxLines="1"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c5"
     app:layout_constraintTop_toTopOf="@+id/title_mime_type"
@@ -157,6 +167,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_history_text_margin_top"
     android:text="@string/item_history_has_extras"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_mime_type" />
 
@@ -165,6 +176,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_extras"
     app:layout_constraintTop_toTopOf="@+id/title_extras" />
 
@@ -175,7 +187,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:textAllCaps="true"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c6"
     app:layout_constraintTop_toTopOf="@+id/title_extras"
@@ -187,6 +199,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_history_text_margin_top"
     android:text="@string/item_history_has_categories"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_extras" />
 
@@ -195,6 +208,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_categories"
     app:layout_constraintTop_toTopOf="@+id/title_categories" />
 
@@ -205,7 +219,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:textAllCaps="true"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c7"
     app:layout_constraintTop_toTopOf="@+id/title_categories"
@@ -217,6 +231,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_history_text_margin_top"
     android:text="@string/item_history_has_flags"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/title_categories" />
 
@@ -225,6 +240,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/colon_space"
+    android:textColor="?attr/secondaryTextColor"
     app:layout_constraintStart_toEndOf="@+id/title_flags"
     app:layout_constraintTop_toTopOf="@+id/title_flags" />
 
@@ -235,7 +251,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:textAllCaps="true"
-    android:textColor="@android:color/black"
+    android:textColor="?attr/primaryTextColor"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/c8"
     app:layout_constraintTop_toTopOf="@+id/title_flags"

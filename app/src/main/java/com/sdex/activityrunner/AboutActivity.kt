@@ -28,17 +28,8 @@ class AboutActivity : BaseActivity() {
       AppUtils.openPlayStore(this)
     }
 
-    moreApps.setOnClickListener {
-      AppUtils.openLink(this, AppUtils.DEV_PAGE)
-    }
-
     donate.setOnClickListener {
       PurchaseActivity.start(this)
-    }
-
-    contact.setOnClickListener {
-      AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
-        AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, "")
     }
 
     openSource.setOnClickListener {
@@ -49,7 +40,7 @@ class AboutActivity : BaseActivity() {
     }
 
     privacyPolicy.setOnClickListener {
-      IntentUtils.openBrowser(this, AppUtils.ACTIVITY_RUNNER_PP)
+      IntentUtils.openBrowser(this, AppUtils.PP)
     }
   }
 

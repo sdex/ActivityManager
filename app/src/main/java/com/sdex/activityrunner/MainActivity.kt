@@ -6,15 +6,12 @@ import android.content.Intent
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.SearchView.OnQueryTextListener
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponse
 import com.android.billingclient.api.BillingClient.SkuType
@@ -26,24 +23,17 @@ import com.sdex.activityrunner.app.ApplicationsListViewModel
 import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
-import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
-import com.sdex.activityrunner.service.ApplicationsListWorker
+import com.sdex.activityrunner.service.ApplicationsListJob
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.ads.AdsDelegate
-import com.sdex.commons.ads.AppPreferences
-import com.sdex.commons.util.AppUtils
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
   private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-  private val adsDelegate: AdsDelegate by lazy { AdsDelegate(appPreferences) }
-  private val advancedPreferences: AdvancedPreferences by lazy {
-    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
-  }
   private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
   private val viewModel: ApplicationsListViewModel by lazy {
     ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
@@ -60,14 +50,9 @@ class MainActivity : BaseActivity() {
   public override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val request = OneTimeWorkRequest.Builder(ApplicationsListWorker::class.java)
-      .addTag(ApplicationsListWorker.TAG)
-      .build()
-    WorkManager.getInstance().enqueue(request)
+    ApplicationsListJob.enqueueWork(this, Intent())
 
-    adsDelegate.initInterstitialAd(this, R.string.ad_interstitial_unit_id)
-
-    isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
+    isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
 
     fetchPurchases()
     showRatingDialog()
@@ -89,12 +74,15 @@ class MainActivity : BaseActivity() {
 
   override fun onStart() {
     super.onStart()
-    if (advancedPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
-      isShowSystemAppIndicator = advancedPreferences.isShowSystemAppIndicator
+    if (appPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
+      isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
       viewModel.getItems(searchText).observe(this, Observer {
         adapter.submitList(it)
         adapter.notifyDataSetChanged()
       })
+    }
+    if (!appPreferences.getTheme.equals(currentTheme)) {
+      recreate()
     }
   }
 
@@ -113,9 +101,7 @@ class MainActivity : BaseActivity() {
   // https://issuetracker.google.com/issues/73289329
   private fun checkOreoBug() {
     if (VERSION.SDK_INT == VERSION_CODES.O) {
-      val warningWasShown = appPreferences.preferences.getBoolean(
-        OreoPackageManagerBugActivity.KEY, false)
-      if (!warningWasShown) {
+      if (!appPreferences.isOreoBugWarningShown) {
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.packages.observe(this, Observer {
           if (it!!.isEmpty()) {
@@ -166,15 +152,11 @@ class MainActivity : BaseActivity() {
   }
 
   private fun showRatingDialog() {
-    val threshold = 3f
+    val threshold = 1f
     val sessions = 10
     val ratingDialog = RatingDialog.Builder(this)
       .threshold(threshold)
       .session(sessions)
-      .onRatingBarFormSumbit { feedback ->
-        AppUtils.sendEmail(this, AppUtils.ACTIVITY_RUNNER_FEEDBACK_EMAIL,
-          AppUtils.ACTIVITY_RUNNER_FEEDBACK_SUBJECT, feedback)
-      }
       .build()
     ratingDialog.show()
   }
@@ -245,11 +227,6 @@ class MainActivity : BaseActivity() {
       }
       else -> super.onOptionsItemSelected(item)
     }
-  }
-
-  override fun onBackPressed() {
-    super.onBackPressed()
-    adsDelegate.showInterstitial()
   }
 
   companion object {

@@ -5,7 +5,7 @@
   android:id="@+id/container"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/background_gray"
+  android:background="?attr/secondaryBackgroundColor"
   android:orientation="vertical"
   tools:context=".premium.PurchaseActivity"
   tools:ignore="ContentDescription">
@@ -27,7 +27,7 @@
         android:id="@+id/purchasePro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp"
         tools:visibility="visible">
 
@@ -42,38 +42,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pro_version_title"
+            android:textColor="?attr/primaryTextColor"
             android:textSize="20sp" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/pro_version_ads"
-            android:textAppearance="?android:textAppearanceMedium" />
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/pro_version_shortcut"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?attr/primaryTextColor" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pro_version_extras"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?attr/primaryTextColor" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pro_version_history"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?attr/primaryTextColor" />
 
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pro_version_root"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?attr/primaryTextColor" />
 
           <RadioGroup
             android:id="@+id/amount"
@@ -85,26 +84,30 @@
               android:id="@+id/sku_2"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/pro_version_price_2" />
+              android:text="@string/pro_version_price_2"
+              android:textColor="?attr/primaryTextColor" />
 
             <RadioButton
               android:id="@+id/sku_5"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:checked="true"
-              android:text="@string/pro_version_price_5" />
+              android:text="@string/pro_version_price_5"
+              android:textColor="?attr/primaryTextColor" />
 
             <RadioButton
               android:id="@+id/sku_10"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/pro_version_price_10" />
+              android:text="@string/pro_version_price_10"
+              android:textColor="?attr/primaryTextColor" />
 
             <RadioButton
               android:id="@+id/sku_20"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="@string/pro_version_price_20" />
+              android:text="@string/pro_version_price_20"
+              android:textColor="?attr/primaryTextColor" />
 
           </RadioGroup>
 
@@ -114,6 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/pro_version_description"
+            android:textColor="?attr/primaryTextColor"
             android:textStyle="italic" />
 
           <Button
@@ -135,7 +139,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp"
         tools:visibility="visible">
 
@@ -149,6 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pro_version_done_title"
+            android:textColor="?attr/primaryTextColor"
             android:textSize="20sp" />
 
           <TextView
@@ -156,6 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/pro_version_done"
+            android:textColor="?attr/primaryTextColor"
             android:textSize="20sp" />
 
         </LinearLayout>

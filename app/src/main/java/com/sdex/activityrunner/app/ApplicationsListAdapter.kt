@@ -1,27 +1,23 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.preference.PreferenceManager
-import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.FragmentActivity
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.TextView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.app.dialog.ApplicationMenuDialog
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
-import com.sdex.activityrunner.manifest.ManifestViewerActivity
-import com.sdex.activityrunner.preferences.AdvancedPreferences
-import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.util.AppUtils
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import kotlinx.android.synthetic.main.item_application.view.*
 
@@ -30,12 +26,11 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
   FastScrollRecyclerView.SectionedAdapter {
 
   private val glide: RequestManager
-  private val advancedPreferences: AdvancedPreferences
+  private val appPreferences: AppPreferences
 
   init {
     this.glide = GlideApp.with(activity)
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-    this.advancedPreferences = AdvancedPreferences(sharedPreferences)
+    this.appPreferences = AppPreferences(activity)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
@@ -45,7 +40,7 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
   }
 
   override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-    holder.bindTo(getItem(position), glide, advancedPreferences)
+    holder.bindTo(getItem(position), glide, appPreferences)
   }
 
   override fun getSectionName(position: Int): String {
@@ -56,14 +51,14 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
   class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindTo(item: ApplicationModel, glide: RequestManager,
-               advancedPreferences: AdvancedPreferences) {
+               appPreferences: AppPreferences) {
       itemView.name.text = item.name
       itemView.packageName.text = item.packageName
 
       val context = itemView.context
 
       itemView.system.visibility =
-        if (item.system && advancedPreferences.isShowSystemAppIndicator) {
+        if (item.system && appPreferences.isShowSystemAppIndicator) {
           VISIBLE
         } else {
           INVISIBLE
@@ -84,33 +79,10 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
       itemView.appMenu.setOnClickListener { showApplicationMenu(context, item) }
     }
 
-    private fun showApplicationMenu(context: Context, applicationModel: ApplicationModel) {
-      val view = View.inflate(context, R.layout.dialog_application_menu, null)
-      val dialog = BottomSheetDialog(context)
-      dialog.setContentView(view)
-      val packageName = applicationModel.packageName
-      view.findViewById<TextView>(R.id.application_name).text = applicationModel.name
-      val intent = context.packageManager.getLaunchIntentForPackage(packageName)
-      if (intent == null) {
-        view.findViewById<View>(R.id.action_open_app).visibility = GONE
-      }
-      view.findViewById<View>(R.id.action_open_app).setOnClickListener {
-        IntentUtils.launchApplication(context, packageName)
-        dialog.dismiss()
-      }
-      view.findViewById<View>(R.id.action_open_app_manifest).setOnClickListener {
-        ManifestViewerActivity.start(context, packageName, applicationModel.name)
-        dialog.dismiss()
-      }
-      view.findViewById<View>(R.id.action_open_app_info).setOnClickListener {
-        IntentUtils.openApplicationInfo(context, packageName)
-        dialog.dismiss()
-      }
-      view.findViewById<View>(R.id.action_open_app_play_store).setOnClickListener {
-        AppUtils.openPlayStore(context, packageName)
-        dialog.dismiss()
-      }
-      dialog.show()
+    private fun showApplicationMenu(context: Context, model: ApplicationModel) {
+      val activity = context as FragmentActivity
+      val dialog = ApplicationMenuDialog.newInstance(model)
+      dialog.show(activity.supportFragmentManager, ApplicationMenuDialog.TAG)
     }
   }
 

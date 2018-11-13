@@ -22,11 +22,10 @@ import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.ads.AdsDelegate
-import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_intent_builder.*
 import java.util.*
 import kotlin.properties.Delegates
@@ -46,7 +45,6 @@ class IntentBuilderActivity : BaseActivity(),
   }
 
   private var appPreferences: AppPreferences by Delegates.notNull()
-  private var adsDelegate: AdsDelegate by Delegates.notNull()
 
   override fun getLayout(): Int {
     return R.layout.activity_intent_builder
@@ -59,9 +57,6 @@ class IntentBuilderActivity : BaseActivity(),
     launchParams.setFrom(params)
 
     appPreferences = AppPreferences(this)
-
-    adsDelegate = AdsDelegate(appPreferences, adsContainer)
-    adsDelegate.initBanner(this, R.string.ad_banner_unit_id)
 
     enableBackButton()
     val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
@@ -117,11 +112,6 @@ class IntentBuilderActivity : BaseActivity(),
     }
 
     showLaunchParams()
-  }
-
-  override fun onResume() {
-    super.onResume()
-    adsDelegate.detachBottomBannerIfNeed()
   }
 
   override fun onSaveInstanceState(outState: Bundle) {

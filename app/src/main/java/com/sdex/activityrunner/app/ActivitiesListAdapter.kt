@@ -1,30 +1,42 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.support.annotation.ColorRes
-import android.support.design.widget.BottomSheetDialog
+import android.support.annotation.ColorInt
+import android.support.v4.app.FragmentActivity
 import android.support.v4.content.ContextCompat
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.app.dialog.ActivityMenuDialog
 import com.sdex.activityrunner.glide.GlideApp
+import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import kotlinx.android.synthetic.main.item_activity.view.*
 
-class ActivitiesListAdapter(context: Context, private val callback: Callback) :
+
+class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity) :
   ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
   private val glide: RequestManager
+  private val launcher: ActivityLauncher
+  @ColorInt
+  private val primaryTextColor: Int
 
   init {
-    this.glide = GlideApp.with(context)
+    val activity = snackbarContainerActivity.getActivity()
+    this.glide = GlideApp.with(activity)
+    this.launcher = ActivityLauncher(snackbarContainerActivity)
+
+    val typedValue = TypedValue()
+    activity.theme.resolveAttribute(R.attr.primaryTextColor, typedValue, true)
+    primaryTextColor = typedValue.data
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,22 +46,13 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    holder.bindTo(getItem(position), glide, callback)
-  }
-
-  interface Callback {
-    fun showShortcutDialog(item: ActivityModel)
-
-    fun launchActivity(item: ActivityModel)
-
-    fun launchActivityWithRoot(item: ActivityModel)
-
-    fun launchActivityWithParams(item: ActivityModel)
+    holder.bindTo(getItem(position), primaryTextColor, glide, launcher)
   }
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bindTo(item: ActivityModel, glide: RequestManager, callback: Callback) {
+    fun bindTo(item: ActivityModel, primaryTextColor: Int,
+               glide: RequestManager, launcher: ActivityLauncher) {
       itemView.name.text = item.name
       itemView.packageName.text = item.componentName.shortClassName
 
@@ -60,44 +63,27 @@ class ActivitiesListAdapter(context: Context, private val callback: Callback) :
 
       val context = itemView.context
 
-      @ColorRes val color: Int = if (item.exported) {
-        android.R.color.black
+      @ColorInt val color: Int = if (item.exported) {
+        primaryTextColor
       } else {
-        R.color.red
+        ContextCompat.getColor(context, R.color.red)
       }
-      itemView.name.setTextColor(ContextCompat.getColor(context, color))
+      itemView.name.setTextColor(color)
 
-      itemView.setOnClickListener { callback.launchActivity(item) }
+      itemView.setOnClickListener { launcher.launchActivity(item) }
 
       itemView.setOnLongClickListener {
-        showActivityMenu(context, item, callback)
+        showActivityMenu(context, item)
         true
       }
 
-      itemView.appMenu.setOnClickListener { showActivityMenu(context, item, callback) }
+      itemView.appMenu.setOnClickListener { showActivityMenu(context, item) }
     }
 
-    private fun showActivityMenu(context: Context, activityModel: ActivityModel,
-                                 callback: Callback) {
-      val view = View.inflate(context, R.layout.dialog_activity_menu, null)
-      val dialog = BottomSheetDialog(context)
-      dialog.setContentView(view)
-      view.findViewById<TextView>(R.id.activity_name).text = activityModel.name
-      view.findViewById<View>(R.id.action_activity_add_shortcut).setOnClickListener {
-        callback.showShortcutDialog(activityModel)
-        dialog.dismiss()
-      }
-      val itemParams = view.findViewById<View>(R.id.action_activity_launch_with_params)
-      itemParams.visibility = if (activityModel.exported) View.VISIBLE else View.GONE
-      itemParams.setOnClickListener {
-        callback.launchActivityWithParams(activityModel)
-        dialog.dismiss()
-      }
-      view.findViewById<View>(R.id.action_activity_launch_with_root).setOnClickListener {
-        callback.launchActivityWithRoot(activityModel)
-        dialog.dismiss()
-      }
-      dialog.show()
+    private fun showActivityMenu(context: Context, model: ActivityModel) {
+      val activity = context as FragmentActivity
+      val dialog = ActivityMenuDialog.newInstance(model)
+      dialog.show(activity.supportFragmentManager, ActivityMenuDialog.TAG)
     }
   }
 
