@@ -9,8 +9,10 @@
   <color name="colorAccent">#03A9F4</color>
   <color name="colorControlActivated">#ffffff</color>
 
-  <color name="textColorPrimary">@color/black</color>
-  <color name="textColorSecondary">@color/darker_gray</color>
+  <color name="text_color_primary_light">@color/black</color>
+  <color name="text_color_primary_dark">#fafafa</color>
+  <color name="text_color_secondary_light">@color/darker_gray</color>
+  <color name="text_color_secondary_dark">@color/darker_gray</color>
 
   <color name="background">#ffffff</color>
   <color name="background_dark">#222222</color>
