@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -14,17 +13,14 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
-import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_activities_list.*
 
 class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
-  private val advancedPreferences: AdvancedPreferences by lazy {
-    AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
-  }
+  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   private val viewModel: ActivitiesListViewModel by lazy {
     ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
   }
@@ -59,15 +55,14 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
       }
     })
 
-    isShowNotExported = advancedPreferences.showNotExported
+    isShowNotExported = appPreferences.showNotExported
 
     turnOnAdvanced.setOnClickListener {
-      advancedPreferences.showNotExported = true
+      appPreferences.showNotExported = true
       viewModel.getItems(item.packageName)
     }
 
-    val appPreferences = AppPreferences(this)
-    if (!advancedPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
+    if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
       appPreferences.isNotExportedDialogShown = true
       val dialog = EnableNotExportedActivitiesDialog()
       dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
@@ -76,7 +71,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
   override fun onStart() {
     super.onStart()
-    if (advancedPreferences.showNotExported != isShowNotExported) {
+    if (appPreferences.showNotExported != isShowNotExported) {
       val viewModel = ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
       val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
       if (item != null) {

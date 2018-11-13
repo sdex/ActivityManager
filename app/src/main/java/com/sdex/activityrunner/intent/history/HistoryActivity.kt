@@ -20,10 +20,10 @@ import com.sdex.activityrunner.intent.dialog.ExportIntentAsUriDialog
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_ADD_SHORTCUT
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_history.*
 import kotlin.properties.Delegates
 

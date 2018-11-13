@@ -1,12 +1,13 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.support.annotation.ColorRes
+import android.support.annotation.ColorInt
 import android.support.v4.app.FragmentActivity
 import android.support.v4.content.ContextCompat
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,15 +20,23 @@ import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import kotlinx.android.synthetic.main.item_activity.view.*
 
+
 class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity) :
   ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
   private val glide: RequestManager
   private val launcher: ActivityLauncher
+  @ColorInt
+  private val primaryTextColor: Int
 
   init {
-    this.glide = GlideApp.with(snackbarContainerActivity.getActivity())
+    val activity = snackbarContainerActivity.getActivity()
+    this.glide = GlideApp.with(activity)
     this.launcher = ActivityLauncher(snackbarContainerActivity)
+
+    val typedValue = TypedValue()
+    activity.theme.resolveAttribute(R.attr.primaryTextColor, typedValue, true)
+    primaryTextColor = typedValue.data
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,12 +46,13 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    holder.bindTo(getItem(position), glide, launcher)
+    holder.bindTo(getItem(position), primaryTextColor, glide, launcher)
   }
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bindTo(item: ActivityModel, glide: RequestManager, launcher: ActivityLauncher) {
+    fun bindTo(item: ActivityModel, primaryTextColor: Int,
+               glide: RequestManager, launcher: ActivityLauncher) {
       itemView.name.text = item.name
       itemView.packageName.text = item.componentName.shortClassName
 
@@ -53,12 +63,12 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
 
       val context = itemView.context
 
-      @ColorRes val color: Int = if (item.exported) {
-        android.R.color.black
+      @ColorInt val color: Int = if (item.exported) {
+        primaryTextColor
       } else {
-        R.color.red
+        ContextCompat.getColor(context, R.color.red)
       }
-      itemView.name.setTextColor(ContextCompat.getColor(context, color))
+      itemView.name.setTextColor(color)
 
       itemView.setOnClickListener { launcher.launchActivity(item) }
 

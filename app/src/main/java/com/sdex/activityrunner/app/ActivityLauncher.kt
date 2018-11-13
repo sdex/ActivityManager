@@ -1,12 +1,11 @@
 package com.sdex.activityrunner.app
 
 import android.app.Activity
-import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.intent.IntentBuilderActivity
-import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.activityrunner.util.IntentUtils
@@ -33,9 +32,8 @@ class ActivityLauncher(private val snackbarContainerActivity: SnackbarContainerA
   }
 
   private fun tryRunWithRoot(model: ActivityModel) {
-    val advancedPreferences = AdvancedPreferences(
-      PreferenceManager.getDefaultSharedPreferences(activity))
-    if (advancedPreferences.isRootIntegrationEnabled) {
+    val appPreferences = AppPreferences(activity)
+    if (appPreferences.isRootIntegrationEnabled) {
       val runActivityTask = RunActivityTask(model.componentName)
       runActivityTask.execute()
     } else {

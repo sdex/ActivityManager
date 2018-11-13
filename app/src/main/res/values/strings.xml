@@ -127,7 +127,10 @@
   <string name="rating_dialog_suggestions">Suggest us what went wrong and we\'ll work on it!</string>
 
   <!-- settings -->
-  <string name="pref_header_sort">Sorting</string>
+  <string name="pref_header_appearance">Appearance</string>
+  <string name="pref_appearance_theme_title">Theme</string>
+  <string name="pref_appearance_theme_summary">Set application theme</string>
+
   <string name="pref_header_advanced">Advanced</string>
   <string name="pref_advanced_system_apps_title">Show system app indicator</string>
   <string name="pref_advanced_system_apps_summary">Gray dot near app name</string>
@@ -135,9 +138,6 @@
   <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
   <string name="pref_advanced_root_integration_title">Allow ROOT operations</string>
   <string name="pref_advanced_root_integration_summary">Run any activity with root permission</string>
-  <string name="pref_sort_order">Sort order</string>
-  <string name="pref_sort_by">Sort by</string>
-  <string name="pref_case_sensitive">Case sensitive</string>
   <string name="settings_error_root_not_available">ROOT is not available</string>
   <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
   <string name="settings_error_root_not_active">You need to enable ROOT operations</string>
@@ -148,19 +148,11 @@
   <string name="root_check_compatibility_status_ok">OK. ROOT permission is granted</string>
   <string name="root_check_compatibility_status_fail">Failed to obtain permission. Is the device rooted?</string>
 
-  <string-array name="pref_sort_order_list_titles">
-    <item>Ascending</item>
-    <item>Descending</item>
+  <string-array name="pref_appearance_theme_list_titles">
+    <item>Light</item>
+    <item>Dark</item>
   </string-array>
-  <string-array name="pref_sort_order_list_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
-  <string-array name="pref_sort_by_list_titles">
-    <item>App name</item>
-    <item>Package name</item>
-  </string-array>
-  <string-array name="pref_sort_by_list_values">
+  <string-array name="pref_appearance_theme_list_values">
     <item>0</item>
     <item>1</item>
   </string-array>

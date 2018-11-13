@@ -7,9 +7,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.content.ComponentName
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import android.preference.PreferenceManager
 import android.support.annotation.WorkerThread
-import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -19,7 +18,7 @@ import java.util.*
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
 
   private val packageManager: PackageManager = application.packageManager
-  private val advancedPreferences: AdvancedPreferences = AdvancedPreferences(PreferenceManager.getDefaultSharedPreferences(application))
+  private val appPreferences: AppPreferences by lazy { AppPreferences(application) }
   private val liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
@@ -35,7 +34,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   @WorkerThread
   private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
     val list = ArrayList<ActivityModel>()
-    val showNotExported = advancedPreferences.showNotExported
+    val showNotExported = appPreferences.showNotExported
     try {
       val info = packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
       if (info.activities != null) {

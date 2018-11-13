@@ -16,11 +16,9 @@ class SettingsActivity : BaseActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableBackButton()
-    if (savedInstanceState == null) {
-      supportFragmentManager.beginTransaction()
-        .add(R.id.content, AdvancedPreferenceFragment())
-        .commit()
-    }
+    supportFragmentManager.beginTransaction()
+      .replace(R.id.content, SettingsFragment())
+      .commitNow()
   }
 
   companion object {

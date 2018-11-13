@@ -22,8 +22,10 @@ import com.sdex.activityrunner.extensions.doAfterMeasure
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.activityrunner.util.ThemeHelper
 import com.sdex.commons.content.ContentManager
 import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
@@ -31,12 +33,15 @@ import kotlinx.android.synthetic.main.activity_add_shortcut.*
 
 class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickContentListener {
 
+  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   private var contentManager: ContentManager? = null
   private var bitmap: Bitmap? = null
   private val toolTipsManager = ToolTipsManager()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    val themeHelper = ThemeHelper()
+    themeHelper.setDialogTheme(this, appPreferences.getTheme)
     setContentView(R.layout.activity_add_shortcut)
 
     val activityModel = intent?.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
@@ -68,7 +73,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       finish()
     }
 
-    create.setOnClickListener { _ ->
+    create.setOnClickListener {
       value_layout.error = null
       val shortcutName = label.text.toString()
       if (shortcutName.isBlank()) {

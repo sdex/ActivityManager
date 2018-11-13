@@ -22,10 +22,10 @@ import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.ads.AppPreferences
 import kotlinx.android.synthetic.main.activity_intent_builder.*
 import java.util.*
 import kotlin.properties.Delegates

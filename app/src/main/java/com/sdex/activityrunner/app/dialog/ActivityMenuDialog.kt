@@ -3,6 +3,7 @@ package com.sdex.activityrunner.app.dialog
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,9 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
   }
 
   override fun getTheme(): Int {
-    return R.style.BottomSheetDialogTheme
+    val typedValue = TypedValue()
+    activity!!.theme.resolveAttribute(R.attr.bottomDialogStyle, typedValue, true)
+    return typedValue.data
   }
 
   private fun showShortcutDialog(item: ActivityModel) {

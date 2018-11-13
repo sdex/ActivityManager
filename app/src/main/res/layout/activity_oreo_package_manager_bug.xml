@@ -13,6 +13,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:text="Instant app issue"
+    android:textColor="?attr/primaryTextColor"
     android:textSize="22sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +24,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:text="Instant apps cause a bug in Android 8.0 where the system returns an empty list when asked for all installed apps"
+    android:textColor="?attr/primaryTextColor"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +36,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:text="To fix this issue all instant apps have to be removed"
+    android:textColor="?attr/primaryTextColor"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +48,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:text="As a temporary workaround the application shows only a part of installed applications. We are working on better fix"
+    android:textColor="?attr/primaryTextColor"
     android:textSize="16sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +60,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     android:text="Issue tracker link:"
+    android:textColor="?attr/primaryTextColor"
     android:textSize="16sp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -76,11 +81,11 @@
     android:layout_width="wrap_content"
     android:layout_height="0dp"
     android:padding="5dp"
-    app:srcCompat="@drawable/img_oreo_instant_bug"
     app:layout_constraintBottom_toTopOf="@+id/openApps"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/textView10"
+    app:srcCompat="@drawable/img_oreo_instant_bug"
     tools:ignore="ContentDescription" />
 
   <Button

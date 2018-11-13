@@ -1,31 +1,5 @@
 <resources>
 
-  <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="windowNoTitle">true</item>
-    <item name="windowActionModeOverlay">true</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:windowBackground">@color/background</item>
-    <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-    <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogStyle</item>
-  </style>
-
-  <style name="AppTheme" parent="BaseTheme" />
-
-  <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-    <item name="android:windowCloseOnTouchOutside">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="windowActionBar">false</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-  </style>
-
-  <style name="AppBottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
-    <item name="bottomSheetStyle">@style/AppBottomSheetStyle</item>
-  </style>
-
   <style name="AppBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
     <item name="behavior_peekHeight">512dp</item>
   </style>
@@ -34,20 +8,10 @@
     <item name="colorAccent">@android:color/white</item>
   </style>
 
-  <style name="TranslucentTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowActionBar">false</item>
-    <item name="android:windowFullscreen">true</item>
-    <item name="android:windowContentOverlay">@null</item>
-    <item name="android:windowBackground">@android:color/transparent</item>
-    <item name="android:colorBackgroundCacheHint">@null</item>
-    <item name="android:windowAnimationStyle">@android:style/Animation</item>
-  </style>
-
   <style name="BottomDialogTextStyle" parent="TextAppearance.AppCompat">
     <item name="android:layout_height">wrap_content</item>
     <item name="android:layout_width">match_parent</item>
-    <item name="android:textColor">#737373</item>
+    <item name="android:textColor">?attr/bottomDialogTextColor</item>
     <item name="android:textSize">16sp</item>
     <item name="android:layout_gravity">center_vertical</item>
     <item name="android:maxLines">1</item>
@@ -57,13 +21,6 @@
   <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
     <item name="android:background">@drawable/background_bottom_dialog</item>
   </style>
-
-  <style name="Base.V0.BottomSheetDialogTheme" parent="@style/Theme.Design.Light.BottomSheetDialog">
-    <item name="android:windowIsFloating">false</item>
-    <item name="bottomSheetStyle">@style/BottomSheet</item>
-  </style>
-
-  <style name="BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme" />
 
   <style name="TooltipTextAppearance">
     <item name="android:textColor">@color/white</item>

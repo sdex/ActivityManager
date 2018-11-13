@@ -1,0 +1,29 @@
+<resources>
+
+  <style name="Base.V27.BottomSheetDialogTheme.Light" parent="Base.V21.BottomSheetDialogTheme">
+    <item name="android:navigationBarColor">@color/background_light</item>
+    <item name="android:windowLightNavigationBar">true</item>
+  </style>
+
+  <style name="Base.V27.BottomSheetDialogTheme.Dark" parent="Base.V21.BottomSheetDialogTheme">
+    <item name="android:navigationBarColor">@color/background_dark</item>
+    <item name="android:windowLightNavigationBar">false</item>
+  </style>
+
+  <style name="BottomSheetDialogTheme.Light" parent="Base.V27.BottomSheetDialogTheme.Light" />
+
+  <style name="BottomSheetDialogTheme.Dark" parent="Base.V27.BottomSheetDialogTheme.Dark" />
+
+  <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light">
+    <item name="android:windowLightNavigationBar">true</item>
+    <item name="android:navigationBarColor">@color/background_light</item>
+    <item name="android:navigationBarDividerColor">@color/list_divider_light</item>
+  </style>
+
+  <style name="AppTheme.Dark" parent="Base.V0.AppTheme.Dark">
+    <item name="android:windowLightNavigationBar">false</item>
+    <item name="android:navigationBarColor">@color/background_dark</item>
+    <item name="android:navigationBarDividerColor">@color/list_divider_dark</item>
+  </style>
+
+</resources>

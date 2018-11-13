@@ -1,7 +1,6 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.preference.PreferenceManager
 import android.support.v4.app.FragmentActivity
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
@@ -18,7 +17,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ApplicationMenuDialog
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
-import com.sdex.activityrunner.preferences.AdvancedPreferences
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import kotlinx.android.synthetic.main.item_application.view.*
 
@@ -27,12 +26,11 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
   FastScrollRecyclerView.SectionedAdapter {
 
   private val glide: RequestManager
-  private val advancedPreferences: AdvancedPreferences
+  private val appPreferences: AppPreferences
 
   init {
     this.glide = GlideApp.with(activity)
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-    this.advancedPreferences = AdvancedPreferences(sharedPreferences)
+    this.appPreferences = AppPreferences(activity)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
@@ -42,7 +40,7 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
   }
 
   override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-    holder.bindTo(getItem(position), glide, advancedPreferences)
+    holder.bindTo(getItem(position), glide, appPreferences)
   }
 
   override fun getSectionName(position: Int): String {
@@ -53,14 +51,14 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
   class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindTo(item: ApplicationModel, glide: RequestManager,
-               advancedPreferences: AdvancedPreferences) {
+               appPreferences: AppPreferences) {
       itemView.name.text = item.name
       itemView.packageName.text = item.packageName
 
       val context = itemView.context
 
       itemView.system.visibility =
-        if (item.system && advancedPreferences.isShowSystemAppIndicator) {
+        if (item.system && appPreferences.isShowSystemAppIndicator) {
           VISIBLE
         } else {
           INVISIBLE

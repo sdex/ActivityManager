@@ -4,15 +4,16 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.pddstudio.highlightjs.models.Language
-import com.pddstudio.highlightjs.models.Theme
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.activityrunner.util.ThemeHelper
 import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
@@ -40,8 +41,11 @@ class ManifestViewerActivity : BaseActivity() {
 
     progress.show()
 
+    val themeHelper = ThemeHelper()
+
+    highlightView.setBackgroundColor(Color.TRANSPARENT);
     highlightView.highlightLanguage = Language.XML
-    highlightView.theme = Theme.GITHUB_GIST
+    highlightView.theme = themeHelper.getWebViewTheme(currentTheme)
     highlightView.setShowLineNumbers(true)
     highlightView.setZoomSupportEnabled(true)
     highlightView.setOnContentChangedListener {

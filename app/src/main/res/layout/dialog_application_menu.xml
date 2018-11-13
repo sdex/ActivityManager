@@ -16,7 +16,7 @@
       android:layout_height="24dp"
       android:layout_margin="13dp"
       android:scaleType="center"
-      tools:src="@drawable/ic_launch" />
+      tools:src="@mipmap/ic_launcher" />
 
     <TextView
       android:id="@+id/applicationName"
@@ -49,7 +49,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      app:srcCompat="@drawable/ic_launch" />
+      app:srcCompat="@drawable/ic_application_launch" />
 
     <TextView
       style="@style/BottomDialogTextStyle"
@@ -68,7 +68,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      app:srcCompat="@drawable/ic_receipt" />
+      app:srcCompat="@drawable/ic_application_open_manifest" />
 
     <TextView
       style="@style/BottomDialogTextStyle"
@@ -87,7 +87,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      app:srcCompat="@drawable/ic_info_outline" />
+      app:srcCompat="@drawable/ic_application_open_info" />
 
     <TextView
       style="@style/BottomDialogTextStyle"
@@ -106,7 +106,7 @@
       android:layout_width="50dp"
       android:layout_height="50dp"
       android:scaleType="center"
-      app:srcCompat="@drawable/ic_google_play" />
+      app:srcCompat="@drawable/ic_application_open_play" />
 
     <TextView
       style="@style/BottomDialogTextStyle"

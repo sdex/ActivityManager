@@ -27,6 +27,7 @@
       android:layout_height="wrap_content"
       android:hint="@string/shortcut_name"
       android:inputType="text"
+      android:textColor="?attr/primaryTextColor"
       tools:ignore="Autofill" />
 
   </android.support.design.widget.TextInputLayout>
