@@ -48,7 +48,9 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     val historyModel = intent?.getSerializableExtra(ARG_HISTORY_MODEL) as HistoryModel?
 
     label.setText(activityModel?.name)
-    label.setSelection(label.text.length)
+    if (label.text != null) {
+      label.setSelection(label.text!!.length)
+    }
 
     GlideApp.with(this)
       .load(activityModel)
