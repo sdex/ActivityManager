@@ -11,6 +11,7 @@
   <include layout="@layout/toolbar" />
 
   <FrameLayout
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1">
@@ -19,10 +20,14 @@
       android:id="@+id/list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:fastScrollPopupBgColor="@color/blue"
-      app:fastScrollPopupTextColor="@color/white"
-      app:fastScrollThumbColor="@color/blue"
+      app:fastScrollEnableThumbInactiveColor="true"
+      app:fastScrollPopupBgColor="@color/colorAccent"
+      app:fastScrollPopupTextColor="@color/colorControlActivated"
+      app:fastScrollThumbColor="@color/colorAccent"
+      app:fastScrollThumbInactiveColor="?attr/scrollbarThumbInactiveColor"
+      app:fastScrollTrackColor="?attr/scrollbarBackgroundColor"
       app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+      tools:itemCount="15"
       tools:listitem="@layout/item_history"
       tools:visibility="gone" />
 

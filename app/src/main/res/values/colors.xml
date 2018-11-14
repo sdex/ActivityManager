@@ -30,6 +30,12 @@
   <color name="bottom_dialog_text_light">#737373</color>
   <color name="bottom_dialog_text_dark">#eeeeee</color>
 
+  <color name="scrollbar_background_light">#28000000</color>
+  <color name="scrollbar_background_dark">#2baaaaaa</color>
+
+  <color name="scrollbar_inactive_thumb_light">#79000000</color>
+  <color name="scrollbar_inactive_thumb_dark">#9caaaaaa</color>
+
   <color name="blue">#03A9F4</color>
   <color name="red">#f44336</color>
   <color name="yellow">#FFFF00</color>
