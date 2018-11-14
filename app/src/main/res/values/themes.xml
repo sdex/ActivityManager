@@ -23,6 +23,8 @@
     <item name="listDividerColor">@color/list_divider_light</item>
     <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Light</item>
     <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Light</item>
+    <item name="scrollbarBackgroundColor">@color/scrollbar_background_light</item>
+    <item name="scrollbarThumbInactiveColor">@color/scrollbar_inactive_thumb_light</item>
   </style>
 
   <style name="Base.V0.AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
@@ -45,6 +47,8 @@
     <item name="listDividerColor">@color/list_divider_dark</item>
     <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Dark</item>
     <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Dark</item>
+    <item name="scrollbarBackgroundColor">@color/scrollbar_background_dark</item>
+    <item name="scrollbarThumbInactiveColor">@color/scrollbar_inactive_thumb_dark</item>
   </style>
 
   <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light" />

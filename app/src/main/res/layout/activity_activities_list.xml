@@ -5,7 +5,8 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
-  tools:context=".MainActivity">
+  tools:context=".MainActivity"
+  tools:ignore="ContentDescription">
 
   <include layout="@layout/toolbar" />
 
@@ -19,13 +20,16 @@
       android:id="@+id/list"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:fastScrollPopupBgColor="@color/blue"
-      app:fastScrollPopupTextColor="@color/white"
-      app:fastScrollThumbColor="@color/blue"
+      app:fastScrollEnableThumbInactiveColor="true"
+      app:fastScrollPopupBgColor="@color/colorAccent"
+      app:fastScrollPopupTextColor="@color/colorControlActivated"
+      app:fastScrollThumbColor="@color/colorAccent"
+      app:fastScrollThumbInactiveColor="?attr/scrollbarThumbInactiveColor"
+      app:fastScrollTrackColor="?attr/scrollbarBackgroundColor"
       app:layoutManager="android.support.v7.widget.LinearLayoutManager"
       tools:itemCount="15"
       tools:listitem="@layout/item_activity"
-      tools:visibility="gone" />
+      tools:visibility="visible" />
 
     <LinearLayout
       android:id="@+id/empty"
@@ -35,7 +39,7 @@
       android:gravity="center"
       android:orientation="vertical"
       android:visibility="gone"
-      tools:visibility="visible">
+      tools:visibility="gone">
 
       <ImageView
         android:layout_width="56dp"

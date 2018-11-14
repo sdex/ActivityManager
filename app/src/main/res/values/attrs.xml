@@ -18,5 +18,7 @@
   <attr name="primaryButtonTheme" format="reference" />
   <attr name="popupOverlayStyle" format="reference" />
   <attr name="bottomDialogStyle" format="reference" />
+  <attr name="scrollbarBackgroundColor" format="reference" />
+  <attr name="scrollbarThumbInactiveColor" format="reference" />
 
 </resources>
