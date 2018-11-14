@@ -8,9 +8,5 @@ ext.versions = [
   room               : '1.1.1',
   paging             : '1.0.1',
   lifecycle          : '1.1.1',
-  glide              : '4.8.0',
-
-  fb_core            : '16.0.3',
-  fb_ads             : '15.0.1'
-
+  glide              : '4.8.0'
 ]
