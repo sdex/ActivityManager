@@ -11,7 +11,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
   playAccountConfigs {
     defaultAccountConfig {
-      jsonFile = file('key.json')
+      jsonFile = file('upload_key.json')
     }
   }
 
@@ -68,7 +68,7 @@ android {
   }
 
   play {
-    track = 'internal'
+    track = 'beta'
     uploadImages = false
   }
 
