@@ -29,7 +29,9 @@ class ExtraInputDialog : BaseDialogFragment() {
       view.valueLayout.isHintAnimationEnabled = false
       view.keyView.setText(initialExtra.key)
       view.valueView.setText(initialExtra.value)
-      view.keyView.setSelection(view.keyView.text.length)
+      if (view.keyView.text != null) {
+        view.keyView.setSelection(view.keyView.text!!.length)
+      }
       view.keyLayout.isHintAnimationEnabled = true
       view.valueLayout.isHintAnimationEnabled = true
       setSelectedType(view, initialExtra.type)
