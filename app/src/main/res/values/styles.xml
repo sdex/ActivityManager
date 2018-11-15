@@ -5,7 +5,7 @@
   </style>
 
   <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-    <item name="colorAccent">@android:color/white</item>
+    <item name="colorAccent">@color/white</item>
   </style>
 
   <style name="BottomDialogTextStyle" parent="TextAppearance.AppCompat">
