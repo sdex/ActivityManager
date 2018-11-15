@@ -36,6 +36,7 @@
   <color name="scrollbar_inactive_thumb_light">#79000000</color>
   <color name="scrollbar_inactive_thumb_dark">#9caaaaaa</color>
 
+  <color name="white">#fff</color>
   <color name="blue">#03A9F4</color>
   <color name="red">#f44336</color>
   <color name="yellow">#FFFF00</color>
