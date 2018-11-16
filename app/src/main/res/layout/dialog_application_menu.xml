@@ -36,7 +36,7 @@
   <View
     android:layout_width="match_parent"
     android:layout_height="1dp"
-    android:background="@drawable/list_divider" />
+    android:background="?android:attr/listDivider" />
 
   <LinearLayout
     android:id="@+id/action_open_app"

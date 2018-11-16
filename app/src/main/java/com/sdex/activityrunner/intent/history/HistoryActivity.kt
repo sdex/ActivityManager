@@ -49,7 +49,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
     adapter = HistoryListAdapter(this)
     adapter.setHasStableIds(true)
-    list.addDivider()
+    list.addDivider(this)
     list.setHasFixedSize(true)
     list.adapter = adapter
     registerForContextMenu(list)
