@@ -28,6 +28,7 @@ import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.activityrunner.service.ApplicationsListJob
 import com.sdex.commons.BaseActivity
+import com.sdex.commons.util.AppUtils
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -152,11 +153,17 @@ class MainActivity : BaseActivity() {
   }
 
   private fun showRatingDialog() {
-    val threshold = 1f
-    val sessions = 10
+    val threshold = 3f
+    val sessions = 1
     val ratingDialog = RatingDialog.Builder(this)
       .threshold(threshold)
       .session(sessions)
+      .onRatingBarFormSumbit {
+        AppUtils.sendEmail(this, AppUtils.EMAIL, "Feedback", it)
+      }
+      .ratingBarBackgroundColor(R.color.grey_200)
+      .ratingBarColor(R.color.darker_gray)
+      .feedbackTextColor(R.color.black)
       .build()
     ratingDialog.show()
   }
