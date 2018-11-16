@@ -40,7 +40,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
     }
     title = item.name
     enableBackButton()
-    list.addDivider()
+    list.addDivider(this)
     val adapter = ActivitiesListAdapter(this)
     list.adapter = adapter
 

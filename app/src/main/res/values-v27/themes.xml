@@ -10,9 +10,13 @@
     <item name="android:windowLightNavigationBar">false</item>
   </style>
 
-  <style name="BottomSheetDialogTheme.Light" parent="Base.V27.BottomSheetDialogTheme.Light" />
+  <style name="BottomSheetDialogTheme.Light" parent="Base.V27.BottomSheetDialogTheme.Light">
+    <item name="bottomSheetStyle">@style/BottomSheet.Light</item>
+  </style>
 
-  <style name="BottomSheetDialogTheme.Dark" parent="Base.V27.BottomSheetDialogTheme.Dark" />
+  <style name="BottomSheetDialogTheme.Dark" parent="Base.V27.BottomSheetDialogTheme.Dark">
+    <item name="bottomSheetStyle">@style/BottomSheet.Dark</item>
+  </style>
 
   <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light">
     <item name="android:windowLightNavigationBar">true</item>

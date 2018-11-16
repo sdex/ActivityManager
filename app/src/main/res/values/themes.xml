@@ -103,12 +103,15 @@
 
   <style name="Base.V0.BottomSheetDialogTheme" parent="@style/Theme.Design.Light.BottomSheetDialog">
     <item name="android:windowIsFloating">false</item>
-    <item name="bottomSheetStyle">@style/BottomSheet</item>
   </style>
 
-  <style name="BottomSheetDialogTheme.Light" parent="Base.V0.BottomSheetDialogTheme" />
+  <style name="BottomSheetDialogTheme.Light" parent="Base.V0.BottomSheetDialogTheme">
+    <item name="bottomSheetStyle">@style/BottomSheet.Light</item>
+  </style>
 
-  <style name="BottomSheetDialogTheme.Dark" parent="Base.V0.BottomSheetDialogTheme" />
+  <style name="BottomSheetDialogTheme.Dark" parent="Base.V0.BottomSheetDialogTheme">
+    <item name="bottomSheetStyle">@style/BottomSheet.Dark</item>
+  </style>
 
   <!-- end dialogs themes -->
 

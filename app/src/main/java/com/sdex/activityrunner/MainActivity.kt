@@ -67,7 +67,7 @@ class MainActivity : BaseActivity() {
 
     progress.show()
 
-    list.addDivider()
+    list.addDivider(this)
     list.adapter = adapter
 
     checkOreoBug()
