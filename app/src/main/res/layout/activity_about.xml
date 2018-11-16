@@ -28,85 +28,88 @@
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="8dp">
+          android:background="?attr/selectableItemBackground"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
 
-          <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
+          <ImageView
+            android:id="@+id/image_view_version"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_version" />
+
+          <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground">
+            android:text="@string/about_version"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_version"
+            app:layout_constraintStart_toEndOf="@+id/image_view_version" />
 
-            <ImageView
-              android:id="@+id/imageView2"
-              android:layout_width="@dimen/about_image_size"
-              android:layout_height="@dimen/about_image_size"
-              android:layout_margin="4dp"
-              android:padding="8dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_about_version" />
-
-            <TextView
-              android:id="@+id/textView11"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/about_version"
-              android:textColor="?attr/primaryTextColor"
-              app:layout_constraintBottom_toTopOf="@+id/guideline2"
-              app:layout_constraintStart_toEndOf="@+id/imageView2" />
-
-            <android.support.constraint.Guideline
-              android:id="@+id/guideline2"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              app:layout_constraintGuide_percent="0.5" />
-
-            <TextView
-              android:id="@+id/versionName"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:textColor="?attr/primaryTextColor"
-              app:layout_constraintStart_toEndOf="@+id/imageView2"
-              app:layout_constraintTop_toTopOf="@+id/guideline2"
-              tools:text="1.4.5 (145)" />
-
-          </android.support.constraint.ConstraintLayout>
-
-          <android.support.constraint.ConstraintLayout
-            android:id="@+id/rateApp"
-            android:layout_width="match_parent"
+          <android.support.constraint.Guideline
+            android:id="@+id/guideline_version"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground">
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
-            <ImageView
-              android:id="@+id/imageView3"
-              android:layout_width="@dimen/about_image_size"
-              android:layout_height="@dimen/about_image_size"
-              android:layout_margin="4dp"
-              android:padding="8dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_about_rate_app" />
+          <TextView
+            android:id="@+id/versionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintStart_toEndOf="@+id/image_view_version"
+            app:layout_constraintTop_toTopOf="@+id/guideline_version"
+            tools:text="1.4.5 (145)" />
 
-            <TextView
-              android:id="@+id/textView12"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/about_rate"
-              android:textColor="?attr/primaryTextColor"
-              app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-              app:layout_constraintStart_toEndOf="@+id/imageView3"
-              app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        </android.support.constraint.ConstraintLayout>
 
-          </android.support.constraint.ConstraintLayout>
+      </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
+        app:cardCornerRadius="1dp">
+
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/rateApp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+
+          <ImageView
+            android:id="@+id/image_view_rate"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_rate_app" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_rate"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_rate"
+            app:layout_constraintStart_toEndOf="@+id/image_view_rate"
+            app:layout_constraintTop_toTopOf="@+id/image_view_rate" />
+
+        </android.support.constraint.ConstraintLayout>
 
       </android.support.v7.widget.CardView>
 
@@ -122,10 +125,11 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
-          android:padding="8dp">
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
 
           <ImageView
-            android:id="@+id/imageView44"
+            android:id="@+id/image_view_donate"
             android:layout_width="@dimen/about_image_size"
             android:layout_height="@dimen/about_image_size"
             android:layout_margin="4dp"
@@ -137,14 +141,13 @@
             app:srcCompat="@drawable/ic_about_support_development" />
 
           <TextView
-            android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/purchase_activity"
             android:textColor="?attr/primaryTextColor"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView44"
-            app:layout_constraintStart_toEndOf="@+id/imageView44"
-            app:layout_constraintTop_toTopOf="@+id/imageView44" />
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_donate"
+            app:layout_constraintStart_toEndOf="@+id/image_view_donate"
+            app:layout_constraintTop_toTopOf="@+id/image_view_donate" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -157,71 +160,128 @@
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/feedback"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="8dp">
+          android:background="?attr/selectableItemBackground"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
 
-          <android.support.constraint.ConstraintLayout
-            android:id="@+id/openSource"
-            android:layout_width="match_parent"
+          <ImageView
+            android:id="@+id/image_view_feedback"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_feedback" />
+
+          <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground">
+            android:text="@string/about_contact_email"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_feedback"
+            app:layout_constraintStart_toEndOf="@+id/image_view_feedback" />
 
-            <ImageView
-              android:id="@+id/imageView5"
-              android:layout_width="@dimen/about_image_size"
-              android:layout_height="@dimen/about_image_size"
-              android:layout_margin="4dp"
-              android:padding="8dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_about_open_source" />
-
-            <TextView
-              android:id="@+id/textView15"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/about_open_source"
-              android:textColor="?attr/primaryTextColor"
-              app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-              app:layout_constraintStart_toEndOf="@+id/imageView5"
-              app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-          </android.support.constraint.ConstraintLayout>
-
-          <android.support.constraint.ConstraintLayout
-            android:id="@+id/privacyPolicy"
-            android:layout_width="match_parent"
+          <android.support.constraint.Guideline
+            android:id="@+id/guideline_feedback"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground">
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
-            <ImageView
-              android:id="@+id/imageView6"
-              android:layout_width="@dimen/about_image_size"
-              android:layout_height="@dimen/about_image_size"
-              android:layout_margin="4dp"
-              android:padding="8dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/ic_about_privacy_policy" />
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_feedback"
+            android:textColor="?attr/secondaryTextColor"
+            app:layout_constraintStart_toEndOf="@+id/image_view_feedback"
+            app:layout_constraintTop_toTopOf="@+id/guideline_feedback" />
 
-            <TextView
-              android:id="@+id/textView16"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/about_open_privacy_policy"
-              android:textColor="?attr/primaryTextColor"
-              app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-              app:layout_constraintStart_toEndOf="@+id/imageView6"
-              app:layout_constraintTop_toTopOf="@+id/imageView6" />
+        </android.support.constraint.ConstraintLayout>
 
-          </android.support.constraint.ConstraintLayout>
+      </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
+        app:cardCornerRadius="1dp">
+
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/openSource"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+
+          <ImageView
+            android:id="@+id/image_view_open_source"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_open_source" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_open_source"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_open_source"
+            app:layout_constraintStart_toEndOf="@+id/image_view_open_source"
+            app:layout_constraintTop_toTopOf="@+id/image_view_open_source" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+      </android.support.v7.widget.CardView>
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
+        app:cardCornerRadius="1dp">
+
+        <android.support.constraint.ConstraintLayout
+          android:id="@+id/privacyPolicy"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+
+          <ImageView
+            android:id="@+id/image_view_privacy_policy"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_privacy_policy" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_open_privacy_policy"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_privacy_policy"
+            app:layout_constraintStart_toEndOf="@+id/image_view_privacy_policy"
+            app:layout_constraintTop_toTopOf="@+id/image_view_privacy_policy" />
+
+        </android.support.constraint.ConstraintLayout>
 
       </android.support.v7.widget.CardView>
 

@@ -32,6 +32,10 @@ class AboutActivity : BaseActivity() {
       PurchaseActivity.start(this)
     }
 
+    feedback.setOnClickListener {
+      AppUtils.sendFeedback(this)
+    }
+
     openSource.setOnClickListener {
       LicensesDialog.Builder(this)
         .setNotices(R.raw.notices)
