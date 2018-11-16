@@ -21,7 +21,7 @@ android {
     applicationId "com.activitymanager"
     minSdkVersion 15
     targetSdkVersion 28
-    versionCode 300
+    versionCode 301
     versionName "3.0.0"
 
     multiDexEnabled true

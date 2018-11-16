@@ -154,7 +154,7 @@ class MainActivity : BaseActivity() {
 
   private fun showRatingDialog() {
     val threshold = 3f
-    val sessions = 1
+    val sessions = 10
     val ratingDialog = RatingDialog.Builder(this)
       .threshold(threshold)
       .session(sessions)
