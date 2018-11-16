@@ -58,8 +58,7 @@
   <!-- premium -->
   <string name="purchase_activity">Support development</string>
   <string name="pro_version_title">Activity Manager Premium</string>
-  <string name="pro_version_ads">&#x2022; Ad-Free experience</string>
-  <string name="pro_version_extras">&#x2022; Unlimited extra parameters</string>
+  <string name="pro_version_extras">&#x2022; Unlimited Intent extra parameters</string>
   <string name="pro_version_history">&#x2022; Unlimited history</string>
   <string name="pro_version_root">&#x2022; Integration with ROOT</string>
   <string name="pro_version_shortcut">&#x2022; Shortcuts for any Intent</string>
@@ -82,7 +81,8 @@
   <string name="about_more_apps">More apps</string>
   <string name="about_version">Version</string>
   <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
-  <string name="about_contact_email">Contact me</string>
+  <string name="about_contact_email">Send feedback</string>
+  <string name="about_feedback">Report a problem, aks a question…</string>
   <string name="about_open_source">Open source libraries</string>
   <string name="about_open_privacy_policy">Privacy policy</string>
 
