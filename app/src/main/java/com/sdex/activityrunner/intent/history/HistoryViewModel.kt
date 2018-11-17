@@ -9,8 +9,8 @@ import android.arch.paging.PagedList
 import com.sdex.activityrunner.db.history.HistoryDatabase
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.preferences.AppPreferences
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -29,13 +29,13 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
   }
 
   fun deleteItem(model: HistoryModel) {
-    async(CommonPool) {
+    GlobalScope.launch {
       database.historyModelDao.delete(model)
     }
   }
 
   fun clear() {
-    async(CommonPool) {
+    GlobalScope.launch {
       database.historyModelDao.clean()
     }
   }

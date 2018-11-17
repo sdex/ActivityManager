@@ -5,8 +5,8 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -15,7 +15,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
   val packages: MutableLiveData<List<PackageInfo>>
     get() {
-      async(UI) {
+      GlobalScope.launch {
         val list = loadPackages()
         liveData.postValue(list)
       }
