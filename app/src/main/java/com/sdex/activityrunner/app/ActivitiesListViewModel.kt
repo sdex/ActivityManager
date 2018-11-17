@@ -9,10 +9,10 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.support.annotation.WorkerThread
 import com.sdex.activityrunner.preferences.AppPreferences
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
@@ -22,11 +22,11 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   private val liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
-    val deferred = async(CommonPool) {
-      getActivitiesList(packageName)
-    }
-    launch(UI) {
-      liveData.value = deferred.await()
+    GlobalScope.launch {
+      val activitiesList = getActivitiesList(packageName)
+      withContext(Dispatchers.Main) {
+        liveData.value = activitiesList
+      }
     }
     return liveData
   }
