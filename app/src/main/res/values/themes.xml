@@ -55,6 +55,10 @@
 
   <style name="AppTheme.Dark" parent="Base.V0.AppTheme.Dark" />
 
+  <style name="AppTheme.Dark.Black" parent="AppTheme.Dark">
+    <item name="primaryBackgroundColor">@color/black</item>
+  </style>
+
   <style name="TranslucentTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowActionBar">false</item>
