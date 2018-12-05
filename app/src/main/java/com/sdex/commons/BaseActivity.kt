@@ -19,7 +19,7 @@ abstract class BaseActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     val themeHelper = ThemeHelper()
     currentTheme = appPreferences.getTheme
-    themeHelper.setTheme(this, currentTheme)
+    themeHelper.setTheme(this, currentTheme, appPreferences.isBlackTheme)
     setContentView(getLayout())
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     if (toolbar != null) {

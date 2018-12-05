@@ -32,6 +32,12 @@
       android:summary="@string/pref_appearance_theme_summary"
       android:title="@string/pref_appearance_theme_title" />
 
+    <android.support.v7.preference.CheckBoxPreference
+      android:defaultValue="false"
+      android:key="appearance_theme_black"
+      android:summary="For AMOLED screens"
+      android:title="True black color" />
+
   </android.support.v7.preference.PreferenceCategory>
 
 </android.support.v7.preference.PreferenceScreen>
