@@ -43,7 +43,7 @@ class ManifestViewerActivity : BaseActivity() {
 
     val themeHelper = ThemeHelper()
 
-    highlightView.setBackgroundColor(Color.TRANSPARENT);
+    highlightView.setBackgroundColor(Color.TRANSPARENT)
     highlightView.highlightLanguage = Language.XML
     highlightView.theme = themeHelper.getWebViewTheme(currentTheme)
     highlightView.setShowLineNumbers(true)
