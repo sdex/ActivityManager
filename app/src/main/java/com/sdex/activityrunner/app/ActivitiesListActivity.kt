@@ -16,6 +16,7 @@ import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.commons.BaseActivity
+import com.sdex.commons.analytics.AnalyticsManager
 import kotlinx.android.synthetic.main.activity_activities_list.*
 
 class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
@@ -93,6 +94,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
     const val ARG_APPLICATION = "arg_application"
 
     fun start(context: Context, item: ApplicationModel) {
+      AnalyticsManager.logApplicationOpen(item)
       val starter = Intent(context, ActivitiesListActivity::class.java)
       starter.putExtra(ARG_APPLICATION, item)
       context.startActivity(starter)

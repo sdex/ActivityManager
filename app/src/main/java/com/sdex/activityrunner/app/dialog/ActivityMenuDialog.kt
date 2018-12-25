@@ -12,6 +12,7 @@ import com.sdex.activityrunner.app.ActivityLauncher
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
+import com.sdex.commons.analytics.AnalyticsManager
 import kotlinx.android.synthetic.main.dialog_activity_menu.*
 
 class ActivityMenuDialog : BottomSheetDialogFragment() {
@@ -41,6 +42,7 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
 
     activity_name.text = model.name
     action_activity_add_shortcut.setOnClickListener {
+      AnalyticsManager.logCreateShortcut(model)
       showShortcutDialog(model)
       dismiss()
     }
