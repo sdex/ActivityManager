@@ -14,9 +14,14 @@ class GetApplicationsQuery(private val searchText: String?) {
     queryStringBuilder.append("WHERE ")
       .append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ")
     if (!searchText.isNullOrEmpty()) {
-      val escapedSearchText = searchText!!.replace("'", "''")
-      queryStringBuilder.append(" AND ").append(ApplicationModel.NAME)
+      val escapedSearchText = searchText.replace("'", "''")
+      queryStringBuilder.append("AND (")
+        .append(ApplicationModel.NAME)
         .append(" LIKE '%").append(escapedSearchText).append("%' ")
+        .append("OR ")
+        .append(ApplicationModel.PACKAGE_NAME)
+        .append(" LIKE '%").append(escapedSearchText).append("%' ")
+        .append(") ")
     }
     queryStringBuilder.append("ORDER BY ").append(sortBy).append(" ")
       .append(sortCaseSensitive).append(" ").append(sortOrder)
