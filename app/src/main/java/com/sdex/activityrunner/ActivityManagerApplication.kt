@@ -3,6 +3,8 @@ package com.sdex.activityrunner
 import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
+import android.util.Log
+import com.flurry.android.FlurryAgent
 
 class ActivityManagerApplication : Application() {
 
@@ -18,6 +20,12 @@ class ActivityManagerApplication : Application() {
 //        .penaltyLog()
 //        .build())
 //    }
+
+    FlurryAgent.Builder()
+      .withLogEnabled(true)
+      .withCaptureUncaughtExceptions(true)
+      .withLogLevel(Log.VERBOSE)
+      .build(this, "HMVT99FMRW22SXSSRQRQ")
   }
 
   override fun attachBaseContext(base: Context) {
