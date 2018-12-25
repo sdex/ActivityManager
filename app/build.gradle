@@ -113,7 +113,7 @@ dependencies {
   implementation 'de.psdev.licensesdialog:licensesdialog:1.8.3'
   implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   implementation "com.pddstudio:highlightjs-android:1.5.0"
-  implementation "com.simplecityapps:recyclerview-fastscroll:1.0.18"
+  implementation "com.simplecityapps:recyclerview-fastscroll:1.0.20"
   implementation 'com.tomergoldst.android:tooltips:1.0.10'
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

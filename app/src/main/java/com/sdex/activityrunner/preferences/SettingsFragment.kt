@@ -38,7 +38,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     val themePreference = findPreference(AppPreferences.KEY_THEME)
-    themePreference.setOnPreferenceChangeListener { _, newValue ->
+    themePreference.setOnPreferenceChangeListener { _, _ ->
       activity?.recreate()
       return@setOnPreferenceChangeListener true
     }
