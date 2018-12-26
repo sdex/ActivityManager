@@ -45,7 +45,7 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
 
   override fun getSectionName(position: Int): String {
     val name = getItem(position).name
-    return if (name.isNullOrEmpty()) "" else name!!.first().toUpperCase().toString()
+    return if (name.isNullOrEmpty()) "" else name.first().toUpperCase().toString()
   }
 
   class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
