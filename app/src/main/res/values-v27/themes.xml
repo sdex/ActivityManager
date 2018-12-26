@@ -34,6 +34,7 @@
     <item name="android:windowBackground">@color/black</item>
     <item name="primaryBackgroundColor">@color/black</item>
     <item name="secondaryBackgroundColor">@color/black</item>
+    <item name="android:navigationBarColor">@color/black</item>
   </style>
 
 </resources>

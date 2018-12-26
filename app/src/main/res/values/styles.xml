@@ -20,10 +20,12 @@
 
   <style name="BottomSheet.Light" parent="@style/Widget.Design.BottomSheet.Modal">
     <item name="android:background">@drawable/background_bottom_dialog_light</item>
+    <item name="listDividerColor">@color/list_divider_light</item>
   </style>
 
   <style name="BottomSheet.Dark" parent="@style/Widget.Design.BottomSheet.Modal">
     <item name="android:background">@drawable/background_bottom_dialog_dark</item>
+    <item name="listDividerColor">@color/list_divider_dark</item>
   </style>
 
   <style name="TooltipTextAppearance">
