@@ -35,8 +35,8 @@
     <android.support.v7.preference.CheckBoxPreference
       android:defaultValue="false"
       android:key="appearance_theme_black"
-      android:summary="For AMOLED screens"
-      android:title="True black color" />
+      android:summary="@string/pref_appearance_theme_black_summary"
+      android:title="@string/pref_appearance_theme_black_title" />
 
   </android.support.v7.preference.PreferenceCategory>
 
