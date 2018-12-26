@@ -39,6 +39,7 @@
   <string name="action_clear_history">Clear history</string>
   <string name="action_search">Search</string>
   <string name="action_search_hint">Application name</string>
+  <string name="action_search_activity_hint">Activity name</string>
   <string name="action_settings">Settings</string>
 
   <string name="launch_param_package_name">Package name</string>

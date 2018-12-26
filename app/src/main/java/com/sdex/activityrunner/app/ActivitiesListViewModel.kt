@@ -7,12 +7,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.content.ComponentName
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import android.support.annotation.WorkerThread
+import android.util.Log
 import com.sdex.activityrunner.preferences.AppPreferences
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.util.*
 
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
@@ -20,39 +17,58 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   private val packageManager: PackageManager = application.packageManager
   private val appPreferences: AppPreferences by lazy { AppPreferences(application) }
   private val liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
+  private var job: Job? = null
 
-  fun getItems(packageName: String): LiveData<List<ActivityModel>> {
-    GlobalScope.launch {
-      val activitiesList = getActivitiesList(packageName)
+  fun getItems(packageName: String, searchText: String?): LiveData<List<ActivityModel>> {
+    job?.cancel()
+    Log.d("ActivitiesListViewModel", "get items: searchText=$searchText")
+    job = GlobalScope.launch {
+      val list = ArrayList<ActivityModel>()
+      val showNotExported = appPreferences.showNotExported
+      try {
+        val info = packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
+        if (info.activities != null) {
+          if (!searchText.isNullOrEmpty()) {
+            for (activityInfo in info.activities) {
+              if (!isActive) {
+                break
+              }
+              val activityModel = getActivityModel(packageManager, activityInfo)
+              if (activityModel.className.contains(searchText, true) ||
+                activityModel.name.contains(searchText, true)) {
+                if (activityModel.exported) {
+                  list.add(activityModel)
+                } else if (showNotExported) {
+                  list.add(activityModel)
+                }
+              }
+            }
+          } else {
+            for (activityInfo in info.activities) {
+              if (!isActive) {
+                break
+              }
+              val activityModel = getActivityModel(packageManager, activityInfo)
+              if (activityModel.exported) {
+                list.add(activityModel)
+              } else if (showNotExported) {
+                list.add(activityModel)
+              }
+            }
+          }
+        }
+      } catch (e: Exception) {
+        e.printStackTrace()
+      }
+      list.sortBy { it.name }
+      Log.d("ActivitiesListViewModel", "items loaded")
+
       withContext(Dispatchers.Main) {
-        liveData.value = activitiesList
+        Log.d("ActivitiesListViewModel", "set items")
+        liveData.value = list
       }
     }
     return liveData
-  }
-
-  @WorkerThread
-  private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
-    val list = ArrayList<ActivityModel>()
-    val showNotExported = appPreferences.showNotExported
-    try {
-      val info = packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
-      if (info.activities != null) {
-        for (activityInfo in info.activities) {
-          val activityModel = getActivityModel(packageManager, activityInfo)
-          activityModel.exported = activityInfo.exported && activityInfo.isEnabled
-          if (activityModel.exported) {
-            list.add(activityModel)
-          } else if (showNotExported) {
-            list.add(activityModel)
-          }
-        }
-      }
-    } catch (e: Exception) {
-      e.printStackTrace()
-    }
-    list.sortBy { it.name }
-    return list
   }
 
   private fun getActivityModel(pm: PackageManager, activityInfo: ActivityInfo): ActivityModel {
@@ -71,6 +87,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
       }
     }
     return ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
-      activityInfo.exported)
+      activityInfo.exported && activityInfo.isEnabled)
   }
 }
