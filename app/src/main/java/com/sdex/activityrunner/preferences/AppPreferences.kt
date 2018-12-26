@@ -53,7 +53,10 @@ class AppPreferences(context: Context) {
 
   val getTheme: String?
     get() = advancedPreferences.getString(KEY_THEME, KEY_THEME_DEFAULT)
-  
+
+  val isBlackTheme: Boolean
+    get() = advancedPreferences.getBoolean(KEY_THEME_BLACK, KEY_THEME_BLACK_DEFAULT)
+
   companion object {
 
     private const val PREFERENCES_NAME = "ads_preferences"
@@ -70,5 +73,7 @@ class AppPreferences(context: Context) {
     private const val KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT = false
     const val KEY_THEME = "appearance_theme"
     private const val KEY_THEME_DEFAULT = "0"
+    const val KEY_THEME_BLACK = "appearance_theme_black"
+    private const val KEY_THEME_BLACK_DEFAULT = false
   }
 }

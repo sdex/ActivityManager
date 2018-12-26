@@ -55,6 +55,12 @@
 
   <style name="AppTheme.Dark" parent="Base.V0.AppTheme.Dark" />
 
+  <style name="AppTheme.Dark.Black" parent="AppTheme.Dark">
+    <item name="android:windowBackground">@color/black</item>
+    <item name="primaryBackgroundColor">@color/black</item>
+    <item name="secondaryBackgroundColor">@color/black</item>
+  </style>
+
   <style name="TranslucentTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowActionBar">false</item>
@@ -74,6 +80,7 @@
   <!-- dialogs themes -->
 
   <style name="AppDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="android:background">@color/background_light</item>
     <item name="android:windowCloseOnTouchOutside">false</item>
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
@@ -86,6 +93,7 @@
   </style>
 
   <style name="AppDialogTheme.Dark" parent="Theme.AppCompat.Dialog.Alert">
+    <item name="android:background">@color/background_dark</item>
     <item name="android:windowCloseOnTouchOutside">false</item>
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
