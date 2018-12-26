@@ -22,8 +22,9 @@ class ActivityManagerApplication : Application() {
 //    }
 
     FlurryAgent.Builder()
-      .withLogEnabled(true)
+      .withIncludeBackgroundSessionsInMetrics(false)
       .withCaptureUncaughtExceptions(true)
+      .withLogEnabled(BuildConfig.DEBUG)
       .withLogLevel(Log.VERBOSE)
       .build(this, "HMVT99FMRW22SXSSRQRQ")
   }
@@ -32,5 +33,4 @@ class ActivityManagerApplication : Application() {
     super.attachBaseContext(base)
     MultiDex.install(this)
   }
-
 }
