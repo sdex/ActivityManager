@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.preferences
 
 import android.os.Bundle
+import android.support.v7.preference.ListPreference
 import android.support.v7.preference.PreferenceFragmentCompat
 import android.support.v7.preference.SwitchPreferenceCompat
 import android.widget.Toast
@@ -8,6 +9,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.root.GetRootDialog
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.CheckRootTask
+import com.sdex.activityrunner.util.ThemeHelper
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -37,8 +39,17 @@ class SettingsFragment : PreferenceFragmentCompat() {
       }
     }
 
-    val themePreference = findPreference(AppPreferences.KEY_THEME)
+    val themePreference = findPreference(AppPreferences.KEY_THEME) as ListPreference
     themePreference.setOnPreferenceChangeListener { _, _ ->
+      activity?.recreate()
+      return@setOnPreferenceChangeListener true
+    }
+
+    val blackThemePreference = findPreference(AppPreferences.KEY_THEME_BLACK)
+    val isDarkTheme = themePreference.value.toInt() == ThemeHelper.DARK_THEME
+    blackThemePreference.isEnabled = isDarkTheme
+
+    blackThemePreference.setOnPreferenceChangeListener { _, _ ->
       activity?.recreate()
       return@setOnPreferenceChangeListener true
     }

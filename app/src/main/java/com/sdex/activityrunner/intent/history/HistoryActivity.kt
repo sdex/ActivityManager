@@ -102,8 +102,6 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
   private fun showShortcutDialog(historyModel: HistoryModel) {
     if (appPreferences.isProVersion) {
-//      val dialog = AddShortcutDialogFragment.newInstance(historyModel)
-//      dialog.show(supportFragmentManager, AddShortcutDialogFragment.TAG)
       AddShortcutDialogActivity.start(this, historyModel)
     } else {
       val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_intent_shortcuts)

@@ -52,23 +52,35 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       label.setSelection(label.text!!.length)
     }
 
-    GlideApp.with(this)
-      .load(activityModel)
-      .error(R.mipmap.ic_launcher)
-      .apply(RequestOptions().centerCrop())
-      .into(object : SimpleTarget<Drawable>() {
-        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-          bitmap = resource.toBitmap()
-          icon.setImageDrawable(resource)
-          showTooltip()
-        }
-      })
+    if (activityModel != null) {
+      GlideApp.with(this)
+        .load(activityModel)
+        .error(R.mipmap.ic_launcher)
+        .apply(RequestOptions().centerCrop())
+        .into(object : SimpleTarget<Drawable>() {
+          override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+            bitmap = resource.toBitmap()
+            icon.setImageDrawable(resource)
+            showTooltip()
+          }
+        })
+    }
+
+    if (historyModel != null) {
+      icon.setImageResource(R.mipmap.ic_launcher)
+    }
 
     contentManager = ContentManager(this, this)
 
     icon.setOnClickListener {
       toolTipsManager.dismissAll()
-      contentManager?.pickContent(ContentManager.Content.IMAGE)
+      if (activityModel != null) {
+        contentManager?.pickContent(ContentManager.Content.IMAGE)
+      } else {
+        Toast.makeText(this,
+          "Custom icon is not supported for Intent shortcut yet. Only for activity",
+          Toast.LENGTH_LONG).show()
+      }
     }
 
     cancel.setOnClickListener {
@@ -82,18 +94,18 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
         value_layout.error = getString(R.string.shortcut_name_empty)
         return@setOnClickListener
       }
-      if (bitmap != null) {
-        activityModel?.let {
+
+      activityModel?.let {
+        activityModel.name = shortcutName
+        if (bitmap != null) {
           IntentUtils.createLauncherIcon(this, activityModel, bitmap!!)
-        }
-      } else {
-        activityModel?.let {
-          activityModel.name = shortcutName
+        } else {
           IntentUtils.createLauncherIcon(this, activityModel)
         }
-        historyModel?.let {
-          createHistoryModelShortcut(historyModel, shortcutName)
-        }
+      }
+
+      historyModel?.let {
+        createHistoryModelShortcut(historyModel, shortcutName)
       }
 
       finish()
