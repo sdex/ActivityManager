@@ -21,10 +21,8 @@ android {
     applicationId "com.activitymanager"
     minSdkVersion 16
     targetSdkVersion 28
-    versionCode 311
+    versionCode 312
     versionName "3.1.0"
-
-    multiDexEnabled true
 
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -90,13 +88,11 @@ dependencies {
   implementation "com.android.support:appcompat-v7:$versions.support"
   implementation "com.android.support:preference-v7:$versions.support"
   implementation "com.android.support:support-vector-drawable:$versions.support"
-  implementation "com.android.support:support-media-compat:$versions.support"
   implementation "com.android.support:customtabs:$versions.support"
   implementation "com.android.support:recyclerview-v7:$versions.support"
   implementation "com.android.support:cardview-v7:$versions.support"
   implementation "com.android.support:design:$versions.support"
   implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
-  implementation "com.android.support:multidex:1.0.3"
 
   implementation "android.arch.paging:runtime:$versions.paging"
 
