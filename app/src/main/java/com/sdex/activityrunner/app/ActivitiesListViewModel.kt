@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.ComponentName
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,7 +20,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
 
   fun getItems(packageName: String, searchText: String?): LiveData<List<ActivityModel>> {
     job?.cancel()
-    Log.d("ActivitiesListViewModel", "get items: searchText=$searchText")
     job = GlobalScope.launch {
       val list = ArrayList<ActivityModel>()
       val showNotExported = appPreferences.showNotExported
@@ -61,20 +59,19 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
         e.printStackTrace()
       }
       list.sortBy { it.name }
-      Log.d("ActivitiesListViewModel", "items loaded")
 
       withContext(Dispatchers.Main) {
-        Log.d("ActivitiesListViewModel", "set items")
         liveData.value = list
       }
     }
     return liveData
   }
 
-  fun reloadItems(packageName: String) {
+  fun reloadItems(packageName: String, searchText: String?) {
     GlobalScope.launch {
-      val activitiesList = getActivitiesList(packageName)
-      liveData.postValue(activitiesList)
+      val activitiesList = getItems(packageName, searchText)
+//      liveData.postValue(activitiesList)
+      TODO("not implemented")
     }
   }
 
