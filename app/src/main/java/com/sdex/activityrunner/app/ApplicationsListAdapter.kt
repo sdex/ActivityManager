@@ -1,15 +1,14 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -21,7 +20,7 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import kotlinx.android.synthetic.main.item_application.view.*
 
-class ApplicationsListAdapter(activity: androidx.fragment.app.FragmentActivity) : ListAdapter<ApplicationModel,
+class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<ApplicationModel,
   ApplicationsListAdapter.AppViewHolder>(DIFF_CALLBACK),
   FastScrollRecyclerView.SectionedAdapter {
 

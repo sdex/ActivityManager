@@ -1,20 +1,20 @@
 package com.sdex.activityrunner.db.cache
 
 import androidx.lifecycle.LiveData
-import androidx.sqlite.db.SupportSQLiteQuery
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 
 @Dao
 interface ApplicationModelDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(model: List<ApplicationModel>) : List<Long>
+  fun insert(model: List<ApplicationModel>): List<Long>
 
   @Update(onConflict = OnConflictStrategy.REPLACE)
-  fun update(models: List<ApplicationModel>) : Int
+  fun update(models: List<ApplicationModel>): Int
 
   @Delete
-  fun delete(models: List<ApplicationModel>) : Int
+  fun delete(models: List<ApplicationModel>): Int
 
   @RawQuery(observedEntities = [(ApplicationModel::class)])
   fun getApplicationModels(query: SupportSQLiteQuery): LiveData<List<ApplicationModel>>

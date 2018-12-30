@@ -1,16 +1,16 @@
 package com.sdex.activityrunner.intent
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import kotlinx.android.synthetic.main.item_launch_param_extra.view.*
 import java.util.*
 
-class LaunchParamsExtraListAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<LaunchParamsExtraListAdapter.ViewHolder>() {
+class LaunchParamsExtraListAdapter : RecyclerView.Adapter<LaunchParamsExtraListAdapter.ViewHolder>() {
 
   private var items: List<LaunchParamsExtra> = ArrayList()
   private var viewMode = false

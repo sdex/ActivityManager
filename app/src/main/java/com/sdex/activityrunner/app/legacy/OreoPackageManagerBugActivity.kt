@@ -8,7 +8,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.preferences.AppPreferences
 import kotlinx.android.synthetic.main.activity_oreo_package_manager_bug.*
 
-class OreoPackageManagerBugActivity : androidx.fragment.app.FragmentActivity() {
+class OreoPackageManagerBugActivity : FragmentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

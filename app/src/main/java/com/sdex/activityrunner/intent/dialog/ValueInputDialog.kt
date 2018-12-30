@@ -3,9 +3,9 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AlertDialog
 import com.sdex.activityrunner.R
 import com.sdex.commons.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_input_value.view.*

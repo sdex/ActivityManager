@@ -1,11 +1,11 @@
 package com.sdex.activityrunner.preferences
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.preference.CheckBoxPreference
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import android.widget.Toast
-import androidx.preference.CheckBoxPreference
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.root.GetRootDialog
 import com.sdex.activityrunner.premium.GetPremiumDialog

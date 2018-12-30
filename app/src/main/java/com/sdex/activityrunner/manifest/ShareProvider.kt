@@ -5,9 +5,9 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
-import android.widget.Toast
 import com.sdex.activityrunner.BuildConfig
 import java.io.File
 
