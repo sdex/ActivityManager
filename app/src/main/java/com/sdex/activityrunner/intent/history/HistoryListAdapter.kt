@@ -1,17 +1,17 @@
 package com.sdex.activityrunner.intent.history
 
-import android.arch.paging.PagedListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.view.ContextMenu.ContextMenuInfo
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.param.None
 import kotlinx.android.synthetic.main.item_history.view.*
 
-class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
-  : PagedListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class HistoryListAdapter(private val callback: HistoryListAdapter.Callback) :
+  PagedListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
   var contextMenuItemPosition: Int = 0
 
@@ -72,7 +72,7 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
     }
 
     private fun getValueOrPlaceholder(value: String?): String {
-      return if (value.isNullOrEmpty()) None.VALUE else value!!
+      return if (value.isNullOrEmpty()) None.VALUE else value
     }
 
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {

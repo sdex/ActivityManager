@@ -5,8 +5,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.LaunchParams
 import com.sdex.activityrunner.intent.converter.LaunchParamsToWebIntentConverter

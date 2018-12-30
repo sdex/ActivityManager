@@ -1,7 +1,7 @@
 package com.sdex.activityrunner.db.history
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
@@ -19,4 +19,16 @@ class HistoryModel : Serializable {
   var categories: String? = null
   var flags: String? = null
   var extras: String? = null
+
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+    other as HistoryModel
+    if (id != other.id) return false
+    return true
+  }
+
+  override fun hashCode(): Int {
+    return id
+  }
 }

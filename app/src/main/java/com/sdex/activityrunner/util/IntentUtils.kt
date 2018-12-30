@@ -8,12 +8,12 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.support.annotation.DrawableRes
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.IconCompat
-import android.support.v7.app.AlertDialog
 import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AlertDialog
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException

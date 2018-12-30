@@ -11,12 +11,12 @@
     android:orientation="vertical"
     android:padding="12dp">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/keyLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
-      <android.support.design.widget.TextInputEditText
+      <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/keyView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,15 +24,15 @@
         android:inputType="text"
         android:textColor="?attr/primaryTextColor" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/valueLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp">
 
-      <android.support.design.widget.TextInputEditText
+      <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/valueView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:inputType="text"
         android:textColor="?attr/primaryTextColor" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
       android:id="@+id/radio_group"

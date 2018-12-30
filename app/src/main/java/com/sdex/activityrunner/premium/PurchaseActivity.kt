@@ -3,7 +3,6 @@ package com.sdex.activityrunner.premium
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -13,6 +12,7 @@ import com.android.billingclient.api.BillingClient.SkuType
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.Purchase
+import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.extensions.enableBackButton
