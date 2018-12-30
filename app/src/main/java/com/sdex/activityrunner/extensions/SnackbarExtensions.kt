@@ -1,10 +1,10 @@
 package com.sdex.activityrunner.extensions
 
 import android.content.res.Resources
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewCompat
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.R
 
 fun Snackbar.config(margin: Int = 12, elevation: Float = 6f) {

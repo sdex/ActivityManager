@@ -2,7 +2,7 @@ package com.sdex.activityrunner.app.root
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.commons.BaseDialogFragment

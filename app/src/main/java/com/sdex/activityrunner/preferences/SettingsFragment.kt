@@ -1,10 +1,11 @@
 package com.sdex.activityrunner.preferences
 
 import android.os.Bundle
-import android.support.v7.preference.ListPreference
-import android.support.v7.preference.PreferenceFragmentCompat
-import android.support.v7.preference.SwitchPreferenceCompat
 import android.widget.Toast
+import androidx.preference.CheckBoxPreference
+import androidx.preference.ListPreference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreferenceCompat
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.root.GetRootDialog
 import com.sdex.activityrunner.premium.GetPremiumDialog
@@ -45,7 +46,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
       return@setOnPreferenceChangeListener true
     }
 
-    val blackThemePreference = findPreference(AppPreferences.KEY_THEME_BLACK)
+    val blackThemePreference = findPreference(AppPreferences.KEY_THEME_BLACK) as CheckBoxPreference
     val isDarkTheme = themePreference.value.toInt() == ThemeHelper.DARK_THEME
     blackThemePreference.isEnabled = isDarkTheme
 

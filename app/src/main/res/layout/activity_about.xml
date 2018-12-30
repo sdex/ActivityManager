@@ -22,13 +22,13 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="?attr/selectableItemBackground"
@@ -54,7 +54,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline_version"
             app:layout_constraintStart_toEndOf="@+id/image_view_version" />
 
-          <android.support.constraint.Guideline
+          <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,18 +70,18 @@
             app:layout_constraintTop_toTopOf="@+id/guideline_version"
             tools:text="1.4.5 (145)" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/rateApp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -109,18 +109,18 @@
             app:layout_constraintStart_toEndOf="@+id/image_view_rate"
             app:layout_constraintTop_toTopOf="@+id/image_view_rate" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/donate"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -149,18 +149,18 @@
             app:layout_constraintStart_toEndOf="@+id/image_view_donate"
             app:layout_constraintTop_toTopOf="@+id/image_view_donate" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/feedback"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline_feedback"
             app:layout_constraintStart_toEndOf="@+id/image_view_feedback" />
 
-          <android.support.constraint.Guideline
+          <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -202,18 +202,18 @@
             app:layout_constraintStart_toEndOf="@+id/image_view_feedback"
             app:layout_constraintTop_toTopOf="@+id/guideline_feedback" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/openSource"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -241,19 +241,19 @@
             app:layout_constraintStart_toEndOf="@+id/image_view_open_source"
             app:layout_constraintTop_toTopOf="@+id/image_view_open_source" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
 
-      <android.support.v7.widget.CardView
+      <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cardBackgroundColor="?attr/amCardBackgroundColor"
         app:cardCornerRadius="1dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/privacyPolicy"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -281,9 +281,9 @@
             app:layout_constraintStart_toEndOf="@+id/image_view_privacy_policy"
             app:layout_constraintTop_toTopOf="@+id/image_view_privacy_policy" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-      </android.support.v7.widget.CardView>
+      </androidx.cardview.widget.CardView>
 
       <View
         android:layout_width="match_parent"

@@ -16,7 +16,7 @@
     android:layout_height="0dp"
     android:layout_weight="1">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:fillViewport="true">
@@ -28,7 +28,7 @@
         android:orientation="vertical"
         android:padding="@dimen/launch_params_activity_padding">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           app:cardBackgroundColor="?attr/amCardBackgroundColor"
@@ -59,9 +59,9 @@
               tools:text="android.intent.action.MAIN" />
           </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
@@ -131,9 +131,9 @@
 
           </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
@@ -157,21 +157,21 @@
               android:textColor="?attr/primaryTextColor"
               android:text="@string/launch_param_extras" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
               android:id="@+id/listExtrasView"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="4dp"
               android:layout_marginBottom="4dp"
-              app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
               tools:itemCount="2"
               tools:listitem="@layout/item_launch_param_extra" />
 
           </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
@@ -195,21 +195,21 @@
               android:textColor="?attr/primaryTextColor"
               android:text="@string/launch_param_categories" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
               android:id="@+id/listCategoriesView"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="4dp"
               android:layout_marginBottom="4dp"
-              app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
               tools:itemCount="2"
               tools:listitem="@layout/item_launch_param" />
 
           </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/launch_params_item_card_margin"
@@ -233,22 +233,22 @@
               android:textColor="?attr/primaryTextColor"
               android:text="@string/launch_param_flags" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
               android:id="@+id/listFlagsView"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginTop="4dp"
               android:layout_marginBottom="4dp"
-              app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
               tools:itemCount="2"
               tools:listitem="@layout/item_launch_param" />
           </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
       </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
   </FrameLayout>
 

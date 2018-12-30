@@ -1,7 +1,7 @@
 package com.sdex.activityrunner.app
 
 import android.app.Activity
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.intent.IntentBuilderActivity
