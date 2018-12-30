@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -47,7 +48,7 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
     return if (name.isNullOrEmpty()) "" else name.first().toUpperCase().toString()
   }
 
-  class AppViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+  class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindTo(item: ApplicationModel, glide: RequestManager,
                appPreferences: AppPreferences) {
@@ -79,7 +80,7 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
     }
 
     private fun showApplicationMenu(context: Context, model: ApplicationModel) {
-      val activity = context as androidx.fragment.app.FragmentActivity
+      val activity = context as FragmentActivity
       val dialog = ApplicationMenuDialog.newInstance(model)
       dialog.show(activity.supportFragmentManager, ApplicationMenuDialog.TAG)
     }

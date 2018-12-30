@@ -4,6 +4,7 @@ import android.view.*
 import android.view.ContextMenu.ContextMenuInfo
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.param.None
@@ -47,7 +48,7 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback) :
     fun onItemClicked(item: HistoryModel, position: Int)
   }
 
-  class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView),
+  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
     View.OnCreateContextMenuListener {
 
     fun bind(item: HistoryModel?, callback: Callback) {

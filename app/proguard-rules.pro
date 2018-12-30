@@ -30,10 +30,6 @@
 -keep class androidx.appcompat.widget.ActionMenuView { *** mPresenter; }
 -keep class androidx.appcompat.widget.ActionMenuPresenter { *** mOverflowButton; }
 
--keep public class androidx.appcompat.widget.** { *; }
--keep public class androidx.appcompat.internal.widget.** { *; }
--keep public class androidx.appcompat.internal.view.menu.** { *; }
-
 -keep public class * extends androidx.core.view.ActionProvider {
     public <init>(android.content.Context);
 }
