@@ -31,6 +31,13 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     return liveData
   }
 
+  fun reloadItems(packageName: String) {
+    GlobalScope.launch {
+      val activitiesList = getActivitiesList(packageName)
+      liveData.postValue(activitiesList)
+    }
+  }
+
   @WorkerThread
   private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
     val list = ArrayList<ActivityModel>()
