@@ -44,7 +44,7 @@ class LaunchParamsExtraListAdapter : RecyclerView.Adapter<LaunchParamsExtraListA
     fun removeItem(position: Int)
   }
 
-  class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(item: LaunchParamsExtra, callback: Callback?, viewMode: Boolean) {
       itemView.key.text = item.key

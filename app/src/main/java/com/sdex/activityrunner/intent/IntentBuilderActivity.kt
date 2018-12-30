@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.extensions.enableBackButton
@@ -186,7 +187,7 @@ class IntentBuilderActivity : BaseActivity(),
     showLaunchParams()
   }
 
-  private fun configureRecyclerView(recyclerView: androidx.recyclerview.widget.RecyclerView) {
+  private fun configureRecyclerView(recyclerView: RecyclerView) {
     recyclerView.isNestedScrollingEnabled = false
     recyclerView.setHasFixedSize(false)
   }

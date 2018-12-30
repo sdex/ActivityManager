@@ -12,6 +12,7 @@ import com.android.billingclient.api.BillingClient.SkuType
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.Purchase
+import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.extensions.enableBackButton
@@ -41,7 +42,7 @@ class PurchaseActivity : BaseActivity() {
       .setListener { responseCode, purchases ->
         if (responseCode == BillingResponse.OK && purchases != null) {
           handlePurchases(purchases)
-          val snackbar = com.google.android.material.snackbar.Snackbar.make(container, R.string.pro_version_done, com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+          val snackbar = Snackbar.make(container, R.string.pro_version_done, Snackbar.LENGTH_LONG)
           snackbar.config()
           snackbar.show()
         } else if (responseCode == BillingResponse.USER_CANCELED) {
