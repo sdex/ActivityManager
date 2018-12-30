@@ -1,13 +1,13 @@
 package com.sdex.activityrunner.app.dialog
 
 import android.os.Bundle
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
@@ -16,7 +16,7 @@ import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.util.AppUtils
 import kotlinx.android.synthetic.main.dialog_application_menu.*
 
-class ApplicationMenuDialog : com.google.android.material.bottomsheet.BottomSheetDialogFragment() {
+class ApplicationMenuDialog : BottomSheetDialogFragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {

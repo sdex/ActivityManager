@@ -3,8 +3,8 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import android.util.SparseBooleanArray
+import androidx.appcompat.app.AlertDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.dialog.source.CategoriesSource
 import com.sdex.activityrunner.intent.dialog.source.FlagsSource
