@@ -1,16 +1,16 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.ContextCompat
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -19,7 +19,6 @@ import com.sdex.activityrunner.app.dialog.ActivityMenuDialog
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import kotlinx.android.synthetic.main.item_activity.view.*
-
 
 class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity) :
   ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {

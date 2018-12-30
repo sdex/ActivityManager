@@ -1,7 +1,7 @@
 package com.sdex.activityrunner.manifest
 
 import android.content.Context
-import android.support.annotation.WorkerThread
+import androidx.annotation.WorkerThread
 import java.io.File
 import java.io.FileWriter
 

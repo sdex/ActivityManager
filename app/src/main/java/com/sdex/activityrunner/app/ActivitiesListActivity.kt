@@ -1,18 +1,14 @@
 package com.sdex.activityrunner.app
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.SearchView
-import android.text.TextUtils
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
@@ -70,7 +66,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
     turnOnAdvanced.setOnClickListener {
       appPreferences.showNotExported = true
-      viewModel.getItems(appPackageName!!, searchText)
+      viewModel.reloadItems(appPackageName!!, searchText)
     }
 
     if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
@@ -83,7 +79,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
   override fun onStart() {
     super.onStart()
     if (appPreferences.showNotExported != isShowNotExported) {
-      viewModel.getItems(appPackageName!!, searchText)
+      viewModel.reloadItems(appPackageName!!, searchText)
     }
   }
 

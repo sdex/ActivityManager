@@ -1,8 +1,8 @@
 package com.sdex.activityrunner.intent
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.os.AsyncTask
+import androidx.lifecycle.AndroidViewModel
 import com.sdex.activityrunner.db.history.HistoryDatabase
 import com.sdex.activityrunner.intent.converter.LaunchParamsToHistoryConverter
 

@@ -2,8 +2,8 @@ package com.sdex.activityrunner.premium
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.v7.app.AlertDialog
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import com.sdex.activityrunner.R
 import com.sdex.commons.BaseDialogFragment
 

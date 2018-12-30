@@ -6,12 +6,12 @@
   android:orientation="vertical"
   android:padding="12dp">
 
-  <android.support.design.widget.TextInputLayout
+  <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/value_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputEditText
+    <com.google.android.material.textfield.TextInputEditText
       android:id="@+id/valueView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -20,6 +20,6 @@
       android:textColor="?attr/primaryTextColor"
       tools:text="test text" />
 
-  </android.support.design.widget.TextInputLayout>
+  </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

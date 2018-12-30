@@ -1,13 +1,13 @@
 package com.sdex.activityrunner.app.dialog
 
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
