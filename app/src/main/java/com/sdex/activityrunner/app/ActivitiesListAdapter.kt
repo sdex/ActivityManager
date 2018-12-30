@@ -1,12 +1,12 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.ContextCompat
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.ColorInt
+import androidx.fragment.app.FragmentActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -49,7 +49,7 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
     holder.bindTo(getItem(position), primaryTextColor, glide, launcher)
   }
 
-  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     fun bindTo(item: ActivityModel, primaryTextColor: Int,
                glide: RequestManager, launcher: ActivityLauncher) {
@@ -81,7 +81,7 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
     }
 
     private fun showActivityMenu(context: Context, model: ActivityModel) {
-      val activity = context as FragmentActivity
+      val activity = context as androidx.fragment.app.FragmentActivity
       val dialog = ActivityMenuDialog.newInstance(model)
       dialog.show(activity.supportFragmentManager, ActivityMenuDialog.TAG)
     }

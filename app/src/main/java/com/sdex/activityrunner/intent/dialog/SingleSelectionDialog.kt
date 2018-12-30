@@ -3,7 +3,7 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.dialog.source.ActionSource
 import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource
@@ -34,12 +34,12 @@ class SingleSelectionDialog : BaseDialogFragment() {
     return builder.create()
   }
 
-  override fun onAttach(context: Context?) {
+  override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
       callback = context as OnItemSelectedCallback?
     } catch (e: ClassCastException) {
-      throw ClassCastException(context!!.toString() + " must implement OnItemSelectedCallback")
+      throw ClassCastException(context.toString() + " must implement OnItemSelectedCallback")
     }
   }
 

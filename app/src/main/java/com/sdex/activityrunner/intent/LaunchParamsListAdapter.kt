@@ -1,6 +1,6 @@
 package com.sdex.activityrunner.intent
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -8,7 +8,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.param.None
 import java.util.*
 
-class LaunchParamsListAdapter : RecyclerView.Adapter<LaunchParamsListAdapter.ViewHolder>() {
+class LaunchParamsListAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<LaunchParamsListAdapter.ViewHolder>() {
 
   private val items = ArrayList<String>()
 
@@ -38,5 +38,5 @@ class LaunchParamsListAdapter : RecyclerView.Adapter<LaunchParamsListAdapter.Vie
     notifyDataSetChanged()
   }
 
-  class ViewHolder(var textView: TextView) : RecyclerView.ViewHolder(textView)
+  class ViewHolder(var textView: TextView) : androidx.recyclerview.widget.RecyclerView.ViewHolder(textView)
 }

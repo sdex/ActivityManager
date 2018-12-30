@@ -24,7 +24,7 @@ android {
     versionCode 312
     versionName "3.1.0"
 
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     playAccountConfig = playAccountConfigs.defaultAccountConfig
 
@@ -84,23 +84,23 @@ androidExtensions {
 }
 
 dependencies {
-  implementation "com.android.support:support-v4:$versions.support"
-  implementation "com.android.support:appcompat-v7:$versions.support"
-  implementation "com.android.support:preference-v7:$versions.support"
-  implementation "com.android.support:support-vector-drawable:$versions.support"
-  implementation "com.android.support:customtabs:$versions.support"
-  implementation "com.android.support:recyclerview-v7:$versions.support"
-  implementation "com.android.support:cardview-v7:$versions.support"
-  implementation "com.android.support:design:$versions.support"
-  implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+  implementation "androidx.legacy:legacy-support-v4:1.0.0"
+  implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
+  implementation "androidx.preference:preference:1.1.0-alpha02"
+  implementation "androidx.vectordrawable:vectordrawable:1.1.0-alpha01"
+  implementation "androidx.browser:browser:1.0.0"
+  implementation "androidx.recyclerview:recyclerview:1.1.0-alpha01"
+  implementation "androidx.cardview:cardview:1.0.0"
+  implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
+  implementation "com.google.android.material:material:1.1.0-alpha02"
 
-  implementation "android.arch.paging:runtime:$versions.paging"
+  implementation "androidx.paging:paging-runtime:$versions.paging"
 
-  implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
-  kapt "android.arch.lifecycle:compiler:$versions.lifecycle"
+  implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+  kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 
-  implementation "android.arch.persistence.room:runtime:$versions.room"
-  kapt "android.arch.persistence.room:compiler:$versions.room"
+  implementation "androidx.room:room-runtime:$versions.room"
+  kapt "androidx.room:room-compiler:$versions.room"
 
   implementation "com.github.bumptech.glide:glide:$versions.glide"
   kapt "com.github.bumptech.glide:compiler:$versions.glide"
@@ -115,13 +115,13 @@ dependencies {
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
-  implementation "androidx.core:core-ktx:0.3"
+  implementation 'androidx.core:core-ktx:1.1.0-alpha03'
 
   testImplementation "junit:junit:4.12"
-  testImplementation "android.arch.paging:common:$versions.paging"
+  testImplementation "androidx.paging:paging-common:$versions.paging"
 
-  androidTestImplementation 'com.android.support.test:runner:1.0.2'
-  androidTestImplementation 'com.android.support.test:rules:1.0.2'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+  androidTestImplementation 'androidx.test:runner:1.1.1'
+  androidTestImplementation 'androidx.test:rules:1.1.1'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+  androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
 }

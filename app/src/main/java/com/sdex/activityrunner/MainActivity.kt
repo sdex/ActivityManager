@@ -1,14 +1,14 @@
 package com.sdex.activityrunner
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
-import android.support.v7.app.AppCompatDelegate
-import android.support.v7.widget.SearchView
-import android.support.v7.widget.SearchView.OnQueryTextListener
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem

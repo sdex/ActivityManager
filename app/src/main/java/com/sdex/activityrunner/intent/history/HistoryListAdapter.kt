@@ -1,8 +1,8 @@
 package com.sdex.activityrunner.intent.history
 
-import android.arch.paging.PagedListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.*
 import android.view.ContextMenu.ContextMenuInfo
 import com.sdex.activityrunner.R
@@ -48,7 +48,7 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
     fun onItemClicked(item: HistoryModel, position: Int)
   }
 
-  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+  class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView),
     View.OnCreateContextMenuListener {
 
     fun bind(item: HistoryModel?, callback: Callback) {
@@ -72,7 +72,7 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback)
     }
 
     private fun getValueOrPlaceholder(value: String?): String {
-      return if (value.isNullOrEmpty()) None.VALUE else value!!
+      return if (value.isNullOrEmpty()) None.VALUE else value
     }
 
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {

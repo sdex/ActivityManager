@@ -1,10 +1,10 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.support.v4.app.FragmentActivity
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
@@ -21,7 +21,7 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 import kotlinx.android.synthetic.main.item_application.view.*
 
-class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<ApplicationModel,
+class ApplicationsListAdapter(activity: androidx.fragment.app.FragmentActivity) : ListAdapter<ApplicationModel,
   ApplicationsListAdapter.AppViewHolder>(DIFF_CALLBACK),
   FastScrollRecyclerView.SectionedAdapter {
 
@@ -48,7 +48,7 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
     return if (name.isNullOrEmpty()) "" else name.first().toUpperCase().toString()
   }
 
-  class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  class AppViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     fun bindTo(item: ApplicationModel, glide: RequestManager,
                appPreferences: AppPreferences) {
@@ -80,7 +80,7 @@ class ApplicationsListAdapter(activity: FragmentActivity) : ListAdapter<Applicat
     }
 
     private fun showApplicationMenu(context: Context, model: ApplicationModel) {
-      val activity = context as FragmentActivity
+      val activity = context as androidx.fragment.app.FragmentActivity
       val dialog = ApplicationMenuDialog.newInstance(model)
       dialog.show(activity.supportFragmentManager, ApplicationMenuDialog.TAG)
     }
