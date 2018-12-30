@@ -1,11 +1,11 @@
 package com.sdex.commons
 
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 
 open class BaseDialogFragment : DialogFragment() {
 
-  override fun show(manager: FragmentManager, tag: String) {
+  override fun show(manager: FragmentManager, tag: String?) {
     try {
       super.show(manager, tag)
     } catch (e: IllegalStateException) {

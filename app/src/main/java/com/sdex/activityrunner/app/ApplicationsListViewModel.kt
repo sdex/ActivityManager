@@ -1,9 +1,9 @@
 package com.sdex.activityrunner.app
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.db.SimpleSQLiteQuery
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery

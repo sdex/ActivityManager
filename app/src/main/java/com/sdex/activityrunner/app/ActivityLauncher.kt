@@ -1,7 +1,7 @@
 package com.sdex.activityrunner.app
 
 import android.app.Activity
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.intent.IntentBuilderActivity
@@ -42,8 +42,8 @@ class ActivityLauncher(private val snackbarContainerActivity: SnackbarContainerA
       val runActivityTask = RunActivityTask(model.componentName)
       runActivityTask.execute()
     } else {
-      val snackbar = Snackbar.make(snackbarContainerActivity.getView(),
-        R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG)
+      val snackbar = com.google.android.material.snackbar.Snackbar.make(snackbarContainerActivity.getView(),
+        R.string.settings_error_root_not_active, com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
       snackbar.setAction(R.string.action_settings
       ) { SettingsActivity.start(activity) }
       snackbar.config()

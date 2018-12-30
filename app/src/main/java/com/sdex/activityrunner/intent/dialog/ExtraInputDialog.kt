@@ -3,7 +3,7 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
@@ -78,12 +78,12 @@ class ExtraInputDialog : BaseDialogFragment() {
     return alertDialog
   }
 
-  override fun onAttach(context: Context?) {
+  override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
       callback = context as OnKeyValueInputDialogCallback?
     } catch (e: ClassCastException) {
-      throw ClassCastException(context!!.toString() + " must implement OnKeyValueInputDialogCallback")
+      throw ClassCastException(context.toString() + " must implement OnKeyValueInputDialogCallback")
     }
 
   }

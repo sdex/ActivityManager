@@ -7,7 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View.*
 import android.widget.Toast
@@ -140,7 +140,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     IntentUtils.createLauncherIcon(this, shortcutName, intent, R.mipmap.ic_launcher)
   }
 
-  override fun onSaveInstanceState(outState: Bundle?) {
+  override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
     contentManager?.onSaveInstanceState(outState)
   }

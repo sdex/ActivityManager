@@ -1,8 +1,8 @@
 package com.sdex.activityrunner.db.cache
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.db.SupportSQLiteQuery
-import android.arch.persistence.room.*
+import androidx.lifecycle.LiveData
+import androidx.sqlite.db.SupportSQLiteQuery
+import androidx.room.*
 
 @Dao
 interface ApplicationModelDao {

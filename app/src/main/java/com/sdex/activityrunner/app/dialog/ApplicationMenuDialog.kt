@@ -1,7 +1,7 @@
 package com.sdex.activityrunner.app.dialog
 
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +16,7 @@ import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.util.AppUtils
 import kotlinx.android.synthetic.main.dialog_application_menu.*
 
-class ApplicationMenuDialog : BottomSheetDialogFragment() {
+class ApplicationMenuDialog : com.google.android.material.bottomsheet.BottomSheetDialogFragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                             savedInstanceState: Bundle?): View? {

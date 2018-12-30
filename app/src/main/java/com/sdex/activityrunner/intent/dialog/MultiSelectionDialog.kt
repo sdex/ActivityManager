@@ -3,7 +3,7 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.util.SparseBooleanArray
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.dialog.source.CategoriesSource
@@ -53,12 +53,12 @@ class MultiSelectionDialog : BaseDialogFragment() {
     return builder.create()
   }
 
-  override fun onAttach(context: Context?) {
+  override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
       callback = context as OnItemsSelectedCallback?
     } catch (e: ClassCastException) {
-      throw ClassCastException(context!!.toString() + " must implement OnItemsSelectedCallback")
+      throw ClassCastException(context.toString() + " must implement OnItemsSelectedCallback")
     }
 
   }

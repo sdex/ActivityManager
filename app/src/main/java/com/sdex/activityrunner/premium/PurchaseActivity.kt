@@ -3,7 +3,7 @@ package com.sdex.activityrunner.premium
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -42,7 +42,7 @@ class PurchaseActivity : BaseActivity() {
       .setListener { responseCode, purchases ->
         if (responseCode == BillingResponse.OK && purchases != null) {
           handlePurchases(purchases)
-          val snackbar = Snackbar.make(container, R.string.pro_version_done, Snackbar.LENGTH_LONG)
+          val snackbar = com.google.android.material.snackbar.Snackbar.make(container, R.string.pro_version_done, com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
           snackbar.config()
           snackbar.show()
         } else if (responseCode == BillingResponse.USER_CANCELED) {

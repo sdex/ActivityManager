@@ -1,11 +1,11 @@
 package com.sdex.activityrunner.intent
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -187,7 +187,7 @@ class IntentBuilderActivity : BaseActivity(),
     showLaunchParams()
   }
 
-  private fun configureRecyclerView(recyclerView: RecyclerView) {
+  private fun configureRecyclerView(recyclerView: androidx.recyclerview.widget.RecyclerView) {
     recyclerView.isNestedScrollingEnabled = false
     recyclerView.setHasFixedSize(false)
   }

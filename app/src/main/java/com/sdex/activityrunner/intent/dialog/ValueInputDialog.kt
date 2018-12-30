@@ -3,7 +3,7 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import com.sdex.activityrunner.R
@@ -42,12 +42,12 @@ class ValueInputDialog : BaseDialogFragment() {
     return builder.create()
   }
 
-  override fun onAttach(context: Context?) {
+  override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
       callback = context as OnValueInputDialogCallback?
     } catch (e: ClassCastException) {
-      throw ClassCastException(context!!.toString() + " must implement OnValueInputDialogCallback")
+      throw ClassCastException(context.toString() + " must implement OnValueInputDialogCallback")
     }
   }
 
