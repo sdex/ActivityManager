@@ -60,7 +60,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
     turnOnAdvanced.setOnClickListener {
       appPreferences.showNotExported = true
-      viewModel.getItems(item.packageName)
+      viewModel.reloadItems(item.packageName)
     }
 
     if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
@@ -73,10 +73,9 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
   override fun onStart() {
     super.onStart()
     if (appPreferences.showNotExported != isShowNotExported) {
-      val viewModel = ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
       val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
       if (item != null) {
-        viewModel.getItems(item.packageName)
+        viewModel.reloadItems(item.packageName)
       }
     }
   }
