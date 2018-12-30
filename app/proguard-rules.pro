@@ -24,17 +24,17 @@
 -dontwarn
 -ignorewarnings
 
--keep class android.support.v7.widget.SearchView { *; }
+-keep class androidx.appcompat.widget.SearchView { *; }
 
--keep class android.support.v7.widget.Toolbar { *** mMenuView; }
--keep class android.support.v7.widget.ActionMenuView { *** mPresenter; }
--keep class android.support.v7.widget.ActionMenuPresenter { *** mOverflowButton; }
+-keep class androidx.appcompat.widget.Toolbar { *** mMenuView; }
+-keep class androidx.appcompat.widget.ActionMenuView { *** mPresenter; }
+-keep class androidx.appcompat.widget.ActionMenuPresenter { *** mOverflowButton; }
 
--keep public class android.support.v7.widget.** { *; }
--keep public class android.support.v7.internal.widget.** { *; }
--keep public class android.support.v7.internal.view.menu.** { *; }
+-keep public class androidx.appcompat.widget.** { *; }
+-keep public class androidx.appcompat.internal.widget.** { *; }
+-keep public class androidx.appcompat.internal.view.menu.** { *; }
 
--keep public class * extends android.support.v4.view.ActionProvider {
+-keep public class * extends androidx.core.view.ActionProvider {
     public <init>(android.content.Context);
 }
 

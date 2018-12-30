@@ -23,7 +23,7 @@
       app:fastScrollThumbColor="@color/colorAccent"
       app:fastScrollThumbInactiveColor="?attr/scrollbarThumbInactiveColor"
       app:fastScrollTrackColor="?attr/scrollbarBackgroundColor"
-      app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       tools:itemCount="5"
       tools:listitem="@layout/item_application" />
 
