@@ -2,11 +2,12 @@ package com.sdex.activityrunner.app.dialog
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
+
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityLauncher
 import com.sdex.activityrunner.app.ActivityModel
@@ -24,7 +25,7 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
     return inflater.inflate(R.layout.dialog_activity_menu, container, false)
   }
 
-  override fun onAttach(context: Context?) {
+  override fun onAttach(context: Context) {
     super.onAttach(context)
     if (context is SnackbarContainerActivity) {
       snackbarContainerActivity = context

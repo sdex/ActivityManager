@@ -1,13 +1,13 @@
 package com.sdex.activityrunner.app
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.content.ComponentName
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import android.util.Log
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.sdex.activityrunner.preferences.AppPreferences
 import kotlinx.coroutines.*
 import java.util.*
@@ -69,6 +69,13 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
       }
     }
     return liveData
+  }
+
+  fun reloadItems(packageName: String) {
+    GlobalScope.launch {
+      val activitiesList = getActivitiesList(packageName)
+      liveData.postValue(activitiesList)
+    }
   }
 
   private fun getActivityModel(pm: PackageManager, activityInfo: ActivityInfo): ActivityModel {

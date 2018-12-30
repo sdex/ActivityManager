@@ -1,8 +1,8 @@
 package com.sdex.activityrunner.extensions
 
 import android.app.Activity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 
 fun RecyclerView.addDivider(activity: Activity) {
   val styledAttributes = activity.theme.obtainStyledAttributes(intArrayOf(android.R.attr.listDivider))

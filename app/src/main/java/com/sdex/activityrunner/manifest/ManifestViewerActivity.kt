@@ -1,7 +1,5 @@
 package com.sdex.activityrunner.manifest
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -9,6 +7,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.pddstudio.highlightjs.models.Language
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.extensions.enableBackButton

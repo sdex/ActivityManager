@@ -1,7 +1,7 @@
 package com.sdex.activityrunner.db.history
 
-import android.arch.paging.DataSource
-import android.arch.persistence.room.*
+import androidx.paging.DataSource
+import androidx.room.*
 
 @Dao
 interface HistoryModelDao {
