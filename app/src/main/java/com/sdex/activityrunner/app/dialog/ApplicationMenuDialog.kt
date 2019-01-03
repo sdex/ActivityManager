@@ -44,7 +44,7 @@ class ApplicationMenuDialog : BottomSheetDialogFragment() {
       dismiss()
     }
     action_open_app_manifest.setOnClickListener {
-      ManifestViewerActivity.start(activity!!, packageName, model.name)
+      ManifestViewerActivity.start(activity!!, model)
       dismiss()
     }
     action_open_app_info.setOnClickListener {

@@ -26,6 +26,7 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
+import com.sdex.commons.analytics.AnalyticsManager
 import kotlinx.android.synthetic.main.activity_intent_builder.*
 import java.util.*
 import kotlin.properties.Delegates
@@ -310,9 +311,10 @@ class IntentBuilderActivity : BaseActivity(),
 
     private const val EXTRAS_LIMIT = 3
 
-    fun start(context: Context, activityModel: ActivityModel?) {
+    fun start(context: Context, model: ActivityModel?) {
+      AnalyticsManager.logIntentLauncherOpen(model)
       val starter = Intent(context, IntentBuilderActivity::class.java)
-      starter.putExtra(ARG_ACTIVITY_MODEL, activityModel)
+      starter.putExtra(ARG_ACTIVITY_MODEL, model)
       context.startActivity(starter)
     }
   }
