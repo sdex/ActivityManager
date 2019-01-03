@@ -41,4 +41,24 @@ object AnalyticsManager {
       ))
     }
   }
+
+  fun logManifestView(model: ApplicationModel) {
+    if (!BuildConfig.DEBUG) {
+      FlurryAgent.logEvent("manifest_view", mapOf(
+        "package_name" to model.packageName,
+        "app_name" to model.name
+      ))
+    }
+  }
+
+  fun logIntentLauncherOpen(model: ActivityModel?) {
+    if (!BuildConfig.DEBUG) {
+      FlurryAgent.logEvent("intent_launcher_open", mapOf(
+        "package_name" to model?.packageName,
+        "class_name" to model?.className,
+        "name" to model?.name,
+        "exported" to model?.exported.toString()
+      ))
+    }
+  }
 }
