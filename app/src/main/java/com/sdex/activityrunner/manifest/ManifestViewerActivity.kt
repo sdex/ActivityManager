@@ -11,10 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.pddstudio.highlightjs.models.Language
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.ThemeHelper
 import com.sdex.commons.BaseActivity
+import com.sdex.commons.analytics.AnalyticsManager
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {
@@ -93,10 +95,11 @@ class ManifestViewerActivity : BaseActivity() {
     private const val ARG_PACKAGE_NAME = "arg_package_name"
     private const val ARG_NAME = "arg_name"
 
-    fun start(context: Context, packageName: String, name: String?) {
+    fun start(context: Context, model: ApplicationModel) {
+      AnalyticsManager.logManifestView(model)
       val starter = Intent(context, ManifestViewerActivity::class.java)
-      starter.putExtra(ARG_PACKAGE_NAME, packageName)
-      starter.putExtra(ARG_NAME, name)
+      starter.putExtra(ARG_PACKAGE_NAME, model.packageName)
+      starter.putExtra(ARG_NAME, model.name)
       context.startActivity(starter)
     }
   }
