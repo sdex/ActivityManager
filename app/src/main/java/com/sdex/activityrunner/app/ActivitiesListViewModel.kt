@@ -32,7 +32,14 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     return liveData
   }
 
-  fun reloadItems(packageName: String, searchText: String?) {
+  fun reloadItems(packageName: String) {
+    GlobalScope.launch {
+      list = getActivitiesList(packageName)
+      liveData.postValue(list)
+    }
+  }
+
+  fun filterItems(packageName: String, searchText: String?) {
     if (list != null) {
       if (searchText != null) {
         GlobalScope.launch {

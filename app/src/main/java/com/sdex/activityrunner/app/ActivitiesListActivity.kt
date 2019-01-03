@@ -70,7 +70,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
     turnOnAdvanced.setOnClickListener {
       appPreferences.showNotExported = true
-      viewModel.reloadItems(appPackageName!!, searchText)
+      viewModel.reloadItems(appPackageName!!)
     }
 
     if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
@@ -83,7 +83,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
   override fun onStart() {
     super.onStart()
     if (appPreferences.showNotExported != isShowNotExported) {
-      viewModel.reloadItems(appPackageName!!, searchText)
+      viewModel.reloadItems(appPackageName!!)
     }
   }
 
@@ -141,7 +141,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
   private fun filter(text: String) {
     this.searchText = text
-    viewModel.reloadItems(appPackageName!!, searchText)
+    viewModel.filterItems(appPackageName!!, searchText)
   }
 
   companion object {
