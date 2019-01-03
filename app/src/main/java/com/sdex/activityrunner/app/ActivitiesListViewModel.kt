@@ -20,21 +20,32 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
   private val packageManager: PackageManager = application.packageManager
   private val appPreferences: AppPreferences by lazy { AppPreferences(application) }
   private val liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
+  private var list: List<ActivityModel>? = null
 
   fun getItems(packageName: String): LiveData<List<ActivityModel>> {
     GlobalScope.launch {
-      val activitiesList = getActivitiesList(packageName)
+      list = getActivitiesList(packageName)
       withContext(Dispatchers.Main) {
-        liveData.value = activitiesList
+        liveData.value = list
       }
     }
     return liveData
   }
 
-  fun reloadItems(packageName: String) {
-    GlobalScope.launch {
-      val activitiesList = getActivitiesList(packageName)
-      liveData.postValue(activitiesList)
+  fun reloadItems(packageName: String, searchText: String?) {
+    if (list != null) {
+      if (searchText != null) {
+        GlobalScope.launch {
+          val filteredList = list!!.filter {
+            it.name.contains(searchText, true) || it.className.contains(searchText, true)
+          }
+          liveData.postValue(filteredList)
+        }
+      } else {
+        liveData.value = list
+      }
+    } else {
+      getItems(packageName)
     }
   }
 
@@ -47,7 +58,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
       if (info.activities != null) {
         for (activityInfo in info.activities) {
           val activityModel = getActivityModel(packageManager, activityInfo)
-          activityModel.exported = activityInfo.exported && activityInfo.isEnabled
           if (activityModel.exported) {
             list.add(activityModel)
           } else if (showNotExported) {
@@ -78,6 +88,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
       }
     }
     return ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
-      activityInfo.exported)
+      activityInfo.exported && activityInfo.isEnabled)
   }
 }
