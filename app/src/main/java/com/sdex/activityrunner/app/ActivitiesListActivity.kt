@@ -55,7 +55,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
     searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-    viewModel.getItems(appPackageName!!, searchText).observe(this, Observer {
+    viewModel.getItems(appPackageName!!).observe(this, Observer {
       adapter.submitList(it)
       val size = it!!.size
       setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
@@ -141,7 +141,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
   private fun filter(text: String) {
     this.searchText = text
-    viewModel.getItems(appPackageName!!, searchText)
+    viewModel.reloadItems(appPackageName!!, searchText)
   }
 
   companion object {
