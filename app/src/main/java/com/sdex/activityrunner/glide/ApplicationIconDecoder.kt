@@ -10,7 +10,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableResource
 import com.bumptech.glide.util.Util
 import com.sdex.activityrunner.db.cache.ApplicationModel
 
-internal class ApplicationIconDecoder(private val context: Context) : ResourceDecoder<ApplicationModel, Drawable> {
+internal class ApplicationIconDecoder(private val context: Context) :
+  ResourceDecoder<ApplicationModel, Drawable> {
 
   override fun decode(source: ApplicationModel, width: Int, height: Int,
                       options: Options): Resource<Drawable>? {

@@ -8,7 +8,8 @@ import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.signature.ObjectKey
 import com.sdex.activityrunner.db.cache.ApplicationModel
 
-internal class ApplicationIconModelLoader : ModelLoader<ApplicationModel, ApplicationModel> {
+internal class ApplicationIconModelLoader :
+  ModelLoader<ApplicationModel, ApplicationModel> {
 
   override fun buildLoadData(applicationInfo: ApplicationModel,
                              width: Int, height: Int, options: Options): ModelLoader.LoadData<ApplicationModel>? {
