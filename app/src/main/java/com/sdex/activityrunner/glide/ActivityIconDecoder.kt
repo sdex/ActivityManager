@@ -11,7 +11,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableResource
 import com.bumptech.glide.util.Util
 import com.sdex.activityrunner.app.ActivityModel
 
-internal class ActivityIconDecoder(private val context: Context) : ResourceDecoder<ActivityModel, Drawable> {
+internal class ActivityIconDecoder(private val context: Context) :
+  ResourceDecoder<ActivityModel, Drawable> {
 
   override fun decode(source: ActivityModel, width: Int, height: Int,
                       options: Options): Resource<Drawable>? {
