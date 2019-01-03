@@ -198,6 +198,7 @@ class MainActivity : BaseActivity() {
       }
 
       override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+        searchText = null
         UIUtils.setMenuItemsVisibility(menu, true)
         invalidateOptionsMenu()
         return true
