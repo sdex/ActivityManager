@@ -22,9 +22,12 @@ class ManifestReader {
   @WorkerThread
   fun loadAndroidManifest(context: Context, packageName: String): String? {
     try {
-      return formatManifest(load(context, packageName))
-    } catch (e: TransformerException) {
-      e.printStackTrace()
+      val manifest = load(context, packageName)
+      return try {
+        formatManifest(manifest)
+      } catch (e: TransformerException) {
+        formatManifest2(manifest)
+      }
     } catch (e: PackageManager.NameNotFoundException) {
       e.printStackTrace()
     } catch (e: IOException) {
@@ -99,5 +102,43 @@ class ManifestReader {
     val source = StreamSource(ByteArrayInputStream(dataBytes))
     transformer.transform(source, result)
     return result.writer.toString()
+  }
+
+  private fun formatManifest2(xml: String?): String {
+    if (xml == null || xml.isBlank()) return ""
+    var stack = 0
+    val pretty = StringBuilder()
+    val rows = xml.trim { it <= ' ' }
+      .replace(">".toRegex(), ">\n")
+      .replace("<".toRegex(), "\n<")
+      .split("\n".toRegex())
+      .dropLastWhile { it.isEmpty() }
+      .toTypedArray()
+    for (r in rows) {
+      if (r.isBlank()) continue
+      val row = r.trim { it <= ' ' }
+      if (row.startsWith("<?")) {
+        pretty.append(row + "\n")
+      } else if (row.startsWith("</")) {
+        val indent = repeatString(--stack)
+        pretty.append(indent + row + "\n")
+      } else if (row.startsWith("<") && !row.endsWith("/>")) {
+        val indent = repeatString(stack++)
+        pretty.append(indent + row + "\n")
+        if (row.endsWith("]]>")) stack--
+      } else {
+        val indent = repeatString(stack)
+        pretty.append(indent + row + "\n")
+      }
+    }
+    return pretty.toString().trim { it <= ' ' }
+  }
+
+  private fun repeatString(stack: Int): String {
+    val indent = StringBuilder()
+    for (i in 0 until stack) {
+      indent.append(" ")
+    }
+    return indent.toString()
   }
 }
