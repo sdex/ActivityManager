@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.pddstudio.highlightjs.models.Language
+import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.enableBackButton
@@ -58,7 +59,7 @@ class ManifestViewerActivity : BaseActivity() {
     var name = intent.getStringExtra(ARG_NAME)
 
     if (appPackageName.isNullOrEmpty()) {
-      appPackageName = "com.sdex.activityrunner"
+      appPackageName = BuildConfig.APPLICATION_ID
       name = getString(R.string.app_name)
     }
 
@@ -66,6 +67,7 @@ class ManifestViewerActivity : BaseActivity() {
 
     viewModel.loadManifest(appPackageName!!).observe(this, Observer {
       if (it == null) {
+        AnalyticsManager.logError("open_manifest", appPackageName)
         Toast.makeText(this, "Failed to parse AndroidManifest", Toast.LENGTH_SHORT).show()
         finish()
       } else {
