@@ -61,4 +61,13 @@ object AnalyticsManager {
       ))
     }
   }
+
+  fun logError(message: String, packageName: String? = null) {
+    if (!BuildConfig.DEBUG) {
+      FlurryAgent.logEvent("error", mapOf(
+        "message" to message,
+        "package_name" to packageName
+      ))
+    }
+  }
 }
