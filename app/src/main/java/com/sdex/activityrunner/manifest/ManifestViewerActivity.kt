@@ -65,7 +65,12 @@ class ManifestViewerActivity : BaseActivity() {
     title = name
 
     viewModel.loadManifest(appPackageName!!).observe(this, Observer {
-      highlightView.setSource(it)
+      if (it == null) {
+        Toast.makeText(this, "Failed to parse AndroidManifest", Toast.LENGTH_SHORT).show()
+        finish()
+      } else {
+        highlightView.setSource(it)
+      }
     })
   }
 
