@@ -4,6 +4,7 @@ import com.flurry.android.FlurryAgent
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.cache.ApplicationModel
+import com.sdex.commons.util.Exceptions
 
 object AnalyticsManager {
 
@@ -62,12 +63,14 @@ object AnalyticsManager {
     }
   }
 
-  fun logError(name: String, packageName: String? = null, message: String? = null) {
+  fun logError(name: String, packageName: String? = null,
+               message: String? = null, exception: Exception? = null) {
     if (!BuildConfig.DEBUG) {
       FlurryAgent.logEvent("error", mapOf(
         "name" to name,
         "package_name" to packageName,
-        "message" to message
+        "exception" to exception?.let { Exceptions.getRootCause(exception).javaClass.name },
+        "message" to (message ?: exception?.message)
       ))
     }
   }

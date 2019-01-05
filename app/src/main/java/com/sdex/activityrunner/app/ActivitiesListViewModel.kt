@@ -75,7 +75,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
         }
       }
     } catch (e: Exception) {
-      AnalyticsManager.logError(LOAD_ACTIVITIES, packageName, e.message)
+      AnalyticsManager.logError(LOAD_ACTIVITIES, packageName, exception = e)
       e.printStackTrace()
     }
     list.sortBy { it.name }
