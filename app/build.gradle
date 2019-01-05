@@ -37,6 +37,18 @@ android {
     }
   }
 
+  flavorDimensions "type"
+  productFlavors {
+    dev {
+      dimension "type"
+      applicationIdSuffix = ".dev"
+    }
+
+    prod {
+      dimension "type"
+    }
+  }
+
   signingConfigs {
     release {
       keyAlias keystoreProperties['KEY_ALIAS']
