@@ -31,7 +31,7 @@ class ManifestReader {
         formatManifest2(manifest)
       }
     } catch (e: Exception) {
-      AnalyticsManager.logError(LOAD_MANIFEST, packageName, e.message)
+      AnalyticsManager.logError(LOAD_MANIFEST, packageName, exception = e)
       e.printStackTrace()
     }
     return null

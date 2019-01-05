@@ -99,7 +99,7 @@ class ApplicationListLoader {
       }
       applications.add(model)
     } catch (e: Exception) {
-      AnalyticsManager.logError(LOAD_PACKAGE_INFO, packageName, e.message)
+      AnalyticsManager.logError(LOAD_PACKAGE_INFO, packageName, exception = e)
       e.printStackTrace()
     }
   }

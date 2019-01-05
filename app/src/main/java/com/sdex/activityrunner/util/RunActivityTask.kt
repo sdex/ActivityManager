@@ -17,7 +17,7 @@ class RunActivityTask(private val componentName: ComponentName) : AsyncTask<Void
       val command = "am start -n " + componentName.packageName + "/" + className
       RootUtils.execute(command)
     } catch (e: Exception) {
-      AnalyticsManager.logError(AM_START_ACTIVITY, componentName.packageName, e.message)
+      AnalyticsManager.logError(AM_START_ACTIVITY, componentName.packageName, exception = e)
       e.printStackTrace()
     }
 
