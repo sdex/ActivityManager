@@ -6,6 +6,8 @@ import android.content.res.Resources
 import android.content.res.XmlResourceParser
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
+import com.sdex.commons.analytics.AnalyticsManager
+import com.sdex.commons.analytics.LOAD_MANIFEST
 import org.xmlpull.v1.XmlPullParserException
 import java.io.ByteArrayInputStream
 import java.io.IOException
@@ -28,11 +30,8 @@ class ManifestReader {
       } catch (e: TransformerException) {
         formatManifest2(manifest)
       }
-    } catch (e: PackageManager.NameNotFoundException) {
-      e.printStackTrace()
-    } catch (e: IOException) {
-      e.printStackTrace()
-    } catch (e: XmlPullParserException) {
+    } catch (e: Exception) {
+      AnalyticsManager.logError(LOAD_MANIFEST, packageName, e.message)
       e.printStackTrace()
     }
     return null

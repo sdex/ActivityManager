@@ -9,7 +9,7 @@ object AnalyticsManager {
 
   fun logApplicationOpen(model: ApplicationModel) {
     if (!BuildConfig.DEBUG) {
-      FlurryAgent.logEvent("application_open", mapOf(
+      FlurryAgent.logEvent(APPLICATION_OPEN, mapOf(
         "package_name" to model.packageName,
         "app_name" to model.name
       ))
@@ -20,7 +20,7 @@ object AnalyticsManager {
                       withParams: Boolean = false,
                       withRoot: Boolean = false) {
     if (!BuildConfig.DEBUG) {
-      FlurryAgent.logEvent("activity_open", mapOf(
+      FlurryAgent.logEvent(ACTIVITY_OPEN, mapOf(
         "package_name" to model.packageName,
         "class_name" to model.className,
         "name" to model.name,
@@ -33,7 +33,7 @@ object AnalyticsManager {
 
   fun logCreateShortcut(model: ActivityModel) {
     if (!BuildConfig.DEBUG) {
-      FlurryAgent.logEvent("create_shortcut", mapOf(
+      FlurryAgent.logEvent(CREATE_SHORTCUT, mapOf(
         "package_name" to model.packageName,
         "class_name" to model.className,
         "name" to model.name,
@@ -44,7 +44,7 @@ object AnalyticsManager {
 
   fun logManifestView(model: ApplicationModel) {
     if (!BuildConfig.DEBUG) {
-      FlurryAgent.logEvent("manifest_view", mapOf(
+      FlurryAgent.logEvent(MANIFEST_OPEN, mapOf(
         "package_name" to model.packageName,
         "app_name" to model.name
       ))
@@ -53,7 +53,7 @@ object AnalyticsManager {
 
   fun logIntentLauncherOpen(model: ActivityModel?) {
     if (!BuildConfig.DEBUG) {
-      FlurryAgent.logEvent("intent_launcher_open", mapOf(
+      FlurryAgent.logEvent(INTENT_LAUNCHER_OPEN, mapOf(
         "package_name" to model?.packageName,
         "class_name" to model?.className,
         "name" to model?.name,
@@ -62,11 +62,12 @@ object AnalyticsManager {
     }
   }
 
-  fun logError(message: String, packageName: String? = null) {
+  fun logError(name: String, packageName: String? = null, message: String? = null) {
     if (!BuildConfig.DEBUG) {
       FlurryAgent.logEvent("error", mapOf(
-        "message" to message,
-        "package_name" to packageName
+        "name" to name,
+        "package_name" to packageName,
+        "message" to message
       ))
     }
   }
