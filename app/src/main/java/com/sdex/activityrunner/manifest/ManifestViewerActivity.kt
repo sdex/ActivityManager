@@ -67,8 +67,7 @@ class ManifestViewerActivity : BaseActivity() {
 
     viewModel.loadManifest(appPackageName!!).observe(this, Observer {
       if (it == null) {
-        AnalyticsManager.logError("open_manifest", appPackageName)
-        Toast.makeText(this, "Failed to parse AndroidManifest", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Failed to open AndroidManifest", Toast.LENGTH_SHORT).show()
         finish()
       } else {
         highlightView.setSource(it)
