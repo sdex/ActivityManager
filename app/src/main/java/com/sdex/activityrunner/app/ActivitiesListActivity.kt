@@ -46,6 +46,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
       finish()
       return
     }
+    appPreferences.incrementAppOpenCount()
     appPackageName = item.packageName
     title = item.name
     enableBackButton()
@@ -73,7 +74,9 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
       viewModel.reloadItems(appPackageName!!)
     }
 
-    if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
+    if (!appPreferences.showNotExported
+      && !appPreferences.isNotExportedDialogShown
+      && appPreferences.appOpenCount > 3) {
       appPreferences.isNotExportedDialogShown = true
       val dialog = EnableNotExportedActivitiesDialog()
       dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
