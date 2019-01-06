@@ -7,11 +7,11 @@ import android.preference.PreferenceManager
 class AppPreferences(context: Context) {
 
   private val preferences: SharedPreferences
-  private val advancedPreferences: SharedPreferences
+  private val userPreferences: SharedPreferences
 
   init {
     preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
-    advancedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    userPreferences = PreferenceManager.getDefaultSharedPreferences(context)
   }
 
   var isProVersion: Boolean
@@ -38,24 +38,40 @@ class AppPreferences(context: Context) {
       .putBoolean(KEY_OREO_BUG_WARNING_SHOWN, notExportedDialogShown)
       .apply()
 
+  var appOpenCount: Int
+    get() = preferences.getInt(KEY_APP_OPEN_COUNT, 0)
+    set(value) {
+      preferences.edit()
+        .putInt(KEY_APP_OPEN_COUNT, value)
+        .apply()
+    }
+
+  fun incrementAppOpenCount() {
+    appOpenCount = appOpenCount.inc()
+  }
+
+  /* user preferences */
+
   val isShowSystemAppIndicator: Boolean
-    get() = advancedPreferences.getBoolean(KEY_SHOW_SYSTEM_APP_LABEL,
+    get() = userPreferences.getBoolean(KEY_SHOW_SYSTEM_APP_LABEL,
       KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT)
 
   var showNotExported: Boolean
-    get() = advancedPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
+    get() = userPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
     set(show) {
-      advancedPreferences.edit().putBoolean(KEY_SHOW_NOT_EXPORTED, show).apply()
+      userPreferences.edit()
+        .putBoolean(KEY_SHOW_NOT_EXPORTED, show)
+        .apply()
     }
 
   val isRootIntegrationEnabled: Boolean
-    get() = advancedPreferences.getBoolean(KEY_ROOT_INTEGRATION, KEY_ROOT_INTEGRATION_DEFAULT)
+    get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, KEY_ROOT_INTEGRATION_DEFAULT)
 
   val getTheme: String?
-    get() = advancedPreferences.getString(KEY_THEME, KEY_THEME_DEFAULT)
+    get() = userPreferences.getString(KEY_THEME, KEY_THEME_DEFAULT)
 
   val isBlackTheme: Boolean
-    get() = advancedPreferences.getBoolean(KEY_THEME_BLACK, KEY_THEME_BLACK_DEFAULT)
+    get() = userPreferences.getBoolean(KEY_THEME_BLACK, KEY_THEME_BLACK_DEFAULT)
 
   companion object {
 
@@ -64,6 +80,7 @@ class AppPreferences(context: Context) {
     private const val KEY_HISTORY_WARNING_SHOWN = "history_warning_shown"
     private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
     private const val KEY_OREO_BUG_WARNING_SHOWN = "oreo_bug_warning_shown"
+    private const val KEY_APP_OPEN_COUNT = "app_open_count"
     /* advanced preferences */
     private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
     private const val KEY_SHOW_NOT_EXPORTED_DEFAULT = false
