@@ -1,7 +1,2 @@
-3.1.0
-- add pure black color for dark theme
-- search result now includes matches in an application package name too
-- bugfixes and performance improvements
-
-3.0.0
-- add dark theme, check "Settings -> Theme"
+3.2.0
+- add activity search
