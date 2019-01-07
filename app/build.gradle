@@ -21,8 +21,8 @@ android {
     applicationId "com.activitymanager"
     minSdkVersion 16
     targetSdkVersion 28
-    versionCode 312
-    versionName "3.1.0"
+    versionCode 313
+    versionName "3.2.0"
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -60,8 +60,8 @@ android {
 
   buildTypes {
     debug {
-      minifyEnabled true
-      shrinkResources true
+      minifyEnabled false
+      shrinkResources false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
     release {
