@@ -29,7 +29,7 @@ import java.net.URL;
 public class HighlightJsView extends WebView implements FileUtils.Callback {
 
   //local variables to store language and theme
-  private Language language = Language.AUTO_DETECT;
+  private Language language = Language.XML;
   private Theme theme = Theme.DEFAULT;
   private String content;
   private boolean zoomSupport = false;
@@ -127,7 +127,7 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
 
   /**
    * Set the desired language to highlight the given source.
-   * Default: {@link Language#AUTO_DETECT}
+   * Default: {@link Language#XML}
    *
    * @param language
    */
