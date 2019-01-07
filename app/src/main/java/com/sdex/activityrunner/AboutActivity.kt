@@ -7,8 +7,8 @@ import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
+import com.sdex.commons.license.LicensesDialogFragment
 import com.sdex.commons.util.AppUtils
-import de.psdev.licensesdialog.LicensesDialog
 import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : BaseActivity() {
@@ -37,10 +37,8 @@ class AboutActivity : BaseActivity() {
     }
 
     openSource.setOnClickListener {
-      LicensesDialog.Builder(this)
-        .setNotices(R.raw.notices)
-        .build()
-        .show()
+      val dialog = LicensesDialogFragment()
+      dialog.show(supportFragmentManager, LicensesDialogFragment.TAG)
     }
 
     privacyPolicy.setOnClickListener {
