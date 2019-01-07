@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.pddstudio.highlightjs.models.Language
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
@@ -18,6 +17,7 @@ import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.ThemeHelper
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.analytics.AnalyticsManager
+import com.sdex.highlightjs.models.Language
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {

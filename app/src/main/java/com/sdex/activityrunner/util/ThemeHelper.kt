@@ -1,8 +1,8 @@
 package com.sdex.activityrunner.util
 
 import android.app.Activity
-import com.pddstudio.highlightjs.models.Theme
 import com.sdex.activityrunner.R
+import com.sdex.highlightjs.models.Theme
 
 class ThemeHelper {
 
