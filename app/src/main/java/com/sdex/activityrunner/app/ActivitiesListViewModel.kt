@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.commons.analytics.AnalyticsManager
 import com.sdex.commons.analytics.LOAD_ACTIVITIES
+import com.sdex.commons.pm.getActivities
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -63,15 +64,13 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     val list = ArrayList<ActivityModel>()
     val showNotExported = appPreferences.showNotExported
     try {
-      val info = packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
-      if (info.activities != null) {
-        for (activityInfo in info.activities) {
-          val activityModel = getActivityModel(packageManager, activityInfo)
-          if (activityModel.exported) {
-            list.add(activityModel)
-          } else if (showNotExported) {
-            list.add(activityModel)
-          }
+      val info = getActivities(packageManager, packageName)
+      for (activityInfo in info.activities) {
+        val activityModel = getActivityModel(packageManager, activityInfo)
+        if (activityModel.exported) {
+          list.add(activityModel)
+        } else if (showNotExported) {
+          list.add(activityModel)
         }
       }
     } catch (e: Exception) {

@@ -11,6 +11,7 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
 import com.sdex.commons.analytics.AnalyticsManager
 import com.sdex.commons.analytics.LOAD_PACKAGE_INFO
+import com.sdex.commons.pm.getActivities
 import java.util.*
 
 class ApplicationListLoader {
@@ -91,7 +92,7 @@ class ApplicationListLoader {
                       applications: MutableList<ApplicationModel>,
                       packageName: String) {
     try {
-      val info = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
+      val info = getActivities(pm, packageName)
       val model = getApplicationModel(pm, packageName, info)
       if (info.activities != null) {
         model.activitiesCount = info.activities.size
