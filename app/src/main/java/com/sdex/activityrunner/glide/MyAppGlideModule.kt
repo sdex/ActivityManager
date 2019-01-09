@@ -1,20 +1,24 @@
 package com.sdex.activityrunner.glide
 
+import android.app.ActivityManager
 import android.content.Context
 import android.graphics.drawable.Drawable
-
+import android.os.Build
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.Registry
 import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.bumptech.glide.manager.ConnectivityMonitor
 import com.bumptech.glide.manager.ConnectivityMonitorFactory
 import com.bumptech.glide.module.AppGlideModule
+import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.cache.ApplicationModel
+
 
 @GlideModule
 class MyAppGlideModule : AppGlideModule() {
@@ -66,5 +70,23 @@ class MyAppGlideModule : AppGlideModule() {
 
   override fun applyOptions(context: Context, builder: GlideBuilder) {
     builder.setConnectivityMonitorFactory(nullConnectivityMonitorFactory)
+
+    val defaultRequestOptions = RequestOptions()
+      .format(getDecodeFormat(context))
+    builder.setDefaultRequestOptions(defaultRequestOptions)
+  }
+
+  private fun getDecodeFormat(context: Context): DecodeFormat {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?
+      if (activityManager != null) {
+        return if (activityManager.isLowRamDevice) {
+          DecodeFormat.PREFER_RGB_565
+        } else {
+          DecodeFormat.PREFER_ARGB_8888
+        }
+      }
+    }
+    return DecodeFormat.DEFAULT
   }
 }
