@@ -32,6 +32,10 @@ class AboutActivity : BaseActivity() {
       PurchaseActivity.start(this)
     }
 
+    follow.setOnClickListener {
+      AppUtils.openLink(this, "https://twitter.com/ActivityMngrApp")
+    }
+
     feedback.setOnClickListener {
       AppUtils.sendFeedback(this)
     }

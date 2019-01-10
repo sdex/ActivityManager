@@ -29,59 +29,6 @@
         app:cardCornerRadius="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="?attr/selectableItemBackground"
-          android:paddingTop="8dp"
-          android:paddingBottom="8dp">
-
-          <ImageView
-            android:id="@+id/image_view_version"
-            android:layout_width="@dimen/about_image_size"
-            android:layout_height="@dimen/about_image_size"
-            android:layout_margin="4dp"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_about_version" />
-
-          <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about_version"
-            android:textColor="?attr/primaryTextColor"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_version"
-            app:layout_constraintStart_toEndOf="@+id/image_view_version" />
-
-          <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
-
-          <TextView
-            android:id="@+id/versionName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/primaryTextColor"
-            app:layout_constraintStart_toEndOf="@+id/image_view_version"
-            app:layout_constraintTop_toTopOf="@+id/guideline_version"
-            tools:text="1.4.5 (145)" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-      </androidx.cardview.widget.CardView>
-
-      <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="?attr/amCardBackgroundColor"
-        app:cardCornerRadius="1dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/rateApp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -148,6 +95,45 @@
             app:layout_constraintBottom_toBottomOf="@+id/image_view_donate"
             app:layout_constraintStart_toEndOf="@+id/image_view_donate"
             app:layout_constraintTop_toTopOf="@+id/image_view_donate" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
+        app:cardCornerRadius="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/follow"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+
+          <ImageView
+            android:id="@+id/image_view_follow"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_follow" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_follow"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_follow"
+            app:layout_constraintStart_toEndOf="@+id/image_view_follow"
+            app:layout_constraintTop_toTopOf="@+id/image_view_follow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -243,7 +229,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
       </androidx.cardview.widget.CardView>
 
       <androidx.cardview.widget.CardView
@@ -280,6 +265,59 @@
             app:layout_constraintBottom_toBottomOf="@+id/image_view_privacy_policy"
             app:layout_constraintStart_toEndOf="@+id/image_view_privacy_policy"
             app:layout_constraintTop_toTopOf="@+id/image_view_privacy_policy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="?attr/amCardBackgroundColor"
+        app:cardCornerRadius="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="?attr/selectableItemBackground"
+          android:paddingTop="8dp"
+          android:paddingBottom="8dp">
+
+          <ImageView
+            android:id="@+id/image_view_version"
+            android:layout_width="@dimen/about_image_size"
+            android:layout_height="@dimen/about_image_size"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_about_version" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_version"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_version"
+            app:layout_constraintStart_toEndOf="@+id/image_view_version" />
+
+          <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+          <TextView
+            android:id="@+id/versionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/primaryTextColor"
+            app:layout_constraintStart_toEndOf="@+id/image_view_version"
+            app:layout_constraintTop_toTopOf="@+id/guideline_version"
+            tools:text="1.4.5 (145)" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
