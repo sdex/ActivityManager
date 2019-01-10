@@ -66,6 +66,7 @@
   <string name="pro_version_unlock_intent_shortcuts">Приобретите премиум версию для возможности создавать ярлыки для произвольных intent</string>
   <string name="pro_version_unlock_root_integration">Приобретите премиум версию для возможности интеграции с ROOT</string>
   <string name="pro_version_unlock_history">Достигнут лимит на количество записей. Старые записи будут перезаписаны новыми. Приобретите премиум версию для неограниченного количества записей в истории</string>
+  <string name="pro_version_unlock">Нравится приложение? Рассмотрите возможность приобретения премиум версии для поддержки разработки</string>
 
   <!-- about -->
   <string name="about_rate">Оценить приложение</string>
@@ -73,6 +74,7 @@
   <string name="about_contact_email">Связаться с автором</string>
   <string name="about_feedback">Сообщить о проблеме, задать вопрос…</string>
   <string name="about_open_source">Библиотеки с открытым кодом</string>
+  <string name="about_follow">Следите за нами в Twitter</string>
   <string name="about_open_privacy_policy">Политика конфиденциальности</string>
 
   <string name="input_key">Введите ключ</string>

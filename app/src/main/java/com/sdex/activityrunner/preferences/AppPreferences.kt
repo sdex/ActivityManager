@@ -16,26 +16,32 @@ class AppPreferences(context: Context) {
 
   var isProVersion: Boolean
     get() = preferences.getBoolean(KEY_PRO, false)
-    set(isPro) = preferences.edit()
-      .putBoolean(KEY_PRO, isPro)
+    set(value) = preferences.edit()
+      .putBoolean(KEY_PRO, value)
       .apply()
 
   var isHistoryWarningShown: Boolean
     get() = preferences.getBoolean(KEY_HISTORY_WARNING_SHOWN, false)
-    set(historyWarningShown) = preferences.edit()
-      .putBoolean(KEY_HISTORY_WARNING_SHOWN, historyWarningShown)
+    set(value) = preferences.edit()
+      .putBoolean(KEY_HISTORY_WARNING_SHOWN, value)
       .apply()
 
   var isNotExportedDialogShown: Boolean
     get() = preferences.getBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, false)
-    set(notExportedDialogShown) = preferences.edit()
-      .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, notExportedDialogShown)
+    set(value) = preferences.edit()
+      .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, value)
+      .apply()
+
+  var isPremiumDialogShown: Boolean
+    get() = preferences.getBoolean(KEY_PREMIUM_DIALOG_SHOWN, false)
+    set(value) = preferences.edit()
+      .putBoolean(KEY_PREMIUM_DIALOG_SHOWN, value)
       .apply()
 
   var isOreoBugWarningShown: Boolean
     get() = preferences.getBoolean(KEY_OREO_BUG_WARNING_SHOWN, false)
-    set(notExportedDialogShown) = preferences.edit()
-      .putBoolean(KEY_OREO_BUG_WARNING_SHOWN, notExportedDialogShown)
+    set(value) = preferences.edit()
+      .putBoolean(KEY_OREO_BUG_WARNING_SHOWN, value)
       .apply()
 
   var appOpenCount: Int
@@ -58,9 +64,9 @@ class AppPreferences(context: Context) {
 
   var showNotExported: Boolean
     get() = userPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
-    set(show) {
+    set(value) {
       userPreferences.edit()
-        .putBoolean(KEY_SHOW_NOT_EXPORTED, show)
+        .putBoolean(KEY_SHOW_NOT_EXPORTED, value)
         .apply()
     }
 
@@ -79,6 +85,7 @@ class AppPreferences(context: Context) {
     private const val KEY_PRO = "pro"
     private const val KEY_HISTORY_WARNING_SHOWN = "history_warning_shown"
     private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
+    private const val KEY_PREMIUM_DIALOG_SHOWN = "premium_dialog_shown"
     private const val KEY_OREO_BUG_WARNING_SHOWN = "oreo_bug_warning_shown"
     private const val KEY_APP_OPEN_COUNT = "app_open_count"
     /* advanced preferences */
