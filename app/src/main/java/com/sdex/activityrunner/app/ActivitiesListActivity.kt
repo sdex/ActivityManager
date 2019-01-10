@@ -18,6 +18,7 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.analytics.AnalyticsManager
@@ -76,10 +77,18 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
     if (!appPreferences.showNotExported
       && !appPreferences.isNotExportedDialogShown
-      && appPreferences.appOpenCount > 3) {
+      && appPreferences.appOpenCount > SHOW_NOT_EXPORTED_DIALOG_THRESHOLD) {
       appPreferences.isNotExportedDialogShown = true
       val dialog = EnableNotExportedActivitiesDialog()
       dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
+    }
+
+    if (!appPreferences.isPremiumDialogShown
+      && !appPreferences.isProVersion
+      && appPreferences.appOpenCount > SHOW_PREMIUM_DIALOG_THRESHOLD) {
+      appPreferences.isPremiumDialogShown = true
+      val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock)
+      dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
     }
   }
 
@@ -151,6 +160,8 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
     const val ARG_APPLICATION = "arg_application"
     private const val STATE_SEARCH_TEXT = "state_search_text"
+    const val SHOW_PREMIUM_DIALOG_THRESHOLD = 30
+    const val SHOW_NOT_EXPORTED_DIALOG_THRESHOLD = 5
 
     fun start(context: Context, item: ApplicationModel) {
       AnalyticsManager.logApplicationOpen(item)

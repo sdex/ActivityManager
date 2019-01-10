@@ -14,8 +14,9 @@ class GetPremiumDialog : BaseDialogFragment() {
     return AlertDialog.Builder(activity!!)
       .setTitle(R.string.pro_version_dialog_title)
       .setMessage(message)
-      .setPositiveButton(R.string.pro_version_get
-      ) { _, _ -> PurchaseActivity.start(activity!!) }
+      .setPositiveButton(R.string.pro_version_get) { _, _ ->
+        PurchaseActivity.start(requireContext())
+      }
       .create()
   }
 
@@ -26,7 +27,7 @@ class GetPremiumDialog : BaseDialogFragment() {
     private const val ARG_MESSAGE = "arg_message"
 
     fun newInstance(@StringRes messageRes: Int): GetPremiumDialog {
-      val args = Bundle()
+      val args = Bundle(1)
       args.putInt(ARG_MESSAGE, messageRes)
       val fragment = GetPremiumDialog()
       fragment.arguments = args

@@ -72,6 +72,7 @@
   <string name="pro_version_unlock_intent_shortcuts">Get premium to create Intent shortcuts</string>
   <string name="pro_version_unlock_root_integration">Get premium to enable ROOT operations. To use this feature the device should be rooted already</string>
   <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium to have unlimited history</string>
+  <string name="pro_version_unlock">Do you like the app? Consider purchasing premium version to support development</string>
   <string name="pro_version_price_2" translatable="false">$1.99</string>
   <string name="pro_version_price_5" translatable="false">$4.99</string>
   <string name="pro_version_price_10" translatable="false">$9.99</string>
@@ -84,6 +85,7 @@
   <string name="about_contact_email">Send feedback</string>
   <string name="about_feedback">Report a problem, aks a question…</string>
   <string name="about_open_source">Open source libraries</string>
+  <string name="about_follow">Follow us on Twitter</string>
   <string name="about_open_privacy_policy">Privacy policy</string>
 
   <string name="input_key">Input key</string>
