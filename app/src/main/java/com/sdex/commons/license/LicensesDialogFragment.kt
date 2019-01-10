@@ -9,6 +9,7 @@ import android.os.Message
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.appcompat.app.AlertDialog
+import com.sdex.activityrunner.R
 import com.sdex.commons.BaseDialogFragment
 
 class LicensesDialogFragment : BaseDialogFragment() {
@@ -17,9 +18,9 @@ class LicensesDialogFragment : BaseDialogFragment() {
     val webView = createWebView(requireContext())
     webView.loadUrl("file:///android_asset/licenses.html")
     return AlertDialog.Builder(requireContext())
-      .setTitle("Notices")
+      .setTitle(R.string.dialog_license_title)
       .setView(webView)
-      .setPositiveButton("Close", null)
+      .setPositiveButton(R.string.dialog_license_close, null)
       .create()
   }
 

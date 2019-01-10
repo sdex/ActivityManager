@@ -36,7 +36,7 @@ class ManifestViewerActivity : BaseActivity() {
       super.onCreate(savedInstanceState)
     } catch (e: Exception) {
       // probably android.webkit.WebViewFactory.MissingWebViewPackageException
-      Toast.makeText(this, "Failed to instantiate WebView", Toast.LENGTH_SHORT).show()
+      Toast.makeText(this, R.string.error_failed_to_instantiate_web_view, Toast.LENGTH_SHORT).show()
       finish()
       return
     }
@@ -67,7 +67,7 @@ class ManifestViewerActivity : BaseActivity() {
 
     viewModel.loadManifest(appPackageName!!).observe(this, Observer {
       if (it == null) {
-        Toast.makeText(this, "Failed to open AndroidManifest", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.error_failed_to_open_manifest, Toast.LENGTH_SHORT).show()
         finish()
       } else {
         highlightView.setSource(it)

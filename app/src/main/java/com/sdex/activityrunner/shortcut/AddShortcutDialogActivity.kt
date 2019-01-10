@@ -77,9 +77,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
       if (activityModel != null) {
         contentManager?.pickContent(ContentManager.Content.IMAGE)
       } else {
-        Toast.makeText(this,
-          "Custom icon is not supported for Intent shortcut yet. Only for activity",
-          Toast.LENGTH_LONG).show()
+        Toast.makeText(this, R.string.error_intent_shortcut_icon, Toast.LENGTH_LONG).show()
       }
     }
 
