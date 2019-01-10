@@ -2,22 +2,29 @@
   <string name="history_activity">История</string>
   <string name="settings_activity">Настройки</string>
 
-  <string name="context_action_launch">Открыть в GooglePlay</string>
   <string name="context_action_launch_params">Запустить с параметрами</string>
   <string name="context_action_launch_root">Запустить с правами ROOT</string>
   <string name="context_action_shortcut">Создать ярлык</string>
 
-  <string name="context_action_open_info">Открыть инфо</string>
+  <string name="context_action_open">Запустить приложение</string>
   <string name="context_action_open_manifest">Открыть манифест</string>
+  <string name="context_action_open_info">Открыть инфо</string>
+  <string name="context_action_launch">Открыть в GooglePlay</string>
 
   <string name="shortcut_name">Название</string>
   <string name="shortcut_name_empty">Обязательное поле</string>
+  <string name="shortcut_create">Создать</string>
 
   <string name="starting_activity">Запуск: %s</string>
   <string name="starting_activity_failed">Ошибка запуска: %s</string>
+  <string name="starting_activity_launch_intent_failed">Не удалось найти главную активность</string>
   <string name="starting_activity_failed_security">Нет прав для запуска: %s</string>
   <string name="starting_activity_intent">Запуск</string>
   <string name="starting_activity_intent_failed">Ошибка запуска</string>
+
+  <!-- activities list -->
+  <string name="activities_list_empty_text">Нет экспортированных активностей</string>
+  <string name="activities_list_empty_action">включить продвинутый режим</string>
 
   <string name="action_upgrade">Приобрести премиум</string>
   <string name="action_about">О программе</string>
@@ -25,7 +32,8 @@
   <string name="action_history">История</string>
   <string name="action_clear_history">Очистить историю</string>
   <string name="action_search">Поиск</string>
-  <string name="action_search_hint">Название программы</string>
+  <string name="action_search_hint">Имя или пакет приложения</string>
+  <string name="action_search_activity_hint">Имя или пакет активности</string>
   <string name="action_settings">Настройки</string>
 
   <string name="launch_param_package_name">Имя пакета</string>
@@ -42,6 +50,7 @@
   <string name="item_history_has_categories">Содержит категории</string>
   <string name="item_history_has_flags">Содержит флаги</string>
 
+  <!-- premium -->
   <string name="purchase_activity">Поддержать разработку</string>
   <string name="pro_version_title">Activity Manager Премиум</string>
   <string name="pro_version_extras">&#x2022; Неограниченные дополнительные параметры</string>
@@ -49,16 +58,22 @@
   <string name="pro_version_root">&#x2022; Интеграция ROOT</string>
   <string name="pro_version_shortcut">&#x2022; Ярлыки для произвольных Intent</string>
   <string name="pro_version_get">Получить премиум</string>
+  <string name="pro_version_description">Вы будете направлены в магазин Google Play где увидите сумму в рублях для завершения процесса</string>
+  <string name="pro_version_done_title">Премиум версия активна.</string>
+  <string name="pro_version_done">Спасибо за поддержку!</string>
   <string name="pro_version_dialog_title">Приобрести премиум</string>
   <string name="pro_version_unlock_extras">Приобретите премиум версию для возможности добавлять неограниченное количество дополнительных параметров</string>
   <string name="pro_version_unlock_intent_shortcuts">Приобретите премиум версию для возможности создавать ярлыки для произвольных intent</string>
   <string name="pro_version_unlock_root_integration">Приобретите премиум версию для возможности интеграции с ROOT</string>
   <string name="pro_version_unlock_history">Достигнут лимит на количество записей. Старые записи будут перезаписаны новыми. Приобретите премиум версию для неограниченного количества записей в истории</string>
 
+  <!-- about -->
   <string name="about_rate">Оценить приложение</string>
   <string name="about_version">Версия</string>
   <string name="about_contact_email">Связаться с автором</string>
+  <string name="about_feedback">Сообщить о проблеме, задать вопрос…</string>
   <string name="about_open_source">Библиотеки с открытым кодом</string>
+  <string name="about_open_privacy_policy">Политика конфиденциальности</string>
 
   <string name="input_key">Введите ключ</string>
   <string name="input_value">Введите значение</string>
@@ -89,8 +104,19 @@
   <string name="rating_dialog_submit">Отправить</string>
   <string name="rating_dialog_suggestions">Сообщите нам что не так и мы исправим это</string>
 
+  <string name="dialog_enable_non_exported_title">Неэкспортиванные активности</string>
+  <string name="dialog_enable_non_exported_message">Вы можете включить отображение неэкспортиванных активностей. Они выделены красным цветов и не могут быть запущены без ROOT прав</string>
+
   <!-- settings -->
+  <string name="pref_header_appearance">Внешний вид</string>
+  <string name="pref_appearance_theme_title">Тема</string>
+  <string name="pref_appearance_theme_summary">Установить тему приложения</string>
+  <string name="pref_appearance_theme_black_title">Черный цвет</string>
+  <string name="pref_appearance_theme_black_summary">Для AMOLED экранов</string>
+
   <string name="pref_header_advanced">Дополнительно</string>
+  <string name="pref_advanced_system_apps_title">Индикатор системных приложений</string>
+  <string name="pref_advanced_system_apps_summary">Серая точка возле имени приложения</string>
   <string name="pref_advanced_not_exported_title">Показывать скрытые Activity</string>
   <string name="pref_advanced_not_exported_summary">Можно запустить только от имени ROOT</string>
   <string name="pref_advanced_root_integration_title">Интеграция с ROOT</string>
@@ -98,6 +124,17 @@
   <string name="settings_error_root_not_available">ROOT недоступен на устройстве</string>
   <string name="settings_error_root_not_granted">ROOT права не были предоставлены</string>
   <string name="settings_error_root_not_active">Нужно активировать интеграцию ROOT</string>
+
+  <!-- root -->
+  <string name="root_check_compatibility">Проверить root</string>
+  <string name="root_check_compatibility_text">Проверка доступности ROOT прав, что бы убедиться что Activity Manager может их использовать</string>
+  <string name="root_check_compatibility_status_ok">OK. ROOT права получены</string>
+  <string name="root_check_compatibility_status_fail">Не удалось получить права. Телефон рутован?</string>
+
+  <string-array name="pref_appearance_theme_list_titles">
+    <item>Светлая</item>
+    <item>Темная</item>
+  </string-array>
 
   <plurals name="history_records">
     <item quantity="one">%d запись</item>
