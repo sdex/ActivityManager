@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
 import com.sdex.activityrunner.BuildConfig
+import com.sdex.activityrunner.R
 import java.io.File
 
 class ShareProvider {
@@ -24,7 +25,7 @@ class ShareProvider {
     val intent = ShareCompat.IntentBuilder.from(activity)
       .setType("text/xml")
       .setStream(uri)
-      .setChooserTitle("Share AndroidManifest.xml file")
+      .setChooserTitle(R.string.dialog_share_title)
       .createChooserIntent()
       .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 

@@ -11,8 +11,8 @@ class EnableNotExportedActivitiesDialog : BaseDialogFragment() {
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val alertDialog = AlertDialog.Builder(activity!!)
-      .setTitle("Non-exported activities")
-      .setMessage("You can enable displaying non-exported activities. Such activities can be run only with ROOT permission")
+      .setTitle(R.string.dialog_enable_non_exported_title)
+      .setMessage(R.string.dialog_enable_non_exported_message)
       .setPositiveButton(R.string.action_settings) { _, _ ->
         SettingsActivity.start(activity!!)
       }
