@@ -29,7 +29,7 @@
   <string name="starting_activity_intent_failed">Failed to start activity</string>
 
   <!-- activities list -->
-  <string name="activities_list_empty_text">There is no public visible activities</string>
+  <string name="activities_list_empty_text">There is non exported activities</string>
   <string name="activities_list_empty_action">turn on advanced mode</string>
 
   <string name="action_upgrade">Upgrade</string>
@@ -38,8 +38,8 @@
   <string name="action_history">History</string>
   <string name="action_clear_history">Clear history</string>
   <string name="action_search">Search</string>
-  <string name="action_search_hint">Application name</string>
-  <string name="action_search_activity_hint">Activity name</string>
+  <string name="action_search_hint">Application name or package</string>
+  <string name="action_search_activity_hint">Activity name or package</string>
   <string name="action_settings">Settings</string>
 
   <string name="launch_param_package_name">Package name</string>
@@ -61,7 +61,7 @@
   <string name="pro_version_title">Activity Manager Premium</string>
   <string name="pro_version_extras">&#x2022; Unlimited Intent extra parameters</string>
   <string name="pro_version_history">&#x2022; Unlimited history</string>
-  <string name="pro_version_root">&#x2022; Integration with ROOT</string>
+  <string name="pro_version_root">&#x2022; ROOT operations</string>
   <string name="pro_version_shortcut">&#x2022; Shortcuts for any Intent</string>
   <string name="pro_version_get">Get premium</string>
   <string name="pro_version_description">You will be sent to Google Play to view the final amount in your local currency and complete the process</string>
@@ -127,7 +127,7 @@
   <string name="rating_dialog_suggestions">Suggest us what went wrong and we\'ll work on it!</string>
 
   <string name="dialog_enable_non_exported_title">Non-exported activities</string>
-  <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities. Such activities can be run only with ROOT permission</string>
+  <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
 
   <!-- errors -->
   <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView</string>

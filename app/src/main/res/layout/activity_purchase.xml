@@ -41,6 +41,7 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="@string/pro_version_title"
             android:textColor="?attr/primaryTextColor"
             android:textSize="20sp" />
@@ -48,7 +49,13 @@
           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:text="@string/pro_version_root"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?attr/primaryTextColor" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/pro_version_shortcut"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="?attr/primaryTextColor" />
@@ -64,13 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pro_version_history"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="?attr/primaryTextColor" />
-
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pro_version_root"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="?attr/primaryTextColor" />
 
