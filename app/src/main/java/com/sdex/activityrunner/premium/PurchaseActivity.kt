@@ -80,6 +80,11 @@ class PurchaseActivity : BaseActivity() {
       }
       showPurchaseDialog(sku)
     }
+
+    restore.setOnClickListener {
+      val dialog = PurchaseHelpDialog.newInstance()
+      dialog.show(supportFragmentManager, PurchaseHelpDialog.TAG)
+    }
   }
 
   private fun handlePurchases(purchases: List<Purchase>) {
