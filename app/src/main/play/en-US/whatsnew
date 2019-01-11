@@ -1,2 +1,5 @@
-3.2.0
-- add activity search
+3.3.0
+- fix an issue that prevents some apps to be listed
+- improve performance on low ram devices
+
+Follow us on twitter: https://twitter.com/ActivityMngrApp
