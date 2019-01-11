@@ -73,6 +73,8 @@
   <string name="pro_version_unlock_root_integration">Get premium to enable ROOT operations. To use this feature the device should be rooted already</string>
   <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium to have unlimited history</string>
   <string name="pro_version_unlock">Do you like the app? Consider purchasing premium version to support development</string>
+  <string name="pro_version_help_title">Restore purchase</string>
+  <string name="pro_version_help_message">If you already bought premium version please send me your \"order id\" and purchase date to activitymanagerapp@gmail.com in order to restore your purchase. Sorry for inconvenience</string>
   <string name="pro_version_price_2" translatable="false">$1.99</string>
   <string name="pro_version_price_5" translatable="false">$4.99</string>
   <string name="pro_version_price_10" translatable="false">$9.99</string>
