@@ -1,5 +1,5 @@
 3.3.0
-- fix an issue that prevents some apps to be listed
+- fix an annoying issue that prevents some apps to be listed on android below 6
 - improve performance on low ram devices
 
 Follow us on twitter: https://twitter.com/ActivityMngrApp
