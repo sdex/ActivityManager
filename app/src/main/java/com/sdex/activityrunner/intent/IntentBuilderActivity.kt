@@ -23,10 +23,8 @@ import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.analytics.AnalyticsManager
 import kotlinx.android.synthetic.main.activity_intent_builder.*
 import java.util.*
 import kotlin.properties.Delegates
@@ -219,14 +217,8 @@ class IntentBuilderActivity : BaseActivity(),
 
   private fun bindKeyValueDialog(view: View) {
     view.setOnClickListener {
-      val size = launchParams.extras.size
-      if (size >= EXTRAS_LIMIT && !appPreferences.isProVersion) {
-        val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_extras)
-        dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
-      } else {
-        val dialog = ExtraInputDialog.newInstance(null, -1)
-        dialog.show(supportFragmentManager, ExtraInputDialog.TAG)
-      }
+      val dialog = ExtraInputDialog.newInstance(null, -1)
+      dialog.show(supportFragmentManager, ExtraInputDialog.TAG)
     }
   }
 
@@ -309,10 +301,7 @@ class IntentBuilderActivity : BaseActivity(),
     private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
     private const val STATE_LAUNCH_PARAMS = "state_launch_params"
 
-    private const val EXTRAS_LIMIT = 3
-
     fun start(context: Context, model: ActivityModel?) {
-      AnalyticsManager.logIntentLauncherOpen(model)
       val starter = Intent(context, IntentBuilderActivity::class.java)
       starter.putExtra(ARG_ACTIVITY_MODEL, model)
       context.startActivity(starter)

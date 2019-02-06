@@ -2,19 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.triplet.play'
 
 def keystorePropertiesFile = file("keystore/keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-  playAccountConfigs {
-    defaultAccountConfig {
-      jsonFile = file('upload_key.json')
-    }
-  }
-
   compileSdkVersion app.compileSdk
 
   defaultConfig {
@@ -25,8 +18,6 @@ android {
     versionName "3.3.0"
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-    playAccountConfig = playAccountConfigs.defaultAccountConfig
 
     vectorDrawables.useSupportLibrary = true
 
@@ -77,11 +68,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  play {
-    track = 'beta'
-    uploadImages = false
-  }
-
   sourceSets {
     androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
   }
@@ -114,11 +100,8 @@ dependencies {
   kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
   implementation "com.google.android.material:material:1.1.0-alpha02"
-  implementation "com.android.billingclient:billing:1.0"
-  implementation "com.codemybrainsout.rating:ratingdialog:1.0.8"
   implementation "com.simplecityapps:recyclerview-fastscroll:1.0.20"
   implementation "com.tomergoldst.android:tooltips:1.0.11"
-  implementation "com.flurry.android:analytics:11.4.0@aar"
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation "org.jetbrains.anko:anko-coroutines:$anko_version"

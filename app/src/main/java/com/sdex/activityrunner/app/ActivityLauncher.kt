@@ -10,7 +10,6 @@ import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
-import com.sdex.commons.analytics.AnalyticsManager
 
 class ActivityLauncher(private val snackbarContainerActivity: SnackbarContainerActivity) {
 
@@ -18,21 +17,17 @@ class ActivityLauncher(private val snackbarContainerActivity: SnackbarContainerA
 
   fun launchActivity(model: ActivityModel) {
     if (model.exported) {
-      AnalyticsManager.logActivityOpen(model)
       IntentUtils.launchActivity(activity, model.componentName, model.name)
     } else {
-      AnalyticsManager.logActivityOpen(model, withRoot = true)
       tryRunWithRoot(model)
     }
   }
 
   fun launchActivityWithRoot(model: ActivityModel) {
-    AnalyticsManager.logActivityOpen(model, withRoot = true)
     tryRunWithRoot(model)
   }
 
   fun launchActivityWithParams(model: ActivityModel) {
-    AnalyticsManager.logActivityOpen(model, withParams = true)
     IntentBuilderActivity.start(activity, model)
   }
 

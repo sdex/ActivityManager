@@ -16,7 +16,6 @@ import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.ThemeHelper
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.analytics.AnalyticsManager
 import com.sdex.highlightjs.models.Language
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
@@ -102,7 +101,6 @@ class ManifestViewerActivity : BaseActivity() {
     private const val ARG_NAME = "arg_name"
 
     fun start(context: Context, model: ApplicationModel) {
-      AnalyticsManager.logManifestView(model)
       val starter = Intent(context, ManifestViewerActivity::class.java)
       starter.putExtra(ARG_PACKAGE_NAME, model.packageName)
       starter.putExtra(ARG_NAME, model.name)

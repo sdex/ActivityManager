@@ -7,8 +7,6 @@ import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.app.root.GetRootDialog
-import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.util.CheckRootTask
 import com.sdex.activityrunner.util.ThemeHelper
 
@@ -21,7 +19,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val appPreferences = AppPreferences(activity!!)
     val rootIntegration = findPreference(AppPreferences.KEY_ROOT_INTEGRATION)
       as SwitchPreferenceCompat
     rootIntegration.setOnPreferenceChangeListener { _, newValue ->
@@ -30,14 +27,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
           return@setOnPreferenceChangeListener true
         }
       }
-      if (appPreferences.isProVersion) {
-        checkRoot(rootIntegration)
-        return@setOnPreferenceChangeListener true
-      } else {
-        val dialog = GetRootDialog.newInstance()
-        dialog.show(childFragmentManager, GetPremiumDialog.TAG)
-        return@setOnPreferenceChangeListener false
-      }
+      checkRoot(rootIntegration)
+      return@setOnPreferenceChangeListener true
     }
 
     val themePreference = findPreference(AppPreferences.KEY_THEME) as ListPreference

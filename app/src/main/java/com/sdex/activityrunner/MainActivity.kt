@@ -12,12 +12,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.android.billingclient.api.BillingClient
-import com.android.billingclient.api.BillingClient.BillingResponse
-import com.android.billingclient.api.BillingClient.SkuType
-import com.android.billingclient.api.BillingClientStateListener
-import com.android.billingclient.api.Purchase
-import com.codemybrainsout.ratingdialog.RatingDialog
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.ApplicationsListViewModel
 import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
@@ -25,10 +19,8 @@ import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.activityrunner.service.ApplicationsListJob
 import com.sdex.commons.BaseActivity
-import com.sdex.commons.util.AppUtils
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -40,7 +32,6 @@ class MainActivity : BaseActivity() {
     ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
   }
 
-  private var isProVersionEnabled: Boolean = false
   private var isShowSystemAppIndicator: Boolean = false
   private var searchText: String? = null
 
@@ -54,9 +45,6 @@ class MainActivity : BaseActivity() {
     ApplicationsListJob.enqueueWork(this, Intent())
 
     isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-
-    fetchPurchases()
-    showRatingDialog()
 
     searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
@@ -114,60 +102,6 @@ class MainActivity : BaseActivity() {
     }
   }
 
-  private fun fetchPurchases() {
-    val billingClient = BillingClient.newBuilder(this)
-      .setListener { responseCode, purchases ->
-        if (responseCode == BillingResponse.OK) {
-          handlePurchases(purchases)
-        }
-      }
-      .build()
-    billingClient.startConnection(object : BillingClientStateListener {
-      override fun onBillingSetupFinished(@BillingResponse billingResponseCode: Int) {
-        if (billingResponseCode == BillingResponse.OK) {
-          val purchasesResult = billingClient.queryPurchases(SkuType.INAPP)
-          val purchases = purchasesResult.purchasesList
-          handlePurchases(purchases)
-        }
-      }
-
-      override fun onBillingServiceDisconnected() {
-        // Try to restart the connection on the next request to
-        // Google Play by calling the startConnection() method.
-      }
-    })
-  }
-
-  private fun handlePurchases(purchases: List<Purchase>?) {
-    isProVersionEnabled = false
-    if (purchases != null) {
-      for (purchase in purchases) {
-        if (PurchaseActivity.isPremiumVersion(purchase.sku)) {
-          isProVersionEnabled = true
-          break
-        }
-      }
-    }
-    invalidateOptionsMenu()
-    appPreferences.isProVersion = isProVersionEnabled
-  }
-
-  private fun showRatingDialog() {
-    val threshold = 3f
-    val sessions = 10
-    val ratingDialog = RatingDialog.Builder(this)
-      .threshold(threshold)
-      .session(sessions)
-      .onRatingBarFormSumbit {
-        AppUtils.sendEmail(this, AppUtils.EMAIL, "Feedback", it)
-      }
-      .ratingBarBackgroundColor(R.color.grey_200)
-      .ratingBarColor(R.color.darker_gray)
-      .feedbackTextColor(R.color.black)
-      .build()
-    ratingDialog.show()
-  }
-
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     menuInflater.inflate(R.menu.main, menu)
     val searchItem = menu.findItem(R.id.action_search)
@@ -207,22 +141,10 @@ class MainActivity : BaseActivity() {
     return super.onCreateOptionsMenu(menu)
   }
 
-  override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-    if (isProVersionEnabled) {
-      val itemUpgrade = menu.findItem(R.id.action_upgrade)
-      itemUpgrade?.isVisible = false
-    }
-    return super.onPrepareOptionsMenu(menu)
-  }
-
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when (item.itemId) {
       R.id.action_launch_intent -> {
         IntentBuilderActivity.start(this, null)
-        true
-      }
-      R.id.action_upgrade -> {
-        PurchaseActivity.start(this)
         true
       }
       R.id.action_about -> {

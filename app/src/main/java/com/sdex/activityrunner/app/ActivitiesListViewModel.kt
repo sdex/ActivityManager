@@ -9,8 +9,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.commons.analytics.AnalyticsManager
-import com.sdex.commons.analytics.LOAD_ACTIVITIES
 import com.sdex.commons.pm.getActivities
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -74,7 +72,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
         }
       }
     } catch (e: Exception) {
-      AnalyticsManager.logError(LOAD_ACTIVITIES, packageName, exception = e)
       e.printStackTrace()
     }
     list.sortBy { it.name }

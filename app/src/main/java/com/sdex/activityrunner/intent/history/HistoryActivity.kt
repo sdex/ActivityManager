@@ -21,7 +21,6 @@ import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.premium.GetPremiumDialog
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.activity_history.*
@@ -55,19 +54,14 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     registerForContextMenu(list)
 
     viewModel.list.observe(this, Observer {
-      val size = it!!.size
-      val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
-      setSubtitle(subtitle)
       adapter.submitList(it)
-      val historyWarningShown = appPreferences.isHistoryWarningShown
-      if (size == HistoryViewModel.MAX_FREE_RECORDS &&
-        !appPreferences.isProVersion && !historyWarningShown) {
-        appPreferences.isHistoryWarningShown = true
-        val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_history)
-        dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
-      }
-      if (size == 0) {
-        empty.visibility = VISIBLE
+      it?.let {
+        val size = it.size
+        val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
+        setSubtitle(subtitle)
+        if (size == 0) {
+          empty.visibility = VISIBLE
+        }
       }
     })
 
@@ -101,12 +95,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
   }
 
   private fun showShortcutDialog(historyModel: HistoryModel) {
-    if (appPreferences.isProVersion) {
-      AddShortcutDialogActivity.start(this, historyModel)
-    } else {
-      val dialog = GetPremiumDialog.newInstance(R.string.pro_version_unlock_intent_shortcuts)
-      dialog.show(supportFragmentManager, GetPremiumDialog.TAG)
-    }
+    AddShortcutDialogActivity.start(this, historyModel)
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

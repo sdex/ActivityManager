@@ -32,7 +32,6 @@
   <string name="activities_list_empty_text">There is non exported activities</string>
   <string name="activities_list_empty_action">turn on advanced mode</string>
 
-  <string name="action_upgrade">Upgrade</string>
   <string name="action_about">About</string>
   <string name="action_launch_intent">Intent launcher</string>
   <string name="action_history">History</string>
@@ -56,39 +55,17 @@
   <string name="item_history_has_categories">Has categories</string>
   <string name="item_history_has_flags">Has flags</string>
 
-  <!-- premium -->
-  <string name="purchase_activity">Support development</string>
-  <string name="pro_version_title">Activity Manager Premium</string>
-  <string name="pro_version_extras">&#x2022; Unlimited Intent extra parameters</string>
-  <string name="pro_version_history">&#x2022; Unlimited history</string>
-  <string name="pro_version_root">&#x2022; ROOT operations</string>
-  <string name="pro_version_shortcut">&#x2022; Shortcuts for any Intent</string>
-  <string name="pro_version_get">Get premium</string>
-  <string name="pro_version_description">You will be sent to Google Play to view the final amount in your local currency and complete the process</string>
-  <string name="pro_version_done_title">Premium version is active.</string>
-  <string name="pro_version_done">Thank you for supporting us!</string>
-  <string name="pro_version_dialog_title">Upgrade to premium</string>
-  <string name="pro_version_unlock_extras">You have reached the limit of extra parameters. Get premium to add unlimited extras</string>
-  <string name="pro_version_unlock_intent_shortcuts">Get premium to create Intent shortcuts</string>
-  <string name="pro_version_unlock_root_integration">Get premium to enable ROOT operations. To use this feature the device should be rooted already</string>
-  <string name="pro_version_unlock_history">You have reached the limit of history records. The new records will override the old ones. Get premium to have unlimited history</string>
-  <string name="pro_version_unlock">Do you like the app? Consider purchasing premium version to support development</string>
-  <string name="pro_version_help_title">Restore purchase</string>
-  <string name="pro_version_help_message">If you already bought premium version please send me your \"order id\" and purchase date to activitymanagerapp@gmail.com in order to restore your purchase. Sorry for inconvenience</string>
-  <string name="pro_version_price_2" translatable="false">$1.99</string>
-  <string name="pro_version_price_5" translatable="false">$4.99</string>
-  <string name="pro_version_price_10" translatable="false">$9.99</string>
-  <string name="pro_version_price_20" translatable="false">$19.99</string>
-
   <!-- about -->
-  <string name="about_rate">Rate this app</string>
+  <string name="about_donation">Support development</string>
   <string name="about_version">Version</string>
   <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
   <string name="about_contact_email">Send feedback</string>
   <string name="about_feedback">Report a problem, aks a question…</string>
   <string name="about_open_source">Open source libraries</string>
-  <string name="about_follow">Follow us on Twitter</string>
   <string name="about_open_privacy_policy">Privacy policy</string>
+
+  <string name="donate_message">If you like the app, please consider making some cash donation</string>
+  <string name="donate_action_text">Donate</string>
 
   <string name="input_key">Input key</string>
   <string name="input_value">Input value</string>
@@ -162,12 +139,6 @@
   <string name="settings_error_root_not_available">ROOT is not available</string>
   <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
   <string name="settings_error_root_not_active">You need to enable ROOT operations</string>
-
-  <!-- root -->
-  <string name="root_check_compatibility">Check root</string>
-  <string name="root_check_compatibility_text">Check ROOT permission availability to make sure Activity Manager can use it</string>
-  <string name="root_check_compatibility_status_ok">OK. ROOT permission is granted</string>
-  <string name="root_check_compatibility_status_fail">Failed to obtain permission. Is the device rooted?</string>
 
   <string-array name="pref_appearance_theme_list_titles">
     <item>Light</item>

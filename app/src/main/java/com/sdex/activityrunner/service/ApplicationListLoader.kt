@@ -9,8 +9,6 @@ import android.content.pm.PackageManager
 import android.util.Log
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
-import com.sdex.commons.analytics.AnalyticsManager
-import com.sdex.commons.analytics.LOAD_PACKAGE_INFO
 import com.sdex.commons.pm.getActivities
 import java.util.*
 
@@ -100,7 +98,6 @@ class ApplicationListLoader {
       }
       applications.add(model)
     } catch (e: Exception) {
-      AnalyticsManager.logError(LOAD_PACKAGE_INFO, packageName, exception = e)
       e.printStackTrace()
     }
   }
