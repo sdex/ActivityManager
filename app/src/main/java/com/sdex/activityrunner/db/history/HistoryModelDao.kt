@@ -15,8 +15,8 @@ interface HistoryModelDao {
   @Delete
   fun delete(vararg models: HistoryModel)
 
-  @Query("SELECT * FROM HistoryModel ORDER BY id DESC LIMIT :limit")
-  fun getHistory(limit: Int): DataSource.Factory<Int, HistoryModel>
+  @Query("SELECT * FROM HistoryModel ORDER BY id DESC")
+  fun getHistory(): DataSource.Factory<Int, HistoryModel>
 
   @Query("DELETE FROM HistoryModel")
   fun clean()

@@ -8,7 +8,6 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
-  <uses-permission android:name="com.android.vending.BILLING" />
 
   <application
     android:name=".ActivityManagerApplication"
@@ -48,10 +47,6 @@
       android:exported="true"
       android:label="@string/history_activity" />
 
-    <activity
-      android:name=".premium.PurchaseActivity"
-      android:label="@string/purchase_activity" />
-
     <activity android:name=".manifest.ManifestViewerActivity" />
 
     <activity android:name=".app.ActivitiesListActivity" />
@@ -68,11 +63,6 @@
     <activity android:name=".AboutActivity" />
 
     <activity android:name=".app.legacy.OreoPackageManagerBugActivity" />
-
-    <activity
-      android:name=".app.root.CheckRootActivity"
-      android:exported="true"
-      android:label="@string/root_check_compatibility" />
 
     <activity
       android:name=".preferences.SettingsActivity"

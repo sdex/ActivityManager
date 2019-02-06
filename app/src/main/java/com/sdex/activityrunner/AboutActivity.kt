@@ -3,8 +3,8 @@ package com.sdex.activityrunner
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.sdex.activityrunner.donate.DonateDialog
 import com.sdex.activityrunner.extensions.enableBackButton
-import com.sdex.activityrunner.premium.PurchaseActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.license.LicensesDialogFragment
@@ -24,16 +24,9 @@ class AboutActivity : BaseActivity() {
     versionName.text = getString(R.string.about_version_format,
       BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
 
-    rateApp.setOnClickListener {
-      AppUtils.openPlayStore(this)
-    }
-
     donate.setOnClickListener {
-      PurchaseActivity.start(this)
-    }
-
-    follow.setOnClickListener {
-      AppUtils.openLink(this, "https://twitter.com/ActivityMngrApp")
+      val dialog = DonateDialog.newInstance()
+      dialog.show(supportFragmentManager, DonateDialog.TAG)
     }
 
     feedback.setOnClickListener {

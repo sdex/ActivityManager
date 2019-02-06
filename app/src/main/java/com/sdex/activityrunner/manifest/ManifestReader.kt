@@ -6,8 +6,6 @@ import android.content.res.Resources
 import android.content.res.XmlResourceParser
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
-import com.sdex.commons.analytics.AnalyticsManager
-import com.sdex.commons.analytics.LOAD_MANIFEST
 import org.xmlpull.v1.XmlPullParserException
 import java.io.ByteArrayInputStream
 import java.io.IOException
@@ -31,7 +29,6 @@ class ManifestReader {
         formatManifest2(manifest)
       }
     } catch (e: Exception) {
-      AnalyticsManager.logError(LOAD_MANIFEST, packageName, exception = e)
       e.printStackTrace()
     }
     return null

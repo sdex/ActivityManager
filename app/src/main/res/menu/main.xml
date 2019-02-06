@@ -16,12 +16,6 @@
     app:showAsAction="ifRoom" />
 
   <item
-    android:id="@+id/action_upgrade"
-    android:icon="@drawable/ic_approval"
-    android:title="@string/action_upgrade"
-    app:showAsAction="ifRoom" />
-
-  <item
     android:id="@+id/action_settings"
     android:icon="@drawable/ic_settings"
     android:title="@string/action_settings"

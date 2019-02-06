@@ -26,7 +26,6 @@
   <string name="activities_list_empty_text">Нет экспортированных активностей</string>
   <string name="activities_list_empty_action">включить продвинутый режим</string>
 
-  <string name="action_upgrade">Приобрести премиум</string>
   <string name="action_about">О программе</string>
   <string name="action_launch_intent">Запустить intent</string>
   <string name="action_history">История</string>
@@ -50,31 +49,13 @@
   <string name="item_history_has_categories">Содержит категории</string>
   <string name="item_history_has_flags">Содержит флаги</string>
 
-  <!-- premium -->
-  <string name="purchase_activity">Поддержать разработку</string>
-  <string name="pro_version_title">Activity Manager Премиум</string>
-  <string name="pro_version_extras">&#x2022; Неограниченные дополнительные параметры</string>
-  <string name="pro_version_history">&#x2022; Неограниченная история</string>
-  <string name="pro_version_root">&#x2022; Интеграция ROOT</string>
-  <string name="pro_version_shortcut">&#x2022; Ярлыки для произвольных Intent</string>
-  <string name="pro_version_get">Получить премиум</string>
-  <string name="pro_version_description">Вы будете направлены в магазин Google Play где увидите сумму в рублях для завершения процесса</string>
-  <string name="pro_version_done_title">Премиум версия активна.</string>
-  <string name="pro_version_done">Спасибо за поддержку!</string>
-  <string name="pro_version_dialog_title">Приобрести премиум</string>
-  <string name="pro_version_unlock_extras">Приобретите премиум версию для возможности добавлять неограниченное количество дополнительных параметров</string>
-  <string name="pro_version_unlock_intent_shortcuts">Приобретите премиум версию для возможности создавать ярлыки для произвольных intent</string>
-  <string name="pro_version_unlock_root_integration">Приобретите премиум версию для возможности интеграции с ROOT</string>
-  <string name="pro_version_unlock_history">Достигнут лимит на количество записей. Старые записи будут перезаписаны новыми. Приобретите премиум версию для неограниченного количества записей в истории</string>
-  <string name="pro_version_unlock">Нравится приложение? Рассмотрите возможность приобретения премиум версии для поддержки разработки</string>
 
   <!-- about -->
-  <string name="about_rate">Оценить приложение</string>
+  <string name="about_donation">Поддержать разработку</string>
   <string name="about_version">Версия</string>
   <string name="about_contact_email">Связаться с автором</string>
   <string name="about_feedback">Сообщить о проблеме, задать вопрос…</string>
   <string name="about_open_source">Библиотеки с открытым кодом</string>
-  <string name="about_follow">Следите за нами в Twitter</string>
   <string name="about_open_privacy_policy">Политика конфиденциальности</string>
 
   <string name="input_key">Введите ключ</string>
@@ -126,12 +107,6 @@
   <string name="settings_error_root_not_available">ROOT недоступен на устройстве</string>
   <string name="settings_error_root_not_granted">ROOT права не были предоставлены</string>
   <string name="settings_error_root_not_active">Нужно активировать интеграцию ROOT</string>
-
-  <!-- root -->
-  <string name="root_check_compatibility">Проверить root</string>
-  <string name="root_check_compatibility_text">Проверка доступности ROOT прав, что бы убедиться что Activity Manager может их использовать</string>
-  <string name="root_check_compatibility_status_ok">OK. ROOT права получены</string>
-  <string name="root_check_compatibility_status_fail">Не удалось получить права. Телефон рутован?</string>
 
   <string-array name="pref_appearance_theme_list_titles">
     <item>Светлая</item>

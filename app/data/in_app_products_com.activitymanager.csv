@@ -1,5 +1,0 @@
-Product ID,Published State,Purchase Type     ,Auto Translate,Locale; Title; Description        ,Auto Fill Prices,Price,Pricing Template ID
-am_usd_10 ,published      ,managed_by_android,false         ,en_US; 10 USD; Support development,false           ,     ,4635693413648479359
-am_usd_5  ,published      ,managed_by_android,false         ,en_US; 5 USD; Support development ,false           ,     ,4636631093800546687
-am_usd_2  ,published      ,managed_by_android,false         ,en_US; 2 USD; Support development ,false           ,     ,4635927906231699458
-am_usd_20 ,published      ,managed_by_android,false         ,en_US; 20 USD; Support development,false           ,     ,4636561732228063109
