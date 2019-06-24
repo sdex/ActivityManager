@@ -13,7 +13,7 @@ import java.util.*
 
 class MultiSelectionDialog : BaseDialogFragment() {
 
-  private var callback: OnItemsSelectedCallback? = null
+  private lateinit var callback: OnItemsSelectedCallback
   private val selectedItems = SparseBooleanArray()
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -47,7 +47,7 @@ class MultiSelectionDialog : BaseDialogFragment() {
           selectedPositions.add(key)
         }
       }
-      callback!!.onItemsSelected(type, selectedPositions)
+      callback.onItemsSelected(type, selectedPositions)
     }
     builder.setTitle(type)
     return builder.create()
@@ -56,9 +56,9 @@ class MultiSelectionDialog : BaseDialogFragment() {
   override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
-      callback = context as OnItemsSelectedCallback?
+      callback = context as OnItemsSelectedCallback
     } catch (e: ClassCastException) {
-      throw ClassCastException(context.toString() + " must implement OnItemsSelectedCallback")
+      throw ClassCastException("$context must implement OnItemsSelectedCallback")
     }
 
   }

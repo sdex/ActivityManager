@@ -11,7 +11,7 @@ import com.sdex.commons.BaseDialogFragment
 
 class SingleSelectionDialog : BaseDialogFragment() {
 
-  private var callback: OnItemSelectedCallback? = null
+  private lateinit var callback: OnItemSelectedCallback
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val type: Int = arguments!!.getInt(ARG_TYPE)
@@ -27,7 +27,7 @@ class SingleSelectionDialog : BaseDialogFragment() {
     val builder = AlertDialog.Builder(activity!!)
     builder.setSingleChoiceItems(list.toTypedArray(),
       initialPosition) { _, which ->
-      callback!!.onItemSelected(type, which)
+      callback.onItemSelected(type, which)
       dismiss()
     }
     builder.setTitle(type)
@@ -37,9 +37,9 @@ class SingleSelectionDialog : BaseDialogFragment() {
   override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
-      callback = context as OnItemSelectedCallback?
+      callback = context as OnItemSelectedCallback
     } catch (e: ClassCastException) {
-      throw ClassCastException(context.toString() + " must implement OnItemSelectedCallback")
+      throw ClassCastException("$context must implement OnItemSelectedCallback")
     }
   }
 

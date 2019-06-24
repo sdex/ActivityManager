@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.dialog_input_extra.view.*
 
 class ExtraInputDialog : BaseDialogFragment() {
 
-  private var callback: OnKeyValueInputDialogCallback? = null
+  private lateinit var callback: OnKeyValueInputDialogCallback
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val initialExtra = arguments!!.getParcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
@@ -71,7 +71,7 @@ class ExtraInputDialog : BaseDialogFragment() {
           }
 
           val extra = LaunchParamsExtra(newKey, newValue, type, view.array.isChecked)
-          callback!!.onValueSet(extra, position)
+          callback.onValueSet(extra, position)
           dismiss()
         }
     }
@@ -81,9 +81,9 @@ class ExtraInputDialog : BaseDialogFragment() {
   override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
-      callback = context as OnKeyValueInputDialogCallback?
+      callback = context as OnKeyValueInputDialogCallback
     } catch (e: ClassCastException) {
-      throw ClassCastException(context.toString() + " must implement OnKeyValueInputDialogCallback")
+      throw ClassCastException("$context must implement OnKeyValueInputDialogCallback")
     }
 
   }
