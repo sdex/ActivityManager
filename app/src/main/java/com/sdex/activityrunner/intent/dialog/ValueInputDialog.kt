@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.dialog_input_value.view.*
 
 class ValueInputDialog : BaseDialogFragment() {
 
-  private var callback: OnValueInputDialogCallback? = null
+  private lateinit var callback: OnValueInputDialogCallback
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val type: Int = arguments!!.getInt(ARG_TYPE)
@@ -26,7 +26,7 @@ class ValueInputDialog : BaseDialogFragment() {
     view.valueView.setOnEditorActionListener { _, actionId, _ ->
       if (actionId == EditorInfo.IME_ACTION_DONE) {
         val newValue = view.valueView.text.toString()
-        callback!!.onValueSet(type, newValue)
+        callback.onValueSet(type, newValue)
         dismiss()
         return@setOnEditorActionListener true
       }
@@ -36,7 +36,7 @@ class ValueInputDialog : BaseDialogFragment() {
       .setView(view)
       .setPositiveButton(android.R.string.ok) { _, _ ->
         val newValue = view.valueView.text.toString()
-        callback!!.onValueSet(type, newValue)
+        callback.onValueSet(type, newValue)
       }
       .setNegativeButton(android.R.string.cancel, null)
     return builder.create()
@@ -45,9 +45,9 @@ class ValueInputDialog : BaseDialogFragment() {
   override fun onAttach(context: Context) {
     super.onAttach(context)
     try {
-      callback = context as OnValueInputDialogCallback?
+      callback = context as OnValueInputDialogCallback
     } catch (e: ClassCastException) {
-      throw ClassCastException(context.toString() + " must implement OnValueInputDialogCallback")
+      throw ClassCastException("$context must implement OnValueInputDialogCallback")
     }
   }
 
