@@ -20,8 +20,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     super.onCreate(savedInstanceState)
 
     val rootIntegration = findPreference(AppPreferences.KEY_ROOT_INTEGRATION)
-      as SwitchPreferenceCompat
-    rootIntegration.setOnPreferenceChangeListener { _, newValue ->
+            as SwitchPreferenceCompat?
+      rootIntegration?.setOnPreferenceChangeListener { _, newValue ->
       if (newValue is Boolean) {
         if (!newValue) {
           return@setOnPreferenceChangeListener true
@@ -31,17 +31,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
       return@setOnPreferenceChangeListener true
     }
 
-    val themePreference = findPreference(AppPreferences.KEY_THEME) as ListPreference
-    themePreference.setOnPreferenceChangeListener { _, _ ->
+      val themePreference = findPreference(AppPreferences.KEY_THEME)
+              as ListPreference?
+      themePreference?.setOnPreferenceChangeListener { _, _ ->
       activity?.recreate()
       return@setOnPreferenceChangeListener true
     }
 
-    val blackThemePreference = findPreference(AppPreferences.KEY_THEME_BLACK) as CheckBoxPreference
-    val isDarkTheme = themePreference.value.toInt() == ThemeHelper.DARK_THEME
-    blackThemePreference.isEnabled = isDarkTheme
+      val blackThemePreference = findPreference(AppPreferences.KEY_THEME_BLACK)
+              as CheckBoxPreference?
+      val isDarkTheme = themePreference?.value?.toInt() == ThemeHelper.DARK_THEME
+      blackThemePreference?.isEnabled = isDarkTheme
 
-    blackThemePreference.setOnPreferenceChangeListener { _, _ ->
+      blackThemePreference?.setOnPreferenceChangeListener { _, _ ->
       activity?.recreate()
       return@setOnPreferenceChangeListener true
     }
