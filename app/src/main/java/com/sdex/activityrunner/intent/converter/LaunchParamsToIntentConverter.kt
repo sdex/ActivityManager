@@ -1,8 +1,8 @@
 package com.sdex.activityrunner.intent.converter
 
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
-import androidx.core.net.toUri
 import com.sdex.activityrunner.intent.*
 import com.sdex.activityrunner.intent.param.Category
 import com.sdex.activityrunner.intent.param.Flag
@@ -29,7 +29,7 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
       if (launchParams.action.isNullOrEmpty()) Intent.ACTION_MAIN
       else launchParams.action
     // data and mime type
-    val data = launchParams.data?.toUri()
+      val data = Uri.parse(launchParams.data)
     val type =
       if (launchParams.mimeType.isNullOrEmpty()) null
       else launchParams.mimeType

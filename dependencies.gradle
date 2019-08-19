@@ -3,8 +3,8 @@ ext.app = [
 ]
 
 ext.versions = [
-  room               : '2.1.0',
+  room               : '2.2.0-alpha02',
   paging             : '2.1.0',
-  lifecycle          : '2.2.0-alpha01',
+  lifecycle          : '2.2.0-alpha03',
   glide              : '4.9.0'
 ]
