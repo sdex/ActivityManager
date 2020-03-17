@@ -12,7 +12,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
@@ -27,7 +27,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
   private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   private val viewModel: ActivitiesListViewModel by lazy {
-    ViewModelProviders.of(this).get(ActivitiesListViewModel::class.java)
+    ViewModelProvider(this).get(ActivitiesListViewModel::class.java)
   }
 
   private var isShowNotExported: Boolean = false
