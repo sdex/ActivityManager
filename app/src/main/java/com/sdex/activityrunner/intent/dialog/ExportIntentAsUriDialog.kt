@@ -30,7 +30,7 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
       .setPositiveButton(R.string.dialog_export_intent_copy) { _, _ ->
         val clipboard = context!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
         val clip = ClipData.newPlainText("Intent URI", value)
-        clipboard!!.primaryClip = clip
+        clipboard!!.setPrimaryClip(clip)
       }
       .setNegativeButton(android.R.string.cancel, null)
 

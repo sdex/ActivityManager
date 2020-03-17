@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.ApplicationsListViewModel
 import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
@@ -29,7 +29,7 @@ class MainActivity : BaseActivity() {
   private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
   private val viewModel: ApplicationsListViewModel by lazy {
-    ViewModelProviders.of(this).get(ApplicationsListViewModel::class.java)
+    ViewModelProvider(this).get(ApplicationsListViewModel::class.java)
   }
 
   private var isShowSystemAppIndicator: Boolean = false
@@ -91,7 +91,7 @@ class MainActivity : BaseActivity() {
   private fun checkOreoBug() {
     if (VERSION.SDK_INT == VERSION_CODES.O) {
       if (!appPreferences.isOreoBugWarningShown) {
-        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.packages.observe(this, Observer {
           if (it!!.isEmpty()) {
             overridePendingTransition(0, 0)

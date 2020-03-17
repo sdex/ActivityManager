@@ -8,7 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 class ManifestViewerActivity : BaseActivity() {
 
   private val viewModel: ManifestViewModel by lazy {
-    ViewModelProviders.of(this).get(ManifestViewModel::class.java)
+    ViewModelProvider(this).get(ManifestViewModel::class.java)
   }
   private var appPackageName: String? = null
 
