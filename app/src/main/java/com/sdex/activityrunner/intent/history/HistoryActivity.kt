@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.VISIBLE
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.addDivider
@@ -31,9 +31,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
   private var appPreferences: AppPreferences by Delegates.notNull()
   private var adapter: HistoryListAdapter by Delegates.notNull()
 
-  private val viewModel: HistoryViewModel by lazy {
-    ViewModelProvider(this).get(HistoryViewModel::class.java)
-  }
+  private val viewModel: HistoryViewModel by viewModels()
 
   override fun getLayout(): Int {
     return R.layout.activity_history

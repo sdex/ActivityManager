@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
@@ -28,9 +29,7 @@ class MainActivity : BaseActivity() {
 
   private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
   private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
-  private val viewModel: ApplicationsListViewModel by lazy {
-    ViewModelProvider(this).get(ApplicationsListViewModel::class.java)
-  }
+  private val viewModel: ApplicationsListViewModel by viewModels()
 
   private var isShowSystemAppIndicator: Boolean = false
   private var searchText: String? = null

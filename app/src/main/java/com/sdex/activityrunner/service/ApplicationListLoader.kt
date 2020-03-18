@@ -128,6 +128,7 @@ class ApplicationListLoader {
   }
 
   companion object {
+
     const val TAG = "ApplicationListLoader"
   }
 }

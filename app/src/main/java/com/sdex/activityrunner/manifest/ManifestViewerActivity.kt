@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
@@ -21,9 +21,7 @@ import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {
 
-  private val viewModel: ManifestViewModel by lazy {
-    ViewModelProvider(this).get(ManifestViewModel::class.java)
-  }
+  private val viewModel: ManifestViewModel by viewModels()
   private var appPackageName: String? = null
 
   override fun getLayout(): Int {

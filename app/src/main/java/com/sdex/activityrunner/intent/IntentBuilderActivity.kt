@@ -8,7 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
@@ -39,9 +39,7 @@ class IntentBuilderActivity : BaseActivity(),
   private val flagsAdapter = LaunchParamsListAdapter()
   private val extraAdapter = LaunchParamsExtraListAdapter()
 
-  private val viewModel: LaunchParamsViewModel by lazy {
-    ViewModelProvider(this).get(LaunchParamsViewModel::class.java)
-  }
+  private val viewModel: LaunchParamsViewModel by viewModels()
 
   private var appPreferences: AppPreferences by Delegates.notNull()
 
