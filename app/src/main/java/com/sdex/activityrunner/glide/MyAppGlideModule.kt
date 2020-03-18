@@ -19,7 +19,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.cache.ApplicationModel
 
-
 @GlideModule
 class MyAppGlideModule : AppGlideModule() {
 

@@ -16,7 +16,7 @@ class ApplicationsListJob : JobIntentService() {
     private const val JOB_ID = 1212
 
     fun enqueueWork(context: Context, work: Intent) {
-      JobIntentService.enqueueWork(context, ApplicationsListJob::class.java, JOB_ID, work)
+      enqueueWork(context, ApplicationsListJob::class.java, JOB_ID, work)
     }
   }
 }
