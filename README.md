@@ -11,4 +11,6 @@ Features:
 
 
 Screenshots:
+
+
 <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778033.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778077.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778088.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778211.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778232.png" width="18%"></img> 
