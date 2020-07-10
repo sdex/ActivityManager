@@ -18,7 +18,7 @@ private fun getActivitiesFromApk(pm: PackageManager, packageName: String): Packa
     val info = pm.getPackageInfo(packageName, PackageManager.GET_META_DATA)
     val file = File(info.applicationInfo.publicSourceDir)
     val archiveInfo = pm.getPackageArchiveInfo(file.absolutePath, PackageManager.GET_ACTIVITIES)
-    info.activities = archiveInfo.activities
+    info.activities = archiveInfo?.activities
     return info
   } catch (e: Exception) {
     throw e

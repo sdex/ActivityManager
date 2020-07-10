@@ -8,6 +8,7 @@ import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.xmlpull.v1.XmlPullParserException
 import java.io.ByteArrayInputStream
+import java.io.File
 import java.io.IOException
 import java.io.StringWriter
 import java.nio.charset.Charset
@@ -37,7 +38,13 @@ class ManifestReader {
   @Throws(PackageManager.NameNotFoundException::class, IOException::class, XmlPullParserException::class)
   private fun load(context: Context, packageName: String): String {
     val packageManager = context.packageManager
-    val resources = packageManager.getResourcesForApplication(packageName)
+
+    val info = packageManager.getPackageInfo(packageName, 0)
+    val file = File(info.applicationInfo.publicSourceDir)
+    val archiveInfo = packageManager.getPackageArchiveInfo(file.absolutePath, 0)
+    val resources = packageManager.getResourcesForApplication(archiveInfo.applicationInfo)
+
+//    val resources = packageManager.getResourcesForApplication(packageName)
     val parser = resources.assets.openXmlResourceParser("AndroidManifest.xml")
     val stringBuilder = StringBuilder()
     var eventType = parser.next()
@@ -48,7 +55,7 @@ class ManifestReader {
         //start with opening element and writing its name
         stringBuilder.append("<").append(parser.name)
 
-        //for each attribute in given element append attrName="attrValue"
+        // for each attribute in given element append attrName="attrValue"
         for (i in 0 until parser.attributeCount) {
           val attributeName = parser.getAttributeName(i)
           val attributeValue = getAttributeValue(attributeName,
