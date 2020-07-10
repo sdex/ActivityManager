@@ -3,16 +3,16 @@ The Activity class is a crucial component of an Android app. An activity provide
 
 Activity Manager provides the list of all activities of all installed applications and ability to run them.
 
-Features:
+#### Features:
 * Start any exported activity
 * Start any NOT exported activity with ROOT
 * Shortcuts for activities and intents
 * Run any intent
 
-Limitations:
+#### Limitations:
 * Activities with custon permissions cannot be run
 
-Screenshots:
+#### Screenshots:
 
 
 <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778033.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778077.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778088.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778211.png" width="18%"></img> <img src="https://raw.githubusercontent.com/sdex/ActivityManager/master/app/art/Screenshot_1529778232.png" width="18%"></img> 
