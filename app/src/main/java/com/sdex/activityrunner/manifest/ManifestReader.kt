@@ -8,7 +8,6 @@ import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.xmlpull.v1.XmlPullParserException
 import java.io.ByteArrayInputStream
-import java.io.File
 import java.io.IOException
 import java.io.StringWriter
 import java.nio.charset.Charset
@@ -38,13 +37,7 @@ class ManifestReader {
   @Throws(PackageManager.NameNotFoundException::class, IOException::class, XmlPullParserException::class)
   private fun load(context: Context, packageName: String): String {
     val packageManager = context.packageManager
-
-    val info = packageManager.getPackageInfo(packageName, 0)
-    val file = File(info.applicationInfo.publicSourceDir)
-    val archiveInfo = packageManager.getPackageArchiveInfo(file.absolutePath, 0)
-    val resources = packageManager.getResourcesForApplication(archiveInfo.applicationInfo)
-
-//    val resources = packageManager.getResourcesForApplication(packageName)
+    val resources = packageManager.getResourcesForApplication(packageName)
     val parser = resources.assets.openXmlResourceParser("AndroidManifest.xml")
     val stringBuilder = StringBuilder()
     var eventType = parser.next()
