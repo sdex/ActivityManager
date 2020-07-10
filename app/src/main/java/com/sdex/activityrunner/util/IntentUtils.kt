@@ -24,7 +24,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
-import com.sdex.activityrunner.shortcut.ShortcutManager
+import com.sdex.activityrunner.shortcut.createShortcut
 import com.sdex.commons.util.AppUtils
 
 object IntentUtils {
@@ -67,11 +67,6 @@ object IntentUtils {
   fun createLauncherIcon(context: Context, name: String, intent: Intent, @DrawableRes icon: Int) {
     val iconCompat = IconCompat.createWithResource(context, icon)
     createShortcut(context, name, intent, iconCompat)
-  }
-
-  private fun createShortcut(context: Context, name: String,
-                             intent: Intent, icon: IconCompat): Boolean {
-    return ShortcutManager.createShortcut(context, name, intent, icon)
   }
 
   fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
