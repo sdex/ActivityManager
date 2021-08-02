@@ -13,36 +13,39 @@ import com.sdex.activityrunner.util.RunActivityTask
 
 class ActivityLauncher(private val snackbarContainerActivity: SnackbarContainerActivity) {
 
-  private val activity: Activity = snackbarContainerActivity.getActivity()
+    private val activity: Activity = snackbarContainerActivity.getActivity()
 
-  fun launchActivity(model: ActivityModel) {
-    if (model.exported) {
-      IntentUtils.launchActivity(activity, model.componentName, model.name)
-    } else {
-      tryRunWithRoot(model)
+    fun launchActivity(model: ActivityModel) {
+        if (model.exported) {
+            IntentUtils.launchActivity(activity, model.componentName, model.name)
+        } else {
+            tryRunWithRoot(model)
+        }
     }
-  }
 
-  fun launchActivityWithRoot(model: ActivityModel) {
-    tryRunWithRoot(model)
-  }
-
-  fun launchActivityWithParams(model: ActivityModel) {
-    IntentBuilderActivity.start(activity, model)
-  }
-
-  private fun tryRunWithRoot(model: ActivityModel) {
-    val appPreferences = AppPreferences(activity)
-    if (appPreferences.isRootIntegrationEnabled) {
-      val runActivityTask = RunActivityTask(model.componentName)
-      runActivityTask.execute()
-    } else {
-      val snackbar = Snackbar.make(snackbarContainerActivity.getView(),
-        R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG)
-      snackbar.setAction(R.string.action_settings
-      ) { SettingsActivity.start(activity) }
-      snackbar.config()
-      snackbar.show()
+    fun launchActivityWithRoot(model: ActivityModel) {
+        tryRunWithRoot(model)
     }
-  }
+
+    fun launchActivityWithParams(model: ActivityModel) {
+        IntentBuilderActivity.start(activity, model)
+    }
+
+    private fun tryRunWithRoot(model: ActivityModel) {
+        val appPreferences = AppPreferences(activity)
+        if (appPreferences.isRootIntegrationEnabled) {
+            val runActivityTask = RunActivityTask(model.componentName)
+            runActivityTask.execute()
+        } else {
+            val snackbar = Snackbar.make(
+                snackbarContainerActivity.getView(),
+                R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG
+            )
+            snackbar.setAction(
+                R.string.action_settings
+            ) { SettingsActivity.start(activity) }
+            snackbar.config()
+            snackbar.show()
+        }
+    }
 }

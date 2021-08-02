@@ -5,11 +5,11 @@ import androidx.fragment.app.FragmentManager
 
 open class BaseDialogFragment : DialogFragment() {
 
-  override fun show(manager: FragmentManager, tag: String?) {
-    try {
-      super.show(manager, tag)
-    } catch (e: IllegalStateException) {
-      e.printStackTrace()
+    override fun show(manager: FragmentManager, tag: String?) {
+        try {
+            super.show(manager, tag)
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+        }
     }
-  }
 }

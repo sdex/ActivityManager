@@ -22,70 +22,88 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 @GlideModule
 class MyAppGlideModule : AppGlideModule() {
 
-  private val applicationModelLoaderFactory = object : ModelLoaderFactory<ApplicationModel, ApplicationModel> {
-    override fun build(
-      multiFactory: MultiModelLoaderFactory): ModelLoader<ApplicationModel, ApplicationModel> {
-      return ApplicationIconModelLoader()
-    }
+    private val applicationModelLoaderFactory =
+        object : ModelLoaderFactory<ApplicationModel, ApplicationModel> {
+            override fun build(
+                multiFactory: MultiModelLoaderFactory
+            ): ModelLoader<ApplicationModel, ApplicationModel> {
+                return ApplicationIconModelLoader()
+            }
 
-    override fun teardown() {
+            override fun teardown() {
 
-    }
-  }
-
-  private val activityModelLoaderFactory = object : ModelLoaderFactory<ActivityModel, ActivityModel> {
-    override fun build(
-      multiFactory: MultiModelLoaderFactory): ModelLoader<ActivityModel, ActivityModel> {
-      return ActivityIconModelLoader()
-    }
-
-    override fun teardown() {
-
-    }
-  }
-
-  /**
-   * No need to monitor network, glide loads only local images
-   */
-  private val nullConnectivityMonitor = object : ConnectivityMonitor {
-    override fun onStart() {
-    }
-
-    override fun onStop() {
-    }
-
-    override fun onDestroy() {
-    }
-  }
-
-  private val nullConnectivityMonitorFactory = ConnectivityMonitorFactory { _, _ -> nullConnectivityMonitor }
-
-  override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
-    registry.append(ApplicationModel::class.java, ApplicationModel::class.java, applicationModelLoaderFactory)
-      .append(ApplicationModel::class.java, Drawable::class.java, ApplicationIconDecoder(context))
-    registry.append(ActivityModel::class.java, ActivityModel::class.java, activityModelLoaderFactory)
-      .append(ActivityModel::class.java, Drawable::class.java, ActivityIconDecoder(context))
-  }
-
-  override fun applyOptions(context: Context, builder: GlideBuilder) {
-    builder.setConnectivityMonitorFactory(nullConnectivityMonitorFactory)
-
-    val defaultRequestOptions = RequestOptions()
-      .format(getDecodeFormat(context))
-    builder.setDefaultRequestOptions(defaultRequestOptions)
-  }
-
-  private fun getDecodeFormat(context: Context): DecodeFormat {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?
-      if (activityManager != null) {
-        return if (activityManager.isLowRamDevice) {
-          DecodeFormat.PREFER_RGB_565
-        } else {
-          DecodeFormat.PREFER_ARGB_8888
+            }
         }
-      }
+
+    private val activityModelLoaderFactory =
+        object : ModelLoaderFactory<ActivityModel, ActivityModel> {
+            override fun build(
+                multiFactory: MultiModelLoaderFactory
+            ): ModelLoader<ActivityModel, ActivityModel> {
+                return ActivityIconModelLoader()
+            }
+
+            override fun teardown() {
+
+            }
+        }
+
+    /**
+     * No need to monitor network, glide loads only local images
+     */
+    private val nullConnectivityMonitor = object : ConnectivityMonitor {
+        override fun onStart() {
+        }
+
+        override fun onStop() {
+        }
+
+        override fun onDestroy() {
+        }
     }
-    return DecodeFormat.DEFAULT
-  }
+
+    private val nullConnectivityMonitorFactory =
+        ConnectivityMonitorFactory { _, _ -> nullConnectivityMonitor }
+
+    override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
+        registry.append(
+            ApplicationModel::class.java,
+            ApplicationModel::class.java,
+            applicationModelLoaderFactory
+        )
+            .append(
+                ApplicationModel::class.java,
+                Drawable::class.java,
+                ApplicationIconDecoder(context)
+            )
+        registry.append(
+            ActivityModel::class.java,
+            ActivityModel::class.java,
+            activityModelLoaderFactory
+        )
+            .append(ActivityModel::class.java, Drawable::class.java, ActivityIconDecoder(context))
+    }
+
+    override fun applyOptions(context: Context, builder: GlideBuilder) {
+        builder.setConnectivityMonitorFactory(nullConnectivityMonitorFactory)
+
+        val defaultRequestOptions = RequestOptions()
+            .format(getDecodeFormat(context))
+        builder.setDefaultRequestOptions(defaultRequestOptions)
+    }
+
+    private fun getDecodeFormat(context: Context): DecodeFormat {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            val activityManager =
+                context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?
+            if (activityManager != null) {
+                return if (activityManager.isLowRamDevice) {
+                    DecodeFormat.PREFER_RGB_565
+                } else {
+                    DecodeFormat.PREFER_ARGB_8888
+                }
+            }
+        }
+        return DecodeFormat.DEFAULT
+    }
 }

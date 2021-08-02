@@ -33,190 +33,197 @@ import kotlinx.android.synthetic.main.activity_add_shortcut.*
 
 class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickContentListener {
 
-  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-  private var contentManager: ContentManager? = null
-  private var bitmap: Bitmap? = null
-  private val toolTipsManager = ToolTipsManager()
+    private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
+    private var contentManager: ContentManager? = null
+    private var bitmap: Bitmap? = null
+    private val toolTipsManager = ToolTipsManager()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    val themeHelper = ThemeHelper()
-    themeHelper.setDialogTheme(this, appPreferences.getTheme)
-    setContentView(R.layout.activity_add_shortcut)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val themeHelper = ThemeHelper()
+        themeHelper.setDialogTheme(this, appPreferences.getTheme)
+        setContentView(R.layout.activity_add_shortcut)
 
-    val activityModel = intent?.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
-    val historyModel = intent?.getSerializableExtra(ARG_HISTORY_MODEL) as HistoryModel?
+        val activityModel = intent?.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
+        val historyModel = intent?.getSerializableExtra(ARG_HISTORY_MODEL) as HistoryModel?
 
-    label.setText(activityModel?.name)
-    if (label.text != null) {
-      label.setSelection(label.text!!.length)
-    }
-
-    if (activityModel != null) {
-      GlideApp.with(this)
-        .load(activityModel)
-        .error(R.mipmap.ic_launcher)
-        .apply(RequestOptions().centerCrop())
-        .into(object : SimpleTarget<Drawable>() {
-          override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-            bitmap = resource.toBitmap()
-            icon.setImageDrawable(resource)
-            showTooltip()
-          }
-        })
-    }
-
-    if (historyModel != null) {
-      icon.setImageResource(R.mipmap.ic_launcher)
-    }
-
-    contentManager = ContentManager(this, this)
-
-    icon.setOnClickListener {
-      toolTipsManager.dismissAll()
-      if (activityModel != null) {
-        contentManager?.pickContent(ContentManager.Content.IMAGE)
-      } else {
-        Toast.makeText(this, R.string.error_intent_shortcut_icon, Toast.LENGTH_LONG).show()
-      }
-    }
-
-    cancel.setOnClickListener {
-      finish()
-    }
-
-    create.setOnClickListener {
-      value_layout.error = null
-      val shortcutName = label.text.toString()
-      if (shortcutName.isBlank()) {
-        value_layout.error = getString(R.string.shortcut_name_empty)
-        return@setOnClickListener
-      }
-
-      activityModel?.let {
-        activityModel.name = shortcutName
-        if (bitmap != null) {
-          IntentUtils.createLauncherIcon(this, activityModel, bitmap!!)
-        } else {
-          IntentUtils.createLauncherIcon(this, activityModel)
+        label.setText(activityModel?.name)
+        if (label.text != null) {
+            label.setSelection(label.text!!.length)
         }
-      }
 
-      historyModel?.let {
-        createHistoryModelShortcut(historyModel, shortcutName)
-      }
-
-      finish()
-    }
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    bitmap = null
-  }
-
-  @Suppress("DEPRECATION")
-  private fun showTooltip() {
-    val preferences = TooltipPreferences(this)
-    if (preferences.showChangeIcon) {
-      icon.doAfterMeasure {
-        val builder = ToolTip.Builder(this@AddShortcutDialogActivity,
-          icon, content, "Tap to change the icon", ToolTip.POSITION_BELOW)
-        builder.setBackgroundColor(resources.getColor(R.color.colorAccent))
-        builder.setTextAppearance(R.style.TooltipTextAppearance)
-        toolTipsManager.show(builder.build())
-        preferences.showChangeIcon = false
-      }
-    }
-  }
-
-  private fun createHistoryModelShortcut(historyModel: HistoryModel, shortcutName: String) {
-    val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(historyModel)
-    val launchParams = historyToLaunchParamsConverter.convert()
-    val converter = LaunchParamsToIntentConverter(launchParams)
-    val intent = converter.convert()
-    IntentUtils.createLauncherIcon(this, shortcutName, intent, R.mipmap.ic_launcher)
-  }
-
-  override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    contentManager?.onSaveInstanceState(outState)
-  }
-
-  override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-    super.onRestoreInstanceState(savedInstanceState)
-    contentManager?.onRestoreInstanceState(savedInstanceState)
-  }
-
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-                                          grantResults: IntArray) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    contentManager?.onRequestPermissionsResult(requestCode, permissions, grantResults)
-  }
-
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-    contentManager?.onActivityResult(requestCode, resultCode, data)
-  }
-
-  override fun onContentLoaded(uri: Uri?, contentType: String?) {
-    uri?.let { loadIcon(uri) }
-  }
-
-  private fun loadIcon(uri: Uri) {
-    val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-    val size = am.launcherLargeIconSize
-    GlideApp.with(this)
-      .asBitmap()
-      .load(uri)
-      .error(R.mipmap.ic_launcher)
-      .apply(RequestOptions().centerCrop().override(size))
-      .into(object : SimpleTarget<Bitmap>(size, size) {
-        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-          bitmap = resource
-          icon.setImageBitmap(resource)
-          hideProgress()
+        if (activityModel != null) {
+            GlideApp.with(this)
+                .load(activityModel)
+                .error(R.mipmap.ic_launcher)
+                .apply(RequestOptions().centerCrop())
+                .into(object : SimpleTarget<Drawable>() {
+                    override fun onResourceReady(
+                        resource: Drawable,
+                        transition: Transition<in Drawable>?
+                    ) {
+                        bitmap = resource.toBitmap()
+                        icon.setImageDrawable(resource)
+                        showTooltip()
+                    }
+                })
         }
-      })
-  }
 
-  override fun onStartContentLoading() {
-    progress.visibility = VISIBLE
-    icon.visibility = INVISIBLE
-  }
+        if (historyModel != null) {
+            icon.setImageResource(R.mipmap.ic_launcher)
+        }
 
-  override fun onError(error: String?) {
-    Log.e(TAG, "Failed to load image: $error")
-    Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
-    hideProgress()
-  }
+        contentManager = ContentManager(this, this)
 
-  override fun onCanceled() {
-    hideProgress()
-  }
+        icon.setOnClickListener {
+            toolTipsManager.dismissAll()
+            if (activityModel != null) {
+                contentManager?.pickContent(ContentManager.Content.IMAGE)
+            } else {
+                Toast.makeText(this, R.string.error_intent_shortcut_icon, Toast.LENGTH_LONG).show()
+            }
+        }
 
-  private fun hideProgress() {
-    progress.visibility = GONE
-    icon.visibility = VISIBLE
-  }
+        cancel.setOnClickListener {
+            finish()
+        }
 
-  companion object {
+        create.setOnClickListener {
+            value_layout.error = null
+            val shortcutName = label.text.toString()
+            if (shortcutName.isBlank()) {
+                value_layout.error = getString(R.string.shortcut_name_empty)
+                return@setOnClickListener
+            }
 
-    private const val TAG = "AddShortcutDialog"
+            activityModel?.let {
+                activityModel.name = shortcutName
+                if (bitmap != null) {
+                    IntentUtils.createLauncherIcon(this, activityModel, bitmap!!)
+                } else {
+                    IntentUtils.createLauncherIcon(this, activityModel)
+                }
+            }
 
-    private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
-    private const val ARG_HISTORY_MODEL = "arg_history_model"
+            historyModel?.let {
+                createHistoryModelShortcut(historyModel, shortcutName)
+            }
 
-    fun start(context: Context, activityModel: ActivityModel) {
-      val starter = Intent(context, AddShortcutDialogActivity::class.java)
-      starter.putExtra(ARG_ACTIVITY_MODEL, activityModel)
-      context.startActivity(starter)
+            finish()
+        }
     }
 
-    fun start(context: Context, historyModel: HistoryModel) {
-      val starter = Intent(context, AddShortcutDialogActivity::class.java)
-      starter.putExtra(ARG_HISTORY_MODEL, historyModel)
-      context.startActivity(starter)
+    override fun onDestroy() {
+        super.onDestroy()
+        bitmap = null
     }
-  }
+
+    @Suppress("DEPRECATION")
+    private fun showTooltip() {
+        val preferences = TooltipPreferences(this)
+        if (preferences.showChangeIcon) {
+            icon.doAfterMeasure {
+                val builder = ToolTip.Builder(
+                    this@AddShortcutDialogActivity,
+                    icon, content, "Tap to change the icon", ToolTip.POSITION_BELOW
+                )
+                builder.setBackgroundColor(resources.getColor(R.color.colorAccent))
+                builder.setTextAppearance(R.style.TooltipTextAppearance)
+                toolTipsManager.show(builder.build())
+                preferences.showChangeIcon = false
+            }
+        }
+    }
+
+    private fun createHistoryModelShortcut(historyModel: HistoryModel, shortcutName: String) {
+        val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(historyModel)
+        val launchParams = historyToLaunchParamsConverter.convert()
+        val converter = LaunchParamsToIntentConverter(launchParams)
+        val intent = converter.convert()
+        IntentUtils.createLauncherIcon(this, shortcutName, intent, R.mipmap.ic_launcher)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        contentManager?.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        contentManager?.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        contentManager?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        contentManager?.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onContentLoaded(uri: Uri?, contentType: String?) {
+        uri?.let { loadIcon(uri) }
+    }
+
+    private fun loadIcon(uri: Uri) {
+        val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val size = am.launcherLargeIconSize
+        GlideApp.with(this)
+            .asBitmap()
+            .load(uri)
+            .error(R.mipmap.ic_launcher)
+            .apply(RequestOptions().centerCrop().override(size))
+            .into(object : SimpleTarget<Bitmap>(size, size) {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    bitmap = resource
+                    icon.setImageBitmap(resource)
+                    hideProgress()
+                }
+            })
+    }
+
+    override fun onStartContentLoading() {
+        progress.visibility = VISIBLE
+        icon.visibility = INVISIBLE
+    }
+
+    override fun onError(error: String?) {
+        Log.e(TAG, "Failed to load image: $error")
+        Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
+        hideProgress()
+    }
+
+    override fun onCanceled() {
+        hideProgress()
+    }
+
+    private fun hideProgress() {
+        progress.visibility = GONE
+        icon.visibility = VISIBLE
+    }
+
+    companion object {
+
+        private const val TAG = "AddShortcutDialog"
+
+        private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
+        private const val ARG_HISTORY_MODEL = "arg_history_model"
+
+        fun start(context: Context, activityModel: ActivityModel) {
+            val starter = Intent(context, AddShortcutDialogActivity::class.java)
+            starter.putExtra(ARG_ACTIVITY_MODEL, activityModel)
+            context.startActivity(starter)
+        }
+
+        fun start(context: Context, historyModel: HistoryModel) {
+            val starter = Intent(context, AddShortcutDialogActivity::class.java)
+            starter.putExtra(ARG_HISTORY_MODEL, historyModel)
+            context.startActivity(starter)
+        }
+    }
 }

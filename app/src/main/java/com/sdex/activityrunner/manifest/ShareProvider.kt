@@ -14,36 +14,40 @@ import java.io.File
 
 class ShareProvider {
 
-  private val authority = BuildConfig.APPLICATION_ID + ".fileprovider"
+    private val authority = BuildConfig.APPLICATION_ID + ".fileprovider"
 
-  fun share(activity: Activity, packageName: String) {
-    val pathResolver = ManifestPathResolver()
-    val path = pathResolver.getPath(activity, packageName)
-    val file = File(path)
-    val uri = FileProvider.getUriForFile(activity, authority, file)
+    fun share(activity: Activity, packageName: String) {
+        val pathResolver = ManifestPathResolver()
+        val path = pathResolver.getPath(activity, packageName)
+        val file = File(path)
+        val uri = FileProvider.getUriForFile(activity, authority, file)
 
-    val intent = ShareCompat.IntentBuilder.from(activity)
-      .setType("text/xml")
-      .setStream(uri)
-      .setChooserTitle(R.string.dialog_share_title)
-      .createChooserIntent()
-      .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        val intent = ShareCompat.IntentBuilder.from(activity)
+            .setType("text/xml")
+            .setStream(uri)
+            .setChooserTitle(R.string.dialog_share_title)
+            .createChooserIntent()
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-    } else {
-      val resInfoList = activity.packageManager.queryIntentActivities(intent,
-        PackageManager.MATCH_DEFAULT_ONLY)
-      for (resolveInfo in resInfoList) {
-        activity.grantUriPermission(resolveInfo.activityInfo.packageName, uri,
-          Intent.FLAG_GRANT_READ_URI_PERMISSION)
-      }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        } else {
+            val resInfoList = activity.packageManager.queryIntentActivities(
+                intent,
+                PackageManager.MATCH_DEFAULT_ONLY
+            )
+            for (resolveInfo in resInfoList) {
+                activity.grantUriPermission(
+                    resolveInfo.activityInfo.packageName, uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+        }
+
+        try {
+            activity.startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(activity, "Failed to share file", Toast.LENGTH_SHORT).show()
+        }
     }
-
-    try {
-      activity.startActivity(intent)
-    } catch (e: ActivityNotFoundException) {
-      Toast.makeText(activity, "Failed to share file", Toast.LENGTH_SHORT).show()
-    }
-  }
 }

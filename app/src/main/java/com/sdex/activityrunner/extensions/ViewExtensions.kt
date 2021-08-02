@@ -6,16 +6,16 @@ import android.view.ViewTreeObserver
 
 @Suppress("DEPRECATION")
 fun View.doAfterMeasure(callback: () -> Unit) {
-  viewTreeObserver.addOnGlobalLayoutListener(
-    object : ViewTreeObserver.OnGlobalLayoutListener {
-      override fun onGlobalLayout() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-          viewTreeObserver.removeOnGlobalLayoutListener(this)
-        } else {
-          viewTreeObserver.removeGlobalOnLayoutListener(this)
+    viewTreeObserver.addOnGlobalLayoutListener(
+        object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    viewTreeObserver.removeOnGlobalLayoutListener(this)
+                } else {
+                    viewTreeObserver.removeGlobalOnLayoutListener(this)
+                }
+                callback()
+            }
         }
-        callback()
-      }
-    }
-  )
+    )
 }

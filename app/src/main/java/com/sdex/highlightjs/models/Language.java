@@ -8,16 +8,16 @@ package com.sdex.highlightjs.models;
 
 public enum Language {
 
-  XML("xml");
+    XML("xml");
 
-  private final String className;
+    private final String className;
 
-  Language(String name) {
-    this.className = name;
-  }
+    Language(String name) {
+        this.className = name;
+    }
 
-  public String getName() {
-    return className;
-  }
+    public String getName() {
+        return className;
+    }
 
 }

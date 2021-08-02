@@ -1,101 +1,101 @@
 <resources>
-  <string name="history_activity">Історія</string>
-  <string name="settings_activity">Налаштування</string>
+    <string name="history_activity">Історія</string>
+    <string name="settings_activity">Налаштування</string>
 
-  <string name="context_action_launch">Відкрити в GooglePlay</string>
-  <string name="context_action_launch_params">Запустити з параметрами</string>
-  <string name="context_action_launch_root">Запустити з правами ROOT</string>
-  <string name="context_action_shortcut">Створити ярлик</string>
+    <string name="context_action_launch">Відкрити в GooglePlay</string>
+    <string name="context_action_launch_params">Запустити з параметрами</string>
+    <string name="context_action_launch_root">Запустити з правами ROOT</string>
+    <string name="context_action_shortcut">Створити ярлик</string>
 
-  <string name="context_action_open_info">Вікрити інфо</string>
-  <string name="context_action_open_manifest">Вікрити маніфест</string>
+    <string name="context_action_open_info">Вікрити інфо</string>
+    <string name="context_action_open_manifest">Вікрити маніфест</string>
 
-  <string name="shortcut_name">Назва</string>
-  <string name="shortcut_name_empty">Обов\'язкове поле</string>
+    <string name="shortcut_name">Назва</string>
+    <string name="shortcut_name_empty">Обов\'язкове поле</string>
 
-  <string name="starting_activity">Запуск: %s</string>
-  <string name="starting_activity_failed">Помилка запуску: %s</string>
-  <string name="starting_activity_failed_security">Немає прав для запуску: %s</string>
-  <string name="starting_activity_intent">Запуск</string>
-  <string name="starting_activity_intent_failed">Помилка запуску</string>
+    <string name="starting_activity">Запуск: %s</string>
+    <string name="starting_activity_failed">Помилка запуску: %s</string>
+    <string name="starting_activity_failed_security">Немає прав для запуску: %s</string>
+    <string name="starting_activity_intent">Запуск</string>
+    <string name="starting_activity_intent_failed">Помилка запуску</string>
 
-  <string name="action_about">Про програму</string>
-  <string name="action_launch_intent">Запустити intent</string>
-  <string name="action_history">Історія</string>
-  <string name="action_clear_history">Очистити історію</string>
-  <string name="action_search">Пошук</string>
-  <string name="action_search_hint">Назва програми</string>
-  <string name="action_settings">Налаштування</string>
+    <string name="action_about">Про програму</string>
+    <string name="action_launch_intent">Запустити intent</string>
+    <string name="action_history">Історія</string>
+    <string name="action_clear_history">Очистити історію</string>
+    <string name="action_search">Пошук</string>
+    <string name="action_search_hint">Назва програми</string>
+    <string name="action_settings">Налаштування</string>
 
-  <string name="launch_param_package_name">Ім\'я пакету</string>
-  <string name="launch_param_class_name">Ім\'я класу</string>
-  <string name="launch_param_action">Дія</string>
-  <string name="launch_param_data">Дані</string>
-  <string name="launch_param_mime_type">Тип даних</string>
-  <string name="launch_param_extras">Додаткові дані</string>
-  <string name="launch_param_extras_add">+ Додати</string>
-  <string name="launch_param_categories">Категорії</string>
-  <string name="launch_param_flags">Параметри</string>
+    <string name="launch_param_package_name">Ім\'я пакету</string>
+    <string name="launch_param_class_name">Ім\'я класу</string>
+    <string name="launch_param_action">Дія</string>
+    <string name="launch_param_data">Дані</string>
+    <string name="launch_param_mime_type">Тип даних</string>
+    <string name="launch_param_extras">Додаткові дані</string>
+    <string name="launch_param_extras_add">+ Додати</string>
+    <string name="launch_param_categories">Категорії</string>
+    <string name="launch_param_flags">Параметри</string>
 
-  <string name="item_history_has_extras">Містить додаткові дані</string>
-  <string name="item_history_has_categories">Містить категорії</string>
-  <string name="item_history_has_flags">Містить парамерти</string>
+    <string name="item_history_has_extras">Містить додаткові дані</string>
+    <string name="item_history_has_categories">Містить категорії</string>
+    <string name="item_history_has_flags">Містить парамерти</string>
 
-  <!-- about -->
-  <string name="about_donation">Підтримати розробку</string>
-  <string name="about_version">Версія</string>
-  <string name="about_contact_email">Зв\'язатися з автором</string>
-  <string name="about_open_source">Бібліотеки з відкритим кодом</string>
+    <!-- about -->
+    <string name="about_donation">Підтримати розробку</string>
+    <string name="about_version">Версія</string>
+    <string name="about_contact_email">Зв\'язатися з автором</string>
+    <string name="about_open_source">Бібліотеки з відкритим кодом</string>
 
-  <string name="input_key">Введіть ключ</string>
-  <string name="input_value">Введіть значення</string>
-  <string name="key">Ключ</string>
-  <string name="value">Значення</string>
+    <string name="input_key">Введіть ключ</string>
+    <string name="input_value">Введіть значення</string>
+    <string name="key">Ключ</string>
+    <string name="value">Значення</string>
 
-  <string name="type_array">Масив</string>
+    <string name="type_array">Масив</string>
 
-  <string name="history_dialog_clear_title">Очистити історію</string>
-  <string name="history_dialog_clear_message">Ви впевнені?</string>
-  <string name="history_item_dialog_title">Intent</string>
-  <string name="history_item_dialog_remove">Видалити</string>
-  <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
-  <string name="no">Ні</string>
-  <string name="yes">Так</string>
+    <string name="history_dialog_clear_title">Очистити історію</string>
+    <string name="history_dialog_clear_message">Ви впевнені?</string>
+    <string name="history_item_dialog_title">Intent</string>
+    <string name="history_item_dialog_remove">Видалити</string>
+    <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
+    <string name="no">Ні</string>
+    <string name="yes">Так</string>
 
-  <string name="dialog_add_extra_title">Додати дані</string>
-  <string name="dialog_add_extra_key_empty">Обов\'язкове поле</string>
-  <string name="dialog_add_extra_value_empty">Обов\'язкове поле</string>
-  <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
+    <string name="dialog_add_extra_title">Додати дані</string>
+    <string name="dialog_add_extra_key_empty">Обов\'язкове поле</string>
+    <string name="dialog_add_extra_value_empty">Обов\'язкове поле</string>
+    <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
 
-  <!-- rating dialog -->
-  <string name="rating_dialog_cancel">Відмінити</string>
-  <string name="rating_dialog_experience">Вам сподобався додаток?</string>
-  <string name="rating_dialog_feedback_title">Зворотній зв\'язок</string>
-  <string name="rating_dialog_maybe_later">Нагадати пізніше</string>
-  <string name="rating_dialog_never">Ніколи</string>
-  <string name="rating_dialog_submit">Відправити</string>
-  <string name="rating_dialog_suggestions">Повідомте нам що не так і ми це виправимо</string>
+    <!-- rating dialog -->
+    <string name="rating_dialog_cancel">Відмінити</string>
+    <string name="rating_dialog_experience">Вам сподобався додаток?</string>
+    <string name="rating_dialog_feedback_title">Зворотній зв\'язок</string>
+    <string name="rating_dialog_maybe_later">Нагадати пізніше</string>
+    <string name="rating_dialog_never">Ніколи</string>
+    <string name="rating_dialog_submit">Відправити</string>
+    <string name="rating_dialog_suggestions">Повідомте нам що не так і ми це виправимо</string>
 
-  <!-- settings -->
-  <string name="pref_header_advanced">Додаткові можливості</string>
-  <string name="pref_advanced_not_exported_title">Показувати приховані Activity</string>
-  <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені ROOT</string>
-  <string name="pref_advanced_root_integration_title">Інтеграція з ROOT</string>
-  <string name="pref_advanced_root_integration_summary">Запуск додатків від імені ROOT</string>
-  <string name="settings_error_root_not_available">ROOT недоступний на цьому пристрої</string>
-  <string name="settings_error_root_not_granted">ROOT права не були надані</string>
-  <string name="settings_error_root_not_active">Потрібно активувати інтеграцію з ROOT</string>
+    <!-- settings -->
+    <string name="pref_header_advanced">Додаткові можливості</string>
+    <string name="pref_advanced_not_exported_title">Показувати приховані Activity</string>
+    <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені ROOT</string>
+    <string name="pref_advanced_root_integration_title">Інтеграція з ROOT</string>
+    <string name="pref_advanced_root_integration_summary">Запуск додатків від імені ROOT</string>
+    <string name="settings_error_root_not_available">ROOT недоступний на цьому пристрої</string>
+    <string name="settings_error_root_not_granted">ROOT права не були надані</string>
+    <string name="settings_error_root_not_active">Потрібно активувати інтеграцію з ROOT</string>
 
-  <plurals name="history_records">
-    <item quantity="one">%d запис</item>
-    <item quantity="few">%d записи</item>
-    <item quantity="many">%d записів</item>
-    <item quantity="other">%d записів</item>
-  </plurals>
-  <plurals name="activities_count">
-    <item quantity="one">%d активність</item>
-    <item quantity="few">%d активності</item>
-    <item quantity="many">%d активностей</item>
-    <item quantity="other">%d активностей</item>
-  </plurals>
+    <plurals name="history_records">
+        <item quantity="one">%d запис</item>
+        <item quantity="few">%d записи</item>
+        <item quantity="many">%d записів</item>
+        <item quantity="other">%d записів</item>
+    </plurals>
+    <plurals name="activities_count">
+        <item quantity="one">%d активність</item>
+        <item quantity="few">%d активності</item>
+        <item quantity="many">%d активностей</item>
+        <item quantity="other">%d активностей</item>
+    </plurals>
 </resources>

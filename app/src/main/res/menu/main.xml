@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <item
-    android:id="@+id/action_search"
-    android:icon="@drawable/ic_search"
-    android:title="@string/action_search"
-    app:actionViewClass="androidx.appcompat.widget.SearchView"
-    app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/action_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
 
-  <item
-    android:id="@+id/action_launch_intent"
-    android:icon="@drawable/ic_exit_to_app"
-    android:title="@string/action_launch_intent"
-    app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_launch_intent"
+        android:icon="@drawable/ic_exit_to_app"
+        android:title="@string/action_launch_intent"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 
-  <item
-    android:id="@+id/action_settings"
-    android:icon="@drawable/ic_settings"
-    android:title="@string/action_settings"
-    app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="ifRoom" />
 
-  <item
-    android:id="@+id/action_about"
-    android:title="@string/action_about"
-    app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/action_about"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 
 </menu>

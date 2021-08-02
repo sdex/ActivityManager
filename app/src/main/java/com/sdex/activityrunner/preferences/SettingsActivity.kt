@@ -9,23 +9,23 @@ import com.sdex.commons.BaseActivity
 
 class SettingsActivity : BaseActivity() {
 
-  override fun getLayout(): Int {
-    return R.layout.activity_settings
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableBackButton()
-    supportFragmentManager.beginTransaction()
-      .replace(R.id.content, SettingsFragment())
-      .commitNow()
-  }
-
-  companion object {
-
-    fun start(context: Context) {
-      val starter = Intent(context, SettingsActivity::class.java)
-      context.startActivity(starter)
+    override fun getLayout(): Int {
+        return R.layout.activity_settings
     }
-  }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableBackButton()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content, SettingsFragment())
+            .commitNow()
+    }
+
+    companion object {
+
+        fun start(context: Context) {
+            val starter = Intent(context, SettingsActivity::class.java)
+            context.startActivity(starter)
+        }
+    }
 }

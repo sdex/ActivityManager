@@ -1,128 +1,128 @@
 <resources>
-  <string name="history_activity">История</string>
-  <string name="settings_activity">Настройки</string>
+    <string name="history_activity">История</string>
+    <string name="settings_activity">Настройки</string>
 
-  <string name="context_action_launch_params">Запустить с параметрами</string>
-  <string name="context_action_launch_root">Запустить с правами ROOT</string>
-  <string name="context_action_shortcut">Создать ярлык</string>
+    <string name="context_action_launch_params">Запустить с параметрами</string>
+    <string name="context_action_launch_root">Запустить с правами ROOT</string>
+    <string name="context_action_shortcut">Создать ярлык</string>
 
-  <string name="context_action_open">Запустить приложение</string>
-  <string name="context_action_open_manifest">Открыть манифест</string>
-  <string name="context_action_open_info">Открыть инфо</string>
-  <string name="context_action_launch">Открыть в GooglePlay</string>
+    <string name="context_action_open">Запустить приложение</string>
+    <string name="context_action_open_manifest">Открыть манифест</string>
+    <string name="context_action_open_info">Открыть инфо</string>
+    <string name="context_action_launch">Открыть в GooglePlay</string>
 
-  <string name="shortcut_name">Название</string>
-  <string name="shortcut_name_empty">Обязательное поле</string>
-  <string name="shortcut_create">Создать</string>
+    <string name="shortcut_name">Название</string>
+    <string name="shortcut_name_empty">Обязательное поле</string>
+    <string name="shortcut_create">Создать</string>
 
-  <string name="starting_activity">Запуск: %s</string>
-  <string name="starting_activity_failed">Ошибка запуска: %s</string>
-  <string name="starting_activity_launch_intent_failed">Не удалось найти главную активность</string>
-  <string name="starting_activity_failed_security">Нет прав для запуска: %s</string>
-  <string name="starting_activity_intent">Запуск</string>
-  <string name="starting_activity_intent_failed">Ошибка запуска</string>
+    <string name="starting_activity">Запуск: %s</string>
+    <string name="starting_activity_failed">Ошибка запуска: %s</string>
+    <string name="starting_activity_launch_intent_failed">Не удалось найти главную активность</string>
+    <string name="starting_activity_failed_security">Нет прав для запуска: %s</string>
+    <string name="starting_activity_intent">Запуск</string>
+    <string name="starting_activity_intent_failed">Ошибка запуска</string>
 
-  <!-- activities list -->
-  <string name="activities_list_empty_text">Нет экспортированных активностей</string>
-  <string name="activities_list_empty_action">включить продвинутый режим</string>
+    <!-- activities list -->
+    <string name="activities_list_empty_text">Нет экспортированных активностей</string>
+    <string name="activities_list_empty_action">включить продвинутый режим</string>
 
-  <string name="action_about">О программе</string>
-  <string name="action_launch_intent">Запустить intent</string>
-  <string name="action_history">История</string>
-  <string name="action_clear_history">Очистить историю</string>
-  <string name="action_search">Поиск</string>
-  <string name="action_search_hint">Имя или пакет приложения</string>
-  <string name="action_search_activity_hint">Имя или пакет активности</string>
-  <string name="action_settings">Настройки</string>
+    <string name="action_about">О программе</string>
+    <string name="action_launch_intent">Запустить intent</string>
+    <string name="action_history">История</string>
+    <string name="action_clear_history">Очистить историю</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_search_hint">Имя или пакет приложения</string>
+    <string name="action_search_activity_hint">Имя или пакет активности</string>
+    <string name="action_settings">Настройки</string>
 
-  <string name="launch_param_package_name">Имя пакета</string>
-  <string name="launch_param_class_name">Имя класса</string>
-  <string name="launch_param_action">Действие</string>
-  <string name="launch_param_data">Данные</string>
-  <string name="launch_param_mime_type">Тип данных</string>
-  <string name="launch_param_extras">Дополнительные данные</string>
-  <string name="launch_param_extras_add">+ Добавить</string>
-  <string name="launch_param_categories">Категории</string>
-  <string name="launch_param_flags">Флаги</string>
+    <string name="launch_param_package_name">Имя пакета</string>
+    <string name="launch_param_class_name">Имя класса</string>
+    <string name="launch_param_action">Действие</string>
+    <string name="launch_param_data">Данные</string>
+    <string name="launch_param_mime_type">Тип данных</string>
+    <string name="launch_param_extras">Дополнительные данные</string>
+    <string name="launch_param_extras_add">+ Добавить</string>
+    <string name="launch_param_categories">Категории</string>
+    <string name="launch_param_flags">Флаги</string>
 
-  <string name="item_history_has_extras">Содержит дополнительные данные</string>
-  <string name="item_history_has_categories">Содержит категории</string>
-  <string name="item_history_has_flags">Содержит флаги</string>
+    <string name="item_history_has_extras">Содержит дополнительные данные</string>
+    <string name="item_history_has_categories">Содержит категории</string>
+    <string name="item_history_has_flags">Содержит флаги</string>
 
 
-  <!-- about -->
-  <string name="about_donation">Поддержать разработку</string>
-  <string name="about_version">Версия</string>
-  <string name="about_contact_email">Связаться с автором</string>
-  <string name="about_feedback">Сообщить о проблеме, задать вопрос…</string>
-  <string name="about_open_source">Библиотеки с открытым кодом</string>
-  <string name="about_open_privacy_policy">Политика конфиденциальности</string>
+    <!-- about -->
+    <string name="about_donation">Поддержать разработку</string>
+    <string name="about_version">Версия</string>
+    <string name="about_contact_email">Связаться с автором</string>
+    <string name="about_feedback">Сообщить о проблеме, задать вопрос…</string>
+    <string name="about_open_source">Библиотеки с открытым кодом</string>
+    <string name="about_open_privacy_policy">Политика конфиденциальности</string>
 
-  <string name="input_key">Введите ключ</string>
-  <string name="input_value">Введите значение</string>
-  <string name="key">Ключ</string>
-  <string name="value">Значение</string>
+    <string name="input_key">Введите ключ</string>
+    <string name="input_value">Введите значение</string>
+    <string name="key">Ключ</string>
+    <string name="value">Значение</string>
 
-  <string name="type_array">Массив</string>
+    <string name="type_array">Массив</string>
 
-  <string name="history_dialog_clear_title">Очистить историю</string>
-  <string name="history_dialog_clear_message">Вы уверенны?</string>
-  <string name="history_item_dialog_title">Intent</string>
-  <string name="history_item_dialog_remove">Удалить</string>
-  <string name="history_item_dialog_add_shortcut">Создать ярлык</string>
-  <string name="no">Нет</string>
-  <string name="yes">Да</string>
+    <string name="history_dialog_clear_title">Очистить историю</string>
+    <string name="history_dialog_clear_message">Вы уверенны?</string>
+    <string name="history_item_dialog_title">Intent</string>
+    <string name="history_item_dialog_remove">Удалить</string>
+    <string name="history_item_dialog_add_shortcut">Создать ярлык</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
 
-  <string name="dialog_add_extra_title">Добавить данные</string>
-  <string name="dialog_add_extra_key_empty">Обязательное поле</string>
-  <string name="dialog_add_extra_value_empty">Обязательное поле</string>
-  <string name="dialog_add_extra_type_incorrect">Неправильный тип данных</string>
+    <string name="dialog_add_extra_title">Добавить данные</string>
+    <string name="dialog_add_extra_key_empty">Обязательное поле</string>
+    <string name="dialog_add_extra_value_empty">Обязательное поле</string>
+    <string name="dialog_add_extra_type_incorrect">Неправильный тип данных</string>
 
-  <!-- rating dialog -->
-  <string name="rating_dialog_cancel">Отменить</string>
-  <string name="rating_dialog_experience">Вам понравилось приложение?</string>
-  <string name="rating_dialog_feedback_title">Обратная связь</string>
-  <string name="rating_dialog_maybe_later">Напомнить позже</string>
-  <string name="rating_dialog_never">Никогда</string>
-  <string name="rating_dialog_submit">Отправить</string>
-  <string name="rating_dialog_suggestions">Сообщите нам что не так и мы исправим это</string>
+    <!-- rating dialog -->
+    <string name="rating_dialog_cancel">Отменить</string>
+    <string name="rating_dialog_experience">Вам понравилось приложение?</string>
+    <string name="rating_dialog_feedback_title">Обратная связь</string>
+    <string name="rating_dialog_maybe_later">Напомнить позже</string>
+    <string name="rating_dialog_never">Никогда</string>
+    <string name="rating_dialog_submit">Отправить</string>
+    <string name="rating_dialog_suggestions">Сообщите нам что не так и мы исправим это</string>
 
-  <string name="dialog_enable_non_exported_title">Неэкспортиванные активности</string>
-  <string name="dialog_enable_non_exported_message">Вы можете включить отображение неэкспортиванных активностей. Они выделены красным цветов и не могут быть запущены без ROOT прав</string>
+    <string name="dialog_enable_non_exported_title">Неэкспортиванные активности</string>
+    <string name="dialog_enable_non_exported_message">Вы можете включить отображение неэкспортиванных активностей. Они выделены красным цветов и не могут быть запущены без ROOT прав</string>
 
-  <!-- settings -->
-  <string name="pref_header_appearance">Внешний вид</string>
-  <string name="pref_appearance_theme_title">Тема</string>
-  <string name="pref_appearance_theme_summary">Установить тему приложения</string>
-  <string name="pref_appearance_theme_black_title">Черный цвет</string>
-  <string name="pref_appearance_theme_black_summary">Для AMOLED экранов</string>
+    <!-- settings -->
+    <string name="pref_header_appearance">Внешний вид</string>
+    <string name="pref_appearance_theme_title">Тема</string>
+    <string name="pref_appearance_theme_summary">Установить тему приложения</string>
+    <string name="pref_appearance_theme_black_title">Черный цвет</string>
+    <string name="pref_appearance_theme_black_summary">Для AMOLED экранов</string>
 
-  <string name="pref_header_advanced">Дополнительно</string>
-  <string name="pref_advanced_system_apps_title">Индикатор системных приложений</string>
-  <string name="pref_advanced_system_apps_summary">Серая точка возле имени приложения</string>
-  <string name="pref_advanced_not_exported_title">Показывать скрытые Activity</string>
-  <string name="pref_advanced_not_exported_summary">Можно запустить только от имени ROOT</string>
-  <string name="pref_advanced_root_integration_title">Интеграция с ROOT</string>
-  <string name="pref_advanced_root_integration_summary">Запускать приложения от имени ROOT</string>
-  <string name="settings_error_root_not_available">ROOT недоступен на устройстве</string>
-  <string name="settings_error_root_not_granted">ROOT права не были предоставлены</string>
-  <string name="settings_error_root_not_active">Нужно активировать интеграцию ROOT</string>
+    <string name="pref_header_advanced">Дополнительно</string>
+    <string name="pref_advanced_system_apps_title">Индикатор системных приложений</string>
+    <string name="pref_advanced_system_apps_summary">Серая точка возле имени приложения</string>
+    <string name="pref_advanced_not_exported_title">Показывать скрытые Activity</string>
+    <string name="pref_advanced_not_exported_summary">Можно запустить только от имени ROOT</string>
+    <string name="pref_advanced_root_integration_title">Интеграция с ROOT</string>
+    <string name="pref_advanced_root_integration_summary">Запускать приложения от имени ROOT</string>
+    <string name="settings_error_root_not_available">ROOT недоступен на устройстве</string>
+    <string name="settings_error_root_not_granted">ROOT права не были предоставлены</string>
+    <string name="settings_error_root_not_active">Нужно активировать интеграцию ROOT</string>
 
-  <string-array name="pref_appearance_theme_list_titles">
-    <item>Светлая</item>
-    <item>Темная</item>
-  </string-array>
+    <string-array name="pref_appearance_theme_list_titles">
+        <item>Светлая</item>
+        <item>Темная</item>
+    </string-array>
 
-  <plurals name="history_records">
-    <item quantity="one">%d запись</item>
-    <item quantity="few">%d записи</item>
-    <item quantity="many">%d записей</item>
-    <item quantity="other">%d записей</item>
-  </plurals>
-  <plurals name="activities_count">
-    <item quantity="one">%d активность</item>
-    <item quantity="few">%d активности</item>
-    <item quantity="many">%d активностей</item>
-    <item quantity="other">%d активностей</item>
-  </plurals>
+    <plurals name="history_records">
+        <item quantity="one">%d запись</item>
+        <item quantity="few">%d записи</item>
+        <item quantity="many">%d записей</item>
+        <item quantity="other">%d записей</item>
+    </plurals>
+    <plurals name="activities_count">
+        <item quantity="one">%d активность</item>
+        <item quantity="few">%d активности</item>
+        <item quantity="many">%d активностей</item>
+        <item quantity="other">%d активностей</item>
+    </plurals>
 </resources>

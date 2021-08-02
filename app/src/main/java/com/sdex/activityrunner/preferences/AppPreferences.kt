@@ -6,64 +6,67 @@ import android.preference.PreferenceManager
 
 class AppPreferences(context: Context) {
 
-  private val preferences: SharedPreferences
-  private val userPreferences: SharedPreferences
+    private val preferences: SharedPreferences
+    private val userPreferences: SharedPreferences
 
-  init {
-    preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
-    userPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-  }
-
-  var isNotExportedDialogShown: Boolean
-    get() = preferences.getBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, false)
-    set(value) = preferences.edit()
-      .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, value)
-      .apply()
-
-  var isOreoBugWarningShown: Boolean
-    get() = preferences.getBoolean(KEY_OREO_BUG_WARNING_SHOWN, false)
-    set(value) = preferences.edit()
-      .putBoolean(KEY_OREO_BUG_WARNING_SHOWN, value)
-      .apply()
-
-  /* user preferences */
-
-  val isShowSystemAppIndicator: Boolean
-    get() = userPreferences.getBoolean(KEY_SHOW_SYSTEM_APP_LABEL,
-      KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT)
-
-  var showNotExported: Boolean
-    get() = userPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
-    set(value) {
-      userPreferences.edit()
-        .putBoolean(KEY_SHOW_NOT_EXPORTED, value)
-        .apply()
+    init {
+        preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        userPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-  val isRootIntegrationEnabled: Boolean
-    get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, KEY_ROOT_INTEGRATION_DEFAULT)
+    var isNotExportedDialogShown: Boolean
+        get() = preferences.getBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, false)
+        set(value) = preferences.edit()
+            .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, value)
+            .apply()
 
-  val getTheme: String?
-    get() = userPreferences.getString(KEY_THEME, KEY_THEME_DEFAULT)
+    var isOreoBugWarningShown: Boolean
+        get() = preferences.getBoolean(KEY_OREO_BUG_WARNING_SHOWN, false)
+        set(value) = preferences.edit()
+            .putBoolean(KEY_OREO_BUG_WARNING_SHOWN, value)
+            .apply()
 
-  val isBlackTheme: Boolean
-    get() = userPreferences.getBoolean(KEY_THEME_BLACK, KEY_THEME_BLACK_DEFAULT)
+    /* user preferences */
 
-  companion object {
+    val isShowSystemAppIndicator: Boolean
+        get() = userPreferences.getBoolean(
+            KEY_SHOW_SYSTEM_APP_LABEL,
+            KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT
+        )
 
-    private const val PREFERENCES_NAME = "ads_preferences"
-    private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
-    private const val KEY_OREO_BUG_WARNING_SHOWN = "oreo_bug_warning_shown"
-    /* advanced preferences */
-    private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
-    private const val KEY_SHOW_NOT_EXPORTED_DEFAULT = false
-    const val KEY_ROOT_INTEGRATION = "advanced_root_integration"
-    private const val KEY_ROOT_INTEGRATION_DEFAULT = false
-    private const val KEY_SHOW_SYSTEM_APP_LABEL = "advanced_system_app"
-    private const val KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT = false
-    const val KEY_THEME = "appearance_theme"
-    private const val KEY_THEME_DEFAULT = "0"
-    const val KEY_THEME_BLACK = "appearance_theme_black"
-    private const val KEY_THEME_BLACK_DEFAULT = false
-  }
+    var showNotExported: Boolean
+        get() = userPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
+        set(value) {
+            userPreferences.edit()
+                .putBoolean(KEY_SHOW_NOT_EXPORTED, value)
+                .apply()
+        }
+
+    val isRootIntegrationEnabled: Boolean
+        get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, KEY_ROOT_INTEGRATION_DEFAULT)
+
+    val getTheme: String?
+        get() = userPreferences.getString(KEY_THEME, KEY_THEME_DEFAULT)
+
+    val isBlackTheme: Boolean
+        get() = userPreferences.getBoolean(KEY_THEME_BLACK, KEY_THEME_BLACK_DEFAULT)
+
+    companion object {
+
+        private const val PREFERENCES_NAME = "ads_preferences"
+        private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
+        private const val KEY_OREO_BUG_WARNING_SHOWN = "oreo_bug_warning_shown"
+
+        /* advanced preferences */
+        private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
+        private const val KEY_SHOW_NOT_EXPORTED_DEFAULT = false
+        const val KEY_ROOT_INTEGRATION = "advanced_root_integration"
+        private const val KEY_ROOT_INTEGRATION_DEFAULT = false
+        private const val KEY_SHOW_SYSTEM_APP_LABEL = "advanced_system_app"
+        private const val KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT = false
+        const val KEY_THEME = "appearance_theme"
+        private const val KEY_THEME_DEFAULT = "0"
+        const val KEY_THEME_BLACK = "appearance_theme_black"
+        private const val KEY_THEME_BLACK_DEFAULT = false
+    }
 }

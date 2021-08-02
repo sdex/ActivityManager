@@ -10,26 +10,26 @@ import kotlinx.android.synthetic.main.activity_oreo_package_manager_bug.*
 
 class OreoPackageManagerBugActivity : FragmentActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_oreo_package_manager_bug)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_oreo_package_manager_bug)
 
-    val appPreferences = AppPreferences(this)
+        val appPreferences = AppPreferences(this)
 
-    proceed.setOnClickListener {
-      appPreferences.isOreoBugWarningShown = true
-      finish()
+        proceed.setOnClickListener {
+            appPreferences.isOreoBugWarningShown = true
+            finish()
+        }
+
+        openApps.setOnClickListener {
+            finish()
+            try {
+                val intent = Intent(Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
-
-    openApps.setOnClickListener {
-      finish()
-      try {
-        val intent = Intent(Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
-      } catch (e: Exception) {
-        e.printStackTrace()
-      }
-    }
-  }
 }

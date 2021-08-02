@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <full-backup-content>
 
-  <exclude
-    domain="database"
-    path="androidx.work.workdb" />
+    <exclude
+        domain="database"
+        path="androidx.work.workdb" />
 
-  <exclude
-    domain="sharedpref"
-    path="androidx.work.util.id.xml" />
+    <exclude
+        domain="sharedpref"
+        path="androidx.work.util.id.xml" />
 
-  <exclude
-    domain="sharedpref"
-    path="admob.xml" />
+    <exclude
+        domain="sharedpref"
+        path="admob.xml" />
 
-  <exclude
-    domain="sharedpref"
-    path="com.crashlytics.prefs.xml" />
+    <exclude
+        domain="sharedpref"
+        path="com.crashlytics.prefs.xml" />
 
-  <exclude
-    domain="sharedpref"
-    path="com.crashlytics.sdk.android:answers:settings.xml" />
+    <exclude
+        domain="sharedpref"
+        path="com.crashlytics.sdk.android:answers:settings.xml" />
 
-  <exclude
-    domain="sharedpref"
-    path="com.google.android.gms.appid.xml" />
+    <exclude
+        domain="sharedpref"
+        path="com.google.android.gms.appid.xml" />
 
-  <exclude
-    domain="sharedpref"
-    path="com.google.android.gms.measurement.prefs.xml" />
+    <exclude
+        domain="sharedpref"
+        path="com.google.android.gms.measurement.prefs.xml" />
 
-  <exclude
-    domain="sharedpref"
-    path="io.fabric.sdk.android:fabric:io.fabric.sdk.android.Onboarding.xml" />
+    <exclude
+        domain="sharedpref"
+        path="io.fabric.sdk.android:fabric:io.fabric.sdk.android.Onboarding.xml" />
 
-  <exclude
-    domain="sharedpref"
-    path="WebViewChromiumPrefs.xml" />
+    <exclude
+        domain="sharedpref"
+        path="WebViewChromiumPrefs.xml" />
 
 </full-backup-content>

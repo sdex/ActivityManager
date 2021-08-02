@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  package="com.sdex.activityrunner">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.sdex.activityrunner">
 
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.WAKE_LOCK" />
-  <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
-  <application
-    android:name=".ActivityManagerApplication"
-    android:allowBackup="true"
-    android:fullBackupContent="@xml/backup_descriptor"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme.Light"
-    tools:ignore="GoogleAppIndexingWarning">
+    <application
+        android:name=".ActivityManagerApplication"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.Light"
+        tools:ignore="GoogleAppIndexingWarning">
 
-    <uses-library
-      android:name="org.apache.http.legacy"
-      android:required="false" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
-    <activity android:name=".MainActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    <activity
-      android:name=".intent.IntentBuilderActivity"
-      android:exported="true"
-      android:label="@string/intent_launcher_activity" />
+        <activity
+            android:name=".intent.IntentBuilderActivity"
+            android:exported="true"
+            android:label="@string/intent_launcher_activity" />
 
-    <activity
-      android:name=".intent.analyzer.IntentAnalyzerActivity"
-      android:exported="true"
-      android:label="@string/intent_analyzer_activity" />
+        <activity
+            android:name=".intent.analyzer.IntentAnalyzerActivity"
+            android:exported="true"
+            android:label="@string/intent_analyzer_activity" />
 
-    <activity
-      android:name=".intent.history.HistoryActivity"
-      android:exported="true"
-      android:label="@string/history_activity" />
+        <activity
+            android:name=".intent.history.HistoryActivity"
+            android:exported="true"
+            android:label="@string/history_activity" />
 
-    <activity android:name=".manifest.ManifestViewerActivity" />
+        <activity android:name=".manifest.ManifestViewerActivity" />
 
-    <activity android:name=".app.ActivitiesListActivity" />
+        <activity android:name=".app.ActivitiesListActivity" />
 
-    <activity
-      android:name=".shortcut.AddShortcutDialogActivity"
-      android:theme="@style/AppDialogTheme.Light" />
+        <activity
+            android:name=".shortcut.AddShortcutDialogActivity"
+            android:theme="@style/AppDialogTheme.Light" />
 
-    <activity
-      android:name=".shortcut.ShortcutHandlerActivity"
-      android:exported="true"
-      android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name=".shortcut.ShortcutHandlerActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent" />
 
-    <activity android:name=".AboutActivity" />
+        <activity android:name=".AboutActivity" />
 
-    <activity android:name=".app.legacy.OreoPackageManagerBugActivity" />
+        <activity android:name=".app.legacy.OreoPackageManagerBugActivity" />
 
-    <activity
-      android:name=".preferences.SettingsActivity"
-      android:label="@string/settings_activity" />
+        <activity
+            android:name=".preferences.SettingsActivity"
+            android:label="@string/settings_activity" />
 
-    <service
-      android:name=".service.ApplicationsListJob"
-      android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".service.ApplicationsListJob"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
-    <provider
-      android:name="androidx.core.content.FileProvider"
-      android:authorities="${applicationId}.fileprovider"
-      android:exported="false"
-      android:grantUriPermissions="true">
-      <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/provider_paths" />
-    </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
-  </application>
+    </application>
 
 </manifest>

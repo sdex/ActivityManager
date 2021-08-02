@@ -9,22 +9,22 @@ import com.sdex.commons.util.AppUtils
 
 class DonateDialog : BaseDialogFragment() {
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    return AlertDialog.Builder(requireContext())
-      .setTitle(R.string.about_donation)
-      .setMessage(R.string.donate_message)
-      .setPositiveButton(R.string.donate_action_text) { _, _ ->
-        AppUtils.openLink(activity, "https://www.buymeacoffee.com/sdex")
-      }
-      .create()
-  }
-
-  companion object {
-
-    const val TAG = "DonateDialog"
-
-    fun newInstance(): DonateDialog {
-      return DonateDialog()
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return AlertDialog.Builder(requireContext())
+            .setTitle(R.string.about_donation)
+            .setMessage(R.string.donate_message)
+            .setPositiveButton(R.string.donate_action_text) { _, _ ->
+                AppUtils.openLink(activity, "https://www.buymeacoffee.com/sdex")
+            }
+            .create()
     }
-  }
+
+    companion object {
+
+        const val TAG = "DonateDialog"
+
+        fun newInstance(): DonateDialog {
+            return DonateDialog()
+        }
+    }
 }

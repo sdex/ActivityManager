@@ -27,143 +27,143 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-  private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
-  private val viewModel: ApplicationsListViewModel by viewModels()
+    private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
+    private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
+    private val viewModel: ApplicationsListViewModel by viewModels()
 
-  private var isShowSystemAppIndicator: Boolean = false
-  private var searchText: String? = null
+    private var isShowSystemAppIndicator: Boolean = false
+    private var searchText: String? = null
 
-  override fun getLayout(): Int {
-    return R.layout.activity_main
-  }
-
-  public override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    ApplicationsListJob.enqueueWork(this, Intent())
-
-    isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-
-    searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
-
-    viewModel.getItems(searchText).observe(this, Observer {
-      adapter.submitList(it)
-      progress.hide()
-    })
-
-    progress.show()
-
-    list.addDivider(this)
-    list.adapter = adapter
-
-    checkOreoBug()
-  }
-
-  override fun onStart() {
-    super.onStart()
-    if (appPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
-      isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-      viewModel.getItems(searchText).observe(this, Observer {
-        adapter.submitList(it)
-        adapter.notifyDataSetChanged()
-      })
+    override fun getLayout(): Int {
+        return R.layout.activity_main
     }
-    if (!appPreferences.getTheme.equals(currentTheme)) {
-      recreate()
-    }
-  }
 
-  public override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    outState.putString(STATE_SEARCH_TEXT, searchText)
-  }
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-  private fun filter(text: String) {
-    this.searchText = text
-    viewModel.getItems(text).observe(this, Observer {
-      adapter.submitList(it)
-    })
-  }
+        ApplicationsListJob.enqueueWork(this, Intent())
 
-  // https://issuetracker.google.com/issues/73289329
-  private fun checkOreoBug() {
-    if (VERSION.SDK_INT == VERSION_CODES.O) {
-      if (!appPreferences.isOreoBugWarningShown) {
-        val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.packages.observe(this, Observer {
-          if (it!!.isEmpty()) {
-            overridePendingTransition(0, 0)
-            startActivity(Intent(this, OreoPackageManagerBugActivity::class.java))
-          }
+        isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+
+        searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
+
+        viewModel.getItems(searchText).observe(this, Observer {
+            adapter.submitList(it)
+            progress.hide()
         })
-      }
-    }
-  }
 
-  override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    menuInflater.inflate(R.menu.main, menu)
-    val searchItem = menu.findItem(R.id.action_search)
-    val searchView = searchItem.actionView as SearchView
-    val hint = getString(R.string.action_search_hint)
-    searchView.queryHint = hint
+        progress.show()
 
-    if (!TextUtils.isEmpty(searchText)) {
-      searchView.post { searchView.setQuery(searchText, false) }
-      searchItem.expandActionView()
-      UIUtils.setMenuItemsVisibility(menu, searchItem, false)
+        list.addDivider(this)
+        list.adapter = adapter
+
+        checkOreoBug()
     }
 
-    searchView.setOnQueryTextListener(object : OnQueryTextListener {
-      override fun onQueryTextSubmit(query: String): Boolean {
-        return false
-      }
-
-      override fun onQueryTextChange(newText: String): Boolean {
-        filter(newText)
-        return false
-      }
-    })
-    searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-      override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-        UIUtils.setMenuItemsVisibility(menu, item, false)
-        return true
-      }
-
-      override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-        searchText = null
-        UIUtils.setMenuItemsVisibility(menu, true)
-        invalidateOptionsMenu()
-        return true
-      }
-    })
-    return super.onCreateOptionsMenu(menu)
-  }
-
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-      R.id.action_launch_intent -> {
-        IntentBuilderActivity.start(this, null)
-        true
-      }
-      R.id.action_about -> {
-        AboutActivity.start(this)
-        true
-      }
-      R.id.action_settings -> {
-        SettingsActivity.start(this)
-        true
-      }
-      else -> super.onOptionsItemSelected(item)
+    override fun onStart() {
+        super.onStart()
+        if (appPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
+            isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+            viewModel.getItems(searchText).observe(this, Observer {
+                adapter.submitList(it)
+                adapter.notifyDataSetChanged()
+            })
+        }
+        if (!appPreferences.getTheme.equals(currentTheme)) {
+            recreate()
+        }
     }
-  }
 
-  companion object {
-
-    private const val STATE_SEARCH_TEXT = "state_search_text"
-
-    init {
-      AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+    public override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(STATE_SEARCH_TEXT, searchText)
     }
-  }
+
+    private fun filter(text: String) {
+        this.searchText = text
+        viewModel.getItems(text).observe(this, Observer {
+            adapter.submitList(it)
+        })
+    }
+
+    // https://issuetracker.google.com/issues/73289329
+    private fun checkOreoBug() {
+        if (VERSION.SDK_INT == VERSION_CODES.O) {
+            if (!appPreferences.isOreoBugWarningShown) {
+                val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+                viewModel.packages.observe(this, Observer {
+                    if (it!!.isEmpty()) {
+                        overridePendingTransition(0, 0)
+                        startActivity(Intent(this, OreoPackageManagerBugActivity::class.java))
+                    }
+                })
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+        val hint = getString(R.string.action_search_hint)
+        searchView.queryHint = hint
+
+        if (!TextUtils.isEmpty(searchText)) {
+            searchView.post { searchView.setQuery(searchText, false) }
+            searchItem.expandActionView()
+            UIUtils.setMenuItemsVisibility(menu, searchItem, false)
+        }
+
+        searchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filter(newText)
+                return false
+            }
+        })
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                UIUtils.setMenuItemsVisibility(menu, item, false)
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                searchText = null
+                UIUtils.setMenuItemsVisibility(menu, true)
+                invalidateOptionsMenu()
+                return true
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_launch_intent -> {
+                IntentBuilderActivity.start(this, null)
+                true
+            }
+            R.id.action_about -> {
+                AboutActivity.start(this)
+                true
+            }
+            R.id.action_settings -> {
+                SettingsActivity.start(this)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    companion object {
+
+        private const val STATE_SEARCH_TEXT = "state_search_text"
+
+        init {
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        }
+    }
 }

@@ -4,23 +4,23 @@ import android.os.AsyncTask
 
 class CheckRootTask(private val callback: Callback) : AsyncTask<Void, Void, Int>() {
 
-  override fun doInBackground(params: Array<Void>): Int? {
-    return if (RootUtils.isSuAvailable()) RESULT_OK else ACCESS_IS_NOT_GIVEN
-  }
+    override fun doInBackground(params: Array<Void>): Int? {
+        return if (RootUtils.isSuAvailable()) RESULT_OK else ACCESS_IS_NOT_GIVEN
+    }
 
-  override fun onPostExecute(result: Int?) {
-    super.onPostExecute(result)
-    this.callback.onStatusChanged(result!!)
-  }
+    override fun onPostExecute(result: Int?) {
+        super.onPostExecute(result)
+        this.callback.onStatusChanged(result!!)
+    }
 
-  interface Callback {
+    interface Callback {
 
-    fun onStatusChanged(status: Int)
-  }
+        fun onStatusChanged(status: Int)
+    }
 
-  companion object {
+    companion object {
 
-    const val RESULT_OK = 0
-    const val ACCESS_IS_NOT_GIVEN = 1
-  }
+        const val RESULT_OK = 0
+        const val ACCESS_IS_NOT_GIVEN = 1
+    }
 }

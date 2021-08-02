@@ -13,27 +13,27 @@ import kotlinx.coroutines.launch
 
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
 
-  private val database: HistoryDatabase = HistoryDatabase.getDatabase(application)
-  val list: LiveData<PagedList<HistoryModel>>
+    private val database: HistoryDatabase = HistoryDatabase.getDatabase(application)
+    val list: LiveData<PagedList<HistoryModel>>
 
-  init {
-    val factory: DataSource.Factory<Int, HistoryModel> = database.historyModelDao.getHistory()
-    val config = PagedList.Config.Builder()
-      .setPageSize(50)
-      .setEnablePlaceholders(true)
-      .build()
-    list = LivePagedListBuilder<Int, HistoryModel>(factory, config).build()
-  }
-
-  fun deleteItem(model: HistoryModel) {
-    GlobalScope.launch {
-      database.historyModelDao.delete(model)
+    init {
+        val factory: DataSource.Factory<Int, HistoryModel> = database.historyModelDao.getHistory()
+        val config = PagedList.Config.Builder()
+            .setPageSize(50)
+            .setEnablePlaceholders(true)
+            .build()
+        list = LivePagedListBuilder<Int, HistoryModel>(factory, config).build()
     }
-  }
 
-  fun clear() {
-    GlobalScope.launch {
-      database.historyModelDao.clean()
+    fun deleteItem(model: HistoryModel) {
+        GlobalScope.launch {
+            database.historyModelDao.delete(model)
+        }
     }
-  }
+
+    fun clear() {
+        GlobalScope.launch {
+            database.historyModelDao.clean()
+        }
+    }
 }
