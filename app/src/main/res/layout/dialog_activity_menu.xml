@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
-
-  <TextView
-    android:id="@+id/activity_name"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:paddingStart="50dp"
-    android:paddingLeft="50dp"
-    android:paddingTop="16dp"
-    android:paddingEnd="50dp"
-    android:paddingRight="50dp"
-    android:paddingBottom="16dp"
-    android:textColor="@color/blue"
-    android:textSize="14sp"
-    android:textStyle="bold"
-    tools:text="Application name" />
-
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="?attr/listDividerColor" />
-
-  <LinearLayout
-    android:id="@+id/action_activity_add_shortcut"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
-
-    <ImageView
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:scaleType="center"
-      app:srcCompat="@drawable/ic_activity_shortcut" />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-      style="@style/BottomDialogTextStyle"
-      android:text="@string/context_action_shortcut" />
+        android:id="@+id/activity_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="50dp"
+        android:paddingLeft="50dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="16dp"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Application name" />
 
-  </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/listDividerColor" />
 
-  <LinearLayout
-    android:id="@+id/action_activity_launch_with_params"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/action_activity_add_shortcut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
 
-    <ImageView
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:scaleType="center"
-      app:srcCompat="@drawable/ic_activity_launch_params" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_activity_shortcut" />
 
-    <TextView
-      style="@style/BottomDialogTextStyle"
-      android:text="@string/context_action_launch_params" />
+        <TextView
+            style="@style/BottomDialogTextStyle"
+            android:text="@string/context_action_shortcut" />
 
-  </LinearLayout>
+    </LinearLayout>
 
-  <LinearLayout
-    android:id="@+id/action_activity_launch_with_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    <LinearLayout
+        android:id="@+id/action_activity_launch_with_params"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
 
-    <ImageView
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:scaleType="center"
-      app:srcCompat="@drawable/ic_activity_launch_root" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_activity_launch_params" />
 
-    <TextView
-      style="@style/BottomDialogTextStyle"
-      android:text="@string/context_action_launch_root" />
-  </LinearLayout>
+        <TextView
+            style="@style/BottomDialogTextStyle"
+            android:text="@string/context_action_launch_params" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/action_activity_launch_with_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_activity_launch_root" />
+
+        <TextView
+            style="@style/BottomDialogTextStyle"
+            android:text="@string/context_action_launch_root" />
+    </LinearLayout>
 </LinearLayout>

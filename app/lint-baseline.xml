@@ -1,416 +1,420 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <issues format="4" by="lint 3.3.0-alpha06" client="gradle" variant="debug" version="3.3.0-alpha06">
 
-  <issue id="UnusedAttribute"
-    message="Attribute `elevation` is only used in API level 21 and higher (current min is 15)"
-    errorLine1="  android:elevation=&quot;2dp&quot;" errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/toolbar.xml" line="8" column="3" />
-  </issue>
+    <issue id="UnusedAttribute"
+        message="Attribute `elevation` is only used in API level 21 and higher (current min is 15)"
+        errorLine1="  android:elevation=&quot;2dp&quot;" errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/toolbar.xml" line="8" column="3" />
+    </issue>
 
-  <issue id="GradleDependency"
-    message="A newer version of com.crashlytics.sdk.android:crashlytics than 2.9.2 is available: 2.9.4"
-    errorLine1="  implementation(&apos;com.crashlytics.sdk.android:crashlytics:2.9.2@aar&apos;) {"
-    errorLine2="  ^">
-    <location file="build.gradle" line="105" column="3" />
-  </issue>
+    <issue id="GradleDependency"
+        message="A newer version of com.crashlytics.sdk.android:crashlytics than 2.9.2 is available: 2.9.4"
+        errorLine1="  implementation(&apos;com.crashlytics.sdk.android:crashlytics:2.9.2@aar&apos;) {"
+        errorLine2="  ^">
+        <location file="build.gradle" line="105" column="3" />
+    </issue>
 
-  <issue id="ObsoleteSdkInt"
-    message="This folder configuration (`v13`) is unnecessary; `minSdkVersion` is 15. Merge all the resources in this folder into `values-sw360dp`.">
-    <location file="src/main/res/values-sw360dp-v13" />
-  </issue>
+    <issue id="ObsoleteSdkInt"
+        message="This folder configuration (`v13`) is unnecessary; `minSdkVersion` is 15. Merge all the resources in this folder into `values-sw360dp`.">
+        <location file="src/main/res/values-sw360dp-v13" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;@color/background_gray&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_about.xml" line="7" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;@color/background_gray&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_about.xml" line="7" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;@color/background_gray&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_intent_analyzer.xml" line="7" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;@color/background_gray&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_intent_analyzer.xml" line="7" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;@color/background_gray&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_intent_builder.xml" line="7" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;@color/background_gray&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_intent_builder.xml" line="7" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;@color/background_gray&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_purchase.xml" line="8" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/background_gray` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;@color/background_gray&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_purchase.xml" line="8" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `?selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;?selectableItemBackground&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/item_activity.xml" line="6" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `?selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;?selectableItemBackground&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/item_activity.xml" line="6" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `?selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;?selectableItemBackground&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/item_application.xml" line="6" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `?selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;?selectableItemBackground&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/item_application.xml" line="6" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;?attr/selectableItemBackground&quot;>"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/item_history.xml" line="8" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;?attr/selectableItemBackground&quot;>"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/item_history.xml" line="8" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;?attr/selectableItemBackground&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/item_launch_param_extra.xml" line="7" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;?attr/selectableItemBackground&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/item_launch_param_extra.xml" line="7" column="3" />
+    </issue>
 
-  <issue id="Overdraw"
-    message="Possible overdraw: Root element paints background `?attr/colorPrimary` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
-    errorLine1="  android:background=&quot;?attr/colorPrimary&quot;"
-    errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/toolbar.xml" line="7" column="3" />
-  </issue>
+    <issue id="Overdraw"
+        message="Possible overdraw: Root element paints background `?attr/colorPrimary` with a theme that also paints a background (inferred theme is `@style/AppTheme`)"
+        errorLine1="  android:background=&quot;?attr/colorPrimary&quot;"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/toolbar.xml" line="7" column="3" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.color.preference_fallback_accent_color` appears to be unused"
-    errorLine1="  &lt;color name=&quot;preference_fallback_accent_color&quot; tools:override=&quot;true&quot;>@color/blue&lt;/color>"
-    errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/colors.xml" line="5" column="10" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.color.preference_fallback_accent_color` appears to be unused"
+        errorLine1="  &lt;color name=&quot;preference_fallback_accent_color&quot; tools:override=&quot;true&quot;>@color/blue&lt;/color>"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/colors.xml" line="5" column="10" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.color.colorControlActivated` appears to be unused"
-    errorLine1="  &lt;color name=&quot;colorControlActivated&quot;>#ffffff&lt;/color>"
-    errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/colors.xml" line="10" column="10" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.color.colorControlActivated` appears to be unused"
+        errorLine1="  &lt;color name=&quot;colorControlActivated&quot;>#ffffff&lt;/color>"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/colors.xml" line="10" column="10" />
+    </issue>
 
-  <issue id="UnusedResources" message="The resource `R.string.ad_app_id` appears to be unused"
-    errorLine1="  &lt;string name=&quot;ad_app_id&quot; translatable=&quot;false&quot;>ca-app-pub-1936869147898286~1003664872&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/config.xml" line="4" column="11" />
-  </issue>
+    <issue id="UnusedResources" message="The resource `R.string.ad_app_id` appears to be unused"
+        errorLine1="  &lt;string name=&quot;ad_app_id&quot; translatable=&quot;false&quot;>ca-app-pub-1936869147898286~1003664872&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/config.xml" line="4" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.ad_rewarded_unit_id` appears to be unused"
-    errorLine1="  &lt;string name=&quot;ad_rewarded_unit_id&quot; translatable=&quot;false&quot;>ca-app-pub-1936869147898286/2939153957&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/config.xml" line="7" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.ad_rewarded_unit_id` appears to be unused"
+        errorLine1="  &lt;string name=&quot;ad_rewarded_unit_id&quot; translatable=&quot;false&quot;>ca-app-pub-1936869147898286/2939153957&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/config.xml" line="7" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.drawable.ic_launcher_background` appears to be unused"
-    errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-    errorLine2="^">
-    <location file="src/main/res/drawable/ic_launcher_background.xml" line="2" column="1" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.drawable.ic_launcher_background` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location file="src/main/res/drawable/ic_launcher_background.xml" line="2" column="1" />
+    </issue>
 
-  <issue id="UnusedResources" message="The resource `R.drawable.ic_list` appears to be unused"
-    errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-    errorLine2="^">
-    <location file="src/main/res/drawable/ic_list.xml" line="1" column="1" />
-  </issue>
+    <issue id="UnusedResources" message="The resource `R.drawable.ic_list` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location file="src/main/res/drawable/ic_list.xml" line="1" column="1" />
+    </issue>
 
-  <issue id="UnusedResources" message="The resource `R.drawable.ic_sort` appears to be unused"
-    errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-    errorLine2="^">
-    <location file="src/main/res/drawable/ic_sort.xml" line="1" column="1" />
-  </issue>
+    <issue id="UnusedResources" message="The resource `R.drawable.ic_sort` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location file="src/main/res/drawable/ic_sort.xml" line="1" column="1" />
+    </issue>
 
-  <issue id="UnusedResources" message="The resource `R.drawable.ic_star_half` appears to be unused"
-    errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-    errorLine2="^">
-    <location file="src/main/res/drawable/ic_star_half.xml" line="1" column="1" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.drawable.ic_star_half` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location file="src/main/res/drawable/ic_star_half.xml" line="1" column="1" />
+    </issue>
 
-  <issue id="UnusedResources" message="The resource `R.drawable.ic_stars` appears to be unused"
-    errorLine1="&lt;vector android:height=&quot;24dp&quot; android:tint=&quot;#FFFFFF&quot;"
-    errorLine2="^">
-    <location file="src/main/res/drawable/ic_stars.xml" line="1" column="1" />
-  </issue>
+    <issue id="UnusedResources" message="The resource `R.drawable.ic_stars` appears to be unused"
+        errorLine1="&lt;vector android:height=&quot;24dp&quot; android:tint=&quot;#FFFFFF&quot;"
+        errorLine2="^">
+        <location file="src/main/res/drawable/ic_stars.xml" line="1" column="1" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.rating_dialog_cancel` appears to be unused"
-    errorLine1="  &lt;string name=&quot;rating_dialog_cancel&quot;>Cancel&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="116" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="86" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="86" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.rating_dialog_cancel` appears to be unused"
+        errorLine1="  &lt;string name=&quot;rating_dialog_cancel&quot;>Cancel&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="116" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="86" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="86" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.rating_dialog_experience` appears to be unused"
-    errorLine1="  &lt;string name=&quot;rating_dialog_experience&quot;>How was your experience with us?&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="117" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="87" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="87" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.rating_dialog_experience` appears to be unused"
+        errorLine1="  &lt;string name=&quot;rating_dialog_experience&quot;>How was your experience with us?&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="117" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="87" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="87" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.rating_dialog_feedback_title` appears to be unused"
-    errorLine1="  &lt;string name=&quot;rating_dialog_feedback_title&quot;>Feedback&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="118" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="88" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="88" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.rating_dialog_feedback_title` appears to be unused"
+        errorLine1="  &lt;string name=&quot;rating_dialog_feedback_title&quot;>Feedback&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="118" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="88" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="88" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.rating_dialog_maybe_later` appears to be unused"
-    errorLine1="  &lt;string name=&quot;rating_dialog_maybe_later&quot;>Maybe later&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="119" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="89" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="89" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.rating_dialog_maybe_later` appears to be unused"
+        errorLine1="  &lt;string name=&quot;rating_dialog_maybe_later&quot;>Maybe later&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="119" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="89" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="89" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.rating_dialog_never` appears to be unused"
-    errorLine1="  &lt;string name=&quot;rating_dialog_never&quot;>Never&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="120" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="90" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="90" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.rating_dialog_never` appears to be unused"
+        errorLine1="  &lt;string name=&quot;rating_dialog_never&quot;>Never&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="120" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="90" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="90" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.rating_dialog_submit` appears to be unused"
-    errorLine1="  &lt;string name=&quot;rating_dialog_submit&quot;>Submit&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="121" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="91" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="91" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.rating_dialog_submit` appears to be unused"
+        errorLine1="  &lt;string name=&quot;rating_dialog_submit&quot;>Submit&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="121" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="91" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="91" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.rating_dialog_suggestions` appears to be unused"
-    errorLine1="  &lt;string name=&quot;rating_dialog_suggestions&quot;>Suggest us what went wrong and we\&apos;ll work on it!&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="122" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="92" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="92" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.rating_dialog_suggestions` appears to be unused"
+        errorLine1="  &lt;string name=&quot;rating_dialog_suggestions&quot;>Suggest us what went wrong and we\&apos;ll work on it!&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="122" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="92" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="92" column="11" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.string.settings_error_root_not_available` appears to be unused"
-    errorLine1="  &lt;string name=&quot;settings_error_root_not_available&quot;>ROOT is not available&lt;/string>"
-    errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/strings.xml" line="136" column="11" />
-    <location file="src/main/res/values-ru/strings.xml" line="104" column="11" />
-    <location file="src/main/res/values-uk/strings.xml" line="104" column="11" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.string.settings_error_root_not_available` appears to be unused"
+        errorLine1="  &lt;string name=&quot;settings_error_root_not_available&quot;>ROOT is not available&lt;/string>"
+        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="136" column="11" />
+        <location file="src/main/res/values-ru/strings.xml" line="104" column="11" />
+        <location file="src/main/res/values-uk/strings.xml" line="104" column="11" />
+    </issue>
 
-  <issue id="UnusedResources" message="The resource `R.style.AppDialogTheme` appears to be unused"
-    errorLine1="  &lt;style name=&quot;AppDialogTheme&quot; parent=&quot;Theme.AppCompat.Light.Dialog.Alert&quot;>"
-    errorLine2="         ~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/styles.xml" line="14" column="10" />
-  </issue>
+    <issue id="UnusedResources" message="The resource `R.style.AppDialogTheme` appears to be unused"
+        errorLine1="  &lt;style name=&quot;AppDialogTheme&quot; parent=&quot;Theme.AppCompat.Light.Dialog.Alert&quot;>"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/styles.xml" line="14" column="10" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.style.TooltipTextAppearance` appears to be unused"
-    errorLine1="  &lt;style name=&quot;TooltipTextAppearance&quot;>"
-    errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values/styles.xml" line="54" column="10" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.style.TooltipTextAppearance` appears to be unused"
+        errorLine1="  &lt;style name=&quot;TooltipTextAppearance&quot;>"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/styles.xml" line="54" column="10" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.bool.config_materialPreferenceIconSpaceReserved` appears to be unused"
-    errorLine1="  &lt;bool name=&quot;config_materialPreferenceIconSpaceReserved&quot;"
-    errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values-sw360dp-v13/values-sw360dp-v13.xml" line="3" column="9" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.bool.config_materialPreferenceIconSpaceReserved` appears to be unused"
+        errorLine1="  &lt;bool name=&quot;config_materialPreferenceIconSpaceReserved&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values-sw360dp-v13/values-sw360dp-v13.xml" line="3"
+            column="9" />
+    </issue>
 
-  <issue id="UnusedResources"
-    message="The resource `R.dimen.preference_category_padding_start` appears to be unused"
-    errorLine1="  &lt;dimen name=&quot;preference_category_padding_start&quot;"
-    errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/values-sw360dp-v13/values-sw360dp-v13.xml" line="8" column="10" />
-  </issue>
+    <issue id="UnusedResources"
+        message="The resource `R.dimen.preference_category_padding_start` appears to be unused"
+        errorLine1="  &lt;dimen name=&quot;preference_category_padding_start&quot;"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values-sw360dp-v13/values-sw360dp-v13.xml" line="8"
+            column="10" />
+    </issue>
 
-  <issue id="UselessParent"
-    message="This `ScrollView` layout or its `LinearLayout` parent is useless"
-    errorLine1="  &lt;ScrollView" errorLine2="   ~~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_export_intent_as_uri.xml" line="9" column="4" />
-  </issue>
+    <issue id="UselessParent"
+        message="This `ScrollView` layout or its `LinearLayout` parent is useless"
+        errorLine1="  &lt;ScrollView" errorLine2="   ~~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_export_intent_as_uri.xml" line="9" column="4" />
+    </issue>
 
-  <issue id="UnusedNamespace"
-    message="Unused namespace declaration xmlns:android; already declared on the root element"
-    errorLine1="  &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-    errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_input_extra.xml" line="8" column="17" />
-  </issue>
+    <issue id="UnusedNamespace"
+        message="Unused namespace declaration xmlns:android; already declared on the root element"
+        errorLine1="  &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_input_extra.xml" line="8" column="17" />
+    </issue>
 
-  <issue id="IconLocation"
-    message="Found bitmap drawable `res/drawable/img_oreo_instant_bug.png` in densityless folder">
-    <location file="src/main/res/drawable/img_oreo_instant_bug.png" />
-  </issue>
+    <issue id="IconLocation"
+        message="Found bitmap drawable `res/drawable/img_oreo_instant_bug.png` in densityless folder">
+        <location file="src/main/res/drawable/img_oreo_instant_bug.png" />
+    </issue>
 
-  <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="    &lt;EditText"
-    errorLine2="     ~~~~~~~~">
-    <location file="src/main/res/layout/dialog_add_shortcut.xml" line="24" column="6" />
-  </issue>
+    <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location file="src/main/res/layout/dialog_add_shortcut.xml" line="24" column="6" />
+    </issue>
 
-  <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="      &lt;EditText"
-    errorLine2="       ~~~~~~~~">
-    <location file="src/main/res/layout/dialog_input_extra.xml" line="19" column="8" />
-  </issue>
+    <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="      &lt;EditText"
+        errorLine2="       ~~~~~~~~">
+        <location file="src/main/res/layout/dialog_input_extra.xml" line="19" column="8" />
+    </issue>
 
-  <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="      &lt;EditText"
-    errorLine2="       ~~~~~~~~">
-    <location file="src/main/res/layout/dialog_input_extra.xml" line="34" column="8" />
-  </issue>
+    <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="      &lt;EditText"
+        errorLine2="       ~~~~~~~~">
+        <location file="src/main/res/layout/dialog_input_extra.xml" line="34" column="8" />
+    </issue>
 
-  <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="    &lt;EditText"
-    errorLine2="     ~~~~~~~~">
-    <location file="src/main/res/layout/dialog_input_value.xml" line="13" column="6" />
-  </issue>
+    <issue id="Autofill" message="Missing `autofillHints` attribute" errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location file="src/main/res/layout/dialog_input_value.xml" line="13" column="6" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="      &lt;ImageView" errorLine2="       ~~~~~~~~~">
-    <location file="src/main/res/layout/activity_activities_list.xml" line="40" column="8" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="      &lt;ImageView" errorLine2="       ~~~~~~~~~">
+        <location file="src/main/res/layout/activity_activities_list.xml" line="40" column="8" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_activity_menu.xml" line="32" column="6" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_activity_menu.xml" line="32" column="6" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_activity_menu.xml" line="51" column="6" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_activity_menu.xml" line="51" column="6" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_activity_menu.xml" line="70" column="6" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_activity_menu.xml" line="70" column="6" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_application_menu.xml" line="32" column="6" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_application_menu.xml" line="32" column="6" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_application_menu.xml" line="51" column="6" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_application_menu.xml" line="51" column="6" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_application_menu.xml" line="70" column="6" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_application_menu.xml" line="70" column="6" />
+    </issue>
 
-  <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
-    errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
-    <location file="src/main/res/layout/dialog_application_menu.xml" line="89" column="6" />
-  </issue>
+    <issue id="ContentDescription" message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView" errorLine2="     ~~~~~~~~~">
+        <location file="src/main/res/layout/dialog_application_menu.xml" line="89" column="6" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;Instant app issue&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;Instant app issue&quot;"
-    errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="15"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;Instant app issue&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Instant app issue&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="15"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;Instant apps cause a bug in Android 8.0 where the system returns an empty list when asked for all installed apps&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;Instant apps cause a bug in Android 8.0 where the system returns an empty list when asked for all installed apps&quot;"
-    errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="25"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;Instant apps cause a bug in Android 8.0 where the system returns an empty list when asked for all installed apps&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Instant apps cause a bug in Android 8.0 where the system returns an empty list when asked for all installed apps&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="25"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;To fix this issue all instant apps have to be removed&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;To fix this issue all instant apps have to be removed&quot;"
-    errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="36"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;To fix this issue all instant apps have to be removed&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;To fix this issue all instant apps have to be removed&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="36"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;As a temporary workaround the application shows only a part of installed applications. We are working on better fix&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;As a temporary workaround the application shows only a part of installed applications. We are working on better fix&quot;"
-    errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="47"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;As a temporary workaround the application shows only a part of installed applications. We are working on better fix&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;As a temporary workaround the application shows only a part of installed applications. We are working on better fix&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="47"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;Issue tracker link:&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;Issue tracker link:&quot;"
-    errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="58"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;Issue tracker link:&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Issue tracker link:&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="58"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;https://issuetracker.google.com/issues/73289329&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;https://issuetracker.google.com/issues/73289329&quot;"
-    errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="69"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;https://issuetracker.google.com/issues/73289329&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;https://issuetracker.google.com/issues/73289329&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="69"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;Got it&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;Got it&quot;" errorLine2="    ~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="91"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;Got it&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Got it&quot;" errorLine2="    ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="91"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;Go to apps&quot;, should use `@string` resource"
-    errorLine1="    android:text=&quot;Go to apps&quot;" errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="101"
-      column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;Go to apps&quot;, should use `@string` resource"
+        errorLine1="    android:text=&quot;Go to apps&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_oreo_package_manager_bug.xml" line="101"
+            column="5" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;$1.99&quot;, should use `@string` resource"
-    errorLine1="              android:text=&quot;$1.99&quot; />"
-    errorLine2="              ~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_purchase.xml" line="88" column="15" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;$1.99&quot;, should use `@string` resource"
+        errorLine1="              android:text=&quot;$1.99&quot; />"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_purchase.xml" line="88" column="15" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;$4.99&quot;, should use `@string` resource"
-    errorLine1="              android:text=&quot;$4.99&quot; />"
-    errorLine2="              ~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_purchase.xml" line="95" column="15" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;$4.99&quot;, should use `@string` resource"
+        errorLine1="              android:text=&quot;$4.99&quot; />"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_purchase.xml" line="95" column="15" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;$9.99&quot;, should use `@string` resource"
-    errorLine1="              android:text=&quot;$9.99&quot; />"
-    errorLine2="              ~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_purchase.xml" line="101" column="15" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;$9.99&quot;, should use `@string` resource"
+        errorLine1="              android:text=&quot;$9.99&quot; />"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_purchase.xml" line="101" column="15" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;$19.99&quot;, should use `@string` resource"
-    errorLine1="              android:text=&quot;$19.99&quot; />"
-    errorLine2="              ~~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/layout/activity_purchase.xml" line="107" column="15" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;$19.99&quot;, should use `@string` resource"
+        errorLine1="              android:text=&quot;$19.99&quot; />"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/layout/activity_purchase.xml" line="107" column="15" />
+    </issue>
 
-  <issue id="HardcodedText"
-    message="Hardcoded string &quot;Help&quot;, should use `@string` resource"
-    errorLine1="    android:title=&quot;Help&quot;" errorLine2="    ~~~~~~~~~~~~~~~~~~~~">
-    <location file="src/main/res/menu/manifest_viewer.xml" line="8" column="5" />
-  </issue>
+    <issue id="HardcodedText"
+        message="Hardcoded string &quot;Help&quot;, should use `@string` resource"
+        errorLine1="    android:title=&quot;Help&quot;" errorLine2="    ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/menu/manifest_viewer.xml" line="8" column="5" />
+    </issue>
 
 </issues>

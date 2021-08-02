@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-  <color name="ic_launcher_background">#03A9F4</color>
-  <color name="preference_fallback_accent_color" tools:override="true">@color/blue</color>
+    <color name="ic_launcher_background">#03A9F4</color>
+    <color name="preference_fallback_accent_color" tools:override="true">@color/blue</color>
 
-  <color name="colorPrimary">#0079bf</color>
-  <color name="colorPrimaryDark">#026aa7</color>
-  <color name="colorAccent">#03A9F4</color>
-  <color name="colorControlActivated">#ffffff</color>
+    <color name="colorPrimary">#0079bf</color>
+    <color name="colorPrimaryDark">#026aa7</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="colorControlActivated">#ffffff</color>
 
-  <color name="text_color_primary_light">@color/black</color>
-  <color name="text_color_primary_dark">#fafafa</color>
-  <color name="text_color_secondary_light">@color/darker_gray</color>
-  <color name="text_color_secondary_dark">@color/darker_gray</color>
+    <color name="text_color_primary_light">@color/black</color>
+    <color name="text_color_primary_dark">#fafafa</color>
+    <color name="text_color_secondary_light">@color/darker_gray</color>
+    <color name="text_color_secondary_dark">@color/darker_gray</color>
 
-  <color name="background_light">#ffffff</color>
-  <color name="background_light_gray">#eeeeee</color>
-  <color name="background_dark">#222222</color>
+    <color name="background_light">#ffffff</color>
+    <color name="background_light_gray">#eeeeee</color>
+    <color name="background_dark">#222222</color>
 
-  <color name="card_background_light">#ffffff</color>
-  <color name="card_background_dark">#2a2a2a</color>
+    <color name="card_background_light">#ffffff</color>
+    <color name="card_background_dark">#2a2a2a</color>
 
-  <color name="icon_tint_light">#757575</color>
-  <color name="icon_tint_dark">#e5e5e5</color>
+    <color name="icon_tint_light">#757575</color>
+    <color name="icon_tint_dark">#e5e5e5</color>
 
-  <color name="list_divider_light">#E0E0E0</color>
-  <color name="list_divider_dark">#323232</color>
+    <color name="list_divider_light">#E0E0E0</color>
+    <color name="list_divider_dark">#323232</color>
 
-  <color name="bottom_dialog_text_light">#737373</color>
-  <color name="bottom_dialog_text_dark">#eeeeee</color>
+    <color name="bottom_dialog_text_light">#737373</color>
+    <color name="bottom_dialog_text_dark">#eeeeee</color>
 
-  <color name="scrollbar_background_light">#28000000</color>
-  <color name="scrollbar_background_dark">#2baaaaaa</color>
+    <color name="scrollbar_background_light">#28000000</color>
+    <color name="scrollbar_background_dark">#2baaaaaa</color>
 
-  <color name="scrollbar_inactive_thumb_light">#79000000</color>
-  <color name="scrollbar_inactive_thumb_dark">#9caaaaaa</color>
+    <color name="scrollbar_inactive_thumb_light">#79000000</color>
+    <color name="scrollbar_inactive_thumb_dark">#9caaaaaa</color>
 
-  <color name="white">#fff</color>
-  <color name="blue">#03A9F4</color>
-  <color name="red">#f44336</color>
-  <color name="yellow">#FFFF00</color>
-  <color name="black">#ff000000</color>
-  <color name="darker_gray">#aaa</color>
+    <color name="white">#fff</color>
+    <color name="blue">#03A9F4</color>
+    <color name="red">#f44336</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="black">#ff000000</color>
+    <color name="darker_gray">#aaa</color>
 </resources>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:padding="12dp">
-
-  <TextView
-    android:id="@+id/value"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="18sp"
-    android:textColor="?attr/primaryTextColor"
-    tools:text="intent:#Intent;action=com.app.open;end" />
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="?attr/primaryTextColor"
+        tools:text="intent:#Intent;action=com.app.open;end" />
 
 </ScrollView>

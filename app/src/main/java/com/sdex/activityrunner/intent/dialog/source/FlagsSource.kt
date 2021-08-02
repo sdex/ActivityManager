@@ -5,10 +5,10 @@ import java.util.*
 
 class FlagsSource : SelectionDialogSource {
 
-  override val list: ArrayList<String>
-    get() = Flag.list()
+    override val list: ArrayList<String>
+        get() = Flag.list()
 
-  override fun getItem(position: Int): String {
-    return list[position]
-  }
+    override fun getItem(position: Int): String {
+        return list[position]
+    }
 }

@@ -5,7 +5,7 @@ import android.view.View
 
 interface SnackbarContainerActivity {
 
-  fun getView(): View
+    fun getView(): View
 
-  fun getActivity(): Activity
+    fun getActivity(): Activity
 }

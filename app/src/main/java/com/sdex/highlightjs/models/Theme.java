@@ -7,18 +7,18 @@ package com.sdex.highlightjs.models;
  */
 
 public enum Theme {
-  DEFAULT("github-gist"),
-  DARKULA("darcula"),
-  GITHUB_GIST("github-gist");
+    DEFAULT("github-gist"),
+    DARKULA("darcula"),
+    GITHUB_GIST("github-gist");
 
-  private final String themeName;
+    private final String themeName;
 
-  Theme(String themeName) {
-    this.themeName = themeName;
-  }
+    Theme(String themeName) {
+        this.themeName = themeName;
+    }
 
-  public String getName() {
-    return themeName;
-  }
+    public String getName() {
+        return themeName;
+    }
 
 }

@@ -1,106 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  android:padding="12dp">
-
-  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="12dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/keyLayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-
-      <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/keyView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/input_key"
-        android:inputType="text"
-        android:textColor="?attr/primaryTextColor" />
+        android:orientation="vertical"
+        android:padding="12dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/keyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
-      android:id="@+id/valueLayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/keyView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_key"
+                android:inputType="text"
+                android:textColor="?attr/primaryTextColor" />
 
-      <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/valueView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/input_value"
-        android:inputType="text"
-        android:textColor="?attr/primaryTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/valueLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
-    <RadioGroup
-      android:id="@+id/radio_group"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/valueView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_value"
+                android:inputType="text"
+                android:textColor="?attr/primaryTextColor" />
 
-      <RadioButton
-        android:id="@+id/rb_string"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/type_string"
-        android:textColor="?attr/primaryTextColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-      <RadioButton
-        android:id="@+id/rb_int"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/type_int"
-        android:textColor="?attr/primaryTextColor" />
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
-      <RadioButton
-        android:id="@+id/rb_long"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/type_long"
-        android:textColor="?attr/primaryTextColor" />
+            <RadioButton
+                android:id="@+id/rb_string"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/type_string"
+                android:textColor="?attr/primaryTextColor" />
 
-      <RadioButton
-        android:id="@+id/rb_float"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/type_float"
-        android:textColor="?attr/primaryTextColor" />
+            <RadioButton
+                android:id="@+id/rb_int"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/type_int"
+                android:textColor="?attr/primaryTextColor" />
 
-      <RadioButton
-        android:id="@+id/rb_double"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/type_double"
-        android:textColor="?attr/primaryTextColor" />
+            <RadioButton
+                android:id="@+id/rb_long"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/type_long"
+                android:textColor="?attr/primaryTextColor" />
 
-      <RadioButton
-        android:id="@+id/rb_boolean"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/type_boolean"
-        android:textColor="?attr/primaryTextColor" />
+            <RadioButton
+                android:id="@+id/rb_float"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/type_float"
+                android:textColor="?attr/primaryTextColor" />
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/rb_double"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/type_double"
+                android:textColor="?attr/primaryTextColor" />
 
-    <CheckBox
-      android:id="@+id/array"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
-      android:text="@string/type_array"
-      android:textColor="?attr/primaryTextColor"
-      android:visibility="gone" />
+            <RadioButton
+                android:id="@+id/rb_boolean"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/type_boolean"
+                android:textColor="?attr/primaryTextColor" />
 
-  </LinearLayout>
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/array"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/type_array"
+            android:textColor="?attr/primaryTextColor"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
 </ScrollView>

@@ -29,133 +29,151 @@ import com.sdex.commons.util.AppUtils
 
 object IntentUtils {
 
-  private fun getActivityIntent(activity: ComponentName): Intent {
-    val intent = Intent(Intent.ACTION_VIEW)
-    intent.component = activity
-    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-    return intent
-  }
-
-  fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
-    val intent = activityModelToIntent(activityModel)
-    val iconCompat = IconCompat.createWithBitmap(bitmap)
-    try {
-      createShortcut(context, activityModel.name, intent, iconCompat)
-    } catch (e: Exception) { // android.os.TransactionTooLargeException
-      createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
-    }
-  }
-
-  private fun activityModelToIntent(activityModel: ActivityModel): Intent {
-    val componentName: ComponentName = if (activityModel.exported) {
-      activityModel.componentName
-    } else {
-      ComponentName(BuildConfig.APPLICATION_ID, ShortcutHandlerActivity::class.java.canonicalName!!)
+    private fun getActivityIntent(activity: ComponentName): Intent {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.component = activity
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        return intent
     }
 
-    val intent = getActivityIntent(componentName)
-
-    if (!activityModel.exported) {
-      val originComponent = activityModel.componentName
-      intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, originComponent.packageName)
-      intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, originComponent.className)
+    fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
+        val intent = activityModelToIntent(activityModel)
+        val iconCompat = IconCompat.createWithBitmap(bitmap)
+        try {
+            createShortcut(context, activityModel.name, intent, iconCompat)
+        } catch (e: Exception) { // android.os.TransactionTooLargeException
+            createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+        }
     }
-    return intent
-  }
 
-  fun createLauncherIcon(context: Context, name: String, intent: Intent, @DrawableRes icon: Int) {
-    val iconCompat = IconCompat.createWithResource(context, icon)
-    createShortcut(context, name, intent, iconCompat)
-  }
-
-  fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
-    val am: ActivityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-    val size = am.launcherLargeIconSize
-    GlideApp.with(context)
-      .asDrawable()
-      .load(activityModel)
-      .error(R.mipmap.ic_launcher)
-      .override(size)
-      .listener(object : RequestListener<Drawable> {
-        override fun onLoadFailed(e: GlideException?, model: Any?,
-                                  target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-          return false
+    private fun activityModelToIntent(activityModel: ActivityModel): Intent {
+        val componentName: ComponentName = if (activityModel.exported) {
+            activityModel.componentName
+        } else {
+            ComponentName(
+                BuildConfig.APPLICATION_ID,
+                ShortcutHandlerActivity::class.java.canonicalName!!
+            )
         }
 
-        override fun onResourceReady(resource: Drawable?, model: Any?,
-                                     target: Target<Drawable>?, dataSource: DataSource?,
-                                     isFirstResource: Boolean): Boolean {
-          createLauncherIcon(context, activityModel, resource?.toBitmap())
-          return false
+        val intent = getActivityIntent(componentName)
+
+        if (!activityModel.exported) {
+            val originComponent = activityModel.componentName
+            intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, originComponent.packageName)
+            intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, originComponent.className)
         }
-      })
-      .submit()
-  }
-
-  fun launchActivity(context: Context, activity: ComponentName, name: String) {
-    try {
-      val intent = getActivityIntent(activity)
-      context.startActivity(intent)
-      Toast.makeText(context, context.getString(R.string.starting_activity, name),
-        Toast.LENGTH_SHORT).show()
-    } catch (e: SecurityException) {
-      Toast.makeText(context, context.getString(R.string.starting_activity_failed_security, name),
-        Toast.LENGTH_SHORT).show()
-    } catch (e: Exception) {
-      Toast.makeText(context, context.getString(R.string.starting_activity_failed, name),
-        Toast.LENGTH_SHORT).show()
+        return intent
     }
-  }
 
-  fun launchActivity(context: Context, intent: Intent) {
-    try {
-      context.startActivity(intent)
-      Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show()
-    } catch (e: Exception) {
-      AlertDialog.Builder(context)
-        .setTitle(R.string.starting_activity_intent_failed)
-        .setMessage(e.message)
-        .setPositiveButton(android.R.string.ok, null)
-        .show()
+    fun createLauncherIcon(context: Context, name: String, intent: Intent, @DrawableRes icon: Int) {
+        val iconCompat = IconCompat.createWithResource(context, icon)
+        createShortcut(context, name, intent, iconCompat)
     }
-  }
 
-  fun launchApplication(context: Context, packageName: String) {
-    val intent = context.packageManager.getLaunchIntentForPackage(packageName)
-    if (intent != null) {
-      launchActivity(context, intent)
-    } else {
-      Toast.makeText(context, R.string.starting_activity_launch_intent_failed,
-        Toast.LENGTH_SHORT).show()
-    }
-  }
+    fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
+        val am: ActivityManager =
+            context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val size = am.launcherLargeIconSize
+        GlideApp.with(context)
+            .asDrawable()
+            .load(activityModel)
+            .error(R.mipmap.ic_launcher)
+            .override(size)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?, model: Any?,
+                    target: Target<Drawable>?, isFirstResource: Boolean
+                ): Boolean {
+                    return false
+                }
 
-  fun openApplicationInfo(context: Context, packageName: String) {
-    try {
-      val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-      intent.data = Uri.parse("package:$packageName")
-      context.startActivity(intent)
-    } catch (e: ActivityNotFoundException) {
-      try {
-        val intent = Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
-        context.startActivity(intent)
-      } catch (e: ActivityNotFoundException) {
-        Toast.makeText(context, R.string.starting_activity_intent_failed,
-          Toast.LENGTH_SHORT).show()
-      }
+                override fun onResourceReady(
+                    resource: Drawable?, model: Any?,
+                    target: Target<Drawable>?, dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    createLauncherIcon(context, activityModel, resource?.toBitmap())
+                    return false
+                }
+            })
+            .submit()
     }
-  }
 
-  fun openBrowser(context: Context, url: String) {
-    try {
-      val builder = CustomTabsIntent.Builder()
-      builder.setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
-      builder.setShowTitle(true)
-      val customTabsIntent = builder.build()
-      customTabsIntent.launchUrl(context, Uri.parse(url))
-    } catch (e: Exception) {
-      AppUtils.openLink(context, url)
+    fun launchActivity(context: Context, activity: ComponentName, name: String) {
+        try {
+            val intent = getActivityIntent(activity)
+            context.startActivity(intent)
+            Toast.makeText(
+                context, context.getString(R.string.starting_activity, name),
+                Toast.LENGTH_SHORT
+            ).show()
+        } catch (e: SecurityException) {
+            Toast.makeText(
+                context, context.getString(R.string.starting_activity_failed_security, name),
+                Toast.LENGTH_SHORT
+            ).show()
+        } catch (e: Exception) {
+            Toast.makeText(
+                context, context.getString(R.string.starting_activity_failed, name),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
-  }
+
+    fun launchActivity(context: Context, intent: Intent) {
+        try {
+            context.startActivity(intent)
+            Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            AlertDialog.Builder(context)
+                .setTitle(R.string.starting_activity_intent_failed)
+                .setMessage(e.message)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        }
+    }
+
+    fun launchApplication(context: Context, packageName: String) {
+        val intent = context.packageManager.getLaunchIntentForPackage(packageName)
+        if (intent != null) {
+            launchActivity(context, intent)
+        } else {
+            Toast.makeText(
+                context, R.string.starting_activity_launch_intent_failed,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    fun openApplicationInfo(context: Context, packageName: String) {
+        try {
+            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.data = Uri.parse("package:$packageName")
+            context.startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            try {
+                val intent = Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
+                context.startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(
+                    context, R.string.starting_activity_intent_failed,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    fun openBrowser(context: Context, url: String) {
+        try {
+            val builder = CustomTabsIntent.Builder()
+            builder.setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            builder.setShowTitle(true)
+            val customTabsIntent = builder.build()
+            customTabsIntent.launchUrl(context, Uri.parse(url))
+        } catch (e: Exception) {
+            AppUtils.openLink(context, url)
+        }
+    }
 }

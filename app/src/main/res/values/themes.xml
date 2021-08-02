@@ -1,126 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <!-- activities themes -->
+    <!-- activities themes -->
 
-  <style name="Base.V0.AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
-    <item name="windowNoTitle">true</item>
-    <item name="windowActionModeOverlay">true</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:windowBackground">@color/background_light</item>
-    <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-    <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
-    <!-- own colors -->
-    <item name="primaryTextColor">@color/text_color_primary_light</item>
-    <item name="secondaryTextColor">@color/text_color_secondary_light</item>
-    <item name="bottomDialogTextColor">@color/bottom_dialog_text_light</item>
-    <item name="primaryBackgroundColor">@color/background_light</item>
-    <item name="secondaryBackgroundColor">@color/background_light_gray</item>
-    <item name="amCardBackgroundColor">@color/card_background_light</item>
-    <item name="iconTintColor">@color/icon_tint_light</item>
-    <item name="listDividerColor">@color/list_divider_light</item>
-    <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Light</item>
-    <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Light</item>
-    <item name="scrollbarBackgroundColor">@color/scrollbar_background_light</item>
-    <item name="scrollbarThumbInactiveColor">@color/scrollbar_inactive_thumb_light</item>
-  </style>
+    <style name="Base.V0.AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <!-- own colors -->
+        <item name="primaryTextColor">@color/text_color_primary_light</item>
+        <item name="secondaryTextColor">@color/text_color_secondary_light</item>
+        <item name="bottomDialogTextColor">@color/bottom_dialog_text_light</item>
+        <item name="primaryBackgroundColor">@color/background_light</item>
+        <item name="secondaryBackgroundColor">@color/background_light_gray</item>
+        <item name="amCardBackgroundColor">@color/card_background_light</item>
+        <item name="iconTintColor">@color/icon_tint_light</item>
+        <item name="listDividerColor">@color/list_divider_light</item>
+        <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Light</item>
+        <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Light</item>
+        <item name="scrollbarBackgroundColor">@color/scrollbar_background_light</item>
+        <item name="scrollbarThumbInactiveColor">@color/scrollbar_inactive_thumb_light</item>
+    </style>
 
-  <style name="Base.V0.AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
-    <item name="windowNoTitle">true</item>
-    <item name="windowActionModeOverlay">true</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:windowBackground">@color/background_dark</item>
-    <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-    <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
-    <!-- own colors -->
-    <item name="primaryTextColor">@color/text_color_primary_dark</item>
-    <item name="secondaryTextColor">@color/text_color_secondary_dark</item>
-    <item name="bottomDialogTextColor">@color/bottom_dialog_text_dark</item>
-    <item name="primaryBackgroundColor">@color/background_dark</item>
-    <item name="secondaryBackgroundColor">@color/background_dark</item>
-    <item name="amCardBackgroundColor">@color/card_background_dark</item>
-    <item name="iconTintColor">@color/icon_tint_dark</item>
-    <item name="listDividerColor">@color/list_divider_dark</item>
-    <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Dark</item>
-    <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Dark</item>
-    <item name="scrollbarBackgroundColor">@color/scrollbar_background_dark</item>
-    <item name="scrollbarThumbInactiveColor">@color/scrollbar_inactive_thumb_dark</item>
-  </style>
+    <style name="Base.V0.AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <!-- own colors -->
+        <item name="primaryTextColor">@color/text_color_primary_dark</item>
+        <item name="secondaryTextColor">@color/text_color_secondary_dark</item>
+        <item name="bottomDialogTextColor">@color/bottom_dialog_text_dark</item>
+        <item name="primaryBackgroundColor">@color/background_dark</item>
+        <item name="secondaryBackgroundColor">@color/background_dark</item>
+        <item name="amCardBackgroundColor">@color/card_background_dark</item>
+        <item name="iconTintColor">@color/icon_tint_dark</item>
+        <item name="listDividerColor">@color/list_divider_dark</item>
+        <item name="popupOverlayStyle">@style/AppTheme.PopupOverlay.Dark</item>
+        <item name="bottomDialogStyle">@style/BottomSheetDialogTheme.Dark</item>
+        <item name="scrollbarBackgroundColor">@color/scrollbar_background_dark</item>
+        <item name="scrollbarThumbInactiveColor">@color/scrollbar_inactive_thumb_dark</item>
+    </style>
 
-  <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light" />
+    <style name="AppTheme.Light" parent="Base.V0.AppTheme.Light" />
 
-  <style name="AppTheme.Dark" parent="Base.V0.AppTheme.Dark" />
+    <style name="AppTheme.Dark" parent="Base.V0.AppTheme.Dark" />
 
-  <style name="AppTheme.Dark.Black" parent="AppTheme.Dark">
-    <item name="android:windowBackground">@color/black</item>
-    <item name="primaryBackgroundColor">@color/black</item>
-    <item name="secondaryBackgroundColor">@color/black</item>
-  </style>
+    <style name="AppTheme.Dark.Black" parent="AppTheme.Dark">
+        <item name="android:windowBackground">@color/black</item>
+        <item name="primaryBackgroundColor">@color/black</item>
+        <item name="secondaryBackgroundColor">@color/black</item>
+    </style>
 
-  <style name="TranslucentTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowActionBar">false</item>
-    <item name="android:windowFullscreen">true</item>
-    <item name="android:windowContentOverlay">@null</item>
-    <item name="android:windowBackground">@android:color/transparent</item>
-    <item name="android:colorBackgroundCacheHint">@null</item>
-    <item name="android:windowAnimationStyle">@android:style/Animation</item>
-  </style>
+    <style name="TranslucentTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
 
-  <!-- end activities themes -->
+    <!-- end activities themes -->
 
-  <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.AppCompat.Dark" />
 
-  <style name="AppTheme.PopupOverlay.Light" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay.Light" parent="ThemeOverlay.AppCompat.Light" />
 
-  <!-- dialogs themes -->
+    <!-- dialogs themes -->
 
-  <style name="AppDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
-    <item name="android:background">@color/background_light</item>
-    <item name="android:windowCloseOnTouchOutside">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="windowActionBar">false</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <!-- own colors -->
-    <item name="primaryTextColor">@color/text_color_primary_light</item>
-    <item name="secondaryTextColor">@color/text_color_secondary_light</item>
-  </style>
+    <style name="AppDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/background_light</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- own colors -->
+        <item name="primaryTextColor">@color/text_color_primary_light</item>
+        <item name="secondaryTextColor">@color/text_color_secondary_light</item>
+    </style>
 
-  <style name="AppDialogTheme.Dark" parent="Theme.AppCompat.Dialog.Alert">
-    <item name="android:background">@color/background_dark</item>
-    <item name="android:windowCloseOnTouchOutside">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="windowActionBar">false</item>
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <!-- own colors -->
-    <item name="primaryTextColor">@color/text_color_primary_dark</item>
-    <item name="secondaryTextColor">@color/text_color_secondary_dark</item>
-  </style>
+    <style name="AppDialogTheme.Dark" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/background_dark</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- own colors -->
+        <item name="primaryTextColor">@color/text_color_primary_dark</item>
+        <item name="secondaryTextColor">@color/text_color_secondary_dark</item>
+    </style>
 
-  <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
-    <item name="bottomSheetStyle">@style/AppBottomSheetStyle</item>
-  </style>
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppBottomSheetStyle</item>
+    </style>
 
-  <style name="Base.V0.BottomSheetDialogTheme" parent="@style/Theme.Design.Light.BottomSheetDialog">
-    <item name="android:windowIsFloating">false</item>
-  </style>
+    <style name="Base.V0.BottomSheetDialogTheme" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+    </style>
 
-  <style name="BottomSheetDialogTheme.Light" parent="Base.V0.BottomSheetDialogTheme">
-    <item name="bottomSheetStyle">@style/BottomSheet.Light</item>
-  </style>
+    <style name="BottomSheetDialogTheme.Light" parent="Base.V0.BottomSheetDialogTheme">
+        <item name="bottomSheetStyle">@style/BottomSheet.Light</item>
+    </style>
 
-  <style name="BottomSheetDialogTheme.Dark" parent="Base.V0.BottomSheetDialogTheme">
-    <item name="bottomSheetStyle">@style/BottomSheet.Dark</item>
-  </style>
+    <style name="BottomSheetDialogTheme.Dark" parent="Base.V0.BottomSheetDialogTheme">
+        <item name="bottomSheetStyle">@style/BottomSheet.Dark</item>
+    </style>
 
-  <!-- end dialogs themes -->
+    <!-- end dialogs themes -->
 
 </resources>

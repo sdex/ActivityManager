@@ -9,35 +9,41 @@ import com.bumptech.glide.signature.ObjectKey
 import com.sdex.activityrunner.app.ActivityModel
 
 internal class ActivityIconModelLoader :
-  ModelLoader<ActivityModel, ActivityModel> {
+    ModelLoader<ActivityModel, ActivityModel> {
 
-  override fun buildLoadData(applicationInfo: ActivityModel,
-                             width: Int, height: Int, options: Options): ModelLoader.LoadData<ActivityModel>? {
-    return ModelLoader.LoadData(ObjectKey(applicationInfo), object : DataFetcher<ActivityModel> {
-      override fun loadData(priority: Priority,
-                            callback: DataFetcher.DataCallback<in ActivityModel>) {
-        callback.onDataReady(applicationInfo)
-      }
+    override fun buildLoadData(
+        applicationInfo: ActivityModel,
+        width: Int, height: Int, options: Options
+    ): ModelLoader.LoadData<ActivityModel>? {
+        return ModelLoader.LoadData(
+            ObjectKey(applicationInfo),
+            object : DataFetcher<ActivityModel> {
+                override fun loadData(
+                    priority: Priority,
+                    callback: DataFetcher.DataCallback<in ActivityModel>
+                ) {
+                    callback.onDataReady(applicationInfo)
+                }
 
-      override fun cleanup() {
+                override fun cleanup() {
 
-      }
+                }
 
-      override fun cancel() {
+                override fun cancel() {
 
-      }
+                }
 
-      override fun getDataClass(): Class<ActivityModel> {
-        return ActivityModel::class.java
-      }
+                override fun getDataClass(): Class<ActivityModel> {
+                    return ActivityModel::class.java
+                }
 
-      override fun getDataSource(): DataSource {
-        return DataSource.LOCAL
-      }
-    })
-  }
+                override fun getDataSource(): DataSource {
+                    return DataSource.LOCAL
+                }
+            })
+    }
 
-  override fun handles(applicationInfo: ActivityModel): Boolean {
-    return true
-  }
+    override fun handles(applicationInfo: ActivityModel): Boolean {
+        return true
+    }
 }

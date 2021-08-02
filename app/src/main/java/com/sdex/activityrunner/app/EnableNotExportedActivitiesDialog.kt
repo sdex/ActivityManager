@@ -9,21 +9,21 @@ import com.sdex.commons.BaseDialogFragment
 
 class EnableNotExportedActivitiesDialog : BaseDialogFragment() {
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    val alertDialog = AlertDialog.Builder(activity!!)
-      .setTitle(R.string.dialog_enable_non_exported_title)
-      .setMessage(R.string.dialog_enable_non_exported_message)
-      .setPositiveButton(R.string.action_settings) { _, _ ->
-        SettingsActivity.start(activity!!)
-      }
-      .setNegativeButton(android.R.string.cancel, null)
-      .create()
-    alertDialog.setCanceledOnTouchOutside(false)
-    return alertDialog
-  }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val alertDialog = AlertDialog.Builder(activity!!)
+            .setTitle(R.string.dialog_enable_non_exported_title)
+            .setMessage(R.string.dialog_enable_non_exported_message)
+            .setPositiveButton(R.string.action_settings) { _, _ ->
+                SettingsActivity.start(activity!!)
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        alertDialog.setCanceledOnTouchOutside(false)
+        return alertDialog
+    }
 
-  companion object {
+    companion object {
 
-    const val TAG = "EnableNotExportedActivitiesDialog"
-  }
+        const val TAG = "EnableNotExportedActivitiesDialog"
+    }
 }

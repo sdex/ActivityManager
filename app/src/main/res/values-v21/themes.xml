@@ -1,15 +1,15 @@
 <resources>
 
-  <style name="Base.V21.BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">
-    <item name="android:statusBarColor">@android:color/transparent</item>
-  </style>
+    <style name="Base.V21.BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 
-  <style name="BottomSheetDialogTheme.Light" parent="Base.V21.BottomSheetDialogTheme">
-    <item name="bottomSheetStyle">@style/BottomSheet.Light</item>
-  </style>
+    <style name="BottomSheetDialogTheme.Light" parent="Base.V21.BottomSheetDialogTheme">
+        <item name="bottomSheetStyle">@style/BottomSheet.Light</item>
+    </style>
 
-  <style name="BottomSheetDialogTheme.Dark" parent="Base.V21.BottomSheetDialogTheme">
-    <item name="bottomSheetStyle">@style/BottomSheet.Dark</item>
-  </style>
+    <style name="BottomSheetDialogTheme.Dark" parent="Base.V21.BottomSheetDialogTheme">
+        <item name="bottomSheetStyle">@style/BottomSheet.Dark</item>
+    </style>
 
 </resources>

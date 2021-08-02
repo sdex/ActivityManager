@@ -28,113 +28,113 @@ import kotlin.properties.Delegates
 
 class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
-  private var appPreferences: AppPreferences by Delegates.notNull()
-  private var adapter: HistoryListAdapter by Delegates.notNull()
+    private var appPreferences: AppPreferences by Delegates.notNull()
+    private var adapter: HistoryListAdapter by Delegates.notNull()
 
-  private val viewModel: HistoryViewModel by viewModels()
+    private val viewModel: HistoryViewModel by viewModels()
 
-  override fun getLayout(): Int {
-    return R.layout.activity_history
-  }
+    override fun getLayout(): Int {
+        return R.layout.activity_history
+    }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    appPreferences = AppPreferences(this)
+        appPreferences = AppPreferences(this)
 
-    enableBackButton()
+        enableBackButton()
 
-    adapter = HistoryListAdapter(this)
-    adapter.setHasStableIds(true)
-    list.addDivider(this)
-    list.setHasFixedSize(true)
-    list.adapter = adapter
-    registerForContextMenu(list)
+        adapter = HistoryListAdapter(this)
+        adapter.setHasStableIds(true)
+        list.addDivider(this)
+        list.setHasFixedSize(true)
+        list.adapter = adapter
+        registerForContextMenu(list)
 
-    viewModel.list.observe(this, Observer {
-      adapter.submitList(it)
-      it?.let {
-        val size = it.size
-        val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
-        setSubtitle(subtitle)
-        if (size == 0) {
-          empty.visibility = VISIBLE
+        viewModel.list.observe(this, Observer {
+            adapter.submitList(it)
+            it?.let {
+                val size = it.size
+                val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
+                setSubtitle(subtitle)
+                if (size == 0) {
+                    empty.visibility = VISIBLE
+                }
+            }
+        })
+
+        finish.setOnClickListener {
+            val intent = Intent(this, IntentBuilderActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
         }
-      }
-    })
-
-    finish.setOnClickListener {
-      val intent = Intent(this, IntentBuilderActivity::class.java)
-      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-      startActivity(intent)
-      finish()
     }
-  }
 
-  override fun onContextItemSelected(item: MenuItem): Boolean {
-    val itemId = item.itemId
-    val position = adapter.contextMenuItemPosition
-    val historyModel = adapter.getItem(position)
-    if (historyModel != null) {
-      when (itemId) {
-        MENU_ITEM_REMOVE -> viewModel.deleteItem(historyModel)
-        MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
-        MENU_ITEM_EXPORT_URI -> showExportUriDialog(historyModel)
-      }
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val itemId = item.itemId
+        val position = adapter.contextMenuItemPosition
+        val historyModel = adapter.getItem(position)
+        if (historyModel != null) {
+            when (itemId) {
+                MENU_ITEM_REMOVE -> viewModel.deleteItem(historyModel)
+                MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
+                MENU_ITEM_EXPORT_URI -> showExportUriDialog(historyModel)
+            }
+        }
+        return super.onContextItemSelected(item)
     }
-    return super.onContextItemSelected(item)
-  }
 
-  private fun showExportUriDialog(historyModel: HistoryModel) {
-    val converter = HistoryToLaunchParamsConverter(historyModel)
-    val launchParams = converter.convert()
-    val dialog = ExportIntentAsUriDialog.newInstance(launchParams)
-    dialog.show(supportFragmentManager, ExportIntentAsUriDialog.TAG)
-  }
-
-  private fun showShortcutDialog(historyModel: HistoryModel) {
-    AddShortcutDialogActivity.start(this, historyModel)
-  }
-
-  override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    menuInflater.inflate(R.menu.history, menu)
-    return super.onCreateOptionsMenu(menu)
-  }
-
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-      R.id.action_clear_history -> {
-        AlertDialog.Builder(this)
-          .setTitle(R.string.history_dialog_clear_title)
-          .setMessage(R.string.history_dialog_clear_message)
-          .setPositiveButton(android.R.string.yes) { _, _ ->
-            viewModel.clear()
-          }
-          .setNegativeButton(android.R.string.cancel, null)
-          .show()
-        true
-      }
-      else -> super.onOptionsItemSelected(item)
+    private fun showExportUriDialog(historyModel: HistoryModel) {
+        val converter = HistoryToLaunchParamsConverter(historyModel)
+        val launchParams = converter.convert()
+        val dialog = ExportIntentAsUriDialog.newInstance(launchParams)
+        dialog.show(supportFragmentManager, ExportIntentAsUriDialog.TAG)
     }
-  }
 
-  override fun onItemClicked(item: HistoryModel, position: Int) {
-    val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(item)
-    val launchParams = historyToLaunchParamsConverter.convert()
-    val data = Intent()
-    data.putExtra(RESULT, launchParams)
-    setResult(Activity.RESULT_OK, data)
-    finish()
-  }
-
-  companion object {
-
-    const val RESULT = "result"
-
-    const val REQUEST_CODE = 111
-
-    fun getLaunchIntent(context: Context): Intent {
-      return Intent(context, HistoryActivity::class.java)
+    private fun showShortcutDialog(historyModel: HistoryModel) {
+        AddShortcutDialogActivity.start(this, historyModel)
     }
-  }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.history, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_clear_history -> {
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.history_dialog_clear_title)
+                    .setMessage(R.string.history_dialog_clear_message)
+                    .setPositiveButton(android.R.string.yes) { _, _ ->
+                        viewModel.clear()
+                    }
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onItemClicked(item: HistoryModel, position: Int) {
+        val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(item)
+        val launchParams = historyToLaunchParamsConverter.convert()
+        val data = Intent()
+        data.putExtra(RESULT, launchParams)
+        setResult(Activity.RESULT_OK, data)
+        finish()
+    }
+
+    companion object {
+
+        const val RESULT = "result"
+
+        const val REQUEST_CODE = 111
+
+        fun getLaunchIntent(context: Context): Intent {
+            return Intent(context, HistoryActivity::class.java)
+        }
+    }
 }

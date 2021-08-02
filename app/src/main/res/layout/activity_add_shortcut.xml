@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/content"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:padding="12dp">
-
-  <TextView
-    android:id="@+id/textView16"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="3dp"
-    android:text="@string/context_action_shortcut"
-    android:textColor="?attr/primaryTextColor"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    android:padding="12dp">
 
-  <ImageView
-    android:id="@+id/icon"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:layout_gravity="center"
-    android:layout_marginTop="15dp"
-    android:scaleType="fitCenter"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView16"
-    tools:ignore="ContentDescription"
-    tools:src="@mipmap/ic_launcher"
-    tools:visibility="invisible" />
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="@string/context_action_shortcut"
+        android:textColor="?attr/primaryTextColor"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/value_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/icon">
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        tools:ignore="ContentDescription"
+        tools:src="@mipmap/ic_launcher"
+        tools:visibility="invisible" />
 
-    <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/label"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:hint="@string/shortcut_name"
-      android:inputType="text"
-      android:textColor="?attr/primaryTextColor" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/value_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon">
 
-  </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/shortcut_name"
+            android:inputType="text"
+            android:textColor="?attr/primaryTextColor" />
 
-  <Button
-    android:id="@+id/create"
-    style="?buttonBarButtonStyle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/shortcut_create"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/cancel" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-  <Button
-    android:id="@+id/cancel"
-    style="?buttonBarButtonStyle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:text="@android:string/cancel"
-    app:layout_constraintEnd_toStartOf="@+id/create"
-    app:layout_constraintTop_toBottomOf="@+id/value_layout" />
+    <Button
+        android:id="@+id/create"
+        style="?buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shortcut_create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cancel" />
 
-  <ProgressBar
-    android:id="@+id/progress"
-    style="?android:attr/progressBarStyle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:visibility="gone"
-    app:layout_constraintBottom_toBottomOf="@+id/icon"
-    app:layout_constraintEnd_toEndOf="@+id/icon"
-    app:layout_constraintStart_toStartOf="@+id/icon"
-    app:layout_constraintTop_toTopOf="@+id/icon"
-    tools:visibility="visible" />
+    <Button
+        android:id="@+id/cancel"
+        style="?buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@android:string/cancel"
+        app:layout_constraintEnd_toStartOf="@+id/create"
+        app:layout_constraintTop_toBottomOf="@+id/value_layout" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintEnd_toEndOf="@+id/icon"
+        app:layout_constraintStart_toStartOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="@+id/icon"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

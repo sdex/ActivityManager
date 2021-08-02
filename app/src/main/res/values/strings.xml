@@ -1,160 +1,160 @@
 <resources>
-  <string name="app_name" translatable="false">Activity Manager</string>
-  <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
-  <string name="intent_analyzer_activity" translatable="false">Analyze intent</string>
-  <string name="history_activity">History</string>
-  <string name="settings_activity">Settings</string>
+    <string name="app_name" translatable="false">Activity Manager</string>
+    <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
+    <string name="intent_analyzer_activity" translatable="false">Analyze intent</string>
+    <string name="history_activity">History</string>
+    <string name="settings_activity">Settings</string>
 
-  <string name="colon_space" translatable="false">": "</string>
-  <string name="equal_space" translatable="false">"="</string>
+    <string name="colon_space" translatable="false">": "</string>
+    <string name="equal_space" translatable="false">"="</string>
 
-  <string name="context_action_launch_params">Launch activity with parameters</string>
-  <string name="context_action_launch_root">Launch activity with ROOT</string>
-  <string name="context_action_shortcut">Create shortcut</string>
+    <string name="context_action_launch_params">Launch activity with parameters</string>
+    <string name="context_action_launch_root">Launch activity with ROOT</string>
+    <string name="context_action_shortcut">Create shortcut</string>
 
-  <string name="context_action_open">Launch the application</string>
-  <string name="context_action_open_manifest">Open manifest viewer</string>
-  <string name="context_action_open_info">Open application info</string>
-  <string name="context_action_launch">Open in GooglePlay</string>
+    <string name="context_action_open">Launch the application</string>
+    <string name="context_action_open_manifest">Open manifest viewer</string>
+    <string name="context_action_open_info">Open application info</string>
+    <string name="context_action_launch">Open in GooglePlay</string>
 
-  <string name="shortcut_name">Label</string>
-  <string name="shortcut_name_empty">Label cannot be empty</string>
-  <string name="shortcut_create">Create</string>
+    <string name="shortcut_name">Label</string>
+    <string name="shortcut_name_empty">Label cannot be empty</string>
+    <string name="shortcut_create">Create</string>
 
-  <string name="starting_activity">Starting activity: %s</string>
-  <string name="starting_activity_failed">Failed to start activity: %s</string>
-  <string name="starting_activity_launch_intent_failed">Cannot find launcher activity</string>
-  <string name="starting_activity_failed_security">You don\'t have permissions to run this activity: %s</string>
-  <string name="starting_activity_intent">Starting activity</string>
-  <string name="starting_activity_intent_failed">Failed to start activity</string>
+    <string name="starting_activity">Starting activity: %s</string>
+    <string name="starting_activity_failed">Failed to start activity: %s</string>
+    <string name="starting_activity_launch_intent_failed">Cannot find launcher activity</string>
+    <string name="starting_activity_failed_security">You don\'t have permissions to run this activity: %s</string>
+    <string name="starting_activity_intent">Starting activity</string>
+    <string name="starting_activity_intent_failed">Failed to start activity</string>
 
-  <!-- activities list -->
-  <string name="activities_list_empty_text">There is non exported activities</string>
-  <string name="activities_list_empty_action">turn on advanced mode</string>
+    <!-- activities list -->
+    <string name="activities_list_empty_text">There is non exported activities</string>
+    <string name="activities_list_empty_action">turn on advanced mode</string>
 
-  <string name="action_about">About</string>
-  <string name="action_launch_intent">Intent launcher</string>
-  <string name="action_history">History</string>
-  <string name="action_clear_history">Clear history</string>
-  <string name="action_search">Search</string>
-  <string name="action_search_hint">Application name or package</string>
-  <string name="action_search_activity_hint">Activity name or package</string>
-  <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
+    <string name="action_launch_intent">Intent launcher</string>
+    <string name="action_history">History</string>
+    <string name="action_clear_history">Clear history</string>
+    <string name="action_search">Search</string>
+    <string name="action_search_hint">Application name or package</string>
+    <string name="action_search_activity_hint">Activity name or package</string>
+    <string name="action_settings">Settings</string>
 
-  <string name="launch_param_package_name">Package name</string>
-  <string name="launch_param_class_name">Class name</string>
-  <string name="launch_param_action">Action</string>
-  <string name="launch_param_data">Data</string>
-  <string name="launch_param_mime_type">Mime type</string>
-  <string name="launch_param_extras">Extras</string>
-  <string name="launch_param_extras_add">+ Add extra</string>
-  <string name="launch_param_categories">Categories</string>
-  <string name="launch_param_flags">Flags</string>
+    <string name="launch_param_package_name">Package name</string>
+    <string name="launch_param_class_name">Class name</string>
+    <string name="launch_param_action">Action</string>
+    <string name="launch_param_data">Data</string>
+    <string name="launch_param_mime_type">Mime type</string>
+    <string name="launch_param_extras">Extras</string>
+    <string name="launch_param_extras_add">+ Add extra</string>
+    <string name="launch_param_categories">Categories</string>
+    <string name="launch_param_flags">Flags</string>
 
-  <string name="item_history_has_extras">Has extras</string>
-  <string name="item_history_has_categories">Has categories</string>
-  <string name="item_history_has_flags">Has flags</string>
+    <string name="item_history_has_extras">Has extras</string>
+    <string name="item_history_has_categories">Has categories</string>
+    <string name="item_history_has_flags">Has flags</string>
 
-  <!-- about -->
-  <string name="about_donation">Support development</string>
-  <string name="about_version">Version</string>
-  <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
-  <string name="about_contact_email">Send feedback</string>
-  <string name="about_feedback">Report a problem, aks a question…</string>
-  <string name="about_open_source">Open source libraries</string>
-  <string name="about_open_privacy_policy">Privacy policy</string>
+    <!-- about -->
+    <string name="about_donation">Support development</string>
+    <string name="about_version">Version</string>
+    <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
+    <string name="about_contact_email">Send feedback</string>
+    <string name="about_feedback">Report a problem, aks a question…</string>
+    <string name="about_open_source">Open source libraries</string>
+    <string name="about_open_privacy_policy">Privacy policy</string>
 
-  <string name="donate_message">If you like the app, please consider making some cash donation</string>
-  <string name="donate_action_text">Donate</string>
+    <string name="donate_message">If you like the app, please consider making some cash donation</string>
+    <string name="donate_action_text">Donate</string>
 
-  <string name="input_key">Input key</string>
-  <string name="input_value">Input value</string>
-  <string name="key">Key</string>
-  <string name="value">Value</string>
+    <string name="input_key">Input key</string>
+    <string name="input_value">Input value</string>
+    <string name="key">Key</string>
+    <string name="value">Value</string>
 
-  <string name="type_string" translatable="false">String</string>
-  <string name="type_int" translatable="false">int</string>
-  <string name="type_long" translatable="false">long</string>
-  <string name="type_float" translatable="false">float</string>
-  <string name="type_double" translatable="false">double</string>
-  <string name="type_boolean" translatable="false">boolean</string>
-  <string name="type_array">Array</string>
+    <string name="type_string" translatable="false">String</string>
+    <string name="type_int" translatable="false">int</string>
+    <string name="type_long" translatable="false">long</string>
+    <string name="type_float" translatable="false">float</string>
+    <string name="type_double" translatable="false">double</string>
+    <string name="type_boolean" translatable="false">boolean</string>
+    <string name="type_array">Array</string>
 
-  <!-- history -->
-  <string name="history_empty_text">Nothing to show</string>
-  <string name="history_empty_action">Run some intents</string>
-  <string name="history_dialog_clear_title">Clear history</string>
-  <string name="history_dialog_clear_message">Are you sure?</string>
-  <string name="history_item_dialog_title">Intent</string>
-  <string name="history_item_dialog_remove">Remove</string>
-  <string name="history_item_dialog_add_shortcut">Create shortcut</string>
-  <string name="history_item_dialog_export_uri">Export as URI</string>
-  <string name="no">No</string>
-  <string name="yes">Yes</string>
+    <!-- history -->
+    <string name="history_empty_text">Nothing to show</string>
+    <string name="history_empty_action">Run some intents</string>
+    <string name="history_dialog_clear_title">Clear history</string>
+    <string name="history_dialog_clear_message">Are you sure?</string>
+    <string name="history_item_dialog_title">Intent</string>
+    <string name="history_item_dialog_remove">Remove</string>
+    <string name="history_item_dialog_add_shortcut">Create shortcut</string>
+    <string name="history_item_dialog_export_uri">Export as URI</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 
-  <string name="dialog_add_extra_title">Add extra</string>
-  <string name="dialog_add_extra_key_empty">Key cannot be empty</string>
-  <string name="dialog_add_extra_value_empty">Value cannot be empty</string>
-  <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
-  <string name="dialog_export_intent_copy">Copy</string>
+    <string name="dialog_add_extra_title">Add extra</string>
+    <string name="dialog_add_extra_key_empty">Key cannot be empty</string>
+    <string name="dialog_add_extra_value_empty">Value cannot be empty</string>
+    <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
+    <string name="dialog_export_intent_copy">Copy</string>
 
-  <!-- rating dialog -->
-  <string name="rating_dialog_cancel">Cancel</string>
-  <string name="rating_dialog_experience">How was your experience with us?</string>
-  <string name="rating_dialog_feedback_title">Feedback</string>
-  <string name="rating_dialog_maybe_later">Maybe later</string>
-  <string name="rating_dialog_never">Never</string>
-  <string name="rating_dialog_submit">Submit</string>
-  <string name="rating_dialog_suggestions">Suggest us what went wrong and we\'ll work on it!</string>
+    <!-- rating dialog -->
+    <string name="rating_dialog_cancel">Cancel</string>
+    <string name="rating_dialog_experience">How was your experience with us?</string>
+    <string name="rating_dialog_feedback_title">Feedback</string>
+    <string name="rating_dialog_maybe_later">Maybe later</string>
+    <string name="rating_dialog_never">Never</string>
+    <string name="rating_dialog_submit">Submit</string>
+    <string name="rating_dialog_suggestions">Suggest us what went wrong and we\'ll work on it!</string>
 
-  <string name="dialog_enable_non_exported_title">Non-exported activities</string>
-  <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
+    <string name="dialog_enable_non_exported_title">Non-exported activities</string>
+    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
 
-  <!-- errors -->
-  <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView</string>
-  <string name="error_failed_to_open_manifest">Failed to open AndroidManifest</string>
-  <string name="error_intent_shortcut_icon">Custom icon is not supported for Intent shortcut yet. Only for activity</string>
+    <!-- errors -->
+    <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView</string>
+    <string name="error_failed_to_open_manifest">Failed to open AndroidManifest</string>
+    <string name="error_intent_shortcut_icon">Custom icon is not supported for Intent shortcut yet. Only for activity</string>
 
-  <!-- license -->
-  <string name="dialog_license_title">Notices</string>
-  <string name="dialog_license_close">Close</string>
+    <!-- license -->
+    <string name="dialog_license_title">Notices</string>
+    <string name="dialog_license_close">Close</string>
 
-  <!-- share -->
-  <string name="dialog_share_title">Share AndroidManifest.xml file</string>
+    <!-- share -->
+    <string name="dialog_share_title">Share AndroidManifest.xml file</string>
 
-  <!-- settings -->
-  <string name="pref_header_appearance">Appearance</string>
-  <string name="pref_appearance_theme_title">Theme</string>
-  <string name="pref_appearance_theme_summary">Set application theme</string>
-  <string name="pref_appearance_theme_black_title">True black color</string>
-  <string name="pref_appearance_theme_black_summary">For AMOLED screens</string>
+    <!-- settings -->
+    <string name="pref_header_appearance">Appearance</string>
+    <string name="pref_appearance_theme_title">Theme</string>
+    <string name="pref_appearance_theme_summary">Set application theme</string>
+    <string name="pref_appearance_theme_black_title">True black color</string>
+    <string name="pref_appearance_theme_black_summary">For AMOLED screens</string>
 
-  <string name="pref_header_advanced">Advanced</string>
-  <string name="pref_advanced_system_apps_title">Show system app indicator</string>
-  <string name="pref_advanced_system_apps_summary">Gray dot near app name</string>
-  <string name="pref_advanced_not_exported_title">Show not exported activities</string>
-  <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
-  <string name="pref_advanced_root_integration_title">Allow ROOT operations</string>
-  <string name="pref_advanced_root_integration_summary">Run any activity with root permission</string>
-  <string name="settings_error_root_not_available">ROOT is not available</string>
-  <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
-  <string name="settings_error_root_not_active">You need to enable ROOT operations</string>
+    <string name="pref_header_advanced">Advanced</string>
+    <string name="pref_advanced_system_apps_title">Show system app indicator</string>
+    <string name="pref_advanced_system_apps_summary">Gray dot near app name</string>
+    <string name="pref_advanced_not_exported_title">Show not exported activities</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
+    <string name="pref_advanced_root_integration_title">Allow ROOT operations</string>
+    <string name="pref_advanced_root_integration_summary">Run any activity with root permission</string>
+    <string name="settings_error_root_not_available">ROOT is not available</string>
+    <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
+    <string name="settings_error_root_not_active">You need to enable ROOT operations</string>
 
-  <string-array name="pref_appearance_theme_list_titles">
-    <item>Light</item>
-    <item>Dark</item>
-  </string-array>
-  <string-array name="pref_appearance_theme_list_values">
-    <item>0</item>
-    <item>1</item>
-  </string-array>
+    <string-array name="pref_appearance_theme_list_titles">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="pref_appearance_theme_list_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
 
-  <plurals name="history_records">
-    <item quantity="one">%d record</item>
-    <item quantity="other">%d records</item>
-  </plurals>
-  <plurals name="activities_count">
-    <item quantity="one">%d activity</item>
-    <item quantity="other">%d activities</item>
-  </plurals>
+    <plurals name="history_records">
+        <item quantity="one">%d record</item>
+        <item quantity="other">%d records</item>
+    </plurals>
+    <plurals name="activities_count">
+        <item quantity="one">%d activity</item>
+        <item quantity="other">%d activities</item>
+    </plurals>
 </resources>

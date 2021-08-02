@@ -25,131 +25,131 @@ import kotlinx.android.synthetic.main.activity_activities_list.*
 
 class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
-  private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-  private val viewModel: ActivitiesListViewModel by viewModels()
+    private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
+    private val viewModel: ActivitiesListViewModel by viewModels()
 
-  private var isShowNotExported: Boolean = false
-  private var appPackageName: String? = null
-  private var searchText: String? = null
+    private var isShowNotExported: Boolean = false
+    private var appPackageName: String? = null
+    private var searchText: String? = null
 
-  override fun getLayout(): Int {
-    return R.layout.activity_activities_list
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
-    if (item == null) {
-      finish()
-      return
-    }
-    appPackageName = item.packageName
-    title = item.name
-    enableBackButton()
-    list.addDivider(this)
-    val adapter = ActivitiesListAdapter(this)
-    list.adapter = adapter
-
-    searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
-
-    viewModel.getItems(appPackageName!!).observe(this, Observer {
-      adapter.submitList(it)
-      val size = it!!.size
-      setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
-      if (size == 0 && searchText == null) {
-        empty.visibility = VISIBLE
-      } else {
-        empty.visibility = GONE
-      }
-    })
-
-    isShowNotExported = appPreferences.showNotExported
-
-    turnOnAdvanced.setOnClickListener {
-      appPreferences.showNotExported = true
-      viewModel.reloadItems(appPackageName!!)
+    override fun getLayout(): Int {
+        return R.layout.activity_activities_list
     }
 
-    if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
-      appPreferences.isNotExportedDialogShown = true
-      val dialog = EnableNotExportedActivitiesDialog()
-      dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
+        if (item == null) {
+            finish()
+            return
+        }
+        appPackageName = item.packageName
+        title = item.name
+        enableBackButton()
+        list.addDivider(this)
+        val adapter = ActivitiesListAdapter(this)
+        list.adapter = adapter
+
+        searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
+
+        viewModel.getItems(appPackageName!!).observe(this, Observer {
+            adapter.submitList(it)
+            val size = it!!.size
+            setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
+            if (size == 0 && searchText == null) {
+                empty.visibility = VISIBLE
+            } else {
+                empty.visibility = GONE
+            }
+        })
+
+        isShowNotExported = appPreferences.showNotExported
+
+        turnOnAdvanced.setOnClickListener {
+            appPreferences.showNotExported = true
+            viewModel.reloadItems(appPackageName!!)
+        }
+
+        if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
+            appPreferences.isNotExportedDialogShown = true
+            val dialog = EnableNotExportedActivitiesDialog()
+            dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
+        }
     }
-  }
 
-  override fun onStart() {
-    super.onStart()
-    if (appPreferences.showNotExported != isShowNotExported) {
-      viewModel.reloadItems(appPackageName!!)
-    }
-  }
-
-  public override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    outState.putString(STATE_SEARCH_TEXT, searchText)
-  }
-
-  override fun onCreateOptionsMenu(menu: Menu): Boolean {
-    menuInflater.inflate(R.menu.activities_list, menu)
-    val searchItem = menu.findItem(R.id.action_search)
-    val searchView = searchItem.actionView as SearchView
-    val hint = getString(R.string.action_search_activity_hint)
-    searchView.queryHint = hint
-
-    if (!TextUtils.isEmpty(searchText)) {
-      searchView.post { searchView.setQuery(searchText, false) }
-      searchItem.expandActionView()
-      UIUtils.setMenuItemsVisibility(menu, searchItem, false)
+    override fun onStart() {
+        super.onStart()
+        if (appPreferences.showNotExported != isShowNotExported) {
+            viewModel.reloadItems(appPackageName!!)
+        }
     }
 
-    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-      override fun onQueryTextSubmit(query: String): Boolean {
-        return false
-      }
-
-      override fun onQueryTextChange(newText: String): Boolean {
-        filter(newText)
-        return false
-      }
-    })
-    searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-      override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-        UIUtils.setMenuItemsVisibility(menu, item, false)
-        return true
-      }
-
-      override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-        searchText = null
-        UIUtils.setMenuItemsVisibility(menu, true)
-        invalidateOptionsMenu()
-        return true
-      }
-    })
-    return super.onCreateOptionsMenu(menu)
-  }
-
-  override fun getView(): View {
-    return container
-  }
-
-  override fun getActivity(): Activity {
-    return this
-  }
-
-  private fun filter(text: String) {
-    this.searchText = text
-    viewModel.filterItems(appPackageName!!, searchText)
-  }
-
-  companion object {
-
-    const val ARG_APPLICATION = "arg_application"
-    private const val STATE_SEARCH_TEXT = "state_search_text"
-
-    fun start(context: Context, item: ApplicationModel) {
-      val starter = Intent(context, ActivitiesListActivity::class.java)
-      starter.putExtra(ARG_APPLICATION, item)
-      context.startActivity(starter)
+    public override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(STATE_SEARCH_TEXT, searchText)
     }
-  }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.activities_list, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+        val hint = getString(R.string.action_search_activity_hint)
+        searchView.queryHint = hint
+
+        if (!TextUtils.isEmpty(searchText)) {
+            searchView.post { searchView.setQuery(searchText, false) }
+            searchItem.expandActionView()
+            UIUtils.setMenuItemsVisibility(menu, searchItem, false)
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filter(newText)
+                return false
+            }
+        })
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                UIUtils.setMenuItemsVisibility(menu, item, false)
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                searchText = null
+                UIUtils.setMenuItemsVisibility(menu, true)
+                invalidateOptionsMenu()
+                return true
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun getView(): View {
+        return container
+    }
+
+    override fun getActivity(): Activity {
+        return this
+    }
+
+    private fun filter(text: String) {
+        this.searchText = text
+        viewModel.filterItems(appPackageName!!, searchText)
+    }
+
+    companion object {
+
+        const val ARG_APPLICATION = "arg_application"
+        private const val STATE_SEARCH_TEXT = "state_search_text"
+
+        fun start(context: Context, item: ApplicationModel) {
+            val starter = Intent(context, ActivitiesListActivity::class.java)
+            starter.putExtra(ARG_APPLICATION, item)
+            context.startActivity(starter)
+        }
+    }
 }

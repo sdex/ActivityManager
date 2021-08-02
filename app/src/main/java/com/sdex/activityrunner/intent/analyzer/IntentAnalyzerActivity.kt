@@ -16,56 +16,56 @@ import kotlinx.android.synthetic.main.activity_intent_analyzer.*
 
 class IntentAnalyzerActivity : BaseActivity() {
 
-  override fun getLayout(): Int {
-    return R.layout.activity_intent_analyzer
-  }
+    override fun getLayout(): Int {
+        return R.layout.activity_intent_analyzer
+    }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableBackButton()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableBackButton()
 
-    actionView.text = intent.action ?: None.VALUE
-    dataView.text = intent.dataString ?: None.VALUE
-    mimeTypeView.text = intent.type ?: None.VALUE
+        actionView.text = intent.action ?: None.VALUE
+        dataView.text = intent.dataString ?: None.VALUE
+        mimeTypeView.text = intent.type ?: None.VALUE
 
-    val categoriesAdapter = LaunchParamsListAdapter()
-    categoriesAdapter.setItems(intent.categories)
-    listCategoriesView.adapter = categoriesAdapter
+        val categoriesAdapter = LaunchParamsListAdapter()
+        categoriesAdapter.setItems(intent.categories)
+        listCategoriesView.adapter = categoriesAdapter
 
-    val flagsAdapter = LaunchParamsListAdapter()
-    flagsAdapter.setItems(intent.getFlagsList())
-    listFlagsView.adapter = flagsAdapter
+        val flagsAdapter = LaunchParamsListAdapter()
+        flagsAdapter.setItems(intent.getFlagsList())
+        listFlagsView.adapter = flagsAdapter
 
-    val extrasAdapter = LaunchParamsExtraListAdapter()
-    val extras = intent.extras
-    if (extras != null) {
-      val extrasList: MutableList<LaunchParamsExtra> = ArrayList()
-      for (key in extras.keySet()) {
-        val value = if (extras.get(key) != null) {
-          extras.get(key)!!.toString()
-        } else {
-          ""
+        val extrasAdapter = LaunchParamsExtraListAdapter()
+        val extras = intent.extras
+        if (extras != null) {
+            val extrasList: MutableList<LaunchParamsExtra> = ArrayList()
+            for (key in extras.keySet()) {
+                val value = if (extras.get(key) != null) {
+                    extras.get(key)!!.toString()
+                } else {
+                    ""
+                }
+                extrasList.add(LaunchParamsExtra(key, value, LaunchParamsExtraType.STRING))
+            }
+            extrasAdapter.setItems(extrasList, true)
         }
-        extrasList.add(LaunchParamsExtra(key, value, LaunchParamsExtraType.STRING))
-      }
-      extrasAdapter.setItems(extrasList, true)
+        // TODO handle null case
+        listExtrasView.adapter = extrasAdapter
     }
-    // TODO handle null case
-    listExtrasView.adapter = extrasAdapter
-  }
 
-  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.intent_analyzer, menu)
-    return super.onCreateOptionsMenu(menu)
-  }
-
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return when (item.itemId) {
-      R.id.action_export -> {
-
-        true
-      }
-      else -> super.onOptionsItemSelected(item)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.intent_analyzer, menu)
+        return super.onCreateOptionsMenu(menu)
     }
-  }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_export -> {
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }

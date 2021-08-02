@@ -18,82 +18,87 @@ import java.util.*
 
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
 
-  private val packageManager: PackageManager = application.packageManager
-  private val appPreferences: AppPreferences by lazy { AppPreferences(application) }
-  private val liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
-  private var list: List<ActivityModel>? = null
+    private val packageManager: PackageManager = application.packageManager
+    private val appPreferences: AppPreferences by lazy { AppPreferences(application) }
+    private val liveData: MutableLiveData<List<ActivityModel>> = MutableLiveData()
+    private var list: List<ActivityModel>? = null
 
-  fun getItems(packageName: String): LiveData<List<ActivityModel>> {
-    GlobalScope.launch {
-      list = getActivitiesList(packageName)
-      withContext(Dispatchers.Main) {
-        liveData.value = list
-      }
-    }
-    return liveData
-  }
-
-  fun reloadItems(packageName: String) {
-    GlobalScope.launch {
-      list = getActivitiesList(packageName)
-      liveData.postValue(list)
-    }
-  }
-
-  fun filterItems(packageName: String, searchText: String?) {
-    if (list != null) {
-      if (searchText != null) {
+    fun getItems(packageName: String): LiveData<List<ActivityModel>> {
         GlobalScope.launch {
-          val filteredList = list!!.filter {
-            it.name.contains(searchText, true) || it.className.contains(searchText, true)
-          }
-          liveData.postValue(filteredList)
+            list = getActivitiesList(packageName)
+            withContext(Dispatchers.Main) {
+                liveData.value = list
+            }
         }
-      } else {
-        liveData.value = list
-      }
-    } else {
-      getItems(packageName)
+        return liveData
     }
-  }
 
-  @WorkerThread
-  private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
-    val list = ArrayList<ActivityModel>()
-    val showNotExported = appPreferences.showNotExported
-    try {
-      val info = getActivities(packageManager, packageName)
-      for (activityInfo in info.activities) {
-        val activityModel = getActivityModel(packageManager, activityInfo)
-        if (activityModel.exported) {
-          list.add(activityModel)
-        } else if (showNotExported) {
-          list.add(activityModel)
+    fun reloadItems(packageName: String) {
+        GlobalScope.launch {
+            list = getActivitiesList(packageName)
+            liveData.postValue(list)
         }
-      }
-    } catch (e: Exception) {
-      e.printStackTrace()
     }
-    list.sortBy { it.name }
-    return list
-  }
 
-  private fun getActivityModel(pm: PackageManager, activityInfo: ActivityInfo): ActivityModel {
-    var activityName = try {
-      activityInfo.loadLabel(pm).toString()
-    } catch (e: Exception) {
-      val componentName = ComponentName(activityInfo.packageName, activityInfo.name)
-      componentName.shortClassName
+    fun filterItems(packageName: String, searchText: String?) {
+        if (list != null) {
+            if (searchText != null) {
+                GlobalScope.launch {
+                    val filteredList = list!!.filter {
+                        it.name.contains(searchText, true) || it.className.contains(
+                            searchText,
+                            true
+                        )
+                    }
+                    liveData.postValue(filteredList)
+                }
+            } else {
+                liveData.value = list
+            }
+        } else {
+            getItems(packageName)
+        }
     }
-    if (activityName.isNullOrBlank()) {
-      val applicationInfo = activityInfo.applicationInfo
-      activityName = if (applicationInfo != null) {
-        pm.getApplicationLabel(applicationInfo).toString()
-      } else {
-        activityInfo.packageName
-      }
+
+    @WorkerThread
+    private fun getActivitiesList(packageName: String): ArrayList<ActivityModel> {
+        val list = ArrayList<ActivityModel>()
+        val showNotExported = appPreferences.showNotExported
+        try {
+            val info = getActivities(packageManager, packageName)
+            for (activityInfo in info.activities) {
+                val activityModel = getActivityModel(packageManager, activityInfo)
+                if (activityModel.exported) {
+                    list.add(activityModel)
+                } else if (showNotExported) {
+                    list.add(activityModel)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        list.sortBy { it.name }
+        return list
     }
-    return ActivityModel(activityName, activityInfo.packageName, activityInfo.name,
-      activityInfo.exported && activityInfo.isEnabled)
-  }
+
+    private fun getActivityModel(pm: PackageManager, activityInfo: ActivityInfo): ActivityModel {
+        var activityName = try {
+            activityInfo.loadLabel(pm).toString()
+        } catch (e: Exception) {
+            val componentName = ComponentName(activityInfo.packageName, activityInfo.name)
+            componentName.shortClassName
+        }
+        if (activityName.isNullOrBlank()) {
+            val applicationInfo = activityInfo.applicationInfo
+            activityName = if (applicationInfo != null) {
+                pm.getApplicationLabel(applicationInfo).toString()
+            } else {
+                activityInfo.packageName
+            }
+        }
+        return ActivityModel(
+            activityName, activityInfo.packageName, activityInfo.name,
+            activityInfo.exported && activityInfo.isEnabled
+        )
+    }
 }

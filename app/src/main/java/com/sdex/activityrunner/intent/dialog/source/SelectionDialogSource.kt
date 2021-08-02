@@ -4,7 +4,7 @@ import java.util.*
 
 interface SelectionDialogSource {
 
-  val list: ArrayList<String>
+    val list: ArrayList<String>
 
-  fun getItem(position: Int): String
+    fun getItem(position: Int): String
 }

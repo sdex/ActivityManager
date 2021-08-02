@@ -1,260 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:background="?attr/selectableItemBackground"
-  android:padding="@dimen/item_history_padding">
-
-  <TextView
-    android:id="@+id/title_package_name"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/launch_param_package_name"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    android:background="?attr/selectableItemBackground"
+    android:padding="@dimen/item_history_padding">
 
-  <TextView
-    android:id="@+id/c1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_package_name"
-    app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/title_package_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/launch_param_package_name"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-  <TextView
-    android:id="@+id/packageName"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c1"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:text="com.sdex.activityrunner" />
+    <TextView
+        android:id="@+id/c1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_package_name"
+        app:layout_constraintTop_toTopOf="parent" />
 
-  <TextView
-    android:id="@+id/title_class_name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/item_history_text_margin_top"
-    android:text="@string/launch_param_class_name"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title_package_name" />
+    <TextView
+        android:id="@+id/packageName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="com.sdex.activityrunner" />
 
-  <TextView
-    android:id="@+id/c2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_class_name"
-    app:layout_constraintTop_toTopOf="@+id/title_class_name" />
+    <TextView
+        android:id="@+id/title_class_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_history_text_margin_top"
+        android:text="@string/launch_param_class_name"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_package_name" />
 
-  <TextView
-    android:id="@+id/className"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c2"
-    app:layout_constraintTop_toTopOf="@+id/title_class_name"
-    tools:text="com.sdex.activityrunner.MainActivity" />
+    <TextView
+        android:id="@+id/c2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_class_name"
+        app:layout_constraintTop_toTopOf="@+id/title_class_name" />
 
-  <TextView
-    android:id="@+id/title_action"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/item_history_text_margin_top"
-    android:text="@string/launch_param_action"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title_class_name" />
+    <TextView
+        android:id="@+id/className"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c2"
+        app:layout_constraintTop_toTopOf="@+id/title_class_name"
+        tools:text="com.sdex.activityrunner.MainActivity" />
 
-  <TextView
-    android:id="@+id/c3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_action"
-    app:layout_constraintTop_toTopOf="@+id/title_action" />
+    <TextView
+        android:id="@+id/title_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_history_text_margin_top"
+        android:text="@string/launch_param_action"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_class_name" />
 
-  <TextView
-    android:id="@+id/action"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c3"
-    app:layout_constraintTop_toTopOf="@+id/title_action"
-    tools:text="android.intent.action.MAIN" />
+    <TextView
+        android:id="@+id/c3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_action"
+        app:layout_constraintTop_toTopOf="@+id/title_action" />
 
-  <TextView
-    android:id="@+id/title_data"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/item_history_text_margin_top"
-    android:text="@string/launch_param_data"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title_action" />
+    <TextView
+        android:id="@+id/action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c3"
+        app:layout_constraintTop_toTopOf="@+id/title_action"
+        tools:text="android.intent.action.MAIN" />
 
-  <TextView
-    android:id="@+id/c4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_data"
-    app:layout_constraintTop_toTopOf="@+id/title_data" />
+    <TextView
+        android:id="@+id/title_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_history_text_margin_top"
+        android:text="@string/launch_param_data"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_action" />
 
-  <TextView
-    android:id="@+id/data"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c4"
-    app:layout_constraintTop_toTopOf="@+id/title_data"
-    tools:text="test" />
+    <TextView
+        android:id="@+id/c4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_data"
+        app:layout_constraintTop_toTopOf="@+id/title_data" />
 
-  <TextView
-    android:id="@+id/title_mime_type"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/item_history_text_margin_top"
-    android:text="@string/launch_param_mime_type"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title_data" />
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c4"
+        app:layout_constraintTop_toTopOf="@+id/title_data"
+        tools:text="test" />
 
-  <TextView
-    android:id="@+id/c5"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_mime_type"
-    app:layout_constraintTop_toTopOf="@+id/title_mime_type" />
+    <TextView
+        android:id="@+id/title_mime_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_history_text_margin_top"
+        android:text="@string/launch_param_mime_type"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_data" />
 
-  <TextView
-    android:id="@+id/mimeType"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c5"
-    app:layout_constraintTop_toTopOf="@+id/title_mime_type"
-    tools:text="image/jpeg" />
+    <TextView
+        android:id="@+id/c5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_mime_type"
+        app:layout_constraintTop_toTopOf="@+id/title_mime_type" />
 
-  <TextView
-    android:id="@+id/title_extras"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/item_history_text_margin_top"
-    android:text="@string/item_history_has_extras"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title_mime_type" />
+    <TextView
+        android:id="@+id/mimeType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c5"
+        app:layout_constraintTop_toTopOf="@+id/title_mime_type"
+        tools:text="image/jpeg" />
 
-  <TextView
-    android:id="@+id/c6"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_extras"
-    app:layout_constraintTop_toTopOf="@+id/title_extras" />
+    <TextView
+        android:id="@+id/title_extras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_history_text_margin_top"
+        android:text="@string/item_history_has_extras"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_mime_type" />
 
-  <TextView
-    android:id="@+id/extras"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textAllCaps="true"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c6"
-    app:layout_constraintTop_toTopOf="@+id/title_extras"
-    tools:text="yes" />
+    <TextView
+        android:id="@+id/c6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_extras"
+        app:layout_constraintTop_toTopOf="@+id/title_extras" />
 
-  <TextView
-    android:id="@+id/title_categories"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/item_history_text_margin_top"
-    android:text="@string/item_history_has_categories"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title_extras" />
+    <TextView
+        android:id="@+id/extras"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c6"
+        app:layout_constraintTop_toTopOf="@+id/title_extras"
+        tools:text="yes" />
 
-  <TextView
-    android:id="@+id/c7"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_categories"
-    app:layout_constraintTop_toTopOf="@+id/title_categories" />
+    <TextView
+        android:id="@+id/title_categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_history_text_margin_top"
+        android:text="@string/item_history_has_categories"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_extras" />
 
-  <TextView
-    android:id="@+id/categories"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textAllCaps="true"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c7"
-    app:layout_constraintTop_toTopOf="@+id/title_categories"
-    tools:text="no" />
+    <TextView
+        android:id="@+id/c7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_categories"
+        app:layout_constraintTop_toTopOf="@+id/title_categories" />
 
-  <TextView
-    android:id="@+id/title_flags"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/item_history_text_margin_top"
-    android:text="@string/item_history_has_flags"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title_categories" />
+    <TextView
+        android:id="@+id/categories"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c7"
+        app:layout_constraintTop_toTopOf="@+id/title_categories"
+        tools:text="no" />
 
-  <TextView
-    android:id="@+id/c8"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/colon_space"
-    android:textColor="?attr/secondaryTextColor"
-    app:layout_constraintStart_toEndOf="@+id/title_flags"
-    app:layout_constraintTop_toTopOf="@+id/title_flags" />
+    <TextView
+        android:id="@+id/title_flags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_history_text_margin_top"
+        android:text="@string/item_history_has_flags"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_categories" />
 
-  <TextView
-    android:id="@+id/flags"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:textAllCaps="true"
-    android:textColor="?attr/primaryTextColor"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/c8"
-    app:layout_constraintTop_toTopOf="@+id/title_flags"
-    tools:text="yes" />
+    <TextView
+        android:id="@+id/c8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/colon_space"
+        android:textColor="?attr/secondaryTextColor"
+        app:layout_constraintStart_toEndOf="@+id/title_flags"
+        app:layout_constraintTop_toTopOf="@+id/title_flags" />
+
+    <TextView
+        android:id="@+id/flags"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/c8"
+        app:layout_constraintTop_toTopOf="@+id/title_flags"
+        tools:text="yes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,24 +5,26 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [(HistoryModel::class)],
-  version = 1,
-  exportSchema = true)
+@Database(
+    entities = [(HistoryModel::class)],
+    version = 1,
+    exportSchema = true
+)
 abstract class HistoryDatabase : RoomDatabase() {
 
-  abstract val historyModelDao: HistoryModelDao
+    abstract val historyModelDao: HistoryModelDao
 
-  companion object {
+    companion object {
 
-    private const val DB_NAME = "history.db"
-    private var database: HistoryDatabase? = null
+        private const val DB_NAME = "history.db"
+        private var database: HistoryDatabase? = null
 
-    fun getDatabase(context: Context): HistoryDatabase {
-      if (database == null) {
-        database = Room.databaseBuilder(context, HistoryDatabase::class.java, DB_NAME)
-          .build()
-      }
-      return database!!
+        fun getDatabase(context: Context): HistoryDatabase {
+            if (database == null) {
+                database = Room.databaseBuilder(context, HistoryDatabase::class.java, DB_NAME)
+                    .build()
+            }
+            return database!!
+        }
     }
-  }
 }

@@ -5,10 +5,10 @@ import java.util.*
 
 class ActionSource : SelectionDialogSource {
 
-  override val list: ArrayList<String>
-    get() = Action.list()
+    override val list: ArrayList<String>
+        get() = Action.list()
 
-  override fun getItem(position: Int): String {
-    return list[position]
-  }
+    override fun getItem(position: Int): String {
+        return list[position]
+    }
 }

@@ -10,11 +10,11 @@ import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 
 class ApplicationsListViewModel(application: Application) : AndroidViewModel(application) {
 
-  private val cacheDatabase: CacheDatabase = CacheDatabase.getDatabase(application)
+    private val cacheDatabase: CacheDatabase = CacheDatabase.getDatabase(application)
 
-  fun getItems(searchText: String?): LiveData<List<ApplicationModel>> {
-    val query = GetApplicationsQuery(searchText)
-    return cacheDatabase.applicationsModelDao
-      .getApplicationModels(SimpleSQLiteQuery(query.toString()))
-  }
+    fun getItems(searchText: String?): LiveData<List<ApplicationModel>> {
+        val query = GetApplicationsQuery(searchText)
+        return cacheDatabase.applicationsModelDao
+            .getApplicationModels(SimpleSQLiteQuery(query.toString()))
+    }
 }

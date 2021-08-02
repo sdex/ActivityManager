@@ -1,260 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="?attr/secondaryBackgroundColor"
-  android:orientation="vertical"
-  tools:context=".intent.IntentBuilderActivity"
-  tools:ignore="ContentDescription">
-
-  <include layout="@layout/toolbar" />
-
-  <FrameLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1">
+    android:layout_height="match_parent"
+    android:background="?attr/secondaryBackgroundColor"
+    android:orientation="vertical"
+    tools:context=".intent.IntentBuilderActivity"
+    tools:ignore="ContentDescription">
 
-    <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:fillViewport="true">
+    <include layout="@layout/toolbar" />
 
-      <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="vertical"
-        android:padding="@dimen/launch_params_activity_padding">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <androidx.cardview.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:cardBackgroundColor="?attr/amCardBackgroundColor"
-          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
-
-          <LinearLayout
-            android:id="@+id/linearLayout2"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/launch_params_item_height"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
-
-            <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textColor="?attr/primaryTextColor"
-              android:text="@string/launch_param_action" />
-
-            <TextView
-              android:id="@+id/actionView"
-              android:layout_width="match_parent"
-              android:textColor="?attr/primaryTextColor"
-              android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceListItem"
-              tools:text="android.intent.action.MAIN" />
-          </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="?attr/amCardBackgroundColor"
-          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
-
-          <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
-              android:id="@+id/linearLayout3"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:minHeight="@dimen/launch_params_item_height"
-              android:orientation="vertical"
-              android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-              android:paddingRight="@dimen/analyzer_item_padding_horizontal">
-
-              <TextView
-                android:layout_width="match_parent"
-                android:textColor="?attr/primaryTextColor"
-                android:layout_height="wrap_content"
-                android:text="@string/launch_param_data" />
-
-              <TextView
-                android:id="@+id/dataView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/primaryTextColor"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                tools:text="122" />
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:padding="@dimen/launch_params_activity_padding">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:minHeight="@dimen/launch_params_item_height"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
+                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/primaryTextColor"
+                            android:text="@string/launch_param_action" />
+
+                        <TextView
+                            android:id="@+id/actionView"
+                            android:layout_width="match_parent"
+                            android:textColor="?attr/primaryTextColor"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceListItem"
+                            tools:text="android.intent.action.MAIN" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
+                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/launch_params_item_height"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
+                            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:textColor="?attr/primaryTextColor"
+                                android:layout_height="wrap_content"
+                                android:text="@string/launch_param_data" />
+
+                            <TextView
+                                android:id="@+id/dataView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/primaryTextColor"
+                                android:textAppearance="?android:attr/textAppearanceListItem"
+                                tools:text="122" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?attr/listDividerColor" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/launch_params_item_height"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
+                            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/primaryTextColor"
+                                android:text="@string/launch_param_mime_type" />
+
+                            <TextView
+                                android:id="@+id/mimeTypeView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/primaryTextColor"
+                                android:textAppearance="?android:attr/textAppearanceListItem"
+                                tools:text="image/png" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
+                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout_extras"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:minHeight="@dimen/launch_params_item_height"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
+                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="?attr/primaryTextColor"
+                            android:text="@string/launch_param_extras" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listExtrasView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_launch_param_extra" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
+                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:minHeight="@dimen/launch_params_item_height"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
+                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="?attr/primaryTextColor"
+                            android:text="@string/launch_param_categories" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listCategoriesView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_launch_param" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
+                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:minHeight="@dimen/launch_params_item_height"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
+                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="?attr/primaryTextColor"
+                            android:text="@string/launch_param_flags" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listFlagsView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_launch_param" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
             </LinearLayout>
 
-            <View
-              android:layout_width="match_parent"
-              android:layout_height="1dp"
-              android:background="?attr/listDividerColor" />
+        </androidx.core.widget.NestedScrollView>
 
-            <LinearLayout
-              android:id="@+id/linearLayout4"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:minHeight="@dimen/launch_params_item_height"
-              android:orientation="vertical"
-              android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-              android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+    </FrameLayout>
 
-              <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/primaryTextColor"
-                android:text="@string/launch_param_mime_type" />
-
-              <TextView
-                android:id="@+id/mimeTypeView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/primaryTextColor"
-                android:textAppearance="?android:attr/textAppearanceListItem"
-                tools:text="image/png" />
-            </LinearLayout>
-
-
-          </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="?attr/amCardBackgroundColor"
-          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
-
-          <LinearLayout
-            android:id="@+id/linearLayout_extras"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/launch_params_item_height"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
-
-            <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="4dp"
-              android:textColor="?attr/primaryTextColor"
-              android:text="@string/launch_param_extras" />
-
-            <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/listExtrasView"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="4dp"
-              android:layout_marginBottom="4dp"
-              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-              tools:itemCount="2"
-              tools:listitem="@layout/item_launch_param_extra" />
-
-          </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="?attr/amCardBackgroundColor"
-          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
-
-          <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/launch_params_item_height"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
-
-            <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="4dp"
-              android:textColor="?attr/primaryTextColor"
-              android:text="@string/launch_param_categories" />
-
-            <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/listCategoriesView"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="4dp"
-              android:layout_marginBottom="4dp"
-              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-              tools:itemCount="2"
-              tools:listitem="@layout/item_launch_param" />
-
-          </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/launch_params_item_card_margin"
-          app:cardBackgroundColor="?attr/amCardBackgroundColor"
-          app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
-
-          <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/launch_params_item_height"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
-
-            <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="4dp"
-              android:textColor="?attr/primaryTextColor"
-              android:text="@string/launch_param_flags" />
-
-            <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/listFlagsView"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="4dp"
-              android:layout_marginBottom="4dp"
-              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-              tools:itemCount="2"
-              tools:listitem="@layout/item_launch_param" />
-          </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-      </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-  </FrameLayout>
-
-  <FrameLayout
-    android:id="@+id/adsContainer"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    <FrameLayout
+        android:id="@+id/adsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

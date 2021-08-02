@@ -1,37 +1,37 @@
 <resources>
 
-  <style name="AppBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-    <item name="behavior_peekHeight">512dp</item>
-  </style>
+    <style name="AppBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_peekHeight">512dp</item>
+    </style>
 
-  <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-    <item name="colorAccent">@color/white</item>
-  </style>
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">@color/white</item>
+    </style>
 
-  <style name="BottomDialogTextStyle" parent="TextAppearance.AppCompat">
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:textColor">?attr/bottomDialogTextColor</item>
-    <item name="android:textSize">16sp</item>
-    <item name="android:layout_gravity">center_vertical</item>
-    <item name="android:maxLines">1</item>
-    <item name="android:ellipsize">end</item>
-  </style>
+    <style name="BottomDialogTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">?attr/bottomDialogTextColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 
-  <style name="BottomSheet.Light" parent="@style/Widget.Design.BottomSheet.Modal">
-    <item name="android:background">@drawable/background_bottom_dialog_light</item>
-    <item name="listDividerColor">@color/list_divider_light</item>
-  </style>
+    <style name="BottomSheet.Light" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_bottom_dialog_light</item>
+        <item name="listDividerColor">@color/list_divider_light</item>
+    </style>
 
-  <style name="BottomSheet.Dark" parent="@style/Widget.Design.BottomSheet.Modal">
-    <item name="android:background">@drawable/background_bottom_dialog_dark</item>
-    <item name="listDividerColor">@color/list_divider_dark</item>
-  </style>
+    <style name="BottomSheet.Dark" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_bottom_dialog_dark</item>
+        <item name="listDividerColor">@color/list_divider_dark</item>
+    </style>
 
-  <style name="TooltipTextAppearance">
-    <item name="android:textColor">@color/white</item>
-    <item name="android:textSize">18sp</item>
-    <item name="android:textStyle">normal</item>
-  </style>
+    <style name="TooltipTextAppearance">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 
 </resources>

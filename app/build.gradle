@@ -8,118 +8,118 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-  compileSdkVersion 29
+    compileSdkVersion 29
 
-  defaultConfig {
-    applicationId "com.activitymanager"
-    minSdkVersion 16
-    targetSdkVersion 29
-    versionCode 400
-    versionName "4.0.0"
+    defaultConfig {
+        applicationId "com.activitymanager"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 400
+        versionName "4.0.0"
 
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-    vectorDrawables.useSupportLibrary = true
+        vectorDrawables.useSupportLibrary = true
 
-    javaCompileOptions {
-      annotationProcessorOptions {
-        arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-      }
-    }
-  }
-
-  flavorDimensions "type"
-  productFlavors {
-    dev {
-      dimension "type"
-      applicationIdSuffix = ".dev"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
-    prod {
-      dimension "type"
+    flavorDimensions "type"
+    productFlavors {
+        dev {
+            dimension "type"
+            applicationIdSuffix = ".dev"
+        }
+
+        prod {
+            dimension "type"
+        }
     }
-  }
 
-  signingConfigs {
-    release {
-      keyAlias keystoreProperties['KEY_ALIAS']
-      keyPassword keystoreProperties['KEY_PASSWORD']
-      storeFile file(keystoreProperties['STORE_FILE'])
-      storePassword keystoreProperties['STORE_PASSWORD']
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['KEY_ALIAS']
+            keyPassword keystoreProperties['KEY_PASSWORD']
+            storeFile file(keystoreProperties['STORE_FILE'])
+            storePassword keystoreProperties['STORE_PASSWORD']
+        }
     }
-  }
 
-  buildTypes {
-    debug {
-      minifyEnabled false
-      shrinkResources false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
-    release {
-      minifyEnabled true
-      shrinkResources true
-      signingConfig signingConfigs.release
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
-  }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
-  }
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
 
-  sourceSets {
-    androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
-  }
-
-  lintOptions {
-    baseline file("lint-baseline.xml")
-  }
+    lintOptions {
+        baseline file("lint-baseline.xml")
+    }
 }
 
 androidExtensions {
-  experimental = true
+    experimental = true
 }
 
 dependencies {
-  implementation "androidx.activity:activity-ktx:1.1.0"
-  implementation "androidx.appcompat:appcompat:1.1.0"
-  implementation "androidx.browser:browser:1.3.0-alpha03"
-  implementation "androidx.cardview:cardview:1.0.0"
-  implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta7"
-  implementation "androidx.core:core-ktx:1.5.0-alpha01"
-  def lifecycle_version = "2.2.0"
-  implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-  implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-  def paging_version = "2.1.2"
-  implementation "androidx.paging:paging-runtime:$paging_version"
-  implementation "androidx.preference:preference:1.1.1"
-  implementation "androidx.recyclerview:recyclerview:1.2.0-alpha03"
-  def room_version = "2.2.5"
-  implementation "androidx.room:room-runtime:$room_version"
-  kapt "androidx.room:room-compiler:$room_version"
-  implementation "androidx.vectordrawable:vectordrawable:1.1.0"
+    implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.browser:browser:1.3.0-alpha03"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta7"
+    implementation "androidx.core:core-ktx:1.5.0-alpha01"
+    def lifecycle_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    def paging_version = "2.1.2"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.preference:preference:1.1.1"
+    implementation "androidx.recyclerview:recyclerview:1.2.0-alpha03"
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.vectordrawable:vectordrawable:1.1.0"
 
-  def glide_version = "4.11.0"
-  implementation "com.github.bumptech.glide:glide:$glide_version"
-  kapt "com.github.bumptech.glide:compiler:$glide_version"
+    def glide_version = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
-  implementation "com.google.android.material:material:1.2.0-alpha05"
-  implementation "com.simplecityapps:recyclerview-fastscroll:2.0.0"
-  implementation "com.tomergoldst.android:tooltips:1.0.11"
+    implementation "com.google.android.material:material:1.2.0-alpha05"
+    implementation "com.simplecityapps:recyclerview-fastscroll:2.0.0"
+    implementation "com.tomergoldst.android:tooltips:1.0.11"
 
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-  implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
 
-  testImplementation "junit:junit:4.13"
-  testImplementation "androidx.paging:paging-common:$paging_version"
+    testImplementation "junit:junit:4.13"
+    testImplementation "androidx.paging:paging-common:$paging_version"
 
-  androidTestImplementation "androidx.test:runner:1.2.0"
-  androidTestImplementation "androidx.test:rules:1.2.0"
-  androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
-  androidTestImplementation "androidx.test.espresso:espresso-intents:3.2.0"
+    androidTestImplementation "androidx.test:runner:1.2.0"
+    androidTestImplementation "androidx.test:rules:1.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.2.0"
 }

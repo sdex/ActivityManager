@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  tools:context=".MainActivity"
-  tools:ignore="ContentDescription">
-
-  <include layout="@layout/toolbar" />
-
-  <FrameLayout
-    android:id="@+id/container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    tools:ignore="ContentDescription">
 
-    <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-      android:id="@+id/list"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:fastScrollEnableThumbInactiveColor="true"
-      app:fastScrollPopupBgColor="@color/colorAccent"
-      app:fastScrollPopupTextColor="@color/colorControlActivated"
-      app:fastScrollThumbColor="@color/colorAccent"
-      app:fastScrollThumbInactiveColor="?attr/scrollbarThumbInactiveColor"
-      app:fastScrollTrackColor="?attr/scrollbarBackgroundColor"
-      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-      tools:itemCount="15"
-      tools:listitem="@layout/item_activity"
-      tools:visibility="visible" />
+    <include layout="@layout/toolbar" />
 
-    <LinearLayout
-      android:id="@+id/empty"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:gravity="center"
-      android:orientation="vertical"
-      android:visibility="gone"
-      tools:visibility="gone">
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-      <ImageView
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        app:srcCompat="@drawable/ic_folder_open" />
+        <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fastScrollEnableThumbInactiveColor="true"
+            app:fastScrollPopupBgColor="@color/colorAccent"
+            app:fastScrollPopupTextColor="@color/colorControlActivated"
+            app:fastScrollThumbColor="@color/colorAccent"
+            app:fastScrollThumbInactiveColor="?attr/scrollbarThumbInactiveColor"
+            app:fastScrollTrackColor="?attr/scrollbarBackgroundColor"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="15"
+            tools:listitem="@layout/item_activity"
+            tools:visibility="visible" />
 
-      <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/activities_list_empty_text"
-        android:textColor="?attr/primaryTextColor"
-        android:textSize="18sp" />
+        <LinearLayout
+            android:id="@+id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
 
-      <Button
-        android:id="@+id/turnOnAdvanced"
-        style="?borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/activities_list_empty_action"
-        android:textColor="@color/blue" />
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:srcCompat="@drawable/ic_folder_open" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/activities_list_empty_text"
+                android:textColor="?attr/primaryTextColor"
+                android:textSize="18sp" />
 
-  </FrameLayout>
+            <Button
+                android:id="@+id/turnOnAdvanced"
+                style="?borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/activities_list_empty_action"
+                android:textColor="@color/blue" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

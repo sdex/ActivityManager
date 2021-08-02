@@ -9,22 +9,22 @@ import kotlinx.coroutines.launch
 
 class ManifestViewModel(application: Application) : AndroidViewModel(application) {
 
-  private var liveData = MutableLiveData<String>()
-  private var job: Job? = null
+    private var liveData = MutableLiveData<String>()
+    private var job: Job? = null
 
-  fun loadManifest(packageName: String): MutableLiveData<String> {
-    job = GlobalScope.launch {
-      val manifestReader = ManifestReader()
-      val manifestWriter = ManifestWriter()
-      val manifest = manifestReader.loadAndroidManifest(getApplication(), packageName)
-      liveData.postValue(manifest)
-      manifestWriter.saveAndroidManifest(getApplication(), packageName, manifest)
+    fun loadManifest(packageName: String): MutableLiveData<String> {
+        job = GlobalScope.launch {
+            val manifestReader = ManifestReader()
+            val manifestWriter = ManifestWriter()
+            val manifest = manifestReader.loadAndroidManifest(getApplication(), packageName)
+            liveData.postValue(manifest)
+            manifestWriter.saveAndroidManifest(getApplication(), packageName, manifest)
+        }
+        return liveData
     }
-    return liveData
-  }
 
-  override fun onCleared() {
-    super.onCleared()
-    job?.cancel()
-  }
+    override fun onCleared() {
+        super.onCleared()
+        job?.cancel()
+    }
 }

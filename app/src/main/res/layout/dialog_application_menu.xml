@@ -1,118 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  tools:ignore="ContentDescription">
-
-  <LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
 
-    <ImageView
-      android:id="@+id/applicationIcon"
-      android:layout_width="24dp"
-      android:layout_height="24dp"
-      android:layout_margin="13dp"
-      android:scaleType="center"
-      tools:src="@mipmap/ic_launcher" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-      android:id="@+id/applicationName"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:ellipsize="end"
-      android:maxLines="1"
-      android:paddingTop="16dp"
-      android:paddingBottom="16dp"
-      android:textColor="@color/blue"
-      android:textSize="14sp"
-      android:textStyle="bold"
-      tools:text="Application name" />
+        <ImageView
+            android:id="@+id/applicationIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="13dp"
+            android:scaleType="center"
+            tools:src="@mipmap/ic_launcher" />
 
-  </LinearLayout>
+        <TextView
+            android:id="@+id/applicationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:textColor="@color/blue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Application name" />
 
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="?attr/listDividerColor" />
+    </LinearLayout>
 
-  <LinearLayout
-    android:id="@+id/action_open_app"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/listDividerColor" />
 
-    <ImageView
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:scaleType="center"
-      app:srcCompat="@drawable/ic_application_launch" />
+    <LinearLayout
+        android:id="@+id/action_open_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
 
-    <TextView
-      style="@style/BottomDialogTextStyle"
-      android:text="@string/context_action_open" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_application_launch" />
 
-  </LinearLayout>
+        <TextView
+            style="@style/BottomDialogTextStyle"
+            android:text="@string/context_action_open" />
 
-  <LinearLayout
-    android:id="@+id/action_open_app_manifest"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    </LinearLayout>
 
-    <ImageView
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:scaleType="center"
-      app:srcCompat="@drawable/ic_application_open_manifest" />
+    <LinearLayout
+        android:id="@+id/action_open_app_manifest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
 
-    <TextView
-      style="@style/BottomDialogTextStyle"
-      android:text="@string/context_action_open_manifest" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_application_open_manifest" />
 
-  </LinearLayout>
+        <TextView
+            style="@style/BottomDialogTextStyle"
+            android:text="@string/context_action_open_manifest" />
 
-  <LinearLayout
-    android:id="@+id/action_open_app_info"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    </LinearLayout>
 
-    <ImageView
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:scaleType="center"
-      app:srcCompat="@drawable/ic_application_open_info" />
+    <LinearLayout
+        android:id="@+id/action_open_app_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
 
-    <TextView
-      style="@style/BottomDialogTextStyle"
-      android:text="@string/context_action_open_info" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_application_open_info" />
 
-  </LinearLayout>
+        <TextView
+            style="@style/BottomDialogTextStyle"
+            android:text="@string/context_action_open_info" />
 
-  <LinearLayout
-    android:id="@+id/action_open_app_play_store"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    </LinearLayout>
 
-    <ImageView
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:scaleType="center"
-      app:srcCompat="@drawable/ic_application_open_play" />
+    <LinearLayout
+        android:id="@+id/action_open_app_play_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
 
-    <TextView
-      style="@style/BottomDialogTextStyle"
-      android:text="@string/context_action_launch" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_application_open_play" />
 
-  </LinearLayout>
+        <TextView
+            style="@style/BottomDialogTextStyle"
+            android:text="@string/context_action_launch" />
+
+    </LinearLayout>
 
 </LinearLayout>
