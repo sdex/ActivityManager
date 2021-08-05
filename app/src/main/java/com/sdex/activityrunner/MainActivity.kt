@@ -11,7 +11,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.ApplicationsListViewModel
@@ -47,10 +46,10 @@ class MainActivity : BaseActivity() {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-        viewModel.getItems(searchText).observe(this, Observer {
+        viewModel.getItems(searchText).observe(this) {
             adapter.submitList(it)
             progress.hide()
-        })
+        }
 
         progress.show()
 
@@ -64,10 +63,9 @@ class MainActivity : BaseActivity() {
         super.onStart()
         if (appPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
             isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-            viewModel.getItems(searchText).observe(this, Observer {
+            viewModel.getItems(searchText).observe(this) {
                 adapter.submitList(it)
-                adapter.notifyDataSetChanged()
-            })
+            }
         }
         if (!appPreferences.getTheme.equals(currentTheme)) {
             recreate()
@@ -81,9 +79,9 @@ class MainActivity : BaseActivity() {
 
     private fun filter(text: String) {
         this.searchText = text
-        viewModel.getItems(text).observe(this, Observer {
+        viewModel.getItems(text).observe(this) {
             adapter.submitList(it)
-        })
+        }
     }
 
     // https://issuetracker.google.com/issues/73289329
@@ -91,12 +89,12 @@ class MainActivity : BaseActivity() {
         if (VERSION.SDK_INT == VERSION_CODES.O) {
             if (!appPreferences.isOreoBugWarningShown) {
                 val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-                viewModel.packages.observe(this, Observer {
+                viewModel.packages.observe(this) {
                     if (it!!.isEmpty()) {
                         overridePendingTransition(0, 0)
                         startActivity(Intent(this, OreoPackageManagerBugActivity::class.java))
                     }
-                })
+                }
             }
         }
     }
