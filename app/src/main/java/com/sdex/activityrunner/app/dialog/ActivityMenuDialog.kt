@@ -48,12 +48,12 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
             showShortcutDialog(model)
             dismiss()
         }
-        action_activity_launch_with_params.visibility =
-            if (model.exported) View.VISIBLE else View.GONE
-        action_activity_launch_with_params.setOnClickListener {
-            launcher.launchActivityWithParams(model)
-            dismiss()
-        }
+//        action_activity_launch_with_params.visibility =
+//            if (model.exported) View.VISIBLE else View.GONE
+//        action_activity_launch_with_params.setOnClickListener {
+//            launcher.launchActivityWithParams(model)
+//            dismiss()
+//        }
         action_activity_launch_with_root.setOnClickListener {
             launcher.launchActivityWithRoot(model)
             dismiss()
@@ -62,12 +62,12 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int {
         val typedValue = TypedValue()
-        activity!!.theme.resolveAttribute(R.attr.bottomDialogStyle, typedValue, true)
+        requireActivity().theme.resolveAttribute(R.attr.bottomDialogStyle, typedValue, true)
         return typedValue.data
     }
 
     private fun showShortcutDialog(item: ActivityModel) {
-        AddShortcutDialogActivity.start(context!!, item)
+        AddShortcutDialogActivity.start(requireContext(), item)
     }
 
     companion object {

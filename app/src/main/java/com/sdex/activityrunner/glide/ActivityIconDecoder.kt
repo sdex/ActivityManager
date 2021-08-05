@@ -11,24 +11,23 @@ import com.bumptech.glide.load.resource.drawable.DrawableResource
 import com.bumptech.glide.util.Util
 import com.sdex.activityrunner.app.ActivityModel
 
-internal class ActivityIconDecoder(private val context: Context) :
-    ResourceDecoder<ActivityModel, Drawable> {
+internal class ActivityIconDecoder(
+    private val context: Context
+) : ResourceDecoder<ActivityModel, Drawable> {
 
     override fun decode(
         source: ActivityModel, width: Int, height: Int,
         options: Options
-    ): Resource<Drawable>? {
+    ): Resource<Drawable> {
         val packageManager = context.packageManager
-        var icon: Drawable
-        try {
+        val icon = try {
             val intent = Intent()
             intent.component = source.componentName
             val resolveInfo = packageManager.resolveActivity(intent, 0)
-            icon = resolveInfo.loadIcon(packageManager)
+            resolveInfo?.loadIcon(packageManager) ?: packageManager.defaultActivityIcon
         } catch (e: Exception) {
-            icon = packageManager.defaultActivityIcon
+            packageManager.defaultActivityIcon
         }
-
         return object : DrawableResource<Drawable>(icon) {
             override fun getResourceClass(): Class<Drawable> {
                 return Drawable::class.java
