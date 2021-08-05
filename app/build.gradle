@@ -109,7 +109,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
-    implementation "com.google.android.material:material:1.2.0-alpha05"
+    implementation "com.google.android.material:material:1.4.0"
     implementation "com.simplecityapps:recyclerview-fastscroll:2.0.0"
     implementation "com.tomergoldst.android:tooltips:1.0.11"
 
