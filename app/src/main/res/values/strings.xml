@@ -141,12 +141,14 @@
     <string name="settings_error_root_not_active">You need to enable ROOT operations</string>
 
     <string-array name="pref_appearance_theme_list_titles">
+        <item>System</item>
         <item>Light</item>
         <item>Dark</item>
     </string-array>
     <string-array name="pref_appearance_theme_list_values">
-        <item>0</item>
+        <item>-1</item>
         <item>1</item>
+        <item>2</item>
     </string-array>
 
     <plurals name="history_records">

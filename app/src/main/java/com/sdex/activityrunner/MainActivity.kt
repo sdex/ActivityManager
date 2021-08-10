@@ -26,9 +26,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
+    private val viewModel by viewModels<ApplicationsListViewModel>()
+
     private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
     private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
-    private val viewModel: ApplicationsListViewModel by viewModels()
 
     private var isShowSystemAppIndicator: Boolean = false
     private var searchText: String? = null
@@ -38,6 +39,7 @@ class MainActivity : BaseActivity() {
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(appPreferences.getTheme?.toInt() ?: -1)
         super.onCreate(savedInstanceState)
 
         ApplicationsListJob.enqueueWork(this, Intent())
@@ -66,9 +68,6 @@ class MainActivity : BaseActivity() {
             viewModel.getItems(searchText).observe(this) {
                 adapter.submitList(it)
             }
-        }
-        if (!appPreferences.getTheme.equals(currentTheme)) {
-            recreate()
         }
     }
 

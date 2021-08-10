@@ -2,7 +2,7 @@
 
     <style name="Base.V27.BottomSheetDialogTheme" parent="Base.V21.BottomSheetDialogTheme">
         <item name="android:navigationBarColor">@color/background</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="BottomSheetDialogTheme" parent="Base.V27.BottomSheetDialogTheme">
@@ -10,7 +10,7 @@
     </style>
 
     <style name="AppTheme" parent="Base.V0.AppTheme">
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightNavigationBar">false</item>
         <item name="android:navigationBarColor">@color/background</item>
         <item name="android:navigationBarDividerColor">@color/list_divider</item>
     </style>

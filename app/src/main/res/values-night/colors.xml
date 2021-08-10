@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="text_color_primary">#fafafa</color>
+    <color name="text_color_secondary">@color/darker_gray</color>
+    <color name="background">#222222</color>
+    <color name="card_background">#2a2a2a</color>
+    <color name="icon_tint">#e5e5e5</color>
+    <color name="list_divider">#323232</color>
+    <color name="bottom_dialog_text">#eeeeee</color>
+    <color name="scrollbar_background">#2baaaaaa</color>
+    <color name="scrollbar_inactive_thumb">#9caaaaaa</color>
+
+</resources>

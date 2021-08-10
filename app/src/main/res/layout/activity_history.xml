@@ -24,8 +24,8 @@
             app:fastScrollPopupBgColor="@color/colorAccent"
             app:fastScrollPopupTextColor="@color/colorControlActivated"
             app:fastScrollThumbColor="@color/colorAccent"
-            app:fastScrollThumbInactiveColor="?attr/scrollbarThumbInactiveColor"
-            app:fastScrollTrackColor="?attr/scrollbarBackgroundColor"
+            app:fastScrollThumbInactiveColor="@color/scrollbar_inactive_thumb"
+            app:fastScrollTrackColor="@color/scrollbar_background"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="15"
             tools:listitem="@layout/item_history"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/history_empty_text"
-                android:textColor="?attr/primaryTextColor"
+                android:textColor="@color/text_color_primary"
                 android:textSize="18sp" />
 
             <Button

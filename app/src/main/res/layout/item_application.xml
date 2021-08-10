@@ -28,7 +28,7 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/primaryTextColor"
+            android:textColor="@color/text_color_primary"
             android:textSize="16sp"
             tools:text="Application name" />
 
@@ -36,9 +36,10 @@
             android:id="@+id/packageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/secondaryTextColor"
+            android:textColor="@color/text_color_secondary"
             android:textSize="14sp"
             tools:text="com.android.application" />
+
     </LinearLayout>
 
     <ImageView
@@ -58,6 +59,7 @@
         android:layout_height="match_parent"
         android:background="?selectableItemBackgroundBorderless"
         app:srcCompat="@drawable/ic_more_vert"
+        app:tint="@color/icon_tint"
         tools:ignore="ContentDescription" />
 
 </LinearLayout>

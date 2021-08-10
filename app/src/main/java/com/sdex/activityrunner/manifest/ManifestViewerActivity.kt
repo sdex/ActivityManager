@@ -14,14 +14,13 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.util.ThemeHelper
 import com.sdex.commons.BaseActivity
 import com.sdex.highlightjs.models.Language
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {
 
-    private val viewModel: ManifestViewModel by viewModels()
+    private val viewModel by viewModels<ManifestViewModel>()
     private var appPackageName: String? = null
 
     override fun getLayout(): Int {
@@ -42,11 +41,10 @@ class ManifestViewerActivity : BaseActivity() {
 
         progress.show()
 
-        val themeHelper = ThemeHelper()
-
         highlightView.setBackgroundColor(Color.TRANSPARENT)
         highlightView.highlightLanguage = Language.XML
-        highlightView.theme = themeHelper.getWebViewTheme(currentTheme)
+        // TODO fix webview theme
+//        highlightView.theme = themeHelper.getWebViewTheme(currentTheme)
         highlightView.setShowLineNumbers(true)
         highlightView.setZoomSupportEnabled(true)
         highlightView.setOnContentChangedListener {

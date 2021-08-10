@@ -6,5 +6,5 @@
     android:gravity="center_vertical"
     android:minHeight="30dp"
     android:textAppearance="?android:attr/textAppearanceListItem"
-    android:textColor="?attr/primaryTextColor"
+    android:textColor="@color/text_color_primary"
     tools:text="text" />

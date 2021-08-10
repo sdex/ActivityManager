@@ -1,25 +1,17 @@
 package com.sdex.commons
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import android.view.MenuItem
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.util.ThemeHelper
 
 abstract class BaseActivity : AppCompatActivity() {
-
-    private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-    var currentTheme: String? = null
 
     abstract fun getLayout(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val themeHelper = ThemeHelper()
-        currentTheme = appPreferences.getTheme
-        themeHelper.setTheme(this, currentTheme, appPreferences.isBlackTheme)
         setContentView(getLayout())
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         if (toolbar != null) {
@@ -38,14 +30,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun setTitle(title: CharSequence) {
         super.setTitle(title)
-        if (supportActionBar != null) {
-            supportActionBar!!.title = title
-        }
+        supportActionBar?.title = title
     }
 
     fun setSubtitle(subtitle: CharSequence) {
-        if (supportActionBar != null) {
-            supportActionBar!!.subtitle = subtitle
-        }
+        supportActionBar?.subtitle = subtitle
     }
 }

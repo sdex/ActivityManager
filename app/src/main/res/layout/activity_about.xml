@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/secondaryBackgroundColor"
+    android:background="@color/background_gray"
     android:orientation="vertical"
     tools:context=".AboutActivity"
     tools:ignore="ContentDescription">
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +43,7 @@
                         android:layout_height="@dimen/about_image_size"
                         android:layout_margin="4dp"
                         android:padding="8dp"
-                        android:textColor="?attr/primaryTextColor"
+                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_donation"
-                        android:textColor="?attr/primaryTextColor"
+                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toBottomOf="@+id/image_view_donate"
                         app:layout_constraintStart_toEndOf="@+id/image_view_donate"
                         app:layout_constraintTop_toTopOf="@+id/image_view_donate" />
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_contact_email"
-                        android:textColor="?attr/primaryTextColor"
+                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_feedback"
                         app:layout_constraintStart_toEndOf="@+id/image_view_feedback" />
 
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_feedback"
-                        android:textColor="?attr/secondaryTextColor"
+                        android:textColor="@color/text_color_secondary"
                         app:layout_constraintStart_toEndOf="@+id/image_view_feedback"
                         app:layout_constraintTop_toTopOf="@+id/guideline_feedback" />
 
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_open_source"
-                        android:textColor="?attr/primaryTextColor"
+                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toBottomOf="@+id/image_view_open_source"
                         app:layout_constraintStart_toEndOf="@+id/image_view_open_source"
                         app:layout_constraintTop_toTopOf="@+id/image_view_open_source" />
@@ -158,7 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -184,7 +184,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_open_privacy_policy"
-                        android:textColor="?attr/primaryTextColor"
+                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toBottomOf="@+id/image_view_privacy_policy"
                         app:layout_constraintStart_toEndOf="@+id/image_view_privacy_policy"
                         app:layout_constraintTop_toTopOf="@+id/image_view_privacy_policy" />
@@ -197,7 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -222,7 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_version"
-                        android:textColor="?attr/primaryTextColor"
+                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_version"
                         app:layout_constraintStart_toEndOf="@+id/image_view_version" />
 
@@ -237,7 +237,7 @@
                         android:id="@+id/versionName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="?attr/primaryTextColor"
+                        android:textColor="@color/text_color_primary"
                         app:layout_constraintStart_toEndOf="@+id/image_view_version"
                         app:layout_constraintTop_toTopOf="@+id/guideline_version"
                         tools:text="1.4.5 (145)" />
