@@ -27,7 +27,7 @@ class ApplicationMenuDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val model = arguments?.getSerializable(ARG_MODEL) as ApplicationModel
+        val model = requireArguments().getSerializable(ARG_MODEL) as ApplicationModel
         val packageName = model.packageName
 
         GlideApp.with(this)
@@ -73,9 +73,9 @@ class ApplicationMenuDialog : BottomSheetDialogFragment() {
 
         fun newInstance(model: ApplicationModel): ApplicationMenuDialog {
             val dialog = ApplicationMenuDialog()
-            val args = Bundle(1)
-            args.putSerializable(ARG_MODEL, model)
-            dialog.arguments = args
+            dialog.arguments = Bundle(1).apply {
+                putSerializable(ARG_MODEL, model)
+            }
             return dialog
         }
     }

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.dialog_activity_menu.*
 
 class ActivityMenuDialog : BottomSheetDialogFragment() {
 
-    private var snackbarContainerActivity: SnackbarContainerActivity? = null
+    private lateinit var snackbarContainerActivity: SnackbarContainerActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +39,9 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val model = arguments?.getSerializable(ARG_MODEL) as ActivityModel
+        val model = requireArguments().getSerializable(ARG_MODEL) as ActivityModel
 
-        val launcher = ActivityLauncher(snackbarContainerActivity!!)
+        val launcher = ActivityLauncher(snackbarContainerActivity)
 
         activity_name.text = model.name
         action_activity_add_shortcut.setOnClickListener {
@@ -78,9 +78,9 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
 
         fun newInstance(model: ActivityModel): ActivityMenuDialog {
             val dialog = ActivityMenuDialog()
-            val args = Bundle(1)
-            args.putSerializable(ARG_MODEL, model)
-            dialog.arguments = args
+            dialog.arguments = Bundle(1).apply {
+                putSerializable(ARG_MODEL, model)
+            }
             return dialog
         }
     }

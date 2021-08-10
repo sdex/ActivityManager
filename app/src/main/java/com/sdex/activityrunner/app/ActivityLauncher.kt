@@ -3,7 +3,6 @@ package com.sdex.activityrunner.app
 import android.app.Activity
 import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.extensions.config
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
@@ -11,7 +10,9 @@ import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
 
-class ActivityLauncher(private val snackbarContainerActivity: SnackbarContainerActivity) {
+class ActivityLauncher(
+    private val snackbarContainerActivity: SnackbarContainerActivity
+) {
 
     private val activity: Activity = snackbarContainerActivity.getActivity()
 
@@ -37,15 +38,14 @@ class ActivityLauncher(private val snackbarContainerActivity: SnackbarContainerA
             val runActivityTask = RunActivityTask(model.componentName)
             runActivityTask.execute()
         } else {
-            val snackbar = Snackbar.make(
+            Snackbar.make(
                 snackbarContainerActivity.getView(),
                 R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG
-            )
-            snackbar.setAction(
+            ).setAction(
                 R.string.action_settings
-            ) { SettingsActivity.start(activity) }
-            snackbar.config()
-            snackbar.show()
+            ) {
+                SettingsActivity.start(activity)
+            }.show()
         }
     }
 }
