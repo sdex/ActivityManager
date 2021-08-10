@@ -2,26 +2,31 @@ package com.sdex.activityrunner.manifest
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatDelegate
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.highlightjs.models.Language
+import com.sdex.highlightjs.models.Theme
 import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {
 
     private val viewModel by viewModels<ManifestViewModel>()
-    private var appPackageName: String? = null
+    private val appPreferences by lazy { AppPreferences(this) }
+
+    private lateinit var appPackageName: String
 
     override fun getLayout(): Int {
         return R.layout.activity_manifest_viewer
@@ -43,33 +48,41 @@ class ManifestViewerActivity : BaseActivity() {
 
         highlightView.setBackgroundColor(Color.TRANSPARENT)
         highlightView.highlightLanguage = Language.XML
-        // TODO fix webview theme
-//        highlightView.theme = themeHelper.getWebViewTheme(currentTheme)
+        highlightView.theme = if (isNightTheme(appPreferences.theme)) {
+            Theme.DARKULA
+        } else {
+            Theme.GITHUB_GIST
+        }
         highlightView.setShowLineNumbers(true)
         highlightView.setZoomSupportEnabled(true)
         highlightView.setOnContentChangedListener {
             progress.hide()
         }
 
-        appPackageName = intent.getStringExtra(ARG_PACKAGE_NAME)
+        appPackageName = intent.getStringExtra(ARG_PACKAGE_NAME) ?: ""
         var name = intent.getStringExtra(ARG_NAME)
 
-        if (appPackageName.isNullOrEmpty()) {
+        if (appPackageName.isEmpty()) {
             appPackageName = BuildConfig.APPLICATION_ID
             name = getString(R.string.app_name)
         }
 
         title = name
 
-        viewModel.loadManifest(appPackageName!!).observe(this, Observer {
+        viewModel.manifestLiveData.observe(this) {
             if (it == null) {
-                Toast.makeText(this, R.string.error_failed_to_open_manifest, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(
+                    this,
+                    R.string.error_failed_to_open_manifest,
+                    Toast.LENGTH_SHORT
+                ).show()
                 finish()
             } else {
                 highlightView.setSource(it)
             }
-        })
+        }
+
+        viewModel.loadManifest(appPackageName)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,7 +94,7 @@ class ManifestViewerActivity : BaseActivity() {
         return when (item.itemId) {
             R.id.action_share -> {
                 val shareProvider = ShareProvider()
-                shareProvider.share(this, appPackageName!!)
+                shareProvider.share(this, appPackageName)
                 true
             }
             R.id.action_help -> {
@@ -92,6 +105,12 @@ class ManifestViewerActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun isNightTheme(theme: Int) =
+        theme == AppCompatDelegate.MODE_NIGHT_YES ||
+                (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
+                        (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                                Configuration.UI_MODE_NIGHT_YES))
 
     companion object {
 

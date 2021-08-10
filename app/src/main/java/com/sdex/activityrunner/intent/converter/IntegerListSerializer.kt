@@ -1,7 +1,5 @@
 package com.sdex.activityrunner.intent.converter
 
-import java.util.*
-
 class IntegerListSerializer {
 
     fun serialize(list: List<Int>): String {

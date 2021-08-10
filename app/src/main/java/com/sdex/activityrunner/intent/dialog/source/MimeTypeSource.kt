@@ -1,7 +1,6 @@
 package com.sdex.activityrunner.intent.dialog.source
 
 import com.sdex.activityrunner.intent.param.MimeType
-import java.util.*
 
 class MimeTypeSource : SelectionDialogSource {
 

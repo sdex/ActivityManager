@@ -3,14 +3,13 @@ package com.sdex.commons.util;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-
-import androidx.annotation.DimenRes;
-import androidx.core.content.ContextCompat;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.DimenRes;
+import androidx.core.content.ContextCompat;
 
 public final class UIUtils {
 

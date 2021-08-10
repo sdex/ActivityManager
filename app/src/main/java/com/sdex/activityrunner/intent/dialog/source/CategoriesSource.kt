@@ -1,7 +1,6 @@
 package com.sdex.activityrunner.intent.dialog.source
 
 import com.sdex.activityrunner.intent.param.Category
-import java.util.*
 
 class CategoriesSource : SelectionDialogSource {
 

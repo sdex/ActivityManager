@@ -1,18 +1,13 @@
 package com.sdex.activityrunner.preferences
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 
 class AppPreferences(context: Context) {
 
-    private val preferences: SharedPreferences
-    private val userPreferences: SharedPreferences
-
-    init {
-        preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
-        userPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    }
+    private val preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+    private val userPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     var isNotExportedDialogShown: Boolean
         get() = preferences.getBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, false)
@@ -29,13 +24,10 @@ class AppPreferences(context: Context) {
     /* user preferences */
 
     val isShowSystemAppIndicator: Boolean
-        get() = userPreferences.getBoolean(
-            KEY_SHOW_SYSTEM_APP_LABEL,
-            KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT
-        )
+        get() = userPreferences.getBoolean(KEY_SHOW_SYSTEM_APP_LABEL, false)
 
     var showNotExported: Boolean
-        get() = userPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, KEY_SHOW_NOT_EXPORTED_DEFAULT)
+        get() = userPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, false)
         set(value) {
             userPreferences.edit()
                 .putBoolean(KEY_SHOW_NOT_EXPORTED, value)
@@ -43,13 +35,11 @@ class AppPreferences(context: Context) {
         }
 
     val isRootIntegrationEnabled: Boolean
-        get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, KEY_ROOT_INTEGRATION_DEFAULT)
+        get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, false)
 
-    val getTheme: String?
-        get() = userPreferences.getString(KEY_THEME, KEY_THEME_DEFAULT)
-
-    val isBlackTheme: Boolean
-        get() = userPreferences.getBoolean(KEY_THEME_BLACK, KEY_THEME_BLACK_DEFAULT)
+    val theme: Int
+        get() = userPreferences.getString(KEY_THEME, null)?.toInt()
+            ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 
     companion object {
 
@@ -59,14 +49,8 @@ class AppPreferences(context: Context) {
 
         /* advanced preferences */
         private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
-        private const val KEY_SHOW_NOT_EXPORTED_DEFAULT = false
-        const val KEY_ROOT_INTEGRATION = "advanced_root_integration"
-        private const val KEY_ROOT_INTEGRATION_DEFAULT = false
         private const val KEY_SHOW_SYSTEM_APP_LABEL = "advanced_system_app"
-        private const val KEY_SHOW_SYSTEM_APP_LABEL_DEFAULT = false
+        const val KEY_ROOT_INTEGRATION = "advanced_root_integration"
         const val KEY_THEME = "appearance_theme"
-        private const val KEY_THEME_DEFAULT = "-1"
-        const val KEY_THEME_BLACK = "appearance_theme_black"
-        private const val KEY_THEME_BLACK_DEFAULT = false
     }
 }

@@ -26,7 +26,6 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.activity_intent_builder.*
-import java.util.*
 import kotlin.properties.Delegates
 
 class IntentBuilderActivity : BaseActivity(),
