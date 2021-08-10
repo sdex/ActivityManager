@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/secondaryBackgroundColor"
+    android:background="@color/background_gray"
     android:orientation="vertical"
     tools:context=".intent.IntentBuilderActivity"
     tools:ignore="ContentDescription">
@@ -31,7 +31,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
                     <LinearLayout
@@ -47,13 +47,13 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="?attr/primaryTextColor"
+                            android:textColor="@color/text_color_primary"
                             android:text="@string/launch_param_action" />
 
                         <TextView
                             android:id="@+id/actionView"
                             android:layout_width="match_parent"
-                            android:textColor="?attr/primaryTextColor"
+                            android:textColor="@color/text_color_primary"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceListItem"
                             tools:text="android.intent.action.MAIN" />
@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
                     <LinearLayout
@@ -85,7 +85,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:textColor="?attr/primaryTextColor"
+                                android:textColor="@color/text_color_primary"
                                 android:layout_height="wrap_content"
                                 android:text="@string/launch_param_data" />
 
@@ -93,7 +93,7 @@
                                 android:id="@+id/dataView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="?attr/primaryTextColor"
+                                android:textColor="@color/text_color_primary"
                                 android:textAppearance="?android:attr/textAppearanceListItem"
                                 tools:text="122" />
                         </LinearLayout>
@@ -101,7 +101,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="?attr/listDividerColor" />
+                            android:background="@color/list_divider" />
 
                         <LinearLayout
                             android:id="@+id/linearLayout4"
@@ -116,14 +116,14 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="?attr/primaryTextColor"
+                                android:textColor="@color/text_color_primary"
                                 android:text="@string/launch_param_mime_type" />
 
                             <TextView
                                 android:id="@+id/mimeTypeView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="?attr/primaryTextColor"
+                                android:textColor="@color/text_color_primary"
                                 android:textAppearance="?android:attr/textAppearanceListItem"
                                 tools:text="image/png" />
                         </LinearLayout>
@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
                     <LinearLayout
@@ -154,7 +154,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:textColor="?attr/primaryTextColor"
+                            android:textColor="@color/text_color_primary"
                             android:text="@string/launch_param_extras" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -175,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
                     <LinearLayout
@@ -192,7 +192,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:textColor="?attr/primaryTextColor"
+                            android:textColor="@color/text_color_primary"
                             android:text="@string/launch_param_categories" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -213,7 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="?attr/amCardBackgroundColor"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
 
                     <LinearLayout
@@ -230,7 +230,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:textColor="?attr/primaryTextColor"
+                            android:textColor="@color/text_color_primary"
                             android:text="@string/launch_param_flags" />
 
                         <androidx.recyclerview.widget.RecyclerView

@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/input_key"
                 android:inputType="text"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/input_value"
                 android:inputType="text"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,42 +53,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/type_string"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
             <RadioButton
                 android:id="@+id/rb_int"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/type_int"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
             <RadioButton
                 android:id="@+id/rb_long"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/type_long"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
             <RadioButton
                 android:id="@+id/rb_float"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/type_float"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
             <RadioButton
                 android:id="@+id/rb_double"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/type_double"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
             <RadioButton
                 android:id="@+id/rb_boolean"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/type_boolean"
-                android:textColor="?attr/primaryTextColor" />
+                android:textColor="@color/text_color_primary" />
 
         </RadioGroup>
 
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/type_array"
-            android:textColor="?attr/primaryTextColor"
+            android:textColor="@color/text_color_primary"
             android:visibility="gone" />
 
     </LinearLayout>

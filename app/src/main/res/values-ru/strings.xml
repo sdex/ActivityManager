@@ -109,6 +109,7 @@
     <string name="settings_error_root_not_active">Нужно активировать интеграцию ROOT</string>
 
     <string-array name="pref_appearance_theme_list_titles">
+        <item>Системная</item>
         <item>Светлая</item>
         <item>Темная</item>
     </string-array>

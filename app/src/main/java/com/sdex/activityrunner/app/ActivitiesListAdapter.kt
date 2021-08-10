@@ -1,11 +1,9 @@
 package com.sdex.activityrunner.app
 
 import android.content.Context
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
@@ -26,17 +24,10 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
     private val glide: RequestManager
     private val launcher: ActivityLauncher
 
-    @ColorInt
-    private val primaryTextColor: Int
-
     init {
         val activity = snackbarContainerActivity.getActivity()
         this.glide = GlideApp.with(activity)
         this.launcher = ActivityLauncher(snackbarContainerActivity)
-
-        val typedValue = TypedValue()
-        activity.theme.resolveAttribute(R.attr.primaryTextColor, typedValue, true)
-        primaryTextColor = typedValue.data
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,14 +37,15 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindTo(getItem(position), primaryTextColor, glide, launcher)
+        holder.bindTo(getItem(position), glide, launcher)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindTo(
-            item: ActivityModel, primaryTextColor: Int,
-            glide: RequestManager, launcher: ActivityLauncher
+            item: ActivityModel,
+            glide: RequestManager,
+            launcher: ActivityLauncher
         ) {
             itemView.name.text = item.name
             itemView.packageName.text = item.componentName.shortClassName
@@ -65,12 +57,15 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
 
             val context = itemView.context
 
-            @ColorInt val color: Int = if (item.exported) {
-                primaryTextColor
-            } else {
-                ContextCompat.getColor(context, R.color.red)
-            }
-            itemView.name.setTextColor(color)
+            itemView.name.setTextColor(
+                ContextCompat.getColor(
+                    context, if (item.exported) {
+                        R.color.text_color_primary
+                    } else {
+                        R.color.red
+                    }
+                )
+            )
 
             itemView.setOnClickListener { launcher.launchActivity(item) }
 

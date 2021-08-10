@@ -32,7 +32,7 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
             snackbarContainerActivity = context
         } else {
             throw IllegalArgumentException(
-                "$context!!::class.java.simpleName not implement SnackbarContainerActivity"
+                "${context::class.java.simpleName} doesn't implement SnackbarContainerActivity"
             )
         }
     }

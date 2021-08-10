@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/input_value"
             android:inputType="text"
-            android:textColor="?attr/primaryTextColor"
+            android:textColor="@color/text_color_primary"
             tools:text="test text" />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -10,7 +10,7 @@ Activity Manager provides the list of all activities of all installed applicatio
 * Run any intent
 
 #### Limitations:
-* Activities with custon permissions cannot be run
+* Activities with custom permissions cannot be run
 
 #### Screenshots:
 

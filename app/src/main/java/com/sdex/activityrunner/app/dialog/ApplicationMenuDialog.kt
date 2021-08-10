@@ -37,20 +37,20 @@ class ApplicationMenuDialog : BottomSheetDialogFragment() {
             .into(applicationIcon)
 
         applicationName.text = model.name
-        val intent = activity!!.packageManager.getLaunchIntentForPackage(packageName)
+        val intent = requireActivity().packageManager.getLaunchIntentForPackage(packageName)
         if (intent == null) {
             action_open_app.visibility = View.GONE
         }
         action_open_app.setOnClickListener {
-            IntentUtils.launchApplication(activity!!, packageName)
+            IntentUtils.launchApplication(requireActivity(), packageName)
             dismiss()
         }
         action_open_app_manifest.setOnClickListener {
-            ManifestViewerActivity.start(activity!!, model)
+            ManifestViewerActivity.start(requireActivity(), model)
             dismiss()
         }
         action_open_app_info.setOnClickListener {
-            IntentUtils.openApplicationInfo(activity!!, packageName)
+            IntentUtils.openApplicationInfo(requireActivity(), packageName)
             dismiss()
         }
         action_open_app_play_store.setOnClickListener {
@@ -61,7 +61,7 @@ class ApplicationMenuDialog : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int {
         val typedValue = TypedValue()
-        activity!!.theme.resolveAttribute(R.attr.bottomDialogStyle, typedValue, true)
+        requireActivity().theme.resolveAttribute(R.attr.bottomDialogStyle, typedValue, true)
         return typedValue.data
     }
 

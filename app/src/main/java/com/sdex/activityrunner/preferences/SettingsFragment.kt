@@ -2,13 +2,16 @@ package com.sdex.activityrunner.preferences
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.CheckBoxPreference
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_ROOT_INTEGRATION
+import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME
+import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME_BLACK
 import com.sdex.activityrunner.util.CheckRootTask
-import com.sdex.activityrunner.util.ThemeHelper
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -19,8 +22,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val rootIntegration = findPreference(AppPreferences.KEY_ROOT_INTEGRATION)
-                as SwitchPreferenceCompat?
+        val rootIntegration = findPreference(KEY_ROOT_INTEGRATION) as SwitchPreferenceCompat?
         rootIntegration?.setOnPreferenceChangeListener { _, newValue ->
             if (newValue is Boolean) {
                 if (!newValue) {
@@ -31,20 +33,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
             return@setOnPreferenceChangeListener true
         }
 
-        val themePreference = findPreference(AppPreferences.KEY_THEME)
-                as ListPreference?
-        themePreference?.setOnPreferenceChangeListener { _, _ ->
-            activity?.recreate()
-            return@setOnPreferenceChangeListener true
-        }
-
-        val blackThemePreference = findPreference(AppPreferences.KEY_THEME_BLACK)
-                as CheckBoxPreference?
-        val isDarkTheme = themePreference?.value?.toInt() == ThemeHelper.DARK_THEME
-        blackThemePreference?.isEnabled = isDarkTheme
-
-        blackThemePreference?.setOnPreferenceChangeListener { _, _ ->
-            activity?.recreate()
+        val themePreference = findPreference(KEY_THEME) as ListPreference?
+        themePreference?.setOnPreferenceChangeListener { _, newValue ->
+            AppCompatDelegate.setDefaultNightMode(newValue.toString().toInt())
             return@setOnPreferenceChangeListener true
         }
     }

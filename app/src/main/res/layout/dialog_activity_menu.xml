@@ -13,10 +13,8 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:paddingStart="50dp"
-        android:paddingLeft="50dp"
         android:paddingTop="16dp"
         android:paddingEnd="50dp"
-        android:paddingRight="50dp"
         android:paddingBottom="16dp"
         android:textColor="@color/blue"
         android:textSize="14sp"
@@ -26,7 +24,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?attr/listDividerColor" />
+        android:background="@color/list_divider" />
 
     <LinearLayout
         android:id="@+id/action_activity_add_shortcut"
@@ -39,7 +37,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_shortcut" />
+            app:srcCompat="@drawable/ic_activity_shortcut"
+            app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -59,7 +58,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_launch_params" />
+            app:srcCompat="@drawable/ic_activity_launch_params"
+            app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -78,10 +78,13 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_launch_root" />
+            app:srcCompat="@drawable/ic_activity_launch_root"
+            app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
             android:text="@string/context_action_launch_root" />
+
     </LinearLayout>
+
 </LinearLayout>

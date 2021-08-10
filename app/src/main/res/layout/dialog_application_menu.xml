@@ -37,7 +37,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?attr/listDividerColor" />
+        android:background="@color/list_divider" />
 
     <LinearLayout
         android:id="@+id/action_open_app"
@@ -50,7 +50,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_launch" />
+            app:srcCompat="@drawable/ic_application_launch"
+            app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -69,7 +70,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_manifest" />
+            app:srcCompat="@drawable/ic_application_open_manifest"
+            app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -88,7 +90,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_info" />
+            app:srcCompat="@drawable/ic_application_open_info"
+            app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -107,7 +110,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_play" />
+            app:srcCompat="@drawable/ic_application_open_play"
+            app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
