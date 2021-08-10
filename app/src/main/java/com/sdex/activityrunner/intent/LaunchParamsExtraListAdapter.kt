@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import kotlinx.android.synthetic.main.item_launch_param_extra.view.*
-import java.util.*
 
 class LaunchParamsExtraListAdapter :
     RecyclerView.Adapter<LaunchParamsExtraListAdapter.ViewHolder>() {

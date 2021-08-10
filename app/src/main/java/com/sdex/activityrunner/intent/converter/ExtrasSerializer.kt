@@ -1,7 +1,6 @@
 package com.sdex.activityrunner.intent.converter
 
 import com.sdex.activityrunner.intent.LaunchParamsExtra
-import java.util.*
 
 class ExtrasSerializer {
 

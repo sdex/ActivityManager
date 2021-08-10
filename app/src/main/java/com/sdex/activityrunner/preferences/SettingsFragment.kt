@@ -3,14 +3,12 @@ package com.sdex.activityrunner.preferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.CheckBoxPreference
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_ROOT_INTEGRATION
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME
-import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME_BLACK
 import com.sdex.activityrunner.util.CheckRootTask
 
 class SettingsFragment : PreferenceFragmentCompat() {

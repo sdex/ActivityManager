@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.param.None
-import java.util.*
 
 class LaunchParamsListAdapter : RecyclerView.Adapter<LaunchParamsListAdapter.ViewHolder>() {
 

@@ -10,7 +10,6 @@ import android.util.Log
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
 import com.sdex.commons.pm.getActivities
-import java.util.*
 
 class ApplicationListLoader {
 

@@ -28,8 +28,8 @@ class MainActivity : BaseActivity() {
 
     private val viewModel by viewModels<ApplicationsListViewModel>()
 
-    private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-    private val adapter: ApplicationsListAdapter by lazy { ApplicationsListAdapter(this) }
+    private val appPreferences by lazy { AppPreferences(this) }
+    private val adapter by lazy { ApplicationsListAdapter(this) }
 
     private var isShowSystemAppIndicator: Boolean = false
     private var searchText: String? = null
@@ -39,7 +39,7 @@ class MainActivity : BaseActivity() {
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
-        AppCompatDelegate.setDefaultNightMode(appPreferences.getTheme?.toInt() ?: -1)
+        AppCompatDelegate.setDefaultNightMode(appPreferences.theme)
         super.onCreate(savedInstanceState)
 
         ApplicationsListJob.enqueueWork(this, Intent())

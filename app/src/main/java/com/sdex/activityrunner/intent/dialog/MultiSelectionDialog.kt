@@ -9,7 +9,6 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.dialog.source.CategoriesSource
 import com.sdex.activityrunner.intent.dialog.source.FlagsSource
 import com.sdex.commons.BaseDialogFragment
-import java.util.*
 
 class MultiSelectionDialog : BaseDialogFragment() {
 

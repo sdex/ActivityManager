@@ -1,7 +1,5 @@
 package com.sdex.activityrunner.intent.param
 
-import java.util.*
-
 object MimeType {
 
     private val mimeTypeToExtensionMap = HashMap<String, String>()

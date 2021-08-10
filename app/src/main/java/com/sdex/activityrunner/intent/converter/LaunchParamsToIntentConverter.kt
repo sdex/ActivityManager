@@ -6,7 +6,6 @@ import android.util.Log
 import com.sdex.activityrunner.intent.*
 import com.sdex.activityrunner.intent.param.Category
 import com.sdex.activityrunner.intent.param.Flag
-import java.util.*
 
 class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Converter<Intent> {
 
