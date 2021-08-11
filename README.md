@@ -3,12 +3,25 @@ The Activity class is a crucial component of any android application. An activit
 
 Activity Manager provides the list of all activities of all installed applications and ability to run them.
 
-#### Features:
+Features:
+----------
+* Discover installed apps and their activities
 * Start any exported activity
-* Start any NOT exported activity with ROOT
-* Shortcuts for activities and intents
-* Run any intent
+* Start any activity with ROOT
+* Custom shortcuts for activities
+* Manifest viewer
+* Light/Dark theme support
 
-#### Limitations:
-* Activities with custom permissions cannot be run
 
+Download:
+----------
+<div style="display:flex;">
+<a href="https://appgallery5.huawei.com/#/app/C101336719">
+    <img alt="Get it on Huawei app gallery" height="80"
+        src="docs/graphics/logos/huawei-badge.png"/>
+</a>
+</div>
+
+Join Us On
+----------
+<a href="https://twitter.com/ActivityMngrApp"><img src="docs/graphics/logos/twitter_logo_color.png" height="50px"/></a>
