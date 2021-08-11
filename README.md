@@ -12,6 +12,3 @@ Activity Manager provides the list of all activities of all installed applicatio
 #### Limitations:
 * Activities with custom permissions cannot be run
 
-#### Screenshots:
-
-![](app/art/Screenshot_1529778033.png) ![](app/art/Screenshot_1529778077.png) ![](app/art/Screenshot_1529778088.png) ![](app/art/Screenshot_1529778211.png) ![](app/art/Screenshot_1529778232.png)
