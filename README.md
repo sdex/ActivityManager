@@ -10,13 +10,11 @@ Activity Manager provides the list of all activities of all installed applicatio
 Features:
 ----------
 * Discover installed apps and their activities
-* Start any exported activity
-* Start any[1] activity with ROOT
-* Custom shortcuts for activities
-* Manifest viewer
+* Launch exported activities
+* Launch non-exported activities with ROOT
+* Create custom shortcuts for activities
+* Explore an app details with Manifest viewer
 * Light/Dark theme support
-
-> [1] an activity with a custom permission cannot be run even using root
 
 Download:
 ----------
@@ -27,6 +25,6 @@ Download:
 </a>
 </div>
 
-Join Us On
+Join Us On:
 ----------
 <a href="https://twitter.com/ActivityMngrApp"><img src="docs/graphics/logos/twitter_logo_color.png" height="50px"/></a>
