@@ -7,11 +7,12 @@ Features:
 ----------
 * Discover installed apps and their activities
 * Start any exported activity
-* Start any activity with ROOT
+* Start any[1] activity with ROOT
 * Custom shortcuts for activities
 * Manifest viewer
 * Light/Dark theme support
 
+> [1] an activity with a custom permission cannot be run even using root
 
 Download:
 ----------
