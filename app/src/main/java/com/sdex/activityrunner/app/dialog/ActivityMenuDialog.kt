@@ -2,8 +2,6 @@ package com.sdex.activityrunner.app.dialog
 
 import android.content.Context
 import android.os.Bundle
-
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +43,7 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
 
         activity_name.text = model.name
         action_activity_add_shortcut.setOnClickListener {
-            showShortcutDialog(model)
+            AddShortcutDialogActivity.start(requireContext(), model)
             dismiss()
         }
 //        action_activity_launch_with_params.visibility =
@@ -58,16 +56,6 @@ class ActivityMenuDialog : BottomSheetDialogFragment() {
             launcher.launchActivityWithRoot(model)
             dismiss()
         }
-    }
-
-    override fun getTheme(): Int {
-        val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(R.attr.bottomDialogStyle, typedValue, true)
-        return typedValue.data
-    }
-
-    private fun showShortcutDialog(item: ActivityModel) {
-        AddShortcutDialogActivity.start(requireContext(), item)
     }
 
     companion object {
