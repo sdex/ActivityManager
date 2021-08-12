@@ -14,8 +14,8 @@ class SingleSelectionDialog : BaseDialogFragment() {
     private lateinit var callback: OnItemSelectedCallback
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val type: Int = arguments!!.getInt(ARG_TYPE)
-        val initialPosition: Int = arguments!!.getInt(ARG_INITIAL_POSITION)
+        val type: Int = requireArguments().getInt(ARG_TYPE)
+        val initialPosition: Int = requireArguments().getInt(ARG_INITIAL_POSITION)
 
         val source = when (type) {
             R.string.launch_param_action -> ActionSource()
@@ -24,7 +24,7 @@ class SingleSelectionDialog : BaseDialogFragment() {
         }
 
         val list = source.list
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(requireActivity())
         builder.setSingleChoiceItems(
             list.toTypedArray(),
             initialPosition

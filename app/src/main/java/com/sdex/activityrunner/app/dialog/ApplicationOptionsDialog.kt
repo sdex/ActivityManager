@@ -15,7 +15,7 @@ import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.util.AppUtils
 import kotlinx.android.synthetic.main.dialog_application_menu.*
 
-class ApplicationMenuDialog : BottomSheetDialogFragment() {
+class ApplicationOptionsDialog : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,8 +64,8 @@ class ApplicationMenuDialog : BottomSheetDialogFragment() {
 
         private const val ARG_MODEL = "arg_model"
 
-        fun newInstance(model: ApplicationModel): ApplicationMenuDialog {
-            val dialog = ApplicationMenuDialog()
+        fun newInstance(model: ApplicationModel): ApplicationOptionsDialog {
+            val dialog = ApplicationOptionsDialog()
             dialog.arguments = Bundle(1).apply {
                 putSerializable(ARG_MODEL, model)
             }

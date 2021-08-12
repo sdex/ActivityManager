@@ -1,40 +1,35 @@
 package com.sdex.activityrunner.app
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.UIUtils
 import kotlinx.android.synthetic.main.activity_activities_list.*
 
-class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
+class ActivitiesListActivity : BaseActivity() {
 
-    private val appPreferences: AppPreferences by lazy { AppPreferences(this) }
-    private val viewModel: ActivitiesListViewModel by viewModels()
+    private val viewModel by viewModels<ActivitiesListViewModel>()
+    private val appPreferences by lazy { AppPreferences(this) }
+
+    private lateinit var appPackageName: String
 
     private var isShowNotExported: Boolean = false
-    private var appPackageName: String? = null
     private var searchText: String? = null
 
-    override fun getLayout(): Int {
-        return R.layout.activity_activities_list
-    }
+    override fun getLayout() = R.layout.activity_activities_list
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,22 +47,22 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-        viewModel.getItems(appPackageName!!).observe(this, Observer {
+        viewModel.getItems(appPackageName).observe(this) {
             adapter.submitList(it)
-            val size = it!!.size
+            val size = it.size
             setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
             if (size == 0 && searchText == null) {
                 empty.visibility = VISIBLE
             } else {
                 empty.visibility = GONE
             }
-        })
+        }
 
         isShowNotExported = appPreferences.showNotExported
 
         turnOnAdvanced.setOnClickListener {
             appPreferences.showNotExported = true
-            viewModel.reloadItems(appPackageName!!)
+            viewModel.reloadItems(appPackageName)
         }
 
         if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
@@ -80,7 +75,7 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
     override fun onStart() {
         super.onStart()
         if (appPreferences.showNotExported != isShowNotExported) {
-            viewModel.reloadItems(appPackageName!!)
+            viewModel.reloadItems(appPackageName)
         }
     }
 
@@ -128,17 +123,9 @@ class ActivitiesListActivity : BaseActivity(), SnackbarContainerActivity {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun getView(): View {
-        return container
-    }
-
-    override fun getActivity(): Activity {
-        return this
-    }
-
     private fun filter(text: String) {
         this.searchText = text
-        viewModel.filterItems(appPackageName!!, searchText)
+        viewModel.filterItems(appPackageName, searchText)
     }
 
     companion object {

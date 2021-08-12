@@ -10,11 +10,11 @@ import com.sdex.commons.BaseDialogFragment
 class EnableNotExportedActivitiesDialog : BaseDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val alertDialog = AlertDialog.Builder(activity!!)
+        val alertDialog = AlertDialog.Builder(requireActivity())
             .setTitle(R.string.dialog_enable_non_exported_title)
             .setMessage(R.string.dialog_enable_non_exported_message)
             .setPositiveButton(R.string.action_settings) { _, _ ->
-                SettingsActivity.start(activity!!)
+                SettingsActivity.start(requireActivity())
             }
             .setNegativeButton(android.R.string.cancel, null)
             .create()

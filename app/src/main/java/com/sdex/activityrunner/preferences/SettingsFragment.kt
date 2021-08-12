@@ -1,11 +1,11 @@
 package com.sdex.activityrunner.preferences
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_ROOT_INTEGRATION
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME
@@ -52,12 +52,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun checkRoot(rootIntegration: SwitchPreferenceCompat) {
         val checkRootTask = CheckRootTask(object : CheckRootTask.Callback {
             override fun onStatusChanged(status: Int) {
-                if (activity != null && !activity!!.isFinishing && isAdded) {
+                val activity = activity
+                if (activity != null && !activity.isFinishing && isAdded) {
                     if (status != CheckRootTask.RESULT_OK) {
                         rootIntegration.isChecked = false
-                        Toast.makeText(
-                            activity, R.string.settings_error_root_not_granted,
-                            Toast.LENGTH_SHORT
+                        Snackbar.make(
+                            activity.findViewById(android.R.id.content),
+                            R.string.settings_error_root_not_granted,
+                            Snackbar.LENGTH_LONG
                         ).show()
                     }
                 }

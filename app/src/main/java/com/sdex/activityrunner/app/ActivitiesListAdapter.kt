@@ -13,22 +13,17 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.app.dialog.ActivityMenuDialog
+import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.glide.GlideApp
-import com.sdex.activityrunner.ui.SnackbarContainerActivity
+import com.sdex.commons.BaseActivity
 import kotlinx.android.synthetic.main.item_activity.view.*
 
-class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity) :
-    ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class ActivitiesListAdapter(
+    activity: BaseActivity
+) : ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    private val glide: RequestManager
-    private val launcher: ActivityLauncher
-
-    init {
-        val activity = snackbarContainerActivity.getActivity()
-        this.glide = GlideApp.with(activity)
-        this.launcher = ActivityLauncher(snackbarContainerActivity)
-    }
+    private val glide = GlideApp.with(activity)
+    private val launcher = ActivityLauncher(activity)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -37,12 +32,12 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindTo(getItem(position), glide, launcher)
+        holder.bind(getItem(position), glide, launcher)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindTo(
+        fun bind(
             item: ActivityModel,
             glide: RequestManager,
             launcher: ActivityLauncher
@@ -79,29 +74,28 @@ class ActivitiesListAdapter(snackbarContainerActivity: SnackbarContainerActivity
 
         private fun showActivityMenu(context: Context, model: ActivityModel) {
             val activity = context as FragmentActivity
-            val dialog = ActivityMenuDialog.newInstance(model)
-            dialog.show(activity.supportFragmentManager, ActivityMenuDialog.TAG)
+            val dialog = ActivityOptionsDialog.newInstance(model)
+            dialog.show(activity.supportFragmentManager, ActivityOptionsDialog.TAG)
         }
     }
 
     companion object {
 
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<ActivityModel> =
-            object : DiffUtil.ItemCallback<ActivityModel>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ActivityModel>() {
 
-                override fun areItemsTheSame(
-                    oldItem: ActivityModel,
-                    newItem: ActivityModel
-                ): Boolean {
-                    return oldItem == newItem
-                }
-
-                override fun areContentsTheSame(
-                    oldItem: ActivityModel,
-                    newItem: ActivityModel
-                ): Boolean {
-                    return oldItem == newItem
-                }
+            override fun areItemsTheSame(
+                oldItem: ActivityModel,
+                newItem: ActivityModel
+            ): Boolean {
+                return oldItem == newItem
             }
+
+            override fun areContentsTheSame(
+                oldItem: ActivityModel,
+                newItem: ActivityModel
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

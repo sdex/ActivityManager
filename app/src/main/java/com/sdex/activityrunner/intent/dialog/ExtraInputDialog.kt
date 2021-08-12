@@ -18,10 +18,10 @@ class ExtraInputDialog : BaseDialogFragment() {
     private lateinit var callback: OnKeyValueInputDialogCallback
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val initialExtra = arguments!!.getParcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
-        val position = arguments!!.getInt(ARG_POSITION)
+        val initialExtra = requireArguments().getParcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
+        val position = requireArguments().getInt(ARG_POSITION)
 
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(requireActivity())
         val view = View.inflate(activity, R.layout.dialog_input_extra, null)
 
         if (initialExtra != null) {
