@@ -6,15 +6,12 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.activityrunner.ui.SnackbarContainerActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RunActivityTask
 
 class ActivityLauncher(
-    private val snackbarContainerActivity: SnackbarContainerActivity
+    private val activity: Activity
 ) {
-
-    private val activity: Activity = snackbarContainerActivity.getActivity()
 
     fun launchActivity(model: ActivityModel) {
         if (model.exported) {
@@ -39,8 +36,9 @@ class ActivityLauncher(
             runActivityTask.execute()
         } else {
             Snackbar.make(
-                snackbarContainerActivity.getView(),
-                R.string.settings_error_root_not_active, Snackbar.LENGTH_LONG
+                activity.findViewById(android.R.id.content),
+                R.string.settings_error_root_not_active,
+                Snackbar.LENGTH_LONG
             ).setAction(
                 R.string.action_settings
             ) {

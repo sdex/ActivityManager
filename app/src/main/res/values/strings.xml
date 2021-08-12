@@ -29,7 +29,7 @@
     <string name="starting_activity_intent_failed">Failed to start activity</string>
 
     <!-- activities list -->
-    <string name="activities_list_empty_text">There is non exported activities</string>
+    <string name="activities_list_empty_text">There are no non-exported activities</string>
     <string name="activities_list_empty_action">turn on advanced mode</string>
 
     <string name="action_about">About</string>

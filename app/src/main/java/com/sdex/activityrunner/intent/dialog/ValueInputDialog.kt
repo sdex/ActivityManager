@@ -15,10 +15,10 @@ class ValueInputDialog : BaseDialogFragment() {
     private lateinit var callback: OnValueInputDialogCallback
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val type: Int = arguments!!.getInt(ARG_TYPE)
-        val initialValue: String = arguments!!.getString(ARG_INITIAL_VALUE, "")
+        val type: Int = requireArguments().getInt(ARG_TYPE)
+        val initialValue: String = requireArguments().getString(ARG_INITIAL_VALUE, "")
 
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(requireActivity())
         val view = View.inflate(activity, R.layout.dialog_input_value, null)
 
         view.valueView.setText(initialValue)

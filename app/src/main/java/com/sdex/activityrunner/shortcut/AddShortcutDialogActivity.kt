@@ -92,11 +92,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
             }
 
             activityModel?.let {
-                activityModel.name = shortcutName
+                val model = it.copy(name = shortcutName)
                 if (bitmap != null) {
-                    IntentUtils.createLauncherIcon(this, activityModel, bitmap!!)
+                    IntentUtils.createLauncherIcon(this, model, bitmap!!)
                 } else {
-                    IntentUtils.createLauncherIcon(this, activityModel)
+                    IntentUtils.createLauncherIcon(this, model)
                 }
             }
 

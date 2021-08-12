@@ -59,8 +59,6 @@
 
         <activity android:name=".AboutActivity" />
 
-        <activity android:name=".app.legacy.OreoPackageManagerBugActivity" />
-
         <activity
             android:name=".preferences.SettingsActivity"
             android:label="@string/settings_activity" />

@@ -16,9 +16,9 @@ class MultiSelectionDialog : BaseDialogFragment() {
     private val selectedItems = SparseBooleanArray()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val type: Int = arguments!!.getInt(ARG_TYPE)
+        val type: Int = requireArguments().getInt(ARG_TYPE)
         val initialPositions: ArrayList<Int>? =
-            arguments!!.getIntegerArrayList(ARG_INITIAL_POSITIONS)
+            requireArguments().getIntegerArrayList(ARG_INITIAL_POSITIONS)
 
         val source = when (type) {
             R.string.launch_param_categories -> CategoriesSource()
@@ -35,7 +35,7 @@ class MultiSelectionDialog : BaseDialogFragment() {
             checkedItems[i] = checked
             selectedItems.put(i, checked)
         }
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(requireActivity())
         builder.setMultiChoiceItems(
             list.toTypedArray(), checkedItems
         ) { _, which, isChecked -> selectedItems.put(which, isChecked) }

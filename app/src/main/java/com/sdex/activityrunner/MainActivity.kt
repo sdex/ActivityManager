@@ -1,20 +1,16 @@
 package com.sdex.activityrunner
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build.VERSION
-import android.os.Build.VERSION_CODES
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.lifecycle.ViewModelProvider
 import com.sdex.activityrunner.app.ApplicationsListAdapter
-import com.sdex.activityrunner.app.ApplicationsListViewModel
-import com.sdex.activityrunner.app.legacy.OreoPackageManagerBugActivity
+import com.sdex.activityrunner.app.MainViewModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
@@ -26,17 +22,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    private val viewModel by viewModels<ApplicationsListViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
 
     private val appPreferences by lazy { AppPreferences(this) }
     private val adapter by lazy { ApplicationsListAdapter(this) }
 
-    private var isShowSystemAppIndicator: Boolean = false
-    private var searchText: String? = null
-
-    override fun getLayout(): Int {
-        return R.layout.activity_main
-    }
+    override fun getLayout() = R.layout.activity_main
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(appPreferences.theme)
@@ -44,11 +35,7 @@ class MainActivity : BaseActivity() {
 
         ApplicationsListJob.enqueueWork(this, Intent())
 
-        isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-
-        searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
-
-        viewModel.getItems(searchText).observe(this) {
+        viewModel.items.observe(this) {
             adapter.submitList(it)
             progress.hide()
         }
@@ -57,44 +44,14 @@ class MainActivity : BaseActivity() {
 
         list.addDivider(this)
         list.adapter = adapter
-
-        checkOreoBug()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onStart() {
         super.onStart()
-        if (appPreferences.isShowSystemAppIndicator != isShowSystemAppIndicator) {
-            isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-            viewModel.getItems(searchText).observe(this) {
-                adapter.submitList(it)
-            }
-        }
-    }
-
-    public override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString(STATE_SEARCH_TEXT, searchText)
-    }
-
-    private fun filter(text: String) {
-        this.searchText = text
-        viewModel.getItems(text).observe(this) {
-            adapter.submitList(it)
-        }
-    }
-
-    // https://issuetracker.google.com/issues/73289329
-    private fun checkOreoBug() {
-        if (VERSION.SDK_INT == VERSION_CODES.O) {
-            if (!appPreferences.isOreoBugWarningShown) {
-                val viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-                viewModel.packages.observe(this) {
-                    if (it!!.isEmpty()) {
-                        overridePendingTransition(0, 0)
-                        startActivity(Intent(this, OreoPackageManagerBugActivity::class.java))
-                    }
-                }
-            }
+        if (appPreferences.isShowSystemAppIndicator != adapter.isShowSystemAppIndicator) {
+            adapter.isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+            adapter.notifyDataSetChanged()
         }
     }
 
@@ -105,8 +62,9 @@ class MainActivity : BaseActivity() {
         val hint = getString(R.string.action_search_hint)
         searchView.queryHint = hint
 
-        if (!TextUtils.isEmpty(searchText)) {
-            searchView.post { searchView.setQuery(searchText, false) }
+        val searchQuery = viewModel.searchQuery.value
+        if (!searchQuery.isNullOrEmpty()) {
+            searchView.post { searchView.setQuery(searchQuery, false) }
             searchItem.expandActionView()
             UIUtils.setMenuItemsVisibility(menu, searchItem, false)
         }
@@ -117,7 +75,7 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                filter(newText)
+                viewModel.searchQuery.value = newText
                 return false
             }
         })
@@ -128,7 +86,6 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                searchText = null
                 UIUtils.setMenuItemsVisibility(menu, true)
                 invalidateOptionsMenu()
                 return true
@@ -156,8 +113,6 @@ class MainActivity : BaseActivity() {
     }
 
     companion object {
-
-        private const val STATE_SEARCH_TEXT = "state_search_text"
 
         init {
             AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)

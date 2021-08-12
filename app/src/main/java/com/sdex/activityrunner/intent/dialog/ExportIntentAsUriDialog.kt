@@ -18,7 +18,7 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val launchParams = arguments?.getParcelable(ARG_LAUNCH_PARAMS) as LaunchParams?
 
-        val builder = AlertDialog.Builder(activity!!)
+        val builder = AlertDialog.Builder(requireActivity())
         val view = View.inflate(activity, R.layout.dialog_export_intent_as_uri, null)
 
         val launchParamsToWebIntentConverter = LaunchParamsToWebIntentConverter(launchParams!!)
@@ -29,7 +29,7 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
             .setView(view)
             .setPositiveButton(R.string.dialog_export_intent_copy) { _, _ ->
                 val clipboard =
-                    context!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+                    requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
                 val clip = ClipData.newPlainText("Intent URI", value)
                 clipboard!!.setPrimaryClip(clip)
             }

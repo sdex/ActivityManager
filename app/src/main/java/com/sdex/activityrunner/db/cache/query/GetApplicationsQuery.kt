@@ -2,7 +2,9 @@ package com.sdex.activityrunner.db.cache.query
 
 import com.sdex.activityrunner.db.cache.ApplicationModel
 
-class GetApplicationsQuery(private val searchText: String?) {
+class GetApplicationsQuery(
+    private val searchText: String? = null
+) {
 
     private val sortBy: String = ApplicationModel.NAME
     private val sortOrder: String = "ASC"

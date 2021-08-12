@@ -3,11 +3,11 @@ package com.sdex.activityrunner.app
 import android.content.ComponentName
 import java.io.Serializable
 
-class ActivityModel constructor(
-    var name: String,
-    var packageName: String,
-    var className: String,
-    var exported: Boolean
+data class ActivityModel(
+    val name: String,
+    val packageName: String,
+    val className: String,
+    val exported: Boolean
 ) : Serializable {
 
     val componentName: ComponentName
