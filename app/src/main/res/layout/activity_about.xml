@@ -22,18 +22,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/donate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/donate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
 
@@ -60,20 +61,61 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/source_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="@dimen/about_image_size"
+                        android:layout_height="@dimen/about_image_size"
+                        android:layout_margin="4dp"
+                        android:padding="8dp"
+                        android:textColor="@color/text_color_primary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_about_open_source"
+                        app:tint="@color/icon_tint" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_source_code"
+                        android:textColor="@color/text_color_primary"
+                        app:layout_constraintBottom_toBottomOf="@+id/icon"
+                        app:layout_constraintStart_toEndOf="@+id/icon"
+                        app:layout_constraintTop_toTopOf="@+id/icon" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/issues_tracker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/card_background"
+                app:cardCornerRadius="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
 
@@ -86,12 +128,13 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_about_feedback" />
+                        app:srcCompat="@drawable/ic_about_open_source"
+                        app:tint="@color/icon_tint" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/about_contact_email"
+                        android:text="@string/about_issues_tracker"
                         android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_feedback"
                         app:layout_constraintStart_toEndOf="@+id/image_view_feedback" />
@@ -113,20 +156,20 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/openSource"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/openSource"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
 
@@ -139,7 +182,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_about_open_source" />
+                        app:srcCompat="@drawable/ic_about_open_source"
+                        app:tint="@color/icon_tint" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -152,20 +196,20 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/privacyPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/privacyPolicy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
 
@@ -178,7 +222,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_about_privacy_policy" />
+                        app:srcCompat="@drawable/ic_about_privacy_policy"
+                        app:tint="@color/icon_tint" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -191,19 +236,20 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
 
@@ -216,7 +262,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_about_version" />
+                        app:srcCompat="@drawable/ic_about_version"
+                        app:tint="@color/icon_tint" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -244,7 +291,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <View
                 android:layout_width="match_parent"

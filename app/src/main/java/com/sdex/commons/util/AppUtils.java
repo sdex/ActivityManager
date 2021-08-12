@@ -10,7 +10,8 @@ import android.widget.Toast;
 public class AppUtils {
 
     public static final String PP = "https://cdn.rawgit.com/sdex/docs/58d79c9/am_pp_2.html";
-    public static final String EMAIL = "activitymanagerapp@gmail.com";
+    public static final String REPOSITORY = "https://github.com/sdex/ActivityManager";
+    public static final String ISSUES_TRACKER = REPOSITORY + "/issues";
 
     public static void openLink(Context context, String url) {
         try {
@@ -18,10 +19,6 @@ public class AppUtils {
         } catch (Exception e) {
             Toast.makeText(context, "Failed to open link", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public static void sendFeedback(Context context) {
-        sendEmail(context, EMAIL, "ActivityManager app feedback", "");
     }
 
     public static void sendEmail(Context context, String address, String subject, String text) {
