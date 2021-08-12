@@ -1,7 +1,6 @@
 package com.sdex.activityrunner.app.dialog
 
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,12 +56,6 @@ class ApplicationMenuDialog : BottomSheetDialogFragment() {
             AppUtils.openPlayStore(context, packageName)
             dismiss()
         }
-    }
-
-    override fun getTheme(): Int {
-        val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(R.attr.bottomDialogStyle, typedValue, true)
-        return typedValue.data
     }
 
     companion object {
