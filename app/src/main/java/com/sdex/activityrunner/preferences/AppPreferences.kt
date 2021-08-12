@@ -37,6 +37,7 @@ class AppPreferences(context: Context) {
     val isRootIntegrationEnabled: Boolean
         get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, false)
 
+    @AppCompatDelegate.NightMode
     val theme: Int
         get() = userPreferences.getString(KEY_THEME, null)?.toInt()
             ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM

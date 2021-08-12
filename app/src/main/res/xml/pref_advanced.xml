@@ -29,7 +29,6 @@
             android:entries="@array/pref_appearance_theme_list_titles"
             android:entryValues="@array/pref_appearance_theme_list_values"
             android:key="appearance_theme"
-            android:summary="@string/pref_appearance_theme_summary"
             android:title="@string/pref_appearance_theme_title" />
 
     </androidx.preference.PreferenceCategory>

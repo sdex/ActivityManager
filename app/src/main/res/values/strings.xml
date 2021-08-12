@@ -125,9 +125,6 @@
     <!-- settings -->
     <string name="pref_header_appearance">Appearance</string>
     <string name="pref_appearance_theme_title">Theme</string>
-    <string name="pref_appearance_theme_summary">Set application theme</string>
-    <string name="pref_appearance_theme_black_title">True black color</string>
-    <string name="pref_appearance_theme_black_summary">For AMOLED screens</string>
 
     <string name="pref_header_advanced">Advanced</string>
     <string name="pref_advanced_system_apps_title">Show system app indicator</string>
