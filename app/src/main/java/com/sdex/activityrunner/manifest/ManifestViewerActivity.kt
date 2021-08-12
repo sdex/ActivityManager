@@ -106,7 +106,7 @@ class ManifestViewerActivity : BaseActivity() {
         }
     }
 
-    private fun isNightTheme(theme: Int) =
+    private fun isNightTheme(@AppCompatDelegate.NightMode theme: Int) =
         theme == AppCompatDelegate.MODE_NIGHT_YES ||
                 (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
                         (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==

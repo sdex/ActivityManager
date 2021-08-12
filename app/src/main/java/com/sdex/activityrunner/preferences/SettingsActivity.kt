@@ -9,9 +9,7 @@ import com.sdex.commons.BaseActivity
 
 class SettingsActivity : BaseActivity() {
 
-    override fun getLayout(): Int {
-        return R.layout.activity_settings
-    }
+    override fun getLayout() = R.layout.activity_settings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

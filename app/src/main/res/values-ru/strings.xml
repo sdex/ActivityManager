@@ -93,9 +93,6 @@
     <!-- settings -->
     <string name="pref_header_appearance">Внешний вид</string>
     <string name="pref_appearance_theme_title">Тема</string>
-    <string name="pref_appearance_theme_summary">Установить тему приложения</string>
-    <string name="pref_appearance_theme_black_title">Черный цвет</string>
-    <string name="pref_appearance_theme_black_summary">Для AMOLED экранов</string>
 
     <string name="pref_header_advanced">Дополнительно</string>
     <string name="pref_advanced_system_apps_title">Индикатор системных приложений</string>
