@@ -44,7 +44,7 @@
     <!-- about -->
     <string name="about_donation">Підтримати розробку</string>
     <string name="about_version">Версія</string>
-    <string name="about_contact_email">Зв\'язатися з автором</string>
+    <string name="about_issues_tracker">Зв\'язатися з автором</string>
     <string name="about_open_source">Бібліотеки з відкритим кодом</string>
 
     <string name="input_key">Введіть ключ</string>

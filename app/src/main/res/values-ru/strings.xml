@@ -53,7 +53,7 @@
     <!-- about -->
     <string name="about_donation">Поддержать разработку</string>
     <string name="about_version">Версия</string>
-    <string name="about_contact_email">Связаться с автором</string>
+    <string name="about_issues_tracker">Связаться с автором</string>
     <string name="about_feedback">Сообщить о проблеме, задать вопрос…</string>
     <string name="about_open_source">Библиотеки с открытым кодом</string>
     <string name="about_open_privacy_policy">Политика конфиденциальности</string>

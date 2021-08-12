@@ -13,9 +13,7 @@ import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : BaseActivity() {
 
-    override fun getLayout(): Int {
-        return R.layout.activity_about
-    }
+    override fun getLayout() = R.layout.activity_about
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +29,17 @@ class AboutActivity : BaseActivity() {
             dialog.show(supportFragmentManager, DonateDialog.TAG)
         }
 
-        feedback.setOnClickListener {
-            AppUtils.sendFeedback(this)
+        version.setOnClickListener {
+            val dialog = DonateDialog.newInstance()
+            dialog.show(supportFragmentManager, DonateDialog.TAG)
+        }
+
+        source_code.setOnClickListener {
+            IntentUtils.openBrowser(this, AppUtils.REPOSITORY)
+        }
+
+        issues_tracker.setOnClickListener {
+            IntentUtils.openBrowser(this, AppUtils.ISSUES_TRACKER)
         }
 
         openSource.setOnClickListener {
