@@ -11,6 +11,7 @@ import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.extensions.enableBackButton
@@ -42,7 +43,19 @@ class ActivitiesListActivity : BaseActivity() {
         title = item.name
         enableBackButton()
         list.addDivider(this)
-        val adapter = ActivitiesListAdapter(this)
+        val adapter = ActivitiesListAdapter(this).apply {
+            itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
+                override fun onItemClick(item: ActivityModel) {
+                    ActivityLauncher(this@ActivitiesListActivity).launchActivity(item)
+                }
+
+                override fun onItemLongClick(item: ActivityModel) {
+                    val dialog = ActivityOptionsDialog.newInstance(item)
+                    dialog.show(supportFragmentManager, ActivityOptionsDialog.TAG)
+                }
+
+            }
+        }
         list.adapter = adapter
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)

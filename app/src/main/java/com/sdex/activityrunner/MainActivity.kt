@@ -1,6 +1,5 @@
 package com.sdex.activityrunner
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -9,8 +8,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import com.sdex.activityrunner.app.ActivitiesListActivity
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.MainViewModel
+import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
+import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDivider
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
@@ -25,7 +27,7 @@ class MainActivity : BaseActivity() {
     private val viewModel by viewModels<MainViewModel>()
 
     private val appPreferences by lazy { AppPreferences(this) }
-    private val adapter by lazy { ApplicationsListAdapter(this) }
+    private lateinit var adapter: ApplicationsListAdapter
 
     override fun getLayout() = R.layout.activity_main
 
@@ -35,23 +37,35 @@ class MainActivity : BaseActivity() {
 
         ApplicationsListJob.enqueueWork(this, Intent())
 
+        adapter = ApplicationsListAdapter(this).apply {
+            isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+            itemClickListener = object : ApplicationsListAdapter.ItemClickListener {
+                override fun onItemClick(item: ApplicationModel) {
+                    ActivitiesListActivity.start(this@MainActivity, item)
+                }
+
+                override fun onItemLongClick(item: ApplicationModel) {
+                    val dialog = ApplicationOptionsDialog.newInstance(item)
+                    dialog.show(supportFragmentManager, ApplicationOptionsDialog.TAG)
+                }
+            }
+        }
+
+        list.addDivider(this)
+        list.adapter = adapter
+
         viewModel.items.observe(this) {
             adapter.submitList(it)
             progress.hide()
         }
 
         progress.show()
-
-        list.addDivider(this)
-        list.adapter = adapter
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onStart() {
         super.onStart()
         if (appPreferences.isShowSystemAppIndicator != adapter.isShowSystemAppIndicator) {
             adapter.isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-            adapter.notifyDataSetChanged()
         }
     }
 

@@ -1,11 +1,9 @@
 package com.sdex.activityrunner.app
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,13 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.sdex.activityrunner.R
-import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
+import com.sdex.activityrunner.databinding.ItemApplicationBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
-import com.sdex.activityrunner.preferences.AppPreferences
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-import kotlinx.android.synthetic.main.item_application.view.*
 
 class ApplicationsListAdapter(
     activity: FragmentActivity
@@ -27,18 +22,23 @@ class ApplicationsListAdapter(
     FastScrollRecyclerView.SectionedAdapter {
 
     private val glide = GlideApp.with(activity)
-    private val appPreferences = AppPreferences(activity)
 
-    var isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+    var isShowSystemAppIndicator: Boolean = false
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    var itemClickListener: ItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_application, parent, false)
-        return AppViewHolder(view)
+        return AppViewHolder(ItemApplicationBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-        holder.bind(getItem(position), glide, isShowSystemAppIndicator)
+        holder.bind(getItem(position), glide, isShowSystemAppIndicator, itemClickListener)
     }
 
     override fun getSectionName(position: Int): String {
@@ -46,44 +46,42 @@ class ApplicationsListAdapter(
         return if (name.isNullOrEmpty()) "" else name.first().uppercaseChar().toString()
     }
 
-    class AppViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    interface ItemClickListener {
+
+        fun onItemClick(item: ApplicationModel)
+
+        fun onItemLongClick(item: ApplicationModel)
+    }
+
+    class AppViewHolder(
+        private val binding: ItemApplicationBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
             item: ApplicationModel,
             glide: RequestManager,
-            isShowSystemAppIndicator: Boolean
+            isShowSystemAppIndicator: Boolean,
+            itemClickListener: ItemClickListener?,
         ) {
-            itemView.name.text = item.name
-            itemView.packageName.text = item.packageName
-
-            val context = itemView.context
-
-            itemView.system.visibility =
-                if (item.system && isShowSystemAppIndicator) {
-                    VISIBLE
-                } else {
-                    INVISIBLE
-                }
+            binding.name.text = item.name
+            binding.packageName.text = item.packageName
+            binding.system.isInvisible = !(item.system && isShowSystemAppIndicator)
 
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .into(itemView.icon)
+                .into(binding.icon)
 
-            itemView.setOnClickListener { ActivitiesListActivity.start(context, item) }
-
-            itemView.setOnLongClickListener {
-                showApplicationMenu(context, item)
+            binding.root.setOnClickListener {
+                itemClickListener?.onItemClick(item)
+            }
+            binding.root.setOnLongClickListener {
+                itemClickListener?.onItemLongClick(item)
                 true
             }
-
-            itemView.appMenu.setOnClickListener { showApplicationMenu(context, item) }
-        }
-
-        private fun showApplicationMenu(context: Context, model: ApplicationModel) {
-            val activity = context as FragmentActivity
-            val dialog = ApplicationOptionsDialog.newInstance(model)
-            dialog.show(activity.supportFragmentManager, ApplicationOptionsDialog.TAG)
+            binding.appMenu.setOnClickListener {
+                itemClickListener?.onItemLongClick(item)
+            }
         }
     }
 
