@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
@@ -113,7 +114,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
         bitmap = null
     }
 
-    @Suppress("DEPRECATION")
     private fun showTooltip() {
         val preferences = TooltipPreferences(this)
         if (preferences.showChangeIcon) {
@@ -122,7 +122,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
                     this@AddShortcutDialogActivity,
                     icon, content, "Tap to change the icon", ToolTip.POSITION_BELOW
                 )
-                builder.setBackgroundColor(resources.getColor(R.color.colorAccent))
+                builder.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this@AddShortcutDialogActivity, R.color.colorAccent
+                    )
+                )
                 builder.setTextAppearance(R.style.TooltipTextAppearance)
                 toolTipsManager.show(builder.build())
                 preferences.showChangeIcon = false

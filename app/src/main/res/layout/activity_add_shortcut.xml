@@ -30,8 +30,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
         tools:ignore="ContentDescription"
-        tools:src="@mipmap/ic_launcher"
-        tools:visibility="invisible" />
+        tools:src="@tools:sample/avatars"
+        tools:visibility="visible" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/value_layout"
@@ -83,5 +83,16 @@
         app:layout_constraintStart_toStartOf="@+id/icon"
         app:layout_constraintTop_toTopOf="@+id/icon"
         tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="@+id/icon"
+        app:tint="@color/white"
+        android:background="@drawable/background_edit_icon_indicator"
+        app:srcCompat="@drawable/ic_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
