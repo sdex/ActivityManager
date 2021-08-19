@@ -28,9 +28,7 @@ class ManifestViewerActivity : BaseActivity() {
 
     private lateinit var appPackageName: String
 
-    override fun getLayout(): Int {
-        return R.layout.activity_manifest_viewer
-    }
+    override fun getLayout() = R.layout.activity_manifest_viewer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {

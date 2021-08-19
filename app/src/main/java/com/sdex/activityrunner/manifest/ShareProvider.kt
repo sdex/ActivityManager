@@ -22,7 +22,7 @@ class ShareProvider {
         val file = File(path)
         val uri = FileProvider.getUriForFile(activity, authority, file)
 
-        val intent = ShareCompat.IntentBuilder.from(activity)
+        val intent = ShareCompat.IntentBuilder(activity)
             .setType("text/xml")
             .setStream(uri)
             .setChooserTitle(R.string.dialog_share_title)

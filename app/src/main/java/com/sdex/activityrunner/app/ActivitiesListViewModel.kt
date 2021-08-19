@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.commons.pm.getActivities
+import com.sdex.commons.pm.getPackageInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -57,22 +57,16 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
 
     @WorkerThread
     private fun getActivitiesList(packageName: String): List<ActivityModel> {
-        val list = ArrayList<ActivityModel>()
         val showNotExported = appPreferences.showNotExported
         try {
-            val info = getActivities(packageManager, packageName)
-            for (activityInfo in info.activities) {
-                val activityModel = getActivityModel(activityInfo)
-                if (activityModel.exported) {
-                    list.add(activityModel)
-                } else if (showNotExported) {
-                    list.add(activityModel)
-                }
-            }
+            return getPackageInfo(packageManager, packageName).activities
+                .map { getActivityModel(it) }
+                .filter { it.exported || showNotExported }
+                .sortedBy { it.name }
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        return list.sortedBy { it.name }
+        return emptyList()
     }
 
     private fun getActivityModel(activityInfo: ActivityInfo): ActivityModel {

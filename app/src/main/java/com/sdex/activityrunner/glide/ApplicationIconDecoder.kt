@@ -17,7 +17,7 @@ internal class ApplicationIconDecoder(
     override fun decode(
         source: ApplicationModel, width: Int, height: Int,
         options: Options
-    ): Resource<Drawable>? {
+    ): Resource<Drawable> {
         val packageManager = context.packageManager
         var icon: Drawable
         try {
@@ -44,7 +44,5 @@ internal class ApplicationIconDecoder(
         }
     }
 
-    override fun handles(source: ApplicationModel, options: Options): Boolean {
-        return true
-    }
+    override fun handles(source: ApplicationModel, options: Options) = true
 }

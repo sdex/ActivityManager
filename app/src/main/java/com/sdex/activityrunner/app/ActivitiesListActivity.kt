@@ -13,7 +13,7 @@ import androidx.appcompat.widget.SearchView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.extensions.addDivider
+import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.commons.BaseActivity
@@ -42,7 +42,7 @@ class ActivitiesListActivity : BaseActivity() {
         appPackageName = item.packageName
         title = item.name
         enableBackButton()
-        list.addDivider(this)
+        list.addDividerItemDecoration()
         val adapter = ActivitiesListAdapter(this).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {

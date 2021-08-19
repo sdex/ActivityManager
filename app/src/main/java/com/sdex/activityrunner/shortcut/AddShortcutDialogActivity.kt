@@ -44,9 +44,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
         val historyModel = intent?.getSerializableExtra(ARG_HISTORY_MODEL) as HistoryModel?
 
         label.setText(activityModel?.name)
-        if (label.text != null) {
-            label.setSelection(label.text!!.length)
-        }
+        label.text?.let { label.setSelection(it.length) }
 
         if (activityModel != null) {
             GlideApp.with(this)
@@ -170,7 +168,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     }
 
     private fun loadIcon(uri: Uri) {
-        val am: ActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val size = am.launcherLargeIconSize
         GlideApp.with(this)
             .asBitmap()
@@ -214,15 +212,17 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
         private const val ARG_HISTORY_MODEL = "arg_history_model"
 
         fun start(context: Context, activityModel: ActivityModel) {
-            val starter = Intent(context, AddShortcutDialogActivity::class.java)
-            starter.putExtra(ARG_ACTIVITY_MODEL, activityModel)
-            context.startActivity(starter)
+            context.startActivity(
+                Intent(context, AddShortcutDialogActivity::class.java).apply {
+                    putExtra(ARG_ACTIVITY_MODEL, activityModel)
+                }
+            )
         }
 
         fun start(context: Context, historyModel: HistoryModel) {
-            val starter = Intent(context, AddShortcutDialogActivity::class.java)
-            starter.putExtra(ARG_HISTORY_MODEL, historyModel)
-            context.startActivity(starter)
+            context.startActivity(Intent(context, AddShortcutDialogActivity::class.java).apply {
+                putExtra(ARG_HISTORY_MODEL, historyModel)
+            })
         }
     }
 }

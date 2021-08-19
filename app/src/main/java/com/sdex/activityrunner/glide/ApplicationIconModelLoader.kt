@@ -14,7 +14,7 @@ internal class ApplicationIconModelLoader :
     override fun buildLoadData(
         applicationInfo: ApplicationModel,
         width: Int, height: Int, options: Options
-    ): ModelLoader.LoadData<ApplicationModel>? {
+    ): ModelLoader.LoadData<ApplicationModel> {
         return ModelLoader.LoadData(
             ObjectKey(applicationInfo),
             object : DataFetcher<ApplicationModel> {
@@ -43,7 +43,5 @@ internal class ApplicationIconModelLoader :
             })
     }
 
-    override fun handles(applicationInfo: ApplicationModel): Boolean {
-        return true
-    }
+    override fun handles(applicationInfo: ApplicationModel) = true
 }

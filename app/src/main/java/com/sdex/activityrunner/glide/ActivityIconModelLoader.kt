@@ -8,13 +8,12 @@ import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.signature.ObjectKey
 import com.sdex.activityrunner.app.ActivityModel
 
-internal class ActivityIconModelLoader :
-    ModelLoader<ActivityModel, ActivityModel> {
+internal class ActivityIconModelLoader : ModelLoader<ActivityModel, ActivityModel> {
 
     override fun buildLoadData(
         applicationInfo: ActivityModel,
         width: Int, height: Int, options: Options
-    ): ModelLoader.LoadData<ActivityModel>? {
+    ): ModelLoader.LoadData<ActivityModel> {
         return ModelLoader.LoadData(
             ObjectKey(applicationInfo),
             object : DataFetcher<ActivityModel> {
@@ -43,7 +42,5 @@ internal class ActivityIconModelLoader :
             })
     }
 
-    override fun handles(applicationInfo: ActivityModel): Boolean {
-        return true
-    }
+    override fun handles(applicationInfo: ActivityModel) = true
 }

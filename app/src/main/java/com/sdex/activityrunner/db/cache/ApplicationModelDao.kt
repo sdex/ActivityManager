@@ -20,7 +20,7 @@ interface ApplicationModelDao {
     fun getApplicationModels(query: SupportSQLiteQuery): LiveData<List<ApplicationModel>>
 
     @Query("SELECT * FROM " + ApplicationModel.TABLE)
-    fun getApplicationModels(): MutableList<ApplicationModel>
+    fun getApplicationModels(): List<ApplicationModel>
 
     @Query("SELECT COUNT(*) FROM " + ApplicationModel.TABLE)
     fun count(): Int

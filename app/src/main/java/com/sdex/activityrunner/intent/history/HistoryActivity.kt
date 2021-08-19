@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.history.HistoryModel
-import com.sdex.activityrunner.extensions.addDivider
+import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
@@ -46,7 +46,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
         adapter = HistoryListAdapter(this)
         adapter.setHasStableIds(true)
-        list.addDivider(this)
+        list.addDividerItemDecoration()
         list.setHasFixedSize(true)
         list.adapter = adapter
         registerForContextMenu(list)

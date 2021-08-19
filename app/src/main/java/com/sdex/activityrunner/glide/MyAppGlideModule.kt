@@ -67,26 +67,22 @@ class MyAppGlideModule : AppGlideModule() {
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         registry.append(
-            ApplicationModel::class.java,
-            ApplicationModel::class.java,
+            ApplicationModel::class.java, ApplicationModel::class.java,
             applicationModelLoaderFactory
-        )
-            .append(
-                ApplicationModel::class.java,
-                Drawable::class.java,
-                ApplicationIconDecoder(context)
-            )
-        registry.append(
-            ActivityModel::class.java,
-            ActivityModel::class.java,
+        ).append(
+            ApplicationModel::class.java, Drawable::class.java,
+            ApplicationIconDecoder(context)
+        ).append(
+            ActivityModel::class.java, ActivityModel::class.java,
             activityModelLoaderFactory
+        ).append(
+            ActivityModel::class.java, Drawable::class.java,
+            ActivityIconDecoder(context)
         )
-            .append(ActivityModel::class.java, Drawable::class.java, ActivityIconDecoder(context))
     }
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         builder.setConnectivityMonitorFactory(nullConnectivityMonitorFactory)
-
         val defaultRequestOptions = RequestOptions()
             .format(getDecodeFormat(context))
         builder.setDefaultRequestOptions(defaultRequestOptions)

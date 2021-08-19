@@ -13,7 +13,7 @@ import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.MainViewModel
 import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.extensions.addDivider
+import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
@@ -51,12 +51,15 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        list.addDivider(this)
+        list.addDividerItemDecoration()
         list.adapter = adapter
 
         viewModel.items.observe(this) {
-            adapter.submitList(it)
-            progress.hide()
+            adapter.submitList(it) {
+                if (it.isNotEmpty()) {
+                    progress.hide()
+                }
+            }
         }
 
         progress.show()
@@ -73,8 +76,7 @@ class MainActivity : BaseActivity() {
         menuInflater.inflate(R.menu.main, menu)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
-        val hint = getString(R.string.action_search_hint)
-        searchView.queryHint = hint
+        searchView.queryHint = getString(R.string.action_search_hint)
 
         val searchQuery = viewModel.searchQuery.value
         if (!searchQuery.isNullOrEmpty()) {

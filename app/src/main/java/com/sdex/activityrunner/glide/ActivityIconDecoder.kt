@@ -46,7 +46,5 @@ internal class ActivityIconDecoder(
         }
     }
 
-    override fun handles(source: ActivityModel, options: Options): Boolean {
-        return true
-    }
+    override fun handles(source: ActivityModel, options: Options) = true
 }
