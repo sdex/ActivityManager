@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.util.Log
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
 import com.sdex.commons.pm.getPackageInfo
+import timber.log.Timber
 
 class ApplicationListLoader {
 
@@ -21,23 +21,23 @@ class ApplicationListLoader {
         val listToInsert = newList.toMutableList().also { it.removeAll(oldList) }
         val listToUpdate = oldList.intersect(newList).toList()
 
-        Log.d(TAG, "listToDelete ${listToDelete.size}")
-        Log.d(TAG, "listToInsert ${listToInsert.size}")
-        Log.d(TAG, "listToUpdate ${listToUpdate.size}")
+        Timber.d("listToDelete " + listToDelete.size)
+        Timber.d("listToInsert " + listToInsert.size)
+        Timber.d("listToUpdate " + listToUpdate.size)
 
         if (listToDelete.isNotEmpty()) {
             val count = applicationsModelDao.delete(listToDelete)
-            Log.d(TAG, "Deleted $count records")
+            Timber.d("Deleted $count records")
         }
 
         if (listToInsert.isNotEmpty()) {
             val ids = applicationsModelDao.insert(listToInsert)
-            Log.d(TAG, "Inserted ${ids.size} records")
+            Timber.d("Inserted ${ids.size} records")
         }
 
         if (listToUpdate.isNotEmpty()) {
             val count = applicationsModelDao.update(listToUpdate)
-            Log.d(TAG, "Updated $count records")
+            Timber.d("Updated $count records")
         }
     }
 
@@ -80,7 +80,7 @@ class ApplicationListLoader {
                 isSystemApp
             )
         } catch (e: Exception) {
-            e.printStackTrace()
+            Timber.e(e)
         }
         return null
     }

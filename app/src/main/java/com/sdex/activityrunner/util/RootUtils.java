@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 
+import timber.log.Timber;
+
 public class RootUtils {
 
     public static boolean isSuAvailable() {
@@ -39,7 +41,7 @@ public class RootUtils {
                 result = builder.toString();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
         return result;
     }

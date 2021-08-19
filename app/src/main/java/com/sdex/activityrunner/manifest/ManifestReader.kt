@@ -7,6 +7,7 @@ import android.content.res.XmlResourceParser
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import org.xmlpull.v1.XmlPullParserException
+import timber.log.Timber
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.StringWriter
@@ -29,7 +30,7 @@ class ManifestReader {
                 formatManifest2(manifest)
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Timber.e(e)
         }
         return null
     }

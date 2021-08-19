@@ -9,7 +9,6 @@ open class BaseDialogFragment : DialogFragment() {
         try {
             super.show(manager, tag)
         } catch (e: IllegalStateException) {
-            e.printStackTrace()
         }
     }
 }

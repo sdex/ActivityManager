@@ -3,7 +3,6 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
@@ -12,6 +11,7 @@ import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
 import com.sdex.commons.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_input_extra.view.*
+import timber.log.Timber
 
 class ExtraInputDialog : BaseDialogFragment() {
 
@@ -131,7 +131,7 @@ class ExtraInputDialog : BaseDialogFragment() {
                 LaunchParamsExtraType.DOUBLE -> java.lang.Double.parseDouble(value)
             }
         } catch (e: NumberFormatException) {
-            Log.d(TAG, "Failed to parse number")
+            Timber.d("Failed to parse number")
             return false
         }
 

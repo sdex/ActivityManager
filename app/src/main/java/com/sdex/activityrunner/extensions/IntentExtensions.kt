@@ -13,9 +13,7 @@ fun Intent.getFlagsList(): List<String> {
                     list.add(field.name)
                 }
             } catch (e: IllegalArgumentException) {
-                e.printStackTrace()
             } catch (e: IllegalAccessException) {
-                e.printStackTrace()
             }
         }
     }

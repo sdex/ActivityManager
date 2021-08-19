@@ -11,6 +11,7 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.commons.pm.getPackageInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -64,7 +65,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
                 .filter { it.exported || showNotExported }
                 .sortedBy { it.name }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Timber.e(e)
         }
         return emptyList()
     }

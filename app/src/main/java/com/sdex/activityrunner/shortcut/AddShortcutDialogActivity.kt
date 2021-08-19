@@ -7,7 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +28,7 @@ import com.sdex.commons.content.ContentManager
 import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
 import kotlinx.android.synthetic.main.activity_add_shortcut.*
+import timber.log.Timber
 
 class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickContentListener {
 
@@ -190,7 +190,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     }
 
     override fun onError(error: String?) {
-        Log.e(TAG, "Failed to load image: $error")
+        Timber.e(error, "Failed to load image")
         Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
         hideProgress()
     }

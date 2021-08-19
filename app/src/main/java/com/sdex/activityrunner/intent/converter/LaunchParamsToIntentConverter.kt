@@ -2,10 +2,10 @@ package com.sdex.activityrunner.intent.converter
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import com.sdex.activityrunner.intent.*
 import com.sdex.activityrunner.intent.param.Category
 import com.sdex.activityrunner.intent.param.Flag
+import timber.log.Timber
 
 class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Converter<Intent> {
 
@@ -76,7 +76,7 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
                     )
                 }
             } catch (e: NumberFormatException) {
-                Log.d(TAG, "Failed to parse number")
+                Timber.d("Failed to parse number")
             }
         }
     }
