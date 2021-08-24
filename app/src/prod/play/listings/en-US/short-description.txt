@@ -1,1 +1,1 @@
-Activity Manager provides the list of all an app's activities and ability to run them.
+Activity Manager - hidden activity launcher
