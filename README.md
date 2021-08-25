@@ -18,6 +18,11 @@ Features:
 Download:
 ----------
 <div style="display:flex;">
+<a href="https://f-droid.org/packages/com.activitymanager/">
+    <img alt="Get it on F-Droid" height="80"
+        src="docs/graphics/logos/f-droid-badge.png"/>
+</a>
+
 <a href="https://appgallery5.huawei.com/#/app/C101336719">
     <img alt="Get it on Huawei app gallery" height="80"
         src="docs/graphics/logos/huawei-badge.png"/>
