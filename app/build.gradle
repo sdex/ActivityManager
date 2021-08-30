@@ -10,8 +10,8 @@ android {
         applicationId "com.activitymanager"
         minSdkVersion 16
         targetSdkVersion 31
-        versionCode 411
-        versionName "4.1.1"
+        versionCode 412
+        versionName "4.1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
