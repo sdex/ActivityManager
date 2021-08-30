@@ -12,7 +12,7 @@ Features:
 * Launch exported activities
 * Launch non-exported activities with ROOT
 * Create custom shortcuts for activities
-* Explore an app details with Manifest viewer
+* Explore an app details with Manifest Viewer
 * Light/Dark theme support
 
 Download:

@@ -1,1 +1,1 @@
-Activity Manager - hidden activity launcher
+Hidden activity launcher
