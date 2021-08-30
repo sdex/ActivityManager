@@ -15,12 +15,6 @@ class AppPreferences(context: Context) {
             .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, value)
             .apply()
 
-    var isOreoBugWarningShown: Boolean
-        get() = preferences.getBoolean(KEY_OREO_BUG_WARNING_SHOWN, false)
-        set(value) = preferences.edit()
-            .putBoolean(KEY_OREO_BUG_WARNING_SHOWN, value)
-            .apply()
-
     /* user preferences */
 
     val isShowSystemAppIndicator: Boolean
@@ -46,7 +40,6 @@ class AppPreferences(context: Context) {
 
         private const val PREFERENCES_NAME = "ads_preferences"
         private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
-        private const val KEY_OREO_BUG_WARNING_SHOWN = "oreo_bug_warning_shown"
 
         /* advanced preferences */
         private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"

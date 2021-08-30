@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.db.cache.ApplicationModel
@@ -53,7 +52,6 @@ class ActivitiesListActivity : BaseActivity() {
                     val dialog = ActivityOptionsDialog.newInstance(item)
                     dialog.show(supportFragmentManager, ActivityOptionsDialog.TAG)
                 }
-
             }
         }
         list.adapter = adapter
@@ -64,11 +62,7 @@ class ActivitiesListActivity : BaseActivity() {
             adapter.submitList(it)
             val size = it.size
             setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
-            if (size == 0 && searchText == null) {
-                empty.visibility = VISIBLE
-            } else {
-                empty.visibility = GONE
-            }
+            empty.isVisible = (size == 0 && searchText == null)
         }
 
         isShowNotExported = appPreferences.showNotExported
@@ -101,8 +95,7 @@ class ActivitiesListActivity : BaseActivity() {
         menuInflater.inflate(R.menu.activities_list, menu)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
-        val hint = getString(R.string.action_search_activity_hint)
-        searchView.queryHint = hint
+        searchView.queryHint = getString(R.string.action_search_activity_hint)
 
         if (!TextUtils.isEmpty(searchText)) {
             searchView.post { searchView.setQuery(searchText, false) }

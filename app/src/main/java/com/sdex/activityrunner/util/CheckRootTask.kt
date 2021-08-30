@@ -4,7 +4,7 @@ import android.os.AsyncTask
 
 class CheckRootTask(private val callback: Callback) : AsyncTask<Void, Void, Int>() {
 
-    override fun doInBackground(params: Array<Void>): Int? {
+    override fun doInBackground(params: Array<Void>): Int {
         return if (RootUtils.isSuAvailable()) RESULT_OK else ACCESS_IS_NOT_GIVEN
     }
 

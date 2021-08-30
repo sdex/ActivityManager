@@ -55,8 +55,7 @@ class AboutActivity : BaseActivity() {
     companion object {
 
         fun start(context: Context) {
-            val starter = Intent(context, AboutActivity::class.java)
-            context.startActivity(starter)
+            context.startActivity(Intent(context, AboutActivity::class.java))
         }
     }
 }

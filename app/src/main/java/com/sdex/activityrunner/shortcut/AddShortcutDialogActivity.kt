@@ -206,8 +206,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
     companion object {
 
-        private const val TAG = "AddShortcutDialog"
-
         private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
         private const val ARG_HISTORY_MODEL = "arg_history_model"
 
