@@ -1,13 +1,10 @@
 package com.sdex.activityrunner.intent
 
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.sdex.activityrunner.R
-import kotlinx.android.synthetic.main.item_launch_param_extra.view.*
+import com.sdex.activityrunner.databinding.ItemLaunchParamExtraBinding
 
 class LaunchParamsExtraListAdapter :
     RecyclerView.Adapter<LaunchParamsExtraListAdapter.ViewHolder>() {
@@ -18,8 +15,7 @@ class LaunchParamsExtraListAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_launch_param_extra, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(ItemLaunchParamExtraBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -44,18 +40,24 @@ class LaunchParamsExtraListAdapter :
         fun removeItem(position: Int)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(
+        private val binding: ItemLaunchParamExtraBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: LaunchParamsExtra, callback: Callback?, viewMode: Boolean) {
-            itemView.key.text = item.key
-            itemView.value.text = item.value
+            binding.key.text = item.key
+            binding.value.text = item.value
             if (viewMode) {
-                itemView.setOnClickListener(null)
-                itemView.remove.visibility = GONE
+                binding.root.setOnClickListener(null)
+                binding.remove.isVisible = false
             } else {
-                itemView.setOnClickListener { callback?.onItemSelected(adapterPosition) }
-                itemView.remove.setOnClickListener { callback?.removeItem(adapterPosition) }
-                itemView.remove.visibility = VISIBLE
+                binding.root.setOnClickListener {
+                    callback?.onItemSelected(bindingAdapterPosition)
+                }
+                binding.remove.setOnClickListener {
+                    callback?.removeItem(bindingAdapterPosition)
+                }
+                binding.remove.isVisible = true
             }
         }
     }

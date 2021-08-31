@@ -12,6 +12,7 @@ import com.sdex.activityrunner.app.ActivitiesListActivity
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.MainViewModel
 import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
+import com.sdex.activityrunner.databinding.ActivityMainBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.intent.IntentBuilderActivity
@@ -20,20 +21,20 @@ import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.service.ApplicationsListJob
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.UIUtils
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
-
+    private lateinit var binding: ActivityMainBinding
     private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var adapter: ApplicationsListAdapter
-
-    override fun getLayout() = R.layout.activity_main
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(appPreferences.theme)
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupToolbar()
 
         ApplicationsListJob.enqueueWork(this, Intent())
 
@@ -51,18 +52,18 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        list.addDividerItemDecoration()
-        list.adapter = adapter
+        binding.list.addDividerItemDecoration()
+        binding.list.adapter = adapter
 
         viewModel.items.observe(this) {
             adapter.submitList(it) {
                 if (it.isNotEmpty()) {
-                    progress.hide()
+                    binding.progress.hide()
                 }
             }
         }
 
-        progress.show()
+        binding.progress.show()
     }
 
     override fun onStart() {

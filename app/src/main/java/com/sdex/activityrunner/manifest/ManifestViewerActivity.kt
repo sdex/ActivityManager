@@ -12,23 +12,20 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.highlightjs.models.Language
 import com.sdex.highlightjs.models.Theme
-import kotlinx.android.synthetic.main.activity_manifest_viewer.*
 
 class ManifestViewerActivity : BaseActivity() {
 
     private val viewModel by viewModels<ManifestViewModel>()
     private val appPreferences by lazy { AppPreferences(this) }
-
+    private lateinit var binding: ActivityManifestViewerBinding
     private lateinit var appPackageName: String
-
-    override fun getLayout() = R.layout.activity_manifest_viewer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
@@ -40,21 +37,25 @@ class ManifestViewerActivity : BaseActivity() {
             finish()
             return
         }
-        enableBackButton()
+        binding = ActivityManifestViewerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupToolbar(isBackButtonEnabled = true)
 
-        progress.show()
+        binding.progress.show()
 
-        highlightView.setBackgroundColor(Color.TRANSPARENT)
-        highlightView.highlightLanguage = Language.XML
-        highlightView.theme = if (isNightTheme(appPreferences.theme)) {
-            Theme.DARKULA
-        } else {
-            Theme.GITHUB_GIST
-        }
-        highlightView.setShowLineNumbers(true)
-        highlightView.setZoomSupportEnabled(true)
-        highlightView.setOnContentChangedListener {
-            progress.hide()
+        binding.highlightView.apply {
+            setBackgroundColor(Color.TRANSPARENT)
+            highlightLanguage = Language.XML
+            theme = if (isNightTheme(appPreferences.theme)) {
+                Theme.DARKULA
+            } else {
+                Theme.GITHUB_GIST
+            }
+            setShowLineNumbers(true)
+            setZoomSupportEnabled(true)
+            setOnContentChangedListener {
+                binding.progress.hide()
+            }
         }
 
         appPackageName = intent.getStringExtra(ARG_PACKAGE_NAME) ?: ""
@@ -76,7 +77,7 @@ class ManifestViewerActivity : BaseActivity() {
                 ).show()
                 finish()
             } else {
-                highlightView.setSource(it)
+                binding.highlightView.setSource(it)
             }
         }
 

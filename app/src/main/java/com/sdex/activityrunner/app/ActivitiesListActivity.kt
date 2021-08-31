@@ -11,25 +11,22 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
+import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
-import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.UIUtils
-import kotlinx.android.synthetic.main.activity_activities_list.*
 
 class ActivitiesListActivity : BaseActivity() {
 
     private val viewModel by viewModels<ActivitiesListViewModel>()
     private val appPreferences by lazy { AppPreferences(this) }
-
+    private lateinit var binding: ActivityActivitiesListBinding
     private lateinit var appPackageName: String
 
     private var isShowNotExported: Boolean = false
     private var searchText: String? = null
-
-    override fun getLayout() = R.layout.activity_activities_list
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +35,12 @@ class ActivitiesListActivity : BaseActivity() {
             finish()
             return
         }
+        binding = ActivityActivitiesListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupToolbar(isBackButtonEnabled = true)
         appPackageName = item.packageName
         title = item.name
-        enableBackButton()
-        list.addDividerItemDecoration()
+        binding.list.addDividerItemDecoration()
         val adapter = ActivitiesListAdapter(this).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
@@ -54,7 +53,7 @@ class ActivitiesListActivity : BaseActivity() {
                 }
             }
         }
-        list.adapter = adapter
+        binding.list.adapter = adapter
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
@@ -62,12 +61,12 @@ class ActivitiesListActivity : BaseActivity() {
             adapter.submitList(it)
             val size = it.size
             setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
-            empty.isVisible = (size == 0 && searchText == null)
+            binding.empty.isVisible = (size == 0 && searchText == null)
         }
 
         isShowNotExported = appPreferences.showNotExported
 
-        turnOnAdvanced.setOnClickListener {
+        binding.turnOnAdvanced.setOnClickListener {
             appPreferences.showNotExported = true
             viewModel.reloadItems(appPackageName)
         }

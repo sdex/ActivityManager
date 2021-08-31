@@ -1,21 +1,17 @@
 package com.sdex.commons
 
-import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.sdex.activityrunner.R
 
-abstract class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
-    abstract fun getLayout(): Int
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(getLayout())
+    protected fun setupToolbar(isBackButtonEnabled: Boolean = false) {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         if (toolbar != null) {
             setSupportActionBar(toolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(isBackButtonEnabled)
         }
     }
 
@@ -33,7 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
-    fun setSubtitle(subtitle: CharSequence) {
+    protected fun setSubtitle(subtitle: CharSequence) {
         supportActionBar?.subtitle = subtitle
     }
 }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.databinding.ActivityIntentAnalyzerBinding
 import com.sdex.activityrunner.extensions.getFlagsList
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter
@@ -12,29 +12,28 @@ import com.sdex.activityrunner.intent.LaunchParamsExtraType
 import com.sdex.activityrunner.intent.LaunchParamsListAdapter
 import com.sdex.activityrunner.intent.param.None
 import com.sdex.commons.BaseActivity
-import kotlinx.android.synthetic.main.activity_intent_analyzer.*
 
 class IntentAnalyzerActivity : BaseActivity() {
 
-    override fun getLayout(): Int {
-        return R.layout.activity_intent_analyzer
-    }
+    private lateinit var binding: ActivityIntentAnalyzerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableBackButton()
+        binding = ActivityIntentAnalyzerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupToolbar(isBackButtonEnabled = true)
 
-        actionView.text = intent.action ?: None.VALUE
-        dataView.text = intent.dataString ?: None.VALUE
-        mimeTypeView.text = intent.type ?: None.VALUE
+        binding.actionView.text = intent.action ?: None.VALUE
+        binding.dataView.text = intent.dataString ?: None.VALUE
+        binding.mimeTypeView.text = intent.type ?: None.VALUE
 
         val categoriesAdapter = LaunchParamsListAdapter()
         categoriesAdapter.setItems(intent.categories)
-        listCategoriesView.adapter = categoriesAdapter
+        binding.listCategoriesView.adapter = categoriesAdapter
 
         val flagsAdapter = LaunchParamsListAdapter()
         flagsAdapter.setItems(intent.getFlagsList())
-        listFlagsView.adapter = flagsAdapter
+        binding.listFlagsView.adapter = flagsAdapter
 
         val extrasAdapter = LaunchParamsExtraListAdapter()
         val extras = intent.extras
@@ -51,7 +50,7 @@ class IntentAnalyzerActivity : BaseActivity() {
             extrasAdapter.setItems(extrasList, true)
         }
         // TODO handle null case
-        listExtrasView.adapter = extrasAdapter
+        binding.listExtrasView.adapter = extrasAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

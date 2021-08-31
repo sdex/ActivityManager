@@ -9,61 +9,51 @@ import android.view.MenuItem
 import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.Observer
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.databinding.ActivityHistoryBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
-import com.sdex.activityrunner.extensions.enableBackButton
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.dialog.ExportIntentAsUriDialog
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_ADD_SHORTCUT
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
-import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.commons.BaseActivity
-import kotlinx.android.synthetic.main.activity_history.*
-import kotlin.properties.Delegates
 
 class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
-    private var appPreferences: AppPreferences by Delegates.notNull()
-    private var adapter: HistoryListAdapter by Delegates.notNull()
-
     private val viewModel: HistoryViewModel by viewModels()
-
-    override fun getLayout(): Int {
-        return R.layout.activity_history
-    }
+    private lateinit var binding: ActivityHistoryBinding
+    private lateinit var adapter: HistoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        appPreferences = AppPreferences(this)
-
-        enableBackButton()
+        binding = ActivityHistoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupToolbar(isBackButtonEnabled = true)
 
         adapter = HistoryListAdapter(this)
         adapter.setHasStableIds(true)
-        list.addDividerItemDecoration()
-        list.setHasFixedSize(true)
-        list.adapter = adapter
-        registerForContextMenu(list)
+        binding.list.addDividerItemDecoration()
+        binding.list.setHasFixedSize(true)
+        binding.list.adapter = adapter
+        registerForContextMenu(binding.list)
 
-        viewModel.list.observe(this, Observer {
+        viewModel.list.observe(this) {
             adapter.submitList(it)
             it?.let {
                 val size = it.size
                 val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
                 setSubtitle(subtitle)
                 if (size == 0) {
-                    empty.visibility = VISIBLE
+                    binding.empty.visibility = VISIBLE
                 }
             }
-        })
+        }
 
-        finish.setOnClickListener {
+        binding.finish.setOnClickListener {
             val intent = Intent(this, IntentBuilderActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
@@ -74,8 +64,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val itemId = item.itemId
         val position = adapter.contextMenuItemPosition
-        val historyModel = adapter.getItem(position)
-        if (historyModel != null) {
+        adapter.currentList?.get(position)?.let { historyModel ->
             when (itemId) {
                 MENU_ITEM_REMOVE -> viewModel.deleteItem(historyModel)
                 MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
@@ -88,8 +77,8 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     private fun showExportUriDialog(historyModel: HistoryModel) {
         val converter = HistoryToLaunchParamsConverter(historyModel)
         val launchParams = converter.convert()
-        val dialog = ExportIntentAsUriDialog.newInstance(launchParams)
-        dialog.show(supportFragmentManager, ExportIntentAsUriDialog.TAG)
+        ExportIntentAsUriDialog.newInstance(launchParams)
+            .show(supportFragmentManager, ExportIntentAsUriDialog.TAG)
     }
 
     private fun showShortcutDialog(historyModel: HistoryModel) {
@@ -107,7 +96,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
                 AlertDialog.Builder(this)
                     .setTitle(R.string.history_dialog_clear_title)
                     .setMessage(R.string.history_dialog_clear_message)
-                    .setPositiveButton(android.R.string.yes) { _, _ ->
+                    .setPositiveButton(android.R.string.ok) { _, _ ->
                         viewModel.clear()
                     }
                     .setNegativeButton(android.R.string.cancel, null)

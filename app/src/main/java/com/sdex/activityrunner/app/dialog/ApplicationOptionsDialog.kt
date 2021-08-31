@@ -7,21 +7,24 @@ import android.view.ViewGroup
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.sdex.activityrunner.R
+import com.sdex.activityrunner.databinding.DialogApplicationMenuBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.util.AppUtils
-import kotlinx.android.synthetic.main.dialog_application_menu.*
 
 class ApplicationOptionsDialog : BottomSheetDialogFragment() {
+
+    private var _binding: DialogApplicationMenuBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.dialog_application_menu, container, false)
+    ): View {
+        _binding = DialogApplicationMenuBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,29 +36,34 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
             .load(model)
             .apply(RequestOptions().fitCenter())
             .transition(DrawableTransitionOptions.withCrossFade())
-            .into(applicationIcon)
+            .into(binding.applicationIcon)
 
-        applicationName.text = model.name
+        binding.applicationName.text = model.name
         val intent = requireActivity().packageManager.getLaunchIntentForPackage(packageName)
         if (intent == null) {
-            action_open_app.visibility = View.GONE
+            binding.actionOpenApp.visibility = View.GONE
         }
-        action_open_app.setOnClickListener {
+        binding.actionOpenApp.setOnClickListener {
             IntentUtils.launchApplication(requireActivity(), packageName)
-            dismiss()
+            dismissAllowingStateLoss()
         }
-        action_open_app_manifest.setOnClickListener {
+        binding.actionOpenAppManifest.setOnClickListener {
             ManifestViewerActivity.start(requireActivity(), model)
-            dismiss()
+            dismissAllowingStateLoss()
         }
-        action_open_app_info.setOnClickListener {
+        binding.actionOpenAppInfo.setOnClickListener {
             IntentUtils.openApplicationInfo(requireActivity(), packageName)
-            dismiss()
+            dismissAllowingStateLoss()
         }
-        action_open_app_play_store.setOnClickListener {
+        binding.actionOpenAppPlayStore.setOnClickListener {
             AppUtils.openPlayStore(context, packageName)
-            dismiss()
+            dismissAllowingStateLoss()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

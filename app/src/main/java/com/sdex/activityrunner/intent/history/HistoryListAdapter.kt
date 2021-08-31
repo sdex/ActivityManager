@@ -6,12 +6,13 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.databinding.ItemHistoryBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.param.None
-import kotlinx.android.synthetic.main.item_history.view.*
 
-class HistoryListAdapter(private val callback: HistoryListAdapter.Callback) :
-    PagedListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
+class HistoryListAdapter(
+    private val callback: Callback
+) : PagedListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     var contextMenuItemPosition: Int = 0
 
@@ -20,20 +21,15 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback) :
         viewType: Int
     ): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_history, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(ItemHistoryBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position), callback)
         holder.itemView.setOnLongClickListener {
-            contextMenuItemPosition = holder.adapterPosition
+            contextMenuItemPosition = holder.bindingAdapterPosition
             false
         }
-    }
-
-    public override fun getItem(position: Int): HistoryModel? {
-        return super.getItem(position)
     }
 
     override fun getItemId(position: Int): Long {
@@ -50,22 +46,26 @@ class HistoryListAdapter(private val callback: HistoryListAdapter.Callback) :
         fun onItemClicked(item: HistoryModel, position: Int)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    class ViewHolder(
+        private val binding: ItemHistoryBinding
+    ) : RecyclerView.ViewHolder(binding.root),
         View.OnCreateContextMenuListener {
 
         fun bind(item: HistoryModel?, callback: Callback) {
             if (item != null) {
-                itemView.packageName.text = getValueOrPlaceholder(item.packageName)
-                itemView.className.text = getValueOrPlaceholder(item.className)
-                itemView.action.text = getValueOrPlaceholder(item.action)
-                itemView.data.text = getValueOrPlaceholder(item.data)
-                itemView.mimeType.text = getValueOrPlaceholder(item.mimeType)
-                itemView.extras.setText(isNotEmpty(item.extras))
-                itemView.categories.setText(isNotEmpty(item.categories))
-                itemView.flags.setText(isNotEmpty(item.flags))
+                binding.packageName.text = getValueOrPlaceholder(item.packageName)
+                binding.className.text = getValueOrPlaceholder(item.className)
+                binding.action.text = getValueOrPlaceholder(item.action)
+                binding.data.text = getValueOrPlaceholder(item.data)
+                binding.mimeType.text = getValueOrPlaceholder(item.mimeType)
+                binding.extras.setText(isNotEmpty(item.extras))
+                binding.categories.setText(isNotEmpty(item.categories))
+                binding.flags.setText(isNotEmpty(item.flags))
 
-                itemView.setOnClickListener { callback.onItemClicked(item, adapterPosition) }
-                itemView.setOnCreateContextMenuListener(this)
+                binding.root.setOnClickListener {
+                    callback.onItemClicked(item, bindingAdapterPosition)
+                }
+                binding.root.setOnCreateContextMenuListener(this)
             }
         }
 

@@ -5,37 +5,36 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.databinding.DialogExportIntentAsUriBinding
 import com.sdex.activityrunner.intent.LaunchParams
 import com.sdex.activityrunner.intent.converter.LaunchParamsToWebIntentConverter
 import com.sdex.commons.BaseDialogFragment
-import kotlinx.android.synthetic.main.dialog_export_intent_as_uri.view.*
 
 class ExportIntentAsUriDialog : BaseDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val launchParams = arguments?.getParcelable(ARG_LAUNCH_PARAMS) as LaunchParams?
 
-        val builder = AlertDialog.Builder(requireActivity())
-        val view = View.inflate(activity, R.layout.dialog_export_intent_as_uri, null)
+        val binding = DialogExportIntentAsUriBinding.inflate(requireActivity().layoutInflater)
 
         val launchParamsToWebIntentConverter = LaunchParamsToWebIntentConverter(launchParams!!)
         val value = launchParamsToWebIntentConverter.convert()
-        view.value.text = value
+        binding.value.text = value
 
-        builder.setTitle(R.string.history_item_dialog_export_uri)
-            .setView(view)
+        return AlertDialog.Builder(requireActivity())
+            .setTitle(R.string.history_item_dialog_export_uri)
+            .setView(binding.root)
             .setPositiveButton(R.string.dialog_export_intent_copy) { _, _ ->
-                val clipboard =
-                    requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+                val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE)
+                        as ClipboardManager?
                 val clip = ClipData.newPlainText("Intent URI", value)
                 clipboard!!.setPrimaryClip(clip)
             }
             .setNegativeButton(android.R.string.cancel, null)
-
-        return builder.create()
+            .create()
     }
 
     companion object {
@@ -45,11 +44,9 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
         private const val ARG_LAUNCH_PARAMS = "arg_launch_params"
 
         fun newInstance(launchParams: LaunchParams): ExportIntentAsUriDialog {
-            val args = Bundle(1)
-            args.putParcelable(ARG_LAUNCH_PARAMS, launchParams)
-            val fragment = ExportIntentAsUriDialog()
-            fragment.arguments = args
-            return fragment
+            return ExportIntentAsUriDialog().apply {
+                arguments = bundleOf(ARG_LAUNCH_PARAMS to launchParams)
+            }
         }
     }
 }

@@ -7,16 +7,18 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.view.View.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.databinding.ActivityAddShortcutBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.doAfterMeasure
 import com.sdex.activityrunner.glide.GlideApp
@@ -27,10 +29,11 @@ import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.content.ContentManager
 import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
-import kotlinx.android.synthetic.main.activity_add_shortcut.*
 import timber.log.Timber
 
 class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickContentListener {
+
+    private lateinit var binding: ActivityAddShortcutBinding
 
     private var contentManager: ContentManager? = null
     private var bitmap: Bitmap? = null
@@ -38,13 +41,14 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_shortcut)
+        binding = ActivityAddShortcutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val activityModel = intent?.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
         val historyModel = intent?.getSerializableExtra(ARG_HISTORY_MODEL) as HistoryModel?
 
-        label.setText(activityModel?.name)
-        label.text?.let { label.setSelection(it.length) }
+        binding.label.setText(activityModel?.name)
+        binding.label.text?.let { binding.label.setSelection(it.length) }
 
         if (activityModel != null) {
             GlideApp.with(this)
@@ -57,19 +61,19 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
                         transition: Transition<in Drawable>?
                     ) {
                         bitmap = resource.toBitmap()
-                        icon.setImageDrawable(resource)
+                        binding.icon.setImageDrawable(resource)
                         showTooltip()
                     }
                 })
         }
 
         if (historyModel != null) {
-            icon.setImageResource(R.mipmap.ic_launcher)
+            binding.icon.setImageResource(R.mipmap.ic_launcher)
         }
 
         contentManager = ContentManager(this, this)
 
-        icon.setOnClickListener {
+        binding.icon.setOnClickListener {
             toolTipsManager.dismissAll()
             if (activityModel != null) {
                 contentManager?.pickContent(ContentManager.Content.IMAGE)
@@ -78,15 +82,15 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
             }
         }
 
-        cancel.setOnClickListener {
+        binding.cancel.setOnClickListener {
             finish()
         }
 
-        create.setOnClickListener {
-            value_layout.error = null
-            val shortcutName = label.text.toString()
+        binding.create.setOnClickListener {
+            binding.valueLayout.error = null
+            val shortcutName = binding.label.text.toString()
             if (shortcutName.isBlank()) {
-                value_layout.error = getString(R.string.shortcut_name_empty)
+                binding.valueLayout.error = getString(R.string.shortcut_name_empty)
                 return@setOnClickListener
             }
 
@@ -115,10 +119,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     private fun showTooltip() {
         val preferences = TooltipPreferences(this)
         if (preferences.showChangeIcon) {
-            icon.doAfterMeasure {
+            binding.icon.doAfterMeasure {
                 val builder = ToolTip.Builder(
                     this@AddShortcutDialogActivity,
-                    icon, content, "Tap to change the icon", ToolTip.POSITION_BELOW
+                    binding.icon, binding.content,
+                    "Tap to change the icon", ToolTip.POSITION_BELOW
                 )
                 builder.setBackgroundColor(
                     ContextCompat.getColor(
@@ -178,19 +183,19 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
             .into(object : SimpleTarget<Bitmap>(size, size) {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     bitmap = resource
-                    icon.setImageBitmap(resource)
+                    binding.icon.setImageBitmap(resource)
                     hideProgress()
                 }
             })
     }
 
     override fun onStartContentLoading() {
-        progress.visibility = VISIBLE
-        icon.visibility = INVISIBLE
+        binding.progress.isVisible = true
+        binding.icon.isInvisible = true
     }
 
     override fun onError(error: String?) {
-        Timber.e(error, "Failed to load image")
+        Timber.e("Failed to load image: %s", error)
         Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
         hideProgress()
     }
@@ -200,8 +205,8 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
     }
 
     private fun hideProgress() {
-        progress.visibility = GONE
-        icon.visibility = VISIBLE
+        binding.progress.isVisible = false
+        binding.icon.isVisible = true
     }
 
     companion object {

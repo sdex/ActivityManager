@@ -5,19 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityLauncher
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
-import kotlinx.android.synthetic.main.dialog_activity_menu.*
 
 class ActivityOptionsDialog : BottomSheetDialogFragment() {
+
+    private var _binding: DialogActivityMenuBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.dialog_activity_menu, container, false)
+    ): View {
+        _binding = DialogActivityMenuBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,21 +29,26 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
 
         val launcher = ActivityLauncher(requireActivity())
 
-        activity_name.text = model.name
-        action_activity_add_shortcut.setOnClickListener {
+        binding.activityName.text = model.name
+        binding.actionActivityAddShortcut.setOnClickListener {
             AddShortcutDialogActivity.start(requireContext(), model)
-            dismiss()
+            dismissAllowingStateLoss()
         }
-//        action_activity_launch_with_params.visibility =
+//        binding.action_activity_launch_with_params.visibility =
 //            if (model.exported) View.VISIBLE else View.GONE
-//        action_activity_launch_with_params.setOnClickListener {
+//        binding.action_activity_launch_with_params.setOnClickListener {
 //            launcher.launchActivityWithParams(model)
-//            dismiss()
+//            dismissAllowingStateLoss()
 //        }
-        action_activity_launch_with_root.setOnClickListener {
+        binding.actionActivityLaunchWithRoot.setOnClickListener {
             launcher.launchActivityWithRoot(model)
-            dismiss()
+            dismissAllowingStateLoss()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

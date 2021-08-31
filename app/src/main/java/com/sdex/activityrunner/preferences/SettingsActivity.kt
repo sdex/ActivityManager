@@ -3,19 +3,21 @@ package com.sdex.activityrunner.preferences
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.sdex.activityrunner.R
-import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.databinding.ActivitySettingsBinding
 import com.sdex.commons.BaseActivity
 
 class SettingsActivity : BaseActivity() {
 
-    override fun getLayout() = R.layout.activity_settings
+    private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableBackButton()
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupToolbar(isBackButtonEnabled = true)
+
         supportFragmentManager.beginTransaction()
-            .replace(R.id.content, SettingsFragment())
+            .replace(binding.content.id, SettingsFragment())
             .commitNow()
     }
 

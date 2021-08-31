@@ -3,14 +3,13 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.View
-import android.widget.RadioButton
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.databinding.DialogInputExtraBinding
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
 import com.sdex.commons.BaseDialogFragment
-import kotlinx.android.synthetic.main.dialog_input_extra.view.*
 import timber.log.Timber
 
 class ExtraInputDialog : BaseDialogFragment() {
@@ -21,61 +20,66 @@ class ExtraInputDialog : BaseDialogFragment() {
         val initialExtra = requireArguments().getParcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
         val position = requireArguments().getInt(ARG_POSITION)
 
-        val builder = AlertDialog.Builder(requireActivity())
-        val view = View.inflate(activity, R.layout.dialog_input_extra, null)
+        val binding = DialogInputExtraBinding.inflate(requireActivity().layoutInflater)
 
         if (initialExtra != null) {
-            view.keyLayout.isHintAnimationEnabled = false
-            view.valueLayout.isHintAnimationEnabled = false
-            view.keyView.setText(initialExtra.key)
-            view.valueView.setText(initialExtra.value)
-            if (view.keyView.text != null) {
-                view.keyView.setSelection(view.keyView.text!!.length)
+            binding.keyLayout.isHintAnimationEnabled = false
+            binding.valueLayout.isHintAnimationEnabled = false
+            binding.keyView.setText(initialExtra.key)
+            binding.valueView.setText(initialExtra.value)
+            if (binding.keyView.text != null) {
+                binding.keyView.setSelection(binding.keyView.text!!.length)
             }
-            view.keyLayout.isHintAnimationEnabled = true
-            view.valueLayout.isHintAnimationEnabled = true
-            setSelectedType(view, initialExtra.type)
+            binding.keyLayout.isHintAnimationEnabled = true
+            binding.valueLayout.isHintAnimationEnabled = true
+            setSelectedType(binding, initialExtra.type)
         } else {
-            view.rb_string.isChecked = true
+            binding.rbString.isChecked = true
         }
-        builder.setTitle(R.string.dialog_add_extra_title)
-            .setView(view)
+
+        return AlertDialog.Builder(requireActivity())
+            .setTitle(R.string.dialog_add_extra_title)
+            .setView(binding.root)
             .setPositiveButton(android.R.string.ok, null)
             .setNegativeButton(android.R.string.cancel, null)
-        val alertDialog = builder.create()
-        alertDialog.setOnShowListener {
-            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                .setOnClickListener {
-                    val newKey = view.keyView.text.toString()
-                    val newValue = view.valueView.text.toString()
-                    val type = getSelectedType(view)
+            .create().apply {
+                setOnShowListener {
+                    getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setOnClickListener {
+                            val newKey = binding.keyView.text.toString()
+                            val newValue = binding.valueView.text.toString()
+                            val type = getSelectedType(binding)
 
-                    view.keyLayout.error = null
-                    view.valueLayout.error = null
+                            binding.keyLayout.error = null
+                            binding.valueLayout.error = null
 
-                    if (newKey.isEmpty()) {
-                        view.keyLayout.error = getString(R.string.dialog_add_extra_key_empty)
-                        view.keyView.requestFocus()
-                        return@setOnClickListener
-                    }
+                            if (newKey.isEmpty()) {
+                                binding.keyLayout.error =
+                                    getString(R.string.dialog_add_extra_key_empty)
+                                binding.keyView.requestFocus()
+                                return@setOnClickListener
+                            }
 
-                    if (newValue.isEmpty()) {
-                        view.valueLayout.error = getString(R.string.dialog_add_extra_value_empty)
-                        view.valueView.requestFocus()
-                        return@setOnClickListener
-                    }
+                            if (newValue.isEmpty()) {
+                                binding.valueLayout.error =
+                                    getString(R.string.dialog_add_extra_value_empty)
+                                binding.valueView.requestFocus()
+                                return@setOnClickListener
+                            }
 
-                    if (!isExtraFormatValid(type, newValue)) {
-                        view.valueLayout.error = getString(R.string.dialog_add_extra_type_incorrect)
-                        return@setOnClickListener
-                    }
+                            if (!isExtraFormatValid(type, newValue)) {
+                                binding.valueLayout.error =
+                                    getString(R.string.dialog_add_extra_type_incorrect)
+                                return@setOnClickListener
+                            }
 
-                    val extra = LaunchParamsExtra(newKey, newValue, type, view.array.isChecked)
-                    callback.onValueSet(extra, position)
-                    dismiss()
+                            val extra =
+                                LaunchParamsExtra(newKey, newValue, type, binding.array.isChecked)
+                            callback.onValueSet(extra, position)
+                            dismiss()
+                        }
                 }
-        }
-        return alertDialog
+            }
     }
 
     override fun onAttach(context: Context) {
@@ -85,41 +89,39 @@ class ExtraInputDialog : BaseDialogFragment() {
         } catch (e: ClassCastException) {
             throw ClassCastException("$context must implement OnKeyValueInputDialogCallback")
         }
-
     }
 
-    private fun getSelectedType(view: View): Int {
-        if (view.rb_string.isChecked) {
+    private fun getSelectedType(binding: DialogInputExtraBinding): Int {
+        if (binding.rbString.isChecked) {
             return LaunchParamsExtraType.STRING
         }
-        if (view.rb_int.isChecked) {
+        if (binding.rbInt.isChecked) {
             return LaunchParamsExtraType.INT
         }
-        if (view.rb_long.isChecked) {
+        if (binding.rbLong.isChecked) {
             return LaunchParamsExtraType.LONG
         }
-        if (view.rb_float.isChecked) {
+        if (binding.rbFloat.isChecked) {
             return LaunchParamsExtraType.FLOAT
         }
-        if (view.rb_double.isChecked) {
+        if (binding.rbDouble.isChecked) {
             return LaunchParamsExtraType.DOUBLE
         }
-        return if (view.rb_boolean.isChecked) {
+        return if (binding.rbBoolean.isChecked) {
             LaunchParamsExtraType.BOOLEAN
         } else -1
     }
 
-    private fun setSelectedType(view: View, type: Int) {
-        var radioButton: RadioButton? = null
+    private fun setSelectedType(binding: DialogInputExtraBinding, type: Int) {
         when (type) {
-            LaunchParamsExtraType.STRING -> radioButton = view.rb_string
-            LaunchParamsExtraType.INT -> radioButton = view.rb_int
-            LaunchParamsExtraType.LONG -> radioButton = view.rb_long
-            LaunchParamsExtraType.FLOAT -> radioButton = view.rb_float
-            LaunchParamsExtraType.DOUBLE -> radioButton = view.rb_double
-            LaunchParamsExtraType.BOOLEAN -> radioButton = view.rb_boolean
-        }
-        radioButton?.isChecked = true
+            LaunchParamsExtraType.STRING -> binding.rbString
+            LaunchParamsExtraType.INT -> binding.rbInt
+            LaunchParamsExtraType.LONG -> binding.rbLong
+            LaunchParamsExtraType.FLOAT -> binding.rbFloat
+            LaunchParamsExtraType.DOUBLE -> binding.rbDouble
+            LaunchParamsExtraType.BOOLEAN -> binding.rbBoolean
+            else -> null
+        }?.isChecked = true
     }
 
     private fun isExtraFormatValid(type: Int, value: String): Boolean {
@@ -151,12 +153,12 @@ class ExtraInputDialog : BaseDialogFragment() {
         private const val ARG_POSITION = "arg_position"
 
         fun newInstance(initialExtra: LaunchParamsExtra?, position: Int): ExtraInputDialog {
-            val args = Bundle(2)
-            args.putParcelable(ARG_INITIAL_EXTRA, initialExtra)
-            args.putInt(ARG_POSITION, position)
-            val fragment = ExtraInputDialog()
-            fragment.arguments = args
-            return fragment
+            return ExtraInputDialog().apply {
+                arguments = bundleOf(
+                    ARG_INITIAL_EXTRA to initialExtra,
+                    ARG_POSITION to position
+                )
+            }
         }
     }
 }

@@ -3,43 +3,42 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
-import com.sdex.activityrunner.R
+import androidx.core.os.bundleOf
+import com.sdex.activityrunner.databinding.DialogInputValueBinding
 import com.sdex.commons.BaseDialogFragment
-import kotlinx.android.synthetic.main.dialog_input_value.view.*
 
 class ValueInputDialog : BaseDialogFragment() {
 
     private lateinit var callback: OnValueInputDialogCallback
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val type: Int = requireArguments().getInt(ARG_TYPE)
-        val initialValue: String = requireArguments().getString(ARG_INITIAL_VALUE, "")
+        val type = requireArguments().getInt(ARG_TYPE)
+        val initialValue = requireArguments().getString(ARG_INITIAL_VALUE, "")
 
-        val builder = AlertDialog.Builder(requireActivity())
-        val view = View.inflate(activity, R.layout.dialog_input_value, null)
+        val binding = DialogInputValueBinding.inflate(requireActivity().layoutInflater)
 
-        view.valueView.setText(initialValue)
-        view.valueView.setSelection(initialValue.length)
-        view.valueView.setOnEditorActionListener { _, actionId, _ ->
+        binding.valueView.setText(initialValue)
+        binding.valueView.setSelection(initialValue.length)
+        binding.valueView.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val newValue = view.valueView.text.toString()
+                val newValue = binding.valueView.text.toString()
                 callback.onValueSet(type, newValue)
                 dismiss()
                 return@setOnEditorActionListener true
             }
             false
         }
-        builder.setTitle(type)
-            .setView(view)
+        return AlertDialog.Builder(requireActivity())
+            .setTitle(type)
+            .setView(binding.root)
             .setPositiveButton(android.R.string.ok) { _, _ ->
-                val newValue = view.valueView.text.toString()
+                val newValue = binding.valueView.text.toString()
                 callback.onValueSet(type, newValue)
             }
             .setNegativeButton(android.R.string.cancel, null)
-        return builder.create()
+            .create()
     }
 
     override fun onAttach(context: Context) {
@@ -64,12 +63,12 @@ class ValueInputDialog : BaseDialogFragment() {
         private const val ARG_INITIAL_VALUE = "arg_initial_value"
 
         fun newInstance(type: Int, initialValue: String?): ValueInputDialog {
-            val args = Bundle(2)
-            args.putInt(ARG_TYPE, type)
-            args.putString(ARG_INITIAL_VALUE, initialValue)
-            val fragment = ValueInputDialog()
-            fragment.arguments = args
-            return fragment
+            return ValueInputDialog().apply {
+                arguments = bundleOf(
+                    ARG_TYPE to type,
+                    ARG_INITIAL_VALUE to initialValue
+                )
+            }
         }
     }
 }

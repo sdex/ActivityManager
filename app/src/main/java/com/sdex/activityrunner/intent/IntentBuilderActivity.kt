@@ -12,7 +12,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
-import com.sdex.activityrunner.extensions.enableBackButton
+import com.sdex.activityrunner.databinding.ActivityIntentBuilderBinding
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
@@ -22,39 +22,31 @@ import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
-import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
-import kotlinx.android.synthetic.main.activity_intent_builder.*
-import kotlin.properties.Delegates
 
 class IntentBuilderActivity : BaseActivity(),
     ValueInputDialog.OnValueInputDialogCallback, SingleSelectionDialog.OnItemSelectedCallback,
     MultiSelectionDialog.OnItemsSelectedCallback, ExtraInputDialog.OnKeyValueInputDialogCallback {
 
-    private val launchParams: LaunchParams = LaunchParams()
+    private val viewModel: LaunchParamsViewModel by viewModels()
+    private lateinit var binding: ActivityIntentBuilderBinding
+
+    private val launchParams = LaunchParams()
 
     private val categoriesAdapter = LaunchParamsListAdapter()
     private val flagsAdapter = LaunchParamsListAdapter()
     private val extraAdapter = LaunchParamsExtraListAdapter()
 
-    private val viewModel: LaunchParamsViewModel by viewModels()
-
-    private var appPreferences: AppPreferences by Delegates.notNull()
-
-    override fun getLayout(): Int {
-        return R.layout.activity_intent_builder
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityIntentBuilderBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupToolbar(isBackButtonEnabled = true)
 
         val params = savedInstanceState?.getParcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
         launchParams.setFrom(params)
 
-        appPreferences = AppPreferences(this)
-
-        enableBackButton()
         val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
 
         title = activityModel?.name ?: getString(R.string.intent_launcher_activity)
@@ -62,9 +54,9 @@ class IntentBuilderActivity : BaseActivity(),
         launchParams.packageName = activityModel?.packageName
         launchParams.className = activityModel?.className
 
-        configureRecyclerView(listExtrasView)
-        configureRecyclerView(listCategoriesView)
-        configureRecyclerView(listFlagsView)
+        configureRecyclerView(binding.listExtrasView)
+        configureRecyclerView(binding.listCategoriesView)
+        configureRecyclerView(binding.listFlagsView)
 
         extraAdapter.callback = object : Callback {
             override fun onItemSelected(position: Int) {
@@ -76,31 +68,34 @@ class IntentBuilderActivity : BaseActivity(),
             override fun removeItem(position: Int) {
                 launchParams.extras.removeAt(position)
                 extraAdapter.notifyDataSetChanged()
-                listExtrasView.requestLayout()
+                binding.listExtrasView.requestLayout()
                 updateExtrasAdd()
             }
         }
         extraAdapter.setHasStableIds(true)
-        listExtrasView.adapter = extraAdapter
+        binding.listExtrasView.adapter = extraAdapter
 
         categoriesAdapter.setHasStableIds(true)
-        listCategoriesView.adapter = categoriesAdapter
+        binding.listCategoriesView.adapter = categoriesAdapter
 
         flagsAdapter.setHasStableIds(true)
-        listFlagsView.adapter = flagsAdapter
+        binding.listFlagsView.adapter = flagsAdapter
 
-        bindInputValueDialog(container_package_name, R.string.launch_param_package_name)
-        bindInputValueDialog(container_class_name, R.string.launch_param_class_name)
-        bindInputValueDialog(container_data, R.string.launch_param_data)
-        bindInputValueDialog(actionEditImageView, R.string.launch_param_action)
-        bindInputValueDialog(mimeTypeEditImageView, R.string.launch_param_mime_type)
-        bindSingleSelectionDialog(container_action, R.string.launch_param_action)
-        bindSingleSelectionDialog(container_mime_type, R.string.launch_param_mime_type)
-        bindKeyValueDialog(container_extras)
-        bindMultiSelectionDialog(categories_click_interceptor, R.string.launch_param_categories)
-        bindMultiSelectionDialog(flags_click_interceptor, R.string.launch_param_flags)
+        bindInputValueDialog(binding.containerPackageName, R.string.launch_param_package_name)
+        bindInputValueDialog(binding.containerClassName, R.string.launch_param_class_name)
+        bindInputValueDialog(binding.containerData, R.string.launch_param_data)
+        bindInputValueDialog(binding.actionEditImageView, R.string.launch_param_action)
+        bindInputValueDialog(binding.mimeTypeEditImageView, R.string.launch_param_mime_type)
+        bindSingleSelectionDialog(binding.containerAction, R.string.launch_param_action)
+        bindSingleSelectionDialog(binding.containerMimeType, R.string.launch_param_mime_type)
+        bindKeyValueDialog(binding.containerExtras)
+        bindMultiSelectionDialog(
+            binding.categoriesClickInterceptor,
+            R.string.launch_param_categories
+        )
+        bindMultiSelectionDialog(binding.flagsClickInterceptor, R.string.launch_param_flags)
 
-        launch.setOnClickListener {
+        binding.launch.setOnClickListener {
             viewModel.addToHistory(launchParams)
             val converter = LaunchParamsToIntentConverter(launchParams)
             val intent = converter.convert()
@@ -254,35 +249,35 @@ class IntentBuilderActivity : BaseActivity(),
 
     private fun showLaunchParams() {
         val packageName = launchParams.packageName
-        packageNameView.text = packageName
-        updateIcon(packageNameImageView, packageName)
+        binding.packageNameView.text = packageName
+        updateIcon(binding.packageNameImageView, packageName)
         val className = launchParams.className
-        classNameView.text = className
-        updateIcon(classNameImageView, className)
+        binding.classNameView.text = className
+        updateIcon(binding.classNameImageView, className)
         val data = launchParams.data
-        dataView.text = data
-        updateIcon(dataImageView, data)
+        binding.dataView.text = data
+        updateIcon(binding.dataImageView, data)
         val actionValue = launchParams.action
-        actionView.text = actionValue
-        updateIcon(actionImageView, actionValue)
+        binding.actionView.text = actionValue
+        updateIcon(binding.actionImageView, actionValue)
         val mimeTypeValue = launchParams.mimeType
-        mimeTypeView.text = mimeTypeValue
-        updateIcon(mimeTypeImageView, mimeTypeValue)
+        binding.mimeTypeView.text = mimeTypeValue
+        updateIcon(binding.mimeTypeImageView, mimeTypeValue)
         val extras = launchParams.extras
         extraAdapter.setItems(extras)
-        updateIcon(extrasImageView, extras)
+        updateIcon(binding.extrasImageView, extras)
         updateExtrasAdd()
         val categoriesValues = launchParams.getCategoriesValues()
         categoriesAdapter.setItems(categoriesValues)
-        updateIcon(categoriesImageView, categoriesValues)
+        updateIcon(binding.categoriesImageView, categoriesValues)
         val flagsValues = launchParams.getFlagsValues()
         flagsAdapter.setItems(flagsValues)
-        updateIcon(flagsImageView, flagsValues)
+        updateIcon(binding.flagsImageView, flagsValues)
     }
 
     private fun updateExtrasAdd() {
         val extras = launchParams.extras
-        addExtraView.visibility = if (extras.isEmpty()) View.GONE else View.VISIBLE
+        binding.addExtraView.visibility = if (extras.isEmpty()) View.GONE else View.VISIBLE
     }
 
     private fun updateIcon(imageView: ImageView, text: String?) {
