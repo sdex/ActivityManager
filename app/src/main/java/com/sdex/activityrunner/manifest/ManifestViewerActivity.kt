@@ -28,8 +28,9 @@ class ManifestViewerActivity : BaseActivity() {
     private lateinit var appPackageName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         try {
-            super.onCreate(savedInstanceState)
+            binding = ActivityManifestViewerBinding.inflate(layoutInflater)
         } catch (e: Exception) {
             // probably android.webkit.WebViewFactory.MissingWebViewPackageException
             Toast.makeText(this, R.string.error_failed_to_instantiate_web_view, Toast.LENGTH_SHORT)
@@ -37,7 +38,6 @@ class ManifestViewerActivity : BaseActivity() {
             finish()
             return
         }
-        binding = ActivityManifestViewerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
@@ -117,10 +117,10 @@ class ManifestViewerActivity : BaseActivity() {
         private const val ARG_NAME = "arg_name"
 
         fun start(context: Context, model: ApplicationModel) {
-            val starter = Intent(context, ManifestViewerActivity::class.java)
-            starter.putExtra(ARG_PACKAGE_NAME, model.packageName)
-            starter.putExtra(ARG_NAME, model.name)
-            context.startActivity(starter)
+            context.startActivity(Intent(context, ManifestViewerActivity::class.java).apply {
+                putExtra(ARG_PACKAGE_NAME, model.packageName)
+                putExtra(ARG_NAME, model.name)
+            })
         }
     }
 }
