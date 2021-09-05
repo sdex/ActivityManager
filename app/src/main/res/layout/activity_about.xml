@@ -28,7 +28,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="?attr/selectableItemBackground"
-                android:visibility="gone"
                 app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="1dp">
 
@@ -88,7 +87,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_about_open_source"
+                        app:srcCompat="@drawable/ic_about_source_code"
                         app:tint="@color/icon_tint" />
 
                     <TextView
@@ -128,7 +127,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_about_open_source"
+                        app:srcCompat="@drawable/ic_about_issues"
                         app:tint="@color/icon_tint" />
 
                     <TextView

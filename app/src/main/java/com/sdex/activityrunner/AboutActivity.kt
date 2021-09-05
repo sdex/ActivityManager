@@ -30,11 +30,6 @@ class AboutActivity : BaseActivity() {
                 .show(supportFragmentManager, DonateDialog.TAG)
         }
 
-        binding.version.setOnClickListener {
-            DonateDialog.newInstance()
-                .show(supportFragmentManager, DonateDialog.TAG)
-        }
-
         binding.sourceCode.setOnClickListener {
             IntentUtils.openBrowser(this, AppUtils.REPOSITORY)
         }
