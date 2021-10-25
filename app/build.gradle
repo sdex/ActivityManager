@@ -92,6 +92,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:5.0.1'
     implementation "com.simplecityapps:recyclerview-fastscroll:2.0.0"
     implementation "com.tomergoldst.android:tooltips:1.0.11"
+    implementation "net.dongliu:apk-parser:2.6.10"
 
     def coroutines_version = "1.5.1-native-mt"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
