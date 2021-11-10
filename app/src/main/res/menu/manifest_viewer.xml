@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:title="@string/manifest_viewer_search" />
+
+    <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_share"
         android:title="@string/manifest_viewer_share"
@@ -13,12 +20,5 @@
         android:icon="@drawable/ic_help_outline"
         android:title="@string/manifest_viewer_help"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="always|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        android:title="@string/manifest_viewer_search" />
 
 </menu>
