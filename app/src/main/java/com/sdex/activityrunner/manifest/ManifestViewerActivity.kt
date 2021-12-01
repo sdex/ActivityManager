@@ -36,7 +36,7 @@ class ManifestViewerActivity : BaseActivity() {
         } catch (e: Exception) {
             // probably android.webkit.WebViewFactory.MissingWebViewPackageException
             Toast.makeText(this, R.string.error_failed_to_instantiate_web_view, Toast.LENGTH_SHORT)
-                    .show()
+                .show()
             finish()
             return
         }
@@ -74,9 +74,9 @@ class ManifestViewerActivity : BaseActivity() {
         viewModel.manifestLiveData.observe(this) {
             if (it == null) {
                 Toast.makeText(
-                        this,
-                        R.string.error_failed_to_open_manifest,
-                        Toast.LENGTH_SHORT
+                    this,
+                    R.string.error_failed_to_open_manifest,
+                    Toast.LENGTH_SHORT
                 ).show()
                 finish()
             } else {
@@ -146,10 +146,10 @@ class ManifestViewerActivity : BaseActivity() {
     }
 
     private fun isNightTheme(@AppCompatDelegate.NightMode theme: Int) =
-            theme == AppCompatDelegate.MODE_NIGHT_YES ||
-                    (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
-                            (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
-                                    Configuration.UI_MODE_NIGHT_YES))
+        theme == AppCompatDelegate.MODE_NIGHT_YES ||
+                (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
+                        (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                                Configuration.UI_MODE_NIGHT_YES))
 
     companion object {
 
