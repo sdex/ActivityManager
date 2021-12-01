@@ -157,4 +157,10 @@
         <item quantity="one">%d activity</item>
         <item quantity="other">%d activities</item>
     </plurals>
+
+    <!--Manifest Viewer actions-->
+    <string name="manifest_viewer_share">Share</string>
+    <string name="manifest_viewer_help">Help</string>
+    <string name="manifest_viewer_search">Search</string>
+    <string name="action_search_manifest_hint">Find keyword</string>
 </resources>
