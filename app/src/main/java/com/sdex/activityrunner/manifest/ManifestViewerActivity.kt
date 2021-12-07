@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SearchView
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
@@ -17,8 +18,10 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
+import com.sdex.commons.util.UIUtils
 import com.sdex.highlightjs.models.Language
 import com.sdex.highlightjs.models.Theme
+
 
 class ManifestViewerActivity : BaseActivity() {
 
@@ -86,6 +89,43 @@ class ManifestViewerActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.manifest_viewer, menu)
+        val searchViewItem = menu.findItem(R.id.action_search)
+        val searchView: SearchView = searchViewItem.actionView as SearchView
+        searchView.queryHint = getString(R.string.action_search_manifest_hint)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    if (it.isEmpty()) {
+                        binding.highlightView.clearMatches()
+                    } else {
+                        binding.highlightView.findAllAsync(it)
+                    }
+                }
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    if (it.isEmpty()) binding.highlightView.clearMatches()
+                }
+                return false
+            }
+
+        })
+        searchViewItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                UIUtils.setMenuItemsVisibility(menu, item, false)
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                binding.highlightView.clearMatches()
+                UIUtils.setMenuItemsVisibility(menu, true)
+                invalidateOptionsMenu()
+                return true
+            }
+        })
         return super.onCreateOptionsMenu(menu)
     }
 

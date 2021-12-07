@@ -53,7 +53,7 @@ class IntentAnalyzerActivity : BaseActivity() {
         binding.listExtrasView.adapter = extrasAdapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.intent_analyzer, menu)
         return super.onCreateOptionsMenu(menu)
     }
