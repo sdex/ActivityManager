@@ -14,7 +14,7 @@ class DonateDialog : BaseDialogFragment() {
             .setTitle(R.string.about_donation)
             .setMessage(R.string.donate_message)
             .setPositiveButton(R.string.donate_action_text) { _, _ ->
-                AppUtils.openLink(requireActivity(), "https://sdex.dev/donate/")
+                AppUtils.openLink(requireActivity(), getString(R.string.donate_link))
             }
             .create()
     }

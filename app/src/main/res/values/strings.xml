@@ -67,6 +67,7 @@
 
     <string name="donate_message">If you like the app, please consider making some donation</string>
     <string name="donate_action_text">Donate</string>
+    <string name="donate_link">https://sdex.dev/donate/</string>
 
     <string name="input_key">Input key</string>
     <string name="input_value">Input value</string>
@@ -124,6 +125,8 @@
     <string name="dialog_share_title">Share AndroidManifest.xml file</string>
 
     <!-- settings -->
+    <string name="pref_header_other">Other</string>
+
     <string name="pref_header_appearance">Appearance</string>
     <string name="pref_appearance_theme_title">Theme</string>
 
@@ -134,6 +137,7 @@
     <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
     <string name="pref_advanced_root_integration_title">Allow ROOT operations</string>
     <string name="pref_advanced_root_integration_summary">Run any activity with root permission</string>
+
     <string name="settings_error_root_not_available">ROOT is not available</string>
     <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
     <string name="settings_error_root_not_active">You need to enable ROOT operations</string>

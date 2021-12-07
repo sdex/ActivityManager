@@ -41,10 +41,8 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
             if (searchText != null) {
                 viewModelScope.launch(Dispatchers.IO) {
                     val filteredList = list!!.filter {
-                        it.name.contains(searchText, true) || it.className.contains(
-                            searchText,
-                            true
-                        )
+                        it.name.contains(searchText, true) ||
+                                it.className.contains(searchText, true)
                     }
                     liveData.postValue(filteredList)
                 }
@@ -57,24 +55,18 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     }
 
     @WorkerThread
-    private fun getActivitiesList(packageName: String): List<ActivityModel> {
+    private fun getActivitiesList(packageName: String) = try {
         val showNotExported = appPreferences.showNotExported
-        try {
-            return getPackageInfo(packageManager, packageName).activities
-                .map { getActivityModel(it) }
-                .filter { it.exported || showNotExported }
-                .sortedBy { it.name }
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
-        return emptyList()
+        getPackageInfo(packageManager, packageName).activities
+            .map { it.toActivityModel() }
+            .filter { it.exported || showNotExported }
+            .sortedBy { it.name }
+    } catch (e: Exception) {
+        Timber.e(e)
+        emptyList()
     }
 
-    private fun getActivityModel(activityInfo: ActivityInfo): ActivityModel {
-        return ActivityModel(
-            activityInfo.name.split(".").last(),
-            activityInfo.packageName, activityInfo.name,
-            activityInfo.exported && activityInfo.isEnabled
-        )
-    }
+    private fun ActivityInfo.toActivityModel() = ActivityModel(
+        name.split(".").last(), packageName, name, exported && isEnabled
+    )
 }
