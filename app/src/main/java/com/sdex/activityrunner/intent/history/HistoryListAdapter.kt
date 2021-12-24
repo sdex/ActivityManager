@@ -100,22 +100,13 @@ class HistoryListAdapter(
         const val MENU_ITEM_ADD_SHORTCUT = 1
         const val MENU_ITEM_EXPORT_URI = 2
 
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<HistoryModel> =
-            object : DiffUtil.ItemCallback<HistoryModel>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HistoryModel>() {
 
-                override fun areItemsTheSame(
-                    oldItem: HistoryModel,
-                    newItem: HistoryModel
-                ): Boolean {
-                    return oldItem.id == newItem.id
-                }
+            override fun areItemsTheSame(oldItem: HistoryModel, newItem: HistoryModel) =
+                oldItem.id == newItem.id
 
-                override fun areContentsTheSame(
-                    oldItem: HistoryModel,
-                    newItem: HistoryModel
-                ): Boolean {
-                    return oldItem == newItem
-                }
-            }
+            override fun areContentsTheSame(oldItem: HistoryModel, newItem: HistoryModel) =
+                oldItem == newItem
+        }
     }
 }
