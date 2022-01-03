@@ -15,14 +15,22 @@ Features:
 * Explore an app details with Manifest Viewer
 * Light/Dark theme support
 
-Download:
+Installing:
 ----------
+Pre-compiled binaries are available as [releases assets](https://github.com/sdex/ActivityManager/releases).
+
+Also available on F-droid:
 <div style="display:flex;">
 <a href="https://f-droid.org/packages/com.activitymanager/">
     <img alt="Get it on F-Droid" height="80"
         src="docs/graphics/logos/f-droid-badge.png"/>
 </a>
 </div>
+
+Or build from the repo directly: 
+```
+./gradlew assemble
+```
 
 Join Us On:
 ----------
