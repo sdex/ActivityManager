@@ -91,6 +91,8 @@ class ManifestViewerActivity : BaseActivity() {
         menuInflater.inflate(R.menu.manifest_viewer, menu)
         val searchViewItem = menu.findItem(R.id.action_search)
         val searchView: SearchView = searchViewItem.actionView as SearchView
+        // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
+        searchView.maxWidth = Int.MAX_VALUE
         searchView.queryHint = getString(R.string.action_search_manifest_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
