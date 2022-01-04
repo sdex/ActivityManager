@@ -22,7 +22,6 @@ import com.sdex.commons.util.UIUtils
 import com.sdex.highlightjs.models.Language
 import com.sdex.highlightjs.models.Theme
 
-
 class ManifestViewerActivity : BaseActivity() {
 
     private val viewModel by viewModels<ManifestViewModel>()
@@ -35,8 +34,11 @@ class ManifestViewerActivity : BaseActivity() {
             super.onCreate(savedInstanceState)
         } catch (e: Exception) {
             // probably android.webkit.WebViewFactory.MissingWebViewPackageException
-            Toast.makeText(this, R.string.error_failed_to_instantiate_web_view, Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(
+                this,
+                R.string.error_failed_to_instantiate_web_view,
+                Toast.LENGTH_SHORT
+            ).show()
             finish()
             return
         }
@@ -89,33 +91,30 @@ class ManifestViewerActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.manifest_viewer, menu)
-        val searchViewItem = menu.findItem(R.id.action_search)
-        val searchView: SearchView = searchViewItem.actionView as SearchView
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
         // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
         searchView.maxWidth = Int.MAX_VALUE
         searchView.queryHint = getString(R.string.action_search_manifest_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let {
-                    if (it.isEmpty()) {
-                        binding.highlightView.clearMatches()
-                    } else {
-                        binding.highlightView.findAllAsync(it)
-                    }
+                if (query.isNullOrEmpty()) {
+                    binding.highlightView.clearMatches()
+                } else {
+                    binding.highlightView.findAllAsync(query)
                 }
                 searchView.clearFocus()
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {
-                    if (it.isEmpty()) binding.highlightView.clearMatches()
+                if (newText.isNullOrEmpty()) {
+                    binding.highlightView.clearMatches()
                 }
                 return false
             }
-
         })
-        searchViewItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 UIUtils.setMenuItemsVisibility(menu, item, false)
                 return true
@@ -159,10 +158,10 @@ class ManifestViewerActivity : BaseActivity() {
         private const val ARG_NAME = "arg_name"
 
         fun start(context: Context, model: ApplicationModel) {
-            val starter = Intent(context, ManifestViewerActivity::class.java)
-            starter.putExtra(ARG_PACKAGE_NAME, model.packageName)
-            starter.putExtra(ARG_NAME, model.name)
-            context.startActivity(starter)
+            context.startActivity(Intent(context, ManifestViewerActivity::class.java).apply {
+                putExtra(ARG_PACKAGE_NAME, model.packageName)
+                putExtra(ARG_NAME, model.name)
+            })
         }
     }
 }
