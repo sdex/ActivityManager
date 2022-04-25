@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 
@@ -34,6 +35,7 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
     private String content;
     private boolean zoomSupport = false;
     private boolean showLineNumbers = false;
+    private int scrollPosition = 0;
 
     //local variables to register callbacks
     private OnLanguageChangedListener onLanguageChangedListener;
@@ -82,6 +84,15 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
     private void initView(Context context) {
         //make sure the view is blank
         loadUrl("about:blank");
+        setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if(url.equals("about:blank")) return;
+                //notify the callback (if set)
+                if (onContentChangedListener != null) onContentChangedListener.onContentChanged();
+            }
+        });
         //set the settings for the view
         WebSettings settings = getSettings();
         settings.setJavaScriptEnabled(true);
@@ -179,8 +190,6 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
             this.content = source;
             String page = SourceUtils.generateContent(source, theme.getName(), language.getName(), zoomSupport, showLineNumbers);
             loadDataWithBaseURL("file:///android_asset/", page, "text/html", "utf-8", null);
-            //notify the callback (if set)
-            if (onContentChangedListener != null) onContentChangedListener.onContentChanged();
         } else Log.e(getClass().getSimpleName(), "Source can't be null or empty.");
     }
 
@@ -236,5 +245,15 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
      */
     public void setShowLineNumbers(boolean showLineNumbers) {
         this.showLineNumbers = showLineNumbers;
+    }
+
+    public int getScrollPosition() {
+        return scrollPosition;
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        this.scrollPosition = t;
     }
 }
