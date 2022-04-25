@@ -28,6 +28,7 @@ class ManifestViewerActivity : BaseActivity() {
     private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var binding: ActivityManifestViewerBinding
     private lateinit var appPackageName: String
+    private var scrollCallback: Runnable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
@@ -60,6 +61,7 @@ class ManifestViewerActivity : BaseActivity() {
             setZoomSupportEnabled(true)
             setOnContentChangedListener {
                 binding.progress.hide()
+                viewModel.setDataReady()
             }
         }
 
@@ -82,7 +84,11 @@ class ManifestViewerActivity : BaseActivity() {
                 ).show()
                 finish()
             } else {
-                binding.highlightView.setSource(it)
+                if(!it.isDataReady) {
+                    binding.highlightView.setSource(it.data)
+                }else{
+                    scrollTo(it.position)
+                }
             }
         }
 
@@ -146,11 +152,27 @@ class ManifestViewerActivity : BaseActivity() {
         }
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        viewModel.updatePosition(binding.highlightView.scrollPosition)
+    }
+
+
     private fun isNightTheme(@AppCompatDelegate.NightMode theme: Int) =
         theme == AppCompatDelegate.MODE_NIGHT_YES ||
                 (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
                         (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
                                 Configuration.UI_MODE_NIGHT_YES))
+
+    private fun scrollTo(yPosition: Int) {
+        scrollCallback = Runnable { binding.highlightView.scrollTo(0, yPosition) }
+        binding.highlightView.postDelayed(scrollCallback, 300)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        scrollCallback?.let { binding.progress.removeCallbacks(it) }
+    }
 
     companion object {
 
