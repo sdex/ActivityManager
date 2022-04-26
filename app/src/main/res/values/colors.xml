@@ -7,6 +7,8 @@
     <color name="colorPrimary">#0079bf</color>
     <color name="colorPrimaryDark">#026aa7</color>
     <color name="colorAccent">#03A9F4</color>
+    <color name="colorSecondary">#03A9F4</color>
+    <color name="colorOnSecondary">#ff000000</color>
     <color name="colorControlActivated">#ffffff</color>
 
     <color name="white">#fff</color>

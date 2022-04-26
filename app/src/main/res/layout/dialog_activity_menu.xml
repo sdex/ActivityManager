@@ -52,14 +52,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_launch_params"
+            app:srcCompat="@drawable/ic_exit_to_app"
             app:tint="@color/icon_tint" />
 
         <TextView

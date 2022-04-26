@@ -60,7 +60,7 @@
     <string name="about_source_code">Source code</string>
     <string name="about_version">Version</string>
     <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
-    <string name="about_issues_tracker">Issues tracker</string>
+    <string name="about_issues_tracker">Issue tracker</string>
     <string name="about_feedback">Report a problem, aks a question…</string>
     <string name="about_open_source">Open source libraries</string>
     <string name="about_open_privacy_policy">Privacy policy</string>
