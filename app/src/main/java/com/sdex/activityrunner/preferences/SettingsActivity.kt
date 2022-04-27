@@ -15,10 +15,11 @@ class SettingsActivity : BaseActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
-
-        supportFragmentManager.beginTransaction()
-            .replace(binding.content.id, SettingsFragment())
-            .commitNow()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(binding.content.id, SettingsFragment())
+                .commitNow()
+        }
     }
 
     companion object {
