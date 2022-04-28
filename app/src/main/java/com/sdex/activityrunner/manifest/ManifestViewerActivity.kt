@@ -171,7 +171,7 @@ class ManifestViewerActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        scrollCallback?.let { binding.progress.removeCallbacks(it) }
+        scrollCallback?.let { binding.highlightView.removeCallbacks(it) }
     }
 
     companion object {
