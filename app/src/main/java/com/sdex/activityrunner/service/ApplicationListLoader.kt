@@ -19,7 +19,7 @@ class ApplicationListLoader {
 
         val listToDelete = oldList.toMutableList().also { it.removeAll(newList) }
         val listToInsert = newList.toMutableList().also { it.removeAll(oldList) }
-        val listToUpdate = oldList.intersect(newList).toList()
+        val listToUpdate = oldList.intersect(newList.toSet()).toList()
 
         Timber.d("listToDelete " + listToDelete.size)
         Timber.d("listToInsert " + listToInsert.size)
@@ -46,43 +46,35 @@ class ApplicationListLoader {
         return packageManager.getInstalledPackages(0)
             .map { it.packageName }
             .ifEmpty {
-                val intentToResolve = Intent(Intent.ACTION_MAIN)
-                packageManager.queryIntentActivities(intentToResolve, 0)
+                packageManager.queryIntentActivities(Intent(Intent.ACTION_MAIN), 0)
                     .map { it.activityInfo.applicationInfo.packageName }
             }
             .mapNotNull { getApplication(packageManager, it) }
     }
 
     private fun getApplication(
-        packageManager: PackageManager,
-        packageName: String
-    ): ApplicationModel? {
-        try {
-            val packageInfo = getPackageInfo(packageManager, packageName)
-            val applicationInfo = packageInfo.applicationInfo
-            val name = if (applicationInfo != null) {
-                packageManager.getApplicationLabel(applicationInfo).toString()
-            } else {
-                packageInfo.packageName
-            }
-            val activities = packageInfo.activities ?: emptyArray()
-            val isSystemApp = if (applicationInfo != null) {
-                (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-            } else {
-                false
-            }
-            val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
-            return ApplicationModel(
-                packageName,
-                name,
-                activities.size,
-                exportedActivitiesCount,
-                isSystemApp
-            )
-        } catch (e: Exception) {
-            Timber.e(e)
+        packageManager: PackageManager, packageName: String
+    ): ApplicationModel? = try {
+        val packageInfo = getPackageInfo(packageManager, packageName)
+        val applicationInfo = packageInfo.applicationInfo
+        val name = if (applicationInfo != null) {
+            packageManager.getApplicationLabel(applicationInfo).toString()
+        } else {
+            packageInfo.packageName
         }
-        return null
+        val activities = packageInfo.activities ?: emptyArray()
+        val isSystemApp = if (applicationInfo != null) {
+            (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+        } else {
+            false
+        }
+        val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
+        ApplicationModel(
+            packageName, name, activities.size, exportedActivitiesCount, isSystemApp
+        )
+    } catch (e: Exception) {
+        Timber.e(e)
+        null
     }
 
     companion object {
