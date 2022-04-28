@@ -66,6 +66,7 @@ public class LaunchParamsToIntentConverterTest {
     @Test
     public void testMimeType() {
         LaunchParams launchParams = new LaunchParams();
+        launchParams.setData("data");
         launchParams.setMimeType("image/png");
 
         LaunchParamsToIntentConverter converter = new LaunchParamsToIntentConverter(launchParams);
