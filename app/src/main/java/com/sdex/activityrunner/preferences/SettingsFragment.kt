@@ -33,11 +33,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         val themePreference = findPreference(KEY_THEME) as ListPreference?
         themePreference?.summary = getCurrentTheme(AppPreferences(requireContext()).theme)
-            themePreference?.setOnPreferenceChangeListener { _, newValue ->
-                AppCompatDelegate.setDefaultNightMode(newValue.toString().toInt())
-                themePreference.summary = getCurrentTheme(newValue.toString().toInt())
-                return@setOnPreferenceChangeListener true
-            }
+        themePreference?.setOnPreferenceChangeListener { _, newValue ->
+            AppCompatDelegate.setDefaultNightMode(newValue.toString().toInt())
+            themePreference.summary = getCurrentTheme(newValue.toString().toInt())
+            return@setOnPreferenceChangeListener true
+        }
     }
 
     private fun getCurrentTheme(@AppCompatDelegate.NightMode theme: Int): CharSequence? {

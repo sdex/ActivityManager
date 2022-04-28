@@ -12,7 +12,7 @@ import timber.log.Timber
 class ApplicationListLoader {
 
     fun syncDatabase(context: Context) {
-        val applicationsModelDao = CacheDatabase.getDatabase(context).applicationsModelDao
+        val applicationsModelDao = CacheDatabase.getDatabase(context).applicationDao
 
         val oldList = applicationsModelDao.getApplicationModels()
         val newList = getApplicationsList(context)

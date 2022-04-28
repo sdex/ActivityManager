@@ -17,7 +17,9 @@ import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.UIUtils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ActivitiesListActivity : BaseActivity() {
 
     private val viewModel by viewModels<ActivitiesListViewModel>()

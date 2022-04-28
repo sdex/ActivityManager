@@ -21,7 +21,9 @@ import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.UIUtils
 import com.sdex.highlightjs.models.Language
 import com.sdex.highlightjs.models.Theme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ManifestViewerActivity : BaseActivity() {
 
     private val viewModel by viewModels<ManifestViewModel>()

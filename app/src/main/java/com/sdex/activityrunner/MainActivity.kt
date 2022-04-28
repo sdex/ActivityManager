@@ -21,7 +21,9 @@ import com.sdex.activityrunner.preferences.SettingsActivity
 import com.sdex.activityrunner.service.ApplicationsListJob
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.UIUtils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     private val viewModel by viewModels<MainViewModel>()

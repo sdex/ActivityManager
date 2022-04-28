@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase
 )
 abstract class CacheDatabase : RoomDatabase() {
 
-    abstract val applicationsModelDao: ApplicationModelDao
+    abstract val applicationDao: ApplicationModelDao
 
     companion object {
 
