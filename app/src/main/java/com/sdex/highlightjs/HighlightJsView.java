@@ -251,9 +251,4 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
         super.onScrollChanged(l, t, oldl, oldt);
         this.scrollPosition = t;
     }
-
-    @Override
-    public void onViewRemoved(View child) {
-        super.onViewRemoved(child);
-    }
 }
