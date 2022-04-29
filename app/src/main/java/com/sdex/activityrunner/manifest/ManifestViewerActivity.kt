@@ -28,11 +28,12 @@ class ManifestViewerActivity : BaseActivity() {
     private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var binding: ActivityManifestViewerBinding
     private lateinit var appPackageName: String
-    private var scrollCallback: Runnable? = null
+    private var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             super.onCreate(savedInstanceState)
+            position = savedInstanceState?.getInt(ARG_POSITION, 0) ?: 0
         } catch (e: Exception) {
             // probably android.webkit.WebViewFactory.MissingWebViewPackageException
             Toast.makeText(
@@ -60,8 +61,8 @@ class ManifestViewerActivity : BaseActivity() {
             setShowLineNumbers(true)
             setZoomSupportEnabled(true)
             setOnContentChangedListener {
+                scrollTo(0, position)
                 binding.progress.hide()
-                viewModel.setDataReady()
             }
         }
 
@@ -84,11 +85,7 @@ class ManifestViewerActivity : BaseActivity() {
                 ).show()
                 finish()
             } else {
-                if(!it.isDataReady) {
-                    binding.highlightView.setSource(it.data)
-                }else{
-                    scrollTo(it.position)
-                }
+                binding.highlightView.setSource(it)
             }
         }
 
@@ -152,32 +149,27 @@ class ManifestViewerActivity : BaseActivity() {
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        viewModel.updatePosition(binding.highlightView.scrollPosition)
-    }
-
-
     private fun isNightTheme(@AppCompatDelegate.NightMode theme: Int) =
         theme == AppCompatDelegate.MODE_NIGHT_YES ||
                 (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
                         (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
                                 Configuration.UI_MODE_NIGHT_YES))
 
-    private fun scrollTo(yPosition: Int) {
-        scrollCallback = Runnable { binding.highlightView.scrollTo(0, yPosition) }
-        binding.highlightView.postDelayed(scrollCallback, 300)
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(ARG_POSITION, binding.highlightView.scrollPosition)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        scrollCallback?.let { binding.highlightView.removeCallbacks(it) }
+        binding.highlightView.setOnContentChangedListener(null)
     }
 
     companion object {
 
         private const val ARG_PACKAGE_NAME = "arg_package_name"
         private const val ARG_NAME = "arg_name"
+        private const val ARG_POSITION = "arg_position"
 
         fun start(context: Context, model: ApplicationModel) {
             context.startActivity(Intent(context, ManifestViewerActivity::class.java).apply {

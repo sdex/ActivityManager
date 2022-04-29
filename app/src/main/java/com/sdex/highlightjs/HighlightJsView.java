@@ -10,14 +10,11 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import androidx.annotation.NonNull;
-
 import com.sdex.highlightjs.models.Language;
 import com.sdex.highlightjs.models.Theme;
 import com.sdex.highlightjs.utils.FileUtils;
 import com.sdex.highlightjs.utils.SourceUtils;
-
 import java.io.File;
 import java.net.URL;
 
@@ -83,12 +80,10 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
     @SuppressLint("SetJavaScriptEnabled")
     private void initView(Context context) {
         //make sure the view is blank
-        loadUrl("about:blank");
         setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if(url.equals("about:blank")) return;
                 //notify the callback (if set)
                 if (onContentChangedListener != null) onContentChangedListener.onContentChanged();
             }
@@ -255,5 +250,10 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         this.scrollPosition = t;
+    }
+
+    @Override
+    public void onViewRemoved(View child) {
+        super.onViewRemoved(child);
     }
 }

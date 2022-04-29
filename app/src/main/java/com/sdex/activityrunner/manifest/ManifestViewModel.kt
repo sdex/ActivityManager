@@ -11,8 +11,8 @@ import kotlinx.coroutines.launch
 
 class ManifestViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _manifestLiveData = MutableLiveData<ManifestState>()
-    val manifestLiveData: LiveData<ManifestState> = _manifestLiveData
+    private val _manifestLiveData = MutableLiveData<String?>()
+    val manifestLiveData: LiveData<String?> = _manifestLiveData
 
     private var job: Job? = null
 
@@ -24,20 +24,10 @@ class ManifestViewModel(application: Application) : AndroidViewModel(application
             val manifestReader = ManifestReader()
             val manifestWriter = ManifestWriter()
             val manifest = manifestReader.loadAndroidManifest(getApplication(), packageName)
-            _manifestLiveData.postValue(ManifestState(false,manifest ?: "Error during parsing AndroidManifest.xml"))
+            _manifestLiveData.postValue(manifest)
             manifestWriter.saveAndroidManifest(getApplication(), packageName, manifest)
         }
     }
-
-    fun updatePosition(position: Int) {
-        _manifestLiveData.value = _manifestLiveData.value?.copy(position = position, isDataReady = false)
-    }
-
-    fun setDataReady() {
-        _manifestLiveData.value = _manifestLiveData.value?.copy(isDataReady = true)
-    }
-
-    data class ManifestState(val isDataReady: Boolean, val data: String, val position: Int = 0)
 
     override fun onCleared() {
         super.onCleared()
