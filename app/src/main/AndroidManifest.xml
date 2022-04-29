@@ -44,8 +44,7 @@
             android:exported="true"
             android:label="@string/history_activity" />
 
-        <activity
-            android:name=".manifest.ManifestViewerActivity" />
+        <activity android:name=".manifest.ManifestViewerActivity" />
 
         <activity android:name=".app.ActivitiesListActivity" />
 
