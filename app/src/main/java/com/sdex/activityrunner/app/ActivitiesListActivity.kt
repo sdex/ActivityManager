@@ -3,7 +3,6 @@ package com.sdex.activityrunner.app
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -98,7 +97,7 @@ class ActivitiesListActivity : BaseActivity() {
         val searchView = searchItem.actionView as SearchView
         searchView.queryHint = getString(R.string.action_search_activity_hint)
 
-        if (!TextUtils.isEmpty(searchText)) {
+        if (searchText != null) {
             searchView.post { searchView.setQuery(searchText, false) }
             searchItem.expandActionView()
             UIUtils.setMenuItemsVisibility(menu, searchItem, false)
@@ -130,20 +129,20 @@ class ActivitiesListActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun filter(text: String) {
+    private fun filter(text: String?) {
         this.searchText = text
-        viewModel.filterItems(appPackageName, searchText)
+        viewModel.filterItems(searchText)
     }
 
     companion object {
 
-        const val ARG_APPLICATION = "arg_application"
+        private const val ARG_APPLICATION = "arg_application"
         private const val STATE_SEARCH_TEXT = "state_search_text"
 
         fun start(context: Context, item: ApplicationModel) {
-            val starter = Intent(context, ActivitiesListActivity::class.java)
-            starter.putExtra(ARG_APPLICATION, item)
-            context.startActivity(starter)
+            context.startActivity(Intent(context, ActivitiesListActivity::class.java).apply {
+                putExtra(ARG_APPLICATION, item)
+            })
         }
     }
 }

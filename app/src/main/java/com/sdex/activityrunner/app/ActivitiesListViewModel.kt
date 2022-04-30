@@ -36,7 +36,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
-    fun filterItems(packageName: String, searchText: String?) {
+    fun filterItems(searchText: String?) {
         if (::list.isInitialized) {
             if (searchText != null) {
                 viewModelScope.launch(Dispatchers.IO) {
@@ -49,8 +49,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
             } else {
                 liveData.value = list
             }
-        } else {
-            getItems(packageName)
         }
     }
 
