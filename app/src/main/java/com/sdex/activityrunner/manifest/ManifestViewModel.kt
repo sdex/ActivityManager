@@ -18,8 +18,9 @@ class ManifestViewModel(application: Application) : AndroidViewModel(application
 
     fun loadManifest(packageName: String) {
         job?.cancel()
-        // parsing is one time operation, so check for filled live data to avoid unnecessary recreating
-        if(_manifestLiveData.value != null) return
+        if (_manifestLiveData.value != null) {
+            return
+        }
         job = viewModelScope.launch(Dispatchers.IO) {
             val manifestReader = ManifestReader()
             val manifestWriter = ManifestWriter()
