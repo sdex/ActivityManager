@@ -28,12 +28,10 @@ class ManifestViewerActivity : BaseActivity() {
     private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var binding: ActivityManifestViewerBinding
     private lateinit var appPackageName: String
-    private var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             super.onCreate(savedInstanceState)
-            position = savedInstanceState?.getInt(ARG_POSITION, 0) ?: 0
         } catch (e: Exception) {
             // probably android.webkit.WebViewFactory.MissingWebViewPackageException
             Toast.makeText(
@@ -61,7 +59,6 @@ class ManifestViewerActivity : BaseActivity() {
             setShowLineNumbers(true)
             setZoomSupportEnabled(true)
             setOnContentChangedListener {
-                scrollTo(0, position)
                 binding.progress.hide()
             }
         }
@@ -155,11 +152,6 @@ class ManifestViewerActivity : BaseActivity() {
                         (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
                                 Configuration.UI_MODE_NIGHT_YES))
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(ARG_POSITION, binding.highlightView.scrollPosition)
-        super.onSaveInstanceState(outState)
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         binding.highlightView.setOnContentChangedListener(null)
@@ -169,7 +161,6 @@ class ManifestViewerActivity : BaseActivity() {
 
         private const val ARG_PACKAGE_NAME = "arg_package_name"
         private const val ARG_NAME = "arg_name"
-        private const val ARG_POSITION = "arg_position"
 
         fun start(context: Context, model: ApplicationModel) {
             context.startActivity(Intent(context, ManifestViewerActivity::class.java).apply {
