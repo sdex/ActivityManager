@@ -154,6 +154,11 @@ class ManifestViewerActivity : BaseActivity() {
                         (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
                                 Configuration.UI_MODE_NIGHT_YES))
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.highlightView.setOnContentChangedListener(null)
+    }
+
     companion object {
 
         private const val ARG_PACKAGE_NAME = "arg_package_name"

@@ -11,13 +11,16 @@ import kotlinx.coroutines.launch
 
 class ManifestViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _manifestLiveData = MutableLiveData<String>()
-    val manifestLiveData: LiveData<String> = _manifestLiveData
+    private val _manifestLiveData = MutableLiveData<String?>()
+    val manifestLiveData: LiveData<String?> = _manifestLiveData
 
     private var job: Job? = null
 
     fun loadManifest(packageName: String) {
         job?.cancel()
+        if (_manifestLiveData.value != null) {
+            return
+        }
         job = viewModelScope.launch(Dispatchers.IO) {
             val manifestReader = ManifestReader()
             val manifestWriter = ManifestWriter()
