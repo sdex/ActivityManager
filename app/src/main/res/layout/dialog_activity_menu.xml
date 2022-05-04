@@ -17,7 +17,7 @@
         android:paddingTop="16dp"
         android:paddingEnd="50dp"
         android:paddingBottom="16dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/colorAccent"
         android:textSize="14sp"
         android:textStyle="bold"
         tools:text="Application name" />
