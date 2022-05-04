@@ -32,8 +32,9 @@ class ManifestViewerActivity : BaseActivity() {
     private lateinit var appPackageName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         try {
-            super.onCreate(savedInstanceState)
+            binding = ActivityManifestViewerBinding.inflate(layoutInflater)
         } catch (e: Exception) {
             // probably android.webkit.WebViewFactory.MissingWebViewPackageException
             Toast.makeText(
@@ -44,7 +45,6 @@ class ManifestViewerActivity : BaseActivity() {
             finish()
             return
         }
-        binding = ActivityManifestViewerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
