@@ -29,7 +29,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="15"
             tools:listitem="@layout/item_activity"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/empty"
@@ -44,7 +44,8 @@
             <ImageView
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                app:srcCompat="@drawable/ic_folder_open" />
+                app:srcCompat="@drawable/ic_folder_open"
+                app:tint="@color/text_color_primary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,8 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/activities_list_empty_action"
-                android:textColor="@color/blue" />
+                android:text="@string/activities_list_empty_action" />
 
         </LinearLayout>
 

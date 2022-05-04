@@ -21,7 +21,9 @@ import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.commons.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
     private val viewModel: HistoryViewModel by viewModels()

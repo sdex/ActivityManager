@@ -1,20 +1,22 @@
 package com.sdex.activityrunner.db.cache.query
 
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.sdex.activityrunner.db.cache.ApplicationModel
 
 class GetApplicationsQuery(
     private val searchText: String? = null
 ) {
 
-    private val sortBy: String = ApplicationModel.NAME
-    private val sortOrder: String = "ASC"
-    private val sortCaseSensitive: String = "COLLATE NOCASE"
+    private val sortBy = ApplicationModel.NAME
+    private val sortOrder = "ASC"
+    private val sortCaseSensitive = "COLLATE NOCASE"
+
+    val sqLiteQuery get() = SimpleSQLiteQuery(toString())
 
     override fun toString(): String {
         val queryStringBuilder = StringBuilder()
         queryStringBuilder.append("SELECT * FROM ").append(ApplicationModel.TABLE).append(" ")
-        queryStringBuilder.append("WHERE ")
-            .append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ")
+            .append("WHERE ").append(ApplicationModel.ACTIVITIES_COUNT).append(" > 0 ")
         if (!searchText.isNullOrEmpty()) {
             val escapedSearchText = searchText.replace("'", "''")
             queryStringBuilder.append("AND (")

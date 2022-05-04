@@ -1,24 +1,26 @@
 package com.sdex.activityrunner.intent.history
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.sdex.activityrunner.db.history.HistoryDatabase
 import com.sdex.activityrunner.db.history.HistoryModel
+import com.sdex.activityrunner.db.history.HistoryRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HistoryViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class HistoryViewModel @Inject constructor(
+    private val historyRepository: HistoryRepository,
+) : ViewModel() {
 
-    private val database = HistoryDatabase.getDatabase(application)
     val list: LiveData<PagedList<HistoryModel>>
 
     init {
-        val factory: DataSource.Factory<Int, HistoryModel> = database.historyModelDao.getHistory()
+        val factory = historyRepository.getHistory()
         val config = PagedList.Config.Builder()
             .setPageSize(50)
             .setEnablePlaceholders(true)
@@ -28,13 +30,13 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
     fun deleteItem(model: HistoryModel) {
         viewModelScope.launch(Dispatchers.IO) {
-            database.historyModelDao.delete(model)
+            historyRepository.delete(model)
         }
     }
 
     fun clear() {
         viewModelScope.launch(Dispatchers.IO) {
-            database.historyModelDao.clean()
+            historyRepository.clean()
         }
     }
 }

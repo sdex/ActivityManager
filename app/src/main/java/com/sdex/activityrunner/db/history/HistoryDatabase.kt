@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase
 )
 abstract class HistoryDatabase : RoomDatabase() {
 
-    abstract val historyModelDao: HistoryModelDao
+    abstract val historyDao: HistoryModelDao
 
     companion object {
 

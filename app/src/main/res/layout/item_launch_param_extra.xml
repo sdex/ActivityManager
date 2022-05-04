@@ -73,7 +73,7 @@
         android:id="@+id/remove"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:background="?actionBarItemBackground"
         android:padding="6dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"

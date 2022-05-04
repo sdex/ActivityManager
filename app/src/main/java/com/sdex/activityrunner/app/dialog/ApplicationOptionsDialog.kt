@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -39,10 +41,9 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
             .into(binding.applicationIcon)
 
         binding.applicationName.text = model.name
+
         val intent = requireActivity().packageManager.getLaunchIntentForPackage(packageName)
-        if (intent == null) {
-            binding.actionOpenApp.visibility = View.GONE
-        }
+        binding.actionOpenApp.isVisible = intent != null
         binding.actionOpenApp.setOnClickListener {
             IntentUtils.launchApplication(requireActivity(), packageName)
             dismissAllowingStateLoss()
@@ -72,12 +73,8 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
 
         private const val ARG_MODEL = "arg_model"
 
-        fun newInstance(model: ApplicationModel): ApplicationOptionsDialog {
-            val dialog = ApplicationOptionsDialog()
-            dialog.arguments = Bundle(1).apply {
-                putSerializable(ARG_MODEL, model)
-            }
-            return dialog
+        fun newInstance(model: ApplicationModel) = ApplicationOptionsDialog().apply {
+            arguments = bundleOf(ARG_MODEL to model)
         }
     }
 }

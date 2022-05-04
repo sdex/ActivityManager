@@ -7,8 +7,11 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnSurface">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:listDivider">@color/list_divider</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>

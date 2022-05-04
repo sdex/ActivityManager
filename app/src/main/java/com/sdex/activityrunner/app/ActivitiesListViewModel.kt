@@ -19,7 +19,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     private val appPreferences by lazy { AppPreferences(application) }
 
     private val liveData = MutableLiveData<List<ActivityModel>>()
-    private var list: List<ActivityModel>? = null
+    private lateinit var list: List<ActivityModel>
 
     fun getItems(packageName: String): LiveData<List<ActivityModel>> {
         viewModelScope.launch(Dispatchers.IO) {
@@ -36,11 +36,11 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
-    fun filterItems(packageName: String, searchText: String?) {
-        if (list != null) {
+    fun filterItems(searchText: String?) {
+        if (::list.isInitialized) {
             if (searchText != null) {
                 viewModelScope.launch(Dispatchers.IO) {
-                    val filteredList = list!!.filter {
+                    val filteredList = list.filter {
                         it.name.contains(searchText, true) ||
                                 it.className.contains(searchText, true)
                     }
@@ -49,8 +49,6 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
             } else {
                 liveData.value = list
             }
-        } else {
-            getItems(packageName)
         }
     }
 

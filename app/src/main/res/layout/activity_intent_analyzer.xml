@@ -47,7 +47,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/text_color_primary"
+                            android:textColor="@color/colorAccent"
                             android:text="@string/launch_param_action" />
 
                         <TextView
@@ -85,7 +85,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:textColor="@color/text_color_primary"
+                                android:textColor="@color/colorAccent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/launch_param_data" />
 
@@ -116,7 +116,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/text_color_primary"
+                                android:textColor="@color/colorAccent"
                                 android:text="@string/launch_param_mime_type" />
 
                             <TextView
@@ -154,7 +154,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:textColor="@color/text_color_primary"
+                            android:textColor="@color/colorAccent"
                             android:text="@string/launch_param_extras" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -192,7 +192,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:textColor="@color/text_color_primary"
+                            android:textColor="@color/colorAccent"
                             android:text="@string/launch_param_categories" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -230,7 +230,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:textColor="@color/text_color_primary"
+                            android:textColor="@color/colorAccent"
                             android:text="@string/launch_param_flags" />
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -251,10 +251,5 @@
         </androidx.core.widget.NestedScrollView>
 
     </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/adsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

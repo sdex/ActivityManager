@@ -3,26 +3,17 @@ package com.sdex.activityrunner.intent.converter
 class IntegerListSerializer {
 
     fun serialize(list: List<Int>): String {
-        val stringBuilder = StringBuilder()
-        for (i in list.indices) {
-            stringBuilder.append(list[i])
-            if (i != list.size - 1) {
-                stringBuilder.append(DELIMITER)
-            }
-        }
-        return stringBuilder.toString()
+        return list.joinToString(DELIMITER)
     }
 
     fun deserialize(input: String?): ArrayList<Int> {
-        if (input == null || input.isEmpty()) {
+        if (input.isNullOrEmpty()) {
             return ArrayList(0)
         }
-        val split = input.split(DELIMITER.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        val output = ArrayList<Int>(split.size)
-        for (s in split) {
-            output.add(Integer.parseInt(s))
-        }
-        return output
+        val split = input.split(DELIMITER.toRegex())
+            .dropLastWhile { it.isEmpty() }
+            .map { it.toInt() }
+        return ArrayList(split)
     }
 
     companion object {

@@ -1,23 +1,24 @@
 package com.sdex.activityrunner.app
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.sqlite.db.SimpleSQLiteQuery
+import androidx.lifecycle.ViewModel
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.db.cache.CacheDatabase
+import com.sdex.activityrunner.db.cache.CacheRepository
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val cacheDatabase = CacheDatabase.getDatabase(application)
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val cacheRepository: CacheRepository,
+) : ViewModel() {
 
     val searchQuery = MutableLiveData<String?>(null)
 
     val items: LiveData<List<ApplicationModel>> = Transformations.switchMap(searchQuery) { text ->
-        val query = SimpleSQLiteQuery(GetApplicationsQuery(text).toString())
-        cacheDatabase.applicationsModelDao.getApplicationModels(query)
+        val query = GetApplicationsQuery(text).sqLiteQuery
+        cacheRepository.getApplications(query)
     }
 }

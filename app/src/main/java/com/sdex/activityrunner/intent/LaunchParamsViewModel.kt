@@ -1,28 +1,24 @@
 package com.sdex.activityrunner.intent
 
-import android.app.Application
-import android.os.AsyncTask
-import androidx.lifecycle.AndroidViewModel
-import com.sdex.activityrunner.db.history.HistoryDatabase
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sdex.activityrunner.db.history.HistoryRepository
 import com.sdex.activityrunner.intent.converter.LaunchParamsToHistoryConverter
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LaunchParamsViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val historyDatabase: HistoryDatabase = HistoryDatabase.getDatabase(application)
+@HiltViewModel
+class LaunchParamsViewModel @Inject constructor(
+    private val historyRepository: HistoryRepository,
+) : ViewModel() {
 
     fun addToHistory(launchParams: LaunchParams) {
-        InsertAsyncTask(historyDatabase).execute(launchParams)
-    }
-
-    private class InsertAsyncTask internal constructor(private val database: HistoryDatabase) :
-        AsyncTask<LaunchParams, Void, Void>() {
-
-        override fun doInBackground(vararg params: LaunchParams): Void? {
-            val historyConverter = LaunchParamsToHistoryConverter(params[0])
+        viewModelScope.launch(Dispatchers.IO) {
+            val historyConverter = LaunchParamsToHistoryConverter(launchParams)
             val historyModel = historyConverter.convert()
-            database.historyModelDao.insert(historyModel)
-            return null
+            historyRepository.insert(historyModel)
         }
     }
-
 }
