@@ -47,15 +47,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/launch_param_action"
                             android:textColor="@color/colorAccent"
-                            android:text="@string/launch_param_action" />
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/actionView"
                             android:layout_width="match_parent"
-                            android:textColor="@color/text_color_primary"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceListItem"
+                            android:textColor="@color/text_color_primary"
                             tools:text="android.intent.action.MAIN" />
                     </LinearLayout>
 
@@ -85,16 +86,17 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:textColor="@color/colorAccent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/launch_param_data" />
+                                android:text="@string/launch_param_data"
+                                android:textColor="@color/colorAccent"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/dataView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/text_color_primary"
                                 android:textAppearance="?android:attr/textAppearanceListItem"
+                                android:textColor="@color/text_color_primary"
                                 tools:text="122" />
                         </LinearLayout>
 
@@ -116,15 +118,16 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:text="@string/launch_param_mime_type"
                                 android:textColor="@color/colorAccent"
-                                android:text="@string/launch_param_mime_type" />
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/mimeTypeView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/text_color_primary"
                                 android:textAppearance="?android:attr/textAppearanceListItem"
+                                android:textColor="@color/text_color_primary"
                                 tools:text="image/png" />
                         </LinearLayout>
 
@@ -154,8 +157,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:text="@string/launch_param_extras"
                             android:textColor="@color/colorAccent"
-                            android:text="@string/launch_param_extras" />
+                            android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listExtrasView"
@@ -192,8 +196,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:text="@string/launch_param_categories"
                             android:textColor="@color/colorAccent"
-                            android:text="@string/launch_param_categories" />
+                            android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listCategoriesView"
@@ -230,8 +235,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:text="@string/launch_param_flags"
                             android:textColor="@color/colorAccent"
-                            android:text="@string/launch_param_flags" />
+                            android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listFlagsView"

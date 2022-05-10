@@ -6,9 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ActivityHistoryBinding
 import com.sdex.activityrunner.db.history.HistoryModel
@@ -49,9 +49,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
                 val size = it.size
                 val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
                 setSubtitle(subtitle)
-                if (size == 0) {
-                    binding.empty.visibility = VISIBLE
-                }
+                binding.empty.isVisible = (size == 0)
             }
         }
 

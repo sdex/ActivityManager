@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
@@ -279,7 +280,7 @@ class IntentBuilderActivity : BaseActivity(),
 
     private fun updateExtrasAdd() {
         val extras = launchParams.extras
-        binding.addExtraView.visibility = if (extras.isEmpty()) View.GONE else View.VISIBLE
+        binding.addExtraView.isVisible = extras.isNotEmpty()
     }
 
     private fun updateIcon(imageView: ImageView, text: String?) {

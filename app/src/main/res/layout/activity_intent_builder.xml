@@ -70,6 +70,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/launch_param_package_name"
                                     android:textColor="@color/colorAccent"
+                                    android:textStyle="bold"
                                     app:layout_constraintStart_toEndOf="@+id/packageNameImageView" />
 
                                 <TextView
@@ -79,7 +80,7 @@
                                     android:paddingBottom="6dp"
                                     android:textAppearance="?android:attr/textAppearanceListItem"
                                     android:textColor="@color/text_color_primary"
-                                    tools:text="com.sdex.activityrunner\nqw\n\nqw" />
+                                    tools:text="com.sdex.activityrunner" />
                             </LinearLayout>
 
                             <View
@@ -121,7 +122,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/launch_param_class_name"
-                                    android:textColor="@color/colorAccent" />
+                                    android:textColor="@color/colorAccent"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/classNameView"
@@ -175,7 +177,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/launch_param_action"
-                                android:textColor="@color/colorAccent" />
+                                android:textColor="@color/colorAccent"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/actionView"
@@ -184,11 +187,12 @@
                                 android:textAppearance="?android:attr/textAppearanceListItem"
                                 android:textColor="@color/text_color_primary"
                                 tools:text="android.intent.action.MAIN" />
+
                         </LinearLayout>
 
                         <ImageView
                             android:id="@+id/actionEditImageView"
-                            android:layout_width="@dimen/launch_params_item_height"
+                            android:layout_width="40dp"
                             android:layout_height="@dimen/launch_params_item_height"
                             android:background="?actionBarItemBackground"
                             android:padding="@dimen/launch_params_icon_edit_padding"
@@ -243,7 +247,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/launch_param_data"
-                                    android:textColor="@color/colorAccent" />
+                                    android:textColor="@color/colorAccent"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/dataView"
@@ -252,6 +257,7 @@
                                     android:textAppearance="?android:attr/textAppearanceListItem"
                                     android:textColor="@color/text_color_primary"
                                     tools:text="122" />
+
                             </LinearLayout>
 
                             <View
@@ -293,7 +299,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/launch_param_mime_type"
-                                    android:textColor="@color/colorAccent" />
+                                    android:textColor="@color/colorAccent"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/mimeTypeView"
@@ -302,11 +309,12 @@
                                     android:textAppearance="?android:attr/textAppearanceListItem"
                                     android:textColor="@color/text_color_primary"
                                     tools:text="image/png" />
+
                             </LinearLayout>
 
                             <ImageView
                                 android:id="@+id/mimeTypeEditImageView"
-                                android:layout_width="@dimen/launch_params_item_height"
+                                android:layout_width="40dp"
                                 android:layout_height="@dimen/launch_params_item_height"
                                 android:background="?actionBarItemBackground"
                                 android:padding="@dimen/launch_params_icon_edit_padding"
@@ -358,7 +366,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/launch_param_extras"
-                                android:textColor="@color/colorAccent" />
+                                android:textColor="@color/colorAccent"
+                                android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/listExtrasView"
@@ -431,7 +440,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/launch_param_categories"
-                                android:textColor="@color/colorAccent" />
+                                android:textColor="@color/colorAccent"
+                                android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/listCategoriesView"
@@ -496,7 +506,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/launch_param_flags"
-                                android:textColor="@color/colorAccent" />
+                                android:textColor="@color/colorAccent"
+                                android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/listFlagsView"
