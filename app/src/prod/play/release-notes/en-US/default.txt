@@ -1,0 +1,3 @@
+- bring back Intent Builder
+- fix launching intents without the `data` field
+- save manifest position after screen orientation change
