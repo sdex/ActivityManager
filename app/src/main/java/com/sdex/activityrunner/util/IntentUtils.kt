@@ -38,12 +38,16 @@ object IntentUtils {
     }
 
     fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
-        val intent = activityModelToIntent(activityModel)
-        val iconCompat = IconCompat.createWithBitmap(bitmap)
-        try {
-            createShortcut(context, activityModel.name, intent, iconCompat)
-        } catch (e: Exception) { // android.os.TransactionTooLargeException
-            createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+        if (bitmap != null) {
+            val intent = activityModelToIntent(activityModel)
+            val iconCompat = IconCompat.createWithBitmap(bitmap)
+            try {
+                createShortcut(context, activityModel.name, intent, iconCompat)
+            } catch (e: Exception) { // android.os.TransactionTooLargeException
+                createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+            }
+        } else {
+            createLauncherIcon(context, activityModel)
         }
     }
 
