@@ -76,7 +76,7 @@ kapt {
 }
 
 dependencies {
-    implementation "androidx.activity:activity-ktx:1.5.0"
+    implementation "androidx.activity:activity-ktx:1.5.1"
     implementation "androidx.appcompat:appcompat:1.4.2"
     implementation "androidx.browser:browser:1.4.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
@@ -84,7 +84,7 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
     implementation "androidx.preference:preference-ktx:1.2.0"
     implementation "androidx.recyclerview:recyclerview:1.2.1"
-    def room_version = "2.4.2"
+    def room_version = "2.4.3"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
