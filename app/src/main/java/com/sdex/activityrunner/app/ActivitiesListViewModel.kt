@@ -65,6 +65,10 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     }
 
     private fun ActivityInfo.toActivityModel() = ActivityModel(
-        name.split(".").last(), packageName, name, exported && isEnabled
+        name.split(".").last(),
+        packageName,
+        name,
+        loadLabel(packageManager).toString(),
+        exported && isEnabled
     )
 }

@@ -7,6 +7,7 @@ data class ActivityModel(
     val name: String,
     val packageName: String,
     val className: String,
+    val label: String?,
     val exported: Boolean
 ) : Serializable {
 
@@ -17,7 +18,7 @@ data class ActivityModel(
         if (this === other) return true
         if (other == null || javaClass != other.javaClass) return false
         val that = other as ActivityModel?
-        return if (packageName != that!!.packageName) false else className == that.className
+        return if (packageName != that?.packageName) false else className == that.className
     }
 
     override fun hashCode(): Int {
