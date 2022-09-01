@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.sdex.activityrunner.databinding.ActivityAboutBinding
-import com.sdex.activityrunner.donate.DonateDialog
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.license.LicensesDialogFragment
@@ -26,8 +25,7 @@ class AboutActivity : BaseActivity() {
         )
 
         binding.donate.setOnClickListener {
-            DonateDialog.newInstance()
-                .show(supportFragmentManager, DonateDialog.TAG)
+            AppUtils.openLink(this, getString(R.string.donate_link))
         }
 
         binding.sourceCode.setOnClickListener {
@@ -41,10 +39,6 @@ class AboutActivity : BaseActivity() {
         binding.openSource.setOnClickListener {
             LicensesDialogFragment()
                 .show(supportFragmentManager, LicensesDialogFragment.TAG)
-        }
-
-        binding.privacyPolicy.setOnClickListener {
-            IntentUtils.openBrowser(this, AppUtils.PP)
         }
     }
 

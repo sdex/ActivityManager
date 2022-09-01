@@ -2,6 +2,7 @@ package com.sdex.activityrunner.app
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
@@ -12,6 +13,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemActivityBinding
+import com.sdex.activityrunner.extensions.resolveColorAttr
 import com.sdex.activityrunner.glide.GlideApp
 
 class ActivitiesListAdapter(
@@ -19,6 +21,8 @@ class ActivitiesListAdapter(
 ) : ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     private val glide = GlideApp.with(activity)
+    @ColorInt
+    private val textColorPrimary = activity.resolveColorAttr(android.R.attr.textColorPrimary)
 
     var itemClickListener: ItemClickListener? = null
 
@@ -28,7 +32,7 @@ class ActivitiesListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), glide, itemClickListener)
+        holder.bind(getItem(position), glide, textColorPrimary, itemClickListener)
     }
 
     interface ItemClickListener {
@@ -45,6 +49,7 @@ class ActivitiesListAdapter(
         fun bind(
             item: ActivityModel,
             glide: RequestManager,
+            @ColorInt textColorPrimary: Int,
             itemClickListener: ItemClickListener?,
         ) {
             binding.name.text = item.name
@@ -57,13 +62,11 @@ class ActivitiesListAdapter(
 
             val context = binding.root.context
             binding.name.setTextColor(
-                ContextCompat.getColor(
-                    context, if (item.exported) {
-                        R.color.text_color_primary
-                    } else {
-                        R.color.red
-                    }
-                )
+                if (item.exported) {
+                    textColorPrimary
+                } else {
+                    ContextCompat.getColor(context, R.color.red)
+                }
             )
 
             binding.root.setOnClickListener {

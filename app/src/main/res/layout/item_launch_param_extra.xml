@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/key"
-        android:textColor="@color/text_color_secondary"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/equal_space"
-        android:textColor="@color/text_color_secondary"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/text_color_primary"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
         app:layout_constraintEnd_toStartOf="@+id/remove"
         app:layout_constraintStart_toEndOf="@+id/c1"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/value"
-        android:textColor="@color/text_color_secondary"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/equal_space"
-        android:textColor="@color/text_color_secondary"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/text_color_primary"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
         app:layout_constraintEnd_toStartOf="@+id/remove"
         app:layout_constraintStart_toEndOf="@+id/c2"
         app:layout_constraintTop_toTopOf="@+id/textView3"
@@ -80,6 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_close"
+        app:tint="@color/icon_tint"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

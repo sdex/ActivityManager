@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_gray"
     android:orientation="vertical"
     tools:context=".AboutActivity"
     tools:ignore="ContentDescription">
@@ -24,12 +23,10 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/donate"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="1dp">
+                android:background="?attr/selectableItemBackground">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -43,7 +40,6 @@
                         android:layout_height="@dimen/about_image_size"
                         android:layout_margin="4dp"
                         android:padding="8dp"
-                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_donation"
-                        android:textColor="@color/text_color_primary"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintBottom_toBottomOf="@+id/image_view_donate"
                         app:layout_constraintStart_toEndOf="@+id/image_view_donate"
                         app:layout_constraintTop_toTopOf="@+id/image_view_donate" />
@@ -64,12 +60,11 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/source_code"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="1dp">
+                android:background="?attr/selectableItemBackground">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -83,7 +78,6 @@
                         android:layout_height="@dimen/about_image_size"
                         android:layout_margin="4dp"
                         android:padding="8dp"
-                        android:textColor="@color/text_color_primary"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -94,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_source_code"
-                        android:textColor="@color/text_color_primary"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintBottom_toBottomOf="@+id/icon"
                         app:layout_constraintStart_toEndOf="@+id/icon"
                         app:layout_constraintTop_toTopOf="@+id/icon" />
@@ -105,12 +99,11 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/issues_tracker"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="1dp">
+                android:background="?attr/selectableItemBackground">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -134,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_issues_tracker"
-                        android:textColor="@color/text_color_primary"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_feedback"
                         app:layout_constraintStart_toEndOf="@+id/image_view_feedback" />
 
@@ -149,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_feedback"
-                        android:textColor="@color/text_color_secondary"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
                         app:layout_constraintStart_toEndOf="@+id/image_view_feedback"
                         app:layout_constraintTop_toTopOf="@+id/guideline_feedback" />
 
@@ -159,12 +152,11 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/openSource"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="1dp">
+                android:background="?attr/selectableItemBackground">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -188,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_open_source"
-                        android:textColor="@color/text_color_primary"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintBottom_toBottomOf="@+id/image_view_open_source"
                         app:layout_constraintStart_toEndOf="@+id/image_view_open_source"
                         app:layout_constraintTop_toTopOf="@+id/image_view_open_source" />
@@ -198,53 +190,12 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/privacyPolicy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="1dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp">
-
-                    <ImageView
-                        android:id="@+id/image_view_privacy_policy"
-                        android:layout_width="@dimen/about_image_size"
-                        android:layout_height="@dimen/about_image_size"
-                        android:layout_margin="4dp"
-                        android:padding="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_about_privacy_policy"
-                        app:tint="@color/icon_tint" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/about_open_privacy_policy"
-                        android:textColor="@color/text_color_primary"
-                        app:layout_constraintBottom_toBottomOf="@+id/image_view_privacy_policy"
-                        app:layout_constraintStart_toEndOf="@+id/image_view_privacy_policy"
-                        app:layout_constraintTop_toTopOf="@+id/image_view_privacy_policy" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/version"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="1dp">
+                android:background="?attr/selectableItemBackground">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -268,7 +219,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_version"
-                        android:textColor="@color/text_color_primary"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintBottom_toTopOf="@+id/guideline_version"
                         app:layout_constraintStart_toEndOf="@+id/image_view_version" />
 
@@ -283,7 +234,7 @@
                         android:id="@+id/versionName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/text_color_primary"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
                         app:layout_constraintStart_toEndOf="@+id/image_view_version"
                         app:layout_constraintTop_toTopOf="@+id/guideline_version"
                         tools:text="1.4.5 (145)" />

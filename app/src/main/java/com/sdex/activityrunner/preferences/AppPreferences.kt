@@ -2,6 +2,7 @@ package com.sdex.activityrunner.preferences
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 
 class AppPreferences(context: Context) {
@@ -14,6 +15,14 @@ class AppPreferences(context: Context) {
         set(value) = preferences.edit()
             .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, value)
             .apply()
+    val appOpenCounter: Int
+        get() = preferences.getInt(KEY_OPEN_APP_COUNTER, 0)
+
+    fun onAppOpened() {
+        preferences.edit {
+            putInt(KEY_OPEN_APP_COUNTER, appOpenCounter + 1)
+        }
+    }
 
     /* user preferences */
 
@@ -40,6 +49,7 @@ class AppPreferences(context: Context) {
 
         private const val PREFERENCES_NAME = "ads_preferences"
         private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
+        private const val KEY_OPEN_APP_COUNTER = "open_app_counter"
 
         /* advanced preferences */
         private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"

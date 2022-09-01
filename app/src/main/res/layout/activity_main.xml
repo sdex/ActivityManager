@@ -9,7 +9,8 @@
 
     <include layout="@layout/toolbar" />
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fastScrollEnableThumbInactiveColor="true"
-            app:fastScrollPopupBgColor="@color/colorAccent"
-            app:fastScrollPopupTextColor="@color/colorControlActivated"
-            app:fastScrollThumbColor="@color/colorAccent"
+            app:fastScrollPopupBgColor="@color/blue_light"
+            app:fastScrollPopupTextColor="@color/white"
+            app:fastScrollThumbColor="@color/blue_light"
             app:fastScrollThumbInactiveColor="@color/scrollbar_inactive_thumb"
             app:fastScrollTrackColor="@color/scrollbar_background"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -34,6 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

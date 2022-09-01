@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.databinding.DialogInputValueBinding
 import com.sdex.commons.BaseDialogFragment
 
@@ -30,7 +30,7 @@ class ValueInputDialog : BaseDialogFragment() {
             }
             false
         }
-        return AlertDialog.Builder(requireActivity())
+        return MaterialAlertDialogBuilder(requireActivity())
             .setTitle(type)
             .setView(binding.root)
             .setPositiveButton(android.R.string.ok) { _, _ ->

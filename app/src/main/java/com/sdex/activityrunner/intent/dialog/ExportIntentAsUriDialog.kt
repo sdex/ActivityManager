@@ -5,8 +5,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogExportIntentAsUriBinding
 import com.sdex.activityrunner.intent.LaunchParams
@@ -24,7 +24,7 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
         val value = launchParamsToWebIntentConverter.convert()
         binding.value.text = value
 
-        return AlertDialog.Builder(requireActivity())
+        return MaterialAlertDialogBuilder(requireActivity())
             .setTitle(R.string.history_item_dialog_export_uri)
             .setView(binding.root)
             .setPositiveButton(R.string.dialog_export_intent_copy) { _, _ ->

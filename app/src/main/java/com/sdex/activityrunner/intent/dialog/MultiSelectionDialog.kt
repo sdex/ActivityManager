@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.SparseBooleanArray
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.dialog.source.CategoriesSource
 import com.sdex.activityrunner.intent.dialog.source.FlagsSource
@@ -35,7 +35,7 @@ class MultiSelectionDialog : BaseDialogFragment() {
             checkedItems[i] = checked
             selectedItems.put(i, checked)
         }
-        val builder = AlertDialog.Builder(requireActivity())
+        val builder = MaterialAlertDialogBuilder(requireActivity())
         builder.setMultiChoiceItems(
             list.toTypedArray(), checkedItems
         ) { _, which, isChecked -> selectedItems.put(which, isChecked) }

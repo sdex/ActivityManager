@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogInputExtraBinding
 import com.sdex.activityrunner.intent.LaunchParamsExtra
@@ -37,7 +38,7 @@ class ExtraInputDialog : BaseDialogFragment() {
             binding.rbString.isChecked = true
         }
 
-        return AlertDialog.Builder(requireActivity())
+        return MaterialAlertDialogBuilder(requireActivity())
             .setTitle(R.string.dialog_add_extra_title)
             .setView(binding.root)
             .setPositiveButton(android.R.string.ok, null)

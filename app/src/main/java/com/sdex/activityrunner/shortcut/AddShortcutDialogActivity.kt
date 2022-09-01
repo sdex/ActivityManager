@@ -123,7 +123,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
                 )
                 builder.setBackgroundColor(
                     ContextCompat.getColor(
-                        this@AddShortcutDialogActivity, R.color.colorAccent
+                        this@AddShortcutDialogActivity, R.color.blue_light
                     )
                 )
                 builder.setTextAppearance(R.style.TooltipTextAppearance)

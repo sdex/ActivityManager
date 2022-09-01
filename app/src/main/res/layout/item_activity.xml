@@ -28,16 +28,14 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_primary"
-            android:textSize="16sp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
             tools:text="Activity name" />
 
         <TextView
             android:id="@+id/packageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_secondary"
-            android:textSize="14sp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             tools:text="com.app.package" />
 
     </LinearLayout>

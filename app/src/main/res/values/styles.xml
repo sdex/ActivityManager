@@ -7,14 +7,14 @@
     <style name="BottomDialogTextStyle" parent="TextAppearance.AppCompat">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textColor">@color/text_color_primary</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.TitleMedium</item>
         <item name="android:textSize">16sp</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+    <style name="BottomSheet" parent="Widget.Material3.BottomSheet">
         <item name="backgroundTint">@android:color/transparent</item>
     </style>
 
@@ -22,6 +22,15 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Filled">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/default_card_corner_radius</item>
     </style>
 
 </resources>

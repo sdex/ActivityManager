@@ -3,7 +3,7 @@ package com.sdex.activityrunner.intent.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.dialog.source.ActionSource
 import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource
@@ -24,7 +24,7 @@ class SingleSelectionDialog : BaseDialogFragment() {
         }
 
         val list = source.list
-        val builder = AlertDialog.Builder(requireActivity())
+        val builder = MaterialAlertDialogBuilder(requireActivity())
         builder.setSingleChoiceItems(
             list.toTypedArray(),
             initialPosition

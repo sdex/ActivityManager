@@ -28,9 +28,8 @@
             android:maxLines="1"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:textColor="@color/colorAccent"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/blue_light"
             tools:text="Application name" />
 
     </LinearLayout>

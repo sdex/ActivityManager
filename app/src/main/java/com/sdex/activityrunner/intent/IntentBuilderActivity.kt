@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -251,44 +250,20 @@ class IntentBuilderActivity : BaseActivity(),
     }
 
     private fun showLaunchParams() {
-        val packageName = launchParams.packageName
-        binding.packageNameView.text = packageName
-        updateIcon(binding.packageNameImageView, packageName)
-        val className = launchParams.className
-        binding.classNameView.text = className
-        updateIcon(binding.classNameImageView, className)
-        val data = launchParams.data
-        binding.dataView.text = data
-        updateIcon(binding.dataImageView, data)
-        val actionValue = launchParams.action
-        binding.actionView.text = actionValue
-        updateIcon(binding.actionImageView, actionValue)
-        val mimeTypeValue = launchParams.mimeType
-        binding.mimeTypeView.text = mimeTypeValue
-        updateIcon(binding.mimeTypeImageView, mimeTypeValue)
-        val extras = launchParams.extras
-        extraAdapter.setItems(extras)
-        updateIcon(binding.extrasImageView, extras)
+        binding.packageNameView.text = launchParams.packageName
+        binding.classNameView.text = launchParams.className
+        binding.dataView.text = launchParams.data
+        binding.actionView.text = launchParams.action
+        binding.mimeTypeView.text = launchParams.mimeType
+        extraAdapter.setItems(launchParams.extras)
+        categoriesAdapter.setItems(launchParams.getCategoriesValues())
+        flagsAdapter.setItems(launchParams.getFlagsValues())
         updateExtrasAdd()
-        val categoriesValues = launchParams.getCategoriesValues()
-        categoriesAdapter.setItems(categoriesValues)
-        updateIcon(binding.categoriesImageView, categoriesValues)
-        val flagsValues = launchParams.getFlagsValues()
-        flagsAdapter.setItems(flagsValues)
-        updateIcon(binding.flagsImageView, flagsValues)
     }
 
     private fun updateExtrasAdd() {
         val extras = launchParams.extras
         binding.addExtraView.isVisible = extras.isNotEmpty()
-    }
-
-    private fun updateIcon(imageView: ImageView, text: String?) {
-        imageView.isSelected = !text.isNullOrEmpty()
-    }
-
-    private fun updateIcon(imageView: ImageView, list: List<*>) {
-        imageView.isSelected = list.isNotEmpty()
     }
 
     companion object {

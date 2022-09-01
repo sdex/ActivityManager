@@ -30,7 +30,7 @@
 
     <!-- activities list -->
     <string name="activities_list_empty_text">There are no non-exported activities</string>
-    <string name="activities_list_empty_action">turn on advanced mode</string>
+    <string name="activities_list_empty_action">Turn on advanced mode</string>
 
     <string name="action_about">About</string>
     <string name="action_launch_intent">Intent launcher</string>

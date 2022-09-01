@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:text="@string/context_action_shortcut"
-        android:textColor="@color/text_color_primary"
-        android:textSize="20sp"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +34,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/value_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -49,8 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/shortcut_name"
-            android:inputType="text"
-            android:textColor="@color/text_color_primary" />
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,11 +87,11 @@
         android:id="@+id/imageView"
         android:layout_width="22dp"
         android:layout_height="22dp"
+        android:background="@drawable/background_edit_icon_indicator"
         android:padding="4dp"
         app:layout_constraintEnd_toEndOf="@+id/icon"
         app:layout_constraintTop_toTopOf="@+id/icon"
-        app:tint="@color/white"
-        android:background="@drawable/background_edit_icon_indicator"
-        app:srcCompat="@drawable/ic_edit" />
+        app:srcCompat="@drawable/ic_edit"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

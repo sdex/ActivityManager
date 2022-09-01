@@ -95,6 +95,8 @@ class ActivitiesListActivity : BaseActivity() {
         menuInflater.inflate(R.menu.activities_list, menu)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
+        // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
+        searchView.maxWidth = Int.MAX_VALUE
         searchView.queryHint = getString(R.string.action_search_activity_hint)
 
         if (searchText != null) {

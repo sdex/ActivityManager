@@ -42,7 +42,8 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
                 viewModelScope.launch(Dispatchers.IO) {
                     val filteredList = list.filter {
                         it.name.contains(searchText, true) ||
-                                it.className.contains(searchText, true)
+                                it.className.contains(searchText, true) ||
+                                (!it.label.isNullOrEmpty() && it.label.contains(searchText, true))
                     }
                     liveData.postValue(filteredList)
                 }

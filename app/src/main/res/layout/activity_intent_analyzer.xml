@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_gray"
     android:orientation="vertical"
     tools:context=".intent.IntentBuilderActivity"
     tools:ignore="ContentDescription">
@@ -28,11 +27,10 @@
                 android:orientation="vertical"
                 android:padding="@dimen/launch_params_activity_padding">
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
+                    style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/card_background"
-                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:id="@+id/linearLayout2"
@@ -41,38 +39,36 @@
                         android:gravity="center_vertical"
                         android:minHeight="@dimen/launch_params_item_height"
                         android:orientation="vertical"
-                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+                        android:paddingHorizontal="@dimen/analyzer_item_padding_horizontal">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/launch_param_action"
-                            android:textColor="@color/colorAccent"
-                            android:textStyle="bold" />
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <TextView
                             android:id="@+id/actionView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceListItem"
-                            android:textColor="@color/text_color_primary"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
                             tools:text="android.intent.action.MAIN" />
+
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
+                    style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="@color/card_background"
-                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/analyzer_item_padding_horizontal">
 
                         <LinearLayout
                             android:id="@+id/linearLayout3"
@@ -80,24 +76,21 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical"
-                            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-                            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/launch_param_data"
-                                android:textColor="@color/colorAccent"
-                                android:textStyle="bold" />
+                                android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                             <TextView
                                 android:id="@+id/dataView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceListItem"
-                                android:textColor="@color/text_color_primary"
+                                android:textAppearance="?attr/textAppearanceBodyLarge"
                                 tools:text="122" />
+
                         </LinearLayout>
 
                         <View
@@ -111,37 +104,32 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical"
-                            android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-                            android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/launch_param_mime_type"
-                                android:textColor="@color/colorAccent"
-                                android:textStyle="bold" />
+                                android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                             <TextView
                                 android:id="@+id/mimeTypeView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceListItem"
-                                android:textColor="@color/text_color_primary"
+                                android:textAppearance="?attr/textAppearanceBodyLarge"
                                 tools:text="image/png" />
-                        </LinearLayout>
 
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
+                    style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="@color/card_background"
-                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
 
                     <LinearLayout
                         android:id="@+id/linearLayout_extras"
@@ -150,16 +138,14 @@
                         android:gravity="center_vertical"
                         android:minHeight="@dimen/launch_params_item_height"
                         android:orientation="vertical"
-                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+                        android:paddingHorizontal="@dimen/analyzer_item_padding_horizontal">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="@string/launch_param_extras"
-                            android:textColor="@color/colorAccent"
-                            android:textStyle="bold" />
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listExtrasView"
@@ -173,14 +159,13 @@
 
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
+                    style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="@color/card_background"
-                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
 
                     <LinearLayout
                         android:id="@+id/linearLayout5"
@@ -189,16 +174,14 @@
                         android:gravity="center_vertical"
                         android:minHeight="@dimen/launch_params_item_height"
                         android:orientation="vertical"
-                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+                        android:paddingHorizontal="@dimen/analyzer_item_padding_horizontal">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="@string/launch_param_categories"
-                            android:textColor="@color/colorAccent"
-                            android:textStyle="bold" />
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listCategoriesView"
@@ -212,14 +195,13 @@
 
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
+                    style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin"
-                    app:cardBackgroundColor="@color/card_background"
-                    app:cardCornerRadius="@dimen/launch_params_item_corner_radius">
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
 
                     <LinearLayout
                         android:id="@+id/linearLayout6"
@@ -228,16 +210,14 @@
                         android:gravity="center_vertical"
                         android:minHeight="@dimen/launch_params_item_height"
                         android:orientation="vertical"
-                        android:paddingLeft="@dimen/analyzer_item_padding_horizontal"
-                        android:paddingRight="@dimen/analyzer_item_padding_horizontal">
+                        android:paddingHorizontal="@dimen/analyzer_item_padding_horizontal">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="@string/launch_param_flags"
-                            android:textColor="@color/colorAccent"
-                            android:textStyle="bold" />
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listFlagsView"
@@ -250,7 +230,7 @@
                             tools:listitem="@layout/item_launch_param" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 

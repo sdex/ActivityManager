@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="@dimen/dialog_content_padding">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/value_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:endIconMode="clear_text">
@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/input_value"
             android:inputType="text"
-            android:textColor="@color/text_color_primary"
             tools:text="test text" />
 
     </com.google.android.material.textfield.TextInputLayout>
