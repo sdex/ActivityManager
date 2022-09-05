@@ -1,8 +1,18 @@
 package com.sdex.commons.pm
 
+import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import java.io.File
+
+fun getInstalledPackages(pm: PackageManager): List<String> {
+    return pm.getInstalledPackages(0)
+        .map { it.packageName }
+        .ifEmpty {
+            pm.queryIntentActivities(Intent(Intent.ACTION_MAIN), 0)
+                .map { it.activityInfo.applicationInfo.packageName }
+        }
+}
 
 fun getPackageInfo(pm: PackageManager, packageName: String): PackageInfo {
     return try {

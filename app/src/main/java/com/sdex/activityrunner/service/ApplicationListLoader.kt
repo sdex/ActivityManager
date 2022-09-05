@@ -1,11 +1,11 @@
 package com.sdex.activityrunner.service
 
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
+import com.sdex.commons.pm.getInstalledPackages
 import com.sdex.commons.pm.getPackageInfo
 import timber.log.Timber
 
@@ -43,12 +43,7 @@ class ApplicationListLoader {
 
     private fun getApplicationsList(context: Context): List<ApplicationModel> {
         val packageManager = context.packageManager
-        return packageManager.getInstalledPackages(0)
-            .map { it.packageName }
-            .ifEmpty {
-                packageManager.queryIntentActivities(Intent(Intent.ACTION_MAIN), 0)
-                    .map { it.activityInfo.applicationInfo.packageName }
-            }
+        return getInstalledPackages(packageManager)
             .mapNotNull { getApplication(packageManager, it) }
     }
 
@@ -70,7 +65,8 @@ class ApplicationListLoader {
         }
         val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
         ApplicationModel(
-            packageName, name, activities.size, exportedActivitiesCount, isSystemApp
+            packageName, name, activities.size, exportedActivitiesCount, isSystemApp,
+            applicationInfo.enabled,
         )
     } catch (e: Exception) {
         Timber.e(e)

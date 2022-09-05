@@ -14,6 +14,7 @@ import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
 import com.sdex.commons.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,11 +59,15 @@ class ActivitiesListActivity : BaseActivity() {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-        viewModel.getItems(appPackageName).observe(this) {
-            adapter.submitList(it)
-            val size = it.size
-            setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
-            binding.empty.isVisible = (size == 0 && searchText == null)
+        if (item.enabled) {
+            viewModel.getItems(appPackageName).observe(this) {
+                adapter.submitList(it)
+                val size = it.size
+                setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
+                binding.empty.isVisible = (size == 0 && searchText == null)
+            }
+        } else {
+            binding.disabled.isVisible = true
         }
 
         isShowNotExported = appPreferences.showNotExported
@@ -70,6 +75,10 @@ class ActivitiesListActivity : BaseActivity() {
         binding.turnOnAdvanced.setOnClickListener {
             appPreferences.showNotExported = true
             viewModel.reloadItems(appPackageName)
+        }
+
+        binding.openAppInfo.setOnClickListener {
+            IntentUtils.openApplicationInfo(this, appPackageName)
         }
 
         if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {

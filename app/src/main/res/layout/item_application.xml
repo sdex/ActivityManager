@@ -38,6 +38,17 @@
             android:textAppearance="?attr/textAppearanceBodyMedium"
             tools:text="com.android.application" />
 
+        <TextView
+            android:id="@+id/disabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/application_disabled"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textStyle="italic"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
     </LinearLayout>
 
     <ImageView

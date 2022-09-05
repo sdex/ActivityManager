@@ -11,6 +11,7 @@ class DonateDialog : BaseDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext())
+            .setIcon(R.drawable.ic_about_support_development)
             .setTitle(R.string.about_donation)
             .setMessage(R.string.donate_message)
             .setPositiveButton(R.string.donate_action_text) { _, _ ->

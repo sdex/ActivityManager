@@ -19,6 +19,8 @@
     <string name="application_option_open_manifest">Open manifest viewer</string>
     <string name="application_option_open_info">Open application info</string>
     <string name="application_option_action_launch">Open in GooglePlay</string>
+    <string name="application_disabled">Disabled</string>
+    <string name="application_disabled_description">Cannot load activities, this application is disabled</string>
 
     <!-- create shortcut -->
     <string name="shortcut_name">Label</string>

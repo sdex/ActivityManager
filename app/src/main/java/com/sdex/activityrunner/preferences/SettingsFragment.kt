@@ -10,7 +10,7 @@ import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME
 class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.pref_advanced, rootKey)
+        setPreferencesFromResource(R.xml.preferences, rootKey)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-    private fun getCurrentTheme(@AppCompatDelegate.NightMode theme: Int): CharSequence? {
+    private fun getCurrentTheme(@AppCompatDelegate.NightMode theme: Int): CharSequence {
         val values = resources.getStringArray(R.array.pref_appearance_theme_list_titles)
         return when (theme) {
             AppCompatDelegate.MODE_NIGHT_NO -> values[1]

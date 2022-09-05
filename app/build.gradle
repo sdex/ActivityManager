@@ -13,8 +13,8 @@ android {
         applicationId "com.activitymanager"
         minSdkVersion 16
         targetSdkVersion 33
-        versionCode 415
-        versionName "4.2.0"
+        versionCode 416
+        versionName "4.3.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -103,6 +103,7 @@ dependencies {
 
     testImplementation "junit:junit:4.13.2"
 
+    androidTestImplementation "androidx.room:room-testing:$room_version"
     androidTestImplementation "androidx.test:runner:1.4.0"
     androidTestImplementation "androidx.test:rules:1.4.0"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"

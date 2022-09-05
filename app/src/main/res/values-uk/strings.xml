@@ -13,6 +13,8 @@
     <string name="application_option_open_info">Вікрити інфо</string>
     <string name="application_option_open_manifest">Вікрити маніфест</string>
     <string name="application_option_action_launch">Відкрити в GooglePlay</string>
+    <string name="application_disabled">Вимкнено</string>
+    <string name="application_disabled_description">Неможливо відобразити компоненти, додаток вимкнений</string>
 
     <!-- create shortcut -->
     <string name="shortcut_name">Назва</string>

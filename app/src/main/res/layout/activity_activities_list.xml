@@ -39,7 +39,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <ImageView
                 android:layout_width="56dp"
@@ -50,7 +50,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:padding="16dp"
                 android:text="@string/activities_list_empty_text"
                 android:textAppearance="?attr/textAppearanceTitleLarge" />
 
@@ -59,8 +60,40 @@
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="@string/activities_list_empty_action" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/disabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:srcCompat="@drawable/ic_close"
+                app:tint="@color/icon_tint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/application_disabled_description"
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+            <Button
+                android:id="@+id/openAppInfo"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/application_option_open_info" />
 
         </LinearLayout>
 

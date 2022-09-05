@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -66,6 +67,7 @@ class ApplicationsListAdapter(
             binding.name.text = item.name
             binding.packageName.text = item.packageName
             binding.system.isInvisible = !(item.system && isShowSystemAppIndicator)
+            binding.disabled.isVisible = !item.enabled
 
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
