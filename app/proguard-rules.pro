@@ -21,7 +21,6 @@
 #-renamesourcefileattribute SourceFile
 
 -dontskipnonpubliclibraryclassmembers
--dontwarn
 -ignorewarnings
 
 -keep class androidx.appcompat.widget.SearchView { *; }
@@ -32,11 +31,6 @@
 
 -keep public class * extends androidx.core.view.ActionProvider {
     public <init>(android.content.Context);
-}
-
--keep class .R
--keep class **.R$* {
-    <fields>;
 }
 
 -keepclassmembernames class kotlinx.** {

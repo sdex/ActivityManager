@@ -55,7 +55,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_open" />
+            android:text="@string/application_option_open" />
 
     </LinearLayout>
 
@@ -75,7 +75,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_open_manifest" />
+            android:text="@string/application_option_open_manifest" />
 
     </LinearLayout>
 
@@ -95,7 +95,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_open_info" />
+            android:text="@string/application_option_open_info" />
 
     </LinearLayout>
 
@@ -115,7 +115,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_launch" />
+            android:text="@string/application_option_action_launch" />
 
     </LinearLayout>
 

@@ -24,9 +24,9 @@ class LicensesDialogFragment : BaseDialogFragment() {
         }
         webView.loadUrl("file:///android_asset/licenses.html")
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.dialog_license_title)
+            .setTitle(R.string.about_open_source)
             .setView(webView)
-            .setPositiveButton(R.string.dialog_license_close, null)
+            .setPositiveButton(android.R.string.ok, null)
             .create()
     }
 

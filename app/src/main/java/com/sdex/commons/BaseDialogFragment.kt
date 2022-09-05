@@ -8,7 +8,7 @@ open class BaseDialogFragment : DialogFragment() {
     override fun show(manager: FragmentManager, tag: String?) {
         try {
             super.show(manager, tag)
-        } catch (e: IllegalStateException) {
+        } catch (_: IllegalStateException) {
         }
     }
 }

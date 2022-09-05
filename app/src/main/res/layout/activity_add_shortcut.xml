@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:text="@string/context_action_shortcut"
+        android:text="@string/activity_option_create_shortcut"
         android:textAppearance="?attr/textAppearanceTitleLarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

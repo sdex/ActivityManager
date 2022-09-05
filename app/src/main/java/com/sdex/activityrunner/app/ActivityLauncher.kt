@@ -34,8 +34,8 @@ fun Activity.launchActivity(
 fun Activity.launchActivityWithRoot(componentName: ComponentName) {
     GlobalScope.launch {
         when (launchActivityUsingRoot(componentName)) {
-            ROOT_ERROR -> R.string.activity_launch_root_error
-            ROOT_NOT_AVAILABLE -> R.string.activity_launch_root_not_available
+            ROOT_ERROR -> R.string.starting_activity_root_error
+            ROOT_NOT_AVAILABLE -> R.string.starting_activity_root_not_available
             else -> null
         }?.let {
             withContext(Dispatchers.Main) {

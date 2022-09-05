@@ -42,7 +42,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_shortcut" />
+            android:text="@string/activity_option_create_shortcut" />
 
     </LinearLayout>
 
@@ -62,7 +62,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_launch_params" />
+            android:text="@string/activity_option_launch_params" />
 
     </LinearLayout>
 
@@ -82,7 +82,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_launch_root" />
+            android:text="@string/activity_option_launch_root" />
 
     </LinearLayout>
 
