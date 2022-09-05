@@ -80,11 +80,8 @@
     <string name="pref_header_advanced">Додаткові можливості</string>
     <string name="pref_advanced_not_exported_title">Показувати приховані Activity</string>
     <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені ROOT</string>
-    <string name="pref_advanced_root_integration_title">Інтеграція з ROOT</string>
-    <string name="pref_advanced_root_integration_summary">Запуск додатків від імені ROOT</string>
     <string name="settings_error_root_not_available">ROOT недоступний на цьому пристрої</string>
     <string name="settings_error_root_not_granted">ROOT права не були надані</string>
-    <string name="settings_error_root_not_active">Потрібно активувати інтеграцію з ROOT</string>
 
     <plurals name="history_records">
         <item quantity="one">%d запис</item>

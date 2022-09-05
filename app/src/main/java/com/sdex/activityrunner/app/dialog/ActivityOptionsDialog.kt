@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.sdex.activityrunner.app.ActivityLauncher
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 
@@ -29,8 +29,6 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         val model = requireArguments().getSerializable(ARG_MODEL) as ActivityModel
 
-        val launcher = ActivityLauncher(requireActivity())
-
         binding.activityName.text = model.name
         binding.actionActivityAddShortcut.setOnClickListener {
             AddShortcutDialogActivity.start(requireContext(), model)
@@ -38,11 +36,11 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
         }
         binding.actionActivityLaunchWithParams.isVisible = model.exported
         binding.actionActivityLaunchWithParams.setOnClickListener {
-            launcher.launchActivityWithParams(model)
+            requireActivity().launchActivity(model, useParams = true)
             dismissAllowingStateLoss()
         }
         binding.actionActivityLaunchWithRoot.setOnClickListener {
-            launcher.launchActivityWithRoot(model)
+            requireActivity().launchActivity(model, useRoot = true)
             dismissAllowingStateLoss()
         }
     }

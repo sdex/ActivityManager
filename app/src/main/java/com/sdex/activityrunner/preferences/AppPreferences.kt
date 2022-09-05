@@ -37,9 +37,6 @@ class AppPreferences(context: Context) {
                 .apply()
         }
 
-    val isRootIntegrationEnabled: Boolean
-        get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, false)
-
     @AppCompatDelegate.NightMode
     val theme: Int
         get() = userPreferences.getString(KEY_THEME, null)?.toInt()
@@ -54,7 +51,6 @@ class AppPreferences(context: Context) {
         /* advanced preferences */
         private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
         private const val KEY_SHOW_SYSTEM_APP_LABEL = "advanced_system_app"
-        const val KEY_ROOT_INTEGRATION = "advanced_root_integration"
         const val KEY_THEME = "appearance_theme"
     }
 }

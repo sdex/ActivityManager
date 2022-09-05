@@ -135,12 +135,9 @@
     <string name="pref_advanced_system_apps_summary">Gray dot near app name</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
     <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
-    <string name="pref_advanced_root_integration_title">Allow ROOT operations</string>
-    <string name="pref_advanced_root_integration_summary">Run any activity with root permission</string>
 
     <string name="settings_error_root_not_available">ROOT is not available</string>
     <string name="settings_error_root_not_granted">ROOT permission is not granted</string>
-    <string name="settings_error_root_not_active">You need to enable ROOT operations</string>
 
     <string-array name="pref_appearance_theme_list_titles">
         <item>System</item>
@@ -167,4 +164,8 @@
     <string name="manifest_viewer_help">Help</string>
     <string name="manifest_viewer_search">Search</string>
     <string name="action_search_manifest_hint">Find keyword</string>
+
+    <string name="activity_launch_root_error">Failed to launch the activity using root</string>
+    <string name="activity_launch_root_not_available">Root is not available or the permission is not granter</string>
+
 </resources>

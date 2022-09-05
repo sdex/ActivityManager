@@ -45,7 +45,7 @@ class ActivitiesListActivity : BaseActivity() {
         val adapter = ActivitiesListAdapter(this).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
-                    ActivityLauncher(this@ActivitiesListActivity).launchActivity(item)
+                    launchActivity(item)
                 }
 
                 override fun onItemLongClick(item: ActivityModel) {
