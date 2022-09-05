@@ -1,0 +1,19 @@
+[*]
+charset=utf-8
+end_of_line=lf
+insert_final_newline=true
+indent_style=space
+indent_size=4
+continuation_indent_size=4
+trim_trailing_whitespace=true
+no-wildcard-import = true
+
+[*.json]
+indent_style=space
+indent_size=2
+
+[*.xml]
+indent_style=space
+indent_size=4
+continuation_indent_size=4
+force_rearrange_mode=1
