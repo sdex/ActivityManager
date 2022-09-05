@@ -1,10 +1,10 @@
 <p align="center">
-<img src="docs/graphics/logos/feature-name-logo.png"/>
+<img src="docs/graphics/logos/feature-name-logo-small.png"/>
 </p>
 
 # Activity Manager - hidden activity launcher
 
-Activity Manager provides the list of all activities of all installed applications and ability to run them.
+Activity Manager provides the activities list of installed applications and ability to run them.
 
 Features:
 ----------
@@ -12,6 +12,7 @@ Features:
 * Launch exported activities
 * Launch non-exported activities with ROOT
 * Create custom shortcuts for activities
+* Create and start any custom intents using Intent Builder
 * Explore an app details with Manifest Viewer
 * Light/Dark theme support
 
@@ -27,7 +28,7 @@ Also available on F-droid:
 </a>
 </div>
 
-Or build from the repo directly: 
+Or build from the repo directly:
 ```
 ./gradlew assemble
 ```

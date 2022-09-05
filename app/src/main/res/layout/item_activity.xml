@@ -32,6 +32,13 @@
             tools:text="Activity name" />
 
         <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            tools:text="Activity label" />
+
+        <TextView
             android:id="@+id/packageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

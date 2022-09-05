@@ -43,7 +43,7 @@ class ActivitiesListActivity : BaseActivity() {
         appPackageName = item.packageName
         title = item.name
         binding.list.addDividerItemDecoration()
-        val adapter = ActivitiesListAdapter(this).apply {
+        val adapter = ActivitiesListAdapter(this, item).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
                     launchActivity(item)

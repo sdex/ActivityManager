@@ -9,7 +9,7 @@ import android.os.Message
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.commons.BaseDialogFragment
 
@@ -23,7 +23,7 @@ class LicensesDialogFragment : BaseDialogFragment() {
             scrollPosition = it
         }
         webView.loadUrl("file:///android_asset/licenses.html")
-        return AlertDialog.Builder(requireContext())
+        return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.about_open_source)
             .setView(webView)
             .setPositiveButton(android.R.string.ok, null)

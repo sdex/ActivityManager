@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,11 +14,13 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemActivityBinding
+import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.resolveColorAttr
 import com.sdex.activityrunner.glide.GlideApp
 
 class ActivitiesListAdapter(
-    activity: FragmentActivity
+    activity: FragmentActivity,
+    private val application: ApplicationModel,
 ) : ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     private val glide = GlideApp.with(activity)
@@ -32,7 +35,7 @@ class ActivitiesListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), glide, textColorPrimary, itemClickListener)
+        holder.bind(application, getItem(position), glide, textColorPrimary, itemClickListener)
     }
 
     interface ItemClickListener {
@@ -47,6 +50,7 @@ class ActivitiesListAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
+            application: ApplicationModel,
             item: ActivityModel,
             glide: RequestManager,
             @ColorInt textColorPrimary: Int,
@@ -54,6 +58,9 @@ class ActivitiesListAdapter(
         ) {
             binding.name.text = item.name
             binding.packageName.text = item.componentName.shortClassName
+            binding.label.text = item.label
+            binding.label.isVisible = !item.label.isNullOrBlank() &&
+                item.label != application.name && item.label != item.name
 
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
