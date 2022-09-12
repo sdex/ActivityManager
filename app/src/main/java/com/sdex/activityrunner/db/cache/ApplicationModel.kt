@@ -22,5 +22,6 @@ data class ApplicationModel(
         const val ACTIVITIES_COUNT = "activitiesCount"
         const val EXPORTED_ACTIVITIES_COUNT = "exportedActivitiesCount"
         const val ENABLED = "enabled"
+        const val SYSTEM = "system"
     }
 }

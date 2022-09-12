@@ -2,9 +2,11 @@ package com.sdex.activityrunner.db.cache.query
 
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.sdex.activityrunner.db.cache.ApplicationModel
+import com.sdex.activityrunner.preferences.AppPreferences
 
 class GetApplicationsQuery(
-    private val searchText: String? = null
+    private val appPreferences: AppPreferences,
+    private val searchText: String? = null,
 ) {
 
     private val sortBy = ApplicationModel.NAME
@@ -18,8 +20,15 @@ class GetApplicationsQuery(
         queryStringBuilder.append("SELECT * FROM ").append(ApplicationModel.TABLE).append(" ")
             .append("WHERE (")
             .append(ApplicationModel.ACTIVITIES_COUNT).append(" >0")
-            .append(" OR ").append(ApplicationModel.ENABLED).append(" =0")
-            .append(") ")
+        if (appPreferences.isShowDisabledApps) {
+            queryStringBuilder.append(" OR ").append(ApplicationModel.ENABLED).append(" =0")
+        }
+        queryStringBuilder.append(") ")
+        if (!appPreferences.isShowSystemApps) {
+            queryStringBuilder.append("AND (")
+                .append(ApplicationModel.SYSTEM).append(" =0")
+                .append(") ")
+        }
         if (!searchText.isNullOrEmpty()) {
             val escapedSearchText = searchText.replace("'", "''")
             queryStringBuilder.append("AND (")

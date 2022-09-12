@@ -13,7 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="10dp"
+        android:layout_margin="12dp"
         tools:ignore="ContentDescription"
         tools:src="@mipmap/ic_launcher" />
 

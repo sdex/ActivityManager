@@ -14,6 +14,7 @@
     <string name="application_option_open_manifest">Вікрити маніфест</string>
     <string name="application_option_action_launch">Відкрити в GooglePlay</string>
     <string name="application_disabled">Вимкнено</string>
+    <string name="application_system">Системний</string>
     <string name="application_disabled_description">Неможливо відобразити компоненти, додаток вимкнений</string>
 
     <!-- create shortcut -->
@@ -54,9 +55,9 @@
     <string name="launch_param_categories">Категорії</string>
     <string name="launch_param_flags">Параметри</string>
 
-    <string name="item_history_has_extras">Містить додаткові дані</string>
-    <string name="item_history_has_categories">Містить категорії</string>
-    <string name="item_history_has_flags">Містить парамерти</string>
+    <string name="item_history_has_extras">Дані</string>
+    <string name="item_history_has_categories">Категорії</string>
+    <string name="item_history_has_flags">Парамерти</string>
 
     <string name="about_donation">Підтримати розробку</string>
     <string name="about_source_code">Вихідний код</string>
@@ -109,8 +110,10 @@
     <string name="pref_header_appearance">Зовнішній вигляд</string>
     <string name="pref_appearance_theme_title">Тема</string>
     <string name="pref_header_advanced">Додаткові можливості</string>
+    <string name="pref_system_apps_title">Показувати системні додатки</string>
+    <string name="pref_disabled_apps_title">Показувати вимкнені додатки</string>
     <string name="pref_advanced_system_apps_title">Показувати індикатор системних додатків</string>
-    <string name="pref_advanced_system_apps_summary">Сіра точка біля імені</string>
+    <string name="pref_advanced_disabled_apps_title">Показувати індикатор вимкнених додатків</string>
     <string name="pref_advanced_not_exported_title">Показувати приховані компоненти</string>
     <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені Root</string>
 

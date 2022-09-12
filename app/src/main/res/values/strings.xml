@@ -6,7 +6,8 @@
     <string name="history_activity">History</string>
     <string name="settings_activity">Settings</string>
 
-    <string name="colon_space" translatable="false">": "</string>
+    <string name="colon_space" translatable="false">: </string>
+    <string name="text_separator" translatable="false"> | </string>
     <string name="equal_space" translatable="false">"="</string>
 
     <!-- activity options -->
@@ -20,6 +21,7 @@
     <string name="application_option_open_info">Open application info</string>
     <string name="application_option_action_launch">Open in GooglePlay</string>
     <string name="application_disabled">Disabled</string>
+    <string name="application_system">System</string>
     <string name="application_disabled_description">Cannot load activities, this application is disabled</string>
 
     <!-- create shortcut -->
@@ -60,9 +62,9 @@
     <string name="launch_param_categories">Categories</string>
     <string name="launch_param_flags">Flags</string>
 
-    <string name="item_history_has_extras">Has extras</string>
-    <string name="item_history_has_categories">Has categories</string>
-    <string name="item_history_has_flags">Has flags</string>
+    <string name="item_history_has_extras">Extras</string>
+    <string name="item_history_has_categories">Categories</string>
+    <string name="item_history_has_flags">Flags</string>
 
     <string name="about_donation">Support development</string>
     <string name="about_source_code">Source code</string>
@@ -123,10 +125,12 @@
     <string name="pref_header_appearance">Appearance</string>
     <string name="pref_appearance_theme_title">Theme</string>
     <string name="pref_header_advanced">Advanced</string>
+    <string name="pref_system_apps_title">Show system apps</string>
+    <string name="pref_disabled_apps_title">Show disabled apps</string>
     <string name="pref_advanced_system_apps_title">Show system app indicator</string>
-    <string name="pref_advanced_system_apps_summary">Gray dot near app name</string>
+    <string name="pref_advanced_disabled_apps_title">Show disabled app indicator</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
-    <string name="pref_advanced_not_exported_summary">Can be run only with ROOT</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only using Root</string>
 
     <string-array name="pref_appearance_theme_list_titles">
         <item>System</item>

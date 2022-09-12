@@ -26,6 +26,7 @@ import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
 import com.sdex.activityrunner.shortcut.createShortcut
 import com.sdex.commons.util.AppUtils
+import timber.log.Timber
 
 object IntentUtils {
 
@@ -110,11 +111,13 @@ object IntentUtils {
                 Toast.LENGTH_SHORT
             ).show()
         } catch (e: SecurityException) {
+            Timber.e(e)
             Toast.makeText(
                 context, context.getString(R.string.starting_activity_failed_security, name),
                 Toast.LENGTH_SHORT
             ).show()
         } catch (e: Exception) {
+            Timber.e(e)
             Toast.makeText(
                 context, context.getString(R.string.starting_activity_failed, name),
                 Toast.LENGTH_SHORT

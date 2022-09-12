@@ -61,7 +61,7 @@
                                 android:layout_marginHorizontal="16dp"
                                 android:paddingBottom="6dp"
                                 android:textAppearance="?attr/textAppearanceBodyLarge"
-                                tools:text="com.sdex.activityrunner" />
+                                tools:text="com.activitymanager" />
 
                         </LinearLayout>
 

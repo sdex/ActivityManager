@@ -45,7 +45,8 @@ class MainActivity : BaseActivity() {
         ApplicationsListJob.enqueueWork(this, Intent())
 
         adapter = ApplicationsListAdapter(this).apply {
-            isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+            showSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+            showDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator
             itemClickListener = object : ApplicationsListAdapter.ItemClickListener {
                 override fun onItemClick(item: ApplicationModel) {
                     ActivitiesListActivity.start(this@MainActivity, item)
@@ -85,8 +86,11 @@ class MainActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (appPreferences.isShowSystemAppIndicator != adapter.isShowSystemAppIndicator) {
-            adapter.isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+        if (appPreferences.isShowSystemAppIndicator != adapter.showSystemAppIndicator ||
+            appPreferences.isShowDisabledAppIndicator != adapter.showDisabledAppIndicator
+        ) {
+            adapter.showSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+            adapter.showDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator
         }
     }
 
@@ -111,7 +115,7 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.searchQuery.value = newText
+                viewModel.search(newText)
                 return false
             }
         })

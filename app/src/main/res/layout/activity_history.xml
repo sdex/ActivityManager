@@ -41,25 +41,18 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                app:srcCompat="@drawable/ic_folder_open"
-                app:tint="@color/icon_tint" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:padding="16dp"
                 android:text="@string/history_empty_text"
-                android:textAppearance="?attr/textAppearanceTitleMedium" />
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
 
             <Button
                 android:id="@+id/finish"
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="@string/history_empty_action" />
 
         </LinearLayout>

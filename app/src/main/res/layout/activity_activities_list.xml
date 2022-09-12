@@ -41,12 +41,6 @@
             android:visibility="gone"
             tools:visibility="gone">
 
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                app:srcCompat="@drawable/ic_folder_open"
-                app:tint="@color/icon_tint" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,12 +67,6 @@
             android:orientation="vertical"
             android:visibility="gone"
             tools:visibility="visible">
-
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                app:srcCompat="@drawable/ic_close"
-                app:tint="@color/icon_tint" />
 
             <TextView
                 android:layout_width="wrap_content"

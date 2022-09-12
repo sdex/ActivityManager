@@ -64,7 +64,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val itemId = item.itemId
         val position = adapter.contextMenuItemPosition
-        adapter.currentList?.get(position)?.let { historyModel ->
+        adapter.currentList[position]?.let { historyModel ->
             when (itemId) {
                 MENU_ITEM_REMOVE -> viewModel.deleteItem(historyModel)
                 MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
@@ -119,8 +119,6 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     companion object {
 
         const val RESULT = "result"
-
-        const val REQUEST_CODE = 111
 
         fun getLaunchIntent(context: Context): Intent {
             return Intent(context, HistoryActivity::class.java)

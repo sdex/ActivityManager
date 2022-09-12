@@ -25,7 +25,9 @@ class ActivitiesListAdapter(
 
     private val glide = GlideApp.with(activity)
     @ColorInt
-    private val textColorPrimary = activity.resolveColorAttr(android.R.attr.textColorPrimary)
+    private val exportedColor = activity.resolveColorAttr(android.R.attr.textColorPrimary)
+    @ColorInt
+    private val notExportedColor = ContextCompat.getColor(activity, R.color.red)
 
     var itemClickListener: ItemClickListener? = null
 
@@ -35,7 +37,14 @@ class ActivitiesListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(application, getItem(position), glide, textColorPrimary, itemClickListener)
+        holder.bind(
+            application,
+            getItem(position),
+            glide,
+            exportedColor,
+            notExportedColor,
+            itemClickListener
+        )
     }
 
     interface ItemClickListener {
@@ -53,29 +62,20 @@ class ActivitiesListAdapter(
             application: ApplicationModel,
             item: ActivityModel,
             glide: RequestManager,
-            @ColorInt textColorPrimary: Int,
+            @ColorInt exportedColor: Int,
+            @ColorInt notExportedColor: Int,
             itemClickListener: ItemClickListener?,
         ) {
             binding.name.text = item.name
+            binding.name.setTextColor(if (item.exported) exportedColor else notExportedColor)
             binding.packageName.text = item.componentName.shortClassName
             binding.label.text = item.label
             binding.label.isVisible = !item.label.isNullOrBlank() &&
                 item.label != application.name && item.label != item.name
-
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.icon)
-
-            val context = binding.root.context
-            binding.name.setTextColor(
-                if (item.exported) {
-                    textColorPrimary
-                } else {
-                    ContextCompat.getColor(context, R.color.red)
-                }
-            )
-
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(item)
             }
@@ -91,7 +91,7 @@ class ActivitiesListAdapter(
 
     companion object {
 
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ActivityModel>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ActivityModel>() {
 
             override fun areItemsTheSame(
                 oldItem: ActivityModel,

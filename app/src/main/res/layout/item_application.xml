@@ -13,7 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="10dp"
+        android:layout_margin="12dp"
         tools:ignore="ContentDescription"
         tools:src="@mipmap/ic_launcher" />
 
@@ -39,28 +39,17 @@
             tools:text="com.android.application" />
 
         <TextView
-            android:id="@+id/disabled"
+            android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="@string/application_disabled"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textStyle="italic"
             android:visibility="gone"
+            tools:text="@string/application_disabled"
             tools:visibility="visible" />
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/system"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="4dp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/ic_app_system"
-        tools:ignore="ContentDescription"
-        tools:visibility="visible" />
 
     <ImageButton
         android:id="@+id/appMenu"

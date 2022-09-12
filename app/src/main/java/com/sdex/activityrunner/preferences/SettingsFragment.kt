@@ -1,10 +1,16 @@
 package com.sdex.activityrunner.preferences
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.TaskStackBuilder
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreferenceCompat
+import com.sdex.activityrunner.MainActivity
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_SHOW_DISABLED_APPS
+import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_SHOW_SYSTEM_APPS
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -23,6 +29,26 @@ class SettingsFragment : PreferenceFragmentCompat() {
             themePreference.summary = getCurrentTheme(newValue.toString().toInt())
             return@setOnPreferenceChangeListener true
         }
+
+        (findPreference(KEY_SHOW_SYSTEM_APPS) as SwitchPreferenceCompat?)
+            ?.setOnPreferenceChangeListener { _, _ ->
+                restartApp()
+                return@setOnPreferenceChangeListener true
+            }
+
+        (findPreference(KEY_SHOW_DISABLED_APPS) as SwitchPreferenceCompat?)
+            ?.setOnPreferenceChangeListener { _, _ ->
+                restartApp()
+                return@setOnPreferenceChangeListener true
+            }
+    }
+
+    private fun restartApp() {
+        TaskStackBuilder.create(requireContext())
+            .addNextIntent(Intent(requireContext(), MainActivity::class.java))
+            .addNextIntent(Intent(requireContext(), SettingsActivity::class.java))
+            .startActivities()
+        requireActivity().finish()
     }
 
     private fun getCurrentTheme(@AppCompatDelegate.NightMode theme: Int): CharSequence {

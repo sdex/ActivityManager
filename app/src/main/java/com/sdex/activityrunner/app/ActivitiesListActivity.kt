@@ -13,6 +13,7 @@ import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
+import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.commons.BaseActivity
@@ -27,12 +28,12 @@ class ActivitiesListActivity : BaseActivity() {
     private lateinit var binding: ActivityActivitiesListBinding
     private lateinit var appPackageName: String
 
-    private var isShowNotExported: Boolean = false
+    private var showNotExported: Boolean = false
     private var searchText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
+        val item = intent.serializable<ApplicationModel>(ARG_APPLICATION)
         if (item == null) {
             finish()
             return
@@ -70,7 +71,7 @@ class ActivitiesListActivity : BaseActivity() {
             binding.disabled.isVisible = true
         }
 
-        isShowNotExported = appPreferences.showNotExported
+        showNotExported = appPreferences.showNotExported
 
         binding.turnOnAdvanced.setOnClickListener {
             appPreferences.showNotExported = true
@@ -90,7 +91,7 @@ class ActivitiesListActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (appPreferences.showNotExported != isShowNotExported) {
+        if (appPreferences.showNotExported != showNotExported) {
             viewModel.reloadItems(appPackageName)
         }
     }

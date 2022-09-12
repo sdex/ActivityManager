@@ -21,6 +21,7 @@ import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.databinding.ActivityAddShortcutBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.doAfterMeasure
+import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
@@ -44,8 +45,8 @@ class AddShortcutDialogActivity : AppCompatActivity(), ContentManager.PickConten
         binding = ActivityAddShortcutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val activityModel = intent?.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
-        val historyModel = intent?.getSerializableExtra(ARG_HISTORY_MODEL) as HistoryModel?
+        val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
+        val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
 
         binding.label.setText(activityModel?.name)
         binding.label.text?.let { binding.label.setSelection(it.length) }

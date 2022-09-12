@@ -1,18 +1,20 @@
 package com.sdex.activityrunner.intent
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.databinding.ActivityIntentBuilderBinding
+import com.sdex.activityrunner.extensions.parcelable
+import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
@@ -40,16 +42,23 @@ class IntentBuilderActivity : BaseActivity(),
     private val flagsAdapter = LaunchParamsListAdapter()
     private val extraAdapter = LaunchParamsExtraListAdapter()
 
+    private val pickHistoryItem =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val result = it.data?.parcelable<LaunchParams>(HistoryActivity.RESULT)
+            launchParams.setFrom(result)
+            showLaunchParams()
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIntentBuilderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
-        val params = savedInstanceState?.getParcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
+        val params = savedInstanceState?.parcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
         launchParams.setFrom(params)
 
-        val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
+        val activityModel = intent.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
 
         title = activityModel?.name ?: getString(R.string.intent_launcher_activity)
 
@@ -112,15 +121,6 @@ class IntentBuilderActivity : BaseActivity(),
         outState.putParcelable(STATE_LAUNCH_PARAMS, launchParams)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == HistoryActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val result = data?.getParcelableExtra<LaunchParams>(HistoryActivity.RESULT)
-            launchParams.setFrom(result)
-            showLaunchParams()
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.launch_param, menu)
         return super.onCreateOptionsMenu(menu)
@@ -129,8 +129,7 @@ class IntentBuilderActivity : BaseActivity(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_history -> {
-                val intent = HistoryActivity.getLaunchIntent(this)
-                startActivityForResult(intent, HistoryActivity.REQUEST_CODE)
+                pickHistoryItem.launch(HistoryActivity.getLaunchIntent(this))
                 true
             }
             else -> super.onOptionsItemSelected(item)
