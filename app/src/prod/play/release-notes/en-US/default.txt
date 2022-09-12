@@ -1,3 +1,4 @@
-- bring back Intent Builder
-- fix launching intents without the `data` field
-- save manifest position after screen orientation change
+- Material 3
+- Simplify root usage
+- Show disabled apps
+- Display an activity label when it's available
