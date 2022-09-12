@@ -10,6 +10,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
+import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 
 class ActivityOptionsDialog : BottomSheetDialogFragment() {
@@ -27,7 +28,7 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val model = requireArguments().getSerializable(ARG_MODEL) as ActivityModel
+        val model = requireArguments().serializable<ActivityModel>(ARG_MODEL)!!
 
         binding.activityName.text = model.name
         binding.actionActivityAddShortcut.setOnClickListener {

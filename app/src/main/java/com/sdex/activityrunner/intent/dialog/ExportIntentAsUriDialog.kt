@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogExportIntentAsUriBinding
+import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.intent.LaunchParams
 import com.sdex.activityrunner.intent.converter.LaunchParamsToWebIntentConverter
 import com.sdex.commons.BaseDialogFragment
@@ -16,11 +17,11 @@ import com.sdex.commons.BaseDialogFragment
 class ExportIntentAsUriDialog : BaseDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val launchParams = arguments?.getParcelable(ARG_LAUNCH_PARAMS) as LaunchParams?
+        val launchParams = requireArguments().parcelable<LaunchParams>(ARG_LAUNCH_PARAMS)!!
 
         val binding = DialogExportIntentAsUriBinding.inflate(requireActivity().layoutInflater)
 
-        val launchParamsToWebIntentConverter = LaunchParamsToWebIntentConverter(launchParams!!)
+        val launchParamsToWebIntentConverter = LaunchParamsToWebIntentConverter(launchParams)
         val value = launchParamsToWebIntentConverter.convert()
         binding.value.text = value
 
@@ -31,7 +32,7 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
                 val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE)
                         as ClipboardManager?
                 val clip = ClipData.newPlainText("Intent URI", value)
-                clipboard!!.setPrimaryClip(clip)
+                clipboard?.setPrimaryClip(clip)
             }
             .setNegativeButton(android.R.string.cancel, null)
             .create()

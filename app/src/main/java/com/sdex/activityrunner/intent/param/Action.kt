@@ -63,6 +63,7 @@ object Action {
             if (VERSION.SDK_INT >= VERSION_CODES.O_MR1) {
                 put("ACTION_INSTALL_FAILURE", Intent.ACTION_INSTALL_FAILURE)
             }
+            @Suppress("DEPRECATION")
             put("ACTION_INSTALL_PACKAGE", Intent.ACTION_INSTALL_PACKAGE)
             //      put("ACTION_LOCALE_CHANGED", Intent.ACTION_LOCALE_CHANGED);
             //      put("ACTION_LOCKED_BOOT_COMPLETED", Intent.ACTION_LOCKED_BOOT_COMPLETED);
@@ -157,6 +158,7 @@ object Action {
             //      put("ACTION_TIME_TICK", Intent.ACTION_TIME_TICK);
             //      put("ACTION_TIMEZONE_CHANGED", Intent.ACTION_TIMEZONE_CHANGED);
             //      put("ACTION_UID_REMOVED", Intent.ACTION_UID_REMOVED);
+            @Suppress("DEPRECATION")
             put("ACTION_UNINSTALL_PACKAGE", Intent.ACTION_UNINSTALL_PACKAGE)
             //      if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
             //        put("ACTION_USER_BACKGROUND", Intent.ACTION_USER_BACKGROUND); // Broadcast Action

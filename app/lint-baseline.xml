@@ -366,50 +366,6 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.dimen.launch_params_icon_padding` appears to be unused"
-        errorLine1="    &lt;dimen name=&quot;launch_params_icon_padding&quot;>14dp&lt;/dimen>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/dimens.xml"
-            line="7"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.drawable.ic_about_privacy_policy` appears to be unused"
-        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^">
-        <location
-            file="src/main/res/drawable/ic_about_privacy_policy.xml"
-            line="1"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.drawable.ic_activity_launch_params` appears to be unused"
-        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^">
-        <location
-            file="src/main/res/drawable/ic_activity_launch_params.xml"
-            line="1"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.style.TranslucentTheme` appears to be unused"
-        errorLine1="    &lt;style name=&quot;TranslucentTheme&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/themes.xml"
-            line="43"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
         message="The resource `R.bool.config_materialPreferenceIconSpaceReserved` appears to be unused"
         errorLine1="    &lt;bool name=&quot;config_materialPreferenceIconSpaceReserved&quot; tools:ignore=&quot;MissingDefaultResource&quot; tools:override=&quot;true&quot;>"
         errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">

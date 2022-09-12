@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.databinding.DialogApplicationMenuBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
+import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.util.IntentUtils
@@ -31,7 +32,7 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val model = requireArguments().getSerializable(ARG_MODEL) as ApplicationModel
+        val model = requireArguments().serializable<ApplicationModel>(ARG_MODEL)!!
         val packageName = model.packageName
 
         GlideApp.with(this)

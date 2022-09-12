@@ -23,9 +23,7 @@ class LaunchParamsExtraListAdapter :
         holder.bind(item, callback, viewMode)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
     fun setItems(items: List<LaunchParamsExtra>, viewMode: Boolean = false) {
         this.items = items
@@ -47,9 +45,9 @@ class LaunchParamsExtraListAdapter :
         fun bind(item: LaunchParamsExtra, callback: Callback?, viewMode: Boolean) {
             binding.key.text = item.key
             binding.value.text = item.value
+            binding.remove.isVisible = !viewMode
             if (viewMode) {
                 binding.root.setOnClickListener(null)
-                binding.remove.isVisible = false
             } else {
                 binding.root.setOnClickListener {
                     callback?.onItemSelected(bindingAdapterPosition)
@@ -57,7 +55,6 @@ class LaunchParamsExtraListAdapter :
                 binding.remove.setOnClickListener {
                     callback?.removeItem(bindingAdapterPosition)
                 }
-                binding.remove.isVisible = true
             }
         }
     }

@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogInputExtraBinding
+import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
 import com.sdex.commons.BaseDialogFragment
@@ -18,7 +19,7 @@ class ExtraInputDialog : BaseDialogFragment() {
     private lateinit var callback: OnKeyValueInputDialogCallback
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val initialExtra = requireArguments().getParcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
+        val initialExtra = requireArguments().parcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
         val position = requireArguments().getInt(ARG_POSITION)
 
         val binding = DialogInputExtraBinding.inflate(requireActivity().layoutInflater)

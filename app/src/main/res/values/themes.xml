@@ -40,16 +40,6 @@
 
     <style name="AppTheme" parent="Base.V0.AppTheme" />
 
-    <style name="TranslucentTheme" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
-    </style>
-
     <!-- end activities themes -->
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.Material3.Light" />

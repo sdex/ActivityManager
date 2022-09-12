@@ -1,9 +1,6 @@
 package com.sdex.activityrunner.intent.analyzer
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ActivityIntentAnalyzerBinding
 import com.sdex.activityrunner.extensions.getFlagsList
 import com.sdex.activityrunner.intent.LaunchParamsExtra
@@ -17,6 +14,7 @@ class IntentAnalyzerActivity : BaseActivity() {
 
     private lateinit var binding: ActivityIntentAnalyzerBinding
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIntentAnalyzerBinding.inflate(layoutInflater)
@@ -40,31 +38,12 @@ class IntentAnalyzerActivity : BaseActivity() {
         if (extras != null) {
             val extrasList: MutableList<LaunchParamsExtra> = ArrayList()
             for (key in extras.keySet()) {
-                val value = if (extras.get(key) != null) {
-                    extras.get(key)!!.toString()
-                } else {
-                    ""
-                }
-                extrasList.add(LaunchParamsExtra(key, value, LaunchParamsExtraType.STRING))
+                val value = extras.get(key)
+                val safeValue = value?.toString() ?: ""
+                extrasList.add(LaunchParamsExtra(key, safeValue, LaunchParamsExtraType.STRING))
             }
             extrasAdapter.setItems(extrasList, true)
         }
-        // TODO handle null case
         binding.listExtrasView.adapter = extrasAdapter
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.intent_analyzer, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_export -> {
-
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

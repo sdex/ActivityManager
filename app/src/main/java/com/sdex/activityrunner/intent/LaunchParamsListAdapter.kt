@@ -21,13 +21,11 @@ class LaunchParamsListAdapter : RecyclerView.Adapter<LaunchParamsListAdapter.Vie
         holder.textView.text = items[position]
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount() = items.size
 
     fun setItems(items: Collection<String>?, showEmpty: Boolean = false) {
         this.items.clear()
-        if (items == null || items.isEmpty()) {
+        if (items.isNullOrEmpty()) {
             if (showEmpty) {
                 this.items.add(None.VALUE)
             }
