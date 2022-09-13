@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.activitymanager"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode 416
         versionName "4.3.0"
@@ -78,7 +78,7 @@ kapt {
 }
 
 dependencies {
-    implementation "androidx.activity:activity-ktx:1.5.1"
+    implementation "androidx.activity:activity-ktx:1.6.0-rc02"
     implementation "androidx.appcompat:appcompat:1.5.1"
     implementation "androidx.browser:browser:1.4.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
@@ -97,6 +97,8 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "com.jakewharton.timber:timber:5.0.1"
+    implementation "com.maltaisn:icondialog:3.3.0"
+    implementation "com.maltaisn:iconpack-community-material:5.3.45"
     implementation "com.simplecityapps:recyclerview-fastscroll:2.0.0"
     implementation "com.tomergoldst.android:tooltips:1.0.11"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"

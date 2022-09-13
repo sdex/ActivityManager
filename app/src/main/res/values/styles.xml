@@ -19,7 +19,7 @@
     </style>
 
     <style name="TooltipTextAppearance">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">?colorOnTertiary</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
     </style>

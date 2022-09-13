@@ -21,6 +21,10 @@
     <string name="shortcut_name">Назва</string>
     <string name="shortcut_name_empty">Обов\'язкове поле</string>
     <string name="shortcut_create">Створити</string>
+    <string name="shortcut_set_icon_tooltip">Натисніть щоб змінити зображення</string>
+    <string name="icons_loading_error">Не вдалося завантажити іконки</string>
+    <string name="shortcut_icon_gallery">Вибрати з галереї</string>
+    <string name="shortcut_icon_preset">Вибрати з іконок</string>
 
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
