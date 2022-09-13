@@ -1,4 +1,4 @@
-package com.sdex.commons.license
+package com.sdex.activityrunner
 
 import android.app.Dialog
 import android.content.Context
@@ -10,8 +10,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.sdex.activityrunner.R
-import com.sdex.commons.BaseDialogFragment
+import com.sdex.activityrunner.commons.BaseDialogFragment
 
 class LicensesDialogFragment : BaseDialogFragment() {
 

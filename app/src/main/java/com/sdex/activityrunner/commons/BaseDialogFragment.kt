@@ -1,4 +1,4 @@
-package com.sdex.commons
+package com.sdex.activityrunner.commons
 
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager

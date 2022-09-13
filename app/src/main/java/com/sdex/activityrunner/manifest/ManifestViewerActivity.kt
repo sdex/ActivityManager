@@ -13,12 +13,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.BaseActivity
-import com.sdex.commons.util.UIUtils
+import com.sdex.activityrunner.util.UIUtils
 import com.sdex.highlightjs.models.Language
 import com.sdex.highlightjs.models.Theme
 import dagger.hilt.android.AndroidEntryPoint

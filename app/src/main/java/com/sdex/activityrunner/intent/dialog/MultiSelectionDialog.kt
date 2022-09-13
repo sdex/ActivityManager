@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.util.SparseBooleanArray
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.intent.dialog.source.CategoriesSource
 import com.sdex.activityrunner.intent.dialog.source.FlagsSource
-import com.sdex.commons.BaseDialogFragment
 
 class MultiSelectionDialog : BaseDialogFragment() {
 

@@ -7,11 +7,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.databinding.DialogInputExtraBinding
 import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
-import com.sdex.commons.BaseDialogFragment
 import timber.log.Timber
 
 class ExtraInputDialog : BaseDialogFragment() {

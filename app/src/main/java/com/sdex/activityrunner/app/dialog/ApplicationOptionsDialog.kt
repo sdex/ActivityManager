@@ -14,8 +14,8 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
+import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.util.AppUtils
 
 class ApplicationOptionsDialog : BottomSheetDialogFragment() {
 

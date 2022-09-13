@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.databinding.DialogInputValueBinding
-import com.sdex.commons.BaseDialogFragment
 
 class ValueInputDialog : BaseDialogFragment() {
 

@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityIntentBuilderBinding
 import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.extensions.serializable
@@ -25,7 +26,6 @@ import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

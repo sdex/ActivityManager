@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
-import com.sdex.commons.BaseDialogFragment
-import com.sdex.commons.util.AppUtils
+import com.sdex.activityrunner.commons.BaseDialogFragment
+import com.sdex.activityrunner.util.AppUtils
 
 class DonateDialog : BaseDialogFragment() {
 

@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.intent.analyzer
 
 import android.os.Bundle
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityIntentAnalyzerBinding
 import com.sdex.activityrunner.extensions.getFlagsList
 import com.sdex.activityrunner.intent.LaunchParamsExtra
@@ -8,7 +9,6 @@ import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
 import com.sdex.activityrunner.intent.LaunchParamsListAdapter
 import com.sdex.activityrunner.intent.param.None
-import com.sdex.commons.BaseActivity
 
 class IntentAnalyzerActivity : BaseActivity() {
 

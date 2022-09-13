@@ -10,14 +10,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.BaseActivity
-import com.sdex.commons.util.UIUtils
+import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

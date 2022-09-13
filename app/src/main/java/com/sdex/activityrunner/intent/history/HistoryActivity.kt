@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityHistoryBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
@@ -20,7 +21,6 @@ import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
-import com.sdex.commons.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

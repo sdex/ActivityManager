@@ -1,4 +1,4 @@
-package com.sdex.commons.util;
+package com.sdex.activityrunner.util;
 
 import android.content.Context;
 import android.content.res.Resources;

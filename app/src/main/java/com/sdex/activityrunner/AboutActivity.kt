@@ -3,11 +3,10 @@ package com.sdex.activityrunner
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityAboutBinding
+import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.BaseActivity
-import com.sdex.commons.license.LicensesDialogFragment
-import com.sdex.commons.util.AppUtils
 
 class AboutActivity : BaseActivity() {
 

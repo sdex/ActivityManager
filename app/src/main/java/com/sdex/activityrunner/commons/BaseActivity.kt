@@ -1,4 +1,4 @@
-package com.sdex.commons
+package com.sdex.activityrunner.commons
 
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity

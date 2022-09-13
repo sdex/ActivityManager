@@ -25,7 +25,6 @@ import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
 import com.sdex.activityrunner.shortcut.createShortcut
-import com.sdex.commons.util.AppUtils
 import timber.log.Timber
 
 object IntentUtils {

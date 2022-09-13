@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.commons.BaseDialogFragment
 
 class EnableNotExportedActivitiesDialog : BaseDialogFragment() {
 

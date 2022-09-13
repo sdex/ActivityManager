@@ -3,8 +3,8 @@ package com.sdex.activityrunner.preferences
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivitySettingsBinding
-import com.sdex.commons.BaseActivity
 
 class SettingsActivity : BaseActivity() {
 

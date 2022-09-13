@@ -5,9 +5,9 @@ import android.content.Context
 import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.intent.dialog.source.ActionSource
 import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource
-import com.sdex.commons.BaseDialogFragment
 
 class SingleSelectionDialog : BaseDialogFragment() {
 
