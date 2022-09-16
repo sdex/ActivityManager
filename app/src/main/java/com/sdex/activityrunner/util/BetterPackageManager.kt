@@ -1,4 +1,4 @@
-package com.sdex.commons.pm
+package com.sdex.activityrunner.util
 
 import android.content.ComponentName
 import android.content.Intent

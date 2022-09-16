@@ -37,8 +37,8 @@ import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.content.getStoragePermission
-import com.sdex.commons.content.isStoragePermissionGranted
+import com.sdex.activityrunner.util.getStoragePermission
+import com.sdex.activityrunner.util.isStoragePermissionGranted
 import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
 

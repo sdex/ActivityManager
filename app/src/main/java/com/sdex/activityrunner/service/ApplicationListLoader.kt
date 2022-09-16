@@ -5,8 +5,8 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheDatabase
-import com.sdex.commons.pm.getInstalledPackages
-import com.sdex.commons.pm.getPackageInfo
+import com.sdex.activityrunner.util.getInstalledPackages
+import com.sdex.activityrunner.util.getPackageInfo
 import timber.log.Timber
 
 class ApplicationListLoader {

@@ -9,7 +9,7 @@ import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.resource.drawable.DrawableResource
 import com.bumptech.glide.util.Util
 import com.sdex.activityrunner.app.ActivityModel
-import com.sdex.commons.pm.getComponentIcon
+import com.sdex.activityrunner.util.getComponentIcon
 
 internal class ActivityIconDecoder(
     private val context: Context

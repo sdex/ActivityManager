@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.commons.pm.getPackageInfo
+import com.sdex.activityrunner.util.getPackageInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber

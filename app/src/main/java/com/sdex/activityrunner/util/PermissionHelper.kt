@@ -1,6 +1,4 @@
-@file:JvmName("PermissionHelper")
-
-package com.sdex.commons.content
+package com.sdex.activityrunner.util
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.READ_MEDIA_IMAGES
