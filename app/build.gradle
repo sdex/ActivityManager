@@ -104,6 +104,7 @@ dependencies {
     implementation "com.maltaisn:iconpack-community-material:5.3.45"
     implementation "com.simplecityapps:recyclerview-fastscroll:2.0.0"
     implementation "com.tomergoldst.android:tooltips:1.0.11"
+    implementation "net.dongliu:apk-parser:2.6.10"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 
     testImplementation "junit:junit:4.13.2"
