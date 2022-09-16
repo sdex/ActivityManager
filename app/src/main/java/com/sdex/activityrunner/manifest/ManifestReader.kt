@@ -3,14 +3,12 @@ package com.sdex.activityrunner.manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.content.res.XmlResourceParser
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
 import net.dongliu.apk.parser.ApkFile
-import net.dongliu.apk.parser.struct.AndroidConstants
-import org.xmlpull.v1.XmlPullParserException
 import timber.log.Timber
 import java.io.ByteArrayInputStream
-import java.io.IOException
 import java.io.StringWriter
 import java.nio.charset.Charset
 import javax.xml.transform.OutputKeys
@@ -18,7 +16,6 @@ import javax.xml.transform.TransformerException
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.stream.StreamSource
-
 
 class ManifestReader {
 
@@ -37,56 +34,54 @@ class ManifestReader {
         return null
     }
 
-    @Throws(
-        PackageManager.NameNotFoundException::class,
-        IOException::class,
-        XmlPullParserException::class
-    )
     private fun load(context: Context, packageName: String): String {
         val packageManager = context.packageManager
-
-        val publicSourceDir = packageManager.getPackageInfo(
+        val packageInfo = packageManager.getPackageInfo(
             packageName,
             PackageManager.GET_META_DATA
-        ).applicationInfo.publicSourceDir
-        val byteData = ApkFile(publicSourceDir).use {
-            it.getFileData(AndroidConstants.MANIFEST_FILE)
-        }
+        )
+        if (packageInfo.splitNames != null) {
+            val publicSourceDir = packageInfo.applicationInfo.publicSourceDir
+            val apkFile = ApkFile(publicSourceDir)
+            val manifestXml = apkFile.use {
+                it.manifestXml
+            }
+            return manifestXml
+        } else {
+            val resources = packageManager.getResourcesForApplication(packageName)
+            val parser = resources.assets.openXmlResourceParser("AndroidManifest.xml")
+            val stringBuilder = StringBuilder()
+            var eventType = parser.next()
 
-        return ""
-//        val resources = packageManager.getResourcesForApplication(packageName)
-//        val parser = resources.assets.openXmlResourceParser("AndroidManifest.xml")
-//        val stringBuilder = StringBuilder()
-//        var eventType = parser.next()
-//
-//        while (eventType != XmlResourceParser.END_DOCUMENT) {
-//            // start tag found
-//            if (eventType == XmlResourceParser.START_TAG) {
-//                //start with opening element and writing its name
-//                stringBuilder.append("<").append(parser.name)
-//
-//                // for each attribute in given element append attrName="attrValue"
-//                for (i in 0 until parser.attributeCount) {
-//                    val attributeName = parser.getAttributeName(i)
-//                    val attributeValue = getAttributeValue(
-//                        attributeName,
-//                        parser.getAttributeValue(i), resources
-//                    )
-//                    stringBuilder.append(" ").append(attributeName)
-//                        .append("=\"").append(attributeValue).append("\"")
-//                }
-//
-//                stringBuilder.append(">")
-//                if (parser.text != null) {
-//                    // if there is  body of xml element, add it there
-//                    stringBuilder.append(parser.text)
-//                }
-//            } else if (eventType == XmlResourceParser.END_TAG) {
-//                stringBuilder.append("</").append(parser.name).append(">")
-//            }
-//            eventType = parser.next()
-//        }
-//        return stringBuilder.toString()
+            while (eventType != XmlResourceParser.END_DOCUMENT) {
+                // start tag found
+                if (eventType == XmlResourceParser.START_TAG) {
+                    //start with opening element and writing its name
+                    stringBuilder.append("<").append(parser.name)
+
+                    // for each attribute in given element append attrName="attrValue"
+                    for (i in 0 until parser.attributeCount) {
+                        val attributeName = parser.getAttributeName(i)
+                        val attributeValue = getAttributeValue(
+                            attributeName,
+                            parser.getAttributeValue(i), resources
+                        )
+                        stringBuilder.append(" ").append(attributeName)
+                            .append("=\"").append(attributeValue).append("\"")
+                    }
+
+                    stringBuilder.append(">")
+                    if (parser.text != null) {
+                        // if there is  body of xml element, add it there
+                        stringBuilder.append(parser.text)
+                    }
+                } else if (eventType == XmlResourceParser.END_TAG) {
+                    stringBuilder.append("</").append(parser.name).append(">")
+                }
+                eventType = parser.next()
+            }
+            return stringBuilder.toString()
+        }
     }
 
     private fun getAttributeValue(
