@@ -6,10 +6,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.VISIBLE
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityHistoryBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
@@ -20,8 +21,9 @@ import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
-import com.sdex.commons.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
     private val viewModel: HistoryViewModel by viewModels()
@@ -47,9 +49,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
                 val size = it.size
                 val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
                 setSubtitle(subtitle)
-                if (size == 0) {
-                    binding.empty.visibility = VISIBLE
-                }
+                binding.empty.isVisible = (size == 0)
             }
         }
 
@@ -64,7 +64,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val itemId = item.itemId
         val position = adapter.contextMenuItemPosition
-        adapter.currentList?.get(position)?.let { historyModel ->
+        adapter.currentList[position]?.let { historyModel ->
             when (itemId) {
                 MENU_ITEM_REMOVE -> viewModel.deleteItem(historyModel)
                 MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
@@ -93,7 +93,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_clear_history -> {
-                AlertDialog.Builder(this)
+                MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.history_dialog_clear_title)
                     .setMessage(R.string.history_dialog_clear_message)
                     .setPositiveButton(android.R.string.ok) { _, _ ->
@@ -119,8 +119,6 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     companion object {
 
         const val RESULT = "result"
-
-        const val REQUEST_CODE = 111
 
         fun getLaunchIntent(context: Context): Intent {
             return Intent(context, HistoryActivity::class.java)

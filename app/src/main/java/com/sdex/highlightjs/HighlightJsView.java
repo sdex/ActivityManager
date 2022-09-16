@@ -4,13 +4,18 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.sdex.highlightjs.models.Language;
 import com.sdex.highlightjs.models.Theme;
@@ -34,6 +39,7 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
     private String content;
     private boolean zoomSupport = false;
     private boolean showLineNumbers = false;
+    private int scrollPosition = 0;
 
     //local variables to register callbacks
     private OnLanguageChangedListener onLanguageChangedListener;
@@ -80,8 +86,14 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
 
     @SuppressLint("SetJavaScriptEnabled")
     private void initView(Context context) {
-        //make sure the view is blank
-        loadUrl("about:blank");
+        setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if (onContentChangedListener != null) onContentChangedListener.onContentChanged();
+                scrollTo(0, scrollPosition);
+            }
+        });
         //set the settings for the view
         WebSettings settings = getSettings();
         settings.setJavaScriptEnabled(true);
@@ -179,8 +191,6 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
             this.content = source;
             String page = SourceUtils.generateContent(source, theme.getName(), language.getName(), zoomSupport, showLineNumbers);
             loadDataWithBaseURL("file:///android_asset/", page, "text/html", "utf-8", null);
-            //notify the callback (if set)
-            if (onContentChangedListener != null) onContentChangedListener.onContentChanged();
         } else Log.e(getClass().getSimpleName(), "Source can't be null or empty.");
     }
 
@@ -236,5 +246,71 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
      */
     public void setShowLineNumbers(boolean showLineNumbers) {
         this.showLineNumbers = showLineNumbers;
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        this.scrollPosition = t;
+    }
+
+    @Nullable
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState state = new SavedState(superState);
+        state.position = this.scrollPosition;
+        return state;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        SavedState savedState = (SavedState) state;
+        super.onRestoreInstanceState(savedState.getSuperState());
+        this.scrollPosition = savedState.position;
+    }
+
+    private static class SavedState extends BaseSavedState {
+        int position;
+
+        SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+            this.position = in.readInt();
+        }
+
+        @RequiresApi(Build.VERSION_CODES.N)
+        SavedState(Parcel in, ClassLoader loader) {
+            super(in, loader);
+            this.position = in.readInt();
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeInt(this.position);
+        }
+
+        public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
+
+            // This was also missing
+            @Override
+            public SavedState createFromParcel(Parcel in, ClassLoader loader) {
+                return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ? new SavedState(in, loader) : new SavedState(in);
+            }
+
+            @Override
+            public SavedState createFromParcel(Parcel in) {
+                return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ? new SavedState(in, null) : new SavedState(in);
+            }
+
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
     }
 }

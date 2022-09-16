@@ -1,0 +1,6 @@
+- Material 3
+- Select a shortcut icon from the app
+- Simplify root usage
+- Show disabled apps
+- Display an activity label when it's available
+- Drop support for Android below 5.0

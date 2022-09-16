@@ -13,7 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="10dp"
+        android:layout_margin="12dp"
         tools:ignore="ContentDescription"
         tools:src="@mipmap/ic_launcher" />
 
@@ -28,16 +28,21 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_primary"
-            android:textSize="16sp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
             tools:text="Activity name" />
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            tools:text="Activity label" />
 
         <TextView
             android:id="@+id/packageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_secondary"
-            android:textSize="14sp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             tools:text="com.app.package" />
 
     </LinearLayout>
@@ -46,7 +51,7 @@
         android:id="@+id/appMenu"
         android:layout_width="44dp"
         android:layout_height="match_parent"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?actionBarItemBackground"
         app:srcCompat="@drawable/ic_more_vert"
         app:tint="@color/icon_tint"
         tools:ignore="ContentDescription" />

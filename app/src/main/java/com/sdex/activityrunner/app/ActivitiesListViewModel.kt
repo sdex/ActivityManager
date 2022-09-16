@@ -19,7 +19,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     private val appPreferences by lazy { AppPreferences(application) }
 
     private val liveData = MutableLiveData<List<ActivityModel>>()
-    private var list: List<ActivityModel>? = null
+    private lateinit var list: List<ActivityModel>
 
     fun getItems(packageName: String): LiveData<List<ActivityModel>> {
         viewModelScope.launch(Dispatchers.IO) {
@@ -36,45 +36,40 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
-    fun filterItems(packageName: String, searchText: String?) {
-        if (list != null) {
+    fun filterItems(searchText: String?) {
+        if (::list.isInitialized) {
             if (searchText != null) {
                 viewModelScope.launch(Dispatchers.IO) {
-                    val filteredList = list!!.filter {
-                        it.name.contains(searchText, true) || it.className.contains(
-                            searchText,
-                            true
-                        )
+                    val filteredList = list.filter {
+                        it.name.contains(searchText, true) ||
+                                it.className.contains(searchText, true) ||
+                                (!it.label.isNullOrEmpty() && it.label.contains(searchText, true))
                     }
                     liveData.postValue(filteredList)
                 }
             } else {
                 liveData.value = list
             }
-        } else {
-            getItems(packageName)
         }
     }
 
     @WorkerThread
-    private fun getActivitiesList(packageName: String): List<ActivityModel> {
+    private fun getActivitiesList(packageName: String) = try {
         val showNotExported = appPreferences.showNotExported
-        try {
-            return getPackageInfo(packageManager, packageName).activities
-                .map { getActivityModel(it) }
-                .filter { it.exported || showNotExported }
-                .sortedBy { it.name }
-        } catch (e: Exception) {
-            Timber.e(e)
-        }
-        return emptyList()
+        getPackageInfo(packageManager, packageName).activities
+            .map { it.toActivityModel() }
+            .filter { it.exported || showNotExported }
+            .sortedBy { it.name }
+    } catch (e: Exception) {
+        Timber.e(e)
+        emptyList()
     }
 
-    private fun getActivityModel(activityInfo: ActivityInfo): ActivityModel {
-        return ActivityModel(
-            activityInfo.name.split(".").last(),
-            activityInfo.packageName, activityInfo.name,
-            activityInfo.exported && activityInfo.isEnabled
-        )
-    }
+    private fun ActivityInfo.toActivityModel() = ActivityModel(
+        name.split(".").last(),
+        packageName,
+        name,
+        loadLabel(packageManager).toString(),
+        exported && isEnabled
+    )
 }

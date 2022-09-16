@@ -1,4 +1,4 @@
-package com.sdex.commons.util;
+package com.sdex.activityrunner.util;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 public class AppUtils {
 
-    public static final String PP = "https://cdn.rawgit.com/sdex/docs/58d79c9/am_pp_2.html";
     public static final String REPOSITORY = "https://github.com/sdex/ActivityManager";
     public static final String ISSUES_TRACKER = REPOSITORY + "/issues";
 

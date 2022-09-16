@@ -28,9 +28,8 @@
             android:maxLines="1"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/blue_light"
             tools:text="Application name" />
 
     </LinearLayout>
@@ -56,7 +55,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_open" />
+            android:text="@string/application_option_open" />
 
     </LinearLayout>
 
@@ -76,7 +75,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_open_manifest" />
+            android:text="@string/application_option_open_manifest" />
 
     </LinearLayout>
 
@@ -96,7 +95,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_open_info" />
+            android:text="@string/application_option_open_info" />
 
     </LinearLayout>
 
@@ -116,7 +115,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_launch" />
+            android:text="@string/application_option_action_launch" />
 
     </LinearLayout>
 

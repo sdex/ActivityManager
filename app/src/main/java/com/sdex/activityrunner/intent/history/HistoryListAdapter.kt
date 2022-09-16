@@ -1,9 +1,13 @@
 package com.sdex.activityrunner.intent.history
 
-import android.view.*
+import android.view.ContextMenu
 import android.view.ContextMenu.ContextMenuInfo
-import androidx.paging.PagedListAdapter
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemHistoryBinding
@@ -12,7 +16,7 @@ import com.sdex.activityrunner.intent.param.None
 
 class HistoryListAdapter(
     private val callback: Callback
-) : PagedListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     var contextMenuItemPosition: Int = 0
 
@@ -32,9 +36,8 @@ class HistoryListAdapter(
         }
     }
 
-    override fun getItemId(position: Int): Long {
-        return if (getItem(position) != null) getItem(position)!!.id.toLong() else 0
-    }
+    override fun getItemId(position: Int): Long =
+        getItem(position)?.id?.toLong() ?: 0L
 
     override fun onViewRecycled(holder: ViewHolder) {
         holder.itemView.setOnLongClickListener(null)
@@ -51,22 +54,20 @@ class HistoryListAdapter(
     ) : RecyclerView.ViewHolder(binding.root),
         View.OnCreateContextMenuListener {
 
-        fun bind(item: HistoryModel?, callback: Callback) {
-            if (item != null) {
-                binding.packageName.text = getValueOrPlaceholder(item.packageName)
-                binding.className.text = getValueOrPlaceholder(item.className)
-                binding.action.text = getValueOrPlaceholder(item.action)
-                binding.data.text = getValueOrPlaceholder(item.data)
-                binding.mimeType.text = getValueOrPlaceholder(item.mimeType)
-                binding.extras.setText(isNotEmpty(item.extras))
-                binding.categories.setText(isNotEmpty(item.categories))
-                binding.flags.setText(isNotEmpty(item.flags))
+        fun bind(item: HistoryModel, callback: Callback) {
+            binding.packageName.text = getValueOrPlaceholder(item.packageName)
+            binding.className.text = getValueOrPlaceholder(item.className)
+            binding.action.text = getValueOrPlaceholder(item.action)
+            binding.data.text = getValueOrPlaceholder(item.data)
+            binding.mimeType.text = getValueOrPlaceholder(item.mimeType)
+            binding.extras.setText(isNotEmpty(item.extras))
+            binding.categories.setText(isNotEmpty(item.categories))
+            binding.flags.setText(isNotEmpty(item.flags))
 
-                binding.root.setOnClickListener {
-                    callback.onItemClicked(item, bindingAdapterPosition)
-                }
-                binding.root.setOnCreateContextMenuListener(this)
+            binding.root.setOnClickListener {
+                callback.onItemClicked(item, bindingAdapterPosition)
             }
+            binding.root.setOnCreateContextMenuListener(this)
         }
 
         private fun isNotEmpty(value: String?): Int {
@@ -100,22 +101,13 @@ class HistoryListAdapter(
         const val MENU_ITEM_ADD_SHORTCUT = 1
         const val MENU_ITEM_EXPORT_URI = 2
 
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<HistoryModel> =
-            object : DiffUtil.ItemCallback<HistoryModel>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<HistoryModel>() {
 
-                override fun areItemsTheSame(
-                    oldItem: HistoryModel,
-                    newItem: HistoryModel
-                ): Boolean {
-                    return oldItem.id == newItem.id
-                }
+            override fun areItemsTheSame(oldItem: HistoryModel, newItem: HistoryModel) =
+                oldItem.id == newItem.id
 
-                override fun areContentsTheSame(
-                    oldItem: HistoryModel,
-                    newItem: HistoryModel
-                ): Boolean {
-                    return oldItem == newItem
-                }
-            }
+            override fun areContentsTheSame(oldItem: HistoryModel, newItem: HistoryModel) =
+                oldItem == newItem
+        }
     }
 }

@@ -2,7 +2,11 @@ package com.sdex.activityrunner.intent.converter
 
 import android.content.Intent
 import android.net.Uri
-import com.sdex.activityrunner.intent.*
+import com.sdex.activityrunner.intent.LaunchParams
+import com.sdex.activityrunner.intent.LaunchParamsExtra
+import com.sdex.activityrunner.intent.LaunchParamsExtraType
+import com.sdex.activityrunner.intent.getCategoriesValues
+import com.sdex.activityrunner.intent.getFlagsValues
 import com.sdex.activityrunner.intent.param.Category
 import com.sdex.activityrunner.intent.param.Flag
 import timber.log.Timber
@@ -28,61 +32,36 @@ class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Co
             if (launchParams.action.isNullOrEmpty()) Intent.ACTION_MAIN
             else launchParams.action
         // data and mime type
-        val data = Uri.parse(launchParams.data)
-        val type =
-            if (launchParams.mimeType.isNullOrEmpty()) null
-            else launchParams.mimeType
-        intent.setDataAndType(data, type)
+        if (!launchParams.data.isNullOrEmpty()) {
+            val data = Uri.parse(launchParams.data)
+            val type =
+                if (launchParams.mimeType.isNullOrEmpty()) null
+                else launchParams.mimeType
+            intent.setDataAndType(data, type)
+        }
         // categories
-        val categories = Category.list(launchParams.getCategoriesValues())
-        for (category in categories) {
-            intent.addCategory(category)
-        }
+        Category.list(launchParams.getCategoriesValues()).forEach { intent.addCategory(it) }
         // flags
-        val flags = Flag.list(launchParams.getFlagsValues())
-        for (flag in flags) {
-            intent.addFlags(flag)
-        }
+        Flag.list(launchParams.getFlagsValues()).forEach { intent.addFlags(it) }
         // extras
-        val extras = launchParams.extras
-        addExtras(intent, extras)
+        launchParams.extras.forEach { putExtra(intent, it) }
         return intent
     }
 
-    private fun addExtras(intent: Intent, extras: ArrayList<LaunchParamsExtra>) {
-        for (extra in extras) {
-            val type = extra.type
-            val key = extra.key
-            val value = extra.value
-            try {
-                when (type) {
-                    LaunchParamsExtraType.STRING -> intent.putExtra(key, value)
-                    LaunchParamsExtraType.INT -> intent.putExtra(key, Integer.parseInt(value))
-                    LaunchParamsExtraType.LONG -> intent.putExtra(
-                        key,
-                        java.lang.Long.parseLong(value)
-                    )
-                    LaunchParamsExtraType.FLOAT -> intent.putExtra(
-                        key,
-                        java.lang.Float.parseFloat(value)
-                    )
-                    LaunchParamsExtraType.DOUBLE -> intent.putExtra(
-                        key,
-                        java.lang.Double.parseDouble(value)
-                    )
-                    LaunchParamsExtraType.BOOLEAN -> intent.putExtra(
-                        key,
-                        java.lang.Boolean.parseBoolean(value)
-                    )
-                }
-            } catch (e: NumberFormatException) {
-                Timber.d("Failed to parse number")
+    private fun putExtra(intent: Intent, extra: LaunchParamsExtra) {
+        val key = extra.key
+        val value = extra.value
+        try {
+            when (extra.type) {
+                LaunchParamsExtraType.STRING -> intent.putExtra(key, value)
+                LaunchParamsExtraType.INT -> intent.putExtra(key, value.toInt())
+                LaunchParamsExtraType.LONG -> intent.putExtra(key, value.toLong())
+                LaunchParamsExtraType.FLOAT -> intent.putExtra(key, value.toFloat())
+                LaunchParamsExtraType.DOUBLE -> intent.putExtra(key, value.toDouble())
+                LaunchParamsExtraType.BOOLEAN -> intent.putExtra(key, value.toBooleanStrict())
             }
+        } catch (e: Exception) {
+            Timber.d("Failed to parse the value")
         }
-    }
-
-    companion object {
-
-        private const val TAG = "LaunchParamsIntent"
     }
 }

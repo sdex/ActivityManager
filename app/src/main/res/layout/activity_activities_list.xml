@@ -21,15 +21,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fastScrollEnableThumbInactiveColor="true"
-            app:fastScrollPopupBgColor="@color/colorAccent"
-            app:fastScrollPopupTextColor="@color/colorControlActivated"
-            app:fastScrollThumbColor="@color/colorAccent"
+            app:fastScrollPopupBgColor="@color/blue_light"
+            app:fastScrollPopupTextColor="@color/white"
+            app:fastScrollThumbColor="@color/blue_light"
             app:fastScrollThumbInactiveColor="@color/scrollbar_inactive_thumb"
             app:fastScrollTrackColor="@color/scrollbar_background"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="15"
             tools:listitem="@layout/item_activity"
-            tools:visibility="visible" />
+            tools:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/empty"
@@ -39,29 +39,49 @@
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="visible">
-
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                app:srcCompat="@drawable/ic_folder_open" />
+            tools:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:padding="16dp"
                 android:text="@string/activities_list_empty_text"
-                android:textColor="@color/text_color_primary"
-                android:textSize="18sp" />
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
 
             <Button
                 android:id="@+id/turnOnAdvanced"
-                style="?borderlessButtonStyle"
+                style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/activities_list_empty_action"
-                android:textColor="@color/blue" />
+                android:text="@string/activities_list_empty_action" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/disabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/application_disabled_description"
+                android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+            <Button
+                android:id="@+id/openAppInfo"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/application_option_open_info" />
 
         </LinearLayout>
 

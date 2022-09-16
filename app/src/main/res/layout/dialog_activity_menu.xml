@@ -17,9 +17,8 @@
         android:paddingTop="16dp"
         android:paddingEnd="50dp"
         android:paddingBottom="16dp"
-        android:textColor="@color/blue"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="@color/blue_light"
         tools:text="Application name" />
 
     <View
@@ -43,7 +42,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_shortcut" />
+            android:text="@string/activity_option_create_shortcut" />
 
     </LinearLayout>
 
@@ -52,19 +51,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_launch_params"
+            app:srcCompat="@drawable/ic_exit_to_app"
             app:tint="@color/icon_tint" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_launch_params" />
+            android:text="@string/activity_option_launch_params" />
 
     </LinearLayout>
 
@@ -84,7 +82,7 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
-            android:text="@string/context_action_launch_root" />
+            android:text="@string/activity_option_launch_root" />
 
     </LinearLayout>
 

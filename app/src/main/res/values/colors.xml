@@ -2,29 +2,54 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="ic_launcher_background">#03A9F4</color>
-    <color name="preference_fallback_accent_color" tools:override="true">@color/blue</color>
+    <color name="preference_fallback_accent_color" tools:override="true">@color/blue_light</color>
 
-    <color name="colorPrimary">#0079bf</color>
-    <color name="colorPrimaryDark">#026aa7</color>
-    <color name="colorAccent">#03A9F4</color>
-    <color name="colorControlActivated">#ffffff</color>
+    <color name="blue_very_light">#b8e9ff</color>
+    <color name="grey_very_light">#eeeeee</color>
+    <color name="blue">#0079bf</color>
+    <color name="blue_dark">#026aa7</color>
+    <color name="blue_light">#03A9F4</color>
 
+    <color name="black">#000</color>
     <color name="white">#fff</color>
-    <color name="blue">#03A9F4</color>
     <color name="red">#f44336</color>
-    <color name="yellow">#FFFF00</color>
-    <color name="black">#ff000000</color>
-    <color name="darker_gray">#aaa</color>
 
-    <color name="text_color_primary">@color/black</color>
-    <color name="text_color_secondary">@color/darker_gray</color>
     <color name="background">#ffffff</color>
     <color name="background_gray">#eeeeee</color>
     <color name="card_background">#ffffff</color>
     <color name="icon_tint">#757575</color>
     <color name="list_divider">#E0E0E0</color>
-    <color name="bottom_dialog_text">#737373</color>
     <color name="scrollbar_background">#28000000</color>
     <color name="scrollbar_inactive_thumb">#79000000</color>
-    
+
+    <color name="md_theme_primary">#00629D</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#CFE5FF</color>
+    <color name="md_theme_onPrimaryContainer">#001D33</color>
+    <color name="md_theme_secondary">#526070</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#D5E4F7</color>
+    <color name="md_theme_onSecondaryContainer">#0E1D2A</color>
+    <color name="md_theme_tertiary">#00658C</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#C5E7FF</color>
+    <color name="md_theme_onTertiaryContainer">#001E2D</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+    <color name="md_theme_background">#FCFCFF</color>
+    <color name="md_theme_onBackground">#1A1C1E</color>
+    <color name="md_theme_surface">#FCFCFF</color>
+    <color name="md_theme_onSurface">#1A1C1E</color>
+    <color name="md_theme_surfaceVariant">#DEE3EB</color>
+    <color name="md_theme_onSurfaceVariant">#42474E</color>
+    <color name="md_theme_outline">#72777F</color>
+    <color name="md_theme_inverseOnSurface">#F1F0F4</color>
+    <color name="md_theme_inverseSurface">#2F3033</color>
+    <color name="md_theme_inversePrimary">#98CBFF</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_surfaceTint">#00629D</color>
+    <color name="md_theme_surfaceTintColor">#00629D</color>
+
 </resources>

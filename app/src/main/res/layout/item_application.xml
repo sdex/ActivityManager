@@ -13,7 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="10dp"
+        android:layout_margin="12dp"
         tools:ignore="ContentDescription"
         tools:src="@mipmap/ic_launcher" />
 
@@ -28,36 +28,34 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_primary"
-            android:textSize="16sp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
             tools:text="Application name" />
 
         <TextView
             android:id="@+id/packageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_secondary"
-            android:textSize="14sp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             tools:text="com.android.application" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textStyle="italic"
+            android:visibility="gone"
+            tools:text="@string/application_disabled"
+            tools:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/system"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="4dp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/ic_app_system"
-        tools:ignore="ContentDescription"
-        tools:visibility="visible" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/appMenu"
         android:layout_width="44dp"
         android:layout_height="match_parent"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?actionBarItemBackground"
         app:srcCompat="@drawable/ic_more_vert"
         app:tint="@color/icon_tint"
         tools:ignore="ContentDescription" />

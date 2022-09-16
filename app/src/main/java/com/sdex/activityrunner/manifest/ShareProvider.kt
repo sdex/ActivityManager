@@ -12,26 +12,25 @@ import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import java.io.File
 
-class ShareProvider {
+object ShareProvider {
 
-    private val authority = BuildConfig.APPLICATION_ID + ".fileprovider"
+    private const val AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider"
 
     fun share(activity: Activity, packageName: String) {
         val pathResolver = ManifestPathResolver()
         val path = pathResolver.getPath(activity, packageName)
         val file = File(path)
-        val uri = FileProvider.getUriForFile(activity, authority, file)
-
+        val uri = FileProvider.getUriForFile(activity, AUTHORITY, file)
         val intent = ShareCompat.IntentBuilder(activity)
             .setType("text/xml")
             .setStream(uri)
             .setChooserTitle(R.string.dialog_share_title)
             .createChooserIntent()
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         } else {
+            @Suppress("DEPRECATION")
             val resInfoList = activity.packageManager.queryIntentActivities(
                 intent,
                 PackageManager.MATCH_DEFAULT_ONLY
@@ -43,7 +42,6 @@ class ShareProvider {
                 )
             }
         }
-
         try {
             activity.startActivity(intent)
         } catch (e: ActivityNotFoundException) {

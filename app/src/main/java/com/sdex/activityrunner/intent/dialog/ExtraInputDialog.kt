@@ -5,11 +5,13 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.databinding.DialogInputExtraBinding
+import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
-import com.sdex.commons.BaseDialogFragment
 import timber.log.Timber
 
 class ExtraInputDialog : BaseDialogFragment() {
@@ -17,7 +19,7 @@ class ExtraInputDialog : BaseDialogFragment() {
     private lateinit var callback: OnKeyValueInputDialogCallback
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val initialExtra = requireArguments().getParcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
+        val initialExtra = requireArguments().parcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
         val position = requireArguments().getInt(ARG_POSITION)
 
         val binding = DialogInputExtraBinding.inflate(requireActivity().layoutInflater)
@@ -37,7 +39,7 @@ class ExtraInputDialog : BaseDialogFragment() {
             binding.rbString.isChecked = true
         }
 
-        return AlertDialog.Builder(requireActivity())
+        return MaterialAlertDialogBuilder(requireActivity())
             .setTitle(R.string.dialog_add_extra_title)
             .setView(binding.root)
             .setPositiveButton(android.R.string.ok, null)

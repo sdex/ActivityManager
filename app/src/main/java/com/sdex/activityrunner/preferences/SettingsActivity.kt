@@ -3,8 +3,8 @@ package com.sdex.activityrunner.preferences
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivitySettingsBinding
-import com.sdex.commons.BaseActivity
 
 class SettingsActivity : BaseActivity() {
 
@@ -15,10 +15,11 @@ class SettingsActivity : BaseActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
-
-        supportFragmentManager.beginTransaction()
-            .replace(binding.content.id, SettingsFragment())
-            .commitNow()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(binding.content.id, SettingsFragment())
+                .commitNow()
+        }
     }
 
     companion object {

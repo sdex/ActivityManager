@@ -3,8 +3,7 @@ package com.sdex.activityrunner.shortcut
 import android.app.Activity
 import android.content.ComponentName
 import android.os.Bundle
-
-import com.sdex.activityrunner.util.RunActivityTask
+import com.sdex.activityrunner.app.launchActivityWithRoot
 
 class ShortcutHandlerActivity : Activity() {
 
@@ -14,8 +13,7 @@ class ShortcutHandlerActivity : Activity() {
         val className = intent.getStringExtra(ARG_CLASS_NAME)
         if (packageName != null && className != null) {
             val componentName = ComponentName(packageName, className)
-            val task = RunActivityTask(componentName)
-            task.execute()
+            launchActivityWithRoot(componentName)
         }
         finish()
     }

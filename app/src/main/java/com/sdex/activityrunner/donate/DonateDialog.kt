@@ -2,19 +2,20 @@ package com.sdex.activityrunner.donate
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
-import com.sdex.commons.BaseDialogFragment
-import com.sdex.commons.util.AppUtils
+import com.sdex.activityrunner.commons.BaseDialogFragment
+import com.sdex.activityrunner.util.AppUtils
 
 class DonateDialog : BaseDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return AlertDialog.Builder(requireContext())
+        return MaterialAlertDialogBuilder(requireContext())
+            .setIcon(R.drawable.ic_about_support_development)
             .setTitle(R.string.about_donation)
             .setMessage(R.string.donate_message)
             .setPositiveButton(R.string.donate_action_text) { _, _ ->
-                AppUtils.openLink(requireActivity(), "https://sdex.dev/donate/")
+                AppUtils.openLink(requireActivity(), getString(R.string.donate_link))
             }
             .create()
     }

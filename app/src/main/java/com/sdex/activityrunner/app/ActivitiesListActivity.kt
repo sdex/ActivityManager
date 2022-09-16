@@ -3,7 +3,6 @@ package com.sdex.activityrunner.app
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -11,13 +10,17 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
+import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.commons.BaseActivity
-import com.sdex.commons.util.UIUtils
+import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.activityrunner.util.UIUtils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ActivitiesListActivity : BaseActivity() {
 
     private val viewModel by viewModels<ActivitiesListViewModel>()
@@ -25,12 +28,12 @@ class ActivitiesListActivity : BaseActivity() {
     private lateinit var binding: ActivityActivitiesListBinding
     private lateinit var appPackageName: String
 
-    private var isShowNotExported: Boolean = false
+    private var showNotExported: Boolean = false
     private var searchText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val item = intent.getSerializableExtra(ARG_APPLICATION) as ApplicationModel?
+        val item = intent.serializable<ApplicationModel>(ARG_APPLICATION)
         if (item == null) {
             finish()
             return
@@ -41,10 +44,10 @@ class ActivitiesListActivity : BaseActivity() {
         appPackageName = item.packageName
         title = item.name
         binding.list.addDividerItemDecoration()
-        val adapter = ActivitiesListAdapter(this).apply {
+        val adapter = ActivitiesListAdapter(this, item).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
-                    ActivityLauncher(this@ActivitiesListActivity).launchActivity(item)
+                    launchActivity(item)
                 }
 
                 override fun onItemLongClick(item: ActivityModel) {
@@ -57,18 +60,26 @@ class ActivitiesListActivity : BaseActivity() {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-        viewModel.getItems(appPackageName).observe(this) {
-            adapter.submitList(it)
-            val size = it.size
-            setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
-            binding.empty.isVisible = (size == 0 && searchText == null)
+        if (item.enabled) {
+            viewModel.getItems(appPackageName).observe(this) {
+                adapter.submitList(it)
+                val size = it.size
+                setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
+                binding.empty.isVisible = (size == 0 && searchText == null)
+            }
+        } else {
+            binding.disabled.isVisible = true
         }
 
-        isShowNotExported = appPreferences.showNotExported
+        showNotExported = appPreferences.showNotExported
 
         binding.turnOnAdvanced.setOnClickListener {
             appPreferences.showNotExported = true
             viewModel.reloadItems(appPackageName)
+        }
+
+        binding.openAppInfo.setOnClickListener {
+            IntentUtils.openApplicationInfo(this, appPackageName)
         }
 
         if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
@@ -80,7 +91,7 @@ class ActivitiesListActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (appPreferences.showNotExported != isShowNotExported) {
+        if (appPreferences.showNotExported != showNotExported) {
             viewModel.reloadItems(appPackageName)
         }
     }
@@ -94,9 +105,11 @@ class ActivitiesListActivity : BaseActivity() {
         menuInflater.inflate(R.menu.activities_list, menu)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
+        // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
+        searchView.maxWidth = Int.MAX_VALUE
         searchView.queryHint = getString(R.string.action_search_activity_hint)
 
-        if (!TextUtils.isEmpty(searchText)) {
+        if (searchText != null) {
             searchView.post { searchView.setQuery(searchText, false) }
             searchItem.expandActionView()
             UIUtils.setMenuItemsVisibility(menu, searchItem, false)
@@ -128,20 +141,20 @@ class ActivitiesListActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun filter(text: String) {
+    private fun filter(text: String?) {
         this.searchText = text
-        viewModel.filterItems(appPackageName, searchText)
+        viewModel.filterItems(searchText)
     }
 
     companion object {
 
-        const val ARG_APPLICATION = "arg_application"
+        private const val ARG_APPLICATION = "arg_application"
         private const val STATE_SEARCH_TEXT = "state_search_text"
 
         fun start(context: Context, item: ApplicationModel) {
-            val starter = Intent(context, ActivitiesListActivity::class.java)
-            starter.putExtra(ARG_APPLICATION, item)
-            context.startActivity(starter)
+            context.startActivity(Intent(context, ActivitiesListActivity::class.java).apply {
+                putExtra(ARG_APPLICATION, item)
+            })
         }
     }
 }

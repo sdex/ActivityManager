@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:padding="@dimen/dialog_content_padding">
 
     <TextView
         android:id="@+id/value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
         android:textSize="18sp"
-        android:textColor="@color/text_color_primary"
         tools:text="intent:#Intent;action=com.app.open;end" />
 
 </ScrollView>

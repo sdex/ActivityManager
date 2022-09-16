@@ -1,10 +1,10 @@
 <p align="center">
-<img src="docs/graphics/logos/feature-name-logo.png"/>
+<img src="docs/graphics/logos/feature-name-logo-small.png"/>
 </p>
 
 # Activity Manager - hidden activity launcher
 
-Activity Manager provides the list of all activities of all installed applications and ability to run them.
+Activity Manager provides the activities list of installed applications and ability to run them.
 
 Features:
 ----------
@@ -12,27 +12,31 @@ Features:
 * Launch exported activities
 * Launch non-exported activities with ROOT
 * Create custom shortcuts for activities
+* Create and start any custom intents using Intent Builder
 * Explore an app details with Manifest Viewer
 * Light/Dark theme support
 
-Download:
+Installing:
 ----------
+Pre-compiled binaries are available as [releases assets](https://github.com/sdex/ActivityManager/releases).
+
+Also available on F-droid:
 <div style="display:flex;">
 <a href="https://f-droid.org/packages/com.activitymanager/">
     <img alt="Get it on F-Droid" height="80"
         src="docs/graphics/logos/f-droid-badge.png"/>
 </a>
-
-<a href="https://appgallery5.huawei.com/#/app/C101336719">
-    <img alt="Get it on Huawei app gallery" height="80"
-        src="docs/graphics/logos/huawei-badge.png"/>
-</a>
-
-<a href="https://galaxy.store/activity1">
-    <img alt="Get it on Galaxy store" height="80"
-        src="docs/graphics/logos/galaxy-badge.png"/>
-</a>
 </div>
+
+Or build from the repo directly:
+```
+./gradlew assemble
+```
+
+Donate a cup of coffee:
+----------
+
+<a href="https://www.buymeacoffee.com/sdex" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 Join Us On:
 ----------

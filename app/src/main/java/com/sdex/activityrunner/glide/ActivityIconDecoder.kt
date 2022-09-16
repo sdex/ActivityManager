@@ -1,7 +1,6 @@
 package com.sdex.activityrunner.glide
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import com.bumptech.glide.load.Options
@@ -10,24 +9,19 @@ import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.resource.drawable.DrawableResource
 import com.bumptech.glide.util.Util
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.commons.pm.getComponentIcon
 
 internal class ActivityIconDecoder(
     private val context: Context
 ) : ResourceDecoder<ActivityModel, Drawable> {
 
     override fun decode(
-        source: ActivityModel, width: Int, height: Int,
+        source: ActivityModel,
+        width: Int,
+        height: Int,
         options: Options
     ): Resource<Drawable> {
-        val packageManager = context.packageManager
-        val icon = try {
-            val intent = Intent()
-            intent.component = source.componentName
-            val resolveInfo = packageManager.resolveActivity(intent, 0)
-            resolveInfo?.loadIcon(packageManager) ?: packageManager.defaultActivityIcon
-        } catch (e: Exception) {
-            packageManager.defaultActivityIcon
-        }
+        val icon = getComponentIcon(context.packageManager, source.componentName)
         return object : DrawableResource<Drawable>(icon) {
             override fun getResourceClass(): Class<Drawable> {
                 return Drawable::class.java

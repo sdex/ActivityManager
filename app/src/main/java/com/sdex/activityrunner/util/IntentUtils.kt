@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.Toast
 import androidx.annotation.DrawableRes
-import androidx.appcompat.app.AlertDialog
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
@@ -19,36 +18,40 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
 import com.sdex.activityrunner.shortcut.createShortcut
-import com.sdex.commons.util.AppUtils
+import timber.log.Timber
 
 object IntentUtils {
 
-    private fun getActivityIntent(activity: ComponentName): Intent {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.component = activity
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        return intent
+    private fun getActivityIntent(componentName: ComponentName): Intent {
+        return Intent(Intent.ACTION_VIEW).apply {
+            component = componentName
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
     }
 
     fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
-        val intent = activityModelToIntent(activityModel)
-        val iconCompat = IconCompat.createWithBitmap(bitmap)
-        try {
-            createShortcut(context, activityModel.name, intent, iconCompat)
-        } catch (e: Exception) { // android.os.TransactionTooLargeException
-            createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+        if (bitmap != null) {
+            val intent = activityModelToIntent(activityModel)
+            val iconCompat = IconCompat.createWithBitmap(bitmap)
+            try {
+                createShortcut(context, activityModel.name, intent, iconCompat)
+            } catch (e: Exception) { // android.os.TransactionTooLargeException
+                createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+            }
+        } else {
+            createLauncherIcon(context, activityModel)
         }
     }
 
     private fun activityModelToIntent(activityModel: ActivityModel): Intent {
-        val componentName: ComponentName = if (activityModel.exported) {
+        val componentName = if (activityModel.exported) {
             activityModel.componentName
         } else {
             ComponentName(
@@ -56,9 +59,7 @@ object IntentUtils {
                 ShortcutHandlerActivity::class.java.canonicalName!!
             )
         }
-
         val intent = getActivityIntent(componentName)
-
         if (!activityModel.exported) {
             val originComponent = activityModel.componentName
             intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, originComponent.packageName)
@@ -72,9 +73,8 @@ object IntentUtils {
         createShortcut(context, name, intent, iconCompat)
     }
 
-    fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
-        val am: ActivityManager =
-            context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    private fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
+        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val size = am.launcherLargeIconSize
         GlideApp.with(context)
             .asDrawable()
@@ -110,11 +110,13 @@ object IntentUtils {
                 Toast.LENGTH_SHORT
             ).show()
         } catch (e: SecurityException) {
+            Timber.e(e)
             Toast.makeText(
                 context, context.getString(R.string.starting_activity_failed_security, name),
                 Toast.LENGTH_SHORT
             ).show()
         } catch (e: Exception) {
+            Timber.e(e)
             Toast.makeText(
                 context, context.getString(R.string.starting_activity_failed, name),
                 Toast.LENGTH_SHORT
@@ -127,7 +129,7 @@ object IntentUtils {
             context.startActivity(intent)
             Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            AlertDialog.Builder(context)
+            MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.starting_activity_intent_failed)
                 .setMessage(e.message)
                 .setPositiveButton(android.R.string.ok, null)
@@ -168,7 +170,7 @@ object IntentUtils {
     fun openBrowser(context: Context, url: String) {
         try {
             val builder = CustomTabsIntent.Builder()
-            builder.setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            builder.setToolbarColor(ContextCompat.getColor(context, R.color.blue_dark))
             builder.setShowTitle(true)
             val customTabsIntent = builder.build()
             customTabsIntent.launchUrl(context, Uri.parse(url))

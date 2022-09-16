@@ -1,18 +1,21 @@
 package com.sdex.activityrunner.intent
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityIntentBuilderBinding
+import com.sdex.activityrunner.extensions.parcelable
+import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
@@ -23,8 +26,9 @@ import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.commons.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class IntentBuilderActivity : BaseActivity(),
     ValueInputDialog.OnValueInputDialogCallback, SingleSelectionDialog.OnItemSelectedCallback,
     MultiSelectionDialog.OnItemsSelectedCallback, ExtraInputDialog.OnKeyValueInputDialogCallback {
@@ -38,16 +42,23 @@ class IntentBuilderActivity : BaseActivity(),
     private val flagsAdapter = LaunchParamsListAdapter()
     private val extraAdapter = LaunchParamsExtraListAdapter()
 
+    private val pickHistoryItem =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val result = it.data?.parcelable<LaunchParams>(HistoryActivity.RESULT)
+            launchParams.setFrom(result)
+            showLaunchParams()
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIntentBuilderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
-        val params = savedInstanceState?.getParcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
+        val params = savedInstanceState?.parcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
         launchParams.setFrom(params)
 
-        val activityModel = intent.getSerializableExtra(ARG_ACTIVITY_MODEL) as ActivityModel?
+        val activityModel = intent.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
 
         title = activityModel?.name ?: getString(R.string.intent_launcher_activity)
 
@@ -110,15 +121,6 @@ class IntentBuilderActivity : BaseActivity(),
         outState.putParcelable(STATE_LAUNCH_PARAMS, launchParams)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == HistoryActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val result = data?.getParcelableExtra<LaunchParams>(HistoryActivity.RESULT)
-            launchParams.setFrom(result)
-            showLaunchParams()
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.launch_param, menu)
         return super.onCreateOptionsMenu(menu)
@@ -127,8 +129,7 @@ class IntentBuilderActivity : BaseActivity(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_history -> {
-                val intent = HistoryActivity.getLaunchIntent(this)
-                startActivityForResult(intent, HistoryActivity.REQUEST_CODE)
+                pickHistoryItem.launch(HistoryActivity.getLaunchIntent(this))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -248,44 +249,20 @@ class IntentBuilderActivity : BaseActivity(),
     }
 
     private fun showLaunchParams() {
-        val packageName = launchParams.packageName
-        binding.packageNameView.text = packageName
-        updateIcon(binding.packageNameImageView, packageName)
-        val className = launchParams.className
-        binding.classNameView.text = className
-        updateIcon(binding.classNameImageView, className)
-        val data = launchParams.data
-        binding.dataView.text = data
-        updateIcon(binding.dataImageView, data)
-        val actionValue = launchParams.action
-        binding.actionView.text = actionValue
-        updateIcon(binding.actionImageView, actionValue)
-        val mimeTypeValue = launchParams.mimeType
-        binding.mimeTypeView.text = mimeTypeValue
-        updateIcon(binding.mimeTypeImageView, mimeTypeValue)
-        val extras = launchParams.extras
-        extraAdapter.setItems(extras)
-        updateIcon(binding.extrasImageView, extras)
+        binding.packageNameView.text = launchParams.packageName
+        binding.classNameView.text = launchParams.className
+        binding.dataView.text = launchParams.data
+        binding.actionView.text = launchParams.action
+        binding.mimeTypeView.text = launchParams.mimeType
+        extraAdapter.setItems(launchParams.extras)
+        categoriesAdapter.setItems(launchParams.getCategoriesValues())
+        flagsAdapter.setItems(launchParams.getFlagsValues())
         updateExtrasAdd()
-        val categoriesValues = launchParams.getCategoriesValues()
-        categoriesAdapter.setItems(categoriesValues)
-        updateIcon(binding.categoriesImageView, categoriesValues)
-        val flagsValues = launchParams.getFlagsValues()
-        flagsAdapter.setItems(flagsValues)
-        updateIcon(binding.flagsImageView, flagsValues)
     }
 
     private fun updateExtrasAdd() {
         val extras = launchParams.extras
-        binding.addExtraView.visibility = if (extras.isEmpty()) View.GONE else View.VISIBLE
-    }
-
-    private fun updateIcon(imageView: ImageView, text: String?) {
-        imageView.isSelected = !text.isNullOrEmpty()
-    }
-
-    private fun updateIcon(imageView: ImageView, list: List<*>) {
-        imageView.isSelected = list.isNotEmpty()
+        binding.addExtraView.isVisible = extras.isNotEmpty()
     }
 
     companion object {

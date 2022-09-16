@@ -1,23 +1,43 @@
 <resources>
+
     <string name="history_activity">Історія</string>
     <string name="settings_activity">Налаштування</string>
 
-    <string name="context_action_launch">Відкрити в GooglePlay</string>
-    <string name="context_action_launch_params">Запустити з параметрами</string>
-    <string name="context_action_launch_root">Запустити з правами ROOT</string>
-    <string name="context_action_shortcut">Створити ярлик</string>
+    <!-- activity options -->
+    <string name="activity_option_launch_params">Запустити з параметрами</string>
+    <string name="activity_option_launch_root">Запустити з правами Root</string>
+    <string name="activity_option_create_shortcut">Створити ярлик</string>
 
-    <string name="context_action_open_info">Вікрити інфо</string>
-    <string name="context_action_open_manifest">Вікрити маніфест</string>
+    <!-- application options -->
+    <string name="application_option_open">Запустити додаток</string>
+    <string name="application_option_open_info">Вікрити інфо</string>
+    <string name="application_option_open_manifest">Вікрити маніфест</string>
+    <string name="application_option_action_launch">Відкрити в GooglePlay</string>
+    <string name="application_disabled">Вимкнено</string>
+    <string name="application_system">Системний</string>
+    <string name="application_disabled_description">Неможливо відобразити компоненти, додаток вимкнений</string>
 
+    <!-- create shortcut -->
     <string name="shortcut_name">Назва</string>
     <string name="shortcut_name_empty">Обов\'язкове поле</string>
+    <string name="shortcut_create">Створити</string>
+    <string name="shortcut_set_icon_tooltip">Натисніть щоб змінити зображення</string>
+    <string name="icons_loading_error">Не вдалося завантажити іконки</string>
+    <string name="shortcut_icon_gallery">Вибрати з галереї</string>
+    <string name="shortcut_icon_preset">Вибрати з іконок</string>
 
+    <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
     <string name="starting_activity_failed">Помилка запуску: %s</string>
+    <string name="starting_activity_launch_intent_failed">Неможливо запустити додаток</string>
     <string name="starting_activity_failed_security">Немає прав для запуску: %s</string>
     <string name="starting_activity_intent">Запуск</string>
     <string name="starting_activity_intent_failed">Помилка запуску</string>
+    <string name="starting_activity_root_error">Помилка запуску</string>
+    <string name="starting_activity_root_not_available">Root недоступний або права не надані</string>
+
+    <string name="activities_list_empty_text">Додаток не містить доступних компонентів</string>
+    <string name="activities_list_empty_action">Увімкнути показ прихованих компонентів</string>
 
     <string name="action_about">Про програму</string>
     <string name="action_launch_intent">Запустити intent</string>
@@ -25,8 +45,10 @@
     <string name="action_clear_history">Очистити історію</string>
     <string name="action_search">Пошук</string>
     <string name="action_search_hint">Назва програми</string>
+    <string name="action_search_activity_hint">Ім\'я компоненту або пакету</string>
     <string name="action_settings">Налаштування</string>
 
+    <!-- intent builder -->
     <string name="launch_param_package_name">Ім\'я пакету</string>
     <string name="launch_param_class_name">Ім\'я класу</string>
     <string name="launch_param_action">Дія</string>
@@ -37,15 +59,19 @@
     <string name="launch_param_categories">Категорії</string>
     <string name="launch_param_flags">Параметри</string>
 
-    <string name="item_history_has_extras">Містить додаткові дані</string>
-    <string name="item_history_has_categories">Містить категорії</string>
-    <string name="item_history_has_flags">Містить парамерти</string>
+    <string name="item_history_has_extras">Дані</string>
+    <string name="item_history_has_categories">Категорії</string>
+    <string name="item_history_has_flags">Парамерти</string>
 
-    <!-- about -->
     <string name="about_donation">Підтримати розробку</string>
+    <string name="about_source_code">Вихідний код</string>
     <string name="about_version">Версія</string>
     <string name="about_issues_tracker">Зв\'язатися з автором</string>
+    <string name="about_feedback">Повідомити про проблему, задати запитання…</string>
     <string name="about_open_source">Бібліотеки з відкритим кодом</string>
+
+    <string name="donate_message">Якщо вам подобається програма, будь ласка, розгляньте можливість підтримати розробку.</string>
+    <string name="donate_action_text">Підтримати</string>
 
     <string name="input_key">Введіть ключ</string>
     <string name="input_value">Введіть значення</string>
@@ -54,11 +80,15 @@
 
     <string name="type_array">Масив</string>
 
+    <!-- history -->
+    <string name="history_empty_text">Тут поки-що порожньо</string>
+    <string name="history_empty_action">Запустити</string>
     <string name="history_dialog_clear_title">Очистити історію</string>
     <string name="history_dialog_clear_message">Ви впевнені?</string>
     <string name="history_item_dialog_title">Intent</string>
     <string name="history_item_dialog_remove">Видалити</string>
     <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
+    <string name="history_item_dialog_export_uri">Експортувати як URI</string>
     <string name="no">Ні</string>
     <string name="yes">Так</string>
 
@@ -66,25 +96,36 @@
     <string name="dialog_add_extra_key_empty">Обов\'язкове поле</string>
     <string name="dialog_add_extra_value_empty">Обов\'язкове поле</string>
     <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
+    <string name="dialog_export_intent_copy">Копіювати</string>
 
-    <!-- rating dialog -->
-    <string name="rating_dialog_cancel">Відмінити</string>
-    <string name="rating_dialog_experience">Вам сподобався додаток?</string>
-    <string name="rating_dialog_feedback_title">Зворотній зв\'язок</string>
-    <string name="rating_dialog_maybe_later">Нагадати пізніше</string>
-    <string name="rating_dialog_never">Ніколи</string>
-    <string name="rating_dialog_submit">Відправити</string>
-    <string name="rating_dialog_suggestions">Повідомте нам що не так і ми це виправимо</string>
+    <string name="dialog_enable_non_exported_title">Приховані компоненти</string>
+    <string name="dialog_enable_non_exported_message">Ви можете увімкнути відображення прихованих компонентів, вони будуть виділені червоним кольором. Такі компоненти можна запустити тільки використовуючи Root</string>
+
+    <!-- errors -->
+    <string name="error_failed_to_instantiate_web_view">Помилка ініціалізації WebView</string>
+    <string name="error_failed_to_open_manifest">Помилка відкриття файлу AndroidManifest.xml</string>
+    <string name="error_intent_shortcut_icon">Цей ярлик не підтримує зміну зоюраження</string>
+
+    <!-- share -->
+    <string name="dialog_share_title">Поділитися файлом AndroidManifest.xml</string>
 
     <!-- settings -->
+    <string name="pref_header_other">Інше</string>
+    <string name="pref_header_appearance">Зовнішній вигляд</string>
+    <string name="pref_appearance_theme_title">Тема</string>
     <string name="pref_header_advanced">Додаткові можливості</string>
-    <string name="pref_advanced_not_exported_title">Показувати приховані Activity</string>
-    <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені ROOT</string>
-    <string name="pref_advanced_root_integration_title">Інтеграція з ROOT</string>
-    <string name="pref_advanced_root_integration_summary">Запуск додатків від імені ROOT</string>
-    <string name="settings_error_root_not_available">ROOT недоступний на цьому пристрої</string>
-    <string name="settings_error_root_not_granted">ROOT права не були надані</string>
-    <string name="settings_error_root_not_active">Потрібно активувати інтеграцію з ROOT</string>
+    <string name="pref_system_apps_title">Показувати системні додатки</string>
+    <string name="pref_disabled_apps_title">Показувати вимкнені додатки</string>
+    <string name="pref_advanced_system_apps_title">Показувати індикатор системних додатків</string>
+    <string name="pref_advanced_disabled_apps_title">Показувати індикатор вимкнених додатків</string>
+    <string name="pref_advanced_not_exported_title">Показувати приховані компоненти</string>
+    <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені Root</string>
+
+    <string-array name="pref_appearance_theme_list_titles">
+        <item>Системна</item>
+        <item>Світла</item>
+        <item>Темна</item>
+    </string-array>
 
     <plurals name="history_records">
         <item quantity="one">%d запис</item>
@@ -98,4 +139,11 @@
         <item quantity="many">%d активностей</item>
         <item quantity="other">%d активностей</item>
     </plurals>
+
+    <!-- manifest viewer -->
+    <string name="manifest_viewer_share">Поділитися</string>
+    <string name="manifest_viewer_help">Довідка</string>
+    <string name="manifest_viewer_search">Пошук</string>
+    <string name="manifest_viewer_search_hint">Знайти слово</string>
+
 </resources>

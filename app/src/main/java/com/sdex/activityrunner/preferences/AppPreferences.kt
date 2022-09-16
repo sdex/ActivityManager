@@ -2,6 +2,7 @@ package com.sdex.activityrunner.preferences
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 
 class AppPreferences(context: Context) {
@@ -14,11 +15,28 @@ class AppPreferences(context: Context) {
         set(value) = preferences.edit()
             .putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, value)
             .apply()
+    val appOpenCounter: Int
+        get() = preferences.getInt(KEY_OPEN_APP_COUNTER, 0)
+
+    fun onAppOpened() {
+        preferences.edit {
+            putInt(KEY_OPEN_APP_COUNTER, appOpenCounter + 1)
+        }
+    }
 
     /* user preferences */
 
+    val isShowSystemApps: Boolean
+        get() = userPreferences.getBoolean(KEY_SHOW_SYSTEM_APPS, true)
+
     val isShowSystemAppIndicator: Boolean
         get() = userPreferences.getBoolean(KEY_SHOW_SYSTEM_APP_LABEL, false)
+
+    val isShowDisabledApps: Boolean
+        get() = userPreferences.getBoolean(KEY_SHOW_DISABLED_APPS, true)
+
+    val isShowDisabledAppIndicator: Boolean
+        get() = userPreferences.getBoolean(KEY_SHOW_DISABLED_APP_LABEL, false)
 
     var showNotExported: Boolean
         get() = userPreferences.getBoolean(KEY_SHOW_NOT_EXPORTED, false)
@@ -27,9 +45,6 @@ class AppPreferences(context: Context) {
                 .putBoolean(KEY_SHOW_NOT_EXPORTED, value)
                 .apply()
         }
-
-    val isRootIntegrationEnabled: Boolean
-        get() = userPreferences.getBoolean(KEY_ROOT_INTEGRATION, false)
 
     @AppCompatDelegate.NightMode
     val theme: Int
@@ -40,11 +55,13 @@ class AppPreferences(context: Context) {
 
         private const val PREFERENCES_NAME = "ads_preferences"
         private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
+        private const val KEY_OPEN_APP_COUNTER = "open_app_counter"
 
-        /* advanced preferences */
         private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
+        const val KEY_SHOW_SYSTEM_APPS = "show_system_apps"
         private const val KEY_SHOW_SYSTEM_APP_LABEL = "advanced_system_app"
-        const val KEY_ROOT_INTEGRATION = "advanced_root_integration"
+        const val KEY_SHOW_DISABLED_APPS = "show_disabled_apps"
+        private const val KEY_SHOW_DISABLED_APP_LABEL = "advanced_disabled_app"
         const val KEY_THEME = "appearance_theme"
     }
 }

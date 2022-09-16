@@ -3,7 +3,7 @@ package com.sdex.activityrunner.app
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemApplicationBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
@@ -23,7 +24,13 @@ class ApplicationsListAdapter(
 
     private val glide = GlideApp.with(activity)
 
-    var isShowSystemAppIndicator: Boolean = false
+    var showSystemAppIndicator: Boolean = false
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    var showDisabledAppIndicator: Boolean = false
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -38,7 +45,13 @@ class ApplicationsListAdapter(
     }
 
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-        holder.bind(getItem(position), glide, isShowSystemAppIndicator, itemClickListener)
+        holder.bind(
+            getItem(position),
+            glide,
+            showSystemAppIndicator,
+            showDisabledAppIndicator,
+            itemClickListener
+        )
     }
 
     override fun getSectionName(position: Int): String {
@@ -60,13 +73,27 @@ class ApplicationsListAdapter(
         fun bind(
             item: ApplicationModel,
             glide: RequestManager,
-            isShowSystemAppIndicator: Boolean,
+            showSystemAppIndicator: Boolean,
+            showDisabledAppIndicator: Boolean,
             itemClickListener: ItemClickListener?,
         ) {
             binding.name.text = item.name
             binding.packageName.text = item.packageName
-            binding.system.isInvisible = !(item.system && isShowSystemAppIndicator)
-
+            val showSystemLabel = item.system && showSystemAppIndicator
+            val showDisabledLabel = !item.enabled && showDisabledAppIndicator
+            val info = StringBuilder()
+            val context = binding.root.context
+            if (showDisabledLabel) {
+                info.append(context.getString(R.string.application_disabled))
+            }
+            if (showDisabledLabel && showSystemLabel) {
+                info.append(" | ")
+            }
+            if (showSystemLabel) {
+                info.append(context.getString(R.string.application_system))
+            }
+            binding.info.text = info.toString()
+            binding.info.isVisible = showDisabledLabel || showSystemLabel
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
                 .transition(DrawableTransitionOptions.withCrossFade())
@@ -87,7 +114,7 @@ class ApplicationsListAdapter(
 
     companion object {
 
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ApplicationModel>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ApplicationModel>() {
 
             override fun areItemsTheSame(
                 oldItem: ApplicationModel,

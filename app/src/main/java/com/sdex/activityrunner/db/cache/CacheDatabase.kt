@@ -7,12 +7,12 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [(ApplicationModel::class)],
-    version = 3,
+    version = 4,
     exportSchema = true
 )
 abstract class CacheDatabase : RoomDatabase() {
 
-    abstract val applicationsModelDao: ApplicationModelDao
+    abstract val applicationDao: ApplicationModelDao
 
     companion object {
 
