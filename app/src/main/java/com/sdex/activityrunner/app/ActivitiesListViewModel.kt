@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.getPackageInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,22 +15,21 @@ import timber.log.Timber
 class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val packageManager = application.packageManager
-    private val appPreferences by lazy { AppPreferences(application) }
 
     private val liveData = MutableLiveData<List<ActivityModel>>()
     private lateinit var list: List<ActivityModel>
 
-    fun getItems(packageName: String): LiveData<List<ActivityModel>> {
+    fun getItems(packageName: String, showNotExported: Boolean): LiveData<List<ActivityModel>> {
         viewModelScope.launch(Dispatchers.IO) {
-            list = getActivitiesList(packageName)
+            list = getActivitiesList(packageName, showNotExported)
             liveData.postValue(list)
         }
         return liveData
     }
 
-    fun reloadItems(packageName: String) {
+    fun reloadItems(packageName: String, showNotExported: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            list = getActivitiesList(packageName)
+            list = getActivitiesList(packageName, showNotExported)
             liveData.postValue(list)
         }
     }
@@ -42,8 +40,8 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
                 viewModelScope.launch(Dispatchers.IO) {
                     val filteredList = list.filter {
                         it.name.contains(searchText, true) ||
-                                it.className.contains(searchText, true) ||
-                                (!it.label.isNullOrEmpty() && it.label.contains(searchText, true))
+                            it.className.contains(searchText, true) ||
+                            (!it.label.isNullOrEmpty() && it.label.contains(searchText, true))
                     }
                     liveData.postValue(filteredList)
                 }
@@ -54,8 +52,7 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
     }
 
     @WorkerThread
-    private fun getActivitiesList(packageName: String) = try {
-        val showNotExported = appPreferences.showNotExported
+    private fun getActivitiesList(packageName: String, showNotExported: Boolean) = try {
         getPackageInfo(packageManager, packageName).activities
             .map { it.toActivityModel() }
             .filter { it.exported || showNotExported }

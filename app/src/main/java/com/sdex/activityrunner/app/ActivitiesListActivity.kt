@@ -28,7 +28,6 @@ class ActivitiesListActivity : BaseActivity() {
     private lateinit var binding: ActivityActivitiesListBinding
     private lateinit var appPackageName: String
 
-    private var showNotExported: Boolean = false
     private var searchText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,8 +59,10 @@ class ActivitiesListActivity : BaseActivity() {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
+        val showNotExported = appPreferences.showNotExported
+
         if (item.enabled) {
-            viewModel.getItems(appPackageName).observe(this) {
+            viewModel.getItems(appPackageName, showNotExported).observe(this) {
                 adapter.submitList(it)
                 val size = it.size
                 setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
@@ -71,28 +72,18 @@ class ActivitiesListActivity : BaseActivity() {
             binding.disabled.isVisible = true
         }
 
-        showNotExported = appPreferences.showNotExported
-
-        binding.turnOnAdvanced.setOnClickListener {
-            appPreferences.showNotExported = true
-            viewModel.reloadItems(appPackageName)
+        binding.showNonExported.setOnClickListener {
+            viewModel.reloadItems(appPackageName, true)
         }
 
         binding.openAppInfo.setOnClickListener {
             IntentUtils.openApplicationInfo(this, appPackageName)
         }
 
-        if (!appPreferences.showNotExported && !appPreferences.isNotExportedDialogShown) {
+        if (!showNotExported && !appPreferences.isNotExportedDialogShown) {
             appPreferences.isNotExportedDialogShown = true
             val dialog = EnableNotExportedActivitiesDialog()
             dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (appPreferences.showNotExported != showNotExported) {
-            viewModel.reloadItems(appPackageName)
         }
     }
 

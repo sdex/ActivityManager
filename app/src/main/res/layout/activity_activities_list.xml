@@ -50,7 +50,7 @@
                 android:textAppearance="?attr/textAppearanceTitleLarge" />
 
             <Button
-                android:id="@+id/turnOnAdvanced"
+                android:id="@+id/showNonExported"
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
