@@ -26,7 +26,7 @@ class ActivitiesListActivity : BaseActivity() {
     private val viewModel by viewModels<ActivitiesListViewModel>()
     private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var binding: ActivityActivitiesListBinding
-    private lateinit var appPackageName: String
+    private lateinit var app: ApplicationModel
 
     private var searchText: String? = null
 
@@ -37,13 +37,13 @@ class ActivitiesListActivity : BaseActivity() {
             finish()
             return
         }
+        app = item
         binding = ActivityActivitiesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
-        appPackageName = item.packageName
-        title = item.name
+        title = app.name
         binding.list.addDividerItemDecoration()
-        val adapter = ActivitiesListAdapter(this, item).apply {
+        val adapter = ActivitiesListAdapter(this, app).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
                     launchActivity(item)
@@ -61,29 +61,37 @@ class ActivitiesListActivity : BaseActivity() {
 
         val showNotExported = appPreferences.showNotExported
 
-        if (item.enabled) {
-            viewModel.getItems(appPackageName, showNotExported).observe(this) {
-                adapter.submitList(it)
+        viewModel.getItems(app.packageName, showNotExported).observe(this) {
+            adapter.submitList(it)
+            if (app.enabled) {
                 val size = it.size
                 setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
                 binding.empty.isVisible = (size == 0 && searchText == null)
             }
-        } else {
-            binding.disabled.isVisible = true
+            binding.disabled.isVisible = !app.enabled
         }
 
         binding.showNonExported.setOnClickListener {
-            viewModel.reloadItems(appPackageName, true)
+            viewModel.reloadItems(app.packageName, true)
         }
 
         binding.openAppInfo.setOnClickListener {
-            IntentUtils.openApplicationInfo(this, appPackageName)
+            IntentUtils.openApplicationInfo(this, app.packageName)
         }
 
         if (!showNotExported && !appPreferences.isNotExportedDialogShown) {
             appPreferences.isNotExportedDialogShown = true
             val dialog = EnableNotExportedActivitiesDialog()
             dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val enabled = viewModel.isAppEnabled(app.packageName)
+        if (enabled != app.enabled) {
+            app = app.copy(enabled = enabled)
+            viewModel.reloadItems(app.packageName, appPreferences.showNotExported)
         }
     }
 

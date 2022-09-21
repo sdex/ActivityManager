@@ -2,6 +2,7 @@ package com.sdex.activityrunner.di
 
 import android.content.Context
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.util.PackageInfoProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,4 +19,9 @@ object AppModule {
     fun providePreferences(
         @ApplicationContext context: Context
     ) = AppPreferences(context)
+
+    @Provides
+    fun providePackageInfoProvider(
+        @ApplicationContext context: Context
+    ) = PackageInfoProvider(context)
 }

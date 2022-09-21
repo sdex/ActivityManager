@@ -1,20 +1,21 @@
 package com.sdex.activityrunner.app
 
-import android.app.Application
-import android.content.pm.ActivityInfo
 import androidx.annotation.WorkerThread
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sdex.activityrunner.util.getPackageInfo
+import com.sdex.activityrunner.util.PackageInfoProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-class ActivitiesListViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val packageManager = application.packageManager
+@HiltViewModel
+class ActivitiesListViewModel @Inject constructor(
+    private val packageInfoProvider: PackageInfoProvider,
+) : ViewModel() {
 
     private val liveData = MutableLiveData<List<ActivityModel>>()
     private lateinit var list: List<ActivityModel>
@@ -51,22 +52,17 @@ class ActivitiesListViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
+    fun isAppEnabled(packageName: String): Boolean {
+        return packageInfoProvider.isAppEnabled(packageName)
+    }
+
     @WorkerThread
     private fun getActivitiesList(packageName: String, showNotExported: Boolean) = try {
-        getPackageInfo(packageManager, packageName).activities
-            .map { it.toActivityModel() }
+        packageInfoProvider.getActivities(packageName)
             .filter { it.exported || showNotExported }
             .sortedBy { it.name }
     } catch (e: Exception) {
         Timber.e(e)
         emptyList()
     }
-
-    private fun ActivityInfo.toActivityModel() = ActivityModel(
-        name.split(".").last(),
-        packageName,
-        name,
-        loadLabel(packageManager).toString(),
-        exported && isEnabled
-    )
 }
