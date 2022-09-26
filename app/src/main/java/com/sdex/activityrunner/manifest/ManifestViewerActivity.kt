@@ -22,12 +22,14 @@ import com.sdex.activityrunner.util.UIUtils
 import com.sdex.highlightjs.models.Language
 import com.sdex.highlightjs.models.Theme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ManifestViewerActivity : BaseActivity() {
 
+    @Inject
+    lateinit var appPreferences: AppPreferences
     private val viewModel by viewModels<ManifestViewModel>()
-    private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var binding: ActivityManifestViewerBinding
     private lateinit var appPackageName: String
 

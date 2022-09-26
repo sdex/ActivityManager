@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivitySettingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySettingsBinding

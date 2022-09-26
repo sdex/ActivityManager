@@ -12,8 +12,14 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_SHOW_DISABLED_APPS
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_SHOW_SYSTEM_APPS
 import com.sdex.activityrunner.preferences.AppPreferences.Companion.KEY_THEME
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat() {
+
+    @Inject
+    lateinit var appPreferences: AppPreferences
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -23,7 +29,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onCreate(savedInstanceState)
 
         val themePreference = findPreference(KEY_THEME) as ListPreference?
-        themePreference?.summary = getCurrentTheme(AppPreferences(requireContext()).theme)
+        themePreference?.summary = getCurrentTheme(appPreferences.theme)
         themePreference?.setOnPreferenceChangeListener { _, newValue ->
             AppCompatDelegate.setDefaultNightMode(newValue.toString().toInt())
             themePreference.summary = getCurrentTheme(newValue.toString().toInt())

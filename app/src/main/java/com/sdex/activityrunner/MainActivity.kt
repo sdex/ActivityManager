@@ -27,17 +27,18 @@ import com.sdex.activityrunner.service.ApplicationsListJob
 import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
+    @Inject
+    lateinit var appPreferences: AppPreferences
     private val viewModel by viewModels<MainViewModel>()
     private lateinit var binding: ActivityMainBinding
-    private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var adapter: ApplicationsListAdapter
 
     public override fun onCreate(savedInstanceState: Bundle?) {
-        AppCompatDelegate.setDefaultNightMode(appPreferences.theme)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -141,14 +142,17 @@ class MainActivity : BaseActivity() {
                 IntentBuilderActivity.start(this, null)
                 true
             }
+
             R.id.action_about -> {
                 AboutActivity.start(this)
                 true
             }
+
             R.id.action_settings -> {
                 SettingsActivity.start(this)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

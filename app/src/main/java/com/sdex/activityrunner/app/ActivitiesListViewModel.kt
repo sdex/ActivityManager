@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.PackageInfoProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,17 +16,22 @@ import javax.inject.Inject
 @HiltViewModel
 class ActivitiesListViewModel @Inject constructor(
     private val packageInfoProvider: PackageInfoProvider,
+    private val appPreferences: AppPreferences,
 ) : ViewModel() {
 
     private val liveData = MutableLiveData<List<ActivityModel>>()
     private lateinit var list: List<ActivityModel>
 
-    fun getItems(packageName: String, showNotExported: Boolean): LiveData<List<ActivityModel>> {
+    fun getItems(packageName: String): LiveData<List<ActivityModel>> {
         viewModelScope.launch(Dispatchers.IO) {
-            list = getActivitiesList(packageName, showNotExported)
+            list = getActivitiesList(packageName, appPreferences.showNotExported)
             liveData.postValue(list)
         }
         return liveData
+    }
+
+    fun reloadItems(packageName: String) {
+        reloadItems(packageName, appPreferences.showNotExported)
     }
 
     fun reloadItems(packageName: String, showNotExported: Boolean) {

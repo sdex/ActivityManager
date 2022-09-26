@@ -2,6 +2,7 @@ package com.sdex.activityrunner
 
 import android.app.Application
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDex
 import com.sdex.activityrunner.preferences.AppPreferences
 import dagger.hilt.android.HiltAndroidApp
@@ -11,11 +12,13 @@ import org.acra.config.mailSender
 import org.acra.data.StringFormat
 import org.acra.ktx.initAcra
 import timber.log.Timber
+import javax.inject.Inject
 
 @HiltAndroidApp
 class ActivityManagerApplication : Application() {
 
-    private val appPreferences by lazy { AppPreferences(this) }
+    @Inject
+    lateinit var appPreferences: AppPreferences
 
     override fun onCreate() {
         super.onCreate()
@@ -23,6 +26,7 @@ class ActivityManagerApplication : Application() {
             Timber.plant(Timber.DebugTree())
         }
         appPreferences.onAppOpened()
+        AppCompatDelegate.setDefaultNightMode(appPreferences.theme)
     }
 
     override fun attachBaseContext(base: Context) {

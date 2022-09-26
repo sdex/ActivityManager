@@ -19,12 +19,14 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ActivitiesListActivity : BaseActivity() {
 
+    @Inject
+    lateinit var appPreferences: AppPreferences
     private val viewModel by viewModels<ActivitiesListViewModel>()
-    private val appPreferences by lazy { AppPreferences(this) }
     private lateinit var binding: ActivityActivitiesListBinding
     private lateinit var app: ApplicationModel
 
@@ -59,9 +61,7 @@ class ActivitiesListActivity : BaseActivity() {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-        val showNotExported = appPreferences.showNotExported
-
-        viewModel.getItems(app.packageName, showNotExported).observe(this) {
+        viewModel.getItems(app.packageName).observe(this) {
             adapter.submitList(it)
             if (app.enabled) {
                 val size = it.size
@@ -79,7 +79,10 @@ class ActivitiesListActivity : BaseActivity() {
             IntentUtils.openApplicationInfo(this, app.packageName)
         }
 
-        if (!showNotExported && !appPreferences.isNotExportedDialogShown) {
+        if (!appPreferences.showNotExported
+            && !appPreferences.isNotExportedDialogShown
+            && appPreferences.appOpenCounter > 3
+        ) {
             appPreferences.isNotExportedDialogShown = true
             val dialog = EnableNotExportedActivitiesDialog()
             dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
@@ -91,7 +94,7 @@ class ActivitiesListActivity : BaseActivity() {
         val enabled = viewModel.isAppEnabled(app.packageName)
         if (enabled != app.enabled) {
             app = app.copy(enabled = enabled)
-            viewModel.reloadItems(app.packageName, appPreferences.showNotExported)
+            viewModel.reloadItems(app.packageName)
         }
     }
 
