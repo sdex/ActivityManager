@@ -16,7 +16,8 @@
             android:id="@+id/applicationIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_margin="13dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="13dp"
             android:scaleType="center"
             tools:src="@mipmap/ic_launcher" />
 
