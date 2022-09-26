@@ -102,8 +102,8 @@ dependencies {
     implementation "com.jakewharton.timber:timber:5.0.1"
     implementation "com.maltaisn:icondialog:3.3.0"
     implementation "com.maltaisn:iconpack-community-material:5.3.45"
-    implementation "com.simplecityapps:recyclerview-fastscroll:2.0.0"
-    implementation "com.tomergoldst.android:tooltips:1.0.11"
+    implementation "com.simplecityapps:recyclerview-fastscroll:2.0.1"
+    implementation "com.tomergoldst.android:tooltips:1.1.1"
     implementation "net.dongliu:apk-parser:2.6.10"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 
