@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.donate
+package com.sdex.activityrunner.about
 
 import android.app.Dialog
 import android.os.Bundle

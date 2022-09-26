@@ -1,8 +1,10 @@
-package com.sdex.activityrunner
+package com.sdex.activityrunner.about
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.sdex.activityrunner.BuildConfig
+import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityAboutBinding
 import com.sdex.activityrunner.util.AppUtils

@@ -1,16 +1,16 @@
-package com.sdex.activityrunner
+package com.sdex.activityrunner.about
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Message
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
+import com.sdex.activityrunner.util.IntentUtils
 
 class LicensesDialogFragment : BaseDialogFragment() {
 
@@ -57,12 +57,7 @@ class LicensesDialogFragment : BaseDialogFragment() {
                 view: WebView, isDialog: Boolean,
                 isUserGesture: Boolean, resultMsg: Message
             ): Boolean {
-                val result = view.hitTestResult
-                val data = result.extra
-                if (data != null) {
-                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(data))
-                    context.startActivity(browserIntent)
-                }
+                view.hitTestResult.extra?.let { IntentUtils.openBrowser(requireContext(), it) }
                 return false
             }
         }

@@ -63,7 +63,7 @@
             android:exported="true"
             android:theme="@android:style/Theme.Translucent" />
 
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".about.AboutActivity" />
 
         <activity
             android:name=".preferences.SettingsActivity"
