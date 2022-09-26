@@ -322,17 +322,6 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.color.background_gray` appears to be unused"
-        errorLine1="    &lt;color name=&quot;background_gray&quot;>#eeeeee&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="18"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
         message="The resource `R.color.md_theme_shadow` appears to be unused"
         errorLine1="    &lt;color name=&quot;md_theme_shadow&quot;>#000000&lt;/color>"
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
