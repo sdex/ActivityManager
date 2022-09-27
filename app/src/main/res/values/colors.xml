@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="ic_launcher_background">#03A9F4</color>
+    <color name="ic_launcher_background">#00629D</color>
     <color name="preference_fallback_accent_color" tools:override="true">@color/blue_light</color>
 
     <color name="blue_very_light">#b8e9ff</color>
