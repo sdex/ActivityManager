@@ -1,10 +1,6 @@
-<p align="center">
-<img src="docs/graphics/logos/feature-name-logo-small.png"/>
-</p>
-
 # Activity Manager - hidden activity launcher
 
-Activity Manager provides the activities list of installed applications and ability to run them.
+The app provides the activities list of installed applications and ability to run them.
 
 Features:
 ----------
@@ -37,10 +33,6 @@ Donate a cup of coffee:
 ----------
 
 <a href="https://www.buymeacoffee.com/sdex" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
-Join Us On:
-----------
-<a href="https://twitter.com/ActivityMngrApp"><img src="docs/graphics/logos/twitter_logo_color.png" height="50px"/></a>
 
 License:
 ----------
