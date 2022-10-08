@@ -53,11 +53,13 @@ Or build from the repo directly:
 ./gradlew assemble
 ```
 
-Donate a cup of coffee:
+Support development:
 ----------
 
 <a href="https://www.buymeacoffee.com/sdex" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 License:
 ----------
-[Apache-2.0 License](https://github.com/sdex/ActivityManager/blob/master/LICENSE)
+
+**Activity Manager** is distributed under the terms of the Apache License (Version 2.0). See the
+[license](LICENSE) for more information.
