@@ -15,34 +15,26 @@ Features:
 
 Screenshots:
 ----------
-<img
-  src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092630.png"
-  alt="Screenshot 1"
-  height="300" />
-<img
-    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092706.png"
-    alt="Screenshot 2"
-    height="300" />
-<img
-    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092755.png"
-    alt="Screenshot 3"
-    height="300" />
-<img
-    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092848.png"
-    alt="Screenshot 4"
-    height="300" />
-<img
-    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092858.png"
-    alt="Screenshot 5"
-    height="300" />
-<img
-    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_093012.png"
-    alt="Screenshot 6"
-    height="300" />
-<img
-    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_093548.png"
-    alt="Screenshot 7"
-    height="300" />
+<div style="display:flex;">
+    <img
+      src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092630.png"
+      alt="Screenshot" width="30%" />
+    <img
+        src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092755.png"
+        alt="Screenshot" width="30%" />
+    <img
+        src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092848.png"
+        alt="Screenshot" width="30%" />
+    <img
+        src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092858.png"
+        alt="Screenshot" width="30%" />
+    <img
+        src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_093012.png"
+        alt="Screenshot" width="30%" />
+    <img
+        src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_093548.png"
+        alt="Screenshot" width="30%" />
+</div>
 
 Installing:
 ----------
@@ -50,10 +42,10 @@ Pre-compiled binaries are available as [releases assets](https://github.com/sdex
 
 Also available on F-droid:
 <div style="display:flex;">
-<a href="https://f-droid.org/packages/com.activitymanager/">
-    <img alt="Get it on F-Droid" height="80"
-        src="docs/graphics/logos/f-droid-badge.png"/>
-</a>
+    <a href="https://f-droid.org/packages/com.activitymanager/">
+        <img alt="Get it on F-Droid" height="80"
+            src="docs/graphics/logos/f-droid-badge.png"/>
+    </a>
 </div>
 
 Or build from the repo directly:
