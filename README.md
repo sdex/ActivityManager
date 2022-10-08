@@ -12,6 +12,37 @@ Features:
 * Explore an app details with Manifest Viewer
 * Light/Dark theme support
 
+Screenshots:
+----------
+<img
+  src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092630.png"
+  alt="Screenshot 1"
+  height="300" />
+<img
+    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092706.png"
+    alt="Screenshot 2"
+    height="300" />
+<img
+    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092755.png"
+    alt="Screenshot 3"
+    height="300" />
+<img
+    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092848.png"
+    alt="Screenshot 4"
+    height="300" />
+<img
+    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092858.png"
+    alt="Screenshot 5"
+    height="300" />
+<img
+    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_093012.png"
+    alt="Screenshot 6"
+    height="300" />
+<img
+    src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_093548.png"
+    alt="Screenshot 7"
+    height="300" />
+
 Installing:
 ----------
 Pre-compiled binaries are available as [releases assets](https://github.com/sdex/ActivityManager/releases).
