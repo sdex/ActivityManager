@@ -8,6 +8,7 @@ Features:
 * Launch exported activities
 * Launch non-exported activities with ROOT
 * Create custom shortcuts for activities
+* Import a shortcut icon or use from built-in Material icons library
 * Create and start any custom intents using Intent Builder
 * Explore an app details with Manifest Viewer
 * Light/Dark theme support
