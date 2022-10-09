@@ -16,12 +16,9 @@ import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityIntentBuilderBinding
 import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.extensions.serializable
-import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
+import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.*
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
-import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
-import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog
-import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
-import com.sdex.activityrunner.intent.dialog.ValueInputDialog
+import com.sdex.activityrunner.intent.dialog.*
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
@@ -65,9 +62,9 @@ class IntentBuilderActivity : BaseActivity(),
         launchParams.packageName = activityModel?.packageName
         launchParams.className = activityModel?.className
 
-        configureRecyclerView(binding.listExtrasView)
-        configureRecyclerView(binding.listCategoriesView)
-        configureRecyclerView(binding.listFlagsView)
+        binding.listExtrasView.configureRecyclerView()
+        binding.listCategoriesView.configureRecyclerView()
+        binding.listFlagsView.configureRecyclerView()
 
         extraAdapter.callback = object : Callback {
             override fun onItemSelected(position: Int) {
@@ -179,9 +176,9 @@ class IntentBuilderActivity : BaseActivity(),
         showLaunchParams()
     }
 
-    private fun configureRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.isNestedScrollingEnabled = false
-        recyclerView.setHasFixedSize(false)
+    private fun RecyclerView.configureRecyclerView() {
+        isNestedScrollingEnabled = false
+        setHasFixedSize(false)
     }
 
     private fun bindInputValueDialog(view: View, type: Int) {
