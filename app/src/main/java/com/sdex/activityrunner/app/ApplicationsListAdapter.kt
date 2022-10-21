@@ -15,27 +15,19 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemApplicationBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.glide.GlideApp
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 
 class ApplicationsListAdapter(
-    activity: FragmentActivity
+    activity: FragmentActivity,
+    private val appPreferences: AppPreferences,
 ) : ListAdapter<ApplicationModel, ApplicationsListAdapter.AppViewHolder>(DIFF_CALLBACK),
     FastScrollRecyclerView.SectionedAdapter {
 
     private val glide = GlideApp.with(activity)
 
-    var showSystemAppIndicator: Boolean = false
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-    var showDisabledAppIndicator: Boolean = false
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private var showSystemAppIndicator: Boolean = appPreferences.isShowSystemAppIndicator
+    private var showDisabledAppIndicator: Boolean = appPreferences.isShowDisabledAppIndicator
 
     var itemClickListener: ItemClickListener? = null
 
@@ -57,6 +49,17 @@ class ApplicationsListAdapter(
     override fun getSectionName(position: Int): String {
         val name = getItem(position).name
         return if (name.isNullOrEmpty()) "" else name.first().uppercaseChar().toString()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun update() {
+        if (appPreferences.isShowSystemAppIndicator != showSystemAppIndicator ||
+            appPreferences.isShowDisabledAppIndicator != showDisabledAppIndicator
+        ) {
+            showSystemAppIndicator = appPreferences.isShowSystemAppIndicator
+            showDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator
+            notifyDataSetChanged()
+        }
     }
 
     interface ItemClickListener {

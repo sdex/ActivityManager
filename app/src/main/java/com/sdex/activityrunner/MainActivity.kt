@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.appcompat.widget.SearchView.*
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -46,9 +46,7 @@ class MainActivity : BaseActivity() {
 
         ApplicationsListJob.enqueueWork(this, Intent())
 
-        adapter = ApplicationsListAdapter(this).apply {
-            showSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-            showDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator
+        adapter = ApplicationsListAdapter(this, appPreferences).apply {
             itemClickListener = object : ApplicationsListAdapter.ItemClickListener {
                 override fun onItemClick(item: ApplicationModel) {
                     ActivitiesListActivity.start(this@MainActivity, item)
@@ -88,12 +86,7 @@ class MainActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (appPreferences.isShowSystemAppIndicator != adapter.showSystemAppIndicator ||
-            appPreferences.isShowDisabledAppIndicator != adapter.showDisabledAppIndicator
-        ) {
-            adapter.showSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-            adapter.showDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator
-        }
+        adapter.update()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
