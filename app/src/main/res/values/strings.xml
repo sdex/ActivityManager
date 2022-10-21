@@ -65,6 +65,7 @@
     <string name="launch_param_extras_add">+ Add extra</string>
     <string name="launch_param_categories">Categories</string>
     <string name="launch_param_flags">Flags</string>
+    <string name="save_to_history">Save to history</string>
 
     <string name="item_history_has_extras">Extras</string>
     <string name="item_history_has_categories">Categories</string>

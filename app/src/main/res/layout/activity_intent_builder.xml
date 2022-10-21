@@ -430,6 +430,22 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                <com.google.android.material.card.MaterialCardView
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
+
+                    <CheckBox
+                        android:id="@+id/save_to_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:checked="true"
+                        android:text="@string/save_to_history" />
+
+                </com.google.android.material.card.MaterialCardView>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/launch_params_bottom_margin" />

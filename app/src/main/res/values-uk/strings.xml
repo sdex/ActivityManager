@@ -58,6 +58,7 @@
     <string name="launch_param_extras_add">+ Додати</string>
     <string name="launch_param_categories">Категорії</string>
     <string name="launch_param_flags">Параметри</string>
+    <string name="save_to_history">Зберегти в історії</string>
 
     <string name="item_history_has_extras">Дані</string>
     <string name="item_history_has_categories">Категорії</string>

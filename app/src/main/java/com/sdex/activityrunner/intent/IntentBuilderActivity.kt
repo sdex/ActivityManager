@@ -104,7 +104,9 @@ class IntentBuilderActivity : BaseActivity(),
         bindMultiSelectionDialog(binding.flagsClickInterceptor, R.string.launch_param_flags)
 
         binding.launch.setOnClickListener {
-            viewModel.addToHistory(launchParams)
+            if (binding.saveToHistory.isChecked) {
+                viewModel.addToHistory(launchParams)
+            }
             val converter = LaunchParamsToIntentConverter(launchParams)
             val intent = converter.convert()
             IntentUtils.launchActivity(this@IntentBuilderActivity, intent)
