@@ -1,14 +1,13 @@
 # Activity Manager - hidden activity launcher
 
-The app provides the activities list of installed applications and ability to run them.
+Discover activities of installed applications, run them, and create shortcuts
 
 Features:
 ----------
-* Discover installed apps and their activities
 * Launch exported activities
 * Launch non-exported activities with ROOT
 * Create custom shortcuts for activities
-* Import a shortcut icon or use from built-in Material icons library
+* Set any shortcut icon from the storage or use from built-in Material icons
 * Create and start any custom intents using Intent Builder
 * Explore an app details with Manifest Viewer
 * Light/Dark theme support
