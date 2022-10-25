@@ -20,14 +20,16 @@ class ExtrasSerializer {
     }
 
     fun deserialize(input: String?): ArrayList<LaunchParamsExtra> {
-        if (input == null || input.isEmpty()) {
+        if (input.isNullOrEmpty()) {
             return ArrayList()
         }
-        val extras =
-            input.split(DELIMITER_EXTRA.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val extras = input.split(DELIMITER_EXTRA.toRegex())
+            .dropLastWhile { it.isEmpty() }
+            .toTypedArray()
         val output = ArrayList<LaunchParamsExtra>(extras.size)
         for (extra in extras) {
-            val values = extra.split(DELIMITER_KEY_VALUE.toRegex()).dropLastWhile { it.isEmpty() }
+            val values = extra.split(DELIMITER_KEY_VALUE.toRegex())
+                .dropLastWhile { it.isEmpty() }
                 .toTypedArray()
             val paramsExtra = LaunchParamsExtra(
                 values[0], values[1], Integer.parseInt(values[2]),

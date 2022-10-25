@@ -2,41 +2,47 @@ package com.sdex.activityrunner.intent.converter
 
 import android.content.Intent
 import android.net.Uri
-import com.sdex.activityrunner.intent.LaunchParams
-import com.sdex.activityrunner.intent.LaunchParamsExtra
-import com.sdex.activityrunner.intent.LaunchParamsExtraType
-import com.sdex.activityrunner.intent.getCategoriesValues
-import com.sdex.activityrunner.intent.getFlagsValues
+import com.sdex.activityrunner.intent.*
 import com.sdex.activityrunner.intent.param.Category
 import com.sdex.activityrunner.intent.param.Flag
 import timber.log.Timber
 
-class LaunchParamsToIntentConverter(private val launchParams: LaunchParams) : Converter<Intent> {
+class LaunchParamsToIntentConverter(
+    private val launchParams: LaunchParams
+) : Converter<Intent> {
 
     override fun convert(): Intent {
         val intent = Intent()
         // package name
-        val packageName =
-            if (launchParams.packageName.isNullOrEmpty()) null
-            else launchParams.packageName
+        val packageName = if (launchParams.packageName.isNullOrEmpty()) {
+            null
+        } else {
+            launchParams.packageName
+        }
         intent.`package` = packageName
         // class name
-        val className =
-            if (launchParams.className.isNullOrEmpty()) null
-            else launchParams.className
+        val className = if (launchParams.className.isNullOrEmpty()) {
+            null
+        } else {
+            launchParams.className
+        }
         if (packageName != null && className != null) {
             intent.setClassName(packageName, className)
         }
         // action
-        intent.action =
-            if (launchParams.action.isNullOrEmpty()) Intent.ACTION_MAIN
-            else launchParams.action
+        intent.action = if (launchParams.action.isNullOrEmpty()) {
+            Intent.ACTION_MAIN
+        } else {
+            launchParams.action
+        }
         // data and mime type
         if (!launchParams.data.isNullOrEmpty()) {
             val data = Uri.parse(launchParams.data)
-            val type =
-                if (launchParams.mimeType.isNullOrEmpty()) null
-                else launchParams.mimeType
+            val type = if (launchParams.mimeType.isNullOrEmpty()) {
+                null
+            } else {
+                launchParams.mimeType
+            }
             intent.setDataAndType(data, type)
         }
         // categories
