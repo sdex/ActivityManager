@@ -64,7 +64,8 @@ class ManifestReader {
                         val attributeName = parser.getAttributeName(i)
                         val attributeValue = getAttributeValue(
                             attributeName,
-                            parser.getAttributeValue(i), resources
+                            parser.getAttributeValue(i),
+                            resources
                         )
                         stringBuilder.append(" ").append(attributeName)
                             .append("=\"").append(attributeValue).append("\"")
@@ -85,7 +86,8 @@ class ManifestReader {
     }
 
     private fun getAttributeValue(
-        attributeName: String, attributeValue: String,
+        attributeName: String,
+        attributeValue: String,
         resources: Resources
     ): String {
         if (attributeValue.startsWith("@")) {
@@ -117,7 +119,7 @@ class ManifestReader {
     }
 
     private fun formatManifest2(xml: String?): String {
-        if (xml == null || xml.isBlank()) return ""
+        if (xml.isNullOrBlank()) return ""
         var stack = 0
         val pretty = StringBuilder()
         val rows = xml.trim { it <= ' ' }
