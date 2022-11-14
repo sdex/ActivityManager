@@ -3,6 +3,8 @@ package com.sdex.activityrunner.util
 import android.content.Context
 import android.content.pm.ActivityInfo
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.manifest.ManifestParser
+import net.dongliu.apk.parser.ApkFile
 
 class PackageInfoProvider(
     context: Context,
@@ -11,13 +13,16 @@ class PackageInfoProvider(
     private val packageManager = context.packageManager
 
     fun getActivities(packageName: String): List<ActivityModel> {
-        return getPackageInfo(packageManager, packageName).activities
-            .map { it.toActivityModel() }
-    }
-
-    fun isAppEnabled(packageName: String): Boolean {
         val packageInfo = getPackageInfo(packageManager, packageName)
-        return packageInfo.applicationInfo.enabled
+        if (packageInfo.applicationInfo.enabled) {
+            return packageInfo.activities.map { it.toActivityModel() }
+        } else {
+            val publicSourceDir = packageInfo.applicationInfo.publicSourceDir
+            ApkFile(publicSourceDir).use { apkFile ->
+                val manifestParser = ManifestParser(apkFile.manifestXml)
+                return manifestParser.getActivities(packageName)
+            }
+        }
     }
 
     private fun ActivityInfo.toActivityModel() = ActivityModel(
@@ -25,6 +30,7 @@ class PackageInfoProvider(
         packageName,
         name,
         loadLabel(packageManager).toString(),
-        exported && isEnabled
+        exported,
+        enabled,
     )
 }

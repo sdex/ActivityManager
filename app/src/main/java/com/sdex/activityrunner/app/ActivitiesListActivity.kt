@@ -16,7 +16,6 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -63,20 +62,13 @@ class ActivitiesListActivity : BaseActivity() {
 
         viewModel.getItems(app.packageName).observe(this) {
             adapter.submitList(it)
-            if (app.enabled) {
-                val size = it.size
-                setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
-                binding.empty.isVisible = (size == 0 && searchText == null)
-            }
-            binding.disabled.isVisible = !app.enabled
+            val size = it.size
+            setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
+            binding.empty.isVisible = (size == 0 && searchText == null)
         }
 
         binding.showNonExported.setOnClickListener {
             viewModel.reloadItems(app.packageName, true)
-        }
-
-        binding.openAppInfo.setOnClickListener {
-            IntentUtils.openApplicationInfo(this, app.packageName)
         }
 
         if (!appPreferences.showNotExported
@@ -86,15 +78,6 @@ class ActivitiesListActivity : BaseActivity() {
             appPreferences.isNotExportedDialogShown = true
             val dialog = EnableNotExportedActivitiesDialog()
             dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val enabled = viewModel.isAppEnabled(app.packageName)
-        if (enabled != app.enabled) {
-            app = app.copy(enabled = enabled)
-            viewModel.reloadItems(app.packageName)
         }
     }
 

@@ -1,10 +1,7 @@
 package com.sdex.activityrunner.app
 
 import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.PackageInfoProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,10 +27,6 @@ class ActivitiesListViewModel @Inject constructor(
         return liveData
     }
 
-    fun reloadItems(packageName: String) {
-        reloadItems(packageName, appPreferences.showNotExported)
-    }
-
     fun reloadItems(packageName: String, showNotExported: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             list = getActivitiesList(packageName, showNotExported)
@@ -56,10 +49,6 @@ class ActivitiesListViewModel @Inject constructor(
                 liveData.value = list
             }
         }
-    }
-
-    fun isAppEnabled(packageName: String): Boolean {
-        return packageInfoProvider.isAppEnabled(packageName)
     }
 
     @WorkerThread

@@ -1,1 +1,1 @@
-- Load manifest for bundles
+- Load activities of disabled apps

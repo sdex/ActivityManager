@@ -1,3 +1,6 @@
+## 5.2.0 (14 Nov 2022)
+- Load activities of disabled apps
+
 ## 5.1.1 (23 Oct 2022)
 - Make saving intent launch to history optional
 

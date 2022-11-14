@@ -8,7 +8,8 @@ data class ActivityModel(
     val packageName: String,
     val className: String,
     val label: String?,
-    val exported: Boolean
+    var exported: Boolean,
+    var enabled: Boolean,
 ) : Serializable {
 
     val componentName: ComponentName
