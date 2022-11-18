@@ -80,7 +80,7 @@
 
     <string name="donate_message">If you like the app, please consider making some donation</string>
     <string name="donate_action_text">Donate</string>
-    <string name="donate_link" translatable="false">https://sdex.dev/donate/</string>
+    <string name="donate_link" translatable="false">https://sdex.dev/am/</string>
 
     <string name="input_key">Input key</string>
     <string name="input_value">Input value</string>
