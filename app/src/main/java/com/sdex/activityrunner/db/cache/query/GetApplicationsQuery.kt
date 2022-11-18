@@ -21,7 +21,8 @@ class GetApplicationsQuery(
             .append("WHERE (")
             .append(ApplicationModel.ACTIVITIES_COUNT).append(" >0")
         if (appPreferences.isShowDisabledApps) {
-            queryStringBuilder.append(" OR ").append(ApplicationModel.ENABLED).append(" =0")
+            queryStringBuilder.append(" OR ")
+                .append(ApplicationModel.ENABLED).append(" =0")
         }
         queryStringBuilder.append(") ")
         if (!appPreferences.isShowSystemApps) {
