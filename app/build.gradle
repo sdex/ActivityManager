@@ -1,19 +1,19 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
-    id 'dagger.hilt.android.plugin'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'org.jetbrains.kotlin.plugin.parcelize'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
     namespace 'com.sdex.activityrunner'
 
     defaultConfig {
         applicationId "com.activitymanager"
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdk 21
+        targetSdk 33
         versionCode 520
         versionName "5.2.0"
 
