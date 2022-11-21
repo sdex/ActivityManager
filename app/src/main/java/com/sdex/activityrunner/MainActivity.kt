@@ -3,11 +3,13 @@ package com.sdex.activityrunner
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.*
+import androidx.core.view.MenuProvider
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -45,6 +47,34 @@ class MainActivity : BaseActivity() {
         setupToolbar()
 
         ApplicationsListJob.enqueueWork(this, Intent())
+
+        addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.main, menu)
+                configureSearchView(menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_launch_intent -> {
+                        IntentBuilderActivity.start(this@MainActivity, null)
+                        true
+                    }
+
+                    R.id.action_about -> {
+                        AboutActivity.start(this@MainActivity)
+                        true
+                    }
+
+                    R.id.action_settings -> {
+                        SettingsActivity.start(this@MainActivity)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        })
 
         adapter = ApplicationsListAdapter(this, appPreferences).apply {
             itemClickListener = object : ApplicationsListAdapter.ItemClickListener {
@@ -89,13 +119,14 @@ class MainActivity : BaseActivity() {
         adapter.update()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+    private fun configureSearchView(menu: Menu) {
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
         // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
-        searchView.maxWidth = Int.MAX_VALUE
-        searchView.queryHint = getString(R.string.action_search_hint)
+        searchView.apply {
+            maxWidth = Int.MAX_VALUE
+            queryHint = getString(R.string.action_search_hint)
+        }
 
         val searchQuery = viewModel.searchQuery.value
         if (!searchQuery.isNullOrEmpty()) {
@@ -126,28 +157,6 @@ class MainActivity : BaseActivity() {
                 return true
             }
         })
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_launch_intent -> {
-                IntentBuilderActivity.start(this, null)
-                true
-            }
-
-            R.id.action_about -> {
-                AboutActivity.start(this)
-                true
-            }
-
-            R.id.action_settings -> {
-                SettingsActivity.start(this)
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     companion object {
