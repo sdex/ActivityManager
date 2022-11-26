@@ -1,1 +1,1 @@
-- Load activities of disabled apps
+- Fix losing search state after dismissing the bottom dialog menu

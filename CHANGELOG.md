@@ -1,3 +1,6 @@
+## 5.2.1 (26 Nov 2022)
+- Fix losing search state after dismissing the bottom dialog menu
+
 ## 5.2.0 (14 Nov 2022)
 - Load activities of disabled apps
 
