@@ -110,7 +110,6 @@
     <string name="dialog_share_title">Поділитися файлом AndroidManifest.xml</string>
 
     <!-- settings -->
-    <string name="pref_header_other">Інше</string>
     <string name="pref_header_appearance">Зовнішній вигляд</string>
     <string name="pref_appearance_theme_title">Тема</string>
     <string name="pref_header_advanced">Додаткові можливості</string>

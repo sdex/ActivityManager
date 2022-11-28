@@ -43,14 +43,4 @@
 
     </androidx.preference.PreferenceCategory>
 
-    <androidx.preference.PreferenceCategory android:title="@string/pref_header_other">
-
-        <androidx.preference.Preference android:title="@string/about_donation">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/donate_link" />
-        </androidx.preference.Preference>
-
-    </androidx.preference.PreferenceCategory>
-
 </androidx.preference.PreferenceScreen>
