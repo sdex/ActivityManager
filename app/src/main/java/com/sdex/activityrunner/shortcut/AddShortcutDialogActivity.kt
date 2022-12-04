@@ -11,8 +11,7 @@ import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
-import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.request.RequestOptions
@@ -37,8 +36,6 @@ import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.util.getStoragePermission
-import com.sdex.activityrunner.util.isStoragePermissionGranted
 import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
 
@@ -50,11 +47,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
     private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
         if (uri != null) {
             loadIcon(uri)
-        }
-    }
-    private val requestPermission = registerForActivityResult(RequestPermission()) { granted ->
-        if (granted) {
-            pickImage()
         }
     }
 
@@ -180,11 +172,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         popupMenu.inflate(R.menu.shortcut_icon)
         popupMenu.setOnMenuItemClickListener { menuItem ->
             if (menuItem.itemId == R.id.pick_gallery) {
-                if (isStoragePermissionGranted(this)) {
-                    pickImage()
-                } else {
-                    requestPermission.launch(getStoragePermission())
-                }
+                pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
             } else if (menuItem.itemId == R.id.pick_icon) {
                 if (iconPack != null) {
                     val iconDialog = IconDialog.newInstance(IconDialogSettings {
@@ -202,12 +190,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             true
         }
         popupMenu.show()
-    }
-
-    private fun pickImage() {
-        pickMedia.launch(
-            PickVisualMediaRequest(PickVisualMedia.ImageOnly)
-        )
     }
 
     private fun createHistoryModelShortcut(historyModel: HistoryModel, shortcutName: String) {
