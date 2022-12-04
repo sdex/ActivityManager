@@ -7,9 +7,8 @@ package com.sdex.highlightjs.models;
  */
 
 public enum Theme {
-    DEFAULT("github-gist"),
-    DARKULA("darcula"),
-    GITHUB_GIST("github-gist");
+    LIGHT("github"),
+    DARK("github-dark");
 
     private final String themeName;
 

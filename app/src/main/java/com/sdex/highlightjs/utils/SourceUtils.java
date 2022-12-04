@@ -42,9 +42,10 @@ public class SourceUtils {
     }
 
     private static String getScriptPageHeader(boolean showLineNumbers) {
-        return "    <script src=\"./highlight.pack.js\"></script>\n" +
+        return "    <script src=\"./highlight.js\"></script>\n" +
+                "    <script src=\"./languages/xml.min.js\"></script>\n" +
                 (showLineNumbers ? "<script src=\"./highlightjs-line-numbers.min.js\"></script>\n" : "") +
-                "    <script>hljs.initHighlightingOnLoad();</script>\n" +
+                "    <script>hljs.highlightAll();</script>\n" +
                 (showLineNumbers ? "<script>hljs.initLineNumbersOnLoad();</script>\n" : "") +
                 "</head>\n" +
                 "<body style=\"margin: 0; padding: 0\" class=\"hljs\">\n";
@@ -80,7 +81,7 @@ public class SourceUtils {
 
     private static String getSourceForLanguage(String source, String language) {
         if (language != null) {
-            return String.format("<pre><code class=\"%s\">%s</code></pre>\n", language, formatCode(source));
+            return String.format("<pre><code class=\"language-%s\">%s</code></pre>\n", language, formatCode(source));
         } else {
             return String.format("<pre><code>%s</code></pre>\n", formatCode(source));
         }
