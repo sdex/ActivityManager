@@ -56,9 +56,9 @@ class ManifestViewerActivity : BaseActivity() {
             setBackgroundColor(Color.TRANSPARENT)
             highlightLanguage = Language.XML
             theme = if (isNightTheme(appPreferences.theme)) {
-                Theme.DARKULA
+                Theme.DARK
             } else {
-                Theme.GITHUB_GIST
+                Theme.LIGHT
             }
             setShowLineNumbers(true)
             setZoomSupportEnabled(true)
