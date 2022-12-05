@@ -1,3 +1,7 @@
+## 5.3.0 (TODO)
+- Update [highlightjs](https://highlightjs.org/) to the latest version
+- Remove unnecessary storage permission
+
 ## 5.2.1 (26 Nov 2022)
 - Fix losing search state after dismissing the bottom dialog menu
 
