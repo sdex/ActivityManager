@@ -1,2 +1,3 @@
 - Update highlightjs to the latest version
-- Remove unnecessary storage permission
+- Remove unnecessary storage permissions
+- Add show/hide line numbers toggle to manifest viewer

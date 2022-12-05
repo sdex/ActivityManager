@@ -60,7 +60,7 @@ class ManifestViewerActivity : BaseActivity() {
             } else {
                 Theme.LIGHT
             }
-            setShowLineNumbers(true)
+            setShowLineNumbers(appPreferences.showLineNumbers)
             setZoomSupportEnabled(true)
             setOnContentChangedListener {
                 binding.progress.hide()
@@ -95,6 +95,48 @@ class ManifestViewerActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.manifest_viewer, menu)
+        configureSearchView(menu)
+        menu.findItem(R.id.action_line_numbers).isChecked = appPreferences.showLineNumbers
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
+                ShareProvider.share(this, appPackageName)
+                true
+            }
+
+            R.id.action_help -> {
+                val url = "https://developer.android.com/guide/topics/manifest/manifest-intro"
+                IntentUtils.openBrowser(this, url)
+                true
+            }
+
+            R.id.action_line_numbers -> {
+                item.isChecked = !item.isChecked
+                appPreferences.showLineNumbers = item.isChecked
+                binding.highlightView.setShowLineNumbers(item.isChecked)
+                binding.highlightView.setSource(viewModel.manifestLiveData.value)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun isNightTheme(@AppCompatDelegate.NightMode theme: Int) =
+        theme == AppCompatDelegate.MODE_NIGHT_YES ||
+            (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
+                (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                    Configuration.UI_MODE_NIGHT_YES))
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.highlightView.setOnContentChangedListener(null)
+    }
+
+    private fun configureSearchView(menu: Menu) {
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
         // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
@@ -131,33 +173,6 @@ class ManifestViewerActivity : BaseActivity() {
                 return true
             }
         })
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_share -> {
-                ShareProvider.share(this, appPackageName)
-                true
-            }
-            R.id.action_help -> {
-                val url = "https://developer.android.com/guide/topics/manifest/manifest-intro"
-                IntentUtils.openBrowser(this, url)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun isNightTheme(@AppCompatDelegate.NightMode theme: Int) =
-        theme == AppCompatDelegate.MODE_NIGHT_YES ||
-                (theme == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM &&
-                        (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
-                                Configuration.UI_MODE_NIGHT_YES))
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.highlightView.setOnContentChangedListener(null)
     }
 
     companion object {

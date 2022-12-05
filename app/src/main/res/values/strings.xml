@@ -117,7 +117,7 @@
     <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
 
     <!-- errors -->
-    <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView</string>
+    <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView, try again later</string>
     <string name="error_failed_to_open_manifest">Failed to open AndroidManifest.xml</string>
     <string name="error_intent_shortcut_icon">Custom icon is not supported for Intent shortcut yet. Only for activity</string>
 
@@ -158,6 +158,7 @@
     <!-- manifest viewer -->
     <string name="manifest_viewer_share">Share</string>
     <string name="manifest_viewer_help">Help</string>
+    <string name="manifest_viewer_line_numbers">Line numbers</string>
     <string name="manifest_viewer_search">Search</string>
     <string name="manifest_viewer_search_hint">Find keyword</string>
 

@@ -17,6 +17,11 @@ class AppPreferences(context: Context) {
             .apply()
     val appOpenCounter: Int
         get() = preferences.getInt(KEY_OPEN_APP_COUNTER, 0)
+    var showLineNumbers: Boolean
+        get() = preferences.getBoolean(KEY_SHOW_LINE_NUMBERS, true)
+        set(value) = preferences.edit()
+            .putBoolean(KEY_SHOW_LINE_NUMBERS, value)
+            .apply()
 
     fun onAppOpened() {
         preferences.edit {
@@ -56,6 +61,7 @@ class AppPreferences(context: Context) {
         private const val PREFERENCES_NAME = "ads_preferences"
         private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
         private const val KEY_OPEN_APP_COUNTER = "open_app_counter"
+        private const val KEY_SHOW_LINE_NUMBERS = "show_line_numbers"
 
         private const val KEY_SHOW_NOT_EXPORTED = "advanced_not_exported"
         const val KEY_SHOW_SYSTEM_APPS = "show_system_apps"
