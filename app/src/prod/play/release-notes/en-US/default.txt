@@ -1,3 +1,4 @@
 - Update highlightjs to the latest version
 - Remove unnecessary storage permissions
 - Add show/hide line numbers toggle to manifest viewer
+- Add Polish translation

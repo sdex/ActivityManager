@@ -2,6 +2,7 @@
 - Update [highlightjs](https://highlightjs.org/) to the latest version
 - Remove unnecessary storage permissions
 - Add show/hide line numbers toggle to manifest viewer
+- Add Polish translation (#23)
 
 ## 5.2.1 (26 Nov 2022)
 - Fix losing search state after dismissing the bottom dialog menu
