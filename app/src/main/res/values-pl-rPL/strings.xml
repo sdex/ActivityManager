@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_activity">Historia</string>
+    <string name="settings_activity">Ustawienia</string>
+    <!-- activity options -->
+    <string name="activity_option_launch_params">Uruchom aktywność z parametrami</string>
+    <string name="activity_option_launch_root">Uruchom aktywność jako ROOT</string>
+    <string name="activity_option_create_shortcut">Utwórz skrót</string>
+    <!-- application options -->
+    <string name="application_option_open">Uruchom aplikację</string>
+    <string name="application_option_open_manifest">Otwórz widok manifestu</string>
+    <string name="application_option_open_info">Otwórz informacje o aplikacji</string>
+    <string name="application_option_action_launch">Otwórz w GooglePlay</string>
+    <string name="application_disabled">Wyłączono</string>
+    <string name="application_system">System</string>
+    <!-- create shortcut -->
+    <string name="shortcut_name">Etykieta</string>
+    <string name="shortcut_name_empty">Etykieta nie może być pusta</string>
+    <string name="shortcut_create">Utwórz</string>
+    <string name="shortcut_set_icon_tooltip">Dotknij, aby zmienić ikonę</string>
+    <string name="icons_loading_error">Nie udało się załadować ikon</string>
+    <string name="shortcut_icon_gallery">Wybierz z galerii</string>
+    <string name="shortcut_icon_preset">Wybierz spośród ikon</string>
+    <!-- launching activity -->
+    <string name="starting_activity">Rozpoczęcie aktywności: %s</string>
+    <string name="starting_activity_failed">Nie udało się rozpocząć aktywności: %s</string>
+    <string name="starting_activity_launch_intent_failed">Nie można znaleźć aktywności launchera</string>
+    <string name="starting_activity_failed_security">Nie masz uprawnień do uruchomienia tej czynności: %s</string>
+    <string name="starting_activity_intent">Uruchamianie aktywności</string>
+    <string name="starting_activity_intent_failed">Nie udało się rozpocząć aktywności</string>
+    <string name="starting_activity_root_error">Nie udało się uruchomić aktywności przy użyciu roota</string>
+    <string name="starting_activity_root_not_available">Root nie jest dostępny lub zezwolenie nie jest przyznane</string>
+    <string name="activities_list_empty_text">Nie znaleziono wyeksportowanych aktywności</string>
+    <string name="activities_list_empty_action">Pokaż niewyeksportowane</string>
+    <string name="action_about">O aplikacji</string>
+    <string name="action_launch_intent">Intent launcher</string>
+    <string name="action_history">Historia</string>
+    <string name="action_clear_history">Wyczyść historię</string>
+    <string name="action_search">Szukaj</string>
+    <string name="action_search_hint">Nazwa aplikacji lub pakietu</string>
+    <string name="action_search_activity_hint">Nazwa aktywności lub pakietu</string>
+    <string name="action_settings">Ustawienia</string>
+    <!-- intent builder -->
+    <string name="launch_param_package_name">Nazwa pakietu</string>
+    <string name="launch_param_class_name">Nazwa klasy</string>
+    <string name="launch_param_action">Akcja</string>
+    <string name="launch_param_data">Dane</string>
+    <string name="launch_param_mime_type">Typ Mime</string>
+    <string name="launch_param_extras">Dodatki</string>
+    <string name="launch_param_extras_add">+ Dodaj więcej</string>
+    <string name="launch_param_categories">Kategorie</string>
+    <string name="launch_param_flags">Flagi</string>
+    <string name="save_to_history">Zapisz w historii</string>
+    <string name="item_history_has_extras">Dodatki</string>
+    <string name="item_history_has_categories">Kategorie</string>
+    <string name="item_history_has_flags">Flagi</string>
+    <string name="about_donation">Wspieraj rozwój</string>
+    <string name="about_source_code">Kod źródłowy</string>
+    <string name="about_version">Wersja</string>
+    <string name="about_issues_tracker">Lista problemów</string>
+    <string name="about_feedback">Zgłoś problem, zadaj pytanie…</string>
+    <string name="about_open_source">Biblioteki o otwartym kodzie źródłowym</string>
+    <string name="donate_message">Jeśli podoba ci się aplikacja, rozważ przekazanie darowizny</string>
+    <string name="donate_action_text">Przekaż darowiznę</string>
+    <string name="input_key">Klucz wejściowy</string>
+    <string name="input_value">Wartość wejściowa</string>
+    <string name="key">Klucz</string>
+    <string name="value">Wartość</string>
+    <string name="type_array">Układ</string>
+    <!-- history -->
+    <string name="history_empty_text">Nie ma nic do pokazania</string>
+    <string name="history_empty_action">Uruchum jakieś intencje</string>
+    <string name="history_dialog_clear_title">Wyczyść historię</string>
+    <string name="history_dialog_clear_message">Czy na pewno?</string>
+    <string name="history_item_dialog_title">Intencja</string>
+    <string name="history_item_dialog_remove">Usuń</string>
+    <string name="history_item_dialog_add_shortcut">Utwórz skrót</string>
+    <string name="history_item_dialog_export_uri">Wyeksportuj jako URI</string>
+    <string name="no">Nie</string>
+    <string name="yes">Tak</string>
+    <string name="dialog_add_extra_title">Dodaj więcej</string>
+    <string name="dialog_add_extra_key_empty">Klucz nie może być pusty</string>
+    <string name="dialog_add_extra_value_empty">Wartość nie może być pusta</string>
+    <string name="dialog_add_extra_type_incorrect">Nieprawidłowy typ wartości</string>
+    <string name="dialog_export_intent_copy">Kopiuj</string>
+    <string name="dialog_enable_non_exported_title">Aktywności niewyeksportowane</string>
+    <string name="dialog_enable_non_exported_message">Możesz włączyć wyświetlanie nieeksportowanych działań, będą one podświetlone czerwonym kolorem. Takie aktywności mogą być uruchamiane tylko z uprawnieniami ROOT</string>
+    <!-- errors -->
+    <string name="error_failed_to_instantiate_web_view">Nie udało się utworzyć instancji WebView</string>
+    <string name="error_failed_to_open_manifest">Nie udało się otworzyć AndroidManifest.xml</string>
+    <string name="error_intent_shortcut_icon">Własna ikona nie jest jeszcze obsługiwana dla skrótów intencji. Tylko dla aktywności</string>
+    <!-- share -->
+    <string name="dialog_share_title">Udostępnij plik AndroidManifest.xml</string>
+    <!-- settings -->
+    <string name="pref_header_appearance">Wygląd</string>
+    <string name="pref_appearance_theme_title">Motyw</string>
+    <string name="pref_header_advanced">Zaawansowane</string>
+    <string name="pref_system_apps_title">Pokaż aplikacje systemowe</string>
+    <string name="pref_disabled_apps_title">Pokaż wyłączone aplikacje</string>
+    <string name="pref_advanced_system_apps_title">Pokaż wskaźnik aplikacji systemowej</string>
+    <string name="pref_advanced_disabled_apps_title">Pokaż wskaźnik wyłączonej aplikacji</string>
+    <string name="pref_advanced_not_exported_title">Pokaż niewyeksportowane aktywności</string>
+    <string name="pref_advanced_not_exported_summary">Może być uruchomiony tylko przy użyciu Roota</string>
+    <string-array name="pref_appearance_theme_list_titles">
+        <item>Systemowy</item>
+        <item>Jasny</item>
+        <item>Ciemny</item>
+    </string-array>
+    <plurals name="history_records">
+        <item quantity="one">%d zapis</item>
+        <item quantity="few">%d zapisy</item>
+        <item quantity="many">%d zapisów</item>
+        <item quantity="other">%d zapisów</item>
+    </plurals>
+    <plurals name="activities_count">
+        <item quantity="one">%d aktywność</item>
+        <item quantity="few">%d aktywności</item>
+        <item quantity="many">%d aktywności</item>
+        <item quantity="other">%d aktywności</item>
+    </plurals>
+    <!-- manifest viewer -->
+    <string name="manifest_viewer_share">Udostępnij</string>
+    <string name="manifest_viewer_help">Pomoc</string>
+    <string name="manifest_viewer_line_numbers">Line numbers</string>
+    <string name="manifest_viewer_search">Szukaj</string>
+    <string name="manifest_viewer_search_hint">Znajdź słowo kluczowe</string>
+</resources>
