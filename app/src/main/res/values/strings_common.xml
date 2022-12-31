@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">Activity Manager</string>
+    <string name="intent_launcher_activity" translatable="false">Intent launcher</string>
+    <string name="intent_analyzer_activity" translatable="false">Analyze intent</string>
+
+    <string name="colon_space" translatable="false">: </string>
+    <string name="text_separator" translatable="false"> | </string>
+    <string name="equal_space" translatable="false">"="</string>
+
+    <string name="about_version_format" translatable="false">%1$s (%2$d)</string>
+    <string name="donate_link" translatable="false">https://sdex.dev/am/</string>
+
+    <string name="type_string" translatable="false">String</string>
+    <string name="type_int" translatable="false">int</string>
+    <string name="type_long" translatable="false">long</string>
+    <string name="type_float" translatable="false">float</string>
+    <string name="type_double" translatable="false">double</string>
+    <string name="type_boolean" translatable="false">boolean</string>
+
+    <string-array name="pref_appearance_theme_list_values" translatable="false">
+        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>
