@@ -12,7 +12,7 @@
     <string name="application_option_open_info">Otwórz informacje o aplikacji</string>
     <string name="application_option_action_launch">Otwórz w GooglePlay</string>
     <string name="application_disabled">Wyłączono</string>
-    <string name="application_system">System</string>
+    <string name="application_system">Systemowa</string>
     <!-- create shortcut -->
     <string name="shortcut_name">Etykieta</string>
     <string name="shortcut_name_empty">Etykieta nie może być pusta</string>
@@ -33,7 +33,7 @@
     <string name="activities_list_empty_text">Nie znaleziono wyeksportowanych aktywności</string>
     <string name="activities_list_empty_action">Pokaż niewyeksportowane</string>
     <string name="action_about">O aplikacji</string>
-    <string name="action_launch_intent">Intent launcher</string>
+    <string name="action_launch_intent">Launcher intencji</string>
     <string name="action_history">Historia</string>
     <string name="action_clear_history">Wyczyść historię</string>
     <string name="action_search">Szukaj</string>
@@ -121,7 +121,7 @@
     <!-- manifest viewer -->
     <string name="manifest_viewer_share">Udostępnij</string>
     <string name="manifest_viewer_help">Pomoc</string>
-    <string name="manifest_viewer_line_numbers">Line numbers</string>
+    <string name="manifest_viewer_line_numbers">Numery wierszy</string>
     <string name="manifest_viewer_search">Szukaj</string>
     <string name="manifest_viewer_search_hint">Znajdź słowo kluczowe</string>
 </resources>
