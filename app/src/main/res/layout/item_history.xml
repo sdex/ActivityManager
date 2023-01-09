@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/text_color_primary"
+        android:textColor="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/c1"
         app:layout_constraintTop_toTopOf="parent"
