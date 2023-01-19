@@ -3,7 +3,6 @@ package com.sdex.activityrunner.glide
 import android.app.ActivityManager
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Build
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 import com.bumptech.glide.Registry
@@ -89,15 +88,13 @@ class MyAppGlideModule : AppGlideModule() {
     }
 
     private fun getDecodeFormat(context: Context): DecodeFormat {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            val activityManager =
-                context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?
-            if (activityManager != null) {
-                return if (activityManager.isLowRamDevice) {
-                    DecodeFormat.PREFER_RGB_565
-                } else {
-                    DecodeFormat.PREFER_ARGB_8888
-                }
+        val activityManager =
+            context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager?
+        if (activityManager != null) {
+            return if (activityManager.isLowRamDevice) {
+                DecodeFormat.PREFER_RGB_565
+            } else {
+                DecodeFormat.PREFER_ARGB_8888
             }
         }
         return DecodeFormat.DEFAULT
