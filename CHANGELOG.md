@@ -1,4 +1,4 @@
-## 5.3.0 (TODO)
+## 5.3.0 (28 Jan 2023)
 - Update [highlightjs](https://highlightjs.org/) to the latest version
 - Remove unnecessary storage permissions
 - Add show/hide line numbers toggle to manifest viewer
