@@ -9,4 +9,10 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 
+    <item
+        android:id="@+id/show_not_exported"
+        android:checkable="true"
+        android:title="@string/activities_list_empty_action"
+        app:showAsAction="never" />
+
 </menu>

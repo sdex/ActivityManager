@@ -88,6 +88,30 @@ class ActivitiesListActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activities_list, menu)
+        configureSearchView(menu)
+        menu.findItem(R.id.show_not_exported).isChecked = appPreferences.showNotExported
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.show_not_exported -> {
+                item.isChecked = !item.isChecked
+                appPreferences.showNotExported = item.isChecked
+                viewModel.reloadItems(app.packageName, item.isChecked)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun filter(text: String?) {
+        this.searchText = text
+        viewModel.filterItems(searchText)
+    }
+
+    private fun configureSearchView(menu: Menu) {
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
         // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
@@ -123,12 +147,6 @@ class ActivitiesListActivity : BaseActivity() {
                 return true
             }
         })
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    private fun filter(text: String?) {
-        this.searchText = text
-        viewModel.filterItems(searchText)
     }
 
     companion object {
