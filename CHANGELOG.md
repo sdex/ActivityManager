@@ -1,3 +1,6 @@
+## 5.3.1 (7 Feb 2023)
+- Add an option to quickly switch the "Show not exported activities" preference from the activities list screen
+
 ## 5.3.0 (28 Jan 2023)
 - Update [highlightjs](https://highlightjs.org/) to the latest version
 - Remove unnecessary storage permissions

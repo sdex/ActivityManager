@@ -1,4 +1,1 @@
-- Update highlightjs to the latest version
-- Remove unnecessary storage permissions
-- Add show/hide line numbers toggle to manifest viewer
-- Add Polish translation
+- Add an option to quickly switch the "Show not exported activities" preference from the activities list screen
