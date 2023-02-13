@@ -1,1 +1,1 @@
-- Add an option to quickly switch the "Show not exported activities" preference from the activities list screen
+- - Add Spanish translation

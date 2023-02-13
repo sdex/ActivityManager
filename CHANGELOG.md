@@ -1,3 +1,6 @@
+## 5.3.2 (13 Feb 2023)
+- Add Spanish translation (kudos to [juanunzu](https://crowdin.com/profile/juanunzu))
+
 ## 5.3.1 (7 Feb 2023)
 - Add an option to quickly switch the "Show not exported activities" preference from the activities list screen
 
