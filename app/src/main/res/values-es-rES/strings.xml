@@ -1,123 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="history_activity">History</string>
-    <string name="settings_activity">Settings</string>
+    <string name="history_activity">Historial</string>
+    <string name="settings_activity">Configuración</string>
     <!-- activity options -->
-    <string name="activity_option_launch_params">Launch activity with parameters</string>
-    <string name="activity_option_launch_root">Launch activity with ROOT</string>
-    <string name="activity_option_create_shortcut">Create shortcut</string>
+    <string name="activity_option_launch_params">Lanzar actividad con parámetros</string>
+    <string name="activity_option_launch_root">Iniciar actividad con ROOT</string>
+    <string name="activity_option_create_shortcut">Crear acceso directo</string>
     <!-- application options -->
-    <string name="application_option_open">Launch the application</string>
-    <string name="application_option_open_manifest">Open manifest viewer</string>
-    <string name="application_option_open_info">Open application info</string>
-    <string name="application_option_action_launch">Open in GooglePlay</string>
-    <string name="application_disabled">Disabled</string>
-    <string name="application_system">System</string>
+    <string name="application_option_open">Lanzar la aplicación</string>
+    <string name="application_option_open_manifest">Abrir el visor del manifiesto</string>
+    <string name="application_option_open_info">Abrir info de la aplicación</string>
+    <string name="application_option_action_launch">Abrir en GooglePlay</string>
+    <string name="application_disabled">Desactivado</string>
+    <string name="application_system">Sistema</string>
     <!-- create shortcut -->
-    <string name="shortcut_name">Label</string>
-    <string name="shortcut_name_empty">Label cannot be empty</string>
-    <string name="shortcut_create">Create</string>
-    <string name="shortcut_set_icon_tooltip">Tap to change the icon</string>
-    <string name="icons_loading_error">Failed to load the icons</string>
-    <string name="shortcut_icon_gallery">Pick from gallery</string>
-    <string name="shortcut_icon_preset">Select from icons</string>
+    <string name="shortcut_name">Etiqueta</string>
+    <string name="shortcut_name_empty">La etiqueta no puede estar vacía</string>
+    <string name="shortcut_create">Crear</string>
+    <string name="shortcut_set_icon_tooltip">Pulsa para cambiar el icono</string>
+    <string name="icons_loading_error">No se pudo cargar los íconos</string>
+    <string name="shortcut_icon_gallery">Elegir de la galería</string>
+    <string name="shortcut_icon_preset">Seleccionar desde iconos</string>
     <!-- launching activity -->
-    <string name="starting_activity">Starting activity: %s</string>
-    <string name="starting_activity_failed">Failed to start activity: %s</string>
-    <string name="starting_activity_launch_intent_failed">Cannot find launcher activity</string>
-    <string name="starting_activity_failed_security">You don\'t have permissions to run this activity: %s</string>
-    <string name="starting_activity_intent">Starting activity</string>
-    <string name="starting_activity_intent_failed">Failed to start activity</string>
-    <string name="starting_activity_root_error">Failed to launch the activity using root</string>
-    <string name="starting_activity_root_not_available">Root is not available or the permission is not granter</string>
-    <string name="activities_list_empty_text">There are no exported activities</string>
-    <string name="activities_list_empty_action">Show non-exported</string>
-    <string name="action_about">About</string>
-    <string name="action_launch_intent">Intent launcher</string>
-    <string name="action_history">History</string>
-    <string name="action_clear_history">Clear history</string>
-    <string name="action_search">Search</string>
-    <string name="action_search_hint">Application name or package</string>
-    <string name="action_search_activity_hint">Activity name or package</string>
-    <string name="action_settings">Settings</string>
+    <string name="starting_activity">Iniciando actividad: %s</string>
+    <string name="starting_activity_failed">Error al iniciar la actividad: %s</string>
+    <string name="starting_activity_launch_intent_failed">No se pudo encontrar la launcher activity</string>
+    <string name="starting_activity_failed_security">No tienes permisos para ejecutar esta actividad: %s</string>
+    <string name="starting_activity_intent">Iniciando actividad</string>
+    <string name="starting_activity_intent_failed">Error al iniciar la actividad</string>
+    <string name="starting_activity_root_error">Error al iniciar la actividad usando root</string>
+    <string name="starting_activity_root_not_available">El root no está disponible o el permiso no fue concedido</string>
+    <string name="activities_list_empty_text">No hay actividades exportadas</string>
+    <string name="activities_list_empty_action">Mostrar no exportadas</string>
+    <string name="action_about">Acerca de</string>
+    <string name="action_launch_intent">Lanzador de intents</string>
+    <string name="action_history">Historial</string>
+    <string name="action_clear_history">Limpiar historial</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_search_hint">Nombre o paquete de la aplicación</string>
+    <string name="action_search_activity_hint">Nombre o paquete de la actividad</string>
+    <string name="action_settings">Configuración</string>
     <!-- intent builder -->
-    <string name="launch_param_package_name">Package name</string>
-    <string name="launch_param_class_name">Class name</string>
-    <string name="launch_param_action">Action</string>
-    <string name="launch_param_data">Data</string>
-    <string name="launch_param_mime_type">Mime type</string>
+    <string name="launch_param_package_name">Nombre del paquete</string>
+    <string name="launch_param_class_name">Nombre de la clase</string>
+    <string name="launch_param_action">Acción</string>
+    <string name="launch_param_data">Datos</string>
+    <string name="launch_param_mime_type">Tipo de MIME</string>
     <string name="launch_param_extras">Extras</string>
-    <string name="launch_param_extras_add">+ Add extra</string>
-    <string name="launch_param_categories">Categories</string>
-    <string name="launch_param_flags">Flags</string>
-    <string name="save_to_history">Save to history</string>
+    <string name="launch_param_extras_add">Añadir extra</string>
+    <string name="launch_param_categories">Categorías</string>
+    <string name="launch_param_flags">Banderas</string>
+    <string name="save_to_history">Guardar en historial</string>
     <string name="item_history_has_extras">Extras</string>
-    <string name="item_history_has_categories">Categories</string>
-    <string name="item_history_has_flags">Flags</string>
-    <string name="about_donation">Support development</string>
-    <string name="about_source_code">Source code</string>
-    <string name="about_version">Version</string>
-    <string name="about_issues_tracker">Issue tracker</string>
-    <string name="about_feedback">Report a problem, aks a question…</string>
-    <string name="about_open_source">Open source libraries</string>
-    <string name="donate_message">If you like the app, please consider making some donation</string>
-    <string name="donate_action_text">Donate</string>
-    <string name="input_key">Input key</string>
-    <string name="input_value">Input value</string>
-    <string name="key">Key</string>
-    <string name="value">Value</string>
-    <string name="type_array">Array</string>
+    <string name="item_history_has_categories">Categorías</string>
+    <string name="item_history_has_flags">Banderas</string>
+    <string name="about_donation">Apoya el desarrollo</string>
+    <string name="about_source_code">Código fuente</string>
+    <string name="about_version">Versión</string>
+    <string name="about_issues_tracker">Rastreador de problemas</string>
+    <string name="about_feedback">Reporte un problema, haga una pregunta…</string>
+    <string name="about_open_source">Librerías Open-Source</string>
+    <string name="donate_message">Si te gusta la app, por favor considera hacer una donación</string>
+    <string name="donate_action_text">Donar</string>
+    <string name="input_key">Clave de entrada</string>
+    <string name="input_value">Valor de entrada</string>
+    <string name="key">Clave</string>
+    <string name="value">Valor</string>
+    <string name="type_array">Arreglo</string>
     <!-- history -->
-    <string name="history_empty_text">Nothing to show</string>
-    <string name="history_empty_action">Run some intents</string>
-    <string name="history_dialog_clear_title">Clear history</string>
-    <string name="history_dialog_clear_message">Are you sure?</string>
+    <string name="history_empty_text">Nada para mostrar</string>
+    <string name="history_empty_action">Ejecutar algunos intents</string>
+    <string name="history_dialog_clear_title">Limpiar historial</string>
+    <string name="history_dialog_clear_message">¿Estás seguro?</string>
     <string name="history_item_dialog_title">Intent</string>
-    <string name="history_item_dialog_remove">Remove</string>
-    <string name="history_item_dialog_add_shortcut">Create shortcut</string>
-    <string name="history_item_dialog_export_uri">Export as URI</string>
+    <string name="history_item_dialog_remove">Eliminar</string>
+    <string name="history_item_dialog_add_shortcut">Crear acceso directo</string>
+    <string name="history_item_dialog_export_uri">Exportar como URI</string>
     <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="dialog_add_extra_title">Add extra</string>
-    <string name="dialog_add_extra_key_empty">Key cannot be empty</string>
-    <string name="dialog_add_extra_value_empty">Value cannot be empty</string>
-    <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
-    <string name="dialog_export_intent_copy">Copy</string>
-    <string name="dialog_enable_non_exported_title">Non-exported activities</string>
-    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
+    <string name="yes">Si</string>
+    <string name="dialog_add_extra_title">Añadir extra</string>
+    <string name="dialog_add_extra_key_empty">La clave no puede estar vacía</string>
+    <string name="dialog_add_extra_value_empty">El valor no puede estar vacío</string>
+    <string name="dialog_add_extra_type_incorrect">Tipo de valor incorrecto</string>
+    <string name="dialog_export_intent_copy">Copiar</string>
+    <string name="dialog_enable_non_exported_title">Actividades no exportadas</string>
+    <string name="dialog_enable_non_exported_message">Puedes activar la visualización de actividades no exportadas, aparecerán marcadas en rojo. Estas actividades sólo pueden ser ejecutadas con permiso ROOT</string>
     <!-- errors -->
-    <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView, try again later</string>
-    <string name="error_failed_to_open_manifest">Failed to open AndroidManifest.xml</string>
-    <string name="error_intent_shortcut_icon">Custom icon is not supported for Intent shortcut yet. Only for activity</string>
+    <string name="error_failed_to_instantiate_web_view">Error al instanciar WebView, inténtalo de nuevo más tarde</string>
+    <string name="error_failed_to_open_manifest">Error al abrir AndroidManifest.xml</string>
+    <string name="error_intent_shortcut_icon">Íconos personalizados todavía no están soportados para atajos de Intent. Sólo para actividades</string>
     <!-- share -->
-    <string name="dialog_share_title">Share AndroidManifest.xml file</string>
+    <string name="dialog_share_title">Compartir archivo AndroidManifest.xml</string>
     <!-- settings -->
-    <string name="pref_header_appearance">Appearance</string>
-    <string name="pref_appearance_theme_title">Theme</string>
-    <string name="pref_header_advanced">Advanced</string>
-    <string name="pref_system_apps_title">Show system apps</string>
-    <string name="pref_disabled_apps_title">Show disabled apps</string>
-    <string name="pref_advanced_system_apps_title">Show system app indicator</string>
-    <string name="pref_advanced_disabled_apps_title">Show disabled app indicator</string>
-    <string name="pref_advanced_not_exported_title">Show not exported activities</string>
-    <string name="pref_advanced_not_exported_summary">Can be run only using Root</string>
+    <string name="pref_header_appearance">Apariencia</string>
+    <string name="pref_appearance_theme_title">Tema</string>
+    <string name="pref_header_advanced">Avanzado</string>
+    <string name="pref_system_apps_title">Mostrar apps del sistema</string>
+    <string name="pref_disabled_apps_title">Mostrar aplicaciones desactivadas</string>
+    <string name="pref_advanced_system_apps_title">Mostrar indicador de aplicación del sistema</string>
+    <string name="pref_advanced_disabled_apps_title">Mostrar indicador de aplicación desactivada</string>
+    <string name="pref_advanced_not_exported_title">Mostrar actividades no exportadas</string>
+    <string name="pref_advanced_not_exported_summary">Se puede ejecutar sólo usando ROOT</string>
     <string-array name="pref_appearance_theme_list_titles">
-        <item>System</item>
-        <item>Light</item>
-        <item>Dark</item>
+        <item>Sistema</item>
+        <item>Claro</item>
+        <item>Oscuro</item>
     </string-array>
     <plurals name="history_records">
-        <item quantity="one">%d record</item>
-        <item quantity="other">%d records</item>
+        <item quantity="one">%d registros</item>
+        <item quantity="other">%d registros</item>
     </plurals>
     <plurals name="activities_count">
-        <item quantity="one">%d activity</item>
-        <item quantity="other">%d activities</item>
+        <item quantity="one">%d Actividad</item>
+        <item quantity="other">%d actividades</item>
     </plurals>
     <!-- manifest viewer -->
-    <string name="manifest_viewer_share">Share</string>
-    <string name="manifest_viewer_help">Help</string>
-    <string name="manifest_viewer_line_numbers">Line numbers</string>
-    <string name="manifest_viewer_search">Search</string>
-    <string name="manifest_viewer_search_hint">Find keyword</string>
+    <string name="manifest_viewer_share">Compartir</string>
+    <string name="manifest_viewer_help">Ayuda</string>
+    <string name="manifest_viewer_line_numbers">Números de línea</string>
+    <string name="manifest_viewer_search">Buscar</string>
+    <string name="manifest_viewer_search_hint">Buscar palabra clave</string>
 </resources>
