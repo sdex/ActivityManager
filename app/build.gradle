@@ -30,7 +30,7 @@ android {
         }
     }
 
-    flavorDimensions "type"
+    flavorDimensions = ["type"]
     productFlavors {
         dev {
             dimension "type"
@@ -85,7 +85,7 @@ dependencies {
     implementation "androidx.browser:browser:1.5.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
     implementation "androidx.core:core-ktx:1.10.0-rc01"
-    implementation "androidx.fragment:fragment:1.6.0-alpha07"
+    implementation "androidx.fragment:fragment-ktx:1.6.0-alpha07"
     implementation "androidx.multidex:multidex:2.0.1"
     implementation "androidx.preference:preference-ktx:1.2.0"
     implementation "androidx.recyclerview:recyclerview:1.3.0"

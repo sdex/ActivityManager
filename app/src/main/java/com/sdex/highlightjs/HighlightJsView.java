@@ -1,13 +1,11 @@
 package com.sdex.highlightjs;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -24,6 +22,8 @@ import com.sdex.highlightjs.utils.SourceUtils;
 
 import java.io.File;
 import java.net.URL;
+
+import timber.log.Timber;
 
 /**
  * This Class was created by Patrick J
@@ -78,7 +78,6 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
         initView(context);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public HighlightJsView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initView(context);
@@ -191,7 +190,9 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
             this.content = source;
             String page = SourceUtils.generateContent(source, theme.getName(), language.getName(), zoomSupport, showLineNumbers);
             loadDataWithBaseURL("file:///android_asset/", page, "text/html", "utf-8", null);
-        } else Log.e(getClass().getSimpleName(), "Source can't be null or empty.");
+        } else {
+            Timber.e("Source can't be null or empty.");
+        }
     }
 
     /**
@@ -203,8 +204,10 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
         //try to encode and set the source
         String encSource = FileUtils.loadSourceFromFile(source);
         if (encSource == null) {
-            Log.e(getClass().getSimpleName(), "Unable to encode file: " + source.getAbsolutePath());
-        } else setSource(encSource);
+            Timber.e("Unable to encode file: %s", source.getAbsolutePath());
+        } else {
+            setSource(encSource);
+        }
     }
 
     /**

@@ -3,8 +3,6 @@ package com.sdex.activityrunner.manifest
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
@@ -27,21 +25,7 @@ object ShareProvider {
             .setChooserTitle(R.string.dialog_share_title)
             .createChooserIntent()
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        } else {
-            @Suppress("DEPRECATION")
-            val resInfoList = activity.packageManager.queryIntentActivities(
-                intent,
-                PackageManager.MATCH_DEFAULT_ONLY
-            )
-            for (resolveInfo in resInfoList) {
-                activity.grantUriPermission(
-                    resolveInfo.activityInfo.packageName, uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            }
-        }
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         try {
             activity.startActivity(intent)
         } catch (e: ActivityNotFoundException) {
