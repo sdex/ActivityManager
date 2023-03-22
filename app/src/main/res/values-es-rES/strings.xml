@@ -115,7 +115,7 @@
         <item quantity="other">%d actividades</item>
     </plurals>
     <!-- manifest viewer -->
-    <string name="manifest_viewer_share">Compartir</string>
+    <string name="manifest_viewer_export">Exportar</string>
     <string name="manifest_viewer_help">Ayuda</string>
     <string name="manifest_viewer_line_numbers">Números de línea</string>
     <string name="manifest_viewer_search">Buscar</string>

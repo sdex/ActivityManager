@@ -10,9 +10,9 @@
         app:showAsAction="always|collapseActionView" />
 
     <item
-        android:id="@+id/action_share"
-        android:icon="@drawable/ic_share"
-        android:title="@string/manifest_viewer_share"
+        android:id="@+id/action_export"
+        android:icon="@drawable/baseline_save_24"
+        android:title="@string/manifest_viewer_export"
         app:showAsAction="ifRoom" />
 
     <item

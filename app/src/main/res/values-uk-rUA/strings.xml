@@ -119,7 +119,7 @@
         <item quantity="other">%d активностей</item>
     </plurals>
     <!-- manifest viewer -->
-    <string name="manifest_viewer_share">Поділитися</string>
+    <string name="manifest_viewer_export">Експортувати</string>
     <string name="manifest_viewer_help">Довідка</string>
     <string name="manifest_viewer_line_numbers">Номери рядків</string>
     <string name="manifest_viewer_search">Пошук</string>

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
@@ -32,6 +33,10 @@ class ManifestViewerActivity : BaseActivity() {
     private val viewModel by viewModels<ManifestViewModel>()
     private lateinit var binding: ActivityManifestViewerBinding
     private lateinit var appPackageName: String
+    private val saveLocationLauncher =
+        registerForActivityResult(ActivityResultContracts.CreateDocument("text/xml")) {
+            it?.let { uri -> viewModel.export(uri) }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,8 +107,8 @@ class ManifestViewerActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_share -> {
-                ShareProvider.share(this, appPackageName)
+            R.id.action_export -> {
+                saveLocationLauncher.launch("AndroidManifest($appPackageName).xml")
                 true
             }
 

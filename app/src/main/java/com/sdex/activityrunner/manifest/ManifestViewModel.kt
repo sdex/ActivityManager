@@ -1,13 +1,12 @@
 package com.sdex.activityrunner.manifest
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import android.net.Uri
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.io.FileWriter
 
 class ManifestViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,15 +22,25 @@ class ManifestViewModel(application: Application) : AndroidViewModel(application
         }
         job = viewModelScope.launch(Dispatchers.IO) {
             val manifestReader = ManifestReader()
-            val manifestWriter = ManifestWriter()
-            val manifest = manifestReader.loadAndroidManifest(getApplication(), packageName)
+            val context = getApplication<Application>()
+            val manifest = manifestReader.loadAndroidManifest(context, packageName)
             _manifestLiveData.postValue(manifest)
-            manifestWriter.saveAndroidManifest(getApplication(), packageName, manifest)
         }
     }
 
     override fun onCleared() {
         super.onCleared()
         job?.cancel()
+    }
+
+    fun export(uri: Uri) {
+        val data = _manifestLiveData.value ?: return
+        viewModelScope.launch(Dispatchers.IO) {
+            val context = getApplication<Application>()
+            context.contentResolver.openFileDescriptor(uri, "w")?.use {
+                val fileWriter = FileWriter(it.fileDescriptor)
+                fileWriter.use { fileWriter.write(data) }
+            }
+        }
     }
 }
