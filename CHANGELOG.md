@@ -1,3 +1,6 @@
+## 5.3.3 (25 Mar 2023)
+- Add exporting the manifest file to the local storage
+
 ## 5.3.2 (13 Feb 2023)
 - Add Spanish translation (kudos to [juanunzu](https://crowdin.com/profile/juanunzu))
 

@@ -1,1 +1,1 @@
-- - Add Spanish translation
+- Add exporting the manifest file to the local storage
