@@ -20,8 +20,8 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.UIUtils
-import com.sdex.highlightjs.models.Language
-import com.sdex.highlightjs.models.Theme
+import com.sdex.activityrunner.util.highlightjs.models.Language
+import com.sdex.activityrunner.util.highlightjs.models.Theme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

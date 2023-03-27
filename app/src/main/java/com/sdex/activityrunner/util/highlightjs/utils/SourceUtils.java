@@ -1,4 +1,4 @@
-package com.sdex.highlightjs.utils;
+package com.sdex.activityrunner.util.highlightjs.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

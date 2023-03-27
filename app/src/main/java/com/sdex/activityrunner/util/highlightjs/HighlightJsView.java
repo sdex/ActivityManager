@@ -1,4 +1,4 @@
-package com.sdex.highlightjs;
+package com.sdex.activityrunner.util.highlightjs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,10 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.sdex.highlightjs.models.Language;
-import com.sdex.highlightjs.models.Theme;
-import com.sdex.highlightjs.utils.FileUtils;
-import com.sdex.highlightjs.utils.SourceUtils;
+import com.sdex.activityrunner.util.highlightjs.models.Language;
+import com.sdex.activityrunner.util.highlightjs.models.Theme;
+import com.sdex.activityrunner.util.highlightjs.utils.FileUtils;
+import com.sdex.activityrunner.util.highlightjs.utils.SourceUtils;
 
 import java.io.File;
 import java.net.URL;
