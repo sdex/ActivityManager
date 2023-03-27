@@ -54,6 +54,8 @@
         <activity
             android:name=".shortcut.ShortcutHandlerActivity"
             android:exported="true"
+            android:noHistory="true"
+            android:taskAffinity=".shortcut"
             android:theme="@android:style/Theme.Translucent" />
 
         <activity android:name=".about.AboutActivity" />
