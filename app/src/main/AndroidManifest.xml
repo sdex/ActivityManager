@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
@@ -66,10 +65,6 @@
         <activity
             android:name=".preferences.SettingsActivity"
             android:label="@string/settings_activity" />
-
-        <service
-            android:name=".service.ApplicationsListJob"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
