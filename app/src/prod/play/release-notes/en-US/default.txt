@@ -1,2 +1,2 @@
 - Add a new translation - Chinese Simplified (by Jesse205)
-- Fix staring some activities from shortcuts (#32)
+- Fix starting some activities from shortcuts (#32)

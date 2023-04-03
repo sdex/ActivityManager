@@ -1,6 +1,6 @@
 ## 5.3.4 (3 Apr 2023)
 - Add a new translation - Chinese Simplified (by [Jesse205](https://crowdin.com/profile/Jesse205))
-- Fix staring some activities from shortcuts [#32](https://github.com/sdex/ActivityManager/issues/32)
+- Fix starting some activities from shortcuts [#32](https://github.com/sdex/ActivityManager/issues/32)
 
 ## 5.3.3 (25 Mar 2023)
 - Add exporting the manifest file to the local storage
