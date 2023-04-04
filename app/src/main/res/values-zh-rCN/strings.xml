@@ -49,8 +49,8 @@
     <string name="launch_param_extras">附加（Extras）</string>
     <string name="launch_param_extras_add">+ 添加选项</string>
     <string name="launch_param_categories">类别（Categories）</string>
-    <string name="launch_param_flags">标志</string>
-    <string name="save_to_history">保存历史记录</string>
+    <string name="launch_param_flags">标志（Flags）</string>
+    <string name="save_to_history">保存到历史记录</string>
     <string name="item_history_has_extras">附加</string>
     <string name="item_history_has_categories">类别</string>
     <string name="item_history_has_flags">标志</string>
@@ -58,7 +58,7 @@
     <string name="about_source_code">源代码</string>
     <string name="about_version">版本</string>
     <string name="about_issues_tracker">问题反馈</string>
-    <string name="about_feedback">报告 bug，问点问题…</string>
+    <string name="about_feedback">报告 bug，问些问题…</string>
     <string name="about_open_source">开源许可证</string>
     <string name="donate_message">如果您喜欢这个应用，捐赠我们吧</string>
     <string name="donate_action_text">捐赠</string>
@@ -76,8 +76,8 @@
     <string name="history_item_dialog_remove">删除</string>
     <string name="history_item_dialog_add_shortcut">创建快捷方式</string>
     <string name="history_item_dialog_export_uri">导出为 URI</string>
-    <string name="no">取消</string>
-    <string name="yes">确定</string>
+    <string name="no">否</string>
+    <string name="yes">是</string>
     <string name="dialog_add_extra_title">添加选项</string>
     <string name="dialog_add_extra_key_empty">键不能为空</string>
     <string name="dialog_add_extra_value_empty">值不能为空</string>
@@ -98,7 +98,7 @@
     <string name="pref_system_apps_title">显示系统应用</string>
     <string name="pref_disabled_apps_title">显示已停用的应用</string>
     <string name="pref_advanced_system_apps_title">显示系统应用标识</string>
-    <string name="pref_advanced_disabled_apps_title">显示已禁用的应用标识</string>
+    <string name="pref_advanced_disabled_apps_title">显示已停用的应用标识</string>
     <string name="pref_advanced_not_exported_title">显示未导出的 Activities</string>
     <string name="pref_advanced_not_exported_summary">只能使用 Root 运行</string>
     <string-array name="pref_appearance_theme_list_titles">
