@@ -1,14 +1,21 @@
 package com.sdex.activityrunner.manifest
 
-import android.app.Application
 import android.net.Uri
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.io.FileWriter
+import javax.inject.Inject
 
-class ManifestViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class ManifestViewModel @Inject constructor(
+    private val manifestReader: ManifestReader,
+    private val manifestWriter: ManifestWriter,
+) : ViewModel() {
 
     private val _manifestLiveData = MutableLiveData<String?>()
     val manifestLiveData: LiveData<String?> = _manifestLiveData
@@ -21,9 +28,7 @@ class ManifestViewModel(application: Application) : AndroidViewModel(application
             return
         }
         job = viewModelScope.launch(Dispatchers.IO) {
-            val manifestReader = ManifestReader()
-            val context = getApplication<Application>()
-            val manifest = manifestReader.loadAndroidManifest(context, packageName)
+            val manifest = manifestReader.load(packageName)
             _manifestLiveData.postValue(manifest)
         }
     }
@@ -36,11 +41,7 @@ class ManifestViewModel(application: Application) : AndroidViewModel(application
     fun export(uri: Uri) {
         val data = _manifestLiveData.value ?: return
         viewModelScope.launch(Dispatchers.IO) {
-            val context = getApplication<Application>()
-            context.contentResolver.openFileDescriptor(uri, "w")?.use {
-                val fileWriter = FileWriter(it.fileDescriptor)
-                fileWriter.use { fileWriter.write(data) }
-            }
+            manifestWriter.write(uri, data)
         }
     }
 }

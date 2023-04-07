@@ -1,28 +1,32 @@
 package com.sdex.activityrunner.manifest
 
-import android.content.Context
-import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.content.res.XmlResourceParser
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
+import com.sdex.activityrunner.util.PackageInfoProvider
 import net.dongliu.apk.parser.ApkFile
 import timber.log.Timber
 import java.io.ByteArrayInputStream
 import java.io.StringWriter
 import java.nio.charset.Charset
+import javax.inject.Inject
 import javax.xml.transform.OutputKeys
 import javax.xml.transform.TransformerException
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.stream.StreamSource
 
-class ManifestReader {
+class ManifestReader @Inject constructor(
+    private val packageInfoProvider: PackageInfoProvider,
+) {
 
     @WorkerThread
-    fun loadAndroidManifest(context: Context, packageName: String): String? {
+    fun load(
+        packageName: String
+    ): String? {
         try {
-            val manifest = load(context, packageName)
+            val manifest = parse(packageName)
             return try {
                 formatManifest(manifest)
             } catch (e: TransformerException) {
@@ -34,12 +38,8 @@ class ManifestReader {
         return null
     }
 
-    private fun load(context: Context, packageName: String): String {
-        val packageManager = context.packageManager
-        val packageInfo = packageManager.getPackageInfo(
-            packageName,
-            PackageManager.GET_META_DATA
-        )
+    private fun parse(packageName: String): String {
+        val packageInfo = packageInfoProvider.getPackageInfo(packageName)
         if (packageInfo.splitNames != null) {
             val publicSourceDir = packageInfo.applicationInfo.publicSourceDir
             val apkFile = ApkFile(publicSourceDir)
@@ -48,7 +48,7 @@ class ManifestReader {
             }
             return manifestXml
         } else {
-            val resources = packageManager.getResourcesForApplication(packageName)
+            val resources = packageInfoProvider.getResourcesForApplication(packageName)
             val parser = resources.assets.openXmlResourceParser("AndroidManifest.xml")
             val stringBuilder = StringBuilder()
             var eventType = parser.next()

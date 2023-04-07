@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.di
 
 import android.content.Context
+import com.sdex.activityrunner.manifest.ManifestWriter
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.PackageInfoProvider
 import dagger.Module
@@ -24,4 +25,9 @@ object AppModule {
     fun providePackageInfoProvider(
         @ApplicationContext context: Context
     ) = PackageInfoProvider(context)
+
+    @Provides
+    fun provideManifestWriter(
+        @ApplicationContext context: Context
+    ) = ManifestWriter(context)
 }

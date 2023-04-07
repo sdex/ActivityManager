@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.os.Build
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.manifest.ManifestParser
@@ -76,6 +77,10 @@ class PackageInfoProvider(
         } else {
             packageInfo.packageName
         }
+    }
+
+    fun getResourcesForApplication(packageName: String): Resources {
+        return packageManager.getResourcesForApplication(packageName)
     }
 
     @Suppress("DEPRECATION")
