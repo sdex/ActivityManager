@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.commons
 
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.sdex.activityrunner.R
@@ -31,5 +32,13 @@ open class BaseActivity : AppCompatActivity() {
 
     protected fun setSubtitle(subtitle: CharSequence) {
         supportActionBar?.subtitle = subtitle
+    }
+
+    protected fun hideToolbar() {
+        findViewById<Toolbar>(R.id.toolbar).visibility = View.GONE
+    }
+
+    protected fun showToolbar() {
+        findViewById<Toolbar>(R.id.toolbar).visibility = View.VISIBLE
     }
 }
