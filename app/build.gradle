@@ -108,6 +108,7 @@ dependencies {
     implementation "com.tomergoldst.android:tooltips:1.1.1"
     implementation "net.dongliu:apk-parser:2.6.10"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    implementation "com.github.Y-E-P:BrowserFiP:1.0.2"
 
     testImplementation "junit:junit:4.13.2"
 
