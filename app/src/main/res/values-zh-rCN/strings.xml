@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_activity">历史记录</string>
+    <string name="settings_activity">设置</string>
+    <!-- activity options -->
+    <string name="activity_option_launch_params">使用参数启动 Activity</string>
+    <string name="activity_option_launch_root">使用 ROOT 启动 Activity</string>
+    <string name="activity_option_create_shortcut">创建快捷方式</string>
+    <!-- application options -->
+    <string name="application_option_open">启动应用程序</string>
+    <string name="application_option_open_manifest">打开清单查看器</string>
+    <string name="application_option_open_info">打开应用信息</string>
+    <string name="application_option_action_launch">在 GooglePlay 中打开</string>
+    <string name="application_disabled">已停用</string>
+    <string name="application_system">系统</string>
+    <!-- create shortcut -->
+    <string name="shortcut_name">标签</string>
+    <string name="shortcut_name_empty">标签不能为空</string>
+    <string name="shortcut_create">创建</string>
+    <string name="shortcut_set_icon_tooltip">点击以更改图标</string>
+    <string name="icons_loading_error">加载图标失败</string>
+    <string name="shortcut_icon_gallery">从图库中选取</string>
+    <string name="shortcut_icon_preset">选择图标</string>
+    <!-- launching activity -->
+    <string name="starting_activity">正在启动 Activity：%s</string>
+    <string name="starting_activity_failed">启动活动 Activity：%s</string>
+    <string name="starting_activity_launch_intent_failed">找不到启动的 Activity</string>
+    <string name="starting_activity_failed_security">您没有权限运行此 Activity：%s</string>
+    <string name="starting_activity_intent">正在启动 Activity</string>
+    <string name="starting_activity_intent_failed">启动 Activity 失败</string>
+    <string name="starting_activity_root_error">无法使用 root 权限启动 Activity</string>
+    <string name="starting_activity_root_not_available">Root 不可用或未授予权限</string>
+    <string name="activities_list_empty_text">没有已导出的 Activity</string>
+    <string name="activities_list_empty_action">显示未导出的 Activity</string>
+    <string name="action_about">关于</string>
+    <string name="action_launch_intent">Intent 启动器</string>
+    <string name="action_history">历史记录</string>
+    <string name="action_clear_history">清除历史记录</string>
+    <string name="action_search">搜索</string>
+    <string name="action_search_hint">应用名称或包名</string>
+    <string name="action_search_activity_hint">Activity 名称或包名</string>
+    <string name="action_settings">设置</string>
+    <!-- intent builder -->
+    <string name="launch_param_package_name">包名</string>
+    <string name="launch_param_class_name">类名</string>
+    <string name="launch_param_action">操作（Action）</string>
+    <string name="launch_param_data">数据（Data）</string>
+    <string name="launch_param_mime_type">Mime 类型</string>
+    <string name="launch_param_extras">附加（Extras）</string>
+    <string name="launch_param_extras_add">+ 添加选项</string>
+    <string name="launch_param_categories">类别（Categories）</string>
+    <string name="launch_param_flags">标志（Flags）</string>
+    <string name="save_to_history">保存到历史记录</string>
+    <string name="item_history_has_extras">附加</string>
+    <string name="item_history_has_categories">类别</string>
+    <string name="item_history_has_flags">标志</string>
+    <string name="about_donation">支持开发</string>
+    <string name="about_source_code">源代码</string>
+    <string name="about_version">版本</string>
+    <string name="about_issues_tracker">问题反馈</string>
+    <string name="about_feedback">报告 bug，问些问题…</string>
+    <string name="about_open_source">开源许可证</string>
+    <string name="donate_message">如果您喜欢这个应用，捐赠我们吧</string>
+    <string name="donate_action_text">捐赠</string>
+    <string name="input_key">输入键</string>
+    <string name="input_value">输入值</string>
+    <string name="key">键</string>
+    <string name="value">值</string>
+    <string name="type_array">数组</string>
+    <!-- history -->
+    <string name="history_empty_text">这里什么都没有</string>
+    <string name="history_empty_action">运行 Intents</string>
+    <string name="history_dialog_clear_title">清除历史记录</string>
+    <string name="history_dialog_clear_message">您确定吗？</string>
+    <string name="history_item_dialog_title">Intent</string>
+    <string name="history_item_dialog_remove">删除</string>
+    <string name="history_item_dialog_add_shortcut">创建快捷方式</string>
+    <string name="history_item_dialog_export_uri">导出为 URI</string>
+    <string name="no">否</string>
+    <string name="yes">是</string>
+    <string name="dialog_add_extra_title">添加选项</string>
+    <string name="dialog_add_extra_key_empty">键不能为空</string>
+    <string name="dialog_add_extra_value_empty">值不能为空</string>
+    <string name="dialog_add_extra_type_incorrect">类型错误</string>
+    <string name="dialog_export_intent_copy">复制</string>
+    <string name="dialog_enable_non_exported_title">未导出的 Activities</string>
+    <string name="dialog_enable_non_exported_message">您可以启用显示非导出的 Activities，它们将用红色高亮显示。这类活动只能通过 ROOT 权限运行</string>
+    <!-- errors -->
+    <string name="error_failed_to_instantiate_web_view">实例化 WebView 失败，请稍后再试</string>
+    <string name="error_failed_to_open_manifest">打开 AndroidManifest.xml 失败</string>
+    <string name="error_intent_shortcut_icon">Intent 快捷方式不支持自定义图标。仅适用于 Activity</string>
+    <!-- share -->
+    <string name="dialog_share_title">分享 AndroidManifest.xml 文件</string>
+    <!-- settings -->
+    <string name="pref_header_appearance">外观</string>
+    <string name="pref_appearance_theme_title">主题</string>
+    <string name="pref_header_advanced">高级</string>
+    <string name="pref_system_apps_title">显示系统应用</string>
+    <string name="pref_disabled_apps_title">显示已停用的应用</string>
+    <string name="pref_advanced_system_apps_title">显示系统应用标识</string>
+    <string name="pref_advanced_disabled_apps_title">显示已停用的应用标识</string>
+    <string name="pref_advanced_not_exported_title">显示未导出的 Activities</string>
+    <string name="pref_advanced_not_exported_summary">只能使用 Root 运行</string>
+    <string-array name="pref_appearance_theme_list_titles">
+        <item>跟随系统</item>
+        <item>浅色</item>
+        <item>深色</item>
+    </string-array>
+    <plurals name="history_records">
+        <item quantity="other">%d 条记录</item>
+    </plurals>
+    <plurals name="activities_count">
+        <item quantity="other">%d 个 Activities</item>
+    </plurals>
+    <!-- manifest viewer -->
+    <string name="manifest_viewer_export">导出</string>
+    <string name="manifest_viewer_help">帮助</string>
+    <string name="manifest_viewer_line_numbers">行号</string>
+    <string name="manifest_viewer_search">搜索</string>
+    <string name="manifest_viewer_search_hint">查找关键字</string>
+</resources>

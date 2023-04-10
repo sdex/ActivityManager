@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteQuery
 interface ApplicationModelDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(model: List<ApplicationModel>): List<Long>
+    fun insert(models: List<ApplicationModel>): List<Long>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(models: List<ApplicationModel>): Int

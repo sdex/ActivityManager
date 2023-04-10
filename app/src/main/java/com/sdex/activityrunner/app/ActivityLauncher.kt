@@ -2,6 +2,7 @@ package com.sdex.activityrunner.app
 
 import android.app.Activity
 import android.content.ComponentName
+import android.content.Context
 import android.widget.Toast
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.IntentBuilderActivity
@@ -25,13 +26,32 @@ fun Activity.launchActivity(
     if (useParams) {
         IntentBuilderActivity.start(this, model)
     } else if (!model.exported || useRoot) {
-        launchActivityWithRoot(model.componentName)
+        launchActivityWithRoot(this, model.componentName)
     } else {
         IntentUtils.launchActivity(this, model.componentName, model.name)
     }
 }
 
-fun Activity.launchActivityWithRoot(componentName: ComponentName) {
+fun Activity.launchActivity(
+    componentName: ComponentName,
+    isExported: Boolean,
+) {
+    if (isExported) {
+        IntentUtils.launchActivity(
+            this,
+            componentName,
+            componentName.className.split(".").last(),
+            false
+        )
+    } else {
+        launchActivityWithRoot(this, componentName)
+    }
+}
+
+private fun launchActivityWithRoot(
+    context: Context,
+    componentName: ComponentName
+) {
     GlobalScope.launch {
         when (launchActivityUsingRoot(componentName)) {
             ROOT_ERROR -> R.string.starting_activity_root_error
@@ -39,7 +59,7 @@ fun Activity.launchActivityWithRoot(componentName: ComponentName) {
             else -> null
         }?.let {
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@launchActivityWithRoot, it, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -52,7 +72,7 @@ private suspend fun launchActivityUsingRoot(componentName: ComponentName): Int =
         } else {
             return@withContext try {
                 val command = "am start -n " + componentName.packageName + "/" +
-                        componentName.normalizeClassName()
+                    componentName.normalizeClassName()
                 Timber.d("Execute: \"$command\"")
                 val result = RootUtils.execute(command)
                 Timber.d("Result: \"$result\"")

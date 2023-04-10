@@ -1,1 +1,2 @@
-- Add exporting the manifest file to the local storage
+- Add a new translation - Chinese Simplified (by Jesse205)
+- Fix starting some activities from shortcuts (#32)

@@ -1,7 +1,10 @@
 package com.sdex.activityrunner.util
 
 import android.app.ActivityManager
-import android.content.*
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -50,20 +53,14 @@ object IntentUtils {
     }
 
     private fun activityModelToIntent(activityModel: ActivityModel): Intent {
-        val component = if (activityModel.exported) {
-            activityModel.componentName
-        } else {
-            ComponentName(
-                BuildConfig.APPLICATION_ID,
-                ShortcutHandlerActivity::class.java.canonicalName!!
-            )
-        }
+        val component = ComponentName(
+            BuildConfig.APPLICATION_ID,
+            ShortcutHandlerActivity::class.java.canonicalName!!
+        )
         val intent = getActivityIntent(Intent.ACTION_VIEW, component)
-        if (!activityModel.exported) {
-            val originComponent = activityModel.componentName
-            intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, originComponent.packageName)
-            intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, originComponent.className)
-        }
+        intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, activityModel.packageName)
+        intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, activityModel.className)
+        intent.putExtra(ShortcutHandlerActivity.ARG_EXPORTED, activityModel.exported)
         return intent
     }
 
@@ -100,14 +97,21 @@ object IntentUtils {
             .submit()
     }
 
-    fun launchActivity(context: Context, component: ComponentName, name: String) {
+    fun launchActivity(
+        context: Context,
+        component: ComponentName,
+        name: String,
+        showMessage: Boolean = true
+    ) {
         try {
             val intent = getActivityIntent(component = component)
             context.startActivity(intent)
-            Toast.makeText(
-                context, context.getString(R.string.starting_activity, name),
-                Toast.LENGTH_SHORT
-            ).show()
+            if (showMessage) {
+                Toast.makeText(
+                    context, context.getString(R.string.starting_activity, name),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         } catch (e: SecurityException) {
             Timber.e(e)
             Toast.makeText(

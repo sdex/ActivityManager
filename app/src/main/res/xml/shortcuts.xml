@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_exit_to_app_shortcut"
+        android:shortcutId="intent_launcher"
+        android:shortcutLongLabel="@string/action_launch_intent"
+        android:shortcutShortLabel="@string/action_launch_intent"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.sdex.activityrunner.MainActivity"
+            android:targetPackage="com.activitymanager" />
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.sdex.activityrunner.intent.IntentBuilderActivity"
+            android:targetPackage="com.activitymanager" />
+    </shortcut>
+</shortcuts>

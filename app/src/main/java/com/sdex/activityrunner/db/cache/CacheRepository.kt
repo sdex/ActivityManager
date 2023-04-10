@@ -9,4 +9,12 @@ class CacheRepository @Inject constructor(
 
     fun getApplications(query: SupportSQLiteQuery) =
         applicationModelDao.getApplicationModels(query)
+
+    fun getApplications() = applicationModelDao.getApplicationModels()
+
+    fun insert(models: List<ApplicationModel>) = applicationModelDao.insert(models)
+
+    fun update(models: List<ApplicationModel>) = applicationModelDao.update(models)
+
+    fun delete(models: List<ApplicationModel>) = applicationModelDao.delete(models)
 }
