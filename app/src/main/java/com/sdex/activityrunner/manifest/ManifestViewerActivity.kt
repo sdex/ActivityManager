@@ -7,11 +7,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SearchView
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
@@ -19,9 +20,9 @@ import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.util.UIUtils
 import com.sdex.highlightjs.models.Language
 import com.sdex.highlightjs.models.Theme
+import com.yupo.browserfiplib.FiPSearchView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -96,11 +97,37 @@ class ManifestViewerActivity : BaseActivity() {
         }
 
         viewModel.loadManifest(appPackageName)
+        setupFindInPage()
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                isEnabled = false
+                if (binding.fipContainer.visibility == View.VISIBLE) {
+                    hideFindInPage()
+                } else {
+                    onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        })
+    }
+
+    private fun setupFindInPage() {
+        binding.fip.setupSearchComponent(binding.highlightView)
+        binding.fip.onNavigationClicked = {
+            if (it == FiPSearchView.ClickEvent.CLOSE) {
+                hideFindInPage()
+            }
+        }
+    }
+
+    private fun hideFindInPage() {
+        showToolbar()
+        binding.highlightView.clearMatches()
+        binding.fip.onActionViewCollapsed()
+        binding.fipContainer.visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.manifest_viewer, menu)
-        configureSearchView(menu)
         menu.findItem(R.id.action_line_numbers).isChecked = appPreferences.showLineNumbers
         return super.onCreateOptionsMenu(menu)
     }
@@ -116,6 +143,12 @@ class ManifestViewerActivity : BaseActivity() {
                 val url = "https://developer.android.com/guide/topics/manifest/manifest-intro"
                 IntentUtils.openBrowser(this, url)
                 true
+            }
+            R.id.action_search -> {
+                hideToolbar()
+                binding.fipContainer.visibility = View.VISIBLE
+                binding.fip.onActionViewExpanded()
+                false
             }
 
             R.id.action_line_numbers -> {
@@ -138,46 +171,8 @@ class ManifestViewerActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        binding.fip.release()
         binding.highlightView.setOnContentChangedListener(null)
-    }
-
-    private fun configureSearchView(menu: Menu) {
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
-        searchView.maxWidth = Int.MAX_VALUE
-        searchView.queryHint = getString(R.string.manifest_viewer_search_hint)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query.isNullOrEmpty()) {
-                    binding.highlightView.clearMatches()
-                } else {
-                    binding.highlightView.findAllAsync(query)
-                }
-                searchView.clearFocus()
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
-                    binding.highlightView.clearMatches()
-                }
-                return false
-            }
-        })
-        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                UIUtils.setMenuItemsVisibility(menu, item, false)
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                binding.highlightView.clearMatches()
-                UIUtils.setMenuItemsVisibility(menu, true)
-                invalidateOptionsMenu()
-                return true
-            }
-        })
     }
 
     companion object {

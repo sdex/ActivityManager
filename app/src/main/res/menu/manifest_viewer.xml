@@ -6,8 +6,7 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
         android:title="@string/manifest_viewer_search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="always|collapseActionView" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_export"
