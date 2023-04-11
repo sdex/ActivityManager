@@ -13,6 +13,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
@@ -27,7 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ManifestViewerActivity : BaseActivity() {
+open class ManifestViewerActivity : BaseActivity() {
 
     @Inject
     lateinit var appPreferences: AppPreferences
@@ -173,6 +175,14 @@ class ManifestViewerActivity : BaseActivity() {
         super.onDestroy()
         binding.fip.release()
         binding.highlightView.setOnContentChangedListener(null)
+    }
+
+    private fun hideToolbar() {
+        findViewById<Toolbar>(R.id.toolbar).isVisible = false
+    }
+
+    private fun showToolbar() {
+        findViewById<Toolbar>(R.id.toolbar).isVisible = true
     }
 
     companion object {
