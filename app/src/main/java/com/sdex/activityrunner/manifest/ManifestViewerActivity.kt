@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-open class ManifestViewerActivity : BaseActivity() {
+class ManifestViewerActivity : BaseActivity() {
 
     @Inject
     lateinit var appPreferences: AppPreferences
