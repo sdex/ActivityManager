@@ -103,7 +103,7 @@ open class ManifestViewerActivity : BaseActivity() {
         onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 isEnabled = false
-                if (binding.fipContainer.visibility == View.VISIBLE) {
+                if (binding.fipContainer.isVisible) {
                     hideFindInPage()
                 } else {
                     onBackPressedDispatcher.onBackPressed()
