@@ -125,7 +125,7 @@ open class ManifestViewerActivity : BaseActivity() {
         showToolbar()
         binding.highlightView.clearMatches()
         binding.fip.onActionViewCollapsed()
-        binding.fipContainer.visibility = View.GONE
+        binding.fipContainer.isVisible = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
