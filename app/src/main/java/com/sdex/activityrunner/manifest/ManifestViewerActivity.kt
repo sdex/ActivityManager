@@ -148,7 +148,7 @@ open class ManifestViewerActivity : BaseActivity() {
             }
             R.id.action_search -> {
                 hideToolbar()
-                binding.fipContainer.visibility = View.VISIBLE
+                binding.fipContainer.isVisible = true
                 binding.fip.onActionViewExpanded()
                 false
             }
