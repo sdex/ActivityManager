@@ -104,6 +104,7 @@ class ManifestViewerActivity : BaseActivity() {
                 isEnabled = false
                 if (binding.fip.isVisible) {
                     hideFindInPage()
+                    isEnabled = true
                 } else {
                     onBackPressedDispatcher.onBackPressed()
                 }

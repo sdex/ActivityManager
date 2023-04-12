@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/background_fip"
+            android:visibility="gone"
             app:fip_counter_matched_color="@color/md_theme_onSurface"
             app:fip_divider_color="@color/list_divider"
             app:fip_hint="@string/manifest_viewer_search_hint"
