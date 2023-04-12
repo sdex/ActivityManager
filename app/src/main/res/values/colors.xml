@@ -21,6 +21,10 @@
     <color name="scrollbar_background">#28000000</color>
     <color name="scrollbar_inactive_thumb">#79000000</color>
 
+    <color name="fip_inactive_color">#BDBDBD</color>
+    <color name="fip_active_color">#000000</color>
+    <color name="fip_active_selected">#000000</color>
+
     <color name="md_theme_primary">#00629D</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#CFE5FF</color>
