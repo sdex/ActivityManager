@@ -102,7 +102,7 @@ class ManifestViewerActivity : BaseActivity() {
         onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 isEnabled = false
-                if (binding.fipContainer.isVisible) {
+                if (binding.fip.isVisible) {
                     hideFindInPage()
                 } else {
                     onBackPressedDispatcher.onBackPressed()
@@ -124,7 +124,7 @@ class ManifestViewerActivity : BaseActivity() {
         showToolbar()
         binding.highlightView.clearMatches()
         binding.fip.onActionViewCollapsed()
-        binding.fipContainer.isVisible = false
+        binding.fip.isVisible = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -147,7 +147,7 @@ class ManifestViewerActivity : BaseActivity() {
             }
             R.id.action_search -> {
                 hideToolbar()
-                binding.fipContainer.isVisible = true
+                binding.fip.isVisible = true
                 binding.fip.onActionViewExpanded()
                 false
             }

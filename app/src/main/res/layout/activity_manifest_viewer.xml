@@ -14,26 +14,12 @@
 
         <include layout="@layout/toolbar" />
 
-        <LinearLayout
-            android:id="@+id/fipContainer"
+        <com.yupo.browserfiplib.FiPSearchView
+            android:id="@+id/fip"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <com.yupo.browserfiplib.FiPSearchView
-                android:id="@+id/fip"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:fip_hint="@string/manifest_viewer_search_hint" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/scrollbar_background" />
-
-        </LinearLayout>
-
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/background_fip"
+            app:fip_hint="@string/manifest_viewer_search_hint" />
 
     </FrameLayout>
 
