@@ -99,6 +99,10 @@ class ManifestViewerActivity : BaseActivity() {
 
         viewModel.loadManifest(appPackageName)
         setupFindInPage()
+        savedInstanceState?.let {
+            val isVisible = it.getBoolean(ARG_SHOULD_SHOW_FIP, false)
+            if(isVisible) showFindInPage() else hideFindInPage()
+        }
         onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 isEnabled = false
@@ -128,6 +132,12 @@ class ManifestViewerActivity : BaseActivity() {
         binding.fip.isVisible = false
     }
 
+    private fun showFindInPage() {
+        hideToolbar()
+        binding.fip.onActionViewExpanded()
+        binding.fip.isVisible = true
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.manifest_viewer, menu)
         menu.findItem(R.id.action_line_numbers).isChecked = appPreferences.showLineNumbers
@@ -147,9 +157,7 @@ class ManifestViewerActivity : BaseActivity() {
                 true
             }
             R.id.action_search -> {
-                hideToolbar()
-                binding.fip.isVisible = true
-                binding.fip.onActionViewExpanded()
+                showFindInPage()
                 false
             }
 
@@ -185,10 +193,17 @@ class ManifestViewerActivity : BaseActivity() {
         findViewById<Toolbar>(R.id.toolbar).isVisible = true
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(ARG_SHOULD_SHOW_FIP, binding.fip.isVisible)
+        super.onSaveInstanceState(outState)
+    }
+
     companion object {
 
         private const val ARG_PACKAGE_NAME = "arg_package_name"
         private const val ARG_NAME = "arg_name"
+        private const val ARG_SHOULD_SHOW_FIP = "arg_should_show_fip"
+
 
         fun start(context: Context, model: ApplicationModel) {
             context.startActivity(Intent(context, ManifestViewerActivity::class.java).apply {
