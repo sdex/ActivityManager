@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
@@ -19,9 +21,9 @@ import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.util.UIUtils
 import com.sdex.activityrunner.util.highlightjs.models.Language
 import com.sdex.activityrunner.util.highlightjs.models.Theme
+import com.yupo.browserfiplib.FiPSearchView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -96,11 +98,48 @@ class ManifestViewerActivity : BaseActivity() {
         }
 
         viewModel.loadManifest(appPackageName)
+        setupFindInPage()
+        savedInstanceState?.let {
+            val isVisible = it.getBoolean(ARG_SHOULD_SHOW_FIP, false)
+            if(isVisible) showFindInPage() else hideFindInPage()
+        }
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                isEnabled = false
+                if (binding.fip.isVisible) {
+                    hideFindInPage()
+                    isEnabled = true
+                } else {
+                    onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        })
+    }
+
+    private fun setupFindInPage() {
+        binding.fip.setupSearchComponent(binding.highlightView)
+        binding.fip.onNavigationClicked = {
+            if (it == FiPSearchView.ClickEvent.CLOSE) {
+                hideFindInPage()
+            }
+        }
+    }
+
+    private fun hideFindInPage() {
+        showToolbar()
+        binding.highlightView.clearMatches()
+        binding.fip.onActionViewCollapsed()
+        binding.fip.isVisible = false
+    }
+
+    private fun showFindInPage() {
+        hideToolbar()
+        binding.fip.onActionViewExpanded()
+        binding.fip.isVisible = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.manifest_viewer, menu)
-        configureSearchView(menu)
         menu.findItem(R.id.action_line_numbers).isChecked = appPreferences.showLineNumbers
         return super.onCreateOptionsMenu(menu)
     }
@@ -116,6 +155,10 @@ class ManifestViewerActivity : BaseActivity() {
                 val url = "https://developer.android.com/guide/topics/manifest/manifest-intro"
                 IntentUtils.openBrowser(this, url)
                 true
+            }
+            R.id.action_search -> {
+                showFindInPage()
+                false
             }
 
             R.id.action_line_numbers -> {
@@ -138,52 +181,29 @@ class ManifestViewerActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        binding.fip.release()
         binding.highlightView.setOnContentChangedListener(null)
     }
 
-    private fun configureSearchView(menu: Menu) {
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-        // expand the view to the full width: https://stackoverflow.com/a/34050959/2894324
-        searchView.maxWidth = Int.MAX_VALUE
-        searchView.queryHint = getString(R.string.manifest_viewer_search_hint)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query.isNullOrEmpty()) {
-                    binding.highlightView.clearMatches()
-                } else {
-                    binding.highlightView.findAllAsync(query)
-                }
-                searchView.clearFocus()
-                return true
-            }
+    private fun hideToolbar() {
+        findViewById<Toolbar>(R.id.toolbar).isVisible = false
+    }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
-                    binding.highlightView.clearMatches()
-                }
-                return false
-            }
-        })
-        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                UIUtils.setMenuItemsVisibility(menu, item, false)
-                return true
-            }
+    private fun showToolbar() {
+        findViewById<Toolbar>(R.id.toolbar).isVisible = true
+    }
 
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                binding.highlightView.clearMatches()
-                UIUtils.setMenuItemsVisibility(menu, true)
-                invalidateOptionsMenu()
-                return true
-            }
-        })
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(ARG_SHOULD_SHOW_FIP, binding.fip.isVisible)
+        super.onSaveInstanceState(outState)
     }
 
     companion object {
 
         private const val ARG_PACKAGE_NAME = "arg_package_name"
         private const val ARG_NAME = "arg_name"
+        private const val ARG_SHOULD_SHOW_FIP = "arg_should_show_fip"
+
 
         fun start(context: Context, model: ApplicationModel) {
             context.startActivity(Intent(context, ManifestViewerActivity::class.java).apply {

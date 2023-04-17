@@ -8,6 +8,10 @@
     <color name="scrollbar_background">#2baaaaaa</color>
     <color name="scrollbar_inactive_thumb">#9caaaaaa</color>
 
+    <color name="fip_inactive_color">#BDBDBD</color>
+    <color name="fip_active_color">#FFFFFF</color>
+    <color name="fip_active_selected">#FFFFFF</color>
+
     <color name="md_theme_primary">#00629D</color>
     <color name="md_theme_onPrimary">#003354</color>
     <color name="md_theme_primaryContainer">#004A77</color>

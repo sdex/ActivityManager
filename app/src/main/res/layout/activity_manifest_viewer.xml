@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,24 @@
     tools:context=".manifest.ManifestViewerActivity"
     tools:ignore="ContentDescription">
 
-    <include layout="@layout/toolbar" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar" />
+
+        <com.yupo.browserfiplib.FiPSearchView
+            android:id="@+id/fip"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/background_fip"
+            android:visibility="gone"
+            app:fip_counter_matched_color="@color/md_theme_onSurface"
+            app:fip_divider_color="@color/list_divider"
+            app:fip_hint="@string/manifest_viewer_search_hint"
+            app:fip_text_color="@color/md_theme_onSurface" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
