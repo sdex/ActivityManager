@@ -1,3 +1,6 @@
+## 5.3.5 (18 Apr 2023)
+- Improve searching in manifest files [#37](https://github.com/sdex/ActivityManager/issues/37) (by [Y-E-P](https://github.com/Y-E-P))
+
 ## 5.3.4 (3 Apr 2023)
 - Add a new translation - Chinese Simplified (by [Jesse205](https://crowdin.com/profile/Jesse205))
 - Fix starting some activities from shortcuts [#32](https://github.com/sdex/ActivityManager/issues/32)
