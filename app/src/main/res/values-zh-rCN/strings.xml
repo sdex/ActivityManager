@@ -88,7 +88,7 @@
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">实例化 WebView 失败，请稍后再试</string>
     <string name="error_failed_to_open_manifest">打开 AndroidManifest.xml 失败</string>
-    <string name="error_intent_shortcut_icon">Intent 快捷方式不支持自定义图标。仅适用于 Activity</string>
+    <string name="error_intent_shortcut_icon">自定义图标目前仅支持用于 Activity 快捷方式，不支持用于 Intent 快捷方式。</string>
     <!-- share -->
     <string name="dialog_share_title">分享 AndroidManifest.xml 文件</string>
     <!-- settings -->
