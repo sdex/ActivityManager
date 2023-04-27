@@ -4,10 +4,7 @@ import com.sdex.activityrunner.intent.param.Action
 
 class ActionSource : SelectionDialogSource {
 
-    override val list: ArrayList<String>
-        get() = Action.list()
+    override val list = Action.list()
 
-    override fun getItem(position: Int): String {
-        return list[position]
-    }
+    override fun getItem(position: Int): String = list[position]
 }

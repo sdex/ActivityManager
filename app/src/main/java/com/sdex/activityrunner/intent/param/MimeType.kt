@@ -2,8 +2,7 @@ package com.sdex.activityrunner.intent.param
 
 object MimeType {
 
-    private val mimeTypeToExtensionMap = HashMap<String, String>()
-    private var list: ArrayList<String>? = null
+    private val mimeTypeToExtensionMap = LinkedHashMap<String, String>()
 
     init {
         add("application/andrew-inset", "ez")
@@ -330,16 +329,7 @@ object MimeType {
         }
     }
 
-    private fun initList() {
-        if (list == null) {
-            list = ArrayList(mimeTypeToExtensionMap.keys)
-            list!!.sort()
-            list!!.add(0, None.VALUE)
-        }
-    }
-
-    fun list(): ArrayList<String> {
-        initList()
-        return list!!
+    fun list(): List<String> {
+        return listOf(None.VALUE) + mimeTypeToExtensionMap.keys
     }
 }
