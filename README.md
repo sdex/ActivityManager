@@ -58,7 +58,7 @@ Contributing to the project:
 
 Support development:
 ----------
- https://sdex.dev/amg 
+https://sdex.dev/donate/ 
 
 License:
 ----------
