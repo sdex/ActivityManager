@@ -319,6 +319,7 @@ object MimeType {
         add("video/x-msvideo", "avi")
         add("video/x-sgi-movie", "movie")
         add("video/x-webex", "wrf")
+        add("vnd.android.document/directory", "vnd.android.document/directory")
         add("x-conference/x-cooltalk", "ice")
         add("x-epoc/x-sisx-app", "sisx")
     }
