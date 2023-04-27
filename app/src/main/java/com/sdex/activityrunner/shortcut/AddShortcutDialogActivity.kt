@@ -146,7 +146,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                     getString(R.string.shortcut_set_icon_tooltip),
                     ToolTip.POSITION_BELOW
                 )
-                builder.setBackgroundColor(resolveColorAttr(R.attr.colorTertiary))
+                builder.setBackgroundColor(
+                    resolveColorAttr(
+                        com.google.android.material.R.attr.colorTertiary
+                    )
+                )
                 builder.setTextAppearance(R.style.TooltipTextAppearance)
                 toolTipsManager.show(builder.build())
                 preferences.showChangeIcon = false
