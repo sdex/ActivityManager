@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts.*
+import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.request.RequestOptions
@@ -46,9 +46,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
     private val toolTipsManager = ToolTipsManager()
     private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
-        if (uri != null) {
-            loadIcon(uri)
-        }
+        uri?.let { loadIcon(uri) }
     }
     private var launcherLargeIconSize by Delegates.notNull<Int>()
     private var bitmap: Bitmap? = null
@@ -160,9 +158,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
     override fun onIconDialogIconsSelected(dialog: IconDialog, icons: List<Icon>) {
         val icon = icons.first()
-        if (icon.drawable == null) {
-            IconDrawableLoader(this).loadDrawable(icon)
-        }
+        IconDrawableLoader(this).loadDrawable(icon)
         val resource = icon.drawable
         bitmap = resource?.toBitmap(width = launcherLargeIconSize, height = launcherLargeIconSize)
         binding.icon.setImageDrawable(resource)
