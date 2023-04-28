@@ -1,3 +1,6 @@
+## 5.4.0 (28 Apr 2023)
+- Add support for custom icons to intent shortcuts
+
 ## 5.3.5 (18 Apr 2023)
 - Improve searching in manifest files [#37](https://github.com/sdex/ActivityManager/issues/37) (by [Y-E-P](https://github.com/Y-E-P))
 
