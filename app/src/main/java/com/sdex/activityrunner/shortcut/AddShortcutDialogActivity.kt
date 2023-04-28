@@ -38,6 +38,7 @@ import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
+import kotlin.properties.Delegates
 
 class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
@@ -49,7 +50,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             loadIcon(uri)
         }
     }
-
+    private var launcherLargeIconSize by Delegates.notNull<Int>()
     private var bitmap: Bitmap? = null
     private var iconPack: IconPack? = null
 
@@ -68,11 +69,15 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         iconPack = createMaterialDesignIconPack(loader)
         iconPack?.loadDrawables(loader.drawableLoader)
 
+        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        launcherLargeIconSize = activityManager.launcherLargeIconSize
+
         if (activityModel != null) {
             GlideApp.with(this)
                 .load(activityModel)
                 .error(R.mipmap.ic_launcher)
                 .apply(RequestOptions().centerCrop())
+                .override(launcherLargeIconSize)
                 .into(object : CustomTarget<Drawable>() {
                     override fun onResourceReady(
                         resource: Drawable,
@@ -159,7 +164,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             IconDrawableLoader(this).loadDrawable(icon)
         }
         val resource = icon.drawable
-        bitmap = resource?.toBitmap()
+        bitmap = resource?.toBitmap(width = launcherLargeIconSize, height = launcherLargeIconSize)
         binding.icon.setImageDrawable(resource)
     }
 

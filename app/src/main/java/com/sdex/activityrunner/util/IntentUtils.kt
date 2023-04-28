@@ -66,13 +66,13 @@ object IntentUtils {
     }
 
     private fun loadActivityIcon(context: Context, activityModel: ActivityModel) {
-        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val size = am.launcherLargeIconSize
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val launcherLargeIconSize = activityManager.launcherLargeIconSize
         GlideApp.with(context)
             .asDrawable()
             .load(activityModel)
             .error(R.mipmap.ic_launcher)
-            .override(size)
+            .override(launcherLargeIconSize)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?, model: Any?,
