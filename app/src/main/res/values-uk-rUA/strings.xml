@@ -88,7 +88,6 @@
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Помилка ініціалізації WebView, спробуйте пізніше</string>
     <string name="error_failed_to_open_manifest">Помилка відкриття файлу AndroidManifest.xml</string>
-    <string name="error_intent_shortcut_icon">Цей ярлик не підтримує зміну зоюраження</string>
     <!-- share -->
     <string name="dialog_share_title">Поділитися файлом AndroidManifest.xml</string>
     <!-- settings -->

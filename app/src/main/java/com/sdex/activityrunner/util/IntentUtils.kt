@@ -8,8 +8,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.provider.Settings
 import android.widget.Toast
-import androidx.annotation.DrawableRes
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
@@ -39,37 +39,33 @@ object IntentUtils {
 
     fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
         if (bitmap != null) {
-            val intent = activityModelToIntent(activityModel)
-            val iconCompat = IconCompat.createWithBitmap(bitmap)
-            try {
-                createShortcut(context, activityModel.name, intent, iconCompat)
+            val intent = activityModel.toIntent()
+            val iconCompat = try {
+                IconCompat.createWithBitmap(bitmap)
             } catch (e: Exception) { // android.os.TransactionTooLargeException
                 Timber.i(e)
-                createLauncherIcon(context, activityModel.name, intent, R.mipmap.ic_launcher)
+                // the icon is too big, fall back to the default icon
+                IconCompat.createWithResource(context, R.mipmap.ic_launcher)
             }
+            createShortcut(context, activityModel.name, intent, iconCompat)
         } else {
-            createLauncherIcon(context, activityModel)
+            loadActivityIcon(context, activityModel)
         }
     }
 
-    private fun activityModelToIntent(activityModel: ActivityModel): Intent {
+    private fun ActivityModel.toIntent(): Intent {
         val component = ComponentName(
             BuildConfig.APPLICATION_ID,
             ShortcutHandlerActivity::class.java.canonicalName!!
         )
         val intent = getActivityIntent(Intent.ACTION_VIEW, component)
-        intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, activityModel.packageName)
-        intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, activityModel.className)
-        intent.putExtra(ShortcutHandlerActivity.ARG_EXPORTED, activityModel.exported)
+        intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, this.packageName)
+        intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, this.className)
+        intent.putExtra(ShortcutHandlerActivity.ARG_EXPORTED, this.exported)
         return intent
     }
 
-    fun createLauncherIcon(context: Context, name: String, intent: Intent, @DrawableRes icon: Int) {
-        val iconCompat = IconCompat.createWithResource(context, icon)
-        createShortcut(context, name, intent, iconCompat)
-    }
-
-    private fun createLauncherIcon(context: Context, activityModel: ActivityModel) {
+    private fun loadActivityIcon(context: Context, activityModel: ActivityModel) {
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val size = am.launcherLargeIconSize
         GlideApp.with(context)
@@ -108,20 +104,23 @@ object IntentUtils {
             context.startActivity(intent)
             if (showMessage) {
                 Toast.makeText(
-                    context, context.getString(R.string.starting_activity, name),
+                    context,
+                    context.getString(R.string.starting_activity, name),
                     Toast.LENGTH_SHORT
                 ).show()
             }
         } catch (e: SecurityException) {
             Timber.e(e)
             Toast.makeText(
-                context, context.getString(R.string.starting_activity_failed_security, name),
+                context,
+                context.getString(R.string.starting_activity_failed_security, name),
                 Toast.LENGTH_SHORT
             ).show()
         } catch (e: Exception) {
             Timber.e(e)
             Toast.makeText(
-                context, context.getString(R.string.starting_activity_failed, name),
+                context,
+                context.getString(R.string.starting_activity_failed, name),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -154,12 +153,12 @@ object IntentUtils {
 
     fun openApplicationInfo(context: Context, packageName: String) {
         try {
-            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
             intent.data = Uri.parse("package:$packageName")
             context.startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             try {
-                val intent = Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
+                val intent = Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
                 context.startActivity(intent)
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(

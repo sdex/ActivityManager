@@ -88,7 +88,6 @@
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Nie udało się utworzyć instancji WebView</string>
     <string name="error_failed_to_open_manifest">Nie udało się otworzyć AndroidManifest.xml</string>
-    <string name="error_intent_shortcut_icon">Własna ikona nie jest jeszcze obsługiwana dla skrótów intencji. Tylko dla aktywności</string>
     <!-- share -->
     <string name="dialog_share_title">Udostępnij plik AndroidManifest.xml</string>
     <!-- settings -->

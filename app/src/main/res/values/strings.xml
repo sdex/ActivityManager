@@ -25,7 +25,7 @@
     <string name="starting_activity">Starting activity: %s</string>
     <string name="starting_activity_failed">Failed to start activity: %s</string>
     <string name="starting_activity_launch_intent_failed">Cannot find launcher activity</string>
-    <string name="starting_activity_failed_security">You don\'t have permissions to run this activity: %s</string>
+    <string name="starting_activity_failed_security">You don\'t have permission to run this activity: %s</string>
     <string name="starting_activity_intent">Starting activity</string>
     <string name="starting_activity_intent_failed">Failed to start activity</string>
     <string name="starting_activity_root_error">Failed to launch the activity using root</string>
@@ -88,7 +88,6 @@
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView, try again later</string>
     <string name="error_failed_to_open_manifest">Failed to open AndroidManifest.xml</string>
-    <string name="error_intent_shortcut_icon">Custom icon is not supported for Intent shortcut yet. Only for activity</string>
     <!-- share -->
     <string name="dialog_share_title">Share AndroidManifest.xml file</string>
     <!-- settings -->

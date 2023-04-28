@@ -88,7 +88,6 @@
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Error al instanciar WebView, inténtalo de nuevo más tarde</string>
     <string name="error_failed_to_open_manifest">Error al abrir AndroidManifest.xml</string>
-    <string name="error_intent_shortcut_icon">Íconos personalizados todavía no están soportados para atajos de Intent. Sólo para actividades</string>
     <!-- share -->
     <string name="dialog_share_title">Compartir archivo AndroidManifest.xml</string>
     <!-- settings -->

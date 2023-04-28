@@ -64,6 +64,10 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         binding.label.setText(activityModel?.name)
         binding.label.text?.let { binding.label.setSelection(it.length) }
 
+        val loader = IconPackLoader(applicationContext)
+        iconPack = createMaterialDesignIconPack(loader)
+        iconPack?.loadDrawables(loader.drawableLoader)
+
         if (activityModel != null) {
             GlideApp.with(this)
                 .load(activityModel)
@@ -82,10 +86,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
                 })
-
-            val loader = IconPackLoader(applicationContext)
-            iconPack = createMaterialDesignIconPack(loader)
-            iconPack?.loadDrawables(loader.drawableLoader)
         }
 
         if (historyModel != null) {
@@ -94,15 +94,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
         binding.icon.setOnClickListener {
             toolTipsManager.dismissAll()
-            if (activityModel != null) {
-                showIconMenu(it)
-            } else {
-                Toast.makeText(
-                    this,
-                    R.string.error_intent_shortcut_icon,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            showIconMenu(it)
         }
 
         binding.cancel.setOnClickListener {
@@ -201,7 +193,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         val launchParams = historyToLaunchParamsConverter.convert()
         val converter = LaunchParamsToIntentConverter(launchParams)
         val intent = converter.convert()
-        IntentUtils.createLauncherIcon(this, shortcutName, intent, R.mipmap.ic_launcher)
+        createShortcut(this, shortcutName, intent, bitmap)
     }
 
     private fun loadIcon(uri: Uri) {

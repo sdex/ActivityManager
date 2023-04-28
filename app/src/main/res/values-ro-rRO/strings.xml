@@ -88,7 +88,6 @@
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView, try again later</string>
     <string name="error_failed_to_open_manifest">Failed to open AndroidManifest.xml</string>
-    <string name="error_intent_shortcut_icon">Custom icon is not supported for Intent shortcut yet. Only for activity</string>
     <!-- share -->
     <string name="dialog_share_title">Share AndroidManifest.xml file</string>
     <!-- settings -->
