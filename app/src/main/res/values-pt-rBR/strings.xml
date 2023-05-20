@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="history_activity">History</string>
-    <string name="settings_activity">Settings</string>
+    <string name="history_activity">Histórico</string>
+    <string name="settings_activity">Configurações</string>
     <!-- activity options -->
-    <string name="activity_option_launch_params">Launch activity with parameters</string>
-    <string name="activity_option_launch_root">Launch activity with ROOT</string>
-    <string name="activity_option_create_shortcut">Create shortcut</string>
+    <string name="activity_option_launch_params">Iniciar atividade com parâmetros</string>
+    <string name="activity_option_launch_root">Iniciar atividade com ROOT</string>
+    <string name="activity_option_create_shortcut">Criar atalho</string>
     <!-- application options -->
-    <string name="application_option_open">Launch the application</string>
+    <string name="application_option_open">Iniciar o app</string>
     <string name="application_option_open_manifest">Open manifest viewer</string>
     <string name="application_option_open_info">Open application info</string>
     <string name="application_option_action_launch">Open in GooglePlay</string>
