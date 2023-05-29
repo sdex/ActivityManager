@@ -38,7 +38,7 @@ class MainViewModel @Inject constructor(
         _searchQuery.value = text
     }
 
-    fun syncDatabase() {
+    private fun syncDatabase() {
         GlobalScope.launch(Dispatchers.IO) {
             applicationsLoader.syncDatabase()
         }

@@ -2,6 +2,7 @@ package com.sdex.activityrunner
 
 import android.app.Application
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDex
 import com.sdex.activityrunner.preferences.AppPreferences
@@ -17,7 +18,7 @@ class ActivityManagerApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) {
+        if (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0) {
             Timber.plant(Timber.DebugTree())
         }
         appPreferences.onAppOpened()

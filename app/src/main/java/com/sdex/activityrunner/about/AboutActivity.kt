@@ -3,15 +3,20 @@ package com.sdex.activityrunner.about
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityAboutBinding
 import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.activityrunner.util.PackageInfoProvider
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AboutActivity : BaseActivity() {
 
+    @Inject
+    lateinit var packageInfoProvider: PackageInfoProvider
     private lateinit var binding: ActivityAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +25,11 @@ class AboutActivity : BaseActivity() {
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
+        val packageInfo = packageInfoProvider.getPackageInfo(packageName)
+
         binding.versionName.text = getString(
             R.string.about_version_format,
-            BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE
+            packageInfo.versionName, packageInfo.versionCode
         )
 
         binding.donate.setOnClickListener {

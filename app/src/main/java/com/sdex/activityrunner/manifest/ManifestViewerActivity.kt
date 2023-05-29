@@ -14,7 +14,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
-import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
@@ -78,7 +77,7 @@ class ManifestViewerActivity : BaseActivity() {
         var name = intent.getStringExtra(ARG_NAME)
 
         if (appPackageName.isEmpty()) {
-            appPackageName = BuildConfig.APPLICATION_ID
+            appPackageName = packageName
             name = getString(R.string.app_name)
         }
 

@@ -19,7 +19,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.glide.GlideApp
@@ -39,7 +38,7 @@ object IntentUtils {
 
     fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
         if (bitmap != null) {
-            val intent = activityModel.toIntent()
+            val intent = activityModel.toIntent(context)
             val iconCompat = try {
                 IconCompat.createWithBitmap(bitmap)
             } catch (e: Exception) { // android.os.TransactionTooLargeException
@@ -53,9 +52,9 @@ object IntentUtils {
         }
     }
 
-    private fun ActivityModel.toIntent(): Intent {
+    private fun ActivityModel.toIntent(context: Context): Intent {
         val component = ComponentName(
-            BuildConfig.APPLICATION_ID,
+            context.packageName,
             ShortcutHandlerActivity::class.java.canonicalName!!
         )
         val intent = getActivityIntent(Intent.ACTION_VIEW, component)

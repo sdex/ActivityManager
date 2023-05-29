@@ -6,19 +6,16 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
-import com.sdex.activityrunner.BuildConfig
 import com.sdex.activityrunner.R
 import java.io.File
 
 object ShareProvider {
 
-    private const val AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider"
-
     fun share(activity: Activity, packageName: String) {
         val pathResolver = ManifestPathResolver()
         val path = pathResolver.getPath(activity, packageName)
         val file = File(path)
-        val uri = FileProvider.getUriForFile(activity, AUTHORITY, file)
+        val uri = FileProvider.getUriForFile(activity, activity.packageName + ".fileprovider", file)
         val intent = ShareCompat.IntentBuilder(activity)
             .setType("text/xml")
             .setStream(uri)
