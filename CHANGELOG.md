@@ -1,3 +1,6 @@
+## 5.4.1 (29 May 2023)
+- Add a new translation - Portuguese, Brazilian (by [m_s_](https://crowdin.com/profile/askz0))
+
 ## 5.4.0 (28 Apr 2023)
 - Add support for custom icons to intent shortcuts
 
