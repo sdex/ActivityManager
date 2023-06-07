@@ -4,7 +4,7 @@
     <string name="settings_activity">Configurações</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Iniciar atividade com parâmetros</string>
-    <string name="activity_option_launch_root">Iniciar atividade via ROOT</string>
+    <string name="activity_option_launch_root">Iniciar atividade com ROOT</string>
     <string name="activity_option_create_shortcut">Criar atalho</string>
     <!-- application options -->
     <string name="application_option_open">Iniciar o app</string>
