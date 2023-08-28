@@ -40,6 +40,7 @@ import com.tomergoldst.tooltips.ToolTip
 import com.tomergoldst.tooltips.ToolTipsManager
 import kotlin.properties.Delegates
 
+// TODO: Use MaterialDialogBuilder to implement the dialog.
 class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
     private lateinit var binding: ActivityAddShortcutBinding
