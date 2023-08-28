@@ -92,16 +92,21 @@ class IntentBuilderActivity : BaseActivity(),
         bindInputValueDialog(binding.containerPackageName, R.string.launch_param_package_name)
         bindInputValueDialog(binding.containerClassName, R.string.launch_param_class_name)
         bindInputValueDialog(binding.containerData, R.string.launch_param_data)
-        bindInputValueDialog(binding.actionEditImageView, R.string.launch_param_action)
-        bindInputValueDialog(binding.mimeTypeEditImageView, R.string.launch_param_mime_type)
+        bindInputValueDialog(binding.actionEditButton, R.string.launch_param_action)
+        bindInputValueDialog(binding.mimeTypeEditButton, R.string.launch_param_mime_type)
         bindSingleSelectionDialog(binding.containerAction, R.string.launch_param_action)
         bindSingleSelectionDialog(binding.containerMimeType, R.string.launch_param_mime_type)
         bindKeyValueDialog(binding.containerExtras)
+        bindKeyValueDialog(binding.addExtraButton)
         bindMultiSelectionDialog(
-            binding.categoriesClickInterceptor,
+            binding.containerCategories,
             R.string.launch_param_categories
         )
-        bindMultiSelectionDialog(binding.flagsClickInterceptor, R.string.launch_param_flags)
+        bindMultiSelectionDialog(binding.containerFlags, R.string.launch_param_flags)
+
+        binding.containerSaveToHistory.setOnClickListener{
+            binding.saveToHistory.apply { isChecked = !isChecked }
+        }
 
         binding.launch.setOnClickListener {
             if (binding.saveToHistory.isChecked) {
@@ -261,7 +266,7 @@ class IntentBuilderActivity : BaseActivity(),
 
     private fun updateExtrasAdd() {
         val extras = launchParams.extras
-        binding.addExtraView.isVisible = extras.isNotEmpty()
+        binding.addExtraButton.isVisible = extras.isNotEmpty()
     }
 
     companion object {

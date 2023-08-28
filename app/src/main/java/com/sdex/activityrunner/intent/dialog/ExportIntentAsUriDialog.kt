@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
@@ -19,15 +20,16 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val launchParams = requireArguments().parcelable<LaunchParams>(ARG_LAUNCH_PARAMS)!!
 
-        val binding = DialogExportIntentAsUriBinding.inflate(requireActivity().layoutInflater)
+        // val binding = DialogExportIntentAsUriBinding.inflate(requireActivity().layoutInflater)
 
         val launchParamsToWebIntentConverter = LaunchParamsToWebIntentConverter(launchParams)
         val value = launchParamsToWebIntentConverter.convert()
-        binding.value.text = value
+        // binding.value.text = value
 
         return MaterialAlertDialogBuilder(requireActivity())
             .setTitle(R.string.history_item_dialog_export_uri)
-            .setView(binding.root)
+            .setMessage(value)
+            // .setView(binding.root)
             .setPositiveButton(R.string.dialog_export_intent_copy) { _, _ ->
                 val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE)
                         as ClipboardManager?
@@ -35,7 +37,7 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
                 clipboard?.setPrimaryClip(clip)
             }
             .setNegativeButton(android.R.string.cancel, null)
-            .create()
+            .create().apply { findViewById<TextView>(android.R.id.message)?.setTextIsSelectable(true) }
     }
 
     companion object {

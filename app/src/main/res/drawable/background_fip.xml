@@ -8,7 +8,7 @@
     <item android:gravity="bottom">
         <shape>
             <size android:height="1dp" />
-            <solid android:color="@color/list_divider" />
+            <solid android:color="?dividerColor" />
         </shape>
     </item>
 </layer-list>

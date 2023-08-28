@@ -1,470 +1,486 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".intent.IntentBuilderActivity"
-    tools:ignore="ContentDescription">
+    app:edgeToEdge="true"
+    tools:context=".intent.IntentBuilderActivity">
 
-    <include layout="@layout/toolbar" />
-
-    <FrameLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        app:fitsSystemWindowsInsets="top|start|end"
+        app:liftOnScroll="true"
+        app:layout_behavior="com.sdex.activityrunner.app.AppBarLayoutBehavior">
 
-        <androidx.core.widget.NestedScrollView
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="wrap_content" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        app:fitsSystemWindowsInsets="bottom|start|end"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:padding="@dimen/launch_params_activity_padding">
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="vertical"
-                android:padding="@dimen/launch_params_activity_padding">
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.card.MaterialCardView
-                    style="?attr/materialCardViewFilledStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/container_package_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="16dp"
-                                android:text="@string/launch_param_package_name"
-                                android:textAppearance="?attr/textAppearanceTitleMedium"
-                                app:layout_constraintStart_toEndOf="@+id/packageNameImageView" />
-
-                            <TextView
-                                android:id="@+id/packageNameView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="16dp"
-                                android:paddingBottom="6dp"
-                                android:textAppearance="?attr/textAppearanceBodyLarge"
-                                tools:text="com.activitymanager" />
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="?colorOnSecondaryContainer" />
-
-                        <LinearLayout
-                            android:id="@+id/container_class_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="16dp"
-                                android:text="@string/launch_param_class_name"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                            <TextView
-                                android:id="@+id/classNameView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="16dp"
-                                android:textAppearance="?attr/textAppearanceBodyLarge"
-                                tools:text="MainActivity" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="?attr/materialCardViewFilledStyle"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
+                    android:orientation="vertical">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/container_action"
+                    <LinearLayout
+                        android:id="@+id/container_package_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
-                        android:paddingHorizontal="16dp">
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="@dimen/launch_params_item_padding">
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical"
-                            app:layout_constraintEnd_toStartOf="@+id/actionEditImageView"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/launch_param_action"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                            <TextView
-                                android:id="@+id/actionView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?attr/textAppearanceBodyLarge"
-                                tools:text="android.intent.action.MAIN" />
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/actionEditImageView"
-                            android:layout_width="40dp"
-                            android:layout_height="@dimen/launch_params_item_height"
-                            android:background="?actionBarItemBackground"
-                            android:padding="@dimen/launch_params_icon_edit_padding"
-                            android:scaleType="fitCenter"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_edit"
-                            app:tint="@color/icon_tint" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="?attr/materialCardViewFilledStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/container_data"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/dataImageView"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:text="@string/launch_param_package_name"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="16dp"
-                                android:text="@string/launch_param_data"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                            <TextView
-                                android:id="@+id/dataView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="16dp"
-                                android:textAppearance="?attr/textAppearanceBodyLarge"
-                                tools:text="122" />
-
-                        </LinearLayout>
-
-                        <View
+                        <!-- <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="?colorOnSecondaryContainer" />
+                            android:layout_height="wrap_content">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/container_mime_type"
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="com.activitymanager" />
+                        </com.google.android.material.textfield.TextInputLayout>-->
+
+                        <TextView
+                            android:id="@+id/packageNameView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingHorizontal="16dp">
-
-                            <LinearLayout
-                                android:id="@+id/linearLayout4"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:minHeight="@dimen/launch_params_item_height"
-                                android:orientation="vertical"
-                                app:layout_constraintEnd_toStartOf="@+id/mimeTypeEditImageView"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/launch_param_mime_type"
-                                    android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                                <TextView
-                                    android:id="@+id/mimeTypeView"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textAppearance="?attr/textAppearanceBodyLarge"
-                                    tools:text="image/png" />
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:id="@+id/mimeTypeEditImageView"
-                                android:layout_width="40dp"
-                                android:layout_height="@dimen/launch_params_item_height"
-                                android:background="?actionBarItemBackground"
-                                android:padding="@dimen/launch_params_icon_edit_padding"
-                                android:scaleType="fitCenter"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_edit"
-                                app:tint="@color/icon_tint" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:paddingBottom="6dp"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            tools:text="com.activitymanager" />
 
                     </LinearLayout>
 
-                </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp" />
 
-                <com.google.android.material.card.MaterialCardView
-                    style="?attr/materialCardViewFilledStyle"
+                    <LinearLayout
+                        android:id="@+id/container_class_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="@dimen/launch_params_item_padding">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/launch_param_class_name"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                        <TextView
+                            android:id="@+id/classNameView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            tools:text="MainActivity" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/launch_params_item_card_margin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_action"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="@dimen/launch_params_item_padding">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@+id/actionEditButton"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/launch_param_action"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                        <TextView
+                            android:id="@+id/actionView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            tools:text="android.intent.action.MAIN" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/actionEditButton"
+                        style="?materialIconButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:icon="@drawable/ic_edit"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/launch_params_item_card_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/container_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="@dimen/launch_params_item_padding"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/dataImageView"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/launch_param_data"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                        <TextView
+                            android:id="@+id/dataView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            tools:text="122" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/container_extras"
+                        android:id="@+id/container_mime_type"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="@dimen/launch_params_item_padding">
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout_extras"
+                        <!-- <LinearLayout
+                            android:id="@+id/linearLayout4"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:minHeight="@dimen/launch_params_item_height"
                             android:orientation="vertical"
-                            android:paddingHorizontal="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/mimeTypeEditButton"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"> -->
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@string/launch_param_extras"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/launch_param_mime_type"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            app:layout_constraintBottom_toTopOf="@+id/mimeTypeView"
+                            app:layout_constraintEnd_toStartOf="@+id/mimeTypeEditButton"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/listExtrasView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginBottom="4dp"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:itemCount="2"
-                                tools:listitem="@layout/item_launch_param_extra" />
-
-                            <TextView
-                                android:id="@+id/addExtraView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:minHeight="@dimen/launch_params_item_height"
-                                android:text="@string/launch_param_extras_add"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                        </LinearLayout>
-
-                        <View
-                            android:id="@+id/extras_click_interceptor"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:background="?attr/selectableItemBackground"
+                        <TextView
+                            android:id="@+id/mimeTypeView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/mimeTypeEditButton"
                             app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView2"
+                            tools:text="image/png" />
+
+                        <!-- </LinearLayout> -->
+
+                        <Button
+                            android:id="@+id/mimeTypeEditButton"
+                            style="?materialIconButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:icon="@drawable/ic_edit"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView
-                    style="?attr/materialCardViewFilledStyle"
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/launch_params_item_card_margin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_extras"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
+                    android:background="?attr/selectableItemBackground">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/container_categories"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/linearLayout_extras"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/launch_params_item_padding"
+                        android:paddingTop="@dimen/launch_params_item_padding"
+                        android:paddingBottom="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical"
-                            android:paddingHorizontal="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@string/launch_param_categories"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/listCategoriesView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginBottom="4dp"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:itemCount="2"
-                                tools:listitem="@layout/item_launch_param" />
-
-                        </LinearLayout>
-
-                        <View
-                            android:id="@+id/categories_click_interceptor"
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:background="?attr/selectableItemBackground"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="?attr/materialCardViewFilledStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/container_flags"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout6"
-                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:minHeight="@dimen/launch_params_item_height"
-                            android:orientation="vertical"
-                            android:paddingHorizontal="16dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:text="@string/launch_param_extras"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@string/launch_param_flags"
-                                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/listFlagsView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginBottom="4dp"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:itemCount="2"
-                                tools:listitem="@layout/item_launch_param" />
-
-                        </LinearLayout>
-
-                        <View
-                            android:id="@+id/flags_click_interceptor"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listExtrasView"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:background="?attr/selectableItemBackground"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_launch_param_extra" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <Button
+                            android:id="@+id/addExtraButton"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/launch_param_extras_add"
+                            app:icon="@drawable/ic_add" />
+                    </LinearLayout>
 
-                </com.google.android.material.card.MaterialCardView>
+                    <!--  <View
+                         android:id="@+id/extras_click_interceptor"
+                         android:layout_width="match_parent"
+                         android:layout_height="0dp"
+                         android:background="?attr/selectableItemBackground"
+                         app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent" /> -->
 
-                <com.google.android.material.card.MaterialCardView
-                    style="?attr/materialCardViewFilledStyle"
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/launch_params_item_card_margin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_categories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/launch_params_item_card_margin">
+                    android:background="?attr/selectableItemBackground">
 
-                    <CheckBox
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="@dimen/launch_params_item_padding"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/launch_param_categories"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listCategoriesView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_launch_param" />
+
+                    </LinearLayout>
+
+                    <!-- <View
+                        android:id="@+id/categories_click_interceptor"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:background="?attr/selectableItemBackground"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" /> -->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/launch_params_item_card_margin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_flags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="@dimen/launch_params_item_padding"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/launch_param_flags"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listFlagsView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_launch_param" />
+
+                    </LinearLayout>
+
+                    <!-- <View
+                        android:id="@+id/flags_click_interceptor"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:background="?attr/selectableItemBackground"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" /> -->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/launch_params_item_card_margin">
+
+                <LinearLayout
+                    android:id="@+id/container_save_to_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/save_to_history"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginHorizontal="12dp"
                         android:checked="true"
+                        android:clickable="false"
                         android:text="@string/save_to_history" />
+                </LinearLayout>
 
-                </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/launch_params_bottom_margin" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/launch_params_bottom_margin" />
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/launch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/launch_params_fab_margin"
-            android:clickable="true"
-            android:focusable="true"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/ic_done" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/launch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/launch_params_fab_margin"
+        android:clickable="true"
+        android:focusable="true"
+        app:fabSize="normal"
+        app:layout_fitsSystemWindowsInsets="bottom|end"
+        app:srcCompat="@drawable/ic_done" />
 
-    </FrameLayout>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

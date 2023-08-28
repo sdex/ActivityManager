@@ -35,8 +35,8 @@ class AppBarLayoutBehavior(context: Context?, attrs: AttributeSet?) :
             consumed
         )
         // Fix no change in app bar color after scrolling view slide to top on Android 12+ devices.
-        if (child.isLiftOnScroll) {
-            child.isLifted = dyUnconsumed >= 0
+        if (child.isLiftOnScroll && dyUnconsumed < 0) {
+            child.isLifted = false
         }
     }
 

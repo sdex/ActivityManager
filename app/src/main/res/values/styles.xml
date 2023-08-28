@@ -1,8 +1,8 @@
 <resources>
 
-    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <!-- <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorAccent">@color/white</item>
-    </style>
+    </style> -->
 
     <style name="BottomDialogTextStyle" parent="TextAppearance.AppCompat">
         <item name="android:layout_height">wrap_content</item>
@@ -14,9 +14,9 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="BottomSheet" parent="Widget.Material3.BottomSheet">
-        <item name="backgroundTint">@android:color/transparent</item>
-    </style>
+    <!-- <style name="BottomSheet" parent="Widget.Material3.BottomSheet">
+        &lt;!&ndash; <item name="backgroundTint">@android:color/transparent</item> &ndash;&gt;
+    </style> -->
 
     <style name="TooltipTextAppearance">
         <item name="android:textColor">?colorOnTertiary</item>
@@ -24,13 +24,24 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Filled">
+    <!-- <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Filled">
         <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
-    </style>
+    </style> -->
 
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/default_card_corner_radius</item>
+    </style>
+
+    <style name="Preference.App.SwitchPreferenceCompat" parent="Preference.SwitchPreferenceCompat.Material">
+        <item name="android:widgetLayout">@layout/preference_widget_switch_material3</item>
+    </style>
+
+    <style name="Preference.Rikka.SimpleMenuPreference.Material3" parent="@style/Preference.SimpleMenuPreference">
+        <item name="android:popupMenuStyle">@style/Widget.Preference.SimpleMenuPreference.PopupMenu.Material3</item>
+    </style>
+    <style name="Widget.Preference.SimpleMenuPreference.PopupMenu.Material3" parent="@style/Widget.Preference.SimpleMenuPreference.PopupMenu">
+        <item name="android:popupBackground">@drawable/m3_simple_menu_background</item>
     </style>
 
 </resources>

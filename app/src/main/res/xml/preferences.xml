@@ -1,4 +1,5 @@
-<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.preference.PreferenceCategory android:title="@string/pref_header_advanced">
 
@@ -34,12 +35,13 @@
 
     <androidx.preference.PreferenceCategory android:title="@string/pref_header_appearance">
 
-        <androidx.preference.ListPreference
+        <rikka.preference.SimpleMenuPreference
             android:defaultValue="-1"
             android:entries="@array/pref_appearance_theme_list_titles"
             android:entryValues="@array/pref_appearance_theme_list_values"
             android:key="appearance_theme"
-            android:title="@string/pref_appearance_theme_title" />
+            android:title="@string/pref_appearance_theme_title"
+            app:useSimpleSummaryProvider="true" />
 
     </androidx.preference.PreferenceCategory>
 

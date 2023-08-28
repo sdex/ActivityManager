@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.V29.AppTheme" parent="Base.V27.AppTheme">
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+    </style>
+
+    <style name="Base.V29.BottomSheetDialogThemeOverlay" parent="Base.V27.BottomSheetDialogThemeOverlay">
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+    </style>
+
+    <style name="BottomSheetDialogThemeOverlay" parent="Base.V29.BottomSheetDialogThemeOverlay" />
+
+    <style name="AppTheme" parent="Base.V29.AppTheme" />
+</resources>

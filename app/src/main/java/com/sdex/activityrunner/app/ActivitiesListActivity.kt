@@ -43,7 +43,7 @@ class ActivitiesListActivity : BaseActivity() {
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
         title = app.name
-        binding.list.addDividerItemDecoration()
+        // binding.list.addDividerItemDecoration()
         val adapter = ActivitiesListAdapter(this, app).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {

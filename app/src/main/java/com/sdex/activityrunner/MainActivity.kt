@@ -85,7 +85,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        binding.list.addDividerItemDecoration()
+        // binding.list.addDividerItemDecoration()
         binding.list.adapter = adapter
 
         viewModel.items.observe(this) {

@@ -3,6 +3,7 @@
 
     <color name="ic_launcher_background">#00629D</color>
     <color name="preference_fallback_accent_color" tools:override="true">@color/blue_light</color>
+    <color name="system_window_scrim_compat">#44000000</color>
 
     <color name="blue_very_light">#b8e9ff</color>
     <color name="grey_very_light">#eeeeee</color>
@@ -14,9 +15,9 @@
     <color name="white">#fff</color>
     <color name="red">#f44336</color>
 
-    <color name="background">#ffffff</color>
-    <color name="card_background">#ffffff</color>
-    <color name="icon_tint">#757575</color>
+    <!-- <color name="background">#ffffff</color> -->
+    <!-- <color name="card_background">#ffffff</color> -->
+    <!-- <color name="icon_tint">#757575</color> -->
     <color name="list_divider">#E0E0E0</color>
     <color name="scrollbar_background">#28000000</color>
     <color name="scrollbar_inactive_thumb">#79000000</color>

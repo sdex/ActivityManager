@@ -10,54 +10,62 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="12dp"
-        tools:ignore="ContentDescription"
-        tools:src="@mipmap/ic_launcher" />
+        android:layout_margin="16dp"
+        tools:src="@mipmap/ic_launcher"
+        android:importantForAccessibility="no" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginVertical="16dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceTitleMedium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             tools:text="Application name" />
 
         <TextView
             android:id="@+id/packageName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBodyMedium"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/info"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="com.android.application" />
 
         <TextView
             android:id="@+id/info"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textStyle="italic"
             android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             tools:text="@string/application_disabled"
             tools:visibility="visible" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/appMenu"
-        android:layout_width="44dp"
+        android:layout_width="48dp"
         android:layout_height="match_parent"
         android:background="?actionBarItemBackground"
-        app:srcCompat="@drawable/ic_more_vert"
-        app:tint="@color/icon_tint"
-        tools:ignore="ContentDescription" />
+        app:srcCompat="@drawable/ic_more_vert" />
 
 </LinearLayout>

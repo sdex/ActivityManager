@@ -71,16 +71,14 @@
 
     <ImageButton
         android:id="@+id/remove"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="?actionBarItemBackground"
         android:padding="6dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_close"
-        app:tint="@color/icon_tint"
-        tools:ignore="ContentDescription" />
+        app:srcCompat="@drawable/ic_close" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

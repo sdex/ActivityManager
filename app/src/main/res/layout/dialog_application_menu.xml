@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_bottom_dialog"
     android:orientation="vertical"
-    tools:ignore="ContentDescription">
+    app:edgeToEdge="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/applicationIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginHorizontal="13dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
             android:scaleType="center"
             tools:src="@mipmap/ic_launcher" />
 
@@ -25,20 +26,17 @@
             android:id="@+id/applicationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
             android:textAppearance="?attr/textAppearanceTitleMedium"
-            android:textColor="@color/blue_light"
             tools:text="Application name" />
 
     </LinearLayout>
 
-    <View
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/list_divider" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/action_open_app"
@@ -48,14 +46,14 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_launch"
-            app:tint="@color/icon_tint" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_application_launch" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
+            android:layout_margin="16dp"
             android:text="@string/application_option_open" />
 
     </LinearLayout>
@@ -68,14 +66,16 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
+
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_manifest"
-            app:tint="@color/icon_tint" />
+            app:srcCompat="@drawable/ic_application_open_manifest" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
+            android:layout_margin="16dp"
             android:text="@string/application_option_open_manifest" />
 
     </LinearLayout>
@@ -88,14 +88,15 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_info"
-            app:tint="@color/icon_tint" />
+            app:srcCompat="@drawable/ic_application_open_info" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
+            android:layout_margin="16dp"
             android:text="@string/application_option_open_info" />
 
     </LinearLayout>
@@ -108,14 +109,15 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="16dp"
             android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_play"
-            app:tint="@color/icon_tint" />
+            app:srcCompat="@drawable/ic_application_open_play" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
+            android:layout_margin="16dp"
             android:text="@string/application_option_action_launch" />
 
     </LinearLayout>

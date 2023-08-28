@@ -10,10 +10,10 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_vertical"
-        android:layout_margin="12dp"
+        android:layout_margin="16dp"
         tools:ignore="ContentDescription"
         tools:src="@mipmap/ic_launcher" />
 
@@ -21,6 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginVertical="16dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -35,7 +36,7 @@
             android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
             tools:text="Activity label" />
 
         <TextView
@@ -49,11 +50,10 @@
 
     <ImageButton
         android:id="@+id/appMenu"
-        android:layout_width="44dp"
+        android:layout_width="48dp"
         android:layout_height="match_parent"
         android:background="?actionBarItemBackground"
         app:srcCompat="@drawable/ic_more_vert"
-        app:tint="@color/icon_tint"
         tools:ignore="ContentDescription" />
 
 </LinearLayout>

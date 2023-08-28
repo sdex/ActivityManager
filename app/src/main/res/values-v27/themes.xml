@@ -1,18 +1,19 @@
 <resources>
 
-    <style name="Base.V27.BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">
-        <item name="android:navigationBarColor">@color/background</item>
-        <item name="android:windowLightNavigationBar">true</item>
+    <style name="Base.V27.AppTheme" parent="Base.V23.AppTheme">
+        <item name="android:windowLightNavigationBar">?isLightTheme</item>
+        <item name="android:navigationBarColor">@color/background_emphasis_high_type</item>
+        <!-- <item name="android:navigationBarDividerColor">@color/list_divider</item> -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
     </style>
 
-    <style name="BottomSheetDialogTheme" parent="Base.V27.BottomSheetDialogTheme">
-        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    <style name="Base.V27.BottomSheetDialogThemeOverlay" parent="Base.V0.BottomSheetDialogThemeOverlay">
+        <item name="android:navigationBarColor">?colorSurfaceContainerLow</item>
+        <item name="android:windowLightNavigationBar">?isLightTheme</item>
     </style>
 
-    <style name="AppTheme" parent="Base.V0.AppTheme">
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:navigationBarColor">@color/background</item>
-        <item name="android:navigationBarDividerColor">@color/list_divider</item>
-    </style>
+    <style name="BottomSheetDialogThemeOverlay" parent="Base.V27.BottomSheetDialogThemeOverlay" />
+
+    <style name="AppTheme" parent="Base.V27.AppTheme" />
 
 </resources>

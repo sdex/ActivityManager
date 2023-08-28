@@ -30,10 +30,14 @@
         <item name="colorSurfaceInverse">@color/md_theme_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_inversePrimary</item>
         <item name="android:colorBackground">@color/md_theme_background</item>
-        <item name="android:listDivider">@color/list_divider</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
-        <item name="materialCardViewFilledStyle">@style/Widget.App.CardView</item>
+        <!-- <item name="android:listDivider">@color/list_divider</item> -->
+        <!-- <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item> -->
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogThemeOverlay</item>
+        <!-- <item name="materialCardViewFilledStyle">@style/Widget.App.CardView</item> -->
+        <item name="switchPreferenceCompatStyle">@style/Preference.App.SwitchPreferenceCompat</item>
+        <item name="android:statusBarColor">@color/system_window_scrim_compat</item>
+        <item name="android:navigationBarColor">@color/system_window_scrim_compat</item>
+        <item name="simpleMenuPreferenceStyle">@style/Preference.Rikka.SimpleMenuPreference.Material3</item>
     </style>
 
     <style name="AppTheme" parent="Base.V0.AppTheme" />
@@ -44,6 +48,7 @@
 
     <!-- dialogs themes -->
 
+    <!-- TODO: Remove this theme when AddShortcutDialogActivity is removed. -->
     <style name="AppDialogTheme" parent="Theme.Material3.DayNight.Dialog.Alert">
         <item name="android:windowCloseOnTouchOutside">false</item>
         <item name="windowNoTitle">true</item>
@@ -76,14 +81,13 @@
         <item name="android:colorBackground">@color/md_theme_background</item>
     </style>
 
-    <style name="Base.V0.BottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
+    <style name="Base.V0.BottomSheetDialogThemeOverlay" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
-    <style name="BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">
-        <item name="bottomSheetStyle">@style/BottomSheet</item>
-    </style>
+    <style name="BottomSheetDialogThemeOverlay" parent="Base.V0.BottomSheetDialogThemeOverlay" />
 
     <!-- end dialogs themes -->
 
