@@ -74,18 +74,22 @@ object IntentUtils {
             .override(launcherLargeIconSize)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
-                    e: GlideException?, model: Any?,
-                    target: Target<Drawable>?, isFirstResource: Boolean
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
                 ): Boolean {
                     return false
                 }
 
                 override fun onResourceReady(
-                    resource: Drawable?, model: Any?,
-                    target: Target<Drawable>?, dataSource: DataSource?,
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
                     isFirstResource: Boolean
                 ): Boolean {
-                    createLauncherIcon(context, activityModel, resource?.toBitmap())
+                    createLauncherIcon(context, activityModel, resource.toBitmap())
                     return false
                 }
             })
