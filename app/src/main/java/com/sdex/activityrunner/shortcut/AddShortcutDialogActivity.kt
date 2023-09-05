@@ -7,8 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -16,6 +14,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -63,23 +62,16 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
         val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
 
-        binding.label.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        binding.label.doOnTextChanged { _, _, _, count ->
+            binding.valueLayout.endIconMode = if (count == 0) {
+                TextInputLayout.END_ICON_DROPDOWN_MENU
+            } else {
+                TextInputLayout.END_ICON_CLEAR_TEXT
             }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.valueLayout.endIconMode =
-                    if (count != 0) TextInputLayout.END_ICON_CLEAR_TEXT
-                    else TextInputLayout.END_ICON_DROPDOWN_MENU
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
+        }
         binding.label.setText(activityModel?.label)
         binding.label.text?.let { binding.label.setSelection(it.length) }
         binding.label.setSimpleItems(arrayOf(activityModel?.label, activityModel?.name))
-
 
         val loader = IconPackLoader(applicationContext)
         iconPack = createMaterialDesignIconPack(loader)
