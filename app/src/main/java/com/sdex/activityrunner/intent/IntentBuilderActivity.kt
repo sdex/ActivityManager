@@ -16,9 +16,12 @@ import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityIntentBuilderBinding
 import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.extensions.serializable
-import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.*
+import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
-import com.sdex.activityrunner.intent.dialog.*
+import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
+import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog
+import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
+import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
@@ -41,9 +44,11 @@ class IntentBuilderActivity : BaseActivity(),
 
     private val pickHistoryItem =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            val result = it.data?.parcelable<LaunchParams>(HistoryActivity.RESULT)
-            launchParams.setFrom(result)
-            showLaunchParams()
+            it.data?.let { intent ->
+                val result = intent.parcelable<LaunchParams>(HistoryActivity.RESULT)
+                launchParams.setFrom(result)
+                showLaunchParams()
+            }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,6 +136,7 @@ class IntentBuilderActivity : BaseActivity(),
                 pickHistoryItem.launch(HistoryActivity.getLaunchIntent(this))
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -152,6 +158,7 @@ class IntentBuilderActivity : BaseActivity(),
                 launchParams.action = if (position == 0) null
                 else Action.getAction(Action.list()[position])
             }
+
             R.string.launch_param_mime_type -> {
                 launchParams.mimeType = if (position == 0) null
                 else MimeType.list()[position]
@@ -231,10 +238,12 @@ class IntentBuilderActivity : BaseActivity(),
                 if (launchParams.action == null) 0
                 else Action.getActionKeyPosition(launchParams.action!!)
             }
+
             R.string.launch_param_mime_type -> {
                 if (launchParams.mimeType == null) 0
                 else MimeType.list().indexOf(launchParams.mimeType!!)
             }
+
             else -> throw IllegalStateException("Unknown type $type")
         }
     }
