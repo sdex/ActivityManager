@@ -7,6 +7,8 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -17,6 +19,7 @@ import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.textfield.TextInputLayout
 import com.maltaisn.icondialog.IconDialog
 import com.maltaisn.icondialog.IconDialogSettings
 import com.maltaisn.icondialog.data.Icon
@@ -60,8 +63,23 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
         val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
 
-        binding.label.setText(activityModel?.name)
+        binding.label.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.valueLayout.endIconMode =
+                    if (count != 0) TextInputLayout.END_ICON_CLEAR_TEXT
+                    else TextInputLayout.END_ICON_DROPDOWN_MENU
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+        binding.label.setText(activityModel?.label)
         binding.label.text?.let { binding.label.setSelection(it.length) }
+        binding.label.setSimpleItems(arrayOf(activityModel?.label, activityModel?.name))
+
 
         val loader = IconPackLoader(applicationContext)
         iconPack = createMaterialDesignIconPack(loader)
