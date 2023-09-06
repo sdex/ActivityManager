@@ -1,3 +1,7 @@
+## 5.4.2 (6 Sep 2023)
+- Fix intent builder screen state reset [#52](https://github.com/sdex/ActivityManager/pull/52) (by [Jesse205](https://github.com/Jesse205))
+- Add name suggestions when creating a shortcut [#53](https://github.com/sdex/ActivityManager/pull/53) (by [Jesse205](https://github.com/Jesse205))
+
 ## 5.4.1 (29 May 2023)
 - Add a new translation - Portuguese, Brazilian (by [m_s_](https://crowdin.com/profile/askz0))
 
