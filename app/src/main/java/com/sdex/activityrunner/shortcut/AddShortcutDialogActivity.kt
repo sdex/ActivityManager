@@ -14,6 +14,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
@@ -99,6 +100,8 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
                 })
+            binding.useRoot.isVisible = true
+            binding.useRoot.isChecked = !activityModel.exported
         }
 
         if (historyModel != null) {
@@ -124,11 +127,19 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
             activityModel?.let {
                 val model = it.copy(name = shortcutName)
-                IntentUtils.createLauncherIcon(this, model, bitmap)
+                IntentUtils.createLauncherIcon(
+                    this,
+                    model,
+                    bitmap,
+                    binding.useRoot.isChecked
+                )
             }
 
             historyModel?.let {
-                createHistoryModelShortcut(historyModel, shortcutName)
+                createHistoryModelShortcut(
+                    historyModel,
+                    shortcutName
+                )
             }
 
             finish()
