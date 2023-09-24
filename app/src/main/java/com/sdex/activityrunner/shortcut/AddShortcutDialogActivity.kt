@@ -63,17 +63,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
         val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
 
-        binding.label.doOnTextChanged { _, _, _, count ->
-            binding.valueLayout.endIconMode = if (count == 0) {
-                TextInputLayout.END_ICON_DROPDOWN_MENU
-            } else {
-                TextInputLayout.END_ICON_CLEAR_TEXT
-            }
-        }
-        binding.label.setText(activityModel?.label)
-        binding.label.text?.let { binding.label.setSelection(it.length) }
-        binding.label.setSimpleItems(arrayOf(activityModel?.label, activityModel?.name))
-
         val loader = IconPackLoader(applicationContext)
         iconPack = createMaterialDesignIconPack(loader)
         iconPack?.loadDrawables(loader.drawableLoader)
@@ -102,10 +91,22 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                 })
             binding.useRoot.isVisible = true
             binding.useRoot.isChecked = !activityModel.exported
+
+            binding.label.doOnTextChanged { _, _, _, count ->
+                binding.valueLayout.endIconMode = if (count == 0) {
+                    TextInputLayout.END_ICON_DROPDOWN_MENU
+                } else {
+                    TextInputLayout.END_ICON_CLEAR_TEXT
+                }
+            }
+            binding.label.setText(activityModel.label)
+            binding.label.text?.let { binding.label.setSelection(it.length) }
+            binding.label.setSimpleItems(arrayOf(activityModel.label, activityModel.name))
         }
 
         if (historyModel != null) {
             binding.icon.setImageResource(R.mipmap.ic_launcher)
+            binding.valueLayout.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
         }
 
         binding.icon.setOnClickListener {
