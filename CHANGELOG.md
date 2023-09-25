@@ -1,3 +1,6 @@
+## 5.4.4 (25 Sep 2023)
+- Bugfixes
+
 ## 5.4.3 (18 Sep 2023)
 - Add an option to launch an activity shortcut using root shell [#56](https://github.com/sdex/ActivityManager/issues/56)
 
