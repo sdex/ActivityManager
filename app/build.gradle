@@ -30,6 +30,10 @@ android {
         }
     }
 
+    androidResources {
+        generateLocaleConfig = true
+    }
+
     flavorDimensions = ["type"]
     productFlavors {
         dev {
