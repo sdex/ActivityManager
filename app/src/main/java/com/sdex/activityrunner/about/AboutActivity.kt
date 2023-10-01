@@ -48,6 +48,10 @@ class AboutActivity : BaseActivity() {
             LicensesDialogFragment()
                 .show(supportFragmentManager, LicensesDialogFragment.TAG)
         }
+
+        binding.version.setOnClickListener {
+            IntentUtils.openBrowser(this, AppUtils.CHANGELOG)
+        }
     }
 
     companion object {
