@@ -1,3 +1,6 @@
+## 5.4.5 (2 Oct 2023)
+- Support per-app language preferences on Android 13+
+
 ## 5.4.4 (25 Sep 2023)
 - Bugfixes
 
