@@ -34,23 +34,33 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/value_layout"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        style="?textInputOutlinedExposedDropdownMenuStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/label"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/shortcut_name"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/use_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checked="false"
+        android:text="@string/activity_option_launch_root"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/value_layout"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/create"
@@ -69,7 +79,7 @@
         android:layout_marginTop="8dp"
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toStartOf="@+id/create"
-        app:layout_constraintTop_toBottomOf="@+id/value_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/use_root" />
 
     <ImageView
         android:id="@+id/imageView"

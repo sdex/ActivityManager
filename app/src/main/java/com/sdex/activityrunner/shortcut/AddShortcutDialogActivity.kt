@@ -14,9 +14,12 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.textfield.TextInputLayout
 import com.maltaisn.icondialog.IconDialog
 import com.maltaisn.icondialog.IconDialogSettings
 import com.maltaisn.icondialog.data.Icon
@@ -61,9 +64,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
         val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
 
-        binding.label.setText(activityModel?.name)
-        binding.label.text?.let { binding.label.setSelection(it.length) }
-
         val loader = IconPackLoader(applicationContext)
         iconPack = createMaterialDesignIconPack(loader)
         iconPack?.loadDrawables(loader.drawableLoader)
@@ -90,10 +90,24 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
                 })
+            binding.useRoot.isVisible = true
+            binding.useRoot.isChecked = !activityModel.exported
+
+            binding.label.doOnTextChanged { _, _, _, count ->
+                binding.valueLayout.endIconMode = if (count == 0) {
+                    TextInputLayout.END_ICON_DROPDOWN_MENU
+                } else {
+                    TextInputLayout.END_ICON_CLEAR_TEXT
+                }
+            }
+            binding.label.setText(activityModel.label)
+            binding.label.text?.let { binding.label.setSelection(it.length) }
+            binding.label.setSimpleItems(arrayOf(activityModel.label, activityModel.name))
         }
 
         if (historyModel != null) {
             binding.icon.setImageResource(R.mipmap.ic_launcher)
+            binding.valueLayout.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
         }
 
         binding.icon.setOnClickListener {
@@ -115,11 +129,19 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
             activityModel?.let {
                 val model = it.copy(name = shortcutName)
-                IntentUtils.createLauncherIcon(this, model, bitmap)
+                IntentUtils.createLauncherIcon(
+                    this,
+                    model,
+                    bitmap,
+                    binding.useRoot.isChecked
+                )
             }
 
             historyModel?.let {
-                createHistoryModelShortcut(historyModel, shortcutName)
+                createHistoryModelShortcut(
+                    historyModel,
+                    shortcutName
+                )
             }
 
             finish()

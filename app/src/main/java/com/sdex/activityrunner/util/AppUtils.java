@@ -11,6 +11,7 @@ public class AppUtils {
 
     public static final String REPOSITORY = "https://github.com/sdex/ActivityManager";
     public static final String ISSUES_TRACKER = REPOSITORY + "/issues";
+    public static final String CHANGELOG = REPOSITORY + "/blob/master/CHANGELOG.md";
 
     public static void openLink(Context context, String url) {
         try {

@@ -16,8 +16,8 @@ Screenshots:
 ----------
 <div style="display:flex;">
     <img
-      src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092630.png"
-      alt="Screenshot" width="30%" />
+        src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092630.png"
+        alt="Screenshot" width="30%" />
     <img
         src="https://raw.githubusercontent.com/sdex/ActivityManager/master/docs/graphics/screenshots/Screenshot_20221008_092755.png"
         alt="Screenshot" width="30%" />
@@ -58,7 +58,7 @@ Contributing to the project:
 
 Support development:
 ----------
-https://sdex.dev/donate/ 
+https://sdex.dev/donate/
 
 License:
 ----------

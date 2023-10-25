@@ -1,13 +1,13 @@
 buildscript {
-    ext.kotlin_version = '1.8.21'
-    ext.hilt_version = '2.46.1'
+    ext.kotlin_version = '1.9.10'
+    ext.hilt_version = '2.48'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.android.tools.build:gradle:8.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
     }

@@ -36,9 +36,16 @@ object IntentUtils {
         }
     }
 
-    fun createLauncherIcon(context: Context, activityModel: ActivityModel, bitmap: Bitmap?) {
+    fun createLauncherIcon(
+        context: Context,
+        activityModel: ActivityModel,
+        bitmap: Bitmap?,
+        useRoot: Boolean = false,
+    ) {
         if (bitmap != null) {
-            val intent = activityModel.toIntent(context)
+            val intent = activityModel.toIntent(context).apply {
+                putExtra(ShortcutHandlerActivity.ARG_USE_ROOT, useRoot)
+            }
             val iconCompat = try {
                 IconCompat.createWithBitmap(bitmap)
             } catch (e: Exception) { // android.os.TransactionTooLargeException
@@ -60,7 +67,6 @@ object IntentUtils {
         val intent = getActivityIntent(Intent.ACTION_VIEW, component)
         intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, this.packageName)
         intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, this.className)
-        intent.putExtra(ShortcutHandlerActivity.ARG_EXPORTED, this.exported)
         return intent
     }
 
@@ -74,18 +80,22 @@ object IntentUtils {
             .override(launcherLargeIconSize)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
-                    e: GlideException?, model: Any?,
-                    target: Target<Drawable>?, isFirstResource: Boolean
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
                 ): Boolean {
                     return false
                 }
 
                 override fun onResourceReady(
-                    resource: Drawable?, model: Any?,
-                    target: Target<Drawable>?, dataSource: DataSource?,
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
                     isFirstResource: Boolean
                 ): Boolean {
-                    createLauncherIcon(context, activityModel, resource?.toBitmap())
+                    createLauncherIcon(context, activityModel, resource.toBitmap())
                     return false
                 }
             })

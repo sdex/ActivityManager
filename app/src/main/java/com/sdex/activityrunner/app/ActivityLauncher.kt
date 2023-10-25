@@ -34,17 +34,17 @@ fun Activity.launchActivity(
 
 fun Activity.launchActivity(
     componentName: ComponentName,
-    isExported: Boolean,
+    useRoot: Boolean,
 ) {
-    if (isExported) {
+    if (useRoot) {
+        launchActivityWithRoot(this, componentName)
+    } else {
         IntentUtils.launchActivity(
             this,
             componentName,
             componentName.className.split(".").last(),
             false
         )
-    } else {
-        launchActivityWithRoot(this, componentName)
     }
 }
 
