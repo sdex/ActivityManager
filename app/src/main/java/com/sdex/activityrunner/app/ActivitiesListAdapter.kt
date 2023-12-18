@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -16,14 +17,13 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemActivityBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.resolveColorAttr
-import com.sdex.activityrunner.glide.GlideApp
 
 class ActivitiesListAdapter(
     activity: FragmentActivity,
     private val application: ApplicationModel,
 ) : ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    private val glide = GlideApp.with(activity)
+    private val glide = Glide.with(activity)
     @ColorInt
     private val exportedColor = activity.resolveColorAttr(android.R.attr.textColorPrimary)
     @ColorInt

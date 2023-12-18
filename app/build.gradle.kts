@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.parcelize")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("androidx.room")
 }
@@ -79,10 +79,6 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 room {
     schemaDirectory("$projectDir/schemas")
 }
@@ -99,17 +95,17 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     val roomVersion: String by rootProject.extra
     implementation("androidx.room:room-ktx:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.vectordrawable:vectordrawable:1.1.0")
     val glideVersion = "4.16.0"
     implementation("com.github.bumptech.glide:glide:$glideVersion")
-    kapt("com.github.bumptech.glide:compiler:$glideVersion")
+    ksp("com.github.bumptech.glide:ksp:$glideVersion")
     implementation("com.google.android.material:material:1.11.0")
     val hiltVersion: String by rootProject.extra
     implementation ("com.google.dagger:hilt-android:$hiltVersion") {
         exclude(group = "androidx.fragment", module = "fragment")
     }
-    kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+    ksp("com.google.dagger:hilt-compiler:$hiltVersion")
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.maltaisn:icondialog:3.3.0")
     implementation("com.maltaisn:iconpack-community-material:5.3.45")

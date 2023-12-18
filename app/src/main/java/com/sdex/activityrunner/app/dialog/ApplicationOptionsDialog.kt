@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.databinding.DialogApplicationMenuBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.serializable
-import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.IntentUtils
@@ -35,7 +35,7 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
         val model = requireArguments().serializable<ApplicationModel>(ARG_MODEL)!!
         val packageName = model.packageName
 
-        GlideApp.with(this)
+        Glide.with(this)
             .load(model)
             .apply(RequestOptions().fitCenter())
             .transition(DrawableTransitionOptions.withCrossFade())

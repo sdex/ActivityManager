@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
+import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -34,7 +35,6 @@ import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.doAfterMeasure
 import com.sdex.activityrunner.extensions.resolveColorAttr
 import com.sdex.activityrunner.extensions.serializable
-import com.sdex.activityrunner.glide.GlideApp
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.preferences.TooltipPreferences
@@ -71,7 +71,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         launcherLargeIconSize = activityManager.launcherLargeIconSize
 
         if (activityModel != null) {
-            GlideApp.with(this)
+            Glide.with(this)
                 .load(activityModel)
                 .error(R.mipmap.ic_launcher)
                 .apply(RequestOptions().centerCrop())
@@ -222,7 +222,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
     private fun loadIcon(uri: Uri) {
         val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val size = am.launcherLargeIconSize
-        GlideApp.with(this)
+        Glide.with(this)
             .asBitmap()
             .load(uri)
             .error(R.mipmap.ic_launcher)
