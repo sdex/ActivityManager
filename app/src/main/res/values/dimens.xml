@@ -26,4 +26,6 @@
 
     <dimen name="default_card_corner_radius">6dp</dimen>
 
+    <dimen name="app_icon_size">40dp</dimen>
+
 </resources>

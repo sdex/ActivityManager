@@ -13,7 +13,6 @@ import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.UIUtils
@@ -43,7 +42,7 @@ class ActivitiesListActivity : BaseActivity() {
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
         title = app.name
-        binding.list.addDividerItemDecoration()
+
         val adapter = ActivitiesListAdapter(this, app).apply {
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {

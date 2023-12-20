@@ -95,6 +95,11 @@ class ApplicationsListAdapter(
             if (showSystemLabel) {
                 info.append(context.getString(R.string.application_system))
             }
+            binding.version.text = context.getString(
+                R.string.app_version_format,
+                item.versionName,
+                item.versionCode
+            )
             binding.info.text = info.toString()
             binding.info.isVisible = showDisabledLabel || showSystemLabel
             glide.load(item)

@@ -6,12 +6,13 @@
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingVertical="10dp">
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/app_icon_size"
+        android:layout_height="@dimen/app_icon_size"
         android:layout_gravity="center_vertical"
         android:layout_margin="12dp"
         tools:ignore="ContentDescription"
@@ -39,12 +40,17 @@
             tools:text="com.android.application" />
 
         <TextView
+            android:id="@+id/version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            tools:text="1.0 (10)" />
+
+        <TextView
             android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            android:textStyle="italic"
             android:visibility="gone"
             tools:text="@string/application_disabled"
             tools:visibility="visible" />

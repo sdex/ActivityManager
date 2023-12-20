@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.SearchView.*
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.MenuProvider
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -20,7 +20,6 @@ import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityMainBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
@@ -85,7 +84,6 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        binding.list.addDividerItemDecoration()
         binding.list.adapter = adapter
 
         viewModel.items.observe(this) {
