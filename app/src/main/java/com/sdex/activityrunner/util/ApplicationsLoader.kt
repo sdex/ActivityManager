@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.util
 
 import android.content.pm.ApplicationInfo
+import android.os.Build
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
 import timber.log.Timber
@@ -52,10 +53,21 @@ class ApplicationsLoader @Inject constructor(
         } else {
             false
         }
+        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            packageInfo.longVersionCode
+        } else {
+            packageInfo.versionName.toLong()
+        }
         val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
         ApplicationModel(
-            packageName, name, activities.size, exportedActivitiesCount, isSystemApp,
-            applicationInfo.enabled,
+            packageName = packageName,
+            name = name,
+            activitiesCount = activities.size,
+            exportedActivitiesCount = exportedActivitiesCount,
+            system = isSystemApp,
+            enabled = applicationInfo.enabled,
+            versionCode = versionCode,
+            versionName = packageInfo.versionName,
         )
     } catch (e: Exception) {
         Timber.e(e)

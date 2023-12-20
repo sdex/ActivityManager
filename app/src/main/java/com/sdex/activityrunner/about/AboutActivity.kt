@@ -28,7 +28,7 @@ class AboutActivity : BaseActivity() {
         val packageInfo = packageInfoProvider.getPackageInfo(packageName)
 
         binding.versionName.text = getString(
-            R.string.about_version_format,
+            R.string.app_version_format,
             packageInfo.versionName, packageInfo.versionCode
         )
 
