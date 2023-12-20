@@ -1,0 +1,10 @@
+查找已安装应用程序的活动、运行它们并创建快捷方式
+
+特性:
+* 启动已导出的 Activity
+* 使用 Root 启动未导出的 Activity
+* 为 Activity 创建自定义快捷方式
+* 从存储空间中设置任意快捷图标，或使用内置的 Material 图标
+* 使用 Intent Builder 创建并启动任何自定义 Intent
+* 使用 Manifest 查看器查看应用程序的详细信息
+* 支持明/暗主题
