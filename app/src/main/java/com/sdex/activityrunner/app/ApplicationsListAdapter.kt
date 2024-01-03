@@ -84,24 +84,16 @@ class ApplicationsListAdapter(
             binding.packageName.text = item.packageName
             val showSystemLabel = item.system && showSystemAppIndicator
             val showDisabledLabel = !item.enabled && showDisabledAppIndicator
-            val info = StringBuilder()
+            binding.info.isVisible = showDisabledLabel || showSystemLabel
+            binding.system.isVisible = showSystemLabel
+            binding.disabled.isVisible = showDisabledLabel
+            
             val context = binding.root.context
-            if (showDisabledLabel) {
-                info.append(context.getString(R.string.application_disabled))
-            }
-            if (showDisabledLabel && showSystemLabel) {
-                info.append(" | ")
-            }
-            if (showSystemLabel) {
-                info.append(context.getString(R.string.application_system))
-            }
             binding.version.text = context.getString(
                 R.string.app_version_format,
                 item.versionName,
                 item.versionCode
             )
-            binding.info.text = info.toString()
-            binding.info.isVisible = showDisabledLabel || showSystemLabel
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
                 .transition(DrawableTransitionOptions.withCrossFade())

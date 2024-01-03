@@ -46,14 +46,35 @@
             android:textAppearance="?attr/textAppearanceBodySmall"
             tools:text="1.0 (10)" />
 
-        <TextView
+        <com.google.android.material.chip.ChipGroup
             android:id="@+id/info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBodySmall"
-            android:visibility="gone"
-            tools:text="@string/application_disabled"
-            tools:visibility="visible" />
+            android:layout_height="25dp"
+            android:paddingTop="4dp"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/application_system"
+                android:textSize="12sp"
+                app:chipEndPadding="0dp"
+                app:chipMinTouchTargetSize="0dp"
+                app:chipStartPadding="0dp"
+                app:chipStrokeColor="@color/md_theme_error" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/disabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/application_disabled"
+                android:textSize="12sp"
+                app:chipEndPadding="0dp"
+                app:chipMinTouchTargetSize="0dp"
+                app:chipStartPadding="0dp" />
+
+        </com.google.android.material.chip.ChipGroup>
 
     </LinearLayout>
 

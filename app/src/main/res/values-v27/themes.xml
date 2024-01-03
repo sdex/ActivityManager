@@ -11,8 +11,7 @@
 
     <style name="AppTheme" parent="Base.V0.AppTheme">
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:navigationBarColor">@color/background</item>
-        <item name="android:navigationBarDividerColor">@color/list_divider</item>
+        <item name="android:navigationBarColor">@color/md_theme_background</item>
     </style>
 
 </resources>
