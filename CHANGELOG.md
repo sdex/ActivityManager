@@ -1,3 +1,6 @@
+## 5.4.6 (6 Jan 2023)
+- Display applications version
+
 ## 5.4.5 (2 Oct 2023)
 - Support per-app language preferences on Android 13+
 
