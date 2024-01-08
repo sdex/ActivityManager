@@ -59,6 +59,8 @@ class ApplicationsLoader @Inject constructor(
             packageInfo.versionName.toLong()
         }
         val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
+        val lastUpdateTime = packageInfo.lastUpdateTime
+        val installTime = packageInfo.firstInstallTime
         ApplicationModel(
             packageName = packageName,
             name = name,
@@ -68,6 +70,8 @@ class ApplicationsLoader @Inject constructor(
             enabled = applicationInfo.enabled,
             versionCode = versionCode,
             versionName = packageInfo.versionName,
+            updateTime = lastUpdateTime,
+            installTime = installTime,
         )
     } catch (e: Exception) {
         Timber.e(e)
