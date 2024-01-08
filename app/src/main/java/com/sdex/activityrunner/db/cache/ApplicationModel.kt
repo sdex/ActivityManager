@@ -14,6 +14,8 @@ data class ApplicationModel(
     val enabled: Boolean,
     val versionCode: Long,
     val versionName: String,
+    val updateTime: Long,
+    val installTime: Long,
 ) : Serializable {
 
     companion object {
@@ -27,5 +29,7 @@ data class ApplicationModel(
         const val SYSTEM = "system"
         const val VERSION_CODE = "versionCode"
         const val VERSION_NAME = "versionName"
+        const val UPDATE_TIME = "updateTime"
+        const val INSTALL_TIME = "installTime"
     }
 }
