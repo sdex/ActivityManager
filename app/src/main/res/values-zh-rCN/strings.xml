@@ -94,10 +94,6 @@
     <string name="pref_header_appearance">外观</string>
     <string name="pref_appearance_theme_title">主题</string>
     <string name="pref_header_advanced">高级</string>
-    <string name="pref_system_apps_title">显示系统应用</string>
-    <string name="pref_disabled_apps_title">显示已停用的应用</string>
-    <string name="pref_advanced_system_apps_title">显示系统应用标识</string>
-    <string name="pref_advanced_disabled_apps_title">显示已停用的应用标识</string>
     <string name="pref_advanced_not_exported_title">显示未导出的 Activities</string>
     <string name="pref_advanced_not_exported_summary">只能使用 Root 运行</string>
     <string-array name="pref_appearance_theme_list_titles">
@@ -117,4 +113,15 @@
     <string name="manifest_viewer_line_numbers">行号</string>
     <string name="manifest_viewer_search">搜索</string>
     <string name="manifest_viewer_search_hint">查找关键字</string>
+    <!-- filter -->
+    <string name="filter_header_sort_by">Sort by</string>
+    <string name="filter_sort_by_name">Name</string>
+    <string name="filter_sort_by_update_time">Update time</string>
+    <string name="filter_sort_by_install_time">Install time</string>
+    <string name="filter_sort_order_asc">Ascending</string>
+    <string name="filter_sort_order_desc">Descending</string>
+    <string name="filter_system_apps_title">System applications</string>
+    <string name="filter_disabled_apps_title">Disabled applications</string>
+    <string name="filter_toggle_show">Show</string>
+    <string name="filter_toggle_label">Label</string>
 </resources>

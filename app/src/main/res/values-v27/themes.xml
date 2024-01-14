@@ -1,7 +1,7 @@
 <resources>
 
     <style name="Base.V27.BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">
-        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/md_theme_background</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 

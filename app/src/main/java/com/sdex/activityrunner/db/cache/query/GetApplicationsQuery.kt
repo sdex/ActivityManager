@@ -9,8 +9,6 @@ class GetApplicationsQuery(
     private val searchText: String? = null,
 ) {
 
-    private val sortBy = ApplicationModel.NAME
-    private val sortOrder = "ASC"
     private val sortCaseSensitive = "COLLATE NOCASE"
 
     val sqLiteQuery get() = SimpleSQLiteQuery(toString())
@@ -40,8 +38,18 @@ class GetApplicationsQuery(
                 .append(" LIKE '%").append(escapedSearchText).append("%'")
                 .append(") ")
         }
-        queryStringBuilder.append("ORDER BY ").append(sortBy).append(" ")
-            .append(sortCaseSensitive).append(" ").append(sortOrder)
+        queryStringBuilder.append("ORDER BY ").append(getSortBy()).append(" ")
+            .append(sortCaseSensitive).append(" ").append(getSortOrder())
         return queryStringBuilder.toString()
+    }
+
+    private fun getSortBy(): String = appPreferences.sortBy
+
+    private fun getSortOrder(): String = appPreferences.sortOrder
+
+    companion object {
+
+        const val ASC = "ASC"
+        const val DESC = "DESC"
     }
 }

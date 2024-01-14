@@ -17,6 +17,7 @@ import com.sdex.activityrunner.app.ActivitiesListActivity
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.MainViewModel
 import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
+import com.sdex.activityrunner.app.dialog.FilterBottomSheetDialogFragment
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityMainBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
@@ -51,6 +52,13 @@ class MainActivity : BaseActivity() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
+                    R.id.action_filter -> {
+                        FilterBottomSheetDialogFragment().show(
+                            supportFragmentManager,
+                            FilterBottomSheetDialogFragment.TAG
+                        )
+                        true
+                    }
                     R.id.action_launch_intent -> {
                         IntentBuilderActivity.start(this@MainActivity, null)
                         true
@@ -91,6 +99,9 @@ class MainActivity : BaseActivity() {
                 if (it.isNotEmpty()) {
                     binding.progress.hide()
                 }
+                if (supportFragmentManager.findFragmentByTag(FilterBottomSheetDialogFragment.TAG) != null) {
+                    binding.list.scrollToPosition(0)
+                }
             }
         }
 
@@ -108,8 +119,11 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    fun refresh() {
+        viewModel.search(viewModel.searchQuery.value)
+    }
+
+    fun update() {
         adapter.update()
     }
 

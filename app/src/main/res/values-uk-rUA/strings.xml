@@ -94,10 +94,6 @@
     <string name="pref_header_appearance">Зовнішній вигляд</string>
     <string name="pref_appearance_theme_title">Тема</string>
     <string name="pref_header_advanced">Додаткові можливості</string>
-    <string name="pref_system_apps_title">Показувати системні додатки</string>
-    <string name="pref_disabled_apps_title">Показувати вимкнені додатки</string>
-    <string name="pref_advanced_system_apps_title">Показувати індикатор системних додатків</string>
-    <string name="pref_advanced_disabled_apps_title">Показувати індикатор вимкнених додатків</string>
     <string name="pref_advanced_not_exported_title">Показувати приховані компоненти</string>
     <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені Root</string>
     <string-array name="pref_appearance_theme_list_titles">
@@ -123,4 +119,15 @@
     <string name="manifest_viewer_line_numbers">Номери рядків</string>
     <string name="manifest_viewer_search">Пошук</string>
     <string name="manifest_viewer_search_hint">Знайти слово</string>
+    <!-- filter -->
+    <string name="filter_header_sort_by">Сортувати по</string>
+    <string name="filter_sort_by_name">Ім\'я</string>
+    <string name="filter_sort_by_update_time">Час оновлення</string>
+    <string name="filter_sort_by_install_time">Час встановлення</string>
+    <string name="filter_sort_order_asc">За зростанням</string>
+    <string name="filter_sort_order_desc">За спаданням</string>
+    <string name="filter_system_apps_title">Системні додатки</string>
+    <string name="filter_disabled_apps_title">Неактивні додатки</string>
+    <string name="filter_toggle_show">Показувати</string>
+    <string name="filter_toggle_label">Мітка</string>
 </resources>

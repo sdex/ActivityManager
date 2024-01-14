@@ -94,10 +94,6 @@
     <string name="pref_header_appearance">Appearance</string>
     <string name="pref_appearance_theme_title">Theme</string>
     <string name="pref_header_advanced">Advanced</string>
-    <string name="pref_system_apps_title">Show system apps</string>
-    <string name="pref_disabled_apps_title">Show disabled apps</string>
-    <string name="pref_advanced_system_apps_title">Show system app indicator</string>
-    <string name="pref_advanced_disabled_apps_title">Show disabled app indicator</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
     <string name="pref_advanced_not_exported_summary">Can be run only using Root</string>
     <string-array name="pref_appearance_theme_list_titles">
@@ -119,4 +115,15 @@
     <string name="manifest_viewer_line_numbers">Line numbers</string>
     <string name="manifest_viewer_search">Search</string>
     <string name="manifest_viewer_search_hint">Find keyword</string>
+    <!-- filter -->
+    <string name="filter_header_sort_by">Sort by</string>
+    <string name="filter_sort_by_name">Name</string>
+    <string name="filter_sort_by_update_time">Update time</string>
+    <string name="filter_sort_by_install_time">Install time</string>
+    <string name="filter_sort_order_asc">Ascending</string>
+    <string name="filter_sort_order_desc">Descending</string>
+    <string name="filter_system_apps_title">System applications</string>
+    <string name="filter_disabled_apps_title">Disabled applications</string>
+    <string name="filter_toggle_show">Show</string>
+    <string name="filter_toggle_label">Label</string>
 </resources>
