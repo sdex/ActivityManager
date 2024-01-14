@@ -14,8 +14,6 @@
     <color name="white">#fff</color>
     <color name="red">#f44336</color>
 
-    <color name="background">#ffffff</color>
-    <color name="card_background">#ffffff</color>
     <color name="icon_tint">#757575</color>
     <color name="list_divider">#E0E0E0</color>
     <color name="scrollbar_background">#28000000</color>

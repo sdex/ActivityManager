@@ -10,6 +10,12 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_filter"
+        android:title="Filter"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_launch_intent"
         android:icon="@drawable/ic_exit_to_app"
         android:title="@string/action_launch_intent"

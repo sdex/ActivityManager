@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_bottom_dialog"
     android:orientation="vertical">
 
     <TextView
@@ -13,13 +12,11 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:paddingStart="50dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="50dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="24dp"
         android:textAppearance="?attr/textAppearanceTitleMedium"
         android:textColor="@color/blue_light"
-        tools:text="Application name" />
+        tools:text="Activity name" />
 
     <View
         android:layout_width="match_parent"
@@ -31,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
@@ -51,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
@@ -71,6 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
