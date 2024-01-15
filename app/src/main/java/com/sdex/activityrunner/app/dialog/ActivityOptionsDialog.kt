@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
@@ -20,9 +22,14 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = DialogActivityMenuBinding.inflate(inflater, container, false)
+        val contextThemeWrapper = ContextThemeWrapper(activity, R.style.AppTheme)
+        _binding = DialogActivityMenuBinding.inflate(
+            inflater.cloneInContext(contextThemeWrapper),
+            container,
+            false
+        )
         return binding.root
     }
 
