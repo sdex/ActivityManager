@@ -1,3 +1,6 @@
+## 5.4.7 (15 Jan 2023)
+- Add a new filter menu with sorting options
+
 ## 5.4.6 (6 Jan 2023)
 - Display applications version
 
