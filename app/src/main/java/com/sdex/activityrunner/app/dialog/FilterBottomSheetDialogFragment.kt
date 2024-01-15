@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.view.ContextThemeWrapper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.MainActivity
+import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogFilterBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
@@ -23,9 +25,14 @@ class FilterBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
-        _binding = DialogFilterBinding.inflate(inflater, container, false)
+        val contextThemeWrapper = ContextThemeWrapper(activity, R.style.AppTheme)
+        _binding = DialogFilterBinding.inflate(
+            inflater.cloneInContext(contextThemeWrapper),
+            container,
+            false
+        )
         return binding.root
     }
 
