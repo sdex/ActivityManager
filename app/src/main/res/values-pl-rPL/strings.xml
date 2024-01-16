@@ -120,14 +120,14 @@
     <string name="manifest_viewer_search">Szukaj</string>
     <string name="manifest_viewer_search_hint">Znajdź słowo kluczowe</string>
     <!-- filter -->
-    <string name="filter_header_sort_by">Sort by</string>
-    <string name="filter_sort_by_name">Name</string>
-    <string name="filter_sort_by_update_time">Update time</string>
-    <string name="filter_sort_by_install_time">Install time</string>
-    <string name="filter_sort_order_asc">Ascending</string>
-    <string name="filter_sort_order_desc">Descending</string>
-    <string name="filter_system_apps_title">System applications</string>
-    <string name="filter_disabled_apps_title">Disabled applications</string>
-    <string name="filter_toggle_show">Show</string>
-    <string name="filter_toggle_label">Label</string>
+    <string name="filter_header_sort_by">Sortuj wg</string>
+    <string name="filter_sort_by_name">Nazwy</string>
+    <string name="filter_sort_by_update_time">Czasu aktualizacji</string>
+    <string name="filter_sort_by_install_time">Czasu instalacji</string>
+    <string name="filter_sort_order_asc">Rosnąco</string>
+    <string name="filter_sort_order_desc">Malejąco</string>
+    <string name="filter_system_apps_title">Aplikacje systemowe</string>
+    <string name="filter_disabled_apps_title">Wyłączone aplikacje</string>
+    <string name="filter_toggle_show">Pokaż</string>
+    <string name="filter_toggle_label">Etykieta</string>
 </resources>
