@@ -29,7 +29,7 @@
     <string name="starting_activity_intent">Iniciando actividad</string>
     <string name="starting_activity_intent_failed">Error al iniciar la actividad</string>
     <string name="starting_activity_root_error">Error al iniciar la actividad usando root</string>
-    <string name="starting_activity_root_not_available">El root no está disponible o el permiso no fue concedido</string>
+    <string name="starting_activity_root_not_available">Root is not available or the permission is not granted</string>
     <string name="activities_list_empty_text">No hay actividades exportadas</string>
     <string name="activities_list_empty_action">Mostrar no exportadas</string>
     <string name="action_about">Acerca de</string>
