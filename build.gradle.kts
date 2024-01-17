@@ -1,5 +1,5 @@
 buildscript {
-    val hiltVersion by extra("2.49")
+    val hiltVersion by extra("2.50")
     val roomVersion by extra("2.6.1")
 }
 
