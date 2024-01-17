@@ -21,7 +21,6 @@ class ActivityManagerApplication : Application() {
         if (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0) {
             Timber.plant(Timber.DebugTree())
         }
-        appPreferences.onAppOpened()
         AppCompatDelegate.setDefaultNightMode(appPreferences.theme)
     }
 

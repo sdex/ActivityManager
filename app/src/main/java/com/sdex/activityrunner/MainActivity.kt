@@ -9,9 +9,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.MenuProvider
-import com.google.android.material.behavior.SwipeDismissBehavior
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.about.AboutActivity
 import com.sdex.activityrunner.app.ActivitiesListActivity
 import com.sdex.activityrunner.app.ApplicationsListAdapter
@@ -24,7 +21,6 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.SettingsActivity
-import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -106,17 +102,6 @@ class MainActivity : BaseActivity() {
         }
 
         binding.progress.show()
-
-        if (appPreferences.appOpenCounter % 10 == 0) {
-            val behavior = BaseTransientBottomBar.Behavior().apply {
-                setSwipeDirection(SwipeDismissBehavior.SWIPE_DIRECTION_ANY)
-            }
-            Snackbar.make(binding.coordinator, R.string.about_donation, Snackbar.LENGTH_INDEFINITE)
-                .setBehavior(behavior)
-                .setAction(R.string.donate_action_text) {
-                    AppUtils.openLink(this, getString(R.string.donate_link))
-                }.show()
-        }
     }
 
     fun refresh() {
