@@ -29,7 +29,7 @@
     <string name="starting_activity_intent">액티비티를 시작하는 중</string>
     <string name="starting_activity_intent_failed">액티비티를 시작하는데 실패했습니다</string>
     <string name="starting_activity_root_error">루트 권한을 사용하여 액티비티를 실행하는데 실패했습니다</string>
-    <string name="starting_activity_root_not_available">루트 권한을 사용할 수 없거나 권한이 부여돼지 않았습니다</string>
+    <string name="starting_activity_root_not_available">Root is not available or the permission is not granted</string>
     <string name="activities_list_empty_text">내보낸 액티비티가 없습니다</string>
     <string name="activities_list_empty_action">내보내지 않은 항목 표시</string>
     <string name="action_about">정보</string>
