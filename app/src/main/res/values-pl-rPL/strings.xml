@@ -29,7 +29,7 @@
     <string name="starting_activity_intent">Uruchamianie aktywności</string>
     <string name="starting_activity_intent_failed">Nie udało się rozpocząć aktywności</string>
     <string name="starting_activity_root_error">Nie udało się uruchomić aktywności przy użyciu roota</string>
-    <string name="starting_activity_root_not_available">Root is not available or the permission is not granted</string>
+    <string name="starting_activity_root_not_available">Root nie jest dostępny lub zezwolenie nie jest przyznane</string>
     <string name="activities_list_empty_text">Nie znaleziono wyeksportowanych aktywności</string>
     <string name="activities_list_empty_action">Pokaż niewyeksportowane</string>
     <string name="action_about">O aplikacji</string>
