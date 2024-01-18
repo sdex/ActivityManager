@@ -29,7 +29,7 @@
     <string name="starting_activity_intent">Запуск</string>
     <string name="starting_activity_intent_failed">Помилка запуску</string>
     <string name="starting_activity_root_error">Помилка запуску</string>
-    <string name="starting_activity_root_not_available">Root is not available or the permission is not granted</string>
+    <string name="starting_activity_root_not_available">Root недоступний або права не надані</string>
     <string name="activities_list_empty_text">Додаток не містить доступних компонентів</string>
     <string name="activities_list_empty_action">Увімкнути показ прихованих компонентів</string>
     <string name="action_about">Про програму</string>
