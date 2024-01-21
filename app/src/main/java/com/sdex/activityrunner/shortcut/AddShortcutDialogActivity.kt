@@ -102,7 +102,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             binding.label.setText(activityModel.label)
             binding.label.text?.let { binding.label.setSelection(it.length) }
             binding.label.setSimpleItems(
-                setOf(activityModel.label, activityModel.name).toTypedArray()
+                setOf(activityModel.label, activityModel.name).filterNotNull().toTypedArray()
             )
         }
 
