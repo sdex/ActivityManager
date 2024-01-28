@@ -119,7 +119,8 @@
     <string name="manifest_viewer_line_numbers">Номери рядків</string>
     <string name="manifest_viewer_search">Пошук</string>
     <string name="manifest_viewer_search_hint">Знайти слово</string>
-    <!-- filter -->
+        <!-- filter -->
+    <string name="filter">Фільтр</string>
     <string name="filter_header_sort_by">Сортувати по</string>
     <string name="filter_sort_by_name">Ім\'я</string>
     <string name="filter_sort_by_update_time">Час оновлення</string>

@@ -113,7 +113,8 @@
     <string name="manifest_viewer_line_numbers">行号</string>
     <string name="manifest_viewer_search">搜索</string>
     <string name="manifest_viewer_search_hint">查找关键字</string>
-    <!-- filter -->
+        <!-- filter -->
+    <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sort by</string>
     <string name="filter_sort_by_name">Name</string>
     <string name="filter_sort_by_update_time">Update time</string>
