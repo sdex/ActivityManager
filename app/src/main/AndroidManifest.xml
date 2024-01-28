@@ -50,7 +50,9 @@
 
         <activity android:name=".manifest.ManifestViewerActivity" />
 
-        <activity android:name=".app.ActivitiesListActivity" />
+        <activity
+            android:name=".app.ActivitiesListActivity"
+            android:exported="true" />
 
         <activity
             android:name=".shortcut.AddShortcutDialogActivity"
