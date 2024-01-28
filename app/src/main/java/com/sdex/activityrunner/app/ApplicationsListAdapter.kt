@@ -16,6 +16,9 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemApplicationBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.util.ApplicationSectionNameProvider
+import com.sdex.activityrunner.util.EmptySectionNameProvider
+import com.sdex.activityrunner.util.SectionNameProvider
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 
 class ApplicationsListAdapter(
@@ -28,7 +31,12 @@ class ApplicationsListAdapter(
 
     private var showSystemAppIndicator: Boolean = appPreferences.isShowSystemAppIndicator
     private var showDisabledAppIndicator: Boolean = appPreferences.isShowDisabledAppIndicator
-
+    private var sectionNameProvider: SectionNameProvider =
+        if (appPreferences.sortBy == ApplicationModel.NAME) {
+            ApplicationSectionNameProvider
+        } else {
+            EmptySectionNameProvider
+        }
     var itemClickListener: ItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
@@ -46,13 +54,16 @@ class ApplicationsListAdapter(
         )
     }
 
-    override fun getSectionName(position: Int): String {
-        val name = getItem(position).name
-        return if (name.isNullOrEmpty()) "" else name.first().uppercaseChar().toString()
-    }
+    override fun getSectionName(position: Int): String =
+        sectionNameProvider.getSectionName(getItem(position))
 
     @SuppressLint("NotifyDataSetChanged")
     fun update() {
+        sectionNameProvider = if (appPreferences.sortBy == ApplicationModel.NAME) {
+            ApplicationSectionNameProvider
+        } else {
+            EmptySectionNameProvider
+        }
         if (appPreferences.isShowSystemAppIndicator != showSystemAppIndicator ||
             appPreferences.isShowDisabledAppIndicator != showDisabledAppIndicator
         ) {
@@ -87,7 +98,7 @@ class ApplicationsListAdapter(
             binding.info.isVisible = showDisabledLabel || showSystemLabel
             binding.system.isVisible = showSystemLabel
             binding.disabled.isVisible = showDisabledLabel
-            
+
             val context = binding.root.context
             binding.version.text = context.getString(
                 R.string.app_version_format,

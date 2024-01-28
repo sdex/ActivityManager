@@ -126,6 +126,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun refresh() {
+        adapter.update()
         viewModel.search(viewModel.searchQuery.value)
     }
 
