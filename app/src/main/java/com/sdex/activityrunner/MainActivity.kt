@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.MenuProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -95,11 +96,16 @@ class MainActivity : BaseActivity() {
         binding.list.adapter = adapter
 
         viewModel.items.observe(this) {
+            val scrollToTop =
+                // scroll to top when the filter dialog is shown
+                supportFragmentManager.findFragmentByTag(FilterBottomSheetDialogFragment.TAG) != null ||
+                    // scroll to top when the list already is at the top to display new items
+                    (binding.list.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() == 0
             adapter.submitList(it) {
                 if (it.isNotEmpty()) {
                     binding.progress.hide()
                 }
-                if (supportFragmentManager.findFragmentByTag(FilterBottomSheetDialogFragment.TAG) != null) {
+                if (scrollToTop) {
                     binding.list.scrollToPosition(0)
                 }
             }
