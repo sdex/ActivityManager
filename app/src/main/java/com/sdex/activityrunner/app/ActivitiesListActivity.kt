@@ -60,10 +60,12 @@ class ActivitiesListActivity : BaseActivity() {
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
         viewModel.getItems(app.packageName).observe(this) {
-            adapter.submitList(it)
             val size = it.size
             setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
             binding.empty.isVisible = (size == 0 && searchText == null)
+            adapter.submitList(it) {
+                binding.list.scrollToPosition(0)
+            }
         }
 
         binding.showNonExported.setOnClickListener {
