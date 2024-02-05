@@ -2,7 +2,11 @@ package com.sdex.activityrunner.intent.converter
 
 import android.content.Intent
 import android.net.Uri
-import com.sdex.activityrunner.intent.*
+import com.sdex.activityrunner.intent.LaunchParams
+import com.sdex.activityrunner.intent.LaunchParamsExtra
+import com.sdex.activityrunner.intent.LaunchParamsExtraType
+import com.sdex.activityrunner.intent.getCategoriesValues
+import com.sdex.activityrunner.intent.getFlagsValues
 import com.sdex.activityrunner.intent.param.Category
 import com.sdex.activityrunner.intent.param.Flag
 import timber.log.Timber

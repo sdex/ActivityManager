@@ -1,7 +1,13 @@
 package com.sdex.activityrunner.db.cache
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.room.Update
 import androidx.sqlite.db.SupportSQLiteQuery
 
 @Dao
@@ -21,6 +27,9 @@ interface ApplicationModelDao {
 
     @Query("SELECT * FROM " + ApplicationModel.TABLE)
     fun getApplicationModels(): List<ApplicationModel>
+
+    @Query("SELECT * FROM " + ApplicationModel.TABLE + " WHERE " + ApplicationModel.PACKAGE_NAME + " = :packageName")
+    fun getApplicationModel(packageName: String): ApplicationModel?
 
     @Query("SELECT COUNT(*) FROM " + ApplicationModel.TABLE)
     fun count(): Int

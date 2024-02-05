@@ -32,6 +32,7 @@
     <string name="starting_activity_root_not_available">Root nie jest dostępny lub zezwolenie nie jest przyznane</string>
     <string name="activities_list_empty_text">Nie znaleziono wyeksportowanych aktywności</string>
     <string name="activities_list_empty_action">Pokaż niewyeksportowane</string>
+    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">O aplikacji</string>
     <string name="action_launch_intent">Launcher intencji</string>
     <string name="action_history">Historia</string>

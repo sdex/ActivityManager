@@ -24,12 +24,16 @@ open class BaseActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun setTitle(title: CharSequence) {
+    override fun setTitle(title: CharSequence?) {
         super.setTitle(title)
         supportActionBar?.title = title
     }
 
-    protected fun setSubtitle(subtitle: CharSequence) {
-        supportActionBar?.subtitle = subtitle
-    }
+    var subTitle: CharSequence?
+        get() {
+            return supportActionBar?.subtitle
+        }
+        set(value) {
+            supportActionBar?.subtitle = value
+        }
 }
