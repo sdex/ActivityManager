@@ -53,10 +53,11 @@ class ApplicationsLoader @Inject constructor(
         } else {
             false
         }
+        val versionName = packageInfo.versionName ?: ""
         val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             packageInfo.longVersionCode
         } else {
-            packageInfo.versionName.toLong()
+            packageInfo.versionCode.toLong()
         }
         val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
         val lastUpdateTime = packageInfo.lastUpdateTime
@@ -69,12 +70,12 @@ class ApplicationsLoader @Inject constructor(
             system = isSystemApp,
             enabled = applicationInfo.enabled,
             versionCode = versionCode,
-            versionName = packageInfo.versionName,
+            versionName = versionName,
             updateTime = lastUpdateTime,
             installTime = installTime,
         )
     } catch (e: Exception) {
-        Timber.e(e)
+        Timber.e(e, "Failed to process: $packageName")
         null
     }
 }
