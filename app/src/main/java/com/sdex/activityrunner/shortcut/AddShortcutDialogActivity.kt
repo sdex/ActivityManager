@@ -107,6 +107,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         }
 
         if (historyModel != null) {
+            binding.label.setText(historyModel.name)
             binding.icon.setImageResource(R.mipmap.ic_launcher)
             binding.valueLayout.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
         }

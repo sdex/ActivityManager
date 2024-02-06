@@ -14,8 +14,10 @@ import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
+import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -113,6 +115,20 @@ class ActivitiesListActivity : BaseActivity() {
                 item.isChecked = !item.isChecked
                 appPreferences.showNotExported = item.isChecked
                 viewModel.reloadItems(appPackageName, item.isChecked)
+                true
+            }
+
+            R.id.create_shortcut -> {
+                val activityPackageName = packageName
+                AddShortcutDialogActivity.start(
+                    this,
+                    HistoryModel().apply {
+                        name = title?.toString()
+                        packageName = activityPackageName
+                        className = ActivitiesListActivity::class.java.name
+                        data = appPackageName
+                    },
+                )
                 true
             }
 
