@@ -32,6 +32,7 @@
     <string name="starting_activity_root_not_available">Root 不可用或未授予权限</string>
     <string name="activities_list_empty_text">没有已导出的 Activity</string>
     <string name="activities_list_empty_action">显示未导出的 Activity</string>
+    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">关于</string>
     <string name="action_launch_intent">Intent 启动器</string>
     <string name="action_history">历史记录</string>
@@ -114,6 +115,7 @@
     <string name="manifest_viewer_search">搜索</string>
     <string name="manifest_viewer_search_hint">查找关键字</string>
     <!-- filter -->
+    <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sort by</string>
     <string name="filter_sort_by_name">Name</string>
     <string name="filter_sort_by_update_time">Update time</string>
