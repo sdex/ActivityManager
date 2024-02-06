@@ -32,6 +32,7 @@
     <string name="starting_activity_root_not_available">Root não está disponível ou a permissão não foi concedida</string>
     <string name="activities_list_empty_text">Existem atividades não exportáveis</string>
     <string name="activities_list_empty_action">Mostrar não exportáveis</string>
+    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">Sobre</string>
     <string name="action_launch_intent">Iniciador de intenção</string>
     <string name="action_history">Histórico</string>
@@ -116,6 +117,7 @@
     <string name="manifest_viewer_search">Buscar</string>
     <string name="manifest_viewer_search_hint">Buscar palavra-chave</string>
     <!-- filter -->
+    <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sort by</string>
     <string name="filter_sort_by_name">Name</string>
     <string name="filter_sort_by_update_time">Update time</string>
