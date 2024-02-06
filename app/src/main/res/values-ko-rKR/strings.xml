@@ -32,6 +32,7 @@
     <string name="starting_activity_root_not_available">루트 권한을 사용할 수 없거나 권한이 부여돼지 않았습니다</string>
     <string name="activities_list_empty_text">내보낸 액티비티가 없습니다</string>
     <string name="activities_list_empty_action">내보내지 않은 항목 표시</string>
+    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">정보</string>
     <string name="action_launch_intent">인텐트 실행기</string>
     <string name="action_history">기록</string>
@@ -114,6 +115,7 @@
     <string name="manifest_viewer_search">Search</string>
     <string name="manifest_viewer_search_hint">Find keyword</string>
     <!-- filter -->
+    <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sort by</string>
     <string name="filter_sort_by_name">Name</string>
     <string name="filter_sort_by_update_time">Update time</string>
