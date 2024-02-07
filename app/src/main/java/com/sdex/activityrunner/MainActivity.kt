@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.behavior.SwipeDismissBehavior
@@ -60,6 +61,7 @@ class MainActivity : BaseActivity() {
                         )
                         true
                     }
+
                     R.id.action_launch_intent -> {
                         IntentBuilderActivity.start(this@MainActivity, null)
                         true
@@ -113,15 +115,8 @@ class MainActivity : BaseActivity() {
 
         binding.progress.show()
 
-        if (appPreferences.appOpenCounter % 10 == 0) {
-            val behavior = BaseTransientBottomBar.Behavior().apply {
-                setSwipeDirection(SwipeDismissBehavior.SWIPE_DIRECTION_ANY)
-            }
-            Snackbar.make(binding.coordinator, R.string.about_donation, Snackbar.LENGTH_INDEFINITE)
-                .setBehavior(behavior)
-                .setAction(R.string.donate_action_text) {
-                    AppUtils.openLink(this, getString(R.string.donate_link))
-                }.show()
+        if (appPreferences.appOpenCounter % 20 == 0) {
+            showDonateSnackbar()
         }
     }
 
@@ -172,6 +167,26 @@ class MainActivity : BaseActivity() {
                 return true
             }
         })
+    }
+
+    private fun showDonateSnackbar() {
+        val behavior = BaseTransientBottomBar.Behavior().apply {
+            setSwipeDirection(SwipeDismissBehavior.SWIPE_DIRECTION_ANY)
+        }
+        Snackbar.make(binding.coordinator, R.string.donate_message, Snackbar.LENGTH_LONG)
+            .setBehavior(behavior)
+            .setBackgroundTint(
+                ContextCompat.getColor(this, R.color.snackbar_background_tint)
+            )
+            .setActionTextColor(
+                ContextCompat.getColor(this, R.color.snackbar_action_text_color)
+            )
+            .setTextColor(
+                ContextCompat.getColor(this, R.color.snackbar_text_color)
+            )
+            .setAction(getString(R.string.donate_action_text).uppercase()) {
+                AppUtils.openLink(this, getString(R.string.donate_link))
+            }.show()
     }
 
     companion object {
