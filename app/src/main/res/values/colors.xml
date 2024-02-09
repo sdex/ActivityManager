@@ -18,10 +18,6 @@
     <color name="scrollbar_background">#28000000</color>
     <color name="scrollbar_inactive_thumb">#79000000</color>
 
-    <color name="snackbar_background_tint">#526070</color>
-    <color name="snackbar_action_text_color">#b8e9ff</color>
-    <color name="snackbar_text_color">#FFFFFF</color>
-
     <color name="fip_inactive_color">#BDBDBD</color>
     <color name="fip_active_color">#000000</color>
     <color name="fip_active_selected">#000000</color>
