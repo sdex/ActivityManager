@@ -58,11 +58,15 @@
     <string name="about_donation">Підтримати розробку</string>
     <string name="about_source_code">Вихідний код</string>
     <string name="about_version">Версія</string>
-    <string name="about_issues_tracker">Зв\'язатися з автором</string>
-    <string name="about_feedback">Повідомити про проблему, задати запитання…</string>
+    <string name="about_bug_tracker">Повідомити про проблему</string>
+    <string name="about_suggest_idea">Запропонувати ідею</string>
+    <string name="about_translation">Допомогти з перекладом</string>
     <string name="about_open_source">Бібліотеки з відкритим кодом</string>
+    <string name="donate_snackbar_text">@string/about_donation</string>
+    <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">Якщо вам подобається програма, будь ласка, розгляньте можливість підтримати розробку.</string>
     <string name="donate_action_text">Підтримати</string>
+    <string name="donate_negative_action_text">Не показувати</string>
     <string name="input_key">Введіть ключ</string>
     <string name="input_value">Введіть значення</string>
     <string name="key">Ключ</string>
