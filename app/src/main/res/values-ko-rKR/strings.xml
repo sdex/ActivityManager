@@ -58,11 +58,15 @@
     <string name="about_donation">개발 지원</string>
     <string name="about_source_code">소스 코드</string>
     <string name="about_version">Version</string>
-    <string name="about_issues_tracker">Issue tracker</string>
-    <string name="about_feedback">Report a problem, aks a question…</string>
+    <string name="about_bug_tracker">Report a problem</string>
+    <string name="about_suggest_idea">Suggest an idea</string>
+    <string name="about_translation">Help with translation</string>
     <string name="about_open_source">Open source libraries</string>
+    <string name="donate_snackbar_text">@string/about_donation</string>
+    <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">If you like the app, please consider making some donation</string>
     <string name="donate_action_text">Donate</string>
+    <string name="donate_negative_action_text">Never ask</string>
     <string name="input_key">Input key</string>
     <string name="input_value">Input value</string>
     <string name="key">Key</string>
