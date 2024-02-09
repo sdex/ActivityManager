@@ -29,19 +29,28 @@ class AboutActivity : BaseActivity() {
 
         binding.versionName.text = getString(
             R.string.app_version_format,
-            packageInfo.versionName, packageInfo.versionCode
+            packageInfo.versionName,
+            PackageInfoProvider.getVersionCode(packageInfo)
         )
 
         binding.donate.setOnClickListener {
             AppUtils.openLink(this, getString(R.string.donate_link))
         }
 
-        binding.sourceCode.setOnClickListener {
-            IntentUtils.openBrowser(this, AppUtils.REPOSITORY)
-        }
-
         binding.issuesTracker.setOnClickListener {
             IntentUtils.openBrowser(this, AppUtils.ISSUES_TRACKER)
+        }
+
+        binding.suggestIdea.setOnClickListener {
+            IntentUtils.openBrowser(this, AppUtils.SUGGESTION_LINK)
+        }
+
+        binding.translate.setOnClickListener {
+            IntentUtils.openBrowser(this, AppUtils.TRANSLATE_LINK)
+        }
+
+        binding.sourceCode.setOnClickListener {
+            IntentUtils.openBrowser(this, AppUtils.REPOSITORY)
         }
 
         binding.openSource.setOnClickListener {

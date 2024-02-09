@@ -22,7 +22,7 @@ class PackageInfoProvider(
     private val packageManager = context.packageManager
 
     fun getApplication(
-        packageName: String
+        packageName: String,
     ): ApplicationModel? = try {
         val packageInfo = getPackageInfo(packageName)
         val name = getApplicationName(packageInfo)
@@ -34,11 +34,7 @@ class PackageInfoProvider(
             false
         }
         val versionName = packageInfo.versionName ?: ""
-        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            packageInfo.longVersionCode
-        } else {
-            packageInfo.versionCode.toLong()
-        }
+        val versionCode = getVersionCode(packageInfo)
         val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
         val lastUpdateTime = packageInfo.lastUpdateTime
         val installTime = packageInfo.firstInstallTime
@@ -72,7 +68,6 @@ class PackageInfoProvider(
         }
     }
 
-    @Suppress("DEPRECATION")
     fun getInstalledPackages(): List<String> {
         val packages = if (isAndroidT()) {
             packageManager.getInstalledPackages(PackageManager.PackageInfoFlags.of(0))
@@ -96,7 +91,6 @@ class PackageInfoProvider(
 
     }
 
-    @Suppress("DEPRECATION")
     fun getPackageInfo(packageName: String): PackageInfo {
         return try {
             if (isAndroidT()) {
@@ -112,7 +106,7 @@ class PackageInfoProvider(
         }
     }
 
-    fun getApplicationName(packageInfo: PackageInfo): String {
+    private fun getApplicationName(packageInfo: PackageInfo): String {
         return if (packageInfo.applicationInfo != null) {
             packageManager.getApplicationLabel(packageInfo.applicationInfo).toString()
         } else {
@@ -124,7 +118,6 @@ class PackageInfoProvider(
         return packageManager.getResourcesForApplication(packageName)
     }
 
-    @Suppress("DEPRECATION")
     private fun getApkPackageInfo(pm: PackageManager, packageName: String): PackageInfo {
         try {
             val info = if (isAndroidT()) {
@@ -161,4 +154,15 @@ class PackageInfoProvider(
         exported,
         enabled,
     )
+
+    companion object {
+
+        @Suppress("DEPRECATION")
+        fun getVersionCode(packageInfo: PackageInfo): Long =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                packageInfo.longVersionCode
+            } else {
+                packageInfo.versionCode.toLong()
+            }
+    }
 }

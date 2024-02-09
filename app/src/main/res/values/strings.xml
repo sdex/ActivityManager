@@ -58,8 +58,9 @@
     <string name="about_donation">Support development</string>
     <string name="about_source_code">Source code</string>
     <string name="about_version">Version</string>
-    <string name="about_issues_tracker">Issue tracker</string>
-    <string name="about_feedback">Report a problem, aks a question…</string>
+    <string name="about_bug_tracker">Report a problem</string>
+    <string name="about_suggest_idea">Suggest an idea</string>
+    <string name="about_translation">Help with translation</string>
     <string name="about_open_source">Open source libraries</string>
     <string name="donate_message">If you like the app, please consider making some donation</string>
     <string name="donate_action_text">Donate</string>
