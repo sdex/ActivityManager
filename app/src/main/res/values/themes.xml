@@ -74,7 +74,7 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_inversePrimary</item>
-        <item name="android:colorBackground">@color/md_theme_background</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
     </style>
 
     <style name="Base.V0.BottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
