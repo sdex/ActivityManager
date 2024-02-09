@@ -58,11 +58,15 @@
     <string name="about_donation">Apoie o desenvolvimento</string>
     <string name="about_source_code">Código fonte</string>
     <string name="about_version">Versão</string>
-    <string name="about_issues_tracker">Rastreador de problemas</string>
-    <string name="about_feedback">Avise sobre problema, envie pergunta…</string>
+    <string name="about_bug_tracker">Avise sobre problema</string>
+    <string name="about_suggest_idea">Suggest an idea</string>
+    <string name="about_translation">Help with translation</string>
     <string name="about_open_source">Bibliotecas de código livre</string>
+    <string name="donate_snackbar_text">@string/about_donation</string>
+    <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">Se você gostou do app, considere fazer uma doação</string>
     <string name="donate_action_text">Doar</string>
+    <string name="donate_negative_action_text">Never ask</string>
     <string name="input_key">Inserção</string>
     <string name="input_value">Valor de entrada</string>
     <string name="key">Tecla</string>
