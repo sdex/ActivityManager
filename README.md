@@ -54,6 +54,7 @@ Or build from the repo directly:
 
 Contributing to the project:
 ----------
+[![Crowdin](https://badges.crowdin.net/activity-manager/localized.svg)](https://crowdin.com/project/activity-manager) \
 [Translate the app on Crowdin](https://crowdin.com/project/activity-manager)
 
 Support development:
@@ -62,5 +63,5 @@ https://sdex.dev/donate/
 
 License:
 ----------
-**Activity Manager** is distributed under the terms of the Apache License (Version 2.0).
+**Activity Manager** is distributed under the terms of the Apache License (Version 2.0). \
 See the [license](LICENSE) for more information.
