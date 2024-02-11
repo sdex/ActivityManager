@@ -50,9 +50,10 @@
 
     <ImageButton
         android:id="@+id/appMenu"
-        android:layout_width="44dp"
+        android:layout_width="?minTouchTargetSize"
         android:layout_height="match_parent"
         android:background="?actionBarItemBackground"
+        android:hapticFeedbackEnabled="true"
         app:srcCompat="@drawable/ic_more_vert"
         app:tint="@color/icon_tint"
         tools:ignore="ContentDescription" />

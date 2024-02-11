@@ -15,4 +15,9 @@
         android:title="@string/activities_list_empty_action"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/create_shortcut"
+        android:title="@string/activity_option_create_shortcut"
+        app:showAsAction="never" />
+
 </menu>

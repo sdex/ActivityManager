@@ -47,8 +47,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
             adapter.submitList(it)
             it?.let {
                 val size = it.size
-                val subtitle = resources.getQuantityString(R.plurals.history_records, size, size)
-                setSubtitle(subtitle)
+                subTitle = resources.getQuantityString(R.plurals.history_records, size, size)
                 binding.empty.isVisible = (size == 0)
             }
         }

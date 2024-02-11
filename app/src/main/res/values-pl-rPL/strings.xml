@@ -124,7 +124,7 @@
     <string name="manifest_viewer_line_numbers">Numery wierszy</string>
     <string name="manifest_viewer_search">Szukaj</string>
     <string name="manifest_viewer_search_hint">Znajdź słowo kluczowe</string>
-    <!-- filter -->
+        <!-- filter -->
     <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sortuj wg</string>
     <string name="filter_sort_by_name">Nazwy</string>

@@ -118,7 +118,7 @@
     <string name="manifest_viewer_line_numbers">Line numbers</string>
     <string name="manifest_viewer_search">Search</string>
     <string name="manifest_viewer_search_hint">Find keyword</string>
-    <!-- filter -->
+        <!-- filter -->
     <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sort by</string>
     <string name="filter_sort_by_name">Name</string>

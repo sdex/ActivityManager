@@ -3,13 +3,16 @@ package com.sdex.activityrunner.util
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Build
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.manifest.ManifestParser
 import net.dongliu.apk.parser.ApkFile
+import timber.log.Timber
 import java.io.File
 
 class PackageInfoProvider(
@@ -17,6 +20,40 @@ class PackageInfoProvider(
 ) {
 
     private val packageManager = context.packageManager
+
+    fun getApplication(
+        packageName: String,
+    ): ApplicationModel? = try {
+        val packageInfo = getPackageInfo(packageName)
+        val name = getApplicationName(packageInfo)
+        val activities = packageInfo.activities ?: emptyArray()
+        val applicationInfo = packageInfo.applicationInfo
+        val isSystemApp = if (applicationInfo != null) {
+            (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+        } else {
+            false
+        }
+        val versionName = packageInfo.versionName ?: ""
+        val versionCode = getVersionCode(packageInfo)
+        val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
+        val lastUpdateTime = packageInfo.lastUpdateTime
+        val installTime = packageInfo.firstInstallTime
+        ApplicationModel(
+            packageName = packageName,
+            name = name,
+            activitiesCount = activities.size,
+            exportedActivitiesCount = exportedActivitiesCount,
+            system = isSystemApp,
+            enabled = applicationInfo.enabled,
+            versionCode = versionCode,
+            versionName = versionName,
+            updateTime = lastUpdateTime,
+            installTime = installTime,
+        )
+    } catch (e: Exception) {
+        Timber.e(e, "Failed to process: $packageName")
+        null
+    }
 
     fun getActivities(packageName: String): List<ActivityModel> {
         val packageInfo = getPackageInfo(packageName)
@@ -31,7 +68,6 @@ class PackageInfoProvider(
         }
     }
 
-    @Suppress("DEPRECATION")
     fun getInstalledPackages(): List<String> {
         val packages = if (isAndroidT()) {
             packageManager.getInstalledPackages(PackageManager.PackageInfoFlags.of(0))
@@ -55,7 +91,6 @@ class PackageInfoProvider(
 
     }
 
-    @Suppress("DEPRECATION")
     fun getPackageInfo(packageName: String): PackageInfo {
         return try {
             if (isAndroidT()) {
@@ -71,7 +106,7 @@ class PackageInfoProvider(
         }
     }
 
-    fun getApplicationName(packageInfo: PackageInfo): String {
+    private fun getApplicationName(packageInfo: PackageInfo): String {
         return if (packageInfo.applicationInfo != null) {
             packageManager.getApplicationLabel(packageInfo.applicationInfo).toString()
         } else {
@@ -83,7 +118,6 @@ class PackageInfoProvider(
         return packageManager.getResourcesForApplication(packageName)
     }
 
-    @Suppress("DEPRECATION")
     private fun getApkPackageInfo(pm: PackageManager, packageName: String): PackageInfo {
         try {
             val info = if (isAndroidT()) {
@@ -120,4 +154,15 @@ class PackageInfoProvider(
         exported,
         enabled,
     )
+
+    companion object {
+
+        @Suppress("DEPRECATION")
+        fun getVersionCode(packageInfo: PackageInfo): Long =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                packageInfo.longVersionCode
+            } else {
+                packageInfo.versionCode.toLong()
+            }
+    }
 }

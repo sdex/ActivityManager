@@ -4,7 +4,7 @@ import androidx.sqlite.db.SupportSQLiteQuery
 import javax.inject.Inject
 
 class CacheRepository @Inject constructor(
-    private val applicationModelDao: ApplicationModelDao
+    private val applicationModelDao: ApplicationModelDao,
 ) {
 
     fun getApplications(query: SupportSQLiteQuery) =
@@ -17,4 +17,6 @@ class CacheRepository @Inject constructor(
     fun update(models: List<ApplicationModel>) = applicationModelDao.update(models)
 
     fun delete(models: List<ApplicationModel>) = applicationModelDao.delete(models)
+
+    fun getApplication(packageName: String) = applicationModelDao.getApplicationModel(packageName)
 }

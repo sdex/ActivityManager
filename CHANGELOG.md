@@ -1,7 +1,17 @@
-## 5.4.7 (15 Jan 2023)
+## 5.4.8 (7 Feb 2024)
+- avoid duplicates in a shortcut name suggestions
+- add filter bottom sheet drag handle
+- scroll the list to the top to display new items
+- scroll the activities list to the top when toggle non-exported activities visibility
+- hide the fast scroll popup when the list is sorted in non-alphabetical order
+- handle the case when an application versionName is null
+- add an option to create an application shortcut
+- update snackbar style
+
+## 5.4.7 (15 Jan 2024)
 - Add a new filter menu with sorting options
 
-## 5.4.6 (6 Jan 2023)
+## 5.4.6 (6 Jan 2024)
 - Display applications version
 
 ## 5.4.5 (2 Oct 2023)

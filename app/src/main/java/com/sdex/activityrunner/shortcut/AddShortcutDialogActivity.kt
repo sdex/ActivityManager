@@ -8,11 +8,11 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.maltaisn.icondialog.IconDialog
 import com.maltaisn.icondialog.IconDialogSettings
@@ -60,6 +61,9 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         binding = ActivityAddShortcutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(this)
+        binding.root.background = materialAlertDialogBuilder.background
+
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
         val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
 
@@ -79,7 +83,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                 .into(object : CustomTarget<Drawable>() {
                     override fun onResourceReady(
                         resource: Drawable,
-                        transition: Transition<in Drawable>?
+                        transition: Transition<in Drawable>?,
                     ) {
                         bitmap = resource.toBitmap()
                         binding.icon.setImageDrawable(resource)
@@ -101,10 +105,13 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             }
             binding.label.setText(activityModel.label)
             binding.label.text?.let { binding.label.setSelection(it.length) }
-            binding.label.setSimpleItems(arrayOf(activityModel.label, activityModel.name))
+            binding.label.setSimpleItems(
+                setOf(activityModel.label, activityModel.name).filterNotNull().toTypedArray()
+            )
         }
 
         if (historyModel != null) {
+            binding.label.setText(historyModel.name)
             binding.icon.setImageResource(R.mipmap.ic_launcher)
             binding.valueLayout.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
         }
@@ -186,7 +193,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         binding.icon.setImageDrawable(resource)
     }
 
-    private fun showIconMenu(it: View?) {
+    private fun showIconMenu(it: View) {
         val popupMenu = PopupMenu(this, it)
         popupMenu.inflate(R.menu.shortcut_icon)
         popupMenu.setOnMenuItemClickListener { menuItem ->

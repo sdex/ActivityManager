@@ -32,6 +32,7 @@
     <string name="starting_activity_root_not_available">Root is not available or the permission is not granted</string>
     <string name="activities_list_empty_text">There are no exported activities</string>
     <string name="activities_list_empty_action">Show non-exported</string>
+    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">About</string>
     <string name="action_launch_intent">Intent launcher</string>
     <string name="action_history">History</string>
@@ -57,11 +58,15 @@
     <string name="about_donation">Support development</string>
     <string name="about_source_code">Source code</string>
     <string name="about_version">Version</string>
-    <string name="about_issues_tracker">Issue tracker</string>
-    <string name="about_feedback">Report a problem, aks a question…</string>
+    <string name="about_bug_tracker">Report a problem</string>
+    <string name="about_suggest_idea">Suggest an idea</string>
+    <string name="about_translation">Help with translation</string>
     <string name="about_open_source">Open source libraries</string>
-    <string name="donate_message">If you like the app, please consider making some donation</string>
+    <string name="donate_snackbar_text">@string/about_donation</string>
+    <string name="donate_snackbar_action_text">@string/donate_action_text</string>
+    <string name="donate_message">If you are using Activity Manager and have enjoyed it, then this is a very powerful way to say thank you! By donating, you are helping make this tool, that already helps you, sustainable and healthy.</string>
     <string name="donate_action_text">Donate</string>
+    <string name="donate_negative_action_text">Never ask</string>
     <string name="input_key">Input key</string>
     <string name="input_value">Input value</string>
     <string name="key">Key</string>
@@ -115,7 +120,8 @@
     <string name="manifest_viewer_line_numbers">Line numbers</string>
     <string name="manifest_viewer_search">Search</string>
     <string name="manifest_viewer_search_hint">Find keyword</string>
-    <!-- filter -->
+        <!-- filter -->
+    <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sort by</string>
     <string name="filter_sort_by_name">Name</string>
     <string name="filter_sort_by_update_time">Update time</string>

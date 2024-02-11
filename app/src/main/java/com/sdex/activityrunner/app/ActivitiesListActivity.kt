@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -13,8 +14,10 @@ import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
+import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -26,24 +29,25 @@ class ActivitiesListActivity : BaseActivity() {
     lateinit var appPreferences: AppPreferences
     private val viewModel by viewModels<ActivitiesListViewModel>()
     private lateinit var binding: ActivityActivitiesListBinding
-    private lateinit var app: ApplicationModel
+    private lateinit var appPackageName: String
 
     private var searchText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val item = intent.serializable<ApplicationModel>(ARG_APPLICATION)
-        if (item == null) {
+        if (item == null && intent.data == null) {
             finish()
             return
         }
-        app = item
+        title = item?.name
+        appPackageName = item?.packageName ?: intent.data.toString()
         binding = ActivityActivitiesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
-        title = app.name
 
-        val adapter = ActivitiesListAdapter(this, app).apply {
+        val adapter = ActivitiesListAdapter(this).apply {
+            application = item
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
                     launchActivity(item)
@@ -59,15 +63,28 @@ class ActivitiesListActivity : BaseActivity() {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-        viewModel.getItems(app.packageName).observe(this) {
-            adapter.submitList(it)
-            val size = it.size
-            setSubtitle(resources.getQuantityString(R.plurals.activities_count, size, size))
+        viewModel.getItems(appPackageName, item).observe(this) { uiData ->
+            if (uiData.application == null) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.activities_list_failed_loading, appPackageName),
+                    Toast.LENGTH_LONG
+                ).show()
+                finish()
+                return@observe
+            }
+            val size = uiData.activities.size
+            title = uiData.application.name
+            subTitle = resources.getQuantityString(R.plurals.activities_count, size, size)
             binding.empty.isVisible = (size == 0 && searchText == null)
+            adapter.application = uiData.application
+            adapter.submitList(uiData.activities) {
+                binding.list.scrollToPosition(0)
+            }
         }
 
         binding.showNonExported.setOnClickListener {
-            viewModel.reloadItems(app.packageName, true)
+            viewModel.reloadItems(appPackageName, true)
         }
 
         if (!appPreferences.showNotExported
@@ -97,7 +114,21 @@ class ActivitiesListActivity : BaseActivity() {
             R.id.show_not_exported -> {
                 item.isChecked = !item.isChecked
                 appPreferences.showNotExported = item.isChecked
-                viewModel.reloadItems(app.packageName, item.isChecked)
+                viewModel.reloadItems(appPackageName, item.isChecked)
+                true
+            }
+
+            R.id.create_shortcut -> {
+                val activityPackageName = packageName
+                AddShortcutDialogActivity.start(
+                    this,
+                    HistoryModel().apply {
+                        name = title?.toString()
+                        packageName = activityPackageName
+                        className = ActivitiesListActivity::class.java.name
+                        data = appPackageName
+                    },
+                )
                 true
             }
 

@@ -120,7 +120,7 @@
     <string name="manifest_viewer_line_numbers">Números de línea</string>
     <string name="manifest_viewer_search">Buscar</string>
     <string name="manifest_viewer_search_hint">Buscar palabra clave</string>
-    <!-- filter -->
+        <!-- filter -->
     <string name="filter">Filter</string>
     <string name="filter_header_sort_by">Sort by</string>
     <string name="filter_sort_by_name">Name</string>

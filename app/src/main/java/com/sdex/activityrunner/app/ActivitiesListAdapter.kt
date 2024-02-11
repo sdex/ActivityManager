@@ -20,7 +20,6 @@ import com.sdex.activityrunner.extensions.resolveColorAttr
 
 class ActivitiesListAdapter(
     activity: FragmentActivity,
-    private val application: ApplicationModel,
 ) : ListAdapter<ActivityModel, ActivitiesListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     private val glide = Glide.with(activity)
@@ -29,6 +28,7 @@ class ActivitiesListAdapter(
     @ColorInt
     private val notExportedColor = ContextCompat.getColor(activity, R.color.red)
 
+    var application: ApplicationModel? = null
     var itemClickListener: ItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -59,7 +59,7 @@ class ActivitiesListAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            application: ApplicationModel,
+            application: ApplicationModel?,
             item: ActivityModel,
             glide: RequestManager,
             @ColorInt exportedColor: Int,
@@ -71,7 +71,7 @@ class ActivitiesListAdapter(
             binding.packageName.text = item.componentName.shortClassName
             binding.label.text = item.label
             binding.label.isVisible = !item.label.isNullOrBlank() &&
-                item.label != application.name && item.label != item.name
+                item.label != application?.name && item.label != item.name
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
                 .transition(DrawableTransitionOptions.withCrossFade())

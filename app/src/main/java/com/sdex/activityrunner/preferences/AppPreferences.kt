@@ -17,6 +17,11 @@ class AppPreferences(context: Context) {
         set(value) = preferences.edit {
             putBoolean(KEY_NOT_EXPORTED_DIALOG_SHOWN, value)
         }
+    var showDonate: Boolean
+        get() = preferences.getBoolean(KEY_SHOW_DONATE, true)
+        set(value) = preferences.edit {
+            putBoolean(KEY_SHOW_DONATE, value)
+        }
     val appOpenCounter: Int
         get() = preferences.getInt(KEY_OPEN_APP_COUNTER, 0)
 
@@ -99,6 +104,7 @@ class AppPreferences(context: Context) {
 
         private const val PREFERENCES_NAME = "ads_preferences"
         private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"
+        private const val KEY_SHOW_DONATE = "show_donate"
         private const val KEY_OPEN_APP_COUNTER = "open_app_counter"
         private const val KEY_SHOW_LINE_NUMBERS = "show_line_numbers"
 
