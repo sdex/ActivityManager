@@ -32,7 +32,7 @@
     <string name="starting_activity_root_not_available">Root nie jest dostępny lub zezwolenie nie jest przyznane</string>
     <string name="activities_list_empty_text">Nie znaleziono wyeksportowanych aktywności</string>
     <string name="activities_list_empty_action">Pokaż niewyeksportowane</string>
-    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
+    <string name="activities_list_failed_loading">Nie udało się otworzyć \"%1$s\"</string>
     <string name="action_about">O aplikacji</string>
     <string name="action_launch_intent">Launcher intencji</string>
     <string name="action_history">Historia</string>
@@ -59,14 +59,14 @@
     <string name="about_source_code">Kod źródłowy</string>
     <string name="about_version">Wersja</string>
     <string name="about_bug_tracker">Zgłoś problem</string>
-    <string name="about_suggest_idea">Suggest an idea</string>
-    <string name="about_translation">Help with translation</string>
+    <string name="about_suggest_idea">Zaproponuj pomysł</string>
+    <string name="about_translation">Pomóż w tłumaczeniu</string>
     <string name="about_open_source">Biblioteki o otwartym kodzie źródłowym</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">Jeśli podoba ci się aplikacja, rozważ przekazanie darowizny</string>
     <string name="donate_action_text">Przekaż darowiznę</string>
-    <string name="donate_negative_action_text">Never ask</string>
+    <string name="donate_negative_action_text">Nigdy nie pytaj</string>
     <string name="input_key">Klucz wejściowy</string>
     <string name="input_value">Wartość wejściowa</string>
     <string name="key">Klucz</string>
@@ -124,8 +124,8 @@
     <string name="manifest_viewer_line_numbers">Numery wierszy</string>
     <string name="manifest_viewer_search">Szukaj</string>
     <string name="manifest_viewer_search_hint">Znajdź słowo kluczowe</string>
-        <!-- filter -->
-    <string name="filter">Filter</string>
+    <!-- filter -->
+    <string name="filter">Filtr</string>
     <string name="filter_header_sort_by">Sortuj wg</string>
     <string name="filter_sort_by_name">Nazwy</string>
     <string name="filter_sort_by_update_time">Czasu aktualizacji</string>
