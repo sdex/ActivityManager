@@ -1,3 +1,8 @@
+## 5.4.9 (14 Feb 2024)
+- update shortcut activity to match the app's style
+- add more links to about screen
+- update translations
+
 ## 5.4.8 (7 Feb 2024)
 - avoid duplicates in a shortcut name suggestions
 - add filter bottom sheet drag handle

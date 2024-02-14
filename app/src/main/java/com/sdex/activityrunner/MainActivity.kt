@@ -114,7 +114,7 @@ class MainActivity : BaseActivity() {
 
         binding.progress.show()
 
-        if (appPreferences.showDonate && appPreferences.appOpenCounter > 5) {
+        if (appPreferences.showDonate && appPreferences.appOpenCounter > 10) {
             showDonateSnackbar()
         }
     }

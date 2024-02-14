@@ -15,8 +15,8 @@ android {
         applicationId = "com.activitymanager"
         minSdk = 21
         targetSdk = 34
-        versionCode = 548
-        versionName = "5.4.8"
+        versionCode = 549
+        versionName = "5.4.9"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -63,9 +63,7 @@ android {
     }
 
     buildFeatures {
-        buildConfig = false
         viewBinding = true
-        dataBinding = false
     }
 
     sourceSets {
