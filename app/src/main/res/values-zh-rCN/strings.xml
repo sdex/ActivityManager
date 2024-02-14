@@ -4,35 +4,35 @@
     <string name="settings_activity">设置</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">使用参数启动 Activity</string>
-    <string name="activity_option_launch_root">使用 ROOT 启动 Activity</string>
+    <string name="activity_option_launch_root">使用 Root 启动 Activity</string>
     <string name="activity_option_create_shortcut">创建快捷方式</string>
     <!-- application options -->
     <string name="application_option_open">启动应用程序</string>
     <string name="application_option_open_manifest">打开清单查看器</string>
     <string name="application_option_open_info">打开应用信息</string>
-    <string name="application_option_action_launch">在 GooglePlay 中打开</string>
+    <string name="application_option_action_launch">在 Google Play 中打开</string>
     <string name="application_disabled">已停用</string>
     <string name="application_system">系统</string>
     <!-- create shortcut -->
     <string name="shortcut_name">标签</string>
     <string name="shortcut_name_empty">标签不能为空</string>
     <string name="shortcut_create">创建</string>
-    <string name="shortcut_set_icon_tooltip">点击以更改图标</string>
+    <string name="shortcut_set_icon_tooltip">点击更改图标</string>
     <string name="icons_loading_error">加载图标失败</string>
     <string name="shortcut_icon_gallery">从图库中选取</string>
     <string name="shortcut_icon_preset">选择图标</string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
-    <string name="starting_activity_failed">启动活动 Activity：%s</string>
+    <string name="starting_activity_failed">启动 Activity 失败：%s</string>
     <string name="starting_activity_launch_intent_failed">找不到启动的 Activity</string>
     <string name="starting_activity_failed_security">您没有权限运行此 Activity：%s</string>
     <string name="starting_activity_intent">正在启动 Activity</string>
     <string name="starting_activity_intent_failed">启动 Activity 失败</string>
-    <string name="starting_activity_root_error">无法使用 root 权限启动 Activity</string>
+    <string name="starting_activity_root_error">无法使用 Root 权限启动 Activity</string>
     <string name="starting_activity_root_not_available">Root 不可用或未授予权限</string>
     <string name="activities_list_empty_text">没有已导出的 Activity</string>
     <string name="activities_list_empty_action">显示未导出的 Activity</string>
-    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
+    <string name="activities_list_failed_loading">打开“%1$s”失败</string>
     <string name="action_about">关于</string>
     <string name="action_launch_intent">Intent 启动器</string>
     <string name="action_history">历史记录</string>
@@ -52,21 +52,21 @@
     <string name="launch_param_categories">类别（Categories）</string>
     <string name="launch_param_flags">标志（Flags）</string>
     <string name="save_to_history">保存到历史记录</string>
-    <string name="item_history_has_extras">附加</string>
+    <string name="item_history_has_extras">附加（Extras）</string>
     <string name="item_history_has_categories">类别</string>
     <string name="item_history_has_flags">标志</string>
     <string name="about_donation">支持开发</string>
     <string name="about_source_code">源代码</string>
     <string name="about_version">版本</string>
-    <string name="about_bug_tracker">Report a problem</string>
-    <string name="about_suggest_idea">Suggest an idea</string>
-    <string name="about_translation">Help with translation</string>
+    <string name="about_bug_tracker">报告问题</string>
+    <string name="about_suggest_idea">提供建议</string>
+    <string name="about_translation">帮助翻译</string>
     <string name="about_open_source">开源许可证</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">如果您喜欢这个应用，捐赠我们吧</string>
     <string name="donate_action_text">捐赠</string>
-    <string name="donate_negative_action_text">Never ask</string>
+    <string name="donate_negative_action_text">不再询问</string>
     <string name="input_key">输入键</string>
     <string name="input_value">输入值</string>
     <string name="key">键</string>
@@ -74,7 +74,7 @@
     <string name="type_array">数组</string>
     <!-- history -->
     <string name="history_empty_text">这里什么都没有</string>
-    <string name="history_empty_action">运行 Intents</string>
+    <string name="history_empty_action">运行 Intent</string>
     <string name="history_dialog_clear_title">清除历史记录</string>
     <string name="history_dialog_clear_message">您确定吗？</string>
     <string name="history_item_dialog_title">Intent</string>
@@ -83,13 +83,13 @@
     <string name="history_item_dialog_export_uri">导出为 URI</string>
     <string name="no">否</string>
     <string name="yes">是</string>
-    <string name="dialog_add_extra_title">添加选项</string>
+    <string name="dialog_add_extra_title">添加 Extra</string>
     <string name="dialog_add_extra_key_empty">键不能为空</string>
     <string name="dialog_add_extra_value_empty">值不能为空</string>
     <string name="dialog_add_extra_type_incorrect">类型错误</string>
     <string name="dialog_export_intent_copy">复制</string>
-    <string name="dialog_enable_non_exported_title">未导出的 Activities</string>
-    <string name="dialog_enable_non_exported_message">您可以启用显示非导出的 Activities，它们将用红色高亮显示。这类活动只能通过 ROOT 权限运行</string>
+    <string name="dialog_enable_non_exported_title">未导出的 Activity</string>
+    <string name="dialog_enable_non_exported_message">您可以启用显示非导出的 Activity，它们将用红色高亮显示。这类 Activity 只能通过 Root 权限运行</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">实例化 WebView 失败，请稍后再试</string>
     <string name="error_failed_to_open_manifest">打开 AndroidManifest.xml 失败</string>
@@ -99,7 +99,7 @@
     <string name="pref_header_appearance">外观</string>
     <string name="pref_appearance_theme_title">主题</string>
     <string name="pref_header_advanced">高级</string>
-    <string name="pref_advanced_not_exported_title">显示未导出的 Activities</string>
+    <string name="pref_advanced_not_exported_title">显示未导出的 Activity</string>
     <string name="pref_advanced_not_exported_summary">只能使用 Root 运行</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>跟随系统</item>
@@ -110,7 +110,7 @@
         <item quantity="other">%d 条记录</item>
     </plurals>
     <plurals name="activities_count">
-        <item quantity="other">%d 个 Activities</item>
+        <item quantity="other">%d 个 Activity</item>
     </plurals>
     <!-- manifest viewer -->
     <string name="manifest_viewer_export">导出</string>
@@ -118,16 +118,16 @@
     <string name="manifest_viewer_line_numbers">行号</string>
     <string name="manifest_viewer_search">搜索</string>
     <string name="manifest_viewer_search_hint">查找关键字</string>
-        <!-- filter -->
-    <string name="filter">Filter</string>
-    <string name="filter_header_sort_by">Sort by</string>
-    <string name="filter_sort_by_name">Name</string>
-    <string name="filter_sort_by_update_time">Update time</string>
-    <string name="filter_sort_by_install_time">Install time</string>
-    <string name="filter_sort_order_asc">Ascending</string>
-    <string name="filter_sort_order_desc">Descending</string>
-    <string name="filter_system_apps_title">System applications</string>
-    <string name="filter_disabled_apps_title">Disabled applications</string>
-    <string name="filter_toggle_show">Show</string>
-    <string name="filter_toggle_label">Label</string>
+    <!-- filter -->
+    <string name="filter">筛选</string>
+    <string name="filter_header_sort_by">排序方式</string>
+    <string name="filter_sort_by_name">应用名称</string>
+    <string name="filter_sort_by_update_time">更新时间</string>
+    <string name="filter_sort_by_install_time">安装时间</string>
+    <string name="filter_sort_order_asc">升序</string>
+    <string name="filter_sort_order_desc">降序</string>
+    <string name="filter_system_apps_title">系统应用</string>
+    <string name="filter_disabled_apps_title">已禁用的应用</string>
+    <string name="filter_toggle_show">显示</string>
+    <string name="filter_toggle_label">标注</string>
 </resources>
