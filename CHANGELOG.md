@@ -1,3 +1,6 @@
+## 5.4.10 (19 Feb 2024)
+- update translations
+
 ## 5.4.9 (14 Feb 2024)
 - update shortcut activity to match the app's style
 - add more links to about screen
