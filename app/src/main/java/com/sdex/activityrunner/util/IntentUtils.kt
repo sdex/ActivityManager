@@ -11,7 +11,6 @@ import android.net.Uri
 import android.provider.Settings
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
@@ -180,10 +179,9 @@ object IntentUtils {
 
     fun openBrowser(context: Context, url: String) {
         try {
-            val builder = CustomTabsIntent.Builder()
-            builder.setToolbarColor(ContextCompat.getColor(context, R.color.blue_dark))
-            builder.setShowTitle(true)
-            val customTabsIntent = builder.build()
+            val customTabsIntent = CustomTabsIntent.Builder()
+                .setShowTitle(true)
+                .build()
             customTabsIntent.launchUrl(context, Uri.parse(url))
         } catch (e: Exception) {
             AppUtils.openLink(context, url)
