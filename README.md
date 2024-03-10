@@ -2,17 +2,17 @@
 
 Discover activities of installed applications, run them, and create shortcuts
 
-Features:
+Features
 ----------
 * Launch exported activities
 * Launch non-exported activities with ROOT
 * Create custom shortcuts for activities
-* Set any shortcut icon from the storage or use from built-in Material icons
+* Set any shortcut icon from the storage or use built-in Material icons
 * Create and start any custom intents using Intent Builder
 * Explore an app details with Manifest Viewer
 * Light/Dark theme support
 
-Screenshots:
+Screenshots
 ----------
 <div style="display:flex;">
     <img
@@ -35,9 +35,9 @@ Screenshots:
         alt="Screenshot" width="30%" />
 </div>
 
-Installing:
+Installing
 ----------
-Pre-compiled binaries are available as [releases assets](https://github.com/sdex/ActivityManager/releases).
+Pre-compiled binaries are available as [release assets](https://github.com/sdex/ActivityManager/releases).
 
 Also available on F-droid:
 <div style="display:flex;">
@@ -52,16 +52,16 @@ Or build from the repo directly:
 ./gradlew assemble
 ```
 
-Contributing to the project:
+Contributing to the project
 ----------
 [![Crowdin](https://badges.crowdin.net/activity-manager/localized.svg)](https://crowdin.com/project/activity-manager) \
 [Translate the app on Crowdin](https://crowdin.com/project/activity-manager)
 
-Support development:
+Support development
 ----------
 https://sdex.dev/donate/
 
-License:
+License
 ----------
 **Activity Manager** is distributed under the terms of the Apache License (Version 2.0). \
 See the [license](LICENSE) for more information.
