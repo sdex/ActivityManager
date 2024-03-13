@@ -47,7 +47,8 @@ Also available on F-droid:
     </a>
 </div>
 
-Or build from the repo directly:
+Or build from the repo directly. \
+NOTE: Android SDK should be added to PATH environment variable for this to work.
 ```
 ./gradlew assemble
 ```
