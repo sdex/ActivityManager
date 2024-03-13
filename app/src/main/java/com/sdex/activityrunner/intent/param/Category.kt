@@ -36,9 +36,7 @@ object Category {
             put("CATEGORY_INFO", Intent.CATEGORY_INFO)
             put("CATEGORY_LAUNCHER", Intent.CATEGORY_LAUNCHER)
             put("CATEGORY_LE_DESK_DOCK", Intent.CATEGORY_LE_DESK_DOCK)
-            if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-                put("CATEGORY_LEANBACK_LAUNCHER", Intent.CATEGORY_LEANBACK_LAUNCHER)
-            }
+            put("CATEGORY_LEANBACK_LAUNCHER", Intent.CATEGORY_LEANBACK_LAUNCHER)
             put("CATEGORY_MONKEY", Intent.CATEGORY_MONKEY)
             put("CATEGORY_OPENABLE", Intent.CATEGORY_OPENABLE)
             put("CATEGORY_PREFERENCE", Intent.CATEGORY_PREFERENCE)

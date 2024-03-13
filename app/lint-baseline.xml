@@ -1,64 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 7.4.2" type="baseline" client="gradle" dependencies="false" name="AGP (7.4.2)" variant="all" version="7.4.2">
-
-    <issue
-        id="NotificationPermission"
-        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission (usage from com.bumptech.glide.request.target.NotificationTarget)">
-        <location
-            file="src/main/AndroidManifest.xml"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.activity:activity-ktx than 1.7.0-rc01 is available: 1.8.0-alpha02"
-        errorLine1="    implementation &quot;androidx.activity:activity-ktx:1.7.0-rc01&quot;"
-        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="build.gradle"
-            line="83"
-            column="20"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        message="A newer version of androidx.core:core-ktx than 1.10.0-rc01 is available: 1.12.0-alpha01"
-        errorLine1="    implementation &quot;androidx.core:core-ktx:1.10.0-rc01&quot;"
-        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="build.gradle"
-            line="87"
-            column="20"/>
-    </issue>
-
-    <issue
-        id="DiscouragedApi"
-        message="Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. `R.foo.bar`) than by name (e.g. `getIdentifier(&quot;bar&quot;, &quot;foo&quot;, null)`)."
-        errorLine1="        final int resourceId = resources.getIdentifier(name, &quot;drawable&quot;,"
-        errorLine2="                                         ~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/com/sdex/activityrunner/util/UIUtils.java"
-            line="18"
-            column="42"/>
-    </issue>
+<issues format="6" by="lint 8.3.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.3.0)" variant="all" version="8.3.0">
 
     <issue
         id="MissingQuantity"
-        message="For locale &quot;fr&quot; (French) the following quantity should also be defined: `many` (e.g. &quot;1000000 de jours&quot;)"
+        message="For locale &quot;es&quot; (Spanish) the following quantity should also be defined: `many`"
         errorLine1="    &lt;plurals name=&quot;history_records&quot;>"
         errorLine2="    ^">
         <location
-            file="src/main/res/values-fr-rFR/strings.xml"
+            file="src/main/res/values-es-rES/strings.xml"
             line="109"
             column="5"/>
     </issue>
 
     <issue
         id="MissingQuantity"
-        message="For locale &quot;fr&quot; (French) the following quantity should also be defined: `many` (e.g. &quot;1000000 de jours&quot;)"
+        message="For locale &quot;pt&quot; (Portuguese) the following quantity should also be defined: `many`"
+        errorLine1="    &lt;plurals name=&quot;history_records&quot;>"
+        errorLine2="    ^">
+        <location
+            file="src/main/res/values-pt-rBR/strings.xml"
+            line="109"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="MissingQuantity"
+        message="For locale &quot;es&quot; (Spanish) the following quantity should also be defined: `many`"
         errorLine1="    &lt;plurals name=&quot;activities_count&quot;>"
         errorLine2="    ^">
         <location
-            file="src/main/res/values-fr-rFR/strings.xml"
+            file="src/main/res/values-es-rES/strings.xml"
+            line="113"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="MissingQuantity"
+        message="For locale &quot;pt&quot; (Portuguese) the following quantity should also be defined: `many`"
+        errorLine1="    &lt;plurals name=&quot;activities_count&quot;>"
+        errorLine2="    ^">
+        <location
+            file="src/main/res/values-pt-rBR/strings.xml"
             line="113"
             column="5"/>
     </issue>
@@ -70,7 +52,7 @@
         errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/AndroidManifest.xml"
-            line="14"
+            line="16"
             column="36"/>
     </issue>
 
@@ -81,7 +63,7 @@
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/com/sdex/activityrunner/intent/IntentBuilderActivity.kt"
-            line="78"
+            line="83"
             column="17"/>
     </issue>
 
@@ -109,12 +91,23 @@
 
     <issue
         id="VectorPath"
+        message="Very long vector path (895 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
+        errorLine1="      android:pathData=&quot;M480,760Q546,760 593,713Q640,666 640,600L640,440Q640,374 593,327Q546,280 480,280Q414,280 367,327Q320,374 320,440L320,600Q320,666 367,713Q414,760 480,760ZM400,640L560,640L560,560L400,560L400,640ZM400,480L560,480L560,400L400,400L400,480ZM480,520Q480,520 480,520Q480,520 480,520L480,520Q480,520 480,520Q480,520 480,520Q480,520 480,520Q480,520 480,520L480,520Q480,520 480,520Q480,520 480,520ZM480,840Q415,840 359.5,808Q304,776 272,720L160,720L160,640L244,640Q241,620 240.5,600Q240,580 240,560L160,560L160,480L240,480Q240,460 240.5,440Q241,420 244,400L160,400L160,320L272,320Q286,297 303.5,277Q321,257 344,242L280,176L336,120L422,206Q450,197 479,197Q508,197 536,206L624,120L680,176L614,242Q637,257 655.5,276.5Q674,296 688,320L800,320L800,400L716,400Q719,420 719.5,440Q720,460 720,480L800,480L800,560L720,560Q720,580 719.5,600Q719,620 716,640L800,640L800,720L688,720Q656,776 600.5,808Q545,840 480,840Z&quot;/>"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/drawable/ic_bug_report.xml"
+            line="9"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
         message="Very long vector path (871 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
         errorLine1="        android:pathData=&quot;M19.43,12.98c0.04,-0.32 0.07,-0.64 0.07,-0.98s-0.03,-0.66 -0.07,-0.98l2.11,-1.65c0.19,-0.15 0.24,-0.42 0.12,-0.64l-2,-3.46c-0.12,-0.22 -0.39,-0.3 -0.61,-0.22l-2.49,1c-0.52,-0.4 -1.08,-0.73 -1.69,-0.98l-0.38,-2.65C14.46,2.18 14.25,2 14,2h-4c-0.25,0 -0.46,0.18 -0.49,0.42l-0.38,2.65c-0.61,0.25 -1.17,0.59 -1.69,0.98l-2.49,-1c-0.23,-0.09 -0.49,0 -0.61,0.22l-2,3.46c-0.13,0.22 -0.07,0.49 0.12,0.64l2.11,1.65c-0.04,0.32 -0.07,0.65 -0.07,0.98s0.03,0.66 0.07,0.98l-2.11,1.65c-0.19,0.15 -0.24,0.42 -0.12,0.64l2,3.46c0.12,0.22 0.39,0.3 0.61,0.22l2.49,-1c0.52,0.4 1.08,0.73 1.69,0.98l0.38,2.65c0.03,0.24 0.24,0.42 0.49,0.42h4c0.25,0 0.46,-0.18 0.49,-0.42l0.38,-2.65c0.61,-0.25 1.17,-0.59 1.69,-0.98l2.49,1c0.23,0.09 0.49,0 0.61,-0.22l2,-3.46c0.12,-0.22 0.07,-0.49 -0.12,-0.64l-2.11,-1.65zM12,15.5c-1.93,0 -3.5,-1.57 -3.5,-3.5s1.57,-3.5 3.5,-3.5 3.5,1.57 3.5,3.5 -1.57,3.5 -3.5,3.5z&quot; />"
         errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/drawable/ic_settings.xml"
-            line="8"
+            line="9"
             column="27"/>
     </issue>
 
@@ -186,9 +179,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.color.grey_very_light` appears to be unused"
-        errorLine1="    &lt;color name=&quot;grey_very_light&quot;>#eeeeee&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
+        message="The resource `R.color.blue` appears to be unused"
+        errorLine1="    &lt;color name=&quot;blue&quot;>#0079bf&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
             line="8"
@@ -197,9 +190,9 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.color.blue` appears to be unused"
-        errorLine1="    &lt;color name=&quot;blue&quot;>#0079bf&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~">
+        message="The resource `R.color.blue_dark` appears to be unused"
+        errorLine1="    &lt;color name=&quot;blue_dark&quot;>#026aa7&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
             line="9"
@@ -213,7 +206,40 @@
         errorLine2="           ~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="13"
+            line="12"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.fip_inactive_color` appears to be unused"
+        errorLine1="    &lt;color name=&quot;fip_inactive_color&quot;>#BDBDBD&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="21"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.fip_active_color` appears to be unused"
+        errorLine1="    &lt;color name=&quot;fip_active_color&quot;>#000000&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="22"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.fip_active_selected` appears to be unused"
+        errorLine1="    &lt;color name=&quot;fip_active_selected&quot;>#000000&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="23"
             column="12"/>
     </issue>
 
@@ -224,7 +250,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="50"
+            line="51"
             column="12"/>
     </issue>
 
@@ -235,7 +261,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="51"
+            line="52"
             column="12"/>
     </issue>
 
@@ -246,19 +272,8 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="52"
+            line="53"
             column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.drawable.ic_import_export` appears to be unused"
-        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^">
-        <location
-            file="src/main/res/drawable/ic_import_export.xml"
-            line="1"
-            column="1"/>
     </issue>
 
     <issue
@@ -297,7 +312,7 @@
         errorLine2="     ~~~~~~~~~">
         <location
             file="src/main/res/layout/activity_add_shortcut.xml"
-            line="74"
+            line="84"
             column="6"/>
     </issue>
 
@@ -308,7 +323,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_activity_menu.xml"
-            line="36"
+            line="34"
             column="10"/>
     </issue>
 
@@ -319,7 +334,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_activity_menu.xml"
-            line="56"
+            line="55"
             column="10"/>
     </issue>
 

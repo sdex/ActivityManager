@@ -17,9 +17,7 @@ object Action {
                 put("ACTION_APPLICATION_PREFERENCES", Intent.ACTION_APPLICATION_PREFERENCES)
             }
             //      put("ACTION_APPLICATION_RESTRICTIONS_CHANGED", Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED);
-            if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-                put("ACTION_ASSIST", Intent.ACTION_ASSIST)
-            }
+            put("ACTION_ASSIST", Intent.ACTION_ASSIST)
             put("ACTION_ATTACH_DATA", Intent.ACTION_ATTACH_DATA)
             //      put("ACTION_BATTERY_CHANGED", Intent.ACTION_BATTERY_CHANGED);
             //      put("ACTION_BATTERY_LOW", Intent.ACTION_BATTERY_LOW);
@@ -35,9 +33,7 @@ object Action {
             put("ACTION_CHOOSER", Intent.ACTION_CHOOSER)
             //      put("ACTION_CLOSE_SYSTEM_DIALOGS", Intent.ACTION_CLOSE_SYSTEM_DIALOGS); // Broadcast Action
             //      put("ACTION_CONFIGURATION_CHANGED", Intent.ACTION_CONFIGURATION_CHANGED);
-            if (VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
-                put("ACTION_CREATE_DOCUMENT", Intent.ACTION_CREATE_DOCUMENT)
-            }
+            put("ACTION_CREATE_DOCUMENT", Intent.ACTION_CREATE_DOCUMENT)
             put("ACTION_CREATE_SHORTCUT", Intent.ACTION_CREATE_SHORTCUT)
             //      put("ACTION_DATE_CHANGED", Intent.ACTION_DATE_CHANGED); // Broadcast Action
             //      put("ACTION_DEFAULT", Intent.ACTION_DEFAULT); // ACTION_VIEW the same
@@ -103,12 +99,8 @@ object Action {
             //      put("ACTION_MY_PACKAGE_REPLACED", Intent.ACTION_MY_PACKAGE_REPLACED);
             //      put("ACTION_NEW_OUTGOING_CALL", Intent.ACTION_NEW_OUTGOING_CALL);
             // END  // Broadcast Action
-            if (VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
-                put("ACTION_OPEN_DOCUMENT", Intent.ACTION_OPEN_DOCUMENT)
-            }
-            if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-                put("ACTION_OPEN_DOCUMENT_TREE", Intent.ACTION_OPEN_DOCUMENT_TREE)
-            }
+            put("ACTION_OPEN_DOCUMENT", Intent.ACTION_OPEN_DOCUMENT)
+            put("ACTION_OPEN_DOCUMENT_TREE", Intent.ACTION_OPEN_DOCUMENT_TREE)
             //      put("ACTION_PACKAGE_ADDED", Intent.ACTION_PACKAGE_ADDED);
             //      put("ACTION_PACKAGE_CHANGED", Intent.ACTION_PACKAGE_CHANGED);
             //      put("ACTION_PACKAGE_DATA_CLEARED", Intent.ACTION_PACKAGE_DATA_CLEARED);
@@ -132,9 +124,7 @@ object Action {
                 put("ACTION_PROCESS_TEXT", Intent.ACTION_PROCESS_TEXT)
             }
             //      put("ACTION_PROVIDER_CHANGED", Intent.ACTION_PROVIDER_CHANGED); // Broadcast Action
-            if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-                put("ACTION_QUICK_CLOCK", Intent.ACTION_QUICK_CLOCK)
-            }
+            put("ACTION_QUICK_CLOCK", Intent.ACTION_QUICK_CLOCK)
             if (VERSION.SDK_INT >= VERSION_CODES.N) {
                 put("ACTION_QUICK_VIEW", Intent.ACTION_QUICK_VIEW)
             }
