@@ -1,3 +1,6 @@
+## 5.4.11 (16 Mar 2024)
+- @mikropsoft added a Turkish translation
+
 ## 5.4.10 (19 Feb 2024)
 - update translations
 
