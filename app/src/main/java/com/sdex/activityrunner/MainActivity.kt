@@ -97,16 +97,11 @@ class MainActivity : BaseActivity() {
         binding.list.adapter = adapter
 
         viewModel.items.observe(this) {
-            val scrollToTop =
-                // scroll to top when the filter dialog is shown
-                supportFragmentManager.findFragmentByTag(FilterBottomSheetDialogFragment.TAG) != null ||
-                    // scroll to top when the list already is at the top to display new items
-                    (binding.list.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() == 0
             adapter.submitList(it) {
                 if (it.isNotEmpty()) {
                     binding.progress.hide()
                 }
-                if (scrollToTop) {
+                if (shouldScrollToTop()) {
                     binding.list.scrollToPosition(0)
                 }
             }
@@ -119,9 +114,16 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun shouldScrollToTop(): Boolean {
+        // scroll to top when the filter dialog is shown
+        return supportFragmentManager.findFragmentByTag(FilterBottomSheetDialogFragment.TAG) != null ||
+            // scroll to top when the list already is at the top to display new items
+            (binding.list.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() == 0
+    }
+
     fun refresh() {
         adapter.update()
-        viewModel.search(viewModel.searchQuery.value)
+        viewModel.refresh()
     }
 
     fun update() {
