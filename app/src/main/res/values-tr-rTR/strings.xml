@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="history_activity">Aktivite</string>
+    <string name="history_activity">Geçmiş</string>
     <string name="settings_activity">Ayarlar</string>
     <!-- activity options -->
-    <string name="activity_option_launch_params">Aktiviteyi parametrelerle başlat</string>
-    <string name="activity_option_launch_root">Aktiviteyi ROOT ile başlat</string>
+    <string name="activity_option_launch_params">Etkinliği parametrelerle başlat</string>
+    <string name="activity_option_launch_root">Etkinliği KÖK ile başlat</string>
     <string name="activity_option_create_shortcut">Kısayol oluştur</string>
     <!-- application options -->
     <string name="application_option_open">Uygulamayı başlat</string>
@@ -31,8 +31,8 @@
     <string name="starting_activity_root_error">Root kullanılarak etkinlik başlatılamadı</string>
     <string name="starting_activity_root_not_available">Kök mevcut değil veya izin verilmedi</string>
     <string name="activities_list_empty_text">Dışa aktarılan faaliyet yok</string>
-    <string name="activities_list_empty_action">İhraç edilmemişleri göster</string>
-    <string name="activities_list_failed_loading">\" %1$s \" açılamadı</string>
+    <string name="activities_list_empty_action">Dışarı aktarılmayanları göster</string>
+    <string name="activities_list_failed_loading">\"%1$s\" açılamadı</string>
     <string name="action_about">Hakkında</string>
     <string name="action_launch_intent">Amaç başlatıcı</string>
     <string name="action_history">Öyküsü</string>
