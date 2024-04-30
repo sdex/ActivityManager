@@ -63,7 +63,7 @@
     <string name="about_translation">Допомогти з перекладом</string>
     <string name="about_open_source">Бібліотеки з відкритим кодом</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
-    <string name="donate_snackbar_action_text">@string/пожертвування_action_текст</string>
+    <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">Якщо вам подобається програма, будь ласка, розгляньте можливість підтримати розробку.</string>
     <string name="donate_action_text">Підтримати</string>
     <string name="donate_negative_action_text">Не показувати</string>
@@ -77,7 +77,7 @@
     <string name="history_empty_action">Запустити</string>
     <string name="history_dialog_clear_title">Очистити історію</string>
     <string name="history_dialog_clear_message">Ви впевнені?</string>
-    <string name="history_item_dialog_title">Мета</string>
+    <string name="history_item_dialog_title">Intent</string>
     <string name="history_item_dialog_remove">Видалити</string>
     <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
     <string name="history_item_dialog_export_uri">Експортувати як URI</string>
