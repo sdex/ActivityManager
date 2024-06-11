@@ -126,10 +126,10 @@
     <string name="filter_sort_by_name">Nome</string>
     <string name="filter_sort_by_update_time">Data de atualização</string>
     <string name="filter_sort_by_install_time">Data de instalação</string>
-    <string name="filter_sort_order_asc">Ascending</string>
-    <string name="filter_sort_order_desc">Descending</string>
-    <string name="filter_system_apps_title">System applications</string>
-    <string name="filter_disabled_apps_title">Disabled applications</string>
-    <string name="filter_toggle_show">Show</string>
-    <string name="filter_toggle_label">Label</string>
+    <string name="filter_sort_order_asc">Crescendo</string>
+    <string name="filter_sort_order_desc">Descendo</string>
+    <string name="filter_system_apps_title">Apps do sistema</string>
+    <string name="filter_disabled_apps_title">Apps desativados</string>
+    <string name="filter_toggle_show">Mostrar</string>
+    <string name="filter_toggle_label">Descrição</string>
 </resources>
