@@ -32,7 +32,7 @@
     <string name="starting_activity_root_not_available">Root não está disponível ou a permissão não foi concedida</string>
     <string name="activities_list_empty_text">Existem atividades não exportáveis</string>
     <string name="activities_list_empty_action">Mostrar não exportáveis</string>
-    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
+    <string name="activities_list_failed_loading">Falha ao abrir \"%1$s\"</string>
     <string name="action_about">Sobre</string>
     <string name="action_launch_intent">Iniciador de intenção</string>
     <string name="action_history">Histórico</string>
@@ -59,14 +59,14 @@
     <string name="about_source_code">Código fonte</string>
     <string name="about_version">Versão</string>
     <string name="about_bug_tracker">Avise sobre problema</string>
-    <string name="about_suggest_idea">Suggest an idea</string>
-    <string name="about_translation">Help with translation</string>
+    <string name="about_suggest_idea">Sugerir uma ideia</string>
+    <string name="about_translation">Ajuda com a tradução</string>
     <string name="about_open_source">Bibliotecas de código livre</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">Se você gostou do app, considere fazer uma doação</string>
     <string name="donate_action_text">Doar</string>
-    <string name="donate_negative_action_text">Never ask</string>
+    <string name="donate_negative_action_text">Não perguntar</string>
     <string name="input_key">Inserção</string>
     <string name="input_value">Valor de entrada</string>
     <string name="key">Tecla</string>
@@ -120,16 +120,16 @@
     <string name="manifest_viewer_line_numbers">Número de linhas</string>
     <string name="manifest_viewer_search">Buscar</string>
     <string name="manifest_viewer_search_hint">Buscar palavra-chave</string>
-        <!-- filter -->
-    <string name="filter">Filter</string>
-    <string name="filter_header_sort_by">Sort by</string>
-    <string name="filter_sort_by_name">Name</string>
-    <string name="filter_sort_by_update_time">Update time</string>
-    <string name="filter_sort_by_install_time">Install time</string>
-    <string name="filter_sort_order_asc">Ascending</string>
-    <string name="filter_sort_order_desc">Descending</string>
-    <string name="filter_system_apps_title">System applications</string>
-    <string name="filter_disabled_apps_title">Disabled applications</string>
-    <string name="filter_toggle_show">Show</string>
-    <string name="filter_toggle_label">Label</string>
+    <!-- filter -->
+    <string name="filter">Filtros</string>
+    <string name="filter_header_sort_by">Ordenar por</string>
+    <string name="filter_sort_by_name">Nome</string>
+    <string name="filter_sort_by_update_time">Data de atualização</string>
+    <string name="filter_sort_by_install_time">Data de instalação</string>
+    <string name="filter_sort_order_asc">Crescendo</string>
+    <string name="filter_sort_order_desc">Descendo</string>
+    <string name="filter_system_apps_title">Apps do sistema</string>
+    <string name="filter_disabled_apps_title">Apps desativados</string>
+    <string name="filter_toggle_show">Mostrar</string>
+    <string name="filter_toggle_label">Descrição</string>
 </resources>
