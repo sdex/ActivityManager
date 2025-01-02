@@ -4,14 +4,11 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
-import com.bumptech.glide.load.resource.drawable.DrawableResource
-import com.bumptech.glide.util.Util
 import com.sdex.activityrunner.app.ActivityModel
 
 internal class ActivityIconDecoder(
@@ -25,22 +22,7 @@ internal class ActivityIconDecoder(
         options: Options
     ): Resource<Drawable> {
         val icon = getComponentIcon(context.packageManager, source.componentName)
-        return object : DrawableResource<Drawable>(icon) {
-            override fun getResourceClass(): Class<Drawable> {
-                return Drawable::class.java
-            }
-
-            override fun getSize(): Int { // best effort
-                return if (drawable is BitmapDrawable) {
-                    Util.getBitmapByteSize(drawable.bitmap)
-                } else {
-                    1
-                }
-            }
-
-            override fun recycle() { /* not from our pool */
-            }
-        }
+        return ComponentDrawableResource(icon)
     }
 
     override fun handles(source: ActivityModel, options: Options) = true
@@ -56,7 +38,7 @@ internal class ActivityIconDecoder(
                 pm.resolveActivity(intent, 0)
             }
             resolveInfo?.loadIcon(pm) ?: pm.defaultActivityIcon
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             pm.defaultActivityIcon
         }
     }
