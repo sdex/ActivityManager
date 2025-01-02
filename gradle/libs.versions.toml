@@ -1,0 +1,71 @@
+[versions]
+agp = "8.7.3"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.27"
+activity-ktx = "1.9.1"
+appcompat = "1.7.0"
+browser = "1.8.0"
+constraintlayout = "2.1.4"
+core-ktx = "1.13.1"
+fragment-ktx = "1.8.2"
+multidex = "2.0.1"
+preference-ktx = "1.2.1"
+recyclerview = "1.3.2"
+room = "2.6.1"
+vectordrawable = "1.2.0"
+glide = "4.16.0"
+material = "1.12.0"
+hilt = "2.54"
+timber = "5.0.1"
+icondialog = "3.3.0"
+iconpack-community-material = "5.3.45"
+recyclerview-fastscroll = "2.0.1"
+tooltips = "1.1.1"
+apk-parser = "2.6.10"
+kotlinx-coroutines-android = "1.9.0"
+browserfip = "1.0.5"
+junit = "4.13.2"
+androidx-test = "1.6.1"
+espresso = "3.6.1"
+
+[libraries]
+activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+browser = { module = "androidx.browser:browser", version.ref = "browser" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
+multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preference-ktx" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+vectordrawable = { module = "androidx.vectordrawable:vectordrawable", version.ref = "vectordrawable" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "glide" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+icondialog = { module = "com.maltaisn:icondialog", version.ref = "icondialog" }
+iconpack-community-material = { module = "com.maltaisn:iconpack-community-material", version.ref = "iconpack-community-material" }
+recyclerview-fastscroll = { module = "com.simplecityapps:recyclerview-fastscroll", version.ref = "recyclerview-fastscroll" }
+tooltips = { module = "com.tomergoldst.android:tooltips", version.ref = "tooltips" }
+apk-parser = { module = "net.dongliu:apk-parser", version.ref = "apk-parser" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
+browserfip = { module = "com.github.Y-E-P:BrowserFiP", version.ref = "browserfip" }
+junit = { module = "junit:junit", version.ref = "junit" }
+room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+room = { id = "androidx.room", version.ref = "room" }

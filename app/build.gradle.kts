@@ -1,10 +1,11 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.parcelize")
-    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
-    id("androidx.room")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.kotlinParcelize)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -82,42 +83,39 @@ room {
 }
 
 dependencies {
-    implementation("androidx.activity:activity-ktx:1.9.1")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.browser:browser:1.8.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.fragment:fragment-ktx:1.8.2")
-    implementation("androidx.multidex:multidex:2.0.1")
-    implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    val roomVersion: String by rootProject.extra
-    implementation("androidx.room:room-ktx:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.vectordrawable:vectordrawable:1.2.0")
-    val glideVersion = "4.16.0"
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
-    ksp("com.github.bumptech.glide:ksp:$glideVersion")
-    implementation("com.google.android.material:material:1.12.0")
-    val hiltVersion: String by rootProject.extra
-    implementation ("com.google.dagger:hilt-android:$hiltVersion") {
+    implementation(libs.activity.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.browser)
+    implementation(libs.constraintlayout)
+    implementation(libs.core.ktx)
+    implementation(libs.fragment.ktx)
+    implementation(libs.multidex)
+    implementation(libs.preference.ktx)
+    implementation(libs.recyclerview)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+    implementation(libs.vectordrawable)
+    implementation(libs.glide)
+    ksp(libs.glide.ksp)
+    implementation(libs.material)
+    implementation(libs.hilt.android) {
         exclude(group = "androidx.fragment", module = "fragment")
     }
-    ksp("com.google.dagger:hilt-compiler:$hiltVersion")
-    implementation("com.jakewharton.timber:timber:5.0.1")
-    implementation("com.maltaisn:icondialog:3.3.0")
-    implementation("com.maltaisn:iconpack-community-material:5.3.45")
-    implementation("com.simplecityapps:recyclerview-fastscroll:2.0.1")
-    implementation("com.tomergoldst.android:tooltips:1.1.1")
-    implementation("net.dongliu:apk-parser:2.6.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
-    implementation("com.github.Y-E-P:BrowserFiP:1.0.5")
+    ksp(libs.hilt.compiler)
+    implementation(libs.timber)
+    implementation(libs.icondialog)
+    implementation(libs.iconpack.community.material)
+    implementation(libs.recyclerview.fastscroll)
+    implementation(libs.tooltips)
+    implementation(libs.apk.parser)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.browserfip)
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
 
-    androidTestImplementation("androidx.room:room-testing:$roomVersion")
-    androidTestImplementation("androidx.test:runner:1.6.1")
-    androidTestImplementation("androidx.test:rules:1.6.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:3.6.1")
+    androidTestImplementation(libs.room.testing)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.espresso.intents)
 }
