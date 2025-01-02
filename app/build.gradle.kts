@@ -110,7 +110,7 @@ dependencies {
     implementation("com.simplecityapps:recyclerview-fastscroll:2.0.1")
     implementation("com.tomergoldst.android:tooltips:1.1.1")
     implementation("net.dongliu:apk-parser:2.6.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
     implementation("com.github.Y-E-P:BrowserFiP:1.0.5")
 
     testImplementation("junit:junit:4.13.2")
