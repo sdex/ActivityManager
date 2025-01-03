@@ -7,6 +7,8 @@ indent_size=4
 continuation_indent_size=4
 trim_trailing_whitespace=true
 no-wildcard-import = true
+ij_kotlin_allow_trailing_comma_on_call_site=true
+ij_kotlin_allow_trailing_comma=true
 
 [*.json]
 indent_style=space

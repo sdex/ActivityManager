@@ -1,6 +1,5 @@
 package com.sdex.activityrunner.app
 
-import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
 import android.widget.Toast
@@ -19,7 +18,7 @@ private const val ROOT_OK = 0
 private const val ROOT_ERROR = 1
 private const val ROOT_NOT_AVAILABLE = 2
 
-fun Activity.launchActivity(
+fun Context.launchActivity(
     model: ActivityModel,
     useRoot: Boolean = false,
     useParams: Boolean = false
@@ -33,7 +32,7 @@ fun Activity.launchActivity(
     }
 }
 
-fun Activity.launchActivity(
+fun Context.launchActivity(
     componentName: ComponentName,
     useRoot: Boolean,
 ) {

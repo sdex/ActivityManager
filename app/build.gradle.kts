@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.kotlinParcelize)
+    alias(libs.plugins.composeCompiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.room)
@@ -65,6 +66,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 
     sourceSets {
@@ -101,6 +103,7 @@ dependencies {
     implementation(libs.hilt.android) {
         exclude(group = "androidx.fragment", module = "fragment")
     }
+    implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
     implementation(libs.timber)
     implementation(libs.icondialog)
@@ -109,7 +112,22 @@ dependencies {
     implementation(libs.tooltips)
     implementation(libs.apk.parser)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.browserfip)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.tv.foundation)
+    implementation(libs.androidx.tv.material)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.navigation.compose)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.coil.compose)
+    implementation(libs.appiconloader.coil)
 
     testImplementation(libs.junit)
 

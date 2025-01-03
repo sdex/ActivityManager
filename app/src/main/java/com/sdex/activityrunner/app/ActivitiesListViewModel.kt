@@ -28,6 +28,8 @@ class ActivitiesListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val liveData = MutableLiveData<UiData>()
+    val uiState: LiveData<UiData> = liveData
+
     private lateinit var list: List<ActivityModel>
 
     fun getItems(packageName: String, application: ApplicationModel?): LiveData<UiData> {

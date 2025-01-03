@@ -1,7 +1,10 @@
 package com.sdex.activityrunner.db.cache
 
+import android.content.Context
+import android.content.pm.PackageInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.sdex.activityrunner.util.PackageInfoProvider
 import java.io.Serializable
 
 @Entity(tableName = ApplicationModel.TABLE)
@@ -17,6 +20,10 @@ data class ApplicationModel(
     val updateTime: Long,
     val installTime: Long,
 ) : Serializable {
+
+    fun getPackageInfo(context: Context): PackageInfo {
+        return PackageInfoProvider(context).getPackageInfo(packageName)
+    }
 
     companion object {
 
