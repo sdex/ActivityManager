@@ -19,7 +19,7 @@ import com.sdex.activityrunner.app.ActivitiesListActivity
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.MainViewModel
 import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
-import com.sdex.activityrunner.app.dialog.FilterBottomSheetDialogFragment
+import com.sdex.activityrunner.app.dialog.filter.FilterBottomSheetDialogFragment
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityMainBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel

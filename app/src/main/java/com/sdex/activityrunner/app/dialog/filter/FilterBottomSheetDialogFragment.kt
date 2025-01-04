@@ -1,25 +1,27 @@
-package com.sdex.activityrunner.app.dialog
+package com.sdex.activityrunner.app.dialog.filter
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.MainActivity
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogFilterBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
-import com.sdex.activityrunner.preferences.AppPreferences
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FilterBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
-    @Inject
-    lateinit var appPreferences: AppPreferences
+    private val viewModel by viewModels<FilterViewModel>()
+
     private var _binding: DialogFilterBinding? = null
     private val binding get() = _binding!!
 
@@ -39,70 +41,75 @@ class FilterBottomSheetDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        when (appPreferences.sortBy) {
-            ApplicationModel.NAME -> binding.sortByName.isChecked = true
-            ApplicationModel.UPDATE_TIME -> binding.sortByUpdateTime.isChecked = true
-            ApplicationModel.INSTALL_TIME -> binding.sortByInstallTime.isChecked = true
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.state.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collect { state ->
+                    setState(state)
+                    refresh()
+                }
         }
-        when (appPreferences.sortOrder) {
-            GetApplicationsQuery.ASC -> binding.orderByAsc.isChecked = true
-            GetApplicationsQuery.DESC -> binding.orderByDesc.isChecked = true
-        }
-        binding.showSystemApps.isChecked = appPreferences.isShowSystemApps
-        binding.showSystemAppIndicator.isEnabled = appPreferences.isShowSystemApps
-        binding.showSystemAppIndicator.isChecked = appPreferences.isShowSystemAppIndicator
-        binding.showDisabledApps.isChecked = appPreferences.isShowDisabledApps
-        binding.showDisabledAppIndicator.isEnabled = appPreferences.isShowDisabledApps
-        binding.showDisabledAppIndicator.isChecked = appPreferences.isShowDisabledAppIndicator
 
         binding.sortByName.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                appPreferences.sortBy = ApplicationModel.NAME
-                refresh()
+                viewModel.onSortByChanged(ApplicationModel.Companion.NAME)
             }
         }
         binding.sortByUpdateTime.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                appPreferences.sortBy = ApplicationModel.UPDATE_TIME
-                refresh()
+                viewModel.onSortByChanged(ApplicationModel.Companion.UPDATE_TIME)
             }
         }
         binding.sortByInstallTime.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                appPreferences.sortBy = ApplicationModel.INSTALL_TIME
-                refresh()
+                viewModel.onSortByChanged(ApplicationModel.Companion.INSTALL_TIME)
             }
         }
         binding.orderByAsc.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                appPreferences.sortOrder = GetApplicationsQuery.ASC
-                refresh()
+                viewModel.onSortOrderChanged(GetApplicationsQuery.Companion.ASC)
             }
         }
         binding.orderByDesc.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                appPreferences.sortOrder = GetApplicationsQuery.DESC
-                refresh()
+                viewModel.onSortOrderChanged(GetApplicationsQuery.Companion.DESC)
             }
         }
         binding.showSystemApps.setOnCheckedChangeListener { _, isChecked ->
-            appPreferences.isShowSystemApps = isChecked
             binding.showSystemAppIndicator.isEnabled = isChecked
-            refresh()
+
+            viewModel.onShowSystemAppsChanged(isChecked)
         }
         binding.showSystemAppIndicator.setOnCheckedChangeListener { _, isChecked ->
-            appPreferences.isShowSystemAppIndicator = isChecked
+            viewModel.onShowSystemAppIndicatorChanged(isChecked)
             update()
         }
         binding.showDisabledApps.setOnCheckedChangeListener { _, isChecked ->
-            appPreferences.isShowDisabledApps = isChecked
             binding.showDisabledAppIndicator.isEnabled = isChecked
-            refresh()
+
+            viewModel.onShowDisabledAppsChanged(isChecked)
         }
         binding.showDisabledAppIndicator.setOnCheckedChangeListener { _, isChecked ->
-            appPreferences.isShowDisabledAppIndicator = isChecked
+            viewModel.onShowDisabledAppIndicatorChanged(isChecked)
             update()
         }
+    }
+
+    private fun setState(state: FilterState) {
+        when (state.sortBy) {
+            ApplicationModel.Companion.NAME -> binding.sortByName.isChecked = true
+            ApplicationModel.Companion.UPDATE_TIME -> binding.sortByUpdateTime.isChecked = true
+            ApplicationModel.Companion.INSTALL_TIME -> binding.sortByInstallTime.isChecked = true
+        }
+        when (state.sortOrder) {
+            GetApplicationsQuery.Companion.ASC -> binding.orderByAsc.isChecked = true
+            GetApplicationsQuery.Companion.DESC -> binding.orderByDesc.isChecked = true
+        }
+        binding.showSystemApps.isChecked = state.isShowSystemApps
+        binding.showSystemAppIndicator.isEnabled = state.isShowSystemApps
+        binding.showSystemAppIndicator.isChecked = state.isShowSystemAppIndicator
+        binding.showDisabledApps.isChecked = state.isShowDisabledApps
+        binding.showDisabledAppIndicator.isEnabled = state.isShowDisabledApps
+        binding.showDisabledAppIndicator.isChecked = state.isShowDisabledAppIndicator
     }
 
     private fun refresh() {

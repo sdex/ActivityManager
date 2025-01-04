@@ -3,6 +3,7 @@ package com.sdex.activityrunner.tv
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -11,8 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.asFlow
@@ -93,6 +94,7 @@ fun NavigationGraph() {
                 initialValue = emptyList(),
             )
             StartScreen(
+                viewModel = viewModel,
                 items = items.value,
                 navigateTo = { navController.navigate(it) },
             )
@@ -122,16 +124,22 @@ fun AppInfoScreen(
         viewModel.getItems(packageName, null)
     }
 
-    val uiState = viewModel.uiState.asFlow().collectAsStateWithLifecycle(
+    val listState = rememberLazyListState()
+
+    val uiState by viewModel.uiState.asFlow().collectAsStateWithLifecycle(
         initialValue = UiData(null, emptyList()),
     )
 
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(vertical = 50.dp, horizontal = 100.dp),
+        state = listState,
     ) {
-        items(uiState.value.activities.size) { index ->
-            val item = uiState.value.activities[index]
+        items(
+            uiState.activities.size,
+            key = { index -> uiState.activities[index].className },
+        ) { index ->
+            val item = uiState.activities[index]
             ListItem(
                 selected = false,
                 enabled = item.exported,
@@ -153,6 +161,7 @@ fun Header(
     ) {
         Row(
             modifier = Modifier.weight(1f),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             OutlinedIconButton(
                 onClick = {
@@ -160,35 +169,53 @@ fun Header(
                 },
             ) {
                 Icon(
-                    Icons.Outlined.Edit,
+                    painter = painterResource(R.drawable.ic_filter),
                     contentDescription = "Filters",
                 )
             }
 
+            OutlinedIconButton(
+                onClick = {
+
+                },
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_search),
+                    contentDescription = "Search",
+                )
+            }
         }
     }
 }
 
 @Composable
 fun StartScreen(
+    viewModel: MainViewModel,
     items: List<ApplicationModel>,
     navigateTo: (Screen) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var showConfigDialog by remember { mutableStateOf(false) }
+    val listState = rememberLazyListState()
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(vertical = 50.dp, horizontal = 100.dp),
+        state = listState,
     ) {
-        item {
+        item(
+            key = "header",
+        ) {
             Header(
                 onFilterClick = {
                     showConfigDialog = true
-                }
+                },
             )
         }
 
-        items(items.size) { index ->
+        items(
+            items.size,
+            key = { index -> items[index].packageName },
+        ) { index ->
             val item = items[index]
             ListItem(
                 selected = false,
@@ -213,8 +240,13 @@ fun StartScreen(
     }
 
     ConfigDialog(
-        showDialog = showConfigDialog,
-        onDismissRequest = { showConfigDialog = false },
         modifier = Modifier.width(480.dp),
+        showDialog = showConfigDialog,
+        onConfigChanged = {
+            viewModel.refresh()
+        },
+        onDismissRequest = {
+            showConfigDialog = false
+        },
     )
 }
