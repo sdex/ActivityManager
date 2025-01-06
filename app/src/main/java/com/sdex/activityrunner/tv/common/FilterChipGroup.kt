@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.tv
+package com.sdex.activityrunner.tv.common
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -73,7 +73,6 @@ fun PreviewFilterChipGroup() {
     FilterChipGroup(
         items = listOf("/POST", "/GET", "/DELETE", "/PUT"),
         onSelectionChanged = {
-
         },
     )
 }

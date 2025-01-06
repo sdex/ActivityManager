@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sdex.activityrunner.tv
+package com.sdex.activityrunner.tv.common
 
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.MutableTransitionState

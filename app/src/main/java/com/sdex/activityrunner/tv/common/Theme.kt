@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.tv
+package com.sdex.activityrunner.tv.common
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable

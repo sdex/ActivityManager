@@ -36,6 +36,8 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import com.sdex.activityrunner.preferences.PreferencesViewModel
+import com.sdex.activityrunner.tv.common.FilterChipGroup
+import com.sdex.activityrunner.tv.common.StandardDialog
 
 private val sortByOptions = listOf<Pair<String, Int>>(
     ApplicationModel.Companion.NAME to R.string.filter_sort_by_name,
@@ -278,9 +280,8 @@ private fun SettingSwitchItem(
 
 @Composable
 @Preview
-fun SettingSwitchItemPreview(modifier: Modifier = Modifier) {
+fun SettingSwitchItemPreview() {
     SettingSwitchItem(
-        modifier = modifier,
         checked = false,
         onCheckedChange = {},
         title = R.string.pref_advanced_not_exported_title,
