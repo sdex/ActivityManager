@@ -27,4 +27,7 @@
     <dimen name="app_icon_size">40dp</dimen>
     <dimen name="app_icon_size_tv">60dp</dimen>
 
+    <dimen name="dialog_preferences_padding_horizontal">24dp</dimen>
+    <dimen name="dialog_preferences_padding_vertical">24dp</dimen>
+
 </resources>

@@ -156,6 +156,7 @@ fun Header(
     onFilterClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    // TODO the header takes focus when navigate back
     Column(
         modifier = modifier.height(120.dp),
     ) {
@@ -169,7 +170,7 @@ fun Header(
                 },
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_filter),
+                    painter = painterResource(R.drawable.ic_tune),
                     contentDescription = "Filters",
                 )
             }
@@ -184,6 +185,8 @@ fun Header(
                     contentDescription = "Search",
                 )
             }
+
+            // TODO show total number of apps and activities
         }
     }
 }
@@ -223,7 +226,8 @@ fun StartScreen(
                     navigateTo(Screen.AppInfo(item.packageName))
                 },
                 onLongClick = {
-
+                    // TODO show options dialog:
+                    //  launch, info, play store
                 },
                 headlineContent = { Text(text = item.name.toString()) },
                 supportingContent = { Text(text = item.packageName) },
@@ -239,7 +243,7 @@ fun StartScreen(
         }
     }
 
-    ConfigDialog(
+    PreferencesDialog(
         modifier = Modifier.width(480.dp),
         showDialog = showConfigDialog,
         onConfigChanged = {

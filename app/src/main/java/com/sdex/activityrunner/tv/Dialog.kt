@@ -129,7 +129,7 @@ fun StandardDialog(
     textContentColor: Color = StandardDialogDefaults.textContentColor,
     tonalElevation: Dp = StandardDialogDefaults.TonalElevation,
     properties: DialogProperties = DialogProperties(),
-    confirmButton: @Composable () -> Unit
+    confirmButton: @Composable (() -> Unit)? = null,
 ) {
     val elevatedContainerColor = MaterialTheme.colorScheme.applyTonalElevation(
         backgroundColor = containerColor,
@@ -202,7 +202,7 @@ fun StandardDialog(
                         mainAxisSpacing = StandardDialogDefaults.ButtonsMainAxisSpacing,
                         crossAxisSpacing = StandardDialogDefaults.ButtonsCrossAxisSpacing
                     ) {
-                        confirmButton()
+                        confirmButton?.invoke()
                         dismissButton?.invoke()
                     }
                 }

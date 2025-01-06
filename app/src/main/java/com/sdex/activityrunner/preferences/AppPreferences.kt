@@ -80,9 +80,14 @@ class AppPreferences(context: Context) {
         }
 
     @AppCompatDelegate.NightMode
-    val theme: Int
+    var theme: Int
         get() = userPreferences.getString(KEY_THEME, null)?.toInt()
             ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        set(value) {
+            userPreferences.edit {
+                putString(KEY_THEME, value.toString())
+            }
+        }
 
     var sortBy: String
         get() = userPreferences.getString(KEY_SORT_BY, ApplicationModel.NAME)!!

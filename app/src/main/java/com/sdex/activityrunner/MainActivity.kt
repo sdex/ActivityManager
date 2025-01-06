@@ -19,13 +19,12 @@ import com.sdex.activityrunner.app.ActivitiesListActivity
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.MainViewModel
 import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
-import com.sdex.activityrunner.app.dialog.filter.FilterBottomSheetDialogFragment
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityMainBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.preferences.SettingsActivity
+import com.sdex.activityrunner.preferences.PreferencesBottomDialog
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -36,6 +35,7 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var appPreferences: AppPreferences
     private val viewModel by viewModels<MainViewModel>()
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ApplicationsListAdapter
 
@@ -45,41 +45,38 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         setupToolbar()
 
-        addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.main, menu)
-                configureSearchView(menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when (menuItem.itemId) {
-                    R.id.action_filter -> {
-                        FilterBottomSheetDialogFragment().show(
-                            supportFragmentManager,
-                            FilterBottomSheetDialogFragment.TAG
-                        )
-                        true
-                    }
-
-                    R.id.action_launch_intent -> {
-                        IntentBuilderActivity.start(this@MainActivity, null)
-                        true
-                    }
-
-                    R.id.action_about -> {
-                        AboutActivity.start(this@MainActivity)
-                        true
-                    }
-
-                    R.id.action_settings -> {
-                        SettingsActivity.start(this@MainActivity)
-                        true
-                    }
-
-                    else -> false
+        addMenuProvider(
+            object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.main, menu)
+                    configureSearchView(menu)
                 }
-            }
-        })
+
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    return when (menuItem.itemId) {
+                        R.id.action_settings -> {
+                            PreferencesBottomDialog().show(
+                                supportFragmentManager,
+                                PreferencesBottomDialog.TAG,
+                            )
+                            true
+                        }
+
+                        R.id.action_launch_intent -> {
+                            IntentBuilderActivity.start(this@MainActivity, null)
+                            true
+                        }
+
+                        R.id.action_about -> {
+                            AboutActivity.start(this@MainActivity)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
+            },
+        )
 
         adapter = ApplicationsListAdapter(this, appPreferences).apply {
             itemClickListener = object : ApplicationsListAdapter.ItemClickListener {
@@ -116,7 +113,7 @@ class MainActivity : BaseActivity() {
 
     private fun shouldScrollToTop(): Boolean {
         // scroll to top when the filter dialog is shown
-        return supportFragmentManager.findFragmentByTag(FilterBottomSheetDialogFragment.TAG) != null ||
+        return supportFragmentManager.findFragmentByTag(PreferencesBottomDialog.TAG) != null ||
             // scroll to top when the list already is at the top to display new items
             (binding.list.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() == 0
     }

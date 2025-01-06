@@ -1,5 +1,6 @@
-package com.sdex.activityrunner.app.dialog.filter
+package com.sdex.activityrunner.preferences
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,32 +9,46 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.MainActivity
 import com.sdex.activityrunner.R
-import com.sdex.activityrunner.databinding.DialogFilterBinding
+import com.sdex.activityrunner.databinding.DialogPreferencesBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+private const val THEME_LIGHT = 1
+private const val THEME_DARK = 2
+private const val THEME_AUTO = -1
+
 @AndroidEntryPoint
-class FilterBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class PreferencesBottomDialog : BottomSheetDialogFragment() {
 
-    private val viewModel by viewModels<FilterViewModel>()
+    private val viewModel by viewModels<PreferencesViewModel>()
 
-    private var _binding: DialogFilterBinding? = null
+    private var _binding: DialogPreferencesBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        // open bottom sheet with the expanded state in the landscape
+        // https://stackoverflow.com/a/61813321/2894324
+        val dialog = BottomSheetDialog(requireContext(), theme)
+        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        return dialog
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         val contextThemeWrapper = ContextThemeWrapper(activity, R.style.AppTheme)
-        _binding = DialogFilterBinding.inflate(
+        _binding = DialogPreferencesBinding.inflate(
             inflater.cloneInContext(contextThemeWrapper),
             container,
-            false
+            false,
         )
         return binding.root
     }
@@ -45,7 +60,9 @@ class FilterBottomSheetDialogFragment : BottomSheetDialogFragment() {
             viewModel.state.flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { state ->
                     setState(state)
-                    refresh()
+                    if (state.refresh) {
+                        refresh()
+                    }
                 }
         }
 
@@ -92,24 +109,51 @@ class FilterBottomSheetDialogFragment : BottomSheetDialogFragment() {
             viewModel.onShowDisabledAppIndicatorChanged(isChecked)
             update()
         }
+        binding.nonExported.setOnClickListener {
+            binding.switchNonExported.isChecked = !binding.switchNonExported.isChecked
+        }
+        binding.switchNonExported.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.onShowNonExportedActivitiesChanged(isChecked)
+        }
+        binding.themeGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
+            if (isChecked) {
+                val themeId = when (checkedId) {
+                    R.id.themeLight -> THEME_LIGHT
+                    R.id.themeDark -> THEME_DARK
+                    else -> THEME_AUTO
+                }
+                viewModel.onThemeChanged(themeId)
+            }
+        }
     }
 
-    private fun setState(state: FilterState) {
+    private fun setState(state: PreferencesState) {
         when (state.sortBy) {
-            ApplicationModel.Companion.NAME -> binding.sortByName.isChecked = true
-            ApplicationModel.Companion.UPDATE_TIME -> binding.sortByUpdateTime.isChecked = true
-            ApplicationModel.Companion.INSTALL_TIME -> binding.sortByInstallTime.isChecked = true
-        }
+            ApplicationModel.Companion.NAME -> binding.sortByName
+            ApplicationModel.Companion.UPDATE_TIME -> binding.sortByUpdateTime
+            ApplicationModel.Companion.INSTALL_TIME -> binding.sortByInstallTime
+            else -> null
+        }?.apply { isChecked = true }
+
         when (state.sortOrder) {
-            GetApplicationsQuery.Companion.ASC -> binding.orderByAsc.isChecked = true
-            GetApplicationsQuery.Companion.DESC -> binding.orderByDesc.isChecked = true
-        }
+            GetApplicationsQuery.Companion.ASC -> binding.orderByAsc
+            GetApplicationsQuery.Companion.DESC -> binding.orderByDesc
+            else -> null
+        }?.apply { isChecked = true }
+
         binding.showSystemApps.isChecked = state.isShowSystemApps
         binding.showSystemAppIndicator.isEnabled = state.isShowSystemApps
         binding.showSystemAppIndicator.isChecked = state.isShowSystemAppIndicator
         binding.showDisabledApps.isChecked = state.isShowDisabledApps
         binding.showDisabledAppIndicator.isEnabled = state.isShowDisabledApps
         binding.showDisabledAppIndicator.isChecked = state.isShowDisabledAppIndicator
+        binding.switchNonExported.isChecked = state.isShowNonExportedActivities
+
+        when (state.theme) {
+            THEME_LIGHT -> binding.themeLight
+            THEME_DARK -> binding.themeDark
+            else -> binding.themeAuto
+        }.apply { isChecked = true }
     }
 
     private fun refresh() {
@@ -127,6 +171,6 @@ class FilterBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     companion object {
 
-        const val TAG = "FilterBottomSheetDialogFragment"
+        const val TAG = "PreferencesBottomDialog"
     }
 }

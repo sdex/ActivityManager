@@ -10,21 +10,15 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/action_filter"
-        android:icon="@drawable/ic_filter"
-        android:title="@string/filter"
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_tune"
+        android:title="@string/action_settings"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_launch_intent"
         android:icon="@drawable/ic_exit_to_app"
         android:title="@string/action_launch_intent"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/action_settings"
         app:showAsAction="ifRoom" />
 
     <item
