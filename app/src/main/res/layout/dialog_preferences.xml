@@ -26,13 +26,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dragHandle"
+                tools:text="Displaying 123 applications" />
+
+            <TextView
                 android:id="@+id/sortBy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/filter_header_sort_by"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dragHandle" />
+                app:layout_constraintTop_toBottomOf="@id/header" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/sortByGroup"
@@ -247,7 +258,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:selectionRequired="true"
-                app:singleSelection="true">
+                app:singleSelection="true"
+                tools:checkedButton="@id/themeAuto">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/themeAuto"

@@ -2,15 +2,23 @@ package com.sdex.activityrunner.preferences
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
+import com.sdex.activityrunner.db.cache.ApplicationModel
+import com.sdex.activityrunner.db.cache.CacheRepository
+import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
 class PreferencesViewModel @Inject constructor(
     private val appPreferences: AppPreferences,
+    cacheRepository: CacheRepository,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(
@@ -26,6 +34,12 @@ class PreferencesViewModel @Inject constructor(
         ),
     )
     val state = _state.asStateFlow()
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val items: Flow<List<ApplicationModel>> = _state.flatMapLatest {
+        cacheRepository.getApplications(GetApplicationsQuery(appPreferences).sqLiteQuery)
+            .asFlow()
+    }
 
     fun onSortByChanged(sortBy: String) {
         appPreferences.sortBy = sortBy

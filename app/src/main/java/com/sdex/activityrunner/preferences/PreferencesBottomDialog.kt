@@ -33,10 +33,13 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = BottomSheetDialog(requireContext(), theme)
         // open bottom sheet with the expanded state in the landscape
         // https://stackoverflow.com/a/61813321/2894324
-        val dialog = BottomSheetDialog(requireContext(), theme)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        // avoid collapsed state in the landscape
+        // https://stackoverflow.com/a/70244532/2894324
+        dialog.behavior.skipCollapsed = true
         return dialog
     }
 
@@ -63,6 +66,13 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
                     if (state.refresh) {
                         refresh()
                     }
+                }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.items.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collect { items ->
+                    binding.header.text = getString(R.string.filter_header, items.size)
                 }
         }
 
