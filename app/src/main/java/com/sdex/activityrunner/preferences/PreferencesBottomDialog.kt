@@ -125,6 +125,12 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         binding.switchNonExported.setOnCheckedChangeListener { _, isChecked ->
             viewModel.onShowNonExportedActivitiesChanged(isChecked)
         }
+
+        val themeOptions = resources.getStringArray(R.array.pref_appearance_theme_list_titles)
+        binding.themeAuto.text = themeOptions[0]
+        binding.themeLight.text = themeOptions[1]
+        binding.themeDark.text = themeOptions[2]
+
         binding.themeGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 val themeId = when (checkedId) {

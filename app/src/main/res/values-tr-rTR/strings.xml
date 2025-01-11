@@ -122,6 +122,7 @@
     <string name="manifest_viewer_search_hint">Anahtar kelime bul</string>
     <!-- filter -->
     <string name="filter">Filtre</string>
+    <string name="filter_header">%1$d applications</string>
     <string name="filter_header_sort_by">Sıralama ölçütü</string>
     <string name="filter_sort_by_name">Adı</string>
     <string name="filter_sort_by_update_time">Güncelleme zamanı</string>

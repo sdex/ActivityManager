@@ -267,7 +267,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="System" />
+                    tools:text="System" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/themeLight"
@@ -275,7 +275,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Light" />
+                    tools:text="Light" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/themeDark"
@@ -283,7 +283,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Dark" />
+                    tools:text="Dark" />
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
 

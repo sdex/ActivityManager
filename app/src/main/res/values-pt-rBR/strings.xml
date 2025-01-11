@@ -122,6 +122,7 @@
     <string name="manifest_viewer_search_hint">Buscar palavra-chave</string>
     <!-- filter -->
     <string name="filter">Filtros</string>
+    <string name="filter_header">%1$d applications</string>
     <string name="filter_header_sort_by">Ordenar por</string>
     <string name="filter_sort_by_name">Nome</string>
     <string name="filter_sort_by_update_time">Data de atualização</string>
