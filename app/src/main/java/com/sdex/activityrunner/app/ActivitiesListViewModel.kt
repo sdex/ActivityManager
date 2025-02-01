@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
@@ -11,6 +12,7 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.PackageInfoProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -28,7 +30,7 @@ class ActivitiesListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val liveData = MutableLiveData<UiData>()
-    val uiState: LiveData<UiData> = liveData
+    val uiState: Flow<UiData> = liveData.asFlow()
 
     private lateinit var list: List<ActivityModel>
 

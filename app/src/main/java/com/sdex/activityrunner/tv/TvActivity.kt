@@ -25,7 +25,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.tv.material3.Icon
 import androidx.tv.material3.ListItem
@@ -195,7 +194,7 @@ fun AppInfoScreen(
 
     val listState = rememberLazyListState()
 
-    val uiState by viewModel.uiState.asFlow().collectAsStateWithLifecycle(
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle(
         initialValue = UiData(null, emptyList()),
     )
 
