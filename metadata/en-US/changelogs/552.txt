@@ -1,0 +1,3 @@
+- move app preferences to the dialog
+- fix preferences dialog expand/collapse states for landscape orientation
+- display number of application
