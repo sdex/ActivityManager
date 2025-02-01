@@ -90,6 +90,7 @@
     <string name="dialog_export_intent_copy">Copy</string>
     <string name="dialog_enable_non_exported_title">Non-exported activities</string>
     <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
+    <string name="dialog_root_config_title">Set custom \'su\' executable</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView, try again later</string>
     <string name="error_failed_to_open_manifest">Failed to open AndroidManifest.xml</string>

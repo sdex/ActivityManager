@@ -90,6 +90,7 @@
     <string name="dialog_export_intent_copy">Kopyala</string>
     <string name="dialog_enable_non_exported_title">İhraç edilmeyen faaliyetler</string>
     <string name="dialog_enable_non_exported_message">Dışa aktarılmamış etkinlikleri görüntülemeyi etkinleştirebilirsiniz, bunlar kırmızı renkle vurgulanacaktır. Bu tür faaliyetler yalnızca ROOT izni ile yürütülebilir</string>
+    <string name="dialog_root_config_title">Set custom \'su\' executable</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">WebView örneklendirilemedi, daha sonra tekrar deneyin</string>
     <string name="error_failed_to_open_manifest">AndroidManifest.xml açılamadı</string>

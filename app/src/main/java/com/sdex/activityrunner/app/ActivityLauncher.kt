@@ -5,6 +5,7 @@ import android.content.Context
 import android.widget.Toast
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.IntentBuilderActivity
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RootUtils
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -21,14 +22,24 @@ private const val ROOT_NOT_AVAILABLE = 2
 fun Context.launchActivity(
     model: ActivityModel,
     useRoot: Boolean = false,
-    useParams: Boolean = false
+    useParams: Boolean = false,
 ) {
     if (useParams) {
-        IntentBuilderActivity.start(this, model)
+        IntentBuilderActivity.start(
+            context = this,
+            model = model,
+        )
     } else if (!model.exported || useRoot) {
-        launchActivityWithRoot(this, model.componentName)
+        launchActivityWithRoot(
+            context = this,
+            componentName = model.componentName,
+        )
     } else {
-        IntentUtils.launchActivity(this, model.componentName, model.name)
+        IntentUtils.launchActivity(
+            context = this,
+            component = model.componentName,
+            name = model.name,
+        )
     }
 }
 
@@ -37,13 +48,16 @@ fun Context.launchActivity(
     useRoot: Boolean,
 ) {
     if (useRoot) {
-        launchActivityWithRoot(this, componentName)
+        launchActivityWithRoot(
+            context = this,
+            componentName = componentName,
+        )
     } else {
         IntentUtils.launchActivity(
-            this,
-            componentName,
-            componentName.className.split(".").last(),
-            false
+            context = this,
+            component = componentName,
+            name = componentName.className.split(".").last(),
+            showMessage = false,
         )
     }
 }
@@ -51,10 +65,12 @@ fun Context.launchActivity(
 @OptIn(DelicateCoroutinesApi::class)
 private fun launchActivityWithRoot(
     context: Context,
-    componentName: ComponentName
+    componentName: ComponentName,
 ) {
+    val appPreferences = AppPreferences(context)
+    val suExecutable = appPreferences.suExecutable
     GlobalScope.launch(Dispatchers.IO) {
-        when (launchActivityUsingRoot(componentName)) {
+        when (launchActivityUsingRoot(suExecutable, componentName)) {
             ROOT_ERROR -> R.string.starting_activity_root_error
             ROOT_NOT_AVAILABLE -> R.string.starting_activity_root_not_available
             else -> null
@@ -66,15 +82,18 @@ private fun launchActivityWithRoot(
     }
 }
 
-private fun launchActivityUsingRoot(componentName: ComponentName): Int {
-    return if (!RootUtils.isSuAvailable()) {
+private fun launchActivityUsingRoot(
+    suExecutable: String,
+    componentName: ComponentName,
+): Int {
+    return if (!RootUtils.isSuAvailable(suExecutable)) {
         ROOT_NOT_AVAILABLE
     } else {
         try {
             val command = "am start -n " + componentName.packageName + "/" +
                 componentName.normalizeClassName()
             Timber.d("Execute: \"$command\"")
-            val result = RootUtils.execute(command)
+            val result = RootUtils.execute(suExecutable, command)
             Timber.d("Result: \"$result\"")
             ROOT_OK
         } catch (e: Exception) {

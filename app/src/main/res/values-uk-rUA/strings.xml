@@ -90,6 +90,7 @@
     <string name="dialog_export_intent_copy">Копіювати</string>
     <string name="dialog_enable_non_exported_title">Приховані компоненти</string>
     <string name="dialog_enable_non_exported_message">Ви можете увімкнути відображення прихованих компонентів, вони будуть виділені червоним кольором. Такі компоненти можна запустити тільки використовуючи Root</string>
+    <string name="dialog_root_config_title">Встановити власний виконуваний файл \'su\'</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Помилка ініціалізації WebView, спробуйте пізніше</string>
     <string name="error_failed_to_open_manifest">Помилка відкриття файлу AndroidManifest.xml</string>

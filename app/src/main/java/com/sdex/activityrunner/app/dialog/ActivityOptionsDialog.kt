@@ -58,6 +58,11 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
             requireActivity().launchActivity(model, useRoot = true)
             dismissAllowingStateLoss()
         }
+        binding.rootSettings.setOnClickListener {
+            RootConfigDialog.newInstance()
+                .show(parentFragmentManager, RootConfigDialog.TAG)
+            dismissAllowingStateLoss()
+        }
     }
 
     override fun onDestroyView() {
