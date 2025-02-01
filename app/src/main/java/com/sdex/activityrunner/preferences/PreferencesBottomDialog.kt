@@ -9,14 +9,13 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.MainActivity
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogPreferencesBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
+import com.sdex.activityrunner.extensions.createBottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -33,14 +32,7 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = BottomSheetDialog(requireContext(), theme)
-        // open bottom sheet with the expanded state in the landscape
-        // https://stackoverflow.com/a/61813321/2894324
-        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        // avoid collapsed state in the landscape
-        // https://stackoverflow.com/a/70244532/2894324
-        dialog.behavior.skipCollapsed = true
-        return dialog
+        return createBottomSheetDialog()
     }
 
     override fun onCreateView(

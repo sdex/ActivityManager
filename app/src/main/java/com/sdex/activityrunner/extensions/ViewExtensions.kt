@@ -7,6 +7,11 @@ import android.view.ViewTreeObserver
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 @Suppress("DEPRECATION")
 fun View.doAfterMeasure(callback: () -> Unit) {
@@ -32,4 +37,19 @@ fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
     val typedValue = TypedValue()
     theme.resolveAttribute(attrRes, typedValue, true)
     return typedValue
+}
+
+fun RecyclerView.addDividerItemDecoration() {
+    addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+}
+
+fun BottomSheetDialogFragment.createBottomSheetDialog(): BottomSheetDialog {
+    val dialog = BottomSheetDialog(requireContext(), theme)
+    // open bottom sheet with the expanded state in the landscape
+    // https://stackoverflow.com/a/61813321/2894324
+    dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    // avoid collapsed state in the landscape
+    // https://stackoverflow.com/a/70244532/2894324
+    dialog.behavior.skipCollapsed = true
+    return dialog
 }

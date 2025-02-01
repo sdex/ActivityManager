@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.app.dialog
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
+import com.sdex.activityrunner.extensions.createBottomSheetDialog
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 
@@ -19,6 +21,10 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
 
     private var _binding: DialogActivityMenuBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return createBottomSheetDialog()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
