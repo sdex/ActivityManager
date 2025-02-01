@@ -58,7 +58,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/sortByName"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_sort_by_name"
@@ -67,7 +67,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/sortByUpdateTime"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_sort_by_update_time"
@@ -75,7 +75,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/sortByInstallTime"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_sort_by_install_time"
@@ -96,7 +96,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/orderByAsc"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_sort_order_asc"
@@ -105,7 +105,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/orderByDesc"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_sort_order_desc"
@@ -136,7 +136,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/showSystemApps"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_toggle_show"
@@ -145,7 +145,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/showSystemAppIndicator"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_toggle_label"
@@ -177,7 +177,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/showDisabledApps"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_toggle_show"
@@ -186,7 +186,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/showDisabledAppIndicator"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter_toggle_label"
@@ -231,6 +231,7 @@
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switchNonExported"
+                    style="@style/Widget.Material3.CompoundButton.Switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="8dp"
