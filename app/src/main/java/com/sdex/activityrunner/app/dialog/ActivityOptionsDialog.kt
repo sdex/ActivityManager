@@ -27,14 +27,15 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         val contextThemeWrapper = ContextThemeWrapper(activity, R.style.AppTheme)
         _binding = DialogActivityMenuBinding.inflate(
             inflater.cloneInContext(contextThemeWrapper),
             container,
-            false
+            false,
         )
         return binding.root
     }
