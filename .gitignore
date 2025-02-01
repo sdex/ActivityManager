@@ -54,3 +54,5 @@ app/src/main/assets/crashlytics-build.properties
 # release builds
 release
 /app/keystore/
+
+.kotlin

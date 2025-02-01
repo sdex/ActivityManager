@@ -29,7 +29,7 @@ class ManifestReader @Inject constructor(
             val manifest = parse(packageName)
             return try {
                 formatManifest(manifest)
-            } catch (e: TransformerException) {
+            } catch (_: TransformerException) {
                 formatManifest2(manifest)
             }
         } catch (e: Exception) {
@@ -38,10 +38,11 @@ class ManifestReader @Inject constructor(
         return null
     }
 
+    @Suppress("SENSELESS_COMPARISON")
     private fun parse(packageName: String): String {
         val packageInfo = packageInfoProvider.getPackageInfo(packageName)
-        if (packageInfo.splitNames != null) {
-            val publicSourceDir = packageInfo.applicationInfo.publicSourceDir
+        if (packageInfo.splitNames != null) { // it's nullable
+            val publicSourceDir = packageInfo.applicationInfo?.publicSourceDir
             val apkFile = ApkFile(publicSourceDir)
             val manifestXml = apkFile.use {
                 it.manifestXml

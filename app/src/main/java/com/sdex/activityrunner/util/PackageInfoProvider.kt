@@ -28,11 +28,9 @@ class PackageInfoProvider(
         val name = getApplicationName(packageInfo)
         val activities = packageInfo.activities ?: emptyArray()
         val applicationInfo = packageInfo.applicationInfo
-        val isSystemApp = if (applicationInfo != null) {
+        val isSystemApp = applicationInfo != null &&
             (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-        } else {
-            false
-        }
+        val isEnabled = applicationInfo != null && applicationInfo.enabled
         val versionName = packageInfo.versionName ?: ""
         val versionCode = getVersionCode(packageInfo)
         val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
@@ -44,7 +42,7 @@ class PackageInfoProvider(
             activitiesCount = activities.size,
             exportedActivitiesCount = exportedActivitiesCount,
             system = isSystemApp,
-            enabled = applicationInfo.enabled,
+            enabled = isEnabled,
             versionCode = versionCode,
             versionName = versionName,
             updateTime = lastUpdateTime,
@@ -57,10 +55,14 @@ class PackageInfoProvider(
 
     fun getActivities(packageName: String): List<ActivityModel> {
         val packageInfo = getPackageInfo(packageName)
-        if (packageInfo.applicationInfo.enabled) {
-            return packageInfo.activities.map { it.toActivityModel() }
+        val applicationInfo = packageInfo.applicationInfo
+        if (applicationInfo == null) {
+            return emptyList()
+        }
+        if (applicationInfo.enabled) {
+            return packageInfo.activities?.map { it.toActivityModel() } ?: emptyList()
         } else {
-            val publicSourceDir = packageInfo.applicationInfo.publicSourceDir
+            val publicSourceDir = applicationInfo.publicSourceDir
             ApkFile(publicSourceDir).use { apkFile ->
                 val manifestParser = ManifestParser(apkFile.manifestXml)
                 return manifestParser.getActivities(packageName)
@@ -101,14 +103,20 @@ class PackageInfoProvider(
             } else {
                 packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             getApkPackageInfo(packageManager, packageName)
         }
     }
 
+    fun getPublicSourceDir(packageName: String): String? {
+        val packageInfo = getPackageInfo(packageName)
+        return packageInfo.applicationInfo?.publicSourceDir
+    }
+
     private fun getApplicationName(packageInfo: PackageInfo): String {
-        return if (packageInfo.applicationInfo != null) {
-            packageManager.getApplicationLabel(packageInfo.applicationInfo).toString()
+        val applicationInfo = packageInfo.applicationInfo
+        return if (applicationInfo != null) {
+            packageManager.getApplicationLabel(applicationInfo).toString()
         } else {
             packageInfo.packageName
         }
@@ -128,7 +136,11 @@ class PackageInfoProvider(
             } else {
                 pm.getPackageInfo(packageName, PackageManager.GET_META_DATA)
             }
-            val file = File(info.applicationInfo.publicSourceDir)
+            val applicationInfo = info.applicationInfo
+            if (applicationInfo == null) {
+                throw IllegalStateException("ApplicationInfo is null")
+            }
+            val file = File(applicationInfo.publicSourceDir)
             val archiveInfo = if (isAndroidT()) {
                 pm.getPackageArchiveInfo(
                     file.absolutePath,
