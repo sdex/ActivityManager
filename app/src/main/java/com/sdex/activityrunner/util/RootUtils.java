@@ -11,16 +11,16 @@ import timber.log.Timber;
 
 public class RootUtils {
 
-    public static boolean isSuAvailable() {
-        String result = execute("id");
+    public static boolean isSuAvailable(@NonNull String suExecutable) {
+        String result = execute(suExecutable, "id");
         return result != null && result.contains("uid=0(");
     }
 
     @Nullable
-    public static String execute(@NonNull String command) {
+    public static String execute(@NonNull String suExecutable, @NonNull String command) {
         String result = null;
         try {
-            Process exec = Runtime.getRuntime().exec("su\n");
+            Process exec = Runtime.getRuntime().exec(suExecutable + "\n");
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(exec.getInputStream()));
             DataOutputStream dataOutputStream = new DataOutputStream(exec.getOutputStream());
@@ -30,7 +30,7 @@ public class RootUtils {
             try {
                 exec.waitFor();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Timber.e(e);
             }
             if (bufferedReader.ready()) {
                 StringBuilder builder = new StringBuilder();

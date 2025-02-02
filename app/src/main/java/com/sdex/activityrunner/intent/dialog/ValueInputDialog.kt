@@ -45,7 +45,7 @@ class ValueInputDialog : BaseDialogFragment() {
         super.onAttach(context)
         try {
             callback = context as OnValueInputDialogCallback
-        } catch (e: ClassCastException) {
+        } catch (_: ClassCastException) {
             throw ClassCastException("$context must implement OnValueInputDialogCallback")
         }
     }

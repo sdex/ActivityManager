@@ -82,7 +82,18 @@
 
         <TextView
             style="@style/BottomDialogTextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:text="@string/activity_option_launch_root" />
+
+        <ImageButton
+            android:id="@+id/rootSettings"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="?actionBarItemBackground"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_settings"
+            app:tint="@color/icon_tint" />
 
     </LinearLayout>
 

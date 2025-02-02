@@ -105,6 +105,14 @@ class AppPreferences(context: Context) {
             }
         }
 
+    var suExecutable: String
+        get() = userPreferences.getString(KEY_SU_EXECUTABLE, "su")!!
+        set(value) {
+            userPreferences.edit {
+                putString(KEY_SU_EXECUTABLE, value)
+            }
+        }
+
     companion object {
 
         private const val PREFERENCES_NAME = "ads_preferences"
@@ -122,5 +130,6 @@ class AppPreferences(context: Context) {
 
         const val KEY_SORT_BY = "sort_by"
         const val KEY_ORDER_BY = "order_by"
+        const val KEY_SU_EXECUTABLE = "su_executable"
     }
 }
