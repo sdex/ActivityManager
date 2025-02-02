@@ -121,7 +121,7 @@
     <string name="manifest_viewer_search_hint">查找关键字</string>
     <!-- filter -->
     <string name="filter">筛选</string>
-    <string name="filter_header">%1$d applications</string>
+    <string name="filter_header">%1$d 个应用</string>
     <string name="filter_header_sort_by">排序方式</string>
     <string name="filter_sort_by_name">应用名称</string>
     <string name="filter_sort_by_update_time">更新时间</string>
