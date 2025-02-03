@@ -90,7 +90,7 @@
     <string name="dialog_export_intent_copy">复制</string>
     <string name="dialog_enable_non_exported_title">未导出的 Activity</string>
     <string name="dialog_enable_non_exported_message">您可以启用显示非导出的 Activity，它们将用红色高亮显示。这类 Activity 只能通过 Root 权限运行</string>
-    <string name="dialog_root_config_title">Set custom \'su\' executable</string>
+    <string name="dialog_root_config_title">设置自定义的 \'su\' 可执行文件</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">实例化 WebView 失败，请稍后再试</string>
     <string name="error_failed_to_open_manifest">打开 AndroidManifest.xml 失败</string>
