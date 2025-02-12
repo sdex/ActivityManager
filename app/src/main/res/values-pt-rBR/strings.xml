@@ -19,8 +19,8 @@
     <string name="shortcut_create">Criar</string>
     <string name="shortcut_set_icon_tooltip">Toque para modificar o ícone</string>
     <string name="icons_loading_error">Falha ao carregar ícones</string>
-    <string name="shortcut_icon_gallery">Escolher da galeria</string>
-    <string name="shortcut_icon_preset">Selecionar dos ícones</string>
+    <string name="shortcut_icon_gallery">Escolha da galeria</string>
+    <string name="shortcut_icon_preset">Selecione dos ícones</string>
     <!-- launching activity -->
     <string name="starting_activity">Iniciando atividade: %s</string>
     <string name="starting_activity_failed">Falha ao iniciar atividade: %s</string>
@@ -47,12 +47,12 @@
     <string name="launch_param_action">Ação</string>
     <string name="launch_param_data">Dados</string>
     <string name="launch_param_mime_type">Tipo do Mime</string>
-    <string name="launch_param_extras">Adicionais</string>
+    <string name="launch_param_extras">Adicional</string>
     <string name="launch_param_extras_add">+ Adicionar extra</string>
     <string name="launch_param_categories">Categorias</string>
     <string name="launch_param_flags">Funções adicionais</string>
     <string name="save_to_history">Salvar no histórico</string>
-    <string name="item_history_has_extras">Adicionais</string>
+    <string name="item_history_has_extras">Adicional</string>
     <string name="item_history_has_categories">Categorias</string>
     <string name="item_history_has_flags">Funções adicionais</string>
     <string name="about_donation">Apoie o desenvolvimento</string>
@@ -90,7 +90,7 @@
     <string name="dialog_export_intent_copy">Copiar</string>
     <string name="dialog_enable_non_exported_title">Atividades não-exportáveis</string>
     <string name="dialog_enable_non_exported_message">Você pode ativar a exibição de atividades não-exportáveis, elas serão destacadas com cor vermelha. Tais atividades só podem ser executadas com privilégios ROOT</string>
-    <string name="dialog_root_config_title">Set custom \'su\' executable</string>
+    <string name="dialog_root_config_title">Defina \'su\' executável personalizado</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Falha ao instanciar WebView, tente novamente mais tarde</string>
     <string name="error_failed_to_open_manifest">Falha ao abrir AndroidManifest.xml</string>
