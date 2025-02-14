@@ -58,13 +58,13 @@
     <string name="about_donation">Apoie o desenvolvimento</string>
     <string name="about_source_code">Código fonte</string>
     <string name="about_version">Versão</string>
-    <string name="about_bug_tracker">Avise sobre problema</string>
+    <string name="about_bug_tracker">Relate o problema</string>
     <string name="about_suggest_idea">Sugerir uma ideia</string>
-    <string name="about_translation">Ajuda com a tradução</string>
+    <string name="about_translation">Ajudar com a tradução</string>
     <string name="about_open_source">Bibliotecas de código livre</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
-    <string name="donate_message">Se você gostou do app, considere fazer uma doação</string>
+    <string name="donate_message">Se você está usando e gostado do Activity Manager, essa é a melhor maneira de agradecer! Ao fazer uma doação, você está apoiando e contribuindo ao desenvolvimento da ferramenta que tá sendo útil pra você.</string>
     <string name="donate_action_text">Doar</string>
     <string name="donate_negative_action_text">Não perguntar</string>
     <string name="input_key">Inserção</string>
@@ -89,7 +89,7 @@
     <string name="dialog_add_extra_type_incorrect">Tipo de valor incorreto</string>
     <string name="dialog_export_intent_copy">Copiar</string>
     <string name="dialog_enable_non_exported_title">Atividades não-exportáveis</string>
-    <string name="dialog_enable_non_exported_message">Você pode ativar a exibição de atividades não-exportáveis, elas serão destacadas com cor vermelha. Tais atividades só podem ser executadas com privilégios ROOT</string>
+    <string name="dialog_enable_non_exported_message">Você pode ativar a exibição de atividades não-exportáveis, elas serão destacadas com a cor vermelha. Tais atividades só podem ser executadas com privilégios ROOT</string>
     <string name="dialog_root_config_title">Defina \'su\' executável personalizado</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Falha ao instanciar WebView, tente novamente mais tarde</string>
@@ -104,8 +104,8 @@
     <string name="pref_advanced_not_exported_summary">Só pode ser executado via Root</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistema</item>
-        <item>Tema claro</item>
-        <item>Tema escuro</item>
+        <item>Claro</item>
+        <item>Escuro</item>
     </string-array>
     <plurals name="history_records">
         <item quantity="one">%d registro</item>
@@ -118,7 +118,7 @@
     <!-- manifest viewer -->
     <string name="manifest_viewer_export">Exportar</string>
     <string name="manifest_viewer_help">Ajuda</string>
-    <string name="manifest_viewer_line_numbers">Número de linhas</string>
+    <string name="manifest_viewer_line_numbers">Numerar as linhas</string>
     <string name="manifest_viewer_search">Buscar</string>
     <string name="manifest_viewer_search_hint">Buscar palavra-chave</string>
     <!-- filter -->
@@ -128,8 +128,8 @@
     <string name="filter_sort_by_name">Nome</string>
     <string name="filter_sort_by_update_time">Data de atualização</string>
     <string name="filter_sort_by_install_time">Data de instalação</string>
-    <string name="filter_sort_order_asc">Crescendo</string>
-    <string name="filter_sort_order_desc">Descendo</string>
+    <string name="filter_sort_order_asc">Crescente</string>
+    <string name="filter_sort_order_desc">Decrescente</string>
     <string name="filter_system_apps_title">Apps do sistema</string>
     <string name="filter_disabled_apps_title">Apps desativados</string>
     <string name="filter_toggle_show">Mostrar</string>
