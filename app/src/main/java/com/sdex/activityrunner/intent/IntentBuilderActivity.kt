@@ -34,7 +34,9 @@ class IntentBuilderActivity : BaseActivity(),
     MultiSelectionDialog.OnItemsSelectedCallback, ExtraInputDialog.OnKeyValueInputDialogCallback {
 
     private val viewModel: LaunchParamsViewModel by viewModels()
-    private lateinit var binding: ActivityIntentBuilderBinding
+    private val binding by lazy {
+    ActivityIntentBuilderBinding.inflate(layoutInflater)
+    }
 
     private val launchParams = LaunchParams()
 
@@ -53,7 +55,6 @@ class IntentBuilderActivity : BaseActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityIntentBuilderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 

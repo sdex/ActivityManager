@@ -27,12 +27,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
     private val viewModel: HistoryViewModel by viewModels()
-    private lateinit var binding: ActivityHistoryBinding
+    private val binding by lazy  {
+    ActivityHistoryBinding.inflate(layoutInflater)
+    }
     private lateinit var adapter: HistoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 

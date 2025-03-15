@@ -28,7 +28,9 @@ class ActivitiesListActivity : BaseActivity() {
     @Inject
     lateinit var appPreferences: AppPreferences
     private val viewModel by viewModels<ActivitiesListViewModel>()
-    private lateinit var binding: ActivityActivitiesListBinding
+    private val binding by lazy {
+    ActivityActivitiesListBinding.inflate(layoutInflater)
+    }
     private lateinit var appPackageName: String
 
     private var searchText: String? = null
@@ -42,7 +44,6 @@ class ActivitiesListActivity : BaseActivity() {
         }
         title = item?.name
         appPackageName = item?.packageName ?: intent.data.toString()
-        binding = ActivityActivitiesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
