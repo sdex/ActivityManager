@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_activity">ইতিহাস</string>
+    <string name="settings_activity">সেটিংস</string>
+    <!-- activity options -->
+    <string name="activity_option_launch_params">প্যারামিটার সহ কার্যক্রম চালু করুন</string>
+    <string name="activity_option_launch_root">ROOT সহ কার্যক্রম চালু করুন</string>
+    <string name="activity_option_create_shortcut">শর্টকাট তৈরি করুন</string>
+    <!-- application options -->
+    <string name="application_option_open">অ্যাপ্লিকেশন চালু করুন</string>
+    <string name="application_option_open_manifest">ম্যানিফেস্ট ভিউয়ার খুলুন</string>
+    <string name="application_option_open_info">অ্যাপ্লিকেশন তথ্য খুলুন</string>
+    <string name="application_option_action_launch">GooglePlay তে খুলুন</string>
+    <string name="application_disabled">অক্ষম</string>
+    <string name="application_system">সিস্টেম</string>
+    <!-- create shortcut -->
+    <string name="shortcut_name">লেবেল</string>
+    <string name="shortcut_name_empty">লেবেল খালি থাকতে পারে না</string>
+    <string name="shortcut_create">তৈরি করুন</string>
+    <string name="shortcut_set_icon_tooltip">আইকন পরিবর্তন করতে ট্যাপ করুন</string>
+    <string name="icons_loading_error">আইকনগুলি লোড করতে ব্যর্থ</string>
+    <string name="shortcut_icon_gallery">গ্যালারি থেকে বাছাই করুন</string>
+    <string name="shortcut_icon_preset">আইকন থেকে নির্বাচন করুন</string>
+    <!-- launching activity -->
+    <string name="starting_activity">কার্যক্রম শুরু হচ্ছে: %s</string>
+    <string name="starting_activity_failed">কার্যক্রম শুরু করতে ব্যর্থ: %s</string>
+    <string name="starting_activity_launch_intent_failed">লঞ্চার কার্যক্রম খুঁজে পাওয়া যাচ্ছে না</string>
+    <string name="starting_activity_failed_security">আপনার এই কার্যক্রমটি চালানোর অনুমতি নেই: %s</string>
+    <string name="starting_activity_intent">কার্যক্রম শুরু হচ্ছে</string>
+    <string name="starting_activity_intent_failed">কার্যক্রম শুরু করতে ব্যর্থ</string>
+    <string name="starting_activity_root_error">ROOT ব্যবহার করে কার্যক্রম চালু করতে ব্যর্থ</string>
+    <string name="starting_activity_root_not_available">ROOT উপলব্ধ নয় বা অনুমতি দেওয়া হয়নি</string>
+    <string name="activities_list_empty_text">কোনো রপ্তানি করা কার্যক্রম নেই</string>
+    <string name="activities_list_empty_action">অরপ্তানি কার্যক্রম দেখান</string>
+    <string name="activities_list_failed_loading">"%1$s" খুলতে ব্যর্থ</string>
+    <string name="action_about">সম্পর্কে</string>
+    <string name="action_launch_intent">ইনটেন্ট লঞ্চার</string>
+    <string name="action_history">ইতিহাস</string>
+    <string name="action_clear_history">ইতিহাস মুছে দিন</string>
+    <string name="action_search">অনুসন্ধান</string>
+    <string name="action_search_hint">অ্যাপ্লিকেশন নাম বা প্যাকেজ</string>
+    <string name="action_search_activity_hint">কার্যক্রম নাম বা প্যাকেজ</string>
+    <string name="action_settings">সেটিংস</string>
+    <!-- intent builder -->
+    <string name="launch_param_package_name">প্যাকেজ নাম</string>
+    <string name="launch_param_class_name">ক্লাস নাম</string>
+    <string name="launch_param_action">অ্যাকশন</string>
+    <string name="launch_param_data">ডেটা</string>
+    <string name="launch_param_mime_type">মাইম টাইপ</string>
+    <string name="launch_param_extras">এক্সট্রাস</string>
+    <string name="launch_param_extras_add">+ অতিরিক্ত যোগ করুন</string>
+    <string name="launch_param_categories">ক্যাটাগরি</string>
+    <string name="launch_param_flags">ফ্ল্যাগস</string>
+    <string name="save_to_history">ইতিহাসে সংরক্ষণ করুন</string>
+    <string name="item_history_has_extras">এক্সট্রাস</string>
+    <string name="item_history_has_categories">ক্যাটাগরি</string>
+    <string name="item_history_has_flags">ফ্ল্যাগস</string>
+    <string name="about_donation">উন্নয়ন সমর্থন করুন</string>
+    <string name="about_source_code">সূত্র কোড</string>
+    <string name="about_version">সংস্করণ</string>
+    <string name="about_bug_tracker">সমস্যা রিপোর্ট করুন</string>
+    <string name="about_suggest_idea">একটি ধারণা প্রস্তাব করুন</string>
+    <string name="about_translation">অনুবাদে সাহায্য করুন</string>
+    <string name="about_open_source">ওপেন সোর্স লাইব্রেরি</string>
+    <string name="donate_snackbar_text">@string/about_donation</string>
+    <string name="donate_snackbar_action_text">@string/donate_action_text</string>
+    <string name="donate_message">যদি আপনি অ্যাকটিভিটি ম্যানেজার ব্যবহার করছেন এবং এটি উপভোগ করছেন, তবে এটি ধন্যবাদ বলার একটি শক্তিশালী উপায়! দান করে, আপনি এই টুলটিকে সাহায্য করছেন যা ইতিমধ্যেই আপনাকে সাহায্য করছে, টেকসই এবং স্বাস্থ্যকর রাখার জন্য।</string>
+    <string name="donate_action_text">দান করুন</string>
+    <string name="donate_negative_action_text">কখনও জিজ্ঞাসা করবেন না</string>
+    <string name="input_key">ইনপুট কী</string>
+    <string name="input_value">ইনপুট মান</string>
+    <string name="key">কী</string>
+    <string name="value">মান</string>
+    <string name="type_array">অ্যারে</string>
+    <!-- history -->
+    <string name="history_empty_text">দেখানোর কিছু নেই</string>
+    <string name="history_empty_action">কিছু ইনটেন্ট চালান</string>
+    <string name="history_dialog_clear_title">ইতিহাস মুছুন</string>
+    <string name="history_dialog_clear_message">আপনি কি নিশ্চিত?</string>
+    <string name="history_item_dialog_title">ইনটেন্ট</string>
+    <string name="history_item_dialog_remove">অপসারণ করুন</string>
+    <string name="history_item_dialog_add_shortcut">শর্টকাট তৈরি করুন</string>
+    <string name="history_item_dialog_export_uri">URI হিসেবে রপ্তানি করুন</string>
+    <string name="no">না</string>
+    <string name="yes">হ্যাঁ</string>
+    <string name="dialog_add_extra_title">অতিরিক্ত যোগ করুন</string>
+    <string name="dialog_add_extra_key_empty">কী খালি থাকতে পারে না</string>
+    <string name="dialog_add_extra_value_empty">মান খালি থাকতে পারে না</string>
+    <string name="dialog_add_extra_type_incorrect">ভুল মান টাইপ</string>
+    <string name="dialog_export_intent_copy">কপি</string>
+    <string name="dialog_enable_non_exported_title">অরপ্তানি কার্যক্রম</string>
+    <string name="dialog_enable_non_exported_message">আপনি অরপ্তানি কার্যক্রমগুলি প্রদর্শন করতে সক্ষম করতে পারেন, এগুলি লাল রঙে হাইলাইট হবে। এই ধরনের কার্যক্রমগুলি শুধুমাত্র ROOT অনুমতি সহ চালানো যেতে পারে।</string>
+    <string name="dialog_root_config_title">কাস্টম 'su' এক্সিকিউটেবল সেট করুন</string>
+    <!-- errors -->
+    <string name="error_failed_to_instantiate_web_view">WebView ইনস্ট্যান্সিয়েট করতে ব্যর্থ, পরে চেষ্টা করুন</string>
+    <string name="error_failed_to_open_manifest">AndroidManifest.xml খুলতে ব্যর্থ</string>
+    <!-- share -->
+    <string name="dialog_share_title">AndroidManifest.xml ফাইল শেয়ার করুন</string>
+    <!-- settings -->
+    <string name="pref_header_appearance">অবতার</string>
+    <string name="pref_appearance_theme_title">থিম</string>
+    <string name="pref_header_advanced">এডভান্সড</string>
+    <string name="pref_advanced_not_exported_title">অরপ্তানি কার্যক্রম দেখান</string>
+    <string name="pref_advanced_not_exported_summary">এটি শুধুমাত্র ROOT ব্যবহার করে চালানো যেতে পারে</string>
+    <string-array name="pref_appearance_theme_list_titles">
+        <item>সিস্টেম</item>
+        <item>লাইট</item>
+        <item>ডার্ক</item>
+    </string-array>
+    <plurals name="history_records">
+        <item quantity="one">%d রেকর্ড</item>
+        <item quantity="other">%d রেকর্ড</item>
+    </plurals>
+    <plurals name="activities_count">
+        <item quantity="one">%d কার্যক্রম</item>
+        <item quantity="other">%d কার্যক্রম</item>
+    </plurals>
+    <!-- manifest viewer -->
+    <string name="manifest_viewer_export">রপ্তানি করুন</string>
+    <string name="manifest_viewer_help">সাহায্য</string>
+    <string name="manifest_viewer_line_numbers">লাইন নম্বর</string>
+    <string name="manifest_viewer_search">অনুসন্ধান</string>
+    <string name="manifest_viewer_search_hint">কীওয়ার্ড খুঁজুন</string>
+    <!-- filter -->
+    <string name="filter">ফিল্টার</string>
+    <string name="filter_header">%1$d অ্যাপ্লিকেশন</string>
+    <string name="filter_header_sort_by">এর দ্বারা সাজান</string>
+    <string name="filter_sort_by_name">নাম</string>
+    <string name="filter_sort_by_update_time">আপডেট সময়</string>
+    <string name="filter_sort_by_install_time">ইনস্টল সময়</string>
+    <string name="filter_sort_order_asc">আসলো</string>
+    <string name="filter_sort_order_desc">অবতরণ</string>
+    <string name="filter_system_apps_title">সিস্টেম অ্যাপ্লিকেশন</string>
+    <string name="filter_disabled_apps_title">অক্ষম অ্যাপ্লিকেশন</string>
+    <string name="filter_toggle_show">দেখান</string>
+    <string name="filter_toggle_label">লেবেল</string>
+</resources>
