@@ -17,11 +17,12 @@ class AboutActivity : BaseActivity() {
 
     @Inject
     lateinit var packageInfoProvider: PackageInfoProvider
-    private lateinit var binding: ActivityAboutBinding
+    private val binding by lazy {
+    ActivityAboutBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 

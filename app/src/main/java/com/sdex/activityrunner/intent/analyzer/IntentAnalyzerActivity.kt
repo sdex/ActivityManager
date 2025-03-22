@@ -12,12 +12,13 @@ import com.sdex.activityrunner.intent.param.None
 
 class IntentAnalyzerActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityIntentAnalyzerBinding
+    private val binding by lazy {
+    ActivityIntentAnalyzerBinding.inflate(layoutInflater)
+    }
 
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityIntentAnalyzerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 

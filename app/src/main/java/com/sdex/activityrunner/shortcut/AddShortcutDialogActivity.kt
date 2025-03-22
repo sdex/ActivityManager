@@ -46,7 +46,9 @@ import kotlin.properties.Delegates
 
 class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
-    private lateinit var binding: ActivityAddShortcutBinding
+    private val binding by lazy {
+    ActivityAddShortcutBinding.inflate(layoutInflater)
+    }
 
     private val toolTipsManager = ToolTipsManager()
     private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
@@ -58,7 +60,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddShortcutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val materialAlertDialogBuilder = MaterialAlertDialogBuilder(this)
