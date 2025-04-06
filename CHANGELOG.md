@@ -1,3 +1,14 @@
+## 5.4.13 (8 Feb 2025)
+- add an option to configure the 'su' binary name #98
+- fix bottom sheet dialogs expand/collapse states for landscape orientation
+- fix preferences components' color to match the theme
+- update translations
+
+## 5.4.12 (1 Feb 2025)
+- move app preferences to the dialog
+- fix preferences dialog expand/collapse states for landscape orientation
+- display number of application
+
 ## 5.4.11 (16 Mar 2024)
 - @mikropsoft added a Turkish translation
 

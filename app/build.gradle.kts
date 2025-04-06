@@ -23,7 +23,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
-        multiDexEnabled = true
         base.archivesBaseName = "ActivityManager-$versionName"
     }
 
@@ -91,7 +90,6 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.core.ktx)
     implementation(libs.fragment.ktx)
-    implementation(libs.multidex)
     implementation(libs.preference.ktx)
     implementation(libs.recyclerview)
     implementation(libs.room.ktx)
