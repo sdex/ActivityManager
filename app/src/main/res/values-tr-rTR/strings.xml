@@ -4,12 +4,12 @@
     <string name="settings_activity">Ayarlar</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Etkinliği parametrelerle başlat</string>
-    <string name="activity_option_launch_root">Etkinliği KÖK ile başlat</string>
+    <string name="activity_option_launch_root">Etkinliği ROOT ile başlat</string>
     <string name="activity_option_create_shortcut">Kısayol oluştur</string>
     <!-- application options -->
     <string name="application_option_open">Uygulamayı başlat</string>
-    <string name="application_option_open_manifest">Manifesto görüntüleyiciyi aç</string>
-    <string name="application_option_open_info">Uygulama bilgilerini aç</string>
+    <string name="application_option_open_manifest">Manifest görüntüleyiciyi aç</string>
+    <string name="application_option_open_info">Uygulama bilgisini aç</string>
     <string name="application_option_action_launch">GooglePlay\'de aç</string>
     <string name="application_disabled">Devre dışı</string>
     <string name="application_system">Sistem</string>
@@ -17,82 +17,82 @@
     <string name="shortcut_name">Etiket</string>
     <string name="shortcut_name_empty">Etiket boş olamaz</string>
     <string name="shortcut_create">Oluştur</string>
-    <string name="shortcut_set_icon_tooltip">Simgeyi değiştirmek için dokunun</string>
+    <string name="shortcut_set_icon_tooltip">Simgeyi değiştirmek için dokun</string>
     <string name="icons_loading_error">Simgeler yüklenemedi</string>
     <string name="shortcut_icon_gallery">Galeriden seç</string>
     <string name="shortcut_icon_preset">Simgelerden seç</string>
     <!-- launching activity -->
-    <string name="starting_activity">Başlangıç etkinliği: %s</string>
+    <string name="starting_activity">Etkinlik başlatılıyor: %s</string>
     <string name="starting_activity_failed">Etkinlik başlatılamadı: %s</string>
-    <string name="starting_activity_launch_intent_failed">Başlatıcı etkinliği bulunamıyor</string>
-    <string name="starting_activity_failed_security">Bu etkinliği yürütme izniniz yok: %s</string>
-    <string name="starting_activity_intent">Başlangıç etkinliği</string>
+    <string name="starting_activity_launch_intent_failed">Başlatıcı etkinlik bulunamadı</string>
+    <string name="starting_activity_failed_security">Bu etkinliği çalıştırma izniniz yok: %s</string>
+    <string name="starting_activity_intent">Etkinlik başlatılıyor</string>
     <string name="starting_activity_intent_failed">Etkinlik başlatılamadı</string>
-    <string name="starting_activity_root_error">Root kullanılarak etkinlik başlatılamadı</string>
-    <string name="starting_activity_root_not_available">Kök mevcut değil veya izin verilmedi</string>
-    <string name="activities_list_empty_text">Dışa aktarılan faaliyet yok</string>
-    <string name="activities_list_empty_action">Dışarı aktarılmayanları göster</string>
+    <string name="starting_activity_root_error">Etkinlik root kullanarak başlatılamadı</string>
+    <string name="starting_activity_root_not_available">Root erişimi yok veya izin verilmedi</string>
+    <string name="activities_list_empty_text">Dışa aktarılmış etkinlik yok</string>
+    <string name="activities_list_empty_action">Dışa aktarılmamış olanları göster</string>
     <string name="activities_list_failed_loading">\"%1$s\" açılamadı</string>
     <string name="action_about">Hakkında</string>
-    <string name="action_launch_intent">Amaç başlatıcı</string>
-    <string name="action_history">Öyküsü</string>
+    <string name="action_launch_intent">Intent başlatıcı</string>
+    <string name="action_history">Geçmiş</string>
     <string name="action_clear_history">Geçmişi temizle</string>
     <string name="action_search">Ara</string>
-    <string name="action_search_hint">Uygulama adı veya paketi</string>
-    <string name="action_search_activity_hint">Etkinlik adı veya paketi</string>
+    <string name="action_search_hint">Uygulama adı veya paket</string>
+    <string name="action_search_activity_hint">Etkinlik adı veya paket</string>
     <string name="action_settings">Ayarlar</string>
     <!-- intent builder -->
     <string name="launch_param_package_name">Paket adı</string>
     <string name="launch_param_class_name">Sınıf adı</string>
     <string name="launch_param_action">Eylem</string>
     <string name="launch_param_data">Veri</string>
-    <string name="launch_param_mime_type">Pandomim türü</string>
+    <string name="launch_param_mime_type">Mime türü</string>
     <string name="launch_param_extras">Ekstralar</string>
-    <string name="launch_param_extras_add">+ Fazladan ekle</string>
+    <string name="launch_param_extras_add">+ Ekstra ekle</string>
     <string name="launch_param_categories">Kategoriler</string>
     <string name="launch_param_flags">Bayraklar</string>
     <string name="save_to_history">Geçmişe kaydet</string>
     <string name="item_history_has_extras">Ekstralar</string>
     <string name="item_history_has_categories">Kategoriler</string>
     <string name="item_history_has_flags">Bayraklar</string>
-    <string name="about_donation">Gelişimi destekleyin</string>
+    <string name="about_donation">Geliştirmeyi destekle</string>
     <string name="about_source_code">Kaynak kodu</string>
-    <string name="about_version">Versiyon</string>
+    <string name="about_version">Sürüm</string>
     <string name="about_bug_tracker">Sorun bildir</string>
-    <string name="about_suggest_idea">Bir fikir önerin</string>
-    <string name="about_translation">Çeviri konusunda yardım</string>
-    <string name="about_open_source">Açık kaynak kütüphaneleri</string>
+    <string name="about_suggest_idea">Fikir öner</string>
+    <string name="about_translation">Çeviri için yardım et</string>
+    <string name="about_open_source">Açık kaynak kütüphaneler</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
-    <string name="donate_message">Etkinlik Yöneticisi\'ni kullanıyorsanız ve bundan keyif aldıysanız, bu teşekkür etmenin çok güçlü bir yoludur! Bağış yaparak, zaten size yardımcı olan bu aracı sürdürülebilir ve sağlıklı hale getirmeye yardımcı oluyorsunuz.</string>
-    <string name="donate_action_text">Bağış Yapın</string>
-    <string name="donate_negative_action_text">Asla sorma</string>
-    <string name="input_key">Giriş tuşu</string>
-    <string name="input_value">Giriş değeri</string>
+    <string name="donate_message">Activity Manager\'ı kullanıyorsanız ve memnun kaldıysanız, teşekkür etmenin güçlü bir yoludur! Bağış yaparak, size zaten yardımcı olan bu aracın sürdürülebilir ve sağlıklı olmasına katkıda bulunuyorsunuz.</string>
+    <string name="donate_action_text">Bağış Yap</string>
+    <string name="donate_negative_action_text">Bir daha sorma</string>
+    <string name="input_key">Anahtar girin</string>
+    <string name="input_value">Değer girin</string>
     <string name="key">Anahtar</string>
     <string name="value">Değer</string>
     <string name="type_array">Dizi</string>
     <!-- history -->
     <string name="history_empty_text">Gösterilecek bir şey yok</string>
-    <string name="history_empty_action">Bazı niyetleri çalıştır</string>
+    <string name="history_empty_action">Bazı intent\'leri çalıştırın</string>
     <string name="history_dialog_clear_title">Geçmişi temizle</string>
-    <string name="history_dialog_clear_message">Emin misin?</string>
-    <string name="history_item_dialog_title">Niyet</string>
+    <string name="history_dialog_clear_message">Emin misiniz?</string>
+    <string name="history_item_dialog_title">Intent</string>
     <string name="history_item_dialog_remove">Kaldır</string>
     <string name="history_item_dialog_add_shortcut">Kısayol oluştur</string>
     <string name="history_item_dialog_export_uri">URI olarak dışa aktar</string>
     <string name="no">Hayır</string>
     <string name="yes">Evet</string>
-    <string name="dialog_add_extra_title">Fazladan para ekleyin</string>
+    <string name="dialog_add_extra_title">Ekstra ekle</string>
     <string name="dialog_add_extra_key_empty">Anahtar boş olamaz</string>
-    <string name="dialog_add_extra_value_empty">Değer boş bırakılamaz</string>
+    <string name="dialog_add_extra_value_empty">Değer boş olamaz</string>
     <string name="dialog_add_extra_type_incorrect">Yanlış değer türü</string>
     <string name="dialog_export_intent_copy">Kopyala</string>
-    <string name="dialog_enable_non_exported_title">İhraç edilmeyen faaliyetler</string>
-    <string name="dialog_enable_non_exported_message">Dışa aktarılmamış etkinlikleri görüntülemeyi etkinleştirebilirsiniz, bunlar kırmızı renkle vurgulanacaktır. Bu tür faaliyetler yalnızca ROOT izni ile yürütülebilir</string>
-    <string name="dialog_root_config_title">Set custom \'su\' executable</string>
+    <string name="dialog_enable_non_exported_title">Dışa aktarılmamış etkinlikler</string>
+    <string name="dialog_enable_non_exported_message">Dışa aktarılmamış etkinliklerin görüntülenmesini etkinleştirebilirsiniz, bunlar kırmızı renkle vurgulanacaktır. Bu tür etkinlikler yalnızca ROOT izni ile çalıştırılabilir</string>
+    <string name="dialog_root_config_title">Özel \'su\' yürütülebilir dosyasını ayarla</string>
     <!-- errors -->
-    <string name="error_failed_to_instantiate_web_view">WebView örneklendirilemedi, daha sonra tekrar deneyin</string>
+    <string name="error_failed_to_instantiate_web_view">WebView örneği oluşturulamadı, daha sonra tekrar deneyin</string>
     <string name="error_failed_to_open_manifest">AndroidManifest.xml açılamadı</string>
     <!-- share -->
     <string name="dialog_share_title">AndroidManifest.xml dosyasını paylaş</string>
@@ -100,8 +100,8 @@
     <string name="pref_header_appearance">Görünüm</string>
     <string name="pref_appearance_theme_title">Tema</string>
     <string name="pref_header_advanced">Gelişmiş</string>
-    <string name="pref_advanced_not_exported_title">Dışa aktarılmayan etkinlikleri göster</string>
-    <string name="pref_advanced_not_exported_summary">Sadece Kök kullanılarak çalıştırılabilir</string>
+    <string name="pref_advanced_not_exported_title">Dışa aktarılmamış etkinlikleri göster</string>
+    <string name="pref_advanced_not_exported_summary">Yalnızca Root kullanılarak çalıştırılabilir</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistem</item>
         <item>Açık</item>
@@ -116,22 +116,22 @@
         <item quantity="other">%d etkinlik</item>
     </plurals>
     <!-- manifest viewer -->
-    <string name="manifest_viewer_export">Dışa Aktar</string>
+    <string name="manifest_viewer_export">Dışa aktar</string>
     <string name="manifest_viewer_help">Yardım</string>
     <string name="manifest_viewer_line_numbers">Satır numaraları</string>
     <string name="manifest_viewer_search">Ara</string>
     <string name="manifest_viewer_search_hint">Anahtar kelime bul</string>
     <!-- filter -->
     <string name="filter">Filtre</string>
-    <string name="filter_header">%1$d applications</string>
-    <string name="filter_header_sort_by">Sıralama ölçütü</string>
-    <string name="filter_sort_by_name">Adı</string>
+    <string name="filter_header">%1$d uygulama</string>
+    <string name="filter_header_sort_by">Sıralama kriteri</string>
+    <string name="filter_sort_by_name">İsim</string>
     <string name="filter_sort_by_update_time">Güncelleme zamanı</string>
-    <string name="filter_sort_by_install_time">Yükleme süresi</string>
+    <string name="filter_sort_by_install_time">Kurulum zamanı</string>
     <string name="filter_sort_order_asc">Artan</string>
     <string name="filter_sort_order_desc">Azalan</string>
     <string name="filter_system_apps_title">Sistem uygulamaları</string>
-    <string name="filter_disabled_apps_title">Engelli uygulamalar</string>
+    <string name="filter_disabled_apps_title">Devre dışı uygulamalar</string>
     <string name="filter_toggle_show">Göster</string>
     <string name="filter_toggle_label">Etiket</string>
 </resources>
