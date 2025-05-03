@@ -26,20 +26,25 @@ class PackageInfoProvider(
     ): ApplicationModel? = try {
         val packageInfo = getPackageInfo(packageName)
         val name = getApplicationName(packageInfo)
-        val activities = packageInfo.activities ?: emptyArray()
         val applicationInfo = packageInfo.applicationInfo
         val isSystemApp = applicationInfo != null &&
             (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
         val isEnabled = applicationInfo != null && applicationInfo.enabled
+        val (activitiesCount, exportedActivitiesCount) = if (isEnabled) {
+            val packageInfoActivities = packageInfo.activities ?: emptyArray()
+            (packageInfoActivities.size) to (packageInfoActivities.count { it.exported })
+        } else {
+            val manifestActivities = getActivities(packageName)
+            manifestActivities.size to manifestActivities.count { it.exported }
+        }
         val versionName = packageInfo.versionName ?: ""
         val versionCode = getVersionCode(packageInfo)
-        val exportedActivitiesCount = activities.count { it.isEnabled && it.exported }
         val lastUpdateTime = packageInfo.lastUpdateTime
         val installTime = packageInfo.firstInstallTime
         ApplicationModel(
             packageName = packageName,
             name = name,
-            activitiesCount = activities.size,
+            activitiesCount = activitiesCount,
             exportedActivitiesCount = exportedActivitiesCount,
             system = isSystemApp,
             enabled = isEnabled,
@@ -83,7 +88,7 @@ class PackageInfoProvider(
                 val intentActivities = if (isAndroidT()) {
                     packageManager.queryIntentActivities(
                         intent,
-                        PackageManager.ResolveInfoFlags.of(0)
+                        PackageManager.ResolveInfoFlags.of(0),
                     )
                 } else {
                     packageManager.queryIntentActivities(intent, 0)
@@ -98,7 +103,7 @@ class PackageInfoProvider(
             if (isAndroidT()) {
                 packageManager.getPackageInfo(
                     packageName,
-                    PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES.toLong())
+                    PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES.toLong()),
                 )
             } else {
                 packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
@@ -131,7 +136,7 @@ class PackageInfoProvider(
             val info = if (isAndroidT()) {
                 pm.getPackageInfo(
                     packageName,
-                    PackageManager.PackageInfoFlags.of(PackageManager.GET_META_DATA.toLong())
+                    PackageManager.PackageInfoFlags.of(PackageManager.GET_META_DATA.toLong()),
                 )
             } else {
                 pm.getPackageInfo(packageName, PackageManager.GET_META_DATA)
@@ -144,7 +149,7 @@ class PackageInfoProvider(
             val archiveInfo = if (isAndroidT()) {
                 pm.getPackageArchiveInfo(
                     file.absolutePath,
-                    PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES.toLong())
+                    PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES.toLong()),
                 )
             } else {
                 pm.getPackageArchiveInfo(file.absolutePath, PackageManager.GET_ACTIVITIES)
