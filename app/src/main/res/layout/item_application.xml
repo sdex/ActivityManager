@@ -46,6 +46,13 @@
             android:textAppearance="?attr/textAppearanceBodySmall"
             tools:text="1.0 (10)" />
 
+        <TextView
+            android:id="@+id/activities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            tools:text="500 activities • 20 exported" />
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/info"
             android:layout_width="match_parent"

@@ -13,9 +13,8 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:paddingHorizontal="50dp"
-        android:paddingVertical="24dp"
-        android:textAppearance="?attr/textAppearanceTitleMedium"
-        android:textColor="@color/blue_light"
+        android:paddingVertical="16dp"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
         tools:text="Activity name" />
 
     <View

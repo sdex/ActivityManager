@@ -105,6 +105,18 @@ class ApplicationsListAdapter(
                 item.versionName,
                 item.versionCode
             )
+
+            val totalActivitiesFormattedText = context.resources.getQuantityString(
+                R.plurals.activities_count,
+                item.activitiesCount,
+                item.activitiesCount,
+            )
+            binding.activities.text = context.getString(
+                R.string.app_info_activities_number,
+                totalActivitiesFormattedText,
+                item.exportedActivitiesCount,
+            )
+
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
                 .transition(DrawableTransitionOptions.withCrossFade())

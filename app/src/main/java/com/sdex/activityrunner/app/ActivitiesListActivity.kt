@@ -68,15 +68,24 @@ class ActivitiesListActivity : BaseActivity() {
                 Toast.makeText(
                     this,
                     getString(R.string.activities_list_failed_loading, appPackageName),
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_LONG,
                 ).show()
                 finish()
                 return@observe
             }
-            val size = uiData.activities.size
+
             title = uiData.application.name
-            subTitle = resources.getQuantityString(R.plurals.activities_count, size, size)
-            binding.empty.isVisible = (size == 0 && searchText == null)
+            val totalActivitiesFormattedText = resources.getQuantityString(
+                R.plurals.activities_count,
+                uiData.application.activitiesCount,
+                uiData.application.activitiesCount,
+            )
+            subTitle = getString(
+                R.string.app_info_activities_number,
+                totalActivitiesFormattedText,
+                uiData.application.exportedActivitiesCount,
+            )
+            binding.empty.isVisible = (uiData.activities.isEmpty() && searchText == null)
             adapter.application = uiData.application
             adapter.submitList(uiData.activities) {
                 binding.list.scrollToPosition(0)
@@ -154,29 +163,33 @@ class ActivitiesListActivity : BaseActivity() {
             UIUtils.setMenuItemsVisibility(menu, searchItem, false)
         }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
+        searchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                filter(newText)
-                return false
-            }
-        })
-        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                UIUtils.setMenuItemsVisibility(menu, item, false)
-                return true
-            }
+                override fun onQueryTextChange(newText: String): Boolean {
+                    filter(newText)
+                    return false
+                }
+            },
+        )
+        searchItem.setOnActionExpandListener(
+            object : MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                    UIUtils.setMenuItemsVisibility(menu, item, false)
+                    return true
+                }
 
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                searchText = null
-                UIUtils.setMenuItemsVisibility(menu, true)
-                invalidateOptionsMenu()
-                return true
-            }
-        })
+                override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                    searchText = null
+                    UIUtils.setMenuItemsVisibility(menu, true)
+                    invalidateOptionsMenu()
+                    return true
+                }
+            },
+        )
     }
 
     companion object {
@@ -185,9 +198,11 @@ class ActivitiesListActivity : BaseActivity() {
         private const val STATE_SEARCH_TEXT = "state_search_text"
 
         fun start(context: Context, item: ApplicationModel) {
-            context.startActivity(Intent(context, ActivitiesListActivity::class.java).apply {
-                putExtra(ARG_APPLICATION, item)
-            })
+            context.startActivity(
+                Intent(context, ActivitiesListActivity::class.java).apply {
+                    putExtra(ARG_APPLICATION, item)
+                },
+            )
         }
     }
 }

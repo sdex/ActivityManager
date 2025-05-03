@@ -25,4 +25,6 @@
         <item>2</item>
     </string-array>
 
+    <string name="app_info_activities_number" translatable="false">%1$s • %2$d exported</string>
+
 </resources>

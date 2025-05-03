@@ -56,6 +56,23 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
             .into(binding.applicationIcon)
 
         binding.applicationName.text = model.name
+        binding.packageName.text = model.packageName
+        binding.version.text = getString(
+            R.string.app_version_format,
+            model.versionName,
+            model.versionCode,
+        )
+
+        val totalActivitiesFormattedText = resources.getQuantityString(
+            R.plurals.activities_count,
+            model.activitiesCount,
+            model.activitiesCount,
+        )
+        binding.activities.text = getString(
+            R.string.app_info_activities_number,
+            totalActivitiesFormattedText,
+            model.exportedActivitiesCount,
+        )
 
         val intent = requireActivity().packageManager.getLaunchIntentForPackage(packageName)
         binding.actionOpenApp.isVisible = intent != null

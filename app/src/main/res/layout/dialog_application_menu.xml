@@ -1,125 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:ignore="ContentDescription">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="ContentDescription">
 
-        <ImageView
-            android:id="@+id/applicationIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginHorizontal="13dp"
-            android:scaleType="center"
-            tools:src="@mipmap/ic_launcher" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/applicationName"
+            <ImageView
+                android:id="@+id/applicationIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="13dp"
+                android:scaleType="center"
+                tools:scaleType="centerCrop"
+                tools:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/applicationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingVertical="12dp"
+                android:textAppearance="?attr/textAppearanceTitleLarge"
+                tools:text="Application name" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:paddingVertical="24dp"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
-            android:textColor="@color/blue_light"
-            tools:text="Application name" />
+            android:paddingStart="50dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/packageName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="com.android.application" />
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packageName"
+                tools:text="1.0 (10)" />
+
+            <TextView
+                android:id="@+id/activities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/version"
+                tools:text="500 activities • 20 exported" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/list_divider" />
+
+        <LinearLayout
+            android:id="@+id/action_open_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_application_launch"
+                app:tint="@color/icon_tint" />
+
+            <TextView
+                style="@style/BottomDialogTextStyle"
+                android:text="@string/application_option_open" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/action_open_app_manifest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_application_open_manifest"
+                app:tint="@color/icon_tint" />
+
+            <TextView
+                style="@style/BottomDialogTextStyle"
+                android:text="@string/application_option_open_manifest" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/action_open_app_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_application_open_info"
+                app:tint="@color/icon_tint" />
+
+            <TextView
+                style="@style/BottomDialogTextStyle"
+                android:text="@string/application_option_open_info" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/action_open_app_play_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_application_open_play"
+                app:tint="@color/icon_tint" />
+
+            <TextView
+                style="@style/BottomDialogTextStyle"
+                android:text="@string/application_option_action_launch" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/list_divider" />
-
-    <LinearLayout
-        android:id="@+id/action_open_app"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_launch"
-            app:tint="@color/icon_tint" />
-
-        <TextView
-            style="@style/BottomDialogTextStyle"
-            android:text="@string/application_option_open" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/action_open_app_manifest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_manifest"
-            app:tint="@color/icon_tint" />
-
-        <TextView
-            style="@style/BottomDialogTextStyle"
-            android:text="@string/application_option_open_manifest" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/action_open_app_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_info"
-            app:tint="@color/icon_tint" />
-
-        <TextView
-            style="@style/BottomDialogTextStyle"
-            android:text="@string/application_option_open_info" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/action_open_app_play_store"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_application_open_play"
-            app:tint="@color/icon_tint" />
-
-        <TextView
-            style="@style/BottomDialogTextStyle"
-            android:text="@string/application_option_action_launch" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
