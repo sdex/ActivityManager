@@ -85,11 +85,7 @@
 
         <LinearLayout
             android:id="@+id/action_open_app"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
                 android:layout_width="50dp"
@@ -106,11 +102,7 @@
 
         <LinearLayout
             android:id="@+id/action_open_app_manifest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
                 android:layout_width="50dp"
@@ -127,11 +119,7 @@
 
         <LinearLayout
             android:id="@+id/action_open_app_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
                 android:layout_width="50dp"
@@ -148,11 +136,7 @@
 
         <LinearLayout
             android:id="@+id/action_open_app_play_store"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
                 android:layout_width="50dp"

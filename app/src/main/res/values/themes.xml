@@ -31,7 +31,6 @@
         <item name="colorPrimaryInverse">@color/md_theme_inversePrimary</item>
         <item name="android:colorBackground">@color/md_theme_background</item>
         <item name="android:listDivider">@color/list_divider</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
         <item name="materialCardViewFilledStyle">@style/Widget.App.CardView</item>
     </style>

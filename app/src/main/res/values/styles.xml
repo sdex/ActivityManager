@@ -13,6 +13,15 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <style name="BottomDialogItemStyle" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?android:attr/listPreferredItemHeight</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <style name="BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
         <item name="backgroundTint">@color/md_theme_background</item>
     </style>
