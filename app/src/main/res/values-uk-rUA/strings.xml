@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="history_activity">Історія</string>
-    <string name="settings_activity">Налаштування</string>
+    <string name="history_activity">История</string>
+    <string name="settings_activity">Налаштування </string>
     <!-- activity options -->
-    <string name="activity_option_launch_params">Запустити з параметрами</string>
-    <string name="activity_option_launch_root">Запустити з правами Root</string>
-    <string name="activity_option_create_shortcut">Створити ярлик</string>
+    <string name="activity_option_launch_params">Запустити з Параметрами activityhistory_activity</string>
+    <string name="activity_option_launch_root">Запустити з правами Root доступу</string>
+    <string name="activity_option_create_shortcut">Створити ярлик </string>
     <!-- application options -->
-    <string name="application_option_open">Запустити додаток</string>
-    <string name="application_option_open_manifest">Вікрити маніфест</string>
-    <string name="application_option_open_info">Вікрити інфо</string>
-    <string name="application_option_action_launch">Відкрити в GooglePlay</string>
+    <string name="application_option_open">Запустити додаток </string>
+    <string name="application_option_open_manifest">Вікрити маніфест </string>
+    <string name="application_option_open_info">Відкрити інформ</string>
+    <string name="application_option_action_launch">Відкрити у GooglePlay</string>
     <string name="application_disabled">Вимкнено</string>
     <string name="application_system">Системний</string>
     <!-- create shortcut -->
@@ -122,7 +122,7 @@
     <!-- manifest viewer -->
     <string name="manifest_viewer_export">Експортувати</string>
     <string name="manifest_viewer_help">Довідка</string>
-    <string name="manifest_viewer_line_numbers">Номери рядків</string>
+    <string name="manifest_viewer_line_numbers"></string>
     <string name="manifest_viewer_search">Пошук</string>
     <string name="manifest_viewer_search_hint">Знайти слово</string>
     <!-- filter -->
