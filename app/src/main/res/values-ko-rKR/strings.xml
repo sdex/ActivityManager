@@ -32,7 +32,7 @@
     <string name="starting_activity_root_not_available">루트 권한을 사용할 수 없거나 권한이 부여돼지 않았습니다</string>
     <string name="activities_list_empty_text">내보낸 액티비티가 없습니다</string>
     <string name="activities_list_empty_action">내보내지 않은 항목 표시</string>
-    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
+    <string name="activities_list_failed_loading"></string>
     <string name="action_about">정보</string>
     <string name="action_launch_intent">인텐트 실행기</string>
     <string name="action_history">기록</string>
@@ -57,9 +57,9 @@
     <string name="item_history_has_flags">플래그</string>
     <string name="about_donation">개발 지원</string>
     <string name="about_source_code">소스 코드</string>
-    <string name="about_version">Version</string>
-    <string name="about_bug_tracker">Report a problem</string>
-    <string name="about_suggest_idea">Suggest an idea</string>
+    <string name="about_version"></string>
+    <string name="about_bug_tracker"></string>
+    <string name="about_suggest_idea"></string>
     <string name="about_translation">Help with translation</string>
     <string name="about_open_source">Open source libraries</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
