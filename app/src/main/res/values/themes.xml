@@ -33,6 +33,7 @@
         <item name="android:listDivider">@color/list_divider</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
         <item name="materialCardViewFilledStyle">@style/Widget.App.CardView</item>
+        <item name="materialAlertDialogTheme">@style/AppAlertDialogTheme</item>
     </style>
 
     <style name="AppTheme" parent="Base.V0.AppTheme" />
@@ -82,6 +83,10 @@
 
     <style name="BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">
         <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="AppAlertDialogTheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">@color/md_theme_surface</item>
     </style>
 
     <!-- end dialogs themes -->
