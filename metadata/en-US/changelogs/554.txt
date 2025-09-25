@@ -1,0 +1,3 @@
+- show activities counters for apps
+- count activities for disabled apps
+- add Bengali translation (#107)
