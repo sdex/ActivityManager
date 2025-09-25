@@ -1,30 +1,30 @@
 [versions]
-agp = "8.9.2"
+agp = "8.13.0"
 appiconloader-coil = "1.5.0"
 coil-compose = "2.7.0"
-kotlin = "2.1.20"
-ksp = "2.1.20-1.0.31"
+kotlin = "2.2.20"
+ksp = "2.2.20-2.0.3"
 kotlinx-coroutines-android = "1.10.2"
-kotlinx-serialization-json = "1.8.1"
-activity-ktx = "1.10.1"
-activity-compose = "1.10.1"
-appcompat = "1.7.0"
-browser = "1.8.0"
-compose-bom = "2025.04.01"
+kotlinx-serialization-json = "1.9.0"
+activity-ktx = "1.11.0"
+activity-compose = "1.11.0"
+appcompat = "1.7.1"
+browser = "1.9.0"
+compose-bom = "2025.09.01"
 compose-tv-foundation = "1.0.0-alpha12"
-compose-tv-material = "1.0.0"
-navigation-compose = "2.8.9"
+compose-tv-material = "1.0.1"
+navigation-compose = "2.9.4"
 constraintlayout = "2.2.1"
-core-ktx = "1.16.0"
-fragment-ktx = "1.8.6"
-lifecycle = "2.8.7"
+core-ktx = "1.17.0"
+fragment-ktx = "1.8.9"
+lifecycle = "2.9.4"
 preference-ktx = "1.2.1"
 recyclerview = "1.4.0"
 room = "2.7.1"
 vectordrawable = "1.2.0"
-glide = "4.16.0"
-material = "1.12.0"
-hilt = "2.56.2"
+glide = "5.0.5"
+material = "1.13.0"
+hilt = "2.57.1"
 hilt-compose = "1.2.0"
 timber = "5.0.1"
 icondialog = "3.3.0"
@@ -34,8 +34,8 @@ tooltips = "1.1.1"
 apk-parser = "2.6.10"
 browserfip = "1.0.5"
 junit = "4.13.2"
-androidx-test = "1.6.2"
-espresso = "3.6.1"
+androidx-test = "1.7.0"
+espresso = "3.7.0"
 
 [libraries]
 activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
@@ -77,7 +77,6 @@ androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-tv-foundation = { group = "androidx.tv", name = "tv-foundation", version.ref = "compose-tv-foundation" }
 androidx-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "compose-tv-material" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
