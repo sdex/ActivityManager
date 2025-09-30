@@ -134,6 +134,7 @@ dependencies {
     implementation(libs.appiconloader.coil)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
 
     androidTestImplementation(libs.room.testing)
     androidTestImplementation(libs.androidx.test.runner)

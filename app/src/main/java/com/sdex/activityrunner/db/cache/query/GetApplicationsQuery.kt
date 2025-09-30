@@ -13,21 +13,29 @@ class GetApplicationsQuery(
 
     val sqLiteQuery get() = SimpleSQLiteQuery(toString())
 
+    private val sortBy get() = appPreferences.sortBy
+
+    private val sortOrder get() = appPreferences.sortOrder
+
     override fun toString(): String {
         val queryStringBuilder = StringBuilder()
-        queryStringBuilder.append("SELECT * FROM ").append(ApplicationModel.TABLE).append(" ")
-            .append("WHERE (")
-            .append(ApplicationModel.ACTIVITIES_COUNT).append(" >0")
-        if (appPreferences.isShowDisabledApps) {
-            queryStringBuilder.append(" OR ")
-                .append(ApplicationModel.ENABLED).append(" =0")
-        }
-        queryStringBuilder.append(") ")
-        if (!appPreferences.isShowSystemApps) {
+        queryStringBuilder.append("SELECT * FROM ")
+            .append(ApplicationModel.TABLE).append(" ")
+            .append("WHERE ")
+            .append(ApplicationModel.ACTIVITIES_COUNT).append(">0 ")
+
+        if (!appPreferences.isShowDisabledApps) {
             queryStringBuilder.append("AND (")
-                .append(ApplicationModel.SYSTEM).append(" =0")
+                .append(ApplicationModel.ENABLED).append("=1")
                 .append(") ")
         }
+
+        if (!appPreferences.isShowSystemApps) {
+            queryStringBuilder.append("AND (")
+                .append(ApplicationModel.SYSTEM).append("=0")
+                .append(") ")
+        }
+
         if (!searchText.isNullOrEmpty()) {
             val escapedSearchText = searchText.replace("'", "''")
             queryStringBuilder.append("AND (")
@@ -38,14 +46,12 @@ class GetApplicationsQuery(
                 .append(" LIKE '%").append(escapedSearchText).append("%'")
                 .append(") ")
         }
-        queryStringBuilder.append("ORDER BY ").append(getSortBy()).append(" ")
-            .append(sortCaseSensitive).append(" ").append(getSortOrder())
+
+        queryStringBuilder.append("ORDER BY ").append(sortBy).append(" ")
+            .append(sortCaseSensitive).append(" ").append(sortOrder)
+
         return queryStringBuilder.toString()
     }
-
-    private fun getSortBy(): String = appPreferences.sortBy
-
-    private fun getSortOrder(): String = appPreferences.sortOrder
 
     companion object {
 

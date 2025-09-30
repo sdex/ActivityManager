@@ -34,6 +34,7 @@ tooltips = "1.1.1"
 apk-parser = "2.6.10"
 browserfip = "1.0.5"
 junit = "4.13.2"
+mockk = "1.14.5"
 androidx-test = "1.7.0"
 espresso = "3.7.0"
 
@@ -66,6 +67,7 @@ apk-parser = { module = "net.dongliu:apk-parser", version.ref = "apk-parser" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 browserfip = { module = "com.github.Y-E-P:BrowserFiP", version.ref = "browserfip" }
 junit = { module = "junit:junit", version.ref = "junit" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
