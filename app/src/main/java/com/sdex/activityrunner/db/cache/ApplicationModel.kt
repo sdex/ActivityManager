@@ -19,6 +19,7 @@ data class ApplicationModel(
     val versionName: String,
     val updateTime: Long,
     val installTime: Long,
+    val installerPackage: String? = null,
 ) : Serializable {
 
     fun getPackageInfo(context: Context): PackageInfo {
@@ -38,5 +39,6 @@ data class ApplicationModel(
         const val VERSION_NAME = "versionName"
         const val UPDATE_TIME = "updateTime"
         const val INSTALL_TIME = "installTime"
+        const val INSTALLER_PACKAGE = "installerPackage"
     }
 }

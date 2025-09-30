@@ -7,8 +7,8 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [(ApplicationModel::class)],
-    version = 6,
-    exportSchema = true
+    version = 7,
+    exportSchema = true,
 )
 abstract class CacheDatabase : RoomDatabase() {
 
@@ -22,7 +22,7 @@ abstract class CacheDatabase : RoomDatabase() {
         fun getDatabase(context: Context): CacheDatabase {
             if (database == null) {
                 database = Room.databaseBuilder(context, CacheDatabase::class.java, DB_NAME)
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration(dropAllTables = true)
                     .build()
             }
             return database!!
