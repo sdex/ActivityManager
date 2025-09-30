@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.intent
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -25,6 +26,7 @@ class LaunchParamsExtraListAdapter :
 
     override fun getItemCount(): Int = items.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItems(items: List<LaunchParamsExtra>, viewMode: Boolean = false) {
         this.items = items
         this.viewMode = viewMode

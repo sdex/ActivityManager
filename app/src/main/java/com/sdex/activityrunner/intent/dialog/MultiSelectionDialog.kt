@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.SparseBooleanArray
+import androidx.core.os.bundleOf
+import androidx.core.util.size
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
@@ -37,11 +39,11 @@ class MultiSelectionDialog : BaseDialogFragment() {
         }
         val builder = MaterialAlertDialogBuilder(requireActivity())
         builder.setMultiChoiceItems(
-            list.toTypedArray(), checkedItems
+            list.toTypedArray(), checkedItems,
         ) { _, which, isChecked -> selectedItems.put(which, isChecked) }
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val selectedPositions = ArrayList<Int>()
-            for (i in 0 until selectedItems.size()) {
+            for (i in 0 until selectedItems.size) {
                 val key = selectedItems.keyAt(i)
                 val isSelected = selectedItems.get(key, false)
                 if (isSelected) {
@@ -58,7 +60,7 @@ class MultiSelectionDialog : BaseDialogFragment() {
         super.onAttach(context)
         try {
             callback = context as OnItemsSelectedCallback
-        } catch (e: ClassCastException) {
+        } catch (_: ClassCastException) {
             throw ClassCastException("$context must implement OnItemsSelectedCallback")
         }
 
@@ -77,11 +79,11 @@ class MultiSelectionDialog : BaseDialogFragment() {
         private const val ARG_INITIAL_POSITIONS = "arg_initial_positions"
 
         fun newInstance(type: Int, initialPositions: ArrayList<Int>): MultiSelectionDialog {
-            val args = Bundle(2)
-            args.putInt(ARG_TYPE, type)
-            args.putIntegerArrayList(ARG_INITIAL_POSITIONS, initialPositions)
             val fragment = MultiSelectionDialog()
-            fragment.arguments = args
+            fragment.arguments = bundleOf(
+                ARG_TYPE to type,
+                ARG_INITIAL_POSITIONS to initialPositions,
+            )
             return fragment
         }
     }

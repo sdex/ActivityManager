@@ -2,8 +2,8 @@ package com.sdex.activityrunner.manifest
 
 import android.content.res.Resources
 import android.content.res.XmlResourceParser
-import android.text.TextUtils
 import androidx.annotation.WorkerThread
+import androidx.core.text.htmlEncode
 import com.sdex.activityrunner.util.PackageInfoProvider
 import net.dongliu.apk.parser.ApkFile
 import timber.log.Timber
@@ -23,7 +23,7 @@ class ManifestReader @Inject constructor(
 
     @WorkerThread
     fun load(
-        packageName: String
+        packageName: String,
     ): String? {
         try {
             val manifest = parse(packageName)
@@ -66,7 +66,7 @@ class ManifestReader @Inject constructor(
                         val attributeValue = getAttributeValue(
                             attributeName,
                             parser.getAttributeValue(i),
-                            resources
+                            resources,
                         )
                         stringBuilder.append(" ").append(attributeName)
                             .append("=\"").append(attributeValue).append("\"")
@@ -89,7 +89,7 @@ class ManifestReader @Inject constructor(
     private fun getAttributeValue(
         attributeName: String,
         attributeValue: String,
-        resources: Resources
+        resources: Resources,
     ): String {
         if (attributeValue.startsWith("@")) {
             try {
@@ -99,7 +99,7 @@ class ManifestReader @Inject constructor(
                 } else {
                     resources.getString(id)
                 }
-                return TextUtils.htmlEncode(value)
+                return value.htmlEncode()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -123,7 +123,7 @@ class ManifestReader @Inject constructor(
         if (xml.isNullOrBlank()) return ""
         var stack = 0
         val pretty = StringBuilder()
-        val rows = xml.trim { it <= ' ' }
+        val rows = xml.trim()
             .replace(">".toRegex(), ">\n")
             .replace("<".toRegex(), "\n<")
             .split("\n".toRegex())
@@ -131,7 +131,7 @@ class ManifestReader @Inject constructor(
             .toTypedArray()
         for (r in rows) {
             if (r.isBlank()) continue
-            val row = r.trim { it <= ' ' }
+            val row = r.trim()
             if (row.startsWith("<?")) {
                 pretty.append(row + "\n")
             } else if (row.startsWith("</")) {
@@ -146,12 +146,12 @@ class ManifestReader @Inject constructor(
                 pretty.append(indent + row + "\n")
             }
         }
-        return pretty.toString().trim { it <= ' ' }
+        return pretty.toString().trim()
     }
 
     private fun repeatString(stack: Int): String {
         val indent = StringBuilder()
-        for (i in 0 until stack) {
+        repeat(stack) {
             indent.append(" ")
         }
         return indent.toString()

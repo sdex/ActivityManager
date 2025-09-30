@@ -10,6 +10,7 @@ import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.ApplicationsLoader
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -45,6 +46,7 @@ class MainViewModel @Inject constructor(
         search(searchQuery.value)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun syncDatabase() {
         GlobalScope.launch(Dispatchers.IO) {
             applicationsLoader.syncDatabase()

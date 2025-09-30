@@ -2,6 +2,7 @@ package com.sdex.activityrunner.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import kotlin.properties.Delegates
 
 class TooltipPreferences(context: Context) {
@@ -15,7 +16,7 @@ class TooltipPreferences(context: Context) {
     var showChangeIcon: Boolean
         get() = sharedPreferences.getBoolean(SHORTCUT_ICON_CHANGE, SHORTCUT_ICON_CHANGE_DEFAULT)
         set(show) {
-            sharedPreferences.edit().putBoolean(SHORTCUT_ICON_CHANGE, show).apply()
+            sharedPreferences.edit { putBoolean(SHORTCUT_ICON_CHANGE, show) }
         }
 
     companion object {

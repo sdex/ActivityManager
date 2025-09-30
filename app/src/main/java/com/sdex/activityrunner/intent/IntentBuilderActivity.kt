@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.intent
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -57,7 +58,7 @@ class IntentBuilderActivity : BaseActivity(),
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
-        val params = savedInstanceState?.parcelable(STATE_LAUNCH_PARAMS) as LaunchParams?
+        val params = savedInstanceState?.parcelable<LaunchParams>(STATE_LAUNCH_PARAMS)
         launchParams.setFrom(params)
 
         val activityModel = intent.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
@@ -78,6 +79,7 @@ class IntentBuilderActivity : BaseActivity(),
                 dialog.show(supportFragmentManager, ExtraInputDialog.TAG)
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun removeItem(position: Int) {
                 launchParams.extras.removeAt(position)
                 extraAdapter.notifyDataSetChanged()
