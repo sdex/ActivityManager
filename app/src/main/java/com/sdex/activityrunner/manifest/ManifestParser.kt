@@ -7,7 +7,7 @@ import timber.log.Timber
 import java.io.StringReader
 
 class ManifestParser(
-    private val manifestXml: String
+    private val manifestXml: String,
 ) {
 
     fun getActivities(packageName: String): List<ActivityModel> {
@@ -16,7 +16,7 @@ class ManifestParser(
             val factory = XmlPullParserFactory.newInstance()
             factory.isNamespaceAware = true
             val parser = factory.newPullParser()
-            parser.setInput(StringReader(manifestXml))
+            parser.setInput(StringReader(prepareManifest()))
             var eventType = parser.eventType
             var activityModel: ActivityModel? = null
             while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -38,7 +38,7 @@ class ManifestParser(
                         className,
                         activityLabel,
                         exported = false,
-                        enabled
+                        enabled,
                     )
 
                     val exportedAttributeValue = parser.getAttributeValue(null, "exported")
@@ -66,8 +66,15 @@ class ManifestParser(
                 eventType = parser.next()
             }
         } catch (e: Exception) {
-            Timber.e(e)
+            Timber.e(e, "Failed to parse manifest for package: $packageName")
         }
         return activities
+    }
+
+    private fun prepareManifest(): String {
+        return manifestXml.replace(
+            "http://schemas.android.com/apk/distribution",
+            "android",
+        )
     }
 }
