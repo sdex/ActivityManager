@@ -1,5 +1,6 @@
 package com.sdex.activityrunner.db.cache.query
 
+import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
 import io.mockk.every
 import io.mockk.mockk
@@ -14,7 +15,7 @@ class GetApplicationsQueryTest {
     fun `default query`() {
         every { appPreferences.isShowDisabledApps } returns true
         every { appPreferences.isShowSystemApps } returns true
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences)
@@ -27,7 +28,7 @@ class GetApplicationsQueryTest {
     fun `query without disabled apps`() {
         every { appPreferences.isShowDisabledApps } returns false
         every { appPreferences.isShowSystemApps } returns true
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences)
@@ -40,7 +41,7 @@ class GetApplicationsQueryTest {
     fun `query without system apps`() {
         every { appPreferences.isShowDisabledApps } returns true
         every { appPreferences.isShowSystemApps } returns false
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences)
@@ -53,7 +54,7 @@ class GetApplicationsQueryTest {
     fun `query without disabled and system apps`() {
         every { appPreferences.isShowDisabledApps } returns false
         every { appPreferences.isShowSystemApps } returns false
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences)
@@ -66,7 +67,7 @@ class GetApplicationsQueryTest {
     fun `query with search text`() {
         every { appPreferences.isShowDisabledApps } returns true
         every { appPreferences.isShowSystemApps } returns true
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences, "test")
@@ -79,7 +80,7 @@ class GetApplicationsQueryTest {
     fun `query with search text and no disabled apps`() {
         every { appPreferences.isShowDisabledApps } returns false
         every { appPreferences.isShowSystemApps } returns true
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences, "test")
@@ -92,7 +93,7 @@ class GetApplicationsQueryTest {
     fun `query with search text and no system apps`() {
         every { appPreferences.isShowDisabledApps } returns true
         every { appPreferences.isShowSystemApps } returns false
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences, "test")
@@ -105,7 +106,7 @@ class GetApplicationsQueryTest {
     fun `query with search text and no disabled and no system apps`() {
         every { appPreferences.isShowDisabledApps } returns false
         every { appPreferences.isShowSystemApps } returns false
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences, "test")
@@ -131,7 +132,7 @@ class GetApplicationsQueryTest {
     fun `query with search text containing single quote`() {
         every { appPreferences.isShowDisabledApps } returns true
         every { appPreferences.isShowSystemApps } returns true
-        every { appPreferences.sortBy } returns "name"
+        every { appPreferences.sortBy } returns ApplicationModel.NAME
         every { appPreferences.sortOrder } returns GetApplicationsQuery.ASC
 
         val query = GetApplicationsQuery(appPreferences, "test's")
