@@ -1,4 +1,7 @@
-- ## 5.4.14 (25 Sep 2025)
+## 5.4.15 (1 Oct 2025)
+- fix disabled apps filter
+
+## 5.4.14 (25 Sep 2025)
 - show activity counters for apps
 - count activities for disabled apps
 - add Bengali translation (#107)
