@@ -7,7 +7,7 @@
     <string name="activity_option_launch_root">Iniciar atividade com ROOT</string>
     <string name="activity_option_create_shortcut">Criar atalho</string>
     <!-- application options -->
-    <string name="application_option_open">Iniciar o app</string>
+    <string name="application_option_open">Iniciar a “app”</string>
     <string name="application_option_open_manifest">Abrir visualizador de manifesto</string>
     <string name="application_option_open_info">Abrir informações do app</string>
     <string name="application_option_action_launch">Abrir no GooglePlay</string>
