@@ -88,8 +88,8 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
             IntentUtils.openApplicationInfo(requireActivity(), packageName)
             dismissAllowingStateLoss()
         }
-        binding.actionOpenAppPlayStore.setOnClickListener {
-            AppUtils.openPlayStore(context, packageName)
+        binding.actionOpenAppMarket.setOnClickListener {
+            AppUtils.openAppMarket(context, packageName)
             dismissAllowingStateLoss()
         }
     }

@@ -136,19 +136,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/action_open_app_play_store"
+            android:id="@+id/action_open_app_market"
             style="@style/BottomDialogItemStyle">
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="center"
-                app:srcCompat="@drawable/ic_application_open_play"
+                app:srcCompat="@drawable/ic_application_open_market"
                 app:tint="@color/icon_tint" />
 
             <TextView
                 style="@style/BottomDialogTextStyle"
-                android:text="@string/application_option_action_launch" />
+                android:text="@string/application_option_open_market" />
 
         </LinearLayout>
 
