@@ -10,7 +10,7 @@
     <string name="application_option_open">启动应用程序</string>
     <string name="application_option_open_manifest">打开清单查看器</string>
     <string name="application_option_open_info">打开应用信息</string>
-    <string name="application_option_action_launch">在 Google Play 中打开</string>
+    <string name="application_option_open_market">在应用市场中打开</string>
     <string name="application_disabled">已停用</string>
     <string name="application_system">系统</string>
     <!-- create shortcut -->
