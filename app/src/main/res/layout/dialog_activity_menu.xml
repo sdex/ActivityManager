@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="UseCompoundDrawables">
 
     <TextView
         android:id="@+id/activity_name"
@@ -27,11 +28,8 @@
         style="@style/BottomDialogItemStyle">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_shortcut"
-            app:tint="@color/icon_tint" />
+            style="@style/BottomDialogItemIconStyle"
+            app:srcCompat="@drawable/ic_activity_shortcut" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -44,11 +42,8 @@
         style="@style/BottomDialogItemStyle">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_exit_to_app"
-            app:tint="@color/icon_tint" />
+            style="@style/BottomDialogItemIconStyle"
+            app:srcCompat="@drawable/ic_exit_to_app" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -61,11 +56,8 @@
         style="@style/BottomDialogItemStyle">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_launch_root"
-            app:tint="@color/icon_tint" />
+            style="@style/BottomDialogItemIconStyle"
+            app:srcCompat="@drawable/ic_activity_launch_root" />
 
         <TextView
             style="@style/BottomDialogTextStyle"

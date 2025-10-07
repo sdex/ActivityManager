@@ -12,7 +12,12 @@
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
-
+    <style name="BottomDialogItemIconStyle" parent="">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:scaleType">center</item>
+        <item name="tint">@color/icon_tint</item>
+    </style>
     <style name="BottomDialogItemStyle" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
