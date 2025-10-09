@@ -47,12 +47,12 @@
     <string name="launch_param_action">Acción</string>
     <string name="launch_param_data">Datos</string>
     <string name="launch_param_mime_type">Tipo de MIME</string>
-    <string name="launch_param_extras">Extras</string>
+    <string name="launch_param_extras"></string>
     <string name="launch_param_extras_add">Añadir extra</string>
     <string name="launch_param_categories">Categorías</string>
     <string name="launch_param_flags">Banderas</string>
     <string name="save_to_history">Guardar en historial</string>
-    <string name="item_history_has_extras">Extras</string>
+    <string name="item_history_has_extras"></string>
     <string name="item_history_has_categories">Categorías</string>
     <string name="item_history_has_flags">Banderas</string>
     <string name="about_donation">Apoya el desarrollo</string>
