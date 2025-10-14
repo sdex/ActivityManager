@@ -70,27 +70,27 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
 
         binding.sortByName.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortByChanged(ApplicationModel.Companion.NAME)
+                viewModel.onSortByChanged(ApplicationModel.NAME)
             }
         }
         binding.sortByUpdateTime.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortByChanged(ApplicationModel.Companion.UPDATE_TIME)
+                viewModel.onSortByChanged(ApplicationModel.UPDATE_TIME)
             }
         }
         binding.sortByInstallTime.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortByChanged(ApplicationModel.Companion.INSTALL_TIME)
+                viewModel.onSortByChanged(ApplicationModel.INSTALL_TIME)
             }
         }
         binding.orderByAsc.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortOrderChanged(GetApplicationsQuery.Companion.ASC)
+                viewModel.onSortOrderChanged(GetApplicationsQuery.ASC)
             }
         }
         binding.orderByDesc.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortOrderChanged(GetApplicationsQuery.Companion.DESC)
+                viewModel.onSortOrderChanged(GetApplicationsQuery.DESC)
             }
         }
         binding.showSystemApps.setOnCheckedChangeListener { _, isChecked ->
@@ -137,15 +137,15 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
 
     private fun setState(state: PreferencesState) {
         when (state.sortBy) {
-            ApplicationModel.Companion.NAME -> binding.sortByName
-            ApplicationModel.Companion.UPDATE_TIME -> binding.sortByUpdateTime
-            ApplicationModel.Companion.INSTALL_TIME -> binding.sortByInstallTime
+            ApplicationModel.NAME -> binding.sortByName
+            ApplicationModel.UPDATE_TIME -> binding.sortByUpdateTime
+            ApplicationModel.INSTALL_TIME -> binding.sortByInstallTime
             else -> null
         }?.apply { isChecked = true }
 
         when (state.sortOrder) {
-            GetApplicationsQuery.Companion.ASC -> binding.orderByAsc
-            GetApplicationsQuery.Companion.DESC -> binding.orderByDesc
+            GetApplicationsQuery.ASC -> binding.orderByAsc
+            GetApplicationsQuery.DESC -> binding.orderByDesc
             else -> null
         }?.apply { isChecked = true }
 
