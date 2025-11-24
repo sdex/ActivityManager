@@ -18,6 +18,7 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
             app:fastScrollEnableThumbInactiveColor="true"
             app:fastScrollPopupBgColor="?colorPrimary"
             app:fastScrollPopupTextColor="?colorOnPrimary"

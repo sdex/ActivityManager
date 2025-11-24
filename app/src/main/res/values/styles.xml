@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.Material3.Dark.ActionBar">
         <item name="colorAccent">@color/white</item>
     </style>
 

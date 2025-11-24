@@ -18,7 +18,7 @@ android {
     defaultConfig {
         applicationId = "com.activitymanager"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 555
         versionName = "5.4.15"
 
@@ -132,6 +132,8 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation(libs.appiconloader.coil)
+
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

@@ -7,7 +7,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
@@ -35,6 +38,16 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+                    or WindowInsetsCompat.Type.displayCutout()
+                    or WindowInsetsCompat.Type.ime(),
+            )
+            binding.list.updatePadding(bottom = insets.bottom)
+            windowInsets
+        }
 
         adapter = HistoryListAdapter(this)
         adapter.setHasStableIds(true)

@@ -1,11 +1,17 @@
 package com.sdex.activityrunner.commons
 
+import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.sdex.activityrunner.R
 
 open class BaseActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        enableEdgeToEdge()
+    }
 
     protected fun setupToolbar(isBackButtonEnabled: Boolean = false) {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)

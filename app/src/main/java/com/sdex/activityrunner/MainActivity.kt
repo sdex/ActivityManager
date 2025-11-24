@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.MenuProvider
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -44,6 +47,16 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar()
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+                    or WindowInsetsCompat.Type.displayCutout()
+                    or WindowInsetsCompat.Type.ime(),
+            )
+            binding.list.updatePadding(bottom = insets.bottom)
+            windowInsets
+        }
 
         addMenuProvider(
             object : MenuProvider {

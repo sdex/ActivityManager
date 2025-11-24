@@ -79,6 +79,9 @@
 
     <style name="Base.V0.BottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="enableEdgeToEdge">true</item>
     </style>
 
     <style name="BottomSheetDialogTheme" parent="Base.V0.BottomSheetDialogTheme">

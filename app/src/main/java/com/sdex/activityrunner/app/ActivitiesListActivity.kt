@@ -8,7 +8,10 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.commons.BaseActivity
@@ -45,6 +48,16 @@ class ActivitiesListActivity : BaseActivity() {
         binding = ActivityActivitiesListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+                    or WindowInsetsCompat.Type.displayCutout()
+                    or WindowInsetsCompat.Type.ime(),
+            )
+            binding.list.updatePadding(bottom = insets.bottom)
+            windowInsets
+        }
 
         val adapter = ActivitiesListAdapter(this).apply {
             application = item
