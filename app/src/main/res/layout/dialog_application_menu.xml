@@ -132,7 +132,7 @@
 
             <ImageView
                 style="@style/BottomDialogItemIconStyle"
-                app:srcCompat="@drawable/ic_application_open_play" />
+                app:srcCompat="@drawable/ic_app_market" />
 
             <TextView
                 style="@style/BottomDialogTextStyle"
