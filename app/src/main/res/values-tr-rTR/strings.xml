@@ -10,7 +10,7 @@
     <string name="application_option_open">Uygulamayı başlat</string>
     <string name="application_option_open_manifest">Manifest görüntüleyiciyi aç</string>
     <string name="application_option_open_info">Uygulama bilgisini aç</string>
-    <string name="application_option_action_launch">GooglePlay\'de aç</string>
+    <string name="application_option_open_market">Open in app market</string>
     <string name="application_disabled">Devre dışı</string>
     <string name="application_system">Sistem</string>
     <!-- create shortcut -->
