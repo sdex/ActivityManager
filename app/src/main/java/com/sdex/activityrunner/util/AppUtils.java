@@ -47,14 +47,14 @@ public class AppUtils {
                 e.printStackTrace();
             }
         }
-        openPlayStore(context, appPackageName);
+        openAppMarket(context, appPackageName);
     }
 
-    public static void openPlayStore(Context context) {
-        openPlayStore(context, context.getPackageName());
+    public static void openAppMarket(Context context) {
+        openAppMarket(context, context.getPackageName());
     }
 
-    public static void openPlayStore(Context context, String appPackageName) {
+    public static void openAppMarket(Context context, String appPackageName) {
         try {
             context.startActivity(
                     new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
