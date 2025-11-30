@@ -11,6 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.activityrunner.about.LicenseThemeJSInterface
 
 class LicensesDialogFragment : BaseDialogFragment() {
 
@@ -45,6 +46,7 @@ class LicensesDialogFragment : BaseDialogFragment() {
                 onPositionChanged(t)
             }
         }
+        webView.addJavascriptInterface(LicenseThemeJSInterface(requireContext()), "theme")
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
@@ -52,6 +54,7 @@ class LicensesDialogFragment : BaseDialogFragment() {
             }
         }
         webView.settings.setSupportMultipleWindows(true)
+        webView.settings.javaScriptEnabled = true
         webView.webChromeClient = object : WebChromeClient() {
             override fun onCreateWindow(
                 view: WebView, isDialog: Boolean,

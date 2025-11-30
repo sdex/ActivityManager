@@ -4,8 +4,28 @@
     <style type="text/css">
     p.license { background:grey; } body { font-family: sans-serif; overflow-wrap: break-word; } pre { background-color: #eeeeee; padding: 1em; white-space: pre-wrap; }
 
-
     </style>
+    <script>
+        const themedStyle = document.createElement("style");
+        themedStyle.innerHTML = `
+            html {
+                background: ${theme.getHtmlBackground()};
+                color: ${theme.getHtmlColor()};
+                letter-spacing: ${theme.getHtmlLetterSpacing()};
+            }
+
+            pre {
+                background: ${theme.getPreBackground()};
+                color: ${theme.getPreColor()};
+                border-radius: ${theme.getPreBorderRadius()};
+            }
+
+            a {
+                color: ${theme.getAColor()};
+            }
+        `;
+        document.head.appendChild(themedStyle);
+    </script>
 </head>
 <body>
 
