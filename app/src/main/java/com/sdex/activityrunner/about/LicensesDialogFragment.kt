@@ -7,6 +7,7 @@ import android.os.Message
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.view.ViewCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
@@ -53,6 +54,11 @@ class LicensesDialogFragment : BaseDialogFragment() {
                 view?.scrollTo(0, position)
             }
         }
+        ViewCompat.setScrollIndicators(
+            webView,
+            ViewCompat.SCROLL_INDICATOR_TOP or ViewCompat.SCROLL_INDICATOR_BOTTOM,
+            ViewCompat.SCROLL_INDICATOR_TOP or ViewCompat.SCROLL_INDICATOR_BOTTOM,
+        )
         webView.settings.setSupportMultipleWindows(true)
         webView.settings.javaScriptEnabled = true
         webView.webChromeClient = object : WebChromeClient() {
