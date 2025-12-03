@@ -6,17 +6,17 @@ import com.google.android.material.R
 import com.sdex.activityrunner.extensions.resolveColorAttr
 import com.sdex.activityrunner.extensions.resolveDimenAttr
 import com.sdex.activityrunner.extensions.toDp
-import com.sdex.activityrunner.extensions.toHexColor
+import com.sdex.activityrunner.extensions.toCssColor
 
 class LicenseThemeJSInterface(val context: Context) {
     @JavascriptInterface
     fun getHtmlBackground(): String {
-        return context.resolveColorAttr(R.attr.colorSurfaceContainerHigh).toHexColor()
+        return context.resolveColorAttr(R.attr.colorSurfaceContainerHigh).toCssColor()
     }
 
     @JavascriptInterface
     fun getHtmlColor(): String {
-        return context.resolveColorAttr(R.attr.colorOnSurfaceVariant).toHexColor()
+        return context.resolveColorAttr(R.attr.colorOnSurfaceVariant).toCssColor()
     }
 
     @JavascriptInterface
@@ -26,7 +26,7 @@ class LicenseThemeJSInterface(val context: Context) {
 
     @JavascriptInterface
     fun getPreBackground(): String {
-        return context.resolveColorAttr(R.attr.colorSurfaceContainerHighest).toHexColor()
+        return context.resolveColorAttr(R.attr.colorSurfaceContainerHighest).toCssColor()
     }
 
     @JavascriptInterface
@@ -36,11 +36,11 @@ class LicenseThemeJSInterface(val context: Context) {
 
     @JavascriptInterface
     fun getPreColor(): String {
-        return context.resolveColorAttr(R.attr.colorOnSurface).toHexColor()
+        return context.resolveColorAttr(R.attr.colorOnSurface).toCssColor()
     }
 
     @JavascriptInterface
     fun getAColor(): String {
-        return context.resolveColorAttr(R.attr.colorPrimaryVariant).toHexColor()
+        return context.resolveColorAttr(R.attr.colorPrimaryVariant).toCssColor()
     }
 }
