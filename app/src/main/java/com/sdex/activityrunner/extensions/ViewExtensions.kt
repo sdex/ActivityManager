@@ -33,11 +33,14 @@ fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
     return ContextCompat.getColor(this, colorRes)
 }
 
-fun Context.resolveDimenAttr(@AttrRes dimenAttr: Int): Int {
-    val resolvedAttr = resolveThemeAttr(dimenAttr)
-    // resourceId is used if it's a ColorStateList, and data if it's a color reference or a hex color
-    val dimenRes = if (resolvedAttr.resourceId != 0) resolvedAttr.resourceId else resolvedAttr.data
-    return resources.getDimensionPixelSize(dimenRes)
+fun Context.resolveIntAttr(@AttrRes intAttr: Int): Int {
+    val resolvedAttr = resolveThemeAttr(intAttr)
+    return resolvedAttr.data
+}
+
+fun Context.resolveResIdAttr(@AttrRes resAttr: Int): Int {
+    val resolvedAttr = resolveThemeAttr(resAttr)
+    return resolvedAttr.resourceId
 }
 
 fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
