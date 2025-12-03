@@ -7,23 +7,7 @@
     </style>
     <script>
         const themedStyle = document.createElement("style");
-        themedStyle.innerHTML = `
-            html {
-                background: ${theme.getHtmlBackground()};
-                color: ${theme.getHtmlColor()};
-                letter-spacing: ${theme.getHtmlLetterSpacing()};
-            }
-
-            pre {
-                background: ${theme.getPreBackground()};
-                color: ${theme.getPreColor()};
-                border-radius: ${theme.getPreBorderRadius()};
-            }
-
-            a {
-                color: ${theme.getAColor()};
-            }
-        `;
+        themedStyle.innerHTML = theme.getThemeStyle();
         document.head.appendChild(themedStyle);
     </script>
 </head>
