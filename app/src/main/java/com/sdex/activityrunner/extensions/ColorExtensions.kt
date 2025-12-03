@@ -1,3 +1,8 @@
 package com.sdex.activityrunner.extensions
 
-fun Int.toHexColor() = "#%06X".format(0xFFFFFF and this)
+import androidx.core.graphics.alpha
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
+
+fun Int.toCssColor() = "rgba(${red}, ${green}, ${blue}, ${alpha / 255f})"
