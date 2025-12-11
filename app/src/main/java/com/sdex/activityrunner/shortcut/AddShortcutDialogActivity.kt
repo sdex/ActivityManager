@@ -96,6 +96,8 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             binding.useRoot.isVisible = true
             binding.useRoot.isChecked = !activityModel.exported
 
+            binding.invertIconColors.isVisible = true
+
             binding.label.doOnTextChanged { _, _, _, count ->
                 binding.valueLayout.endIconMode = if (count == 0) {
                     TextInputLayout.END_ICON_DROPDOWN_MENU
@@ -139,7 +141,8 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                     this,
                     model,
                     bitmap,
-                    binding.useRoot.isChecked
+                    binding.useRoot.isChecked,
+                    binding.invertIconColors.isChecked
                 )
             }
 

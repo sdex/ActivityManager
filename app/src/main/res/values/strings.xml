@@ -21,6 +21,7 @@
     <string name="icons_loading_error">Failed to load the icons</string>
     <string name="shortcut_icon_gallery">Pick from gallery</string>
     <string name="shortcut_icon_preset">Select from icons</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">Starting activity: %s</string>
     <string name="starting_activity_failed">Failed to start activity: %s</string>

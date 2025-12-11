@@ -6,7 +6,11 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.graphics.drawable.Drawable
+import android.graphics.Paint
 import android.provider.Settings
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
@@ -40,13 +44,14 @@ object IntentUtils {
         activityModel: ActivityModel,
         bitmap: Bitmap?,
         useRoot: Boolean = false,
+        invertIconColors: Boolean = false,
     ) {
         if (bitmap != null) {
             val intent = activityModel.toIntent(context).apply {
                 putExtra(ShortcutHandlerActivity.ARG_USE_ROOT, useRoot)
             }
             val iconCompat = try {
-                IconCompat.createWithBitmap(bitmap)
+                IconCompat.createWithAdaptiveBitmap(tweakIcon(bitmap, invertIconColors))
             } catch (e: Exception) { // android.os.TransactionTooLargeException
                 Timber.i(e)
                 // the icon is too big, fall back to the default icon
@@ -56,6 +61,31 @@ object IntentUtils {
         } else {
             loadActivityIcon(context, activityModel)
         }
+    }
+
+    private fun tweakIcon(icon: Bitmap, invertIconColors: Boolean = false): Bitmap {
+        val paint = Paint()
+        if (invertIconColors) {
+            val matrix = ColorMatrix(
+                floatArrayOf(
+                    -1f, 0f, 0f, 0f, 255f,  // Red
+                    0f,-1f, 0f, 0f, 255f,  // Green
+                    0f, 0f,-1f, 0f, 255f,  // Blue
+                    0f, 0f, 0f, 1f,   0f   // Alpha
+                )
+            )
+            paint.apply {
+                colorFilter = ColorMatrixColorFilter(matrix)
+            }
+        }
+
+        val paddedWidth = icon.width + 128
+        val paddedHeight = icon.height + 128
+        val tweakedIcon = Bitmap.createBitmap(paddedWidth, paddedHeight, icon.config ?: Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(tweakedIcon)
+        canvas.drawBitmap(icon, (paddedWidth - icon.width) / 2f, (paddedHeight - icon.height) / 2f, paint)
+
+        return tweakedIcon
     }
 
     private fun ActivityModel.toIntent(context: Context): Intent {
