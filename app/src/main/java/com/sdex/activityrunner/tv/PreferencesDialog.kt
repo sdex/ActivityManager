@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.FilterChip
@@ -39,15 +39,15 @@ import com.sdex.activityrunner.preferences.PreferencesViewModel
 import com.sdex.activityrunner.tv.common.FilterChipGroup
 import com.sdex.activityrunner.tv.common.StandardDialog
 
-private val sortByOptions = listOf<Pair<String, Int>>(
-    ApplicationModel.Companion.NAME to R.string.filter_sort_by_name,
-    ApplicationModel.Companion.UPDATE_TIME to R.string.filter_sort_by_update_time,
-    ApplicationModel.Companion.INSTALL_TIME to R.string.filter_sort_by_install_time,
+private val sortByOptions = listOf(
+    ApplicationModel.NAME to R.string.filter_sort_by_name,
+    ApplicationModel.UPDATE_TIME to R.string.filter_sort_by_update_time,
+    ApplicationModel.INSTALL_TIME to R.string.filter_sort_by_install_time,
 )
 
-private val sortOrderOptions = listOf<Pair<String, Int>>(
-    GetApplicationsQuery.Companion.ASC to R.string.filter_sort_order_asc,
-    GetApplicationsQuery.Companion.DESC to R.string.filter_sort_order_desc,
+private val sortOrderOptions = listOf(
+    GetApplicationsQuery.ASC to R.string.filter_sort_order_asc,
+    GetApplicationsQuery.DESC to R.string.filter_sort_order_desc,
 )
 
 @OptIn(
