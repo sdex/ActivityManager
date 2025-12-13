@@ -10,7 +10,7 @@
     <string name="application_option_open">애플리케이션 실행</string>
     <string name="application_option_open_manifest">매니페스트 뷰어 열기</string>
     <string name="application_option_open_info">애플리케이션 정보 열기</string>
-    <string name="application_option_action_launch">구글 플레이스토어에서 열기</string>
+    <string name="application_option_open_market">Open in app market</string>
     <string name="application_disabled">비활성화됨</string>
     <string name="application_system">시스템</string>
     <!-- create shortcut -->

@@ -10,7 +10,7 @@
     <string name="application_option_open">Uruchom aplikację</string>
     <string name="application_option_open_manifest">Otwórz przeglądarkę manifestu</string>
     <string name="application_option_open_info">Otwórz informacje o aplikacji</string>
-    <string name="application_option_action_launch">Otwórz w Google Play</string>
+    <string name="application_option_open_market">Open in app market</string>
     <string name="application_disabled">Wyłączono</string>
     <string name="application_system">Systemowa</string>
     <!-- create shortcut -->
