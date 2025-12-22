@@ -21,6 +21,7 @@
     <string name="icons_loading_error">加载图标失败</string>
     <string name="shortcut_icon_gallery">从图库中选取</string>
     <string name="shortcut_icon_preset">选择图标</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
     <string name="starting_activity_failed">启动 Activity 失败：%s</string>
