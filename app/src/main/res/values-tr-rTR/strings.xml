@@ -21,6 +21,7 @@
     <string name="icons_loading_error">Simgeler yüklenemedi</string>
     <string name="shortcut_icon_gallery">Galeriden seç</string>
     <string name="shortcut_icon_preset">Simgelerden seç</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">Etkinlik başlatılıyor: %s</string>
     <string name="starting_activity_failed">Etkinlik başlatılamadı: %s</string>
