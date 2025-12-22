@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="history_activity">Histórico</string>
-    <string name="settings_activity">Configurações</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Iniciar atividade com parâmetros</string>
     <string name="activity_option_launch_root">Iniciar atividade com ROOT</string>
@@ -10,7 +9,6 @@
     <string name="application_option_open">Iniciar o app</string>
     <string name="application_option_open_manifest">Abrir visualizador de manifesto</string>
     <string name="application_option_open_info">Abrir informações do app</string>
-    <string name="application_option_action_launch">Abrir no GooglePlay</string>
     <string name="application_disabled">Desativado</string>
     <string name="application_system">Sistema</string>
     <!-- create shortcut -->

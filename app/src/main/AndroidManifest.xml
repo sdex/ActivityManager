@@ -6,9 +6,6 @@
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="PackageVisibilityPolicy,QueryAllPackagesPermission" />
-    <uses-permission
-        android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-        tools:node="remove" />
 
 <!--    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
     <uses-feature android:name="android.software.leanback" android:required="false" />-->
@@ -81,10 +78,6 @@
             android:theme="@android:style/Theme.Translucent" />
 
         <activity android:name=".about.AboutActivity" />
-
-        <activity
-            android:name=".preferences.SettingsActivity"
-            android:label="@string/settings_activity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

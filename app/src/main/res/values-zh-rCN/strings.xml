@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="history_activity">历史记录</string>
-    <string name="settings_activity">设置</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">使用参数启动 Activity</string>
     <string name="activity_option_launch_root">使用 Root 启动 Activity</string>
