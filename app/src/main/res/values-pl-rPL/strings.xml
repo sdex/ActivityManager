@@ -21,6 +21,7 @@
     <string name="icons_loading_error">Nie udało się załadować ikon</string>
     <string name="shortcut_icon_gallery">Wybierz z galerii</string>
     <string name="shortcut_icon_preset">Wybierz spośród ikon</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">Rozpoczęcie aktywności: %s</string>
     <string name="starting_activity_failed">Nie udało się rozpocząć aktywności: %s</string>
