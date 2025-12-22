@@ -21,6 +21,7 @@
     <string name="icons_loading_error">Не вдалося завантажити іконки</string>
     <string name="shortcut_icon_gallery">Вибрати з галереї</string>
     <string name="shortcut_icon_preset">Вибрати з іконок</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
     <string name="starting_activity_failed">Помилка запуску: %s</string>
