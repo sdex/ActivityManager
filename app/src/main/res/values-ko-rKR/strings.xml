@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="history_activity">기록</string>
-    <string name="settings_activity">설정</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">매개변수로 액티비티 실행</string>
     <string name="activity_option_launch_root">루트 권한으로 액티비티 실행</string>
@@ -33,6 +32,8 @@
     <string name="starting_activity_root_not_available">루트 권한을 사용할 수 없거나 권한이 부여돼지 않았습니다</string>
     <string name="activities_list_empty_text">내보낸 액티비티가 없습니다</string>
     <string name="activities_list_empty_action">내보내지 않은 항목 표시</string>
+    <string name="activities_list_non_exported_show_once">Just once</string>
+    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">정보</string>
     <string name="action_launch_intent">인텐트 실행기</string>
