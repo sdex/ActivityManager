@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="history_activity">Історія</string>
-    <string name="settings_activity">Налаштування</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Запустити з параметрами</string>
     <string name="activity_option_launch_root">Запустити з правами Root</string>
@@ -10,7 +9,7 @@
     <string name="application_option_open">Запустити додаток</string>
     <string name="application_option_open_manifest">Вікрити маніфест</string>
     <string name="application_option_open_info">Вікрити інфо</string>
-    <string name="application_option_open_market">Open in app market</string>
+    <string name="application_option_open_market">Відкрити в магазині додатків</string>
     <string name="application_disabled">Вимкнено</string>
     <string name="application_system">Системний</string>
     <!-- create shortcut -->
@@ -18,10 +17,10 @@
     <string name="shortcut_name_empty">Обов\'язкове поле</string>
     <string name="shortcut_create">Створити</string>
     <string name="shortcut_set_icon_tooltip">Натисніть щоб змінити зображення</string>
-    <string name="icons_loading_error">Не вдалося завантажити іконки</string>
+    <string name="icons_loading_error">Не вдалося завантажити значок</string>
     <string name="shortcut_icon_gallery">Вибрати з галереї</string>
-    <string name="shortcut_icon_preset">Вибрати з іконок</string>
-    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_icon_preset">Вибрати зі значків</string>
+    <string name="shortcut_invert_icon_colors">Інвертувати кольори значків</string>
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
     <string name="starting_activity_failed">Помилка запуску: %s</string>
@@ -33,6 +32,8 @@
     <string name="starting_activity_root_not_available">Root недоступний або права не надані</string>
     <string name="activities_list_empty_text">Додаток не містить доступних компонентів</string>
     <string name="activities_list_empty_action">Увімкнути показ прихованих компонентів</string>
+    <string name="activities_list_non_exported_show_once">Тільки раз</string>
+    <string name="activities_list_non_exported_show_always">Завжди показувати</string>
     <string name="activities_list_failed_loading">Помилка при відкритті \"%1$s\"</string>
     <string name="action_about">Про програму</string>
     <string name="action_launch_intent">Запустити intent</string>
