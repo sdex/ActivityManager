@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="history_activity">Histórico</string>
-    <string name="settings_activity">Configurações</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Iniciar atividade com parâmetros</string>
     <string name="activity_option_launch_root">Iniciar atividade com ROOT</string>
@@ -33,6 +32,8 @@
     <string name="starting_activity_root_not_available">Root não está disponível ou a permissão não foi concedida</string>
     <string name="activities_list_empty_text">Existem atividades não exportáveis</string>
     <string name="activities_list_empty_action">Mostrar não exportáveis</string>
+    <string name="activities_list_non_exported_show_once">Just once</string>
+    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">Falha ao abrir \"%1$s\"</string>
     <string name="action_about">Sobre</string>
     <string name="action_launch_intent">Iniciador de intenção</string>
