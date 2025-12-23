@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="history_activity">Geçmiş</string>
-    <string name="settings_activity">Ayarlar</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Etkinliği parametrelerle başlat</string>
     <string name="activity_option_launch_root">Etkinliği ROOT ile başlat</string>
@@ -33,6 +32,8 @@
     <string name="starting_activity_root_not_available">Root erişimi yok veya izin verilmedi</string>
     <string name="activities_list_empty_text">Dışa aktarılmış etkinlik yok</string>
     <string name="activities_list_empty_action">Dışa aktarılmamış olanları göster</string>
+    <string name="activities_list_non_exported_show_once">Just once</string>
+    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">\"%1$s\" açılamadı</string>
     <string name="action_about">Hakkında</string>
     <string name="action_launch_intent">Intent başlatıcı</string>
