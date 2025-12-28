@@ -7,13 +7,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.drawable.Drawable
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import android.provider.Settings
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
@@ -25,6 +24,7 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.shortcut.ShortcutColorInvertColorFilter
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
 import com.sdex.activityrunner.shortcut.createShortcut
 import timber.log.Timber
@@ -64,26 +64,26 @@ object IntentUtils {
     }
 
     private fun tweakIcon(icon: Bitmap, invertIconColors: Boolean = false): Bitmap {
-        val paint = Paint()
-        if (invertIconColors) {
-            val matrix = ColorMatrix(
-                floatArrayOf(
-                    -1f, 0f, 0f, 0f, 255f,  // Red
-                    0f,-1f, 0f, 0f, 255f,  // Green
-                    0f, 0f,-1f, 0f, 255f,  // Blue
-                    0f, 0f, 0f, 1f,   0f   // Alpha
-                )
-            )
-            paint.apply {
-                colorFilter = ColorMatrixColorFilter(matrix)
+        val paint = Paint().apply {
+            if (invertIconColors) {
+                colorFilter = ShortcutColorInvertColorFilter()
             }
         }
 
         val paddedWidth = icon.width + 128
         val paddedHeight = icon.height + 128
-        val tweakedIcon = Bitmap.createBitmap(paddedWidth, paddedHeight, icon.config ?: Bitmap.Config.ARGB_8888)
+        val tweakedIcon = createBitmap(
+            width = paddedWidth,
+            height = paddedHeight,
+            config = icon.config ?: Bitmap.Config.ARGB_8888,
+        )
         val canvas = Canvas(tweakedIcon)
-        canvas.drawBitmap(icon, (paddedWidth - icon.width) / 2f, (paddedHeight - icon.height) / 2f, paint)
+        canvas.drawBitmap(
+            icon,
+            (paddedWidth - icon.width) / 2f,
+            (paddedHeight - icon.height) / 2f,
+            paint,
+        )
 
         return tweakedIcon
     }
