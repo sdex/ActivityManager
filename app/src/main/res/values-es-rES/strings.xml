@@ -8,8 +8,8 @@
     <!-- application options -->
     <string name="application_option_open">Lanzar la aplicación</string>
     <string name="application_option_open_manifest">Abrir el visor del manifiesto</string>
-    <string name="application_option_open_info">Abrir info de la aplicación</string>
-    <string name="application_option_open_market">Open in app market</string>
+    <string name="application_option_open_info">Abrir informacione la aplicación</string>
+    <string name="application_option_open_market">Español</string>
     <string name="application_disabled">Desactivado</string>
     <string name="application_system">Sistema</string>
     <!-- create shortcut -->
