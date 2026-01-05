@@ -6,14 +6,10 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.provider.Settings
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.graphics.createBitmap
-import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
@@ -24,20 +20,11 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
-import com.sdex.activityrunner.shortcut.ShortcutColorInvertColorFilter
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
 import com.sdex.activityrunner.shortcut.createShortcut
 import timber.log.Timber
 
 object IntentUtils {
-
-    private fun getActivityIntent(action: String? = null, component: ComponentName): Intent {
-        return Intent().apply {
-            this.action = action
-            this.component = component
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-    }
 
     fun createLauncherIcon(
         context: Context,
@@ -50,42 +37,29 @@ object IntentUtils {
             val intent = activityModel.toIntent(context).apply {
                 putExtra(ShortcutHandlerActivity.ARG_USE_ROOT, useRoot)
             }
-            val iconCompat = try {
-                IconCompat.createWithAdaptiveBitmap(tweakIcon(bitmap, invertIconColors))
-            } catch (e: Exception) { // android.os.TransactionTooLargeException
-                Timber.i(e)
-                // the icon is too big, fall back to the default icon
-                IconCompat.createWithResource(context, R.mipmap.ic_launcher)
-            }
-            createShortcut(context, activityModel.name, intent, iconCompat)
+
+            createShortcut(
+                context = context,
+                name = activityModel.name,
+                intent = intent,
+                icon = bitmap,
+                invertIconColors = invertIconColors,
+            )
         } else {
-            loadActivityIcon(context, activityModel)
+            loadActivityIcon(
+                context = context,
+                activityModel = activityModel,
+                invertIconColors = invertIconColors,
+            )
         }
     }
 
-    private fun tweakIcon(icon: Bitmap, invertIconColors: Boolean = false): Bitmap {
-        val paint = Paint().apply {
-            if (invertIconColors) {
-                colorFilter = ShortcutColorInvertColorFilter()
-            }
+    private fun getActivityIntent(action: String? = null, component: ComponentName): Intent {
+        return Intent().apply {
+            this.action = action
+            this.component = component
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
-
-        val paddedWidth = icon.width + 128
-        val paddedHeight = icon.height + 128
-        val tweakedIcon = createBitmap(
-            width = paddedWidth,
-            height = paddedHeight,
-            config = icon.config ?: Bitmap.Config.ARGB_8888,
-        )
-        val canvas = Canvas(tweakedIcon)
-        canvas.drawBitmap(
-            icon,
-            (paddedWidth - icon.width) / 2f,
-            (paddedHeight - icon.height) / 2f,
-            paint,
-        )
-
-        return tweakedIcon
     }
 
     private fun ActivityModel.toIntent(context: Context): Intent {
@@ -99,7 +73,11 @@ object IntentUtils {
         return intent
     }
 
-    private fun loadActivityIcon(context: Context, activityModel: ActivityModel) {
+    private fun loadActivityIcon(
+        context: Context,
+        activityModel: ActivityModel,
+        invertIconColors: Boolean,
+    ) {
         val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val launcherLargeIconSize = activityManager.launcherLargeIconSize
         Glide.with(context)
@@ -125,7 +103,12 @@ object IntentUtils {
                         dataSource: DataSource,
                         isFirstResource: Boolean,
                     ): Boolean {
-                        createLauncherIcon(context, activityModel, resource.toBitmap())
+                        createLauncherIcon(
+                            context = context,
+                            activityModel = activityModel,
+                            bitmap = resource.toBitmap(),
+                            useRoot = invertIconColors,
+                        )
                         return false
                     }
                 },

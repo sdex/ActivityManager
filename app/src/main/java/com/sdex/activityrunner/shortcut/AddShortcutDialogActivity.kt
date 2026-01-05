@@ -14,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -98,8 +97,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             // TODO maybe check if root is available
             binding.useRoot.isChecked = !activityModel.exported
 
-            binding.invertIconColors.isVisible = true
-
             binding.label.doOnTextChanged { _, _, _, count ->
                 binding.valueLayout.endIconMode = if (count == 0) {
                     TextInputLayout.END_ICON_DROPDOWN_MENU
@@ -120,6 +117,14 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             binding.label.setText(historyModel.name)
             binding.icon.setImageResource(R.mipmap.ic_launcher)
             binding.valueLayout.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+        }
+
+        binding.invertIconColors.setOnCheckedChangeListener { _, isChecked ->
+            binding.icon.colorFilter = if (isChecked) {
+                ShortcutColorInvertColorFilter()
+            } else {
+                null
+            }
         }
 
         binding.icon.setOnClickListener {
@@ -152,8 +157,9 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
             historyModel?.let {
                 createHistoryModelShortcut(
-                    historyModel,
-                    shortcutName
+                    historyModel = historyModel,
+                    shortcutName = shortcutName,
+                    invertIconColors = binding.invertIconColors.isChecked,
                 )
             }
 
@@ -228,19 +234,22 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         popupMenu.show()
     }
 
-    private fun createHistoryModelShortcut(historyModel: HistoryModel, shortcutName: String) {
+    private fun createHistoryModelShortcut(
+        historyModel: HistoryModel,
+        shortcutName: String,
+        invertIconColors: Boolean = false,
+    ) {
         val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(historyModel)
         val launchParams = historyToLaunchParamsConverter.convert()
         val converter = LaunchParamsToIntentConverter(launchParams)
         val intent = converter.convert()
-
-        // TODO tweak icon
 
         createShortcut(
             context = this,
             name = shortcutName,
             intent = intent,
             icon = bitmap,
+            invertIconColors = invertIconColors,
         )
     }
 

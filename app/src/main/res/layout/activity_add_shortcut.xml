@@ -69,7 +69,6 @@
         android:layout_marginTop="10dp"
         android:checked="false"
         android:text="@string/shortcut_invert_icon_colors"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/use_root"
         tools:visibility="visible" />
 
