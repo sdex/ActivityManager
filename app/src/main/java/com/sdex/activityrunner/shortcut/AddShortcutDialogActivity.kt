@@ -80,20 +80,22 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                 .error(R.mipmap.ic_launcher)
                 .apply(RequestOptions().centerCrop())
                 .override(launcherLargeIconSize)
-                .into(object : CustomTarget<Drawable>() {
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        transition: Transition<in Drawable>?,
-                    ) {
-                        bitmap = resource.toBitmap()
-                        binding.icon.setImageDrawable(resource)
-                        showTooltip()
-                    }
+                .into(
+                    object : CustomTarget<Drawable>() {
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            transition: Transition<in Drawable>?,
+                        ) {
+                            bitmap = resource.toBitmap()
+                            binding.icon.setImageDrawable(resource)
+                            showTooltip()
+                        }
 
-                    override fun onLoadCleared(placeholder: Drawable?) {
-                    }
-                })
-            binding.useRoot.isVisible = true
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                        }
+                    },
+                )
+            // TODO maybe check if root is available
             binding.useRoot.isChecked = !activityModel.exported
 
             binding.invertIconColors.isVisible = true
@@ -108,7 +110,9 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             binding.label.setText(activityModel.label)
             binding.label.text?.let { binding.label.setSelection(it.length) }
             binding.label.setSimpleItems(
-                setOf(activityModel.label, activityModel.name).filterNotNull().toTypedArray()
+                setOf(activityModel.label, activityModel.name)
+                    .filterNotNull()
+                    .toTypedArray(),
             )
         }
 
@@ -138,11 +142,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             activityModel?.let {
                 val model = it.copy(name = shortcutName)
                 IntentUtils.createLauncherIcon(
-                    this,
-                    model,
-                    bitmap,
-                    binding.useRoot.isChecked,
-                    binding.invertIconColors.isChecked
+                    context = this,
+                    activityModel = model,
+                    bitmap = bitmap,
+                    useRoot = binding.useRoot.isChecked,
+                    invertIconColors = binding.invertIconColors.isChecked,
                 )
             }
 
@@ -171,15 +175,16 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                     binding.icon,
                     binding.content,
                     getString(R.string.shortcut_set_icon_tooltip),
-                    ToolTip.POSITION_BELOW
+                    ToolTip.POSITION_BELOW,
                 )
                 builder.setBackgroundColor(
                     resolveColorAttr(
-                        com.google.android.material.R.attr.colorTertiary
-                    )
+                        com.google.android.material.R.attr.colorTertiary,
+                    ),
                 )
                 builder.setTextAppearance(R.style.TooltipTextAppearance)
                 toolTipsManager.show(builder.build())
+
                 preferences.showChangeIcon = false
             }
         }
@@ -204,15 +209,17 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                 pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
             } else if (menuItem.itemId == R.id.pick_icon) {
                 if (iconPack != null) {
-                    val iconDialog = IconDialog.newInstance(IconDialogSettings {
-                        showSelectBtn = false
-                    })
+                    val iconDialog = IconDialog.newInstance(
+                        IconDialogSettings {
+                            showSelectBtn = false
+                        },
+                    )
                     iconDialog.show(supportFragmentManager, ICON_DIALOG_TAG)
                 } else {
                     Toast.makeText(
                         this,
                         R.string.icons_loading_error,
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_SHORT,
                     ).show()
                 }
             }
@@ -226,7 +233,15 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         val launchParams = historyToLaunchParamsConverter.convert()
         val converter = LaunchParamsToIntentConverter(launchParams)
         val intent = converter.convert()
-        createShortcut(this, shortcutName, intent, bitmap)
+
+        // TODO tweak icon
+
+        createShortcut(
+            context = this,
+            name = shortcutName,
+            intent = intent,
+            icon = bitmap,
+        )
     }
 
     private fun loadIcon(uri: Uri) {
@@ -237,15 +252,20 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             .load(uri)
             .error(R.mipmap.ic_launcher)
             .apply(RequestOptions().centerCrop().override(size))
-            .into(object : CustomTarget<Bitmap>(size, size) {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    bitmap = resource
-                    binding.icon.setImageBitmap(resource)
-                }
+            .into(
+                object : CustomTarget<Bitmap>(size, size) {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?,
+                    ) {
+                        bitmap = resource
+                        binding.icon.setImageBitmap(resource)
+                    }
 
-                override fun onLoadCleared(placeholder: Drawable?) {
-                }
-            })
+                    override fun onLoadCleared(placeholder: Drawable?) {
+                    }
+                },
+            )
     }
 
     companion object {
@@ -258,14 +278,16 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             context.startActivity(
                 Intent(context, AddShortcutDialogActivity::class.java).apply {
                     putExtra(ARG_ACTIVITY_MODEL, activityModel)
-                }
+                },
             )
         }
 
         fun start(context: Context, historyModel: HistoryModel) {
-            context.startActivity(Intent(context, AddShortcutDialogActivity::class.java).apply {
-                putExtra(ARG_HISTORY_MODEL, historyModel)
-            })
+            context.startActivity(
+                Intent(context, AddShortcutDialogActivity::class.java).apply {
+                    putExtra(ARG_HISTORY_MODEL, historyModel)
+                },
+            )
         }
     }
 }
