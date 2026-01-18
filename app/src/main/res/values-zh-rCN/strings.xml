@@ -20,7 +20,7 @@
     <string name="icons_loading_error">加载图标失败</string>
     <string name="shortcut_icon_gallery">从图库中选取</string>
     <string name="shortcut_icon_preset">选择图标</string>
-    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_invert_icon_colors">反转图标颜色</string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
     <string name="starting_activity_failed">启动 Activity 失败：%s</string>
@@ -32,8 +32,8 @@
     <string name="starting_activity_root_not_available">Root 不可用或未授予权限</string>
     <string name="activities_list_empty_text">没有已导出的 Activity</string>
     <string name="activities_list_empty_action">显示未导出的 Activity</string>
-    <string name="activities_list_non_exported_show_once">Just once</string>
-    <string name="activities_list_non_exported_show_always">Always show</string>
+    <string name="activities_list_non_exported_show_once">仅一次</string>
+    <string name="activities_list_non_exported_show_always">总是显示</string>
     <string name="activities_list_failed_loading">打开“%1$s”失败</string>
     <string name="action_about">关于</string>
     <string name="action_launch_intent">Intent 启动器</string>
