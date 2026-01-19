@@ -20,4 +20,14 @@
         android:title="@string/activity_option_create_shortcut"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/open_manifest"
+        android:title="@string/application_option_open_manifest"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/open_app_info"
+        android:title="@string/application_option_open_info"
+        app:showAsAction="never" />
+
 </menu>

@@ -16,20 +16,20 @@ import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
-import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
+import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ActivitiesListActivity : BaseActivity() {
 
-    @Inject
-    lateinit var appPreferences: AppPreferences
     private val viewModel by viewModels<ActivitiesListViewModel>()
+
     private lateinit var binding: ActivityActivitiesListBinding
     private lateinit var appPackageName: String
+    private var application: ApplicationModel? = null
 
     private var searchText: String? = null
 
@@ -74,6 +74,7 @@ class ActivitiesListActivity : BaseActivity() {
                 return@observe
             }
 
+            application = uiData.application
             title = uiData.application.name
             val totalActivitiesFormattedText = resources.getQuantityString(
                 R.plurals.activities_count,
@@ -93,16 +94,14 @@ class ActivitiesListActivity : BaseActivity() {
         }
 
         binding.showNonExported.setOnClickListener {
-            viewModel.reloadItems(appPackageName, true)
+            viewModel.reloadItems(appPackageName, showNotExported = true)
         }
 
-        if (!appPreferences.showNotExported
-            && !appPreferences.isNotExportedDialogShown
-            && appPreferences.appOpenCounter > 3
-        ) {
-            appPreferences.isNotExportedDialogShown = true
-            val dialog = EnableNotExportedActivitiesDialog()
-            dialog.show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
+        if (viewModel.shouldShowNotExportedMessageDialog) {
+            viewModel.isNotExportedDialogShown = true
+
+            EnableNotExportedActivitiesDialog.newInstance(appPackageName)
+                .show(supportFragmentManager, EnableNotExportedActivitiesDialog.TAG)
         }
     }
 
@@ -114,7 +113,7 @@ class ActivitiesListActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activities_list, menu)
         configureSearchView(menu)
-        menu.findItem(R.id.show_not_exported).isChecked = appPreferences.showNotExported
+        menu.findItem(R.id.show_not_exported).isChecked = viewModel.showNotExported
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -122,8 +121,9 @@ class ActivitiesListActivity : BaseActivity() {
         return when (item.itemId) {
             R.id.show_not_exported -> {
                 item.isChecked = !item.isChecked
-                appPreferences.showNotExported = item.isChecked
-                viewModel.reloadItems(appPackageName, item.isChecked)
+                viewModel.showNotExported = item.isChecked
+
+                viewModel.reloadItems(appPackageName, showNotExported = item.isChecked)
                 true
             }
 
@@ -138,6 +138,18 @@ class ActivitiesListActivity : BaseActivity() {
                         data = appPackageName
                     },
                 )
+                true
+            }
+
+            R.id.open_manifest -> {
+                application?.let { app ->
+                    ManifestViewerActivity.start(this, app)
+                }
+                true
+            }
+
+            R.id.open_app_info -> {
+                IntentUtils.openApplicationInfo(this, appPackageName)
                 true
             }
 

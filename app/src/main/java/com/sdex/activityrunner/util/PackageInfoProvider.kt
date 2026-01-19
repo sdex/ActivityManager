@@ -25,7 +25,6 @@ class PackageInfoProvider(
         packageName: String,
     ): ApplicationModel? = try {
         val packageInfo = getPackageInfo(packageName)
-        val name = getApplicationName(packageInfo)
         val applicationInfo = packageInfo.applicationInfo
         val isSystemApp = applicationInfo != null &&
             (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
@@ -37,21 +36,18 @@ class PackageInfoProvider(
             val manifestActivities = getActivities(packageName)
             manifestActivities.size to manifestActivities.count { it.exported }
         }
-        val versionName = packageInfo.versionName ?: ""
-        val versionCode = getVersionCode(packageInfo)
-        val lastUpdateTime = packageInfo.lastUpdateTime
-        val installTime = packageInfo.firstInstallTime
         ApplicationModel(
             packageName = packageName,
-            name = name,
+            name = getApplicationName(packageInfo),
             activitiesCount = activitiesCount,
             exportedActivitiesCount = exportedActivitiesCount,
             system = isSystemApp,
             enabled = isEnabled,
-            versionCode = versionCode,
-            versionName = versionName,
-            updateTime = lastUpdateTime,
-            installTime = installTime,
+            versionCode = packageInfo.getVersionCodeCompat(),
+            versionName = packageInfo.versionName ?: "",
+            updateTime = packageInfo.lastUpdateTime,
+            installTime = packageInfo.firstInstallTime,
+            installerPackage = getInstallerPackage(packageName),
         )
     } catch (e: Exception) {
         Timber.e(e, "Failed to process: $packageName")
@@ -61,9 +57,7 @@ class PackageInfoProvider(
     fun getActivities(packageName: String): List<ActivityModel> {
         val packageInfo = getPackageInfo(packageName)
         val applicationInfo = packageInfo.applicationInfo
-        if (applicationInfo == null) {
-            return emptyList()
-        }
+            ?: return emptyList()
         if (applicationInfo.enabled) {
             return packageInfo.activities?.map { it.toActivityModel() } ?: emptyList()
         } else {
@@ -142,9 +136,7 @@ class PackageInfoProvider(
                 pm.getPackageInfo(packageName, PackageManager.GET_META_DATA)
             }
             val applicationInfo = info.applicationInfo
-            if (applicationInfo == null) {
-                throw IllegalStateException("ApplicationInfo is null")
-            }
+                ?: throw IllegalStateException("ApplicationInfo is null")
             val file = File(applicationInfo.publicSourceDir)
             val archiveInfo = if (isAndroidT()) {
                 pm.getPackageArchiveInfo(
@@ -172,14 +164,29 @@ class PackageInfoProvider(
         enabled,
     )
 
+    private fun getInstallerPackage(packageName: String): String? = try {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            packageManager.getInstallSourceInfo(packageName).installingPackageName
+        } else {
+            @Suppress("DEPRECATION")
+            packageManager.getInstallerPackageName(packageName)
+        }
+    } catch (_: Exception) {
+        null
+    }
+
     companion object {
 
-        @Suppress("DEPRECATION")
-        fun getVersionCode(packageInfo: PackageInfo): Long =
+        const val GOOGLE_PLAY_INSTALLER = "com.android.vending"
+        const val ANDROID_INSTALLER = "com.google.android.packageinstaller"
+        const val FDROID_INSTALLER = "org.fdroid.fdroid"
+
+        fun PackageInfo.getVersionCodeCompat(): Long =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                packageInfo.longVersionCode
+                longVersionCode
             } else {
-                packageInfo.versionCode.toLong()
+                @Suppress("DEPRECATION")
+                versionCode.toLong()
             }
     }
 }

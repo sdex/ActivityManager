@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="history_activity">History</string>
-    <string name="settings_activity">Settings</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Launch activity with parameters</string>
     <string name="activity_option_launch_root">Launch activity with ROOT</string>
@@ -10,7 +9,7 @@
     <string name="application_option_open">Launch the application</string>
     <string name="application_option_open_manifest">Open manifest viewer</string>
     <string name="application_option_open_info">Open application info</string>
-    <string name="application_option_action_launch">Open in GooglePlay</string>
+    <string name="application_option_open_market">Open in app market</string>
     <string name="application_disabled">Disabled</string>
     <string name="application_system">System</string>
     <!-- create shortcut -->
@@ -21,6 +20,7 @@
     <string name="icons_loading_error">Failed to load the icons</string>
     <string name="shortcut_icon_gallery">Pick from gallery</string>
     <string name="shortcut_icon_preset">Select from icons</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">Starting activity: %s</string>
     <string name="starting_activity_failed">Failed to start activity: %s</string>
@@ -32,6 +32,8 @@
     <string name="starting_activity_root_not_available">Root is not available or the permission is not granted</string>
     <string name="activities_list_empty_text">There are no exported activities</string>
     <string name="activities_list_empty_action">Show non-exported</string>
+    <string name="activities_list_non_exported_show_once">Just once</string>
+    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">About</string>
     <string name="action_launch_intent">Intent launcher</string>

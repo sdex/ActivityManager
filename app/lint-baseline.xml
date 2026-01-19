@@ -1,47 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 8.3.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.3.0)" variant="all" version="8.3.0">
+<issues format="6" by="lint 8.13.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.13.0)" variant="all" version="8.13.0">
 
     <issue
-        id="MissingQuantity"
-        message="For locale &quot;es&quot; (Spanish) the following quantity should also be defined: `many`"
-        errorLine1="    &lt;plurals name=&quot;history_records&quot;>"
-        errorLine2="    ^">
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        errorLine1="        targetSdk = 34"
+        errorLine2="        ~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values-es-rES/strings.xml"
-            line="109"
+            file="build.gradle.kts"
+            line="21"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        message="A newer version of Gradle than 8.13 is available: 8.14.3"
+        errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-8.13-bin.zip"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="$HOME/android/projects/ActivityManager/gradle/wrapper/gradle-wrapper.properties"
+            line="3"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-compose than 2.9.4 is available: 2.9.5"
+        errorLine1="navigation-compose = &quot;2.9.4&quot;"
+        errorLine2="                     ~~~~~~~">
+        <location
+            file="$HOME/android/projects/ActivityManager/gradle/libs.versions.toml"
+            line="16"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room than 2.7.1 is available: 2.8.1"
+        errorLine1="room = &quot;2.7.1&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="$HOME/android/projects/ActivityManager/gradle/libs.versions.toml"
+            line="23"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-compiler than 2.7.1 is available: 2.8.1"
+        errorLine1="room = &quot;2.7.1&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="$HOME/android/projects/ActivityManager/gradle/libs.versions.toml"
+            line="23"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-ktx than 2.7.1 is available: 2.8.1"
+        errorLine1="room = &quot;2.7.1&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="$HOME/android/projects/ActivityManager/gradle/libs.versions.toml"
+            line="23"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-testing than 2.7.1 is available: 2.8.1"
+        errorLine1="room = &quot;2.7.1&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="$HOME/android/projects/ActivityManager/gradle/libs.versions.toml"
+            line="23"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.hilt:hilt-navigation-compose than 1.2.0 is available: 1.3.0"
+        errorLine1="hilt-compose = &quot;1.2.0&quot;"
+        errorLine2="               ~~~~~~~">
+        <location
+            file="$HOME/android/projects/ActivityManager/gradle/libs.versions.toml"
+            line="28"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="PluralsCandidate"
+        message="Formatting %d followed by words (&quot;applications&quot;): This should probably be a plural rather than a string"
+        errorLine1="    &lt;string name=&quot;filter_header&quot;>%1$d applications&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="126"
             column="5"/>
     </issue>
 
     <issue
-        id="MissingQuantity"
-        message="For locale &quot;pt&quot; (Portuguese) the following quantity should also be defined: `many`"
-        errorLine1="    &lt;plurals name=&quot;history_records&quot;>"
-        errorLine2="    ^">
+        id="PluralsCandidate"
+        message="Formatting %d followed by words (&quot;exported&quot;): This should probably be a plural rather than a string"
+        errorLine1="    &lt;string name=&quot;app_info_activities_number&quot; translatable=&quot;false&quot;>%1$s • %2$d exported&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values-pt-rBR/strings.xml"
-            line="109"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="MissingQuantity"
-        message="For locale &quot;es&quot; (Spanish) the following quantity should also be defined: `many`"
-        errorLine1="    &lt;plurals name=&quot;activities_count&quot;>"
-        errorLine2="    ^">
-        <location
-            file="src/main/res/values-es-rES/strings.xml"
-            line="113"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="MissingQuantity"
-        message="For locale &quot;pt&quot; (Portuguese) the following quantity should also be defined: `many`"
-        errorLine1="    &lt;plurals name=&quot;activities_count&quot;>"
-        errorLine2="    ^">
-        <location
-            file="src/main/res/values-pt-rBR/strings.xml"
-            line="113"
+            file="src/main/res/values/strings_common.xml"
+            line="28"
             column="5"/>
     </issue>
 
@@ -52,30 +118,8 @@
         errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/AndroidManifest.xml"
-            line="16"
+            line="20"
             column="36"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        errorLine1="                extraAdapter.notifyDataSetChanged()"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/com/sdex/activityrunner/intent/IntentBuilderActivity.kt"
-            line="83"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/com/sdex/activityrunner/intent/LaunchParamsExtraListAdapter.kt"
-            line="31"
-            column="9"/>
     </issue>
 
     <issue
@@ -90,25 +134,25 @@
     </issue>
 
     <issue
-        id="VectorPath"
-        message="Very long vector path (895 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
-        errorLine1="      android:pathData=&quot;M480,760Q546,760 593,713Q640,666 640,600L640,440Q640,374 593,327Q546,280 480,280Q414,280 367,327Q320,374 320,440L320,600Q320,666 367,713Q414,760 480,760ZM400,640L560,640L560,560L400,560L400,640ZM400,480L560,480L560,400L400,400L400,480ZM480,520Q480,520 480,520Q480,520 480,520L480,520Q480,520 480,520Q480,520 480,520Q480,520 480,520Q480,520 480,520L480,520Q480,520 480,520Q480,520 480,520ZM480,840Q415,840 359.5,808Q304,776 272,720L160,720L160,640L244,640Q241,620 240.5,600Q240,580 240,560L160,560L160,480L240,480Q240,460 240.5,440Q241,420 244,400L160,400L160,320L272,320Q286,297 303.5,277Q321,257 344,242L280,176L336,120L422,206Q450,197 479,197Q508,197 536,206L624,120L680,176L614,242Q637,257 655.5,276.5Q674,296 688,320L800,320L800,400L716,400Q719,420 719.5,440Q720,460 720,480L800,480L800,560L720,560Q720,580 719.5,600Q719,620 716,640L800,640L800,720L688,720Q656,776 600.5,808Q545,840 480,840Z&quot;/>"
-        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        id="UnnecessaryArrayInit"
+        message="This initialization lambda (`{ 0 }`) is unnecessary and is less efficient"
+        errorLine1="                val mainAxisPositions = IntArray(childrenMainAxisSizes.size) { 0 }"
+        errorLine2="                                                                             ~~~~~">
         <location
-            file="src/main/res/drawable/ic_bug_report.xml"
-            line="9"
-            column="25"/>
+            file="src/main/java/com/sdex/activityrunner/tv/common/Dialog.kt"
+            line="539"
+            column="78"/>
     </issue>
 
     <issue
-        id="VectorPath"
-        message="Very long vector path (871 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
-        errorLine1="        android:pathData=&quot;M19.43,12.98c0.04,-0.32 0.07,-0.64 0.07,-0.98s-0.03,-0.66 -0.07,-0.98l2.11,-1.65c0.19,-0.15 0.24,-0.42 0.12,-0.64l-2,-3.46c-0.12,-0.22 -0.39,-0.3 -0.61,-0.22l-2.49,1c-0.52,-0.4 -1.08,-0.73 -1.69,-0.98l-0.38,-2.65C14.46,2.18 14.25,2 14,2h-4c-0.25,0 -0.46,0.18 -0.49,0.42l-0.38,2.65c-0.61,0.25 -1.17,0.59 -1.69,0.98l-2.49,-1c-0.23,-0.09 -0.49,0 -0.61,0.22l-2,3.46c-0.13,0.22 -0.07,0.49 0.12,0.64l2.11,1.65c-0.04,0.32 -0.07,0.65 -0.07,0.98s0.03,0.66 0.07,0.98l-2.11,1.65c-0.19,0.15 -0.24,0.42 -0.12,0.64l2,3.46c0.12,0.22 0.39,0.3 0.61,0.22l2.49,-1c0.52,0.4 1.08,0.73 1.69,0.98l0.38,2.65c0.03,0.24 0.24,0.42 0.49,0.42h4c0.25,0 0.46,-0.18 0.49,-0.42l0.38,-2.65c0.61,-0.25 1.17,-0.59 1.69,-0.98l2.49,1c0.23,0.09 0.49,0 0.61,-0.22l2,-3.46c0.12,-0.22 0.07,-0.49 -0.12,-0.64l-2.11,-1.65zM12,15.5c-1.93,0 -3.5,-1.57 -3.5,-3.5s1.57,-3.5 3.5,-3.5 3.5,1.57 3.5,3.5 -1.57,3.5 -3.5,3.5z&quot; />"
-        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`"
+        errorLine1="    var animationProgress by mutableStateOf(0f)"
+        errorLine2="                             ~~~~~~~~~~~~~~">
         <location
-            file="src/main/res/drawable/ic_settings.xml"
-            line="9"
-            column="27"/>
+            file="src/main/java/com/sdex/activityrunner/tv/common/Dialog.kt"
+            line="352"
+            column="30"/>
     </issue>
 
     <issue
@@ -168,56 +212,12 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.color.preference_fallback_accent_color` appears to be unused"
-        errorLine1="    &lt;color name=&quot;preference_fallback_accent_color&quot; tools:override=&quot;true&quot;>@color/blue_light&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="5"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.blue` appears to be unused"
-        errorLine1="    &lt;color name=&quot;blue&quot;>#0079bf&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="8"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.blue_dark` appears to be unused"
-        errorLine1="    &lt;color name=&quot;blue_dark&quot;>#026aa7&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="9"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.color.black` appears to be unused"
-        errorLine1="    &lt;color name=&quot;black&quot;>#000&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/colors.xml"
-            line="12"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
         message="The resource `R.color.fip_inactive_color` appears to be unused"
         errorLine1="    &lt;color name=&quot;fip_inactive_color&quot;>#BDBDBD&lt;/color>"
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="21"
+            line="16"
             column="12"/>
     </issue>
 
@@ -228,7 +228,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="22"
+            line="17"
             column="12"/>
     </issue>
 
@@ -239,7 +239,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="23"
+            line="18"
             column="12"/>
     </issue>
 
@@ -250,7 +250,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="51"
+            line="46"
             column="12"/>
     </issue>
 
@@ -261,7 +261,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="52"
+            line="47"
             column="12"/>
     </issue>
 
@@ -272,7 +272,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/colors.xml"
-            line="53"
+            line="48"
             column="12"/>
     </issue>
 
@@ -285,24 +285,13 @@
 
     <issue
         id="UnusedResources"
-        message="The resource `R.bool.config_materialPreferenceIconSpaceReserved` appears to be unused"
-        errorLine1="    &lt;bool name=&quot;config_materialPreferenceIconSpaceReserved&quot; tools:ignore=&quot;MissingDefaultResource&quot; tools:override=&quot;true&quot;>"
-        errorLine2="          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="The resource `R.string.filter` appears to be unused"
+        errorLine1="    &lt;string name=&quot;filter&quot;>Filter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
         <location
-            file="src/main/res/values-sw360dp/values-sw360dp.xml"
-            line="3"
-            column="11"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        message="The resource `R.dimen.preference_category_padding_start` appears to be unused"
-        errorLine1="    &lt;dimen name=&quot;preference_category_padding_start&quot; tools:ignore=&quot;MissingDefaultResource&quot; tools:override=&quot;true&quot;>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values-sw360dp/values-sw360dp.xml"
-            line="6"
-            column="12"/>
+            file="src/main/res/values/strings.xml"
+            line="125"
+            column="13"/>
     </issue>
 
     <issue
@@ -323,7 +312,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_activity_menu.xml"
-            line="34"
+            line="29"
             column="10"/>
     </issue>
 
@@ -334,7 +323,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_activity_menu.xml"
-            line="55"
+            line="46"
             column="10"/>
     </issue>
 
@@ -345,7 +334,18 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="src/main/res/layout/dialog_activity_menu.xml"
-            line="76"
+            line="63"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageButton"
+        errorLine2="         ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_activity_menu.xml"
+            line="82"
             column="10"/>
     </issue>
 

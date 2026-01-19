@@ -1,6 +1,5 @@
 package com.sdex.activityrunner.intent.history
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +12,6 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityHistoryBinding
 import com.sdex.activityrunner.db.history.HistoryModel
-import com.sdex.activityrunner.extensions.addDividerItemDecoration
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.dialog.ExportIntentAsUriDialog
@@ -38,7 +36,6 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
 
         adapter = HistoryListAdapter(this)
         adapter.setHasStableIds(true)
-        binding.list.addDividerItemDecoration()
         binding.list.setHasFixedSize(true)
         binding.list.adapter = adapter
         registerForContextMenu(binding.list)
@@ -102,6 +99,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
                     .show()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -111,8 +109,16 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
         val launchParams = historyToLaunchParamsConverter.convert()
         val data = Intent()
         data.putExtra(RESULT, launchParams)
-        setResult(Activity.RESULT_OK, data)
+        setResult(RESULT_OK, data)
         finish()
+    }
+
+    override fun onMenuItemClicked(item: HistoryModel, position: Int, menuItemId: Int) {
+        when (menuItemId) {
+            MENU_ITEM_REMOVE -> viewModel.deleteItem(item)
+            MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(item)
+            MENU_ITEM_EXPORT_URI -> showExportUriDialog(item)
+        }
     }
 
     companion object {

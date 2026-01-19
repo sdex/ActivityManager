@@ -20,6 +20,8 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingVertical="4dp"
             app:fastScrollEnableThumbInactiveColor="true"
             app:fastScrollPopupBgColor="?colorPrimary"
             app:fastScrollPopupTextColor="?colorOnPrimary"
@@ -29,7 +31,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="15"
             tools:listitem="@layout/item_history"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/empty"
@@ -39,7 +41,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"

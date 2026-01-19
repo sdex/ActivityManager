@@ -34,6 +34,23 @@ class ActivitiesListViewModel @Inject constructor(
 
     private lateinit var list: List<ActivityModel>
 
+    var showNotExported
+        get() = appPreferences.showNotExported
+        set(value) {
+            appPreferences.showNotExported = value
+        }
+
+    var isNotExportedDialogShown
+        get() = appPreferences.isNotExportedDialogShown
+        set(value) {
+            appPreferences.isNotExportedDialogShown = value
+        }
+
+    val shouldShowNotExportedMessageDialog: Boolean
+        get() = !appPreferences.showNotExported &&
+            !appPreferences.isNotExportedDialogShown &&
+            appPreferences.appOpenCounter > 3
+
     fun getItems(packageName: String, application: ApplicationModel?): LiveData<UiData> {
         viewModelScope.launch(Dispatchers.IO) {
             val app = application ?: (cacheRepository.getApplication(packageName)

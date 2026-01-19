@@ -212,7 +212,7 @@ fun AppInfoScreen(
                 selected = false,
                 enabled = item.exported,
                 onClick = { onItemClick(item) },
-                headlineContent = { Text(text = item.name.toString()) },
+                headlineContent = { Text(text = item.name) },
                 supportingContent = { Text(text = item.packageName) },
             )
         }

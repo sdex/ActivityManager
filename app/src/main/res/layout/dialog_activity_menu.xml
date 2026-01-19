@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="UseCompoundDrawables">
 
     <TextView
         android:id="@+id/activity_name"
@@ -24,18 +25,11 @@
 
     <LinearLayout
         android:id="@+id/action_activity_add_shortcut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        style="@style/BottomDialogItemStyle">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_shortcut"
-            app:tint="@color/icon_tint" />
+            style="@style/BottomDialogItemIconStyle"
+            app:srcCompat="@drawable/ic_activity_shortcut" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -45,18 +39,11 @@
 
     <LinearLayout
         android:id="@+id/action_activity_launch_with_params"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        style="@style/BottomDialogItemStyle">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_exit_to_app"
-            app:tint="@color/icon_tint" />
+            style="@style/BottomDialogItemIconStyle"
+            app:srcCompat="@drawable/ic_exit_to_app" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
@@ -66,24 +53,23 @@
 
     <LinearLayout
         android:id="@+id/action_activity_launch_with_root"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        style="@style/BottomDialogItemStyle">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            app:srcCompat="@drawable/ic_activity_launch_root"
-            app:tint="@color/icon_tint" />
+            style="@style/BottomDialogItemIconStyle"
+            app:srcCompat="@drawable/ic_activity_launch_root" />
 
         <TextView
             style="@style/BottomDialogTextStyle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/activity_option_launch_root" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@color/list_divider" />
 
         <ImageButton
             android:id="@+id/rootSettings"

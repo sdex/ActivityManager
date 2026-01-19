@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:ignore="ContentDescription">
+        tools:ignore="ContentDescription,UseCompoundDrawables">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="50dp"
+            android:paddingEnd="10dp"
             android:paddingBottom="8dp">
 
             <TextView
@@ -85,18 +86,11 @@
 
         <LinearLayout
             android:id="@+id/action_open_app"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="center"
-                app:srcCompat="@drawable/ic_application_launch"
-                app:tint="@color/icon_tint" />
+                style="@style/BottomDialogItemIconStyle"
+                app:srcCompat="@drawable/ic_application_launch" />
 
             <TextView
                 style="@style/BottomDialogTextStyle"
@@ -106,18 +100,11 @@
 
         <LinearLayout
             android:id="@+id/action_open_app_manifest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="center"
-                app:srcCompat="@drawable/ic_application_open_manifest"
-                app:tint="@color/icon_tint" />
+                style="@style/BottomDialogItemIconStyle"
+                app:srcCompat="@drawable/ic_application_open_manifest" />
 
             <TextView
                 style="@style/BottomDialogTextStyle"
@@ -127,18 +114,11 @@
 
         <LinearLayout
             android:id="@+id/action_open_app_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="center"
-                app:srcCompat="@drawable/ic_application_open_info"
-                app:tint="@color/icon_tint" />
+                style="@style/BottomDialogItemIconStyle"
+                app:srcCompat="@drawable/ic_application_open_info" />
 
             <TextView
                 style="@style/BottomDialogTextStyle"
@@ -147,23 +127,16 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/action_open_app_play_store"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:id="@+id/action_open_app_market"
+            style="@style/BottomDialogItemStyle">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="center"
-                app:srcCompat="@drawable/ic_application_open_play"
-                app:tint="@color/icon_tint" />
+                style="@style/BottomDialogItemIconStyle"
+                app:srcCompat="@drawable/ic_app_market" />
 
             <TextView
                 style="@style/BottomDialogTextStyle"
-                android:text="@string/application_option_action_launch" />
+                android:text="@string/application_option_open_market" />
 
         </LinearLayout>
 

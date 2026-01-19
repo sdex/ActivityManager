@@ -33,6 +33,16 @@ fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
     return ContextCompat.getColor(this, colorRes)
 }
 
+fun Context.resolveIntAttr(@AttrRes intAttr: Int): Int {
+    val resolvedAttr = resolveThemeAttr(intAttr)
+    return resolvedAttr.data
+}
+
+fun Context.resolveResIdAttr(@AttrRes resAttr: Int): Int {
+    val resolvedAttr = resolveThemeAttr(resAttr)
+    return resolvedAttr.resourceId
+}
+
 fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
     val typedValue = TypedValue()
     theme.resolveAttribute(attrRes, typedValue, true)
@@ -52,4 +62,9 @@ fun BottomSheetDialogFragment.createBottomSheetDialog(): BottomSheetDialog {
     // https://stackoverflow.com/a/70244532/2894324
     dialog.behavior.skipCollapsed = true
     return dialog
+}
+
+fun Int.toDp(context: Context): Int {
+    val scale = context.resources.displayMetrics.density
+    return (this / scale + 0.5f).toInt()
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Exclude WebView preferences from cloud backup -->
+        <exclude
+            domain="sharedpref"
+            path="WebViewChromiumPrefs.xml" />
+    </cloud-backup>
+
+    <device-transfer>
+        <!-- Exclude WebView preferences from device transfer -->
+        <exclude
+            domain="sharedpref"
+            path="WebViewChromiumPrefs.xml" />
+    </device-transfer>
+</data-extraction-rules>

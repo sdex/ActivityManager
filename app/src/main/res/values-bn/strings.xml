@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="history_activity">ইতিহাস</string>
-    <string name="settings_activity">সেটিংস</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">প্যারামিটার সহ কার্যক্রম চালু করুন</string>
     <string name="activity_option_launch_root">ROOT সহ কার্যক্রম চালু করুন</string>
@@ -10,7 +9,6 @@
     <string name="application_option_open">অ্যাপ্লিকেশন চালু করুন</string>
     <string name="application_option_open_manifest">ম্যানিফেস্ট ভিউয়ার খুলুন</string>
     <string name="application_option_open_info">অ্যাপ্লিকেশন তথ্য খুলুন</string>
-    <string name="application_option_action_launch">GooglePlay তে খুলুন</string>
     <string name="application_disabled">অক্ষম</string>
     <string name="application_system">সিস্টেম</string>
     <!-- create shortcut -->

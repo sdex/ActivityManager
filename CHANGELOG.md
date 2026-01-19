@@ -1,3 +1,11 @@
+## 5.4.15 (1 Oct 2025)
+- fix disabled apps filter
+
+## 5.4.14 (25 Sep 2025)
+- show activity counters for apps
+- count activities for disabled apps
+- add Bengali translation (#107)
+
 ## 5.4.13 (8 Feb 2025)
 - add an option to configure the 'su' binary name #98
 - fix bottom sheet dialogs expand/collapse states for landscape orientation

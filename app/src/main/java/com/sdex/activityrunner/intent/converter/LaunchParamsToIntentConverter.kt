@@ -1,7 +1,7 @@
 package com.sdex.activityrunner.intent.converter
 
 import android.content.Intent
-import android.net.Uri
+import androidx.core.net.toUri
 import com.sdex.activityrunner.intent.LaunchParams
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
@@ -12,7 +12,7 @@ import com.sdex.activityrunner.intent.param.Flag
 import timber.log.Timber
 
 class LaunchParamsToIntentConverter(
-    private val launchParams: LaunchParams
+    private val launchParams: LaunchParams,
 ) : Converter<Intent> {
 
     override fun convert(): Intent {
@@ -41,7 +41,7 @@ class LaunchParamsToIntentConverter(
         }
         // data and mime type
         if (!launchParams.data.isNullOrEmpty()) {
-            val data = Uri.parse(launchParams.data)
+            val data = launchParams.data?.toUri()
             val type = if (launchParams.mimeType.isNullOrEmpty()) {
                 null
             } else {
@@ -70,7 +70,7 @@ class LaunchParamsToIntentConverter(
                 LaunchParamsExtraType.DOUBLE -> intent.putExtra(key, value.toDouble())
                 LaunchParamsExtraType.BOOLEAN -> intent.putExtra(key, value.toBooleanStrict())
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             Timber.d("Failed to parse the value")
         }
     }

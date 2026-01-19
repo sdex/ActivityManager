@@ -9,6 +9,7 @@ import com.sdex.activityrunner.databinding.ActivityAboutBinding
 import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.PackageInfoProvider
+import com.sdex.activityrunner.util.PackageInfoProvider.Companion.getVersionCodeCompat
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -30,7 +31,7 @@ class AboutActivity : BaseActivity() {
         binding.versionName.text = getString(
             R.string.app_version_format,
             packageInfo.versionName,
-            PackageInfoProvider.getVersionCode(packageInfo)
+            packageInfo.getVersionCodeCompat(),
         )
 
         binding.donate.setOnClickListener {

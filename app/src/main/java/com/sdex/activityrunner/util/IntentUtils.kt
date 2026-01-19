@@ -7,12 +7,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.provider.Settings
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -27,6 +26,34 @@ import timber.log.Timber
 
 object IntentUtils {
 
+    fun createLauncherIcon(
+        context: Context,
+        activityModel: ActivityModel,
+        bitmap: Bitmap?,
+        useRoot: Boolean = false,
+        invertIconColors: Boolean = false,
+    ) {
+        if (bitmap != null) {
+            val intent = activityModel.toIntent(context).apply {
+                putExtra(ShortcutHandlerActivity.ARG_USE_ROOT, useRoot)
+            }
+
+            createShortcut(
+                context = context,
+                name = activityModel.name,
+                intent = intent,
+                icon = bitmap,
+                invertIconColors = invertIconColors,
+            )
+        } else {
+            loadActivityIcon(
+                context = context,
+                activityModel = activityModel,
+                invertIconColors = invertIconColors,
+            )
+        }
+    }
+
     private fun getActivityIntent(action: String? = null, component: ComponentName): Intent {
         return Intent().apply {
             this.action = action
@@ -35,33 +62,10 @@ object IntentUtils {
         }
     }
 
-    fun createLauncherIcon(
-        context: Context,
-        activityModel: ActivityModel,
-        bitmap: Bitmap?,
-        useRoot: Boolean = false,
-    ) {
-        if (bitmap != null) {
-            val intent = activityModel.toIntent(context).apply {
-                putExtra(ShortcutHandlerActivity.ARG_USE_ROOT, useRoot)
-            }
-            val iconCompat = try {
-                IconCompat.createWithBitmap(bitmap)
-            } catch (e: Exception) { // android.os.TransactionTooLargeException
-                Timber.i(e)
-                // the icon is too big, fall back to the default icon
-                IconCompat.createWithResource(context, R.mipmap.ic_launcher)
-            }
-            createShortcut(context, activityModel.name, intent, iconCompat)
-        } else {
-            loadActivityIcon(context, activityModel)
-        }
-    }
-
     private fun ActivityModel.toIntent(context: Context): Intent {
         val component = ComponentName(
             context.packageName,
-            ShortcutHandlerActivity::class.java.canonicalName!!
+            ShortcutHandlerActivity::class.java.canonicalName!!,
         )
         val intent = getActivityIntent(Intent.ACTION_VIEW, component)
         intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, this.packageName)
@@ -69,7 +73,11 @@ object IntentUtils {
         return intent
     }
 
-    private fun loadActivityIcon(context: Context, activityModel: ActivityModel) {
+    private fun loadActivityIcon(
+        context: Context,
+        activityModel: ActivityModel,
+        invertIconColors: Boolean,
+    ) {
         val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val launcherLargeIconSize = activityManager.launcherLargeIconSize
         Glide.with(context)
@@ -77,27 +85,34 @@ object IntentUtils {
             .load(activityModel)
             .error(R.mipmap.ic_launcher)
             .override(launcherLargeIconSize)
-            .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    return false
-                }
+            .listener(
+                object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>,
+                        isFirstResource: Boolean,
+                    ): Boolean {
+                        return false
+                    }
 
-                override fun onResourceReady(
-                    resource: Drawable,
-                    model: Any,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    createLauncherIcon(context, activityModel, resource.toBitmap())
-                    return false
-                }
-            })
+                    override fun onResourceReady(
+                        resource: Drawable,
+                        model: Any,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource,
+                        isFirstResource: Boolean,
+                    ): Boolean {
+                        createLauncherIcon(
+                            context = context,
+                            activityModel = activityModel,
+                            bitmap = resource.toBitmap(),
+                            useRoot = invertIconColors,
+                        )
+                        return false
+                    }
+                },
+            )
             .submit()
     }
 
@@ -105,7 +120,7 @@ object IntentUtils {
         context: Context,
         component: ComponentName,
         name: String,
-        showMessage: Boolean = true
+        showMessage: Boolean = true,
     ) {
         try {
             val intent = getActivityIntent(component = component)
@@ -114,7 +129,7 @@ object IntentUtils {
                 Toast.makeText(
                     context,
                     context.getString(R.string.starting_activity, name),
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
             }
         } catch (e: SecurityException) {
@@ -122,14 +137,14 @@ object IntentUtils {
             Toast.makeText(
                 context,
                 context.getString(R.string.starting_activity_failed_security, name),
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
         } catch (e: Exception) {
             Timber.e(e)
             Toast.makeText(
                 context,
                 context.getString(R.string.starting_activity_failed, name),
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
         }
     }
@@ -154,7 +169,7 @@ object IntentUtils {
         } else {
             Toast.makeText(
                 context, R.string.starting_activity_launch_intent_failed,
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
         }
     }
@@ -162,16 +177,16 @@ object IntentUtils {
     fun openApplicationInfo(context: Context, packageName: String) {
         try {
             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            intent.data = Uri.parse("package:$packageName")
+            intent.data = "package:$packageName".toUri()
             context.startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
+        } catch (_: ActivityNotFoundException) {
             try {
                 val intent = Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
                 context.startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 Toast.makeText(
                     context, R.string.starting_activity_intent_failed,
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
             }
         }
@@ -182,8 +197,8 @@ object IntentUtils {
             val customTabsIntent = CustomTabsIntent.Builder()
                 .setShowTitle(true)
                 .build()
-            customTabsIntent.launchUrl(context, Uri.parse(url))
-        } catch (e: Exception) {
+            customTabsIntent.launchUrl(context, url.toUri())
+        } catch (_: Exception) {
             AppUtils.openLink(context, url)
         }
     }

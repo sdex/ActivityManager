@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -47,6 +48,8 @@ class HistoryListAdapter(
     interface Callback {
 
         fun onItemClicked(item: HistoryModel, position: Int)
+
+        fun onMenuItemClicked(item: HistoryModel, position: Int, menuItemId: Int)
     }
 
     class ViewHolder(
@@ -68,18 +71,23 @@ class HistoryListAdapter(
                 callback.onItemClicked(item, bindingAdapterPosition)
             }
             binding.root.setOnCreateContextMenuListener(this)
+
+            binding.menuButton.setOnClickListener { view ->
+                showPopupMenu(view, item, callback)
+            }
         }
 
-        private fun isNotEmpty(value: String?): Int {
-            return if (value.isNullOrEmpty()) R.string.no else R.string.yes
+        private fun showPopupMenu(view: View, item: HistoryModel, callback: Callback) {
+            val popupMenu = PopupMenu(view.context, view)
+            populateMenu(popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                callback.onMenuItemClicked(item, bindingAdapterPosition, menuItem.itemId)
+                true
+            }
+            popupMenu.show()
         }
 
-        private fun getValueOrPlaceholder(value: String?): String {
-            return if (value.isNullOrEmpty()) None.VALUE else value
-        }
-
-        override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {
-            menu.setHeaderTitle(R.string.history_item_dialog_title)
+        private fun populateMenu(menu: Menu) {
             menu.add(
                 Menu.NONE, MENU_ITEM_ADD_SHORTCUT, Menu.NONE,
                 R.string.history_item_dialog_add_shortcut
@@ -92,6 +100,19 @@ class HistoryListAdapter(
                 Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE,
                 R.string.history_item_dialog_remove
             )
+        }
+
+        private fun isNotEmpty(value: String?): Int {
+            return if (value.isNullOrEmpty()) R.string.no else R.string.yes
+        }
+
+        private fun getValueOrPlaceholder(value: String?): String {
+            return if (value.isNullOrEmpty()) None.VALUE else value
+        }
+
+        override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {
+            menu.setHeaderTitle(R.string.history_item_dialog_title)
+            populateMenu(menu)
         }
     }
 

@@ -1,24 +1,26 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.kotlinCompiler)
     alias(libs.plugins.kotlinParcelize)
-    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.room)
 }
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     namespace = "com.sdex.activityrunner"
 
     defaultConfig {
         applicationId = "com.activitymanager"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
-        versionCode = 553
-        versionName = "5.4.13"
+        versionCode = 555
+        versionName = "5.4.15"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -59,10 +61,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-
     buildFeatures {
         viewBinding = true
         compose = true
@@ -76,6 +74,12 @@ android {
         abortOnError = true
         baseline = file("lint-baseline.xml")
         lintConfig = file("lint.xml")
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
@@ -130,6 +134,7 @@ dependencies {
     implementation(libs.appiconloader.coil)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
 
     androidTestImplementation(libs.room.testing)
     androidTestImplementation(libs.androidx.test.runner)

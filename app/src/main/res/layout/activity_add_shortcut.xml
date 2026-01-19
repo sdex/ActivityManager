@@ -62,6 +62,16 @@
         app:layout_constraintTop_toBottomOf="@id/value_layout"
         tools:visibility="visible" />
 
+    <CheckBox
+        android:id="@+id/invert_icon_colors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checked="false"
+        android:text="@string/shortcut_invert_icon_colors"
+        app:layout_constraintTop_toBottomOf="@id/use_root"
+        tools:visibility="visible" />
+
     <Button
         android:id="@+id/create"
         style="?buttonBarButtonStyle"
@@ -79,7 +89,7 @@
         android:layout_marginTop="8dp"
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toStartOf="@+id/create"
-        app:layout_constraintTop_toBottomOf="@+id/use_root" />
+        app:layout_constraintTop_toBottomOf="@+id/invert_icon_colors" />
 
     <ImageView
         android:id="@+id/imageView"
