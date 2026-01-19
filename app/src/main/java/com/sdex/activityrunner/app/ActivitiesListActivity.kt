@@ -16,7 +16,9 @@ import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
+import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
+import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +29,7 @@ class ActivitiesListActivity : BaseActivity() {
 
     private lateinit var binding: ActivityActivitiesListBinding
     private lateinit var appPackageName: String
+    private var application: ApplicationModel? = null
 
     private var searchText: String? = null
 
@@ -71,6 +74,7 @@ class ActivitiesListActivity : BaseActivity() {
                 return@observe
             }
 
+            application = uiData.application
             title = uiData.application.name
             val totalActivitiesFormattedText = resources.getQuantityString(
                 R.plurals.activities_count,
@@ -134,6 +138,18 @@ class ActivitiesListActivity : BaseActivity() {
                         data = appPackageName
                     },
                 )
+                true
+            }
+
+            R.id.open_manifest -> {
+                application?.let { app ->
+                    ManifestViewerActivity.start(this, app)
+                }
+                true
+            }
+
+            R.id.open_app_info -> {
+                IntentUtils.openApplicationInfo(this, appPackageName)
                 true
             }
 
