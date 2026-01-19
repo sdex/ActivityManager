@@ -9,6 +9,7 @@
     <string name="application_option_open">애플리케이션 실행</string>
     <string name="application_option_open_manifest">매니페스트 뷰어 열기</string>
     <string name="application_option_open_info">애플리케이션 정보 열기</string>
+    <string name="application_option_open_market">Open in app market</string>
     <string name="application_disabled">비활성화됨</string>
     <string name="application_system">시스템</string>
     <!-- create shortcut -->
@@ -19,6 +20,7 @@
     <string name="icons_loading_error">아이콘을 불러오는데 실패했습니다</string>
     <string name="shortcut_icon_gallery">갤러리에서 선택</string>
     <string name="shortcut_icon_preset">아이콘 모음에서 선택</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">액티비티를 시작하는 중: %s</string>
     <string name="starting_activity_failed">%s 액티비티를 시작하는데 실패했습니다</string>
@@ -30,6 +32,8 @@
     <string name="starting_activity_root_not_available">루트 권한을 사용할 수 없거나 권한이 부여돼지 않았습니다</string>
     <string name="activities_list_empty_text">내보낸 액티비티가 없습니다</string>
     <string name="activities_list_empty_action">내보내지 않은 항목 표시</string>
+    <string name="activities_list_non_exported_show_once">Just once</string>
+    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">정보</string>
     <string name="action_launch_intent">인텐트 실행기</string>

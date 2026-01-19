@@ -9,6 +9,7 @@
     <string name="application_option_open">Uygulamayı başlat</string>
     <string name="application_option_open_manifest">Manifest görüntüleyiciyi aç</string>
     <string name="application_option_open_info">Uygulama bilgisini aç</string>
+    <string name="application_option_open_market">Uygulama mağazasında aç</string>
     <string name="application_disabled">Devre dışı</string>
     <string name="application_system">Sistem</string>
     <!-- create shortcut -->
@@ -19,6 +20,7 @@
     <string name="icons_loading_error">Simgeler yüklenemedi</string>
     <string name="shortcut_icon_gallery">Galeriden seç</string>
     <string name="shortcut_icon_preset">Simgelerden seç</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">Etkinlik başlatılıyor: %s</string>
     <string name="starting_activity_failed">Etkinlik başlatılamadı: %s</string>
@@ -30,6 +32,8 @@
     <string name="starting_activity_root_not_available">Root erişimi yok veya izin verilmedi</string>
     <string name="activities_list_empty_text">Dışa aktarılmış etkinlik yok</string>
     <string name="activities_list_empty_action">Dışa aktarılmamış olanları göster</string>
+    <string name="activities_list_non_exported_show_once">Just once</string>
+    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">\"%1$s\" açılamadı</string>
     <string name="action_about">Hakkında</string>
     <string name="action_launch_intent">Intent başlatıcı</string>

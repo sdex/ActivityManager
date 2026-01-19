@@ -6,9 +6,10 @@
     <string name="activity_option_launch_root">Iniciar atividade com ROOT</string>
     <string name="activity_option_create_shortcut">Criar atalho</string>
     <!-- application options -->
-    <string name="application_option_open">Iniciar o app</string>
+    <string name="application_option_open">Iniciar a “app”</string>
     <string name="application_option_open_manifest">Abrir visualizador de manifesto</string>
     <string name="application_option_open_info">Abrir informações do app</string>
+    <string name="application_option_open_market">Open in app market</string>
     <string name="application_disabled">Desativado</string>
     <string name="application_system">Sistema</string>
     <!-- create shortcut -->
@@ -19,6 +20,7 @@
     <string name="icons_loading_error">Falha ao carregar ícones</string>
     <string name="shortcut_icon_gallery">Escolha da galeria</string>
     <string name="shortcut_icon_preset">Selecione dos ícones</string>
+    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <!-- launching activity -->
     <string name="starting_activity">Iniciando atividade: %s</string>
     <string name="starting_activity_failed">Falha ao iniciar atividade: %s</string>
@@ -30,6 +32,8 @@
     <string name="starting_activity_root_not_available">Root não está disponível ou a permissão não foi concedida</string>
     <string name="activities_list_empty_text">Existem atividades não exportáveis</string>
     <string name="activities_list_empty_action">Mostrar não exportáveis</string>
+    <string name="activities_list_non_exported_show_once">Just once</string>
+    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">Falha ao abrir \"%1$s\"</string>
     <string name="action_about">Sobre</string>
     <string name="action_launch_intent">Iniciador de intenção</string>
