@@ -1,3 +1,9 @@
+## 5.4.16 (19 Jan 2026)
+- increase minimum supported Android SDK to 23
+- update Material theme colors
+- add an option to invert a shortcut icon colors
+- enable Android TV support
+
 ## 5.4.15 (1 Oct 2025)
 - fix disabled apps filter
 
