@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.provider.Settings
+import android.widget.TextView
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.graphics.drawable.toBitmap
@@ -158,7 +159,10 @@ object IntentUtils {
                 .setTitle(R.string.starting_activity_intent_failed)
                 .setMessage(e.message)
                 .setPositiveButton(android.R.string.ok, null)
-                .show()
+                .show().apply {
+                    val messageTextView = findViewById<TextView>(android.R.id.message)
+                    messageTextView?.setTextIsSelectable(true)
+                }
         }
     }
 
