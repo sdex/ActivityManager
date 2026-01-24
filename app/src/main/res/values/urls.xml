@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="manifest_viewer_help_url" translatable="false">https://developer.android.com/guide/topics/manifest/manifest-intro</string>
+</resources>

@@ -151,7 +151,7 @@ class ManifestViewerActivity : BaseActivity() {
             }
 
             R.id.action_help -> {
-                val url = "https://developer.android.com/guide/topics/manifest/manifest-intro"
+                val url = getString(R.string.manifest_viewer_help_url)
                 IntentUtils.openBrowser(this, url)
                 true
             }
