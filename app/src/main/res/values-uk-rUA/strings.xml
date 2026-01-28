@@ -7,11 +7,11 @@
     <string name="activity_option_create_shortcut">Створити ярлик</string>
     <!-- application options -->
     <string name="application_option_open">Запустити додаток</string>
-    <string name="application_option_open_manifest">Вікрити маніфест</string>
-    <string name="application_option_open_info">Вікрити інфо</string>
+    <string name="application_option_open_manifest">Відкрити маніфест</string>
+    <string name="application_option_open_info">Інформація про додаток</string>
     <string name="application_option_open_market">Відкрити в магазині додатків</string>
     <string name="application_disabled">Вимкнено</string>
-    <string name="application_system">Системний</string>
+    <string name="application_system">Системне</string>
     <!-- create shortcut -->
     <string name="shortcut_name">Назва</string>
     <string name="shortcut_name_empty">Обов\'язкове поле</string>
@@ -31,16 +31,16 @@
     <string name="starting_activity_root_error">Помилка запуску</string>
     <string name="starting_activity_root_not_available">Root недоступний або права не надані</string>
     <string name="activities_list_empty_text">Додаток не містить доступних компонентів</string>
-    <string name="activities_list_empty_action">Увімкнути показ прихованих компонентів</string>
+    <string name="activities_list_empty_action">Показ прихованих компонентів</string>
     <string name="activities_list_non_exported_show_once">Тільки раз</string>
     <string name="activities_list_non_exported_show_always">Завжди показувати</string>
     <string name="activities_list_failed_loading">Помилка при відкритті \"%1$s\"</string>
-    <string name="action_about">Про програму</string>
-    <string name="action_launch_intent">Запустити intent</string>
+    <string name="action_about">Про додаток</string>
+    <string name="action_launch_intent">Запустити дію</string>
     <string name="action_history">Історія</string>
     <string name="action_clear_history">Очистити історію</string>
     <string name="action_search">Пошук</string>
-    <string name="action_search_hint">Назва програми</string>
+    <string name="action_search_hint">Назва додатку</string>
     <string name="action_search_activity_hint">Ім\'я компоненту або пакету</string>
     <string name="action_settings">Налаштування</string>
     <!-- intent builder -->
@@ -56,7 +56,7 @@
     <string name="save_to_history">Зберегти в історії</string>
     <string name="item_history_has_extras">Дані</string>
     <string name="item_history_has_categories">Категорії</string>
-    <string name="item_history_has_flags">Парамерти</string>
+    <string name="item_history_has_flags">Параметри</string>
     <string name="about_donation">Підтримати розробку</string>
     <string name="about_source_code">Вихідний код</string>
     <string name="about_version">Версія</string>
@@ -66,7 +66,7 @@
     <string name="about_open_source">Бібліотеки з відкритим кодом</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
-    <string name="donate_message">Якщо вам подобається програма, будь ласка, розгляньте можливість підтримати розробку.</string>
+    <string name="donate_message">Якщо вам подобається додаток, будь ласка, розгляньте можливість підтримати розробку.</string>
     <string name="donate_action_text">Підтримати</string>
     <string name="donate_negative_action_text">Не показувати</string>
     <string name="input_key">Введіть ключ</string>
@@ -76,7 +76,7 @@
     <string name="type_array">Масив</string>
     <!-- history -->
     <string name="history_empty_text">Тут поки-що порожньо</string>
-    <string name="history_empty_action">Запустити</string>
+    <string name="history_empty_action">Запустіть кілька намірів</string>
     <string name="history_dialog_clear_title">Очистити історію</string>
     <string name="history_dialog_clear_message">Ви впевнені?</string>
     <string name="history_item_dialog_title">Намір</string>
@@ -105,7 +105,7 @@
     <string name="pref_advanced_not_exported_title">Показувати приховані компоненти</string>
     <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені Root</string>
     <string-array name="pref_appearance_theme_list_titles">
-        <item>Системна</item>
+        <item>Система</item>
         <item>Світла</item>
         <item>Темна</item>
     </string-array>
@@ -139,5 +139,5 @@
     <string name="filter_system_apps_title">Системні додатки</string>
     <string name="filter_disabled_apps_title">Неактивні додатки</string>
     <string name="filter_toggle_show">Показувати</string>
-    <string name="filter_toggle_label">Мітка</string>
+    <string name="filter_toggle_label">Мітку</string>
 </resources>
