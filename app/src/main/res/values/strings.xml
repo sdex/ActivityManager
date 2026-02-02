@@ -3,7 +3,7 @@
     <string name="history_activity">History</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Launch activity with parameters</string>
-    <string name="activity_option_launch_root">Launch activity with ROOT</string>
+    <string name="activity_option_launch_root">Launch activity with root</string>
     <string name="activity_option_create_shortcut">Create shortcut</string>
     <!-- application options -->
     <string name="application_option_open">Launch the application</string>
@@ -91,7 +91,7 @@
     <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
     <string name="dialog_export_intent_copy">Copy</string>
     <string name="dialog_enable_non_exported_title">Non-exported activities</string>
-    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
+    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
     <string name="dialog_root_config_title">Set custom \'su\' executable</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView, try again later</string>

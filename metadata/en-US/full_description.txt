@@ -2,7 +2,7 @@ Discover activities of installed applications, run them, and create shortcuts
 
 Features:
 * Launch exported activities
-* Launch non-exported activities with ROOT
+* Launch non-exported activities with root
 * Create custom shortcuts for activities
 * Set any shortcut icon from the storage or use from built-in Material icons
 * Create and start any custom intents using Intent Builder
