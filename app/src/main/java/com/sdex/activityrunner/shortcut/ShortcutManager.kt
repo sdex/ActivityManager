@@ -3,11 +3,8 @@ package com.sdex.activityrunner.shortcut
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
-import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.IconCompat
 import com.sdex.activityrunner.R
 import timber.log.Timber
@@ -17,11 +14,10 @@ fun createShortcut(
     name: String,
     intent: Intent,
     icon: Bitmap?,
-    invertIconColors: Boolean = false,
 ): Boolean {
     val iconCompat = try {
         if (icon != null) {
-            IconCompat.createWithAdaptiveBitmap(icon.applyShortcutTweaks(invertIconColors))
+            IconCompat.createWithAdaptiveBitmap(icon)
         } else {
             IconCompat.createWithResource(context, R.mipmap.ic_launcher)
         }
@@ -60,31 +56,4 @@ private fun createShortcut(
     }
     Timber.d("Pin shortcut is not supported")
     return false
-}
-
-private fun Bitmap.applyShortcutTweaks(
-    invertIconColors: Boolean = false,
-): Bitmap {
-    val paint = Paint().apply {
-        if (invertIconColors) {
-            colorFilter = ShortcutColorInvertColorFilter()
-        }
-    }
-
-    val paddedWidth = width + 128
-    val paddedHeight = height + 128
-    val tweakedIcon = createBitmap(
-        width = paddedWidth,
-        height = paddedHeight,
-        config = config ?: Bitmap.Config.ARGB_8888,
-    )
-    val canvas = Canvas(tweakedIcon)
-    canvas.drawBitmap(
-        this,
-        (paddedWidth - width) / 2f,
-        (paddedHeight - height) / 2f,
-        paint,
-    )
-
-    return tweakedIcon
 }

@@ -30,7 +30,6 @@ timber = "5.0.1"
 icondialog = "3.3.0"
 iconpack-community-material = "5.3.45"
 recyclerview-fastscroll = "2.0.1"
-tooltips = "1.1.1"
 apk-parser = "2.6.10"
 browserfip = "1.0.5"
 junit = "4.13.2"
@@ -62,7 +61,6 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 icondialog = { module = "com.maltaisn:icondialog", version.ref = "icondialog" }
 iconpack-community-material = { module = "com.maltaisn:iconpack-community-material", version.ref = "iconpack-community-material" }
 recyclerview-fastscroll = { module = "com.simplecityapps:recyclerview-fastscroll", version.ref = "recyclerview-fastscroll" }
-tooltips = { module = "com.tomergoldst.android:tooltips", version.ref = "tooltips" }
 apk-parser = { module = "net.dongliu:apk-parser", version.ref = "apk-parser" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 browserfip = { module = "com.github.Y-E-P:BrowserFiP", version.ref = "browserfip" }

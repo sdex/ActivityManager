@@ -4,22 +4,30 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toBitmapOrNull
+import androidx.core.view.MenuProvider
 import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.maltaisn.icondialog.IconDialog
 import com.maltaisn.icondialog.IconDialogSettings
@@ -32,45 +40,51 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.databinding.ActivityAddShortcutBinding
 import com.sdex.activityrunner.db.history.HistoryModel
-import com.sdex.activityrunner.extensions.doAfterMeasure
-import com.sdex.activityrunner.extensions.resolveColorAttr
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
 import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
-import com.sdex.activityrunner.preferences.TooltipPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.tomergoldst.tooltips.ToolTip
-import com.tomergoldst.tooltips.ToolTipsManager
 import kotlin.properties.Delegates
 
 class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
     private lateinit var binding: ActivityAddShortcutBinding
 
-    private val toolTipsManager = ToolTipsManager()
     private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
         uri?.let { loadIcon(uri) }
     }
     private var launcherLargeIconSize by Delegates.notNull<Int>()
     private var bitmap: Bitmap? = null
+    private var originalBitmap: Bitmap? = null
     private var iconPack: IconPack? = null
+    private var iconPadding: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddShortcutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(this)
-        binding.root.background = materialAlertDialogBuilder.background
+        setSupportActionBar(binding.toolbar)
+
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
 
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
         val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
+
+        addMenuProvider(
+            AddShortcutMenuProvider(
+                activityModel = activityModel,
+                historyModel = historyModel,
+            ),
+        )
 
         val loader = IconPackLoader(applicationContext)
         iconPack = createMaterialDesignIconPack(loader)
         iconPack?.loadDrawables(loader.drawableLoader)
 
-        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
         launcherLargeIconSize = activityManager.launcherLargeIconSize
 
         if (activityModel != null) {
@@ -85,9 +99,8 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                             resource: Drawable,
                             transition: Transition<in Drawable>?,
                         ) {
-                            bitmap = resource.toBitmap()
-                            binding.icon.setImageDrawable(resource)
-                            showTooltip()
+                            originalBitmap = resource.toBitmap()
+                            updateIconPreview()
                         }
 
                         override fun onLoadCleared(placeholder: Drawable?) {
@@ -115,85 +128,73 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
         if (historyModel != null) {
             binding.label.setText(historyModel.name)
-            binding.icon.setImageResource(R.mipmap.ic_launcher)
             binding.valueLayout.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+
+            originalBitmap = ContextCompat.getDrawable(
+                this,
+                R.mipmap.ic_launcher,
+            )?.toBitmapOrNull()
+
+            updateIconPreview()
         }
 
-        binding.invertIconColors.setOnCheckedChangeListener { _, isChecked ->
-            binding.icon.colorFilter = if (isChecked) {
-                ShortcutColorInvertColorFilter()
-            } else {
-                null
-            }
+        binding.invertIconColors.setOnCheckedChangeListener { _, _ ->
+            updateIconPreview()
         }
 
-        binding.icon.setOnClickListener {
-            toolTipsManager.dismissAll()
+        binding.iconPaddingSlider.addOnChangeListener { _, value, _ ->
+            iconPadding = value.toInt()
+            updateIconPreview()
+        }
+
+        binding.changeIconButton.setOnClickListener {
             showIconMenu(it)
         }
+    }
 
-        binding.cancel.setOnClickListener {
-            finish()
+    private fun createShortcut(activityModel: ActivityModel?, historyModel: HistoryModel?) {
+        binding.valueLayout.error = null
+        val shortcutName = binding.label.text.toString()
+        if (shortcutName.isBlank()) {
+            binding.valueLayout.error = getString(R.string.shortcut_name_empty)
+            return
         }
 
-        binding.create.setOnClickListener {
-            binding.valueLayout.error = null
-            val shortcutName = binding.label.text.toString()
-            if (shortcutName.isBlank()) {
-                binding.valueLayout.error = getString(R.string.shortcut_name_empty)
-                return@setOnClickListener
-            }
-
-            activityModel?.let {
-                val model = it.copy(name = shortcutName)
-                IntentUtils.createLauncherIcon(
-                    context = this,
-                    activityModel = model,
-                    bitmap = bitmap,
-                    useRoot = binding.useRoot.isChecked,
-                    invertIconColors = binding.invertIconColors.isChecked,
-                )
-            }
-
-            historyModel?.let {
-                createHistoryModelShortcut(
-                    historyModel = historyModel,
-                    shortcutName = shortcutName,
-                    invertIconColors = binding.invertIconColors.isChecked,
-                )
-            }
-
-            finish()
+        activityModel?.let {
+            val model = it.copy(name = shortcutName)
+            IntentUtils.createLauncherIcon(
+                context = this,
+                activityModel = model,
+                bitmap = bitmap,
+                useRoot = binding.useRoot.isChecked,
+            )
         }
+
+        historyModel?.let {
+            createHistoryModelShortcut(
+                historyModel = historyModel,
+                shortcutName = shortcutName,
+            )
+        }
+
+        finish()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         bitmap = null
+        originalBitmap = null
     }
 
-    private fun showTooltip() {
-        val preferences = TooltipPreferences(this)
-        if (preferences.showChangeIcon) {
-            binding.icon.doAfterMeasure {
-                val builder = ToolTip.Builder(
-                    this@AddShortcutDialogActivity,
-                    binding.icon,
-                    binding.content,
-                    getString(R.string.shortcut_set_icon_tooltip),
-                    ToolTip.POSITION_BELOW,
-                )
-                builder.setBackgroundColor(
-                    resolveColorAttr(
-                        com.google.android.material.R.attr.colorTertiary,
-                    ),
-                )
-                builder.setTextAppearance(R.style.TooltipTextAppearance)
-                toolTipsManager.show(builder.build())
+    private fun updateIconPreview() {
+        val source = originalBitmap ?: return
 
-                preferences.showChangeIcon = false
-            }
-        }
+        bitmap = source.applyShortcutTweaks(
+            invertIconColors = binding.invertIconColors.isChecked,
+            iconPadding = iconPadding,
+        )
+
+        binding.icon.setImageBitmap(bitmap)
     }
 
     override val iconDialogIconPack: IconPack?
@@ -203,8 +204,12 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
         val icon = icons.first()
         IconDrawableLoader(this).loadDrawable(icon)
         val resource = icon.drawable
-        bitmap = resource?.toBitmap(width = launcherLargeIconSize, height = launcherLargeIconSize)
-        binding.icon.setImageDrawable(resource)
+        originalBitmap = resource?.toBitmap(
+            width = launcherLargeIconSize,
+            height = launcherLargeIconSize,
+        )
+
+        updateIconPreview()
     }
 
     private fun showIconMenu(it: View) {
@@ -237,7 +242,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
     private fun createHistoryModelShortcut(
         historyModel: HistoryModel,
         shortcutName: String,
-        invertIconColors: Boolean = false,
     ) {
         val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(historyModel)
         val launchParams = historyToLaunchParamsConverter.convert()
@@ -249,12 +253,11 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
             name = shortcutName,
             intent = intent,
             icon = bitmap,
-            invertIconColors = invertIconColors,
         )
     }
 
     private fun loadIcon(uri: Uri) {
-        val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val am = getSystemService(ACTIVITY_SERVICE) as ActivityManager
         val size = am.launcherLargeIconSize
         Glide.with(this)
             .asBitmap()
@@ -267,14 +270,63 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                         resource: Bitmap,
                         transition: Transition<in Bitmap>?,
                     ) {
-                        bitmap = resource
-                        binding.icon.setImageBitmap(resource)
+                        originalBitmap = resource
+                        updateIconPreview()
                     }
 
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
                 },
             )
+    }
+
+    private fun Bitmap.applyShortcutTweaks(
+        invertIconColors: Boolean = false,
+        iconPadding: Int = 128,
+    ): Bitmap {
+        val paint = Paint().apply {
+            if (invertIconColors) {
+                colorFilter = ShortcutColorInvertColorFilter()
+            }
+        }
+
+        val paddedWidth = width + iconPadding
+        val paddedHeight = height + iconPadding
+        val tweakedIcon = createBitmap(
+            width = paddedWidth,
+            height = paddedHeight,
+            config = config ?: Bitmap.Config.ARGB_8888,
+        )
+        val canvas = Canvas(tweakedIcon)
+        canvas.drawBitmap(
+            this,
+            (paddedWidth - width) / 2f,
+            (paddedHeight - height) / 2f,
+            paint,
+        )
+
+        return tweakedIcon
+    }
+
+
+    private inner class AddShortcutMenuProvider(
+        private val activityModel: ActivityModel? = null,
+        private val historyModel: HistoryModel? = null,
+    ) : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.add_shortcut_menu, menu)
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return when (menuItem.itemId) {
+                R.id.action_save -> {
+                    createShortcut(activityModel, historyModel)
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     companion object {

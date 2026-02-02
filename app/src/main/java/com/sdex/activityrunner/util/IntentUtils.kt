@@ -32,7 +32,6 @@ object IntentUtils {
         activityModel: ActivityModel,
         bitmap: Bitmap?,
         useRoot: Boolean = false,
-        invertIconColors: Boolean = false,
     ) {
         if (bitmap != null) {
             val intent = activityModel.toIntent(context).apply {
@@ -44,13 +43,11 @@ object IntentUtils {
                 name = activityModel.name,
                 intent = intent,
                 icon = bitmap,
-                invertIconColors = invertIconColors,
             )
         } else {
             loadActivityIcon(
                 context = context,
                 activityModel = activityModel,
-                invertIconColors = invertIconColors,
             )
         }
     }
@@ -77,7 +74,6 @@ object IntentUtils {
     private fun loadActivityIcon(
         context: Context,
         activityModel: ActivityModel,
-        invertIconColors: Boolean,
     ) {
         val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val launcherLargeIconSize = activityManager.launcherLargeIconSize
@@ -108,7 +104,6 @@ object IntentUtils {
                             context = context,
                             activityModel = activityModel,
                             bitmap = resource.toBitmap(),
-                            useRoot = invertIconColors,
                         )
                         return false
                     }

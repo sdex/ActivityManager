@@ -16,11 +16,14 @@
     <string name="shortcut_name">Label</string>
     <string name="shortcut_name_empty">Label cannot be empty</string>
     <string name="shortcut_create">Create</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">Tap to change the icon</string>
     <string name="icons_loading_error">Failed to load the icons</string>
     <string name="shortcut_icon_gallery">Pick from gallery</string>
     <string name="shortcut_icon_preset">Select from icons</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_icon_padding">Icon padding</string>
+    <string name="shortcut_options">Options</string>
     <!-- launching activity -->
     <string name="starting_activity">Starting activity: %s</string>
     <string name="starting_activity_failed">Failed to start activity: %s</string>

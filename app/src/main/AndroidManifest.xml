@@ -71,9 +71,7 @@
             android:name=".app.ActivitiesListActivity"
             android:exported="true" />
 
-        <activity
-            android:name=".shortcut.AddShortcutDialogActivity"
-            android:theme="@style/AppDialogTheme" />
+        <activity android:name=".shortcut.AddShortcutDialogActivity" />
 
         <activity
             android:name=".shortcut.ShortcutHandlerActivity"

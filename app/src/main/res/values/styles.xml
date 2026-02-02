@@ -31,12 +31,6 @@
         <item name="backgroundTint">@color/md_theme_background</item>
     </style>
 
-    <style name="TooltipTextAppearance">
-        <item name="android:textColor">?colorOnTertiary</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">normal</item>
-    </style>
-
     <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Filled">
         <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
     </style>

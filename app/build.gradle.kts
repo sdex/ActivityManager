@@ -111,7 +111,6 @@ dependencies {
     implementation(libs.icondialog)
     implementation(libs.iconpack.community.material)
     implementation(libs.recyclerview.fastscroll)
-    implementation(libs.tooltips)
     implementation(libs.apk.parser)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.serialization.json)
