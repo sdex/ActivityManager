@@ -29,19 +29,20 @@ fun NavigationGraph() {
     val context = LocalContext.current
     val navController = rememberNavController()
 
+    val viewModel = hiltViewModel<MainViewModel>()
+    val items = viewModel.items.asFlow().collectAsStateWithLifecycle(
+        initialValue = emptyList(),
+    )
+
     NavHost(
         navController = navController,
         startDestination = Screen.Main,
     ) {
         composable<Screen.Main> {
-            val viewModel = hiltViewModel<MainViewModel>()
-            val items = viewModel.items.asFlow().collectAsStateWithLifecycle(
-                initialValue = emptyList(),
-            )
             StartScreen(
-                viewModel = viewModel,
                 items = items.value,
                 navigateTo = { navController.navigate(it) },
+                onRefresh = { viewModel.refresh() },
             )
         }
 

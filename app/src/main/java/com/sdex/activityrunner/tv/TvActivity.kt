@@ -37,7 +37,6 @@ import coil.compose.AsyncImage
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivitiesListViewModel
 import com.sdex.activityrunner.app.ActivityModel
-import com.sdex.activityrunner.app.MainViewModel
 import com.sdex.activityrunner.app.UiData
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.tv.common.ActivityManagerTheme
@@ -58,7 +57,13 @@ class TvActivity : ComponentActivity() {
             ImageLoader.Builder(this)
                 .components {
                     add(AppIconKeyer())
-                    add(AppIconFetcher.Factory(iconSize, false, this@TvActivity))
+                    add(
+                        AppIconFetcher.Factory(
+                            iconSize,
+                            false,
+                            this@TvActivity,
+                        ),
+                    )
                 }
                 .build(),
         )
@@ -79,9 +84,9 @@ class TvActivity : ComponentActivity() {
 @Composable
 fun StartScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainViewModel,
     items: List<ApplicationModel>,
     navigateTo: (Screen) -> Unit,
+    onRefresh: () -> Unit,
 ) {
     var showConfigDialog by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
@@ -133,7 +138,7 @@ fun StartScreen(
         modifier = Modifier.width(480.dp),
         showDialog = showConfigDialog,
         onConfigChanged = {
-            viewModel.refresh()
+            onRefresh()
         },
         onDismissRequest = {
             showConfigDialog = false
