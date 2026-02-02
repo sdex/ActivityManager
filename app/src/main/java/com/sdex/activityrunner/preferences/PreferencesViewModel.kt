@@ -22,16 +22,7 @@ class PreferencesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(
-        PreferencesState(
-            sortBy = appPreferences.sortBy,
-            sortOrder = appPreferences.sortOrder,
-            isShowSystemApps = appPreferences.isShowSystemApps,
-            isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator,
-            isShowDisabledApps = appPreferences.isShowDisabledApps,
-            isShowDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator,
-            isShowNonExportedActivities = appPreferences.showNotExported,
-            theme = appPreferences.theme,
-        ),
+        PreferencesState.fromAppPreferences(appPreferences),
     )
     val state = _state.asStateFlow()
 
@@ -41,84 +32,73 @@ class PreferencesViewModel @Inject constructor(
             .asFlow()
     }
 
-    fun onSortByChanged(sortBy: String) {
-        appPreferences.sortBy = sortBy
-        _state.update {
-            it.copy(
-                refresh = true,
-                sortBy = sortBy,
-            )
-        }
-    }
+    fun handleIntent(intent: PreferencesIntent) {
+        when (intent) {
+            is PreferencesIntent.SortByName -> {
+                appPreferences.sortBy = ApplicationModel.NAME
+                _state.update { it.copy(refresh = true, sortBy = ApplicationModel.NAME) }
+            }
 
-    fun onSortOrderChanged(sortOrder: String) {
-        appPreferences.sortOrder = sortOrder
-        _state.update {
-            it.copy(
-                refresh = true,
-                sortOrder = sortOrder,
-            )
-        }
-    }
+            is PreferencesIntent.SortByUpdateTime -> {
+                appPreferences.sortBy = ApplicationModel.UPDATE_TIME
+                _state.update { it.copy(refresh = true, sortBy = ApplicationModel.UPDATE_TIME) }
+            }
 
-    fun onShowSystemAppsChanged(isShowSystemApps: Boolean) {
-        appPreferences.isShowSystemApps = isShowSystemApps
-        _state.update {
-            it.copy(
-                refresh = true,
-                isShowSystemApps = isShowSystemApps,
-            )
-        }
-    }
+            is PreferencesIntent.SortByInstallTime -> {
+                appPreferences.sortBy = ApplicationModel.INSTALL_TIME
+                _state.update { it.copy(refresh = true, sortBy = ApplicationModel.INSTALL_TIME) }
+            }
 
-    fun onShowSystemAppIndicatorChanged(isShowSystemAppIndicator: Boolean) {
-        appPreferences.isShowSystemAppIndicator = isShowSystemAppIndicator
-        _state.update {
-            it.copy(
-                refresh = false,
-                isShowSystemAppIndicator = isShowSystemAppIndicator,
-            )
-        }
-    }
+            is PreferencesIntent.SortOrderAsc -> {
+                appPreferences.sortOrder = GetApplicationsQuery.ASC
+                _state.update { it.copy(refresh = true, sortOrder = GetApplicationsQuery.ASC) }
+            }
 
-    fun onShowDisabledAppsChanged(isShowDisabledApps: Boolean) {
-        appPreferences.isShowDisabledApps = isShowDisabledApps
-        _state.update {
-            it.copy(
-                refresh = true,
-                isShowDisabledApps = isShowDisabledApps,
-            )
-        }
-    }
+            is PreferencesIntent.SortOrderDesc -> {
+                appPreferences.sortOrder = GetApplicationsQuery.DESC
+                _state.update { it.copy(refresh = true, sortOrder = GetApplicationsQuery.DESC) }
+            }
 
-    fun onShowDisabledAppIndicatorChanged(isShowDisabledAppIndicator: Boolean) {
-        appPreferences.isShowDisabledAppIndicator = isShowDisabledAppIndicator
-        _state.update {
-            it.copy(
-                refresh = false,
-                isShowDisabledAppIndicator = isShowDisabledAppIndicator,
-            )
-        }
-    }
+            is PreferencesIntent.ToggleSystemApps -> {
+                appPreferences.isShowSystemApps = intent.value
+                _state.update { it.copy(refresh = true, isShowSystemApps = intent.value) }
+            }
 
-    fun onShowNonExportedActivitiesChanged(isShowNonExportedActivities: Boolean) {
-        appPreferences.showNotExported = isShowNonExportedActivities
-        _state.update {
-            it.copy(
-                refresh = true,
-                isShowNonExportedActivities = isShowNonExportedActivities,
-            )
-        }
-    }
+            is PreferencesIntent.ToggleSystemAppIndicator -> {
+                appPreferences.isShowSystemAppIndicator = intent.value
+                _state.update { it.copy(refresh = false, isShowSystemAppIndicator = intent.value) }
+            }
 
-    fun onThemeChanged(theme: Int) {
-        appPreferences.theme = theme
-        _state.update {
-            it.copy(
-                refresh = false,
-                theme = theme,
-            )
+            is PreferencesIntent.ToggleDisabledApps -> {
+                appPreferences.isShowDisabledApps = intent.value
+                _state.update { it.copy(refresh = true, isShowDisabledApps = intent.value) }
+            }
+
+            is PreferencesIntent.ToggleDisabledAppIndicator -> {
+                appPreferences.isShowDisabledAppIndicator = intent.value
+                _state.update {
+                    it.copy(
+                        refresh = false,
+                        isShowDisabledAppIndicator = intent.value,
+                    )
+                }
+            }
+
+            is PreferencesIntent.ToggleNonExportedActivities -> {
+                appPreferences.showNotExported = intent.value
+                _state.update {
+                    it.copy(
+                        refresh = true,
+                        isShowNonExportedActivities = intent.value,
+                    )
+                }
+            }
+
+            is PreferencesIntent.ToggleTheme -> {
+                appPreferences.theme = intent.value
+                _state.update { it.copy(refresh = false, theme = intent.value) }
+                AppCompatDelegate.setDefaultNightMode(intent.value)
+            }
         }
-        AppCompatDelegate.setDefaultNightMode(theme)
     }
 }

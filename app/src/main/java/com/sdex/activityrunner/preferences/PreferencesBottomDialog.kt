@@ -70,52 +70,52 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
 
         binding.sortByName.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortByChanged(ApplicationModel.NAME)
+                viewModel.handleIntent(PreferencesIntent.SortByName)
             }
         }
         binding.sortByUpdateTime.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortByChanged(ApplicationModel.UPDATE_TIME)
+                viewModel.handleIntent(PreferencesIntent.SortByUpdateTime)
             }
         }
         binding.sortByInstallTime.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortByChanged(ApplicationModel.INSTALL_TIME)
+                viewModel.handleIntent(PreferencesIntent.SortByInstallTime)
             }
         }
         binding.orderByAsc.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortOrderChanged(GetApplicationsQuery.ASC)
+                viewModel.handleIntent(PreferencesIntent.SortOrderAsc)
             }
         }
         binding.orderByDesc.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.onSortOrderChanged(GetApplicationsQuery.DESC)
+                viewModel.handleIntent(PreferencesIntent.SortOrderDesc)
             }
         }
         binding.showSystemApps.setOnCheckedChangeListener { _, isChecked ->
             binding.showSystemAppIndicator.isEnabled = isChecked
 
-            viewModel.onShowSystemAppsChanged(isChecked)
+            viewModel.handleIntent(PreferencesIntent.ToggleSystemApps(isChecked))
         }
         binding.showSystemAppIndicator.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.onShowSystemAppIndicatorChanged(isChecked)
+            viewModel.handleIntent(PreferencesIntent.ToggleSystemAppIndicator(isChecked))
             update()
         }
         binding.showDisabledApps.setOnCheckedChangeListener { _, isChecked ->
             binding.showDisabledAppIndicator.isEnabled = isChecked
 
-            viewModel.onShowDisabledAppsChanged(isChecked)
+            viewModel.handleIntent(PreferencesIntent.ToggleDisabledApps(isChecked))
         }
         binding.showDisabledAppIndicator.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.onShowDisabledAppIndicatorChanged(isChecked)
+            viewModel.handleIntent(PreferencesIntent.ToggleDisabledAppIndicator(isChecked))
             update()
         }
         binding.nonExported.setOnClickListener {
             binding.switchNonExported.isChecked = !binding.switchNonExported.isChecked
         }
         binding.switchNonExported.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.onShowNonExportedActivitiesChanged(isChecked)
+            viewModel.handleIntent(PreferencesIntent.ToggleNonExportedActivities(isChecked))
         }
 
         val themeOptions = resources.getStringArray(R.array.pref_appearance_theme_list_titles)
@@ -130,7 +130,7 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
                     R.id.themeDark -> THEME_DARK
                     else -> THEME_AUTO
                 }
-                viewModel.onThemeChanged(themeId)
+                viewModel.handleIntent(PreferencesIntent.ToggleTheme(themeId))
             }
         }
     }

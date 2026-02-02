@@ -1,7 +1,8 @@
 package com.sdex.activityrunner.tv
 
+import android.app.UiModeManager
 import androidx.annotation.StringRes
-import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,21 +10,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.tv.material3.Card
+import androidx.tv.material3.CardDefaults
+import androidx.tv.material3.CardScale
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.FilterChip
 import androidx.tv.material3.FilterChipDefaults
@@ -35,6 +38,8 @@ import androidx.tv.material3.Text
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
+import com.sdex.activityrunner.preferences.PreferencesIntent
+import com.sdex.activityrunner.preferences.PreferencesState
 import com.sdex.activityrunner.preferences.PreferencesViewModel
 import com.sdex.activityrunner.tv.common.FilterChipGroup
 import com.sdex.activityrunner.tv.common.StandardDialog
@@ -50,11 +55,6 @@ private val sortOrderOptions = listOf(
     GetApplicationsQuery.DESC to R.string.filter_sort_order_desc,
 )
 
-@OptIn(
-    ExperimentalComposeUiApi::class,
-    ExperimentalFoundationApi::class,
-    ExperimentalTvMaterial3Api::class,
-)
 @Composable
 fun PreferencesDialog(
     modifier: Modifier = Modifier,
@@ -65,6 +65,26 @@ fun PreferencesDialog(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    PreferencesContent(
+        showDialog = showDialog,
+        modifier = modifier,
+        onDismissRequest = onDismissRequest,
+        state = state,
+        onHandleIntent = viewModel::handleIntent,
+        onConfigChanged = onConfigChanged,
+    )
+}
+
+@Composable
+@OptIn(ExperimentalTvMaterial3Api::class)
+private fun PreferencesContent(
+    showDialog: Boolean,
+    modifier: Modifier,
+    state: PreferencesState,
+    onHandleIntent: (PreferencesIntent) -> Unit,
+    onDismissRequest: () -> Unit,
+    onConfigChanged: () -> Unit,
+) {
     StandardDialog(
         showDialog = showDialog,
         modifier = modifier,
@@ -82,9 +102,16 @@ fun PreferencesDialog(
                         it.first == state.sortBy
                     },
                     onSelectionChanged = {
-                        viewModel.onSortByChanged(
-                            sortByOptions[it].first,
-                        )
+                        when (sortByOptions[it].first) {
+                            ApplicationModel.NAME ->
+                                onHandleIntent(PreferencesIntent.SortByName)
+
+                            ApplicationModel.UPDATE_TIME ->
+                                onHandleIntent(PreferencesIntent.SortByUpdateTime)
+
+                            ApplicationModel.INSTALL_TIME ->
+                                onHandleIntent(PreferencesIntent.SortByInstallTime)
+                        }
                         onConfigChanged()
                     },
                 )
@@ -96,9 +123,13 @@ fun PreferencesDialog(
                         it.first == state.sortOrder
                     },
                     onSelectionChanged = {
-                        viewModel.onSortOrderChanged(
-                            sortOrderOptions[it].first,
-                        )
+                        when (sortOrderOptions[it].first) {
+                            GetApplicationsQuery.ASC ->
+                                onHandleIntent(PreferencesIntent.SortOrderAsc)
+
+                            GetApplicationsQuery.DESC ->
+                                onHandleIntent(PreferencesIntent.SortOrderDesc)
+                        }
                         onConfigChanged()
                     },
                 )
@@ -115,8 +146,8 @@ fun PreferencesDialog(
                         modifier = Modifier.padding(horizontal = 8.dp),
                         selected = state.isShowSystemApps,
                         onClick = {
-                            viewModel.onShowSystemAppsChanged(
-                                !state.isShowSystemApps,
+                            onHandleIntent(
+                                PreferencesIntent.ToggleSystemApps(!state.isShowSystemApps),
                             )
                             onConfigChanged()
                         },
@@ -138,8 +169,8 @@ fun PreferencesDialog(
                         selected = state.isShowSystemAppIndicator,
                         enabled = state.isShowSystemApps,
                         onClick = {
-                            viewModel.onShowSystemAppIndicatorChanged(
-                                !state.isShowSystemAppIndicator,
+                            onHandleIntent(
+                                PreferencesIntent.ToggleSystemAppIndicator(!state.isShowSystemAppIndicator),
                             )
                             onConfigChanged()
                         },
@@ -168,8 +199,8 @@ fun PreferencesDialog(
                         modifier = Modifier.padding(horizontal = 8.dp),
                         selected = state.isShowDisabledApps,
                         onClick = {
-                            viewModel.onShowDisabledAppsChanged(
-                                !state.isShowDisabledApps,
+                            onHandleIntent(
+                                PreferencesIntent.ToggleDisabledApps(!state.isShowDisabledApps),
                             )
                             onConfigChanged()
                         },
@@ -191,8 +222,8 @@ fun PreferencesDialog(
                         selected = state.isShowDisabledAppIndicator,
                         enabled = state.isShowDisabledApps,
                         onClick = {
-                            viewModel.onShowDisabledAppIndicatorChanged(
-                                !state.isShowDisabledAppIndicator,
+                            onHandleIntent(
+                                PreferencesIntent.ToggleDisabledAppIndicator(!state.isShowDisabledAppIndicator),
                             )
                             onConfigChanged()
                         },
@@ -213,8 +244,8 @@ fun PreferencesDialog(
                     modifier = Modifier.padding(top = 16.dp),
                     checked = state.isShowNonExportedActivities,
                     onCheckedChange = {
-                        viewModel.onShowNonExportedActivitiesChanged(
-                            !state.isShowNonExportedActivities,
+                        onHandleIntent(
+                            PreferencesIntent.ToggleNonExportedActivities(!state.isShowNonExportedActivities),
                         )
                         onConfigChanged()
                     },
@@ -229,6 +260,7 @@ fun PreferencesDialog(
 }
 
 @Composable
+@OptIn(ExperimentalTvMaterial3Api::class)
 private fun SettingSwitchItem(
     modifier: Modifier = Modifier,
     checked: Boolean,
@@ -237,64 +269,120 @@ private fun SettingSwitchItem(
     @StringRes description: Int? = null,
     enabled: Boolean = true,
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
-            .toggleable(
-                value = checked,
-                enabled = enabled,
-                role = Role.Switch,
-                onValueChange = onCheckedChange,
-            ),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column(
-            modifier = Modifier.weight(1.0f),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            val contentAlpha = if (enabled) 1.0f else 0.38f
+    val interactionSource = remember { MutableInteractionSource() }
 
-            Text(
-                text = stringResource(id = title),
-                style = MaterialTheme.typography.bodyLarge,
-                maxLines = 1,
-                modifier = Modifier.alpha(contentAlpha),
-            )
-            if (description != null) {
+    Card(
+        onClick = { if (enabled) onCheckedChange(!checked) },
+        modifier = modifier.fillMaxWidth(),
+        shape = CardDefaults.shape(shape = MaterialTheme.shapes.small),
+        scale = CardScale.None,
+        colors = CardDefaults.colors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        ),
+        interactionSource = interactionSource,
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Column(
+                modifier = Modifier.weight(1.0f),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                val contentAlpha = if (enabled) 1.0f else 0.38f
+
                 Text(
-                    text = stringResource(id = description),
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = stringResource(id = title),
+                    style = MaterialTheme.typography.bodyLarge,
+                    maxLines = 1,
                     modifier = Modifier.alpha(contentAlpha),
                 )
+                if (description != null) {
+                    Text(
+                        text = stringResource(id = description),
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.alpha(contentAlpha),
+                    )
+                }
             }
-        }
 
-        Switch(
-            checked = checked,
-            onCheckedChange = null,
-            enabled = enabled,
-        )
+            Switch(
+                checked = checked,
+                onCheckedChange = null,
+                enabled = enabled,
+            )
+        }
     }
 }
 
+@Preview(showBackground = true, device = "spec:width=1920dp,height=1080dp,dpi=320")
 @Composable
-@Preview
-fun SettingSwitchItemPreview() {
-    SettingSwitchItem(
-        checked = false,
-        onCheckedChange = {},
-        title = R.string.pref_advanced_not_exported_title,
-        description = R.string.pref_advanced_not_exported_summary,
+fun PreferencesContentPreviewAllEnabled() {
+    PreferencesContent(
+        showDialog = true,
+        modifier = Modifier,
+        state = PreferencesState(
+            refresh = false,
+            sortBy = ApplicationModel.NAME,
+            sortOrder = GetApplicationsQuery.ASC,
+            isShowSystemApps = true,
+            isShowSystemAppIndicator = true,
+            isShowDisabledApps = true,
+            isShowDisabledAppIndicator = true,
+            isShowNonExportedActivities = true,
+            theme = UiModeManager.MODE_NIGHT_NO,
+        ),
+        onHandleIntent = {},
+        onDismissRequest = {},
+        onConfigChanged = {},
     )
 }
 
-//@Composable
-//@Preview
-//fun PreviewConfigDialog() {
-//    ConfigDialog(
-//        showDialog = true,
-//        onConfigChanged = {},
-//        onDismissRequest = {},
-//    )
-//}
+@Preview(showBackground = true, device = "spec:width=1920dp,height=1080dp,dpi=320")
+@Composable
+fun PreferencesContentPreviewMinimalSettings() {
+    PreferencesContent(
+        showDialog = true,
+        modifier = Modifier,
+        state = PreferencesState(
+            refresh = false,
+            sortBy = ApplicationModel.UPDATE_TIME,
+            sortOrder = GetApplicationsQuery.DESC,
+            isShowSystemApps = false,
+            isShowSystemAppIndicator = false,
+            isShowDisabledApps = false,
+            isShowDisabledAppIndicator = false,
+            isShowNonExportedActivities = false,
+            theme = UiModeManager.MODE_NIGHT_YES,
+        ),
+        onHandleIntent = {},
+        onDismissRequest = {},
+        onConfigChanged = {},
+    )
+}
+
+@Preview(showBackground = true, device = Devices.TV_1080p)
+@Composable
+fun PreferencesContentPreviewSortByInstallTime() {
+    PreferencesContent(
+        showDialog = true,
+        modifier = Modifier,
+        state = PreferencesState(
+            refresh = true,
+            sortBy = ApplicationModel.INSTALL_TIME,
+            sortOrder = GetApplicationsQuery.DESC,
+            isShowSystemApps = true,
+            isShowSystemAppIndicator = false,
+            isShowDisabledApps = true,
+            isShowDisabledAppIndicator = false,
+            isShowNonExportedActivities = false,
+            theme = UiModeManager.MODE_NIGHT_NO,
+        ),
+        onHandleIntent = {},
+        onDismissRequest = {},
+        onConfigChanged = {},
+    )
+}

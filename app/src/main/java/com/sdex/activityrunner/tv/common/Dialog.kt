@@ -110,9 +110,11 @@ import kotlin.math.max
  * darker color in light theme and lighter color in dark theme..
  * @param properties typically platform specific properties to further configure the dialog.
  */
-@ExperimentalFoundationApi
-@ExperimentalComposeUiApi
-@ExperimentalTvMaterial3Api
+@OptIn(
+    ExperimentalComposeUiApi::class,
+    ExperimentalFoundationApi::class,
+    ExperimentalTvMaterial3Api::class,
+)
 @Composable
 fun StandardDialog(
     showDialog: Boolean,
