@@ -3,7 +3,7 @@
     <string name="history_activity">Geçmiş</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Etkinliği parametrelerle başlat</string>
-    <string name="activity_option_launch_root">Etkinliği ROOT ile başlat</string>
+    <string name="activity_option_launch_root">Launch activity with root</string>
     <string name="activity_option_create_shortcut">Kısayol oluştur</string>
     <!-- application options -->
     <string name="application_option_open">Uygulamayı başlat</string>
@@ -16,11 +16,14 @@
     <string name="shortcut_name">Etiket</string>
     <string name="shortcut_name_empty">Etiket boş olamaz</string>
     <string name="shortcut_create">Oluştur</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">Simgeyi değiştirmek için dokun</string>
     <string name="icons_loading_error">Simgeler yüklenemedi</string>
     <string name="shortcut_icon_gallery">Galeriden seç</string>
     <string name="shortcut_icon_preset">Simgelerden seç</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_icon_padding">Icon padding</string>
+    <string name="shortcut_options">Options</string>
     <!-- launching activity -->
     <string name="starting_activity">Etkinlik başlatılıyor: %s</string>
     <string name="starting_activity_failed">Etkinlik başlatılamadı: %s</string>
@@ -91,7 +94,7 @@
     <string name="dialog_add_extra_type_incorrect">Yanlış değer türü</string>
     <string name="dialog_export_intent_copy">Kopyala</string>
     <string name="dialog_enable_non_exported_title">Dışa aktarılmamış etkinlikler</string>
-    <string name="dialog_enable_non_exported_message">Dışa aktarılmamış etkinliklerin görüntülenmesini etkinleştirebilirsiniz, bunlar kırmızı renkle vurgulanacaktır. Bu tür etkinlikler yalnızca ROOT izni ile çalıştırılabilir</string>
+    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
     <string name="dialog_root_config_title">Özel \'su\' yürütülebilir dosyasını ayarla</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">WebView örneği oluşturulamadı, daha sonra tekrar deneyin</string>
