@@ -3,7 +3,7 @@
     <string name="history_activity">Historia</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Uruchom aktywność z parametrami</string>
-    <string name="activity_option_launch_root">Uruchom aktywność jako ROOT</string>
+    <string name="activity_option_launch_root">Launch activity with root</string>
     <string name="activity_option_create_shortcut">Utwórz skrót</string>
     <!-- application options -->
     <string name="application_option_open">Uruchom aplikację</string>
@@ -16,11 +16,14 @@
     <string name="shortcut_name">Etykieta</string>
     <string name="shortcut_name_empty">Etykieta nie może być pusta</string>
     <string name="shortcut_create">Utwórz</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">Dotknij, aby zmienić ikonę</string>
     <string name="icons_loading_error">Nie udało się załadować ikon</string>
     <string name="shortcut_icon_gallery">Wybierz z galerii</string>
     <string name="shortcut_icon_preset">Wybierz spośród ikon</string>
     <string name="shortcut_invert_icon_colors">Odwróć kolory ikon</string>
+    <string name="shortcut_icon_padding">Icon padding</string>
+    <string name="shortcut_options">Options</string>
     <!-- launching activity -->
     <string name="starting_activity">Rozpoczęcie aktywności: %s</string>
     <string name="starting_activity_failed">Nie udało się rozpocząć aktywności: %s</string>
@@ -91,7 +94,7 @@
     <string name="dialog_add_extra_type_incorrect">Nieprawidłowy typ wartości</string>
     <string name="dialog_export_intent_copy">Kopiuj</string>
     <string name="dialog_enable_non_exported_title">Aktywności niewyeksportowane</string>
-    <string name="dialog_enable_non_exported_message">Możesz włączyć wyświetlanie nieeksportowanych działań, będą one podświetlone czerwonym kolorem. Takie aktywności mogą być uruchamiane tylko z uprawnieniami ROOT</string>
+    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
     <string name="dialog_root_config_title">Ustaw własny plik wykonywalny \'su\'</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Nie udało się utworzyć instancji WebView</string>
