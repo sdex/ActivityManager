@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="history_activity">Historial</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Lanzar actividad con parámetros</string>
-    <string name="activity_option_launch_root">Iniciar actividad con ROOT</string>
+    <string name="activity_option_launch_root">Launch activity with root</string>
     <string name="activity_option_create_shortcut">Crear acceso directo</string>
     <!-- application options -->
     <string name="application_option_open">Lanzar la aplicación</string>
@@ -16,11 +16,14 @@
     <string name="shortcut_name">Etiqueta</string>
     <string name="shortcut_name_empty">La etiqueta no puede estar vacía</string>
     <string name="shortcut_create">Crear</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">Pulsa para cambiar el icono</string>
     <string name="icons_loading_error">No se pudo cargar los íconos</string>
     <string name="shortcut_icon_gallery">Elegir de la galería</string>
     <string name="shortcut_icon_preset">Seleccionar desde iconos</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_icon_padding">Icon padding</string>
+    <string name="shortcut_options">Options</string>
     <!-- launching activity -->
     <string name="starting_activity">Iniciando actividad: %s</string>
     <string name="starting_activity_failed">Error al iniciar la actividad: %s</string>
@@ -91,7 +94,7 @@
     <string name="dialog_add_extra_type_incorrect">Tipo de valor incorrecto</string>
     <string name="dialog_export_intent_copy">Copiar</string>
     <string name="dialog_enable_non_exported_title">Actividades no exportadas</string>
-    <string name="dialog_enable_non_exported_message">Puedes activar la visualización de actividades no exportadas, aparecerán marcadas en rojo. Estas actividades sólo pueden ser ejecutadas con permiso ROOT</string>
+    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
     <string name="dialog_root_config_title">Set custom \'su\' executable</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Error al instanciar WebView, inténtalo de nuevo más tarde</string>
@@ -109,11 +112,11 @@
         <item>Claro</item>
         <item>Oscuro</item>
     </string-array>
-    <plurals name="history_records" tools:ignore="MissingQuantity">
+    <plurals name="history_records">
         <item quantity="one">%d registros</item>
         <item quantity="other">%d registros</item>
     </plurals>
-    <plurals name="activities_count" tools:ignore="MissingQuantity">
+    <plurals name="activities_count">
         <item quantity="one">%d Actividad</item>
         <item quantity="other">%d actividades</item>
     </plurals>
