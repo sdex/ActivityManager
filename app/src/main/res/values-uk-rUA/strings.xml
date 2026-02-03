@@ -3,12 +3,12 @@
     <string name="history_activity">Історія</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Запустити з параметрами</string>
-    <string name="activity_option_launch_root">Запустити з правами Root</string>
+    <string name="activity_option_launch_root">Запустити з правами root</string>
     <string name="activity_option_create_shortcut">Створити ярлик</string>
     <!-- application options -->
     <string name="application_option_open">Запустити додаток</string>
     <string name="application_option_open_manifest">Відкрити маніфест</string>
-    <string name="application_option_open_info">Інформація про додаток</string>
+    <string name="application_option_open_info">Відкрити інформацію</string>
     <string name="application_option_open_market">Відкрити в магазині додатків</string>
     <string name="application_disabled">Вимкнено</string>
     <string name="application_system">Системне</string>
@@ -16,11 +16,14 @@
     <string name="shortcut_name">Назва</string>
     <string name="shortcut_name_empty">Обов\'язкове поле</string>
     <string name="shortcut_create">Створити</string>
-    <string name="shortcut_set_icon_tooltip">Натисніть щоб змінити зображення</string>
+    <string name="shortcut_change_icon">Змінити іконку</string>
+    <string name="shortcut_set_icon_tooltip">Натисніть для зміни зображення</string>
     <string name="icons_loading_error">Не вдалося завантажити значок</string>
     <string name="shortcut_icon_gallery">Вибрати з галереї</string>
     <string name="shortcut_icon_preset">Вибрати зі значків</string>
     <string name="shortcut_invert_icon_colors">Інвертувати кольори значків</string>
+    <string name="shortcut_icon_padding">Відступ</string>
+    <string name="shortcut_options">Опції</string>
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
     <string name="starting_activity_failed">Помилка запуску: %s</string>
@@ -91,7 +94,7 @@
     <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
     <string name="dialog_export_intent_copy">Копіювати</string>
     <string name="dialog_enable_non_exported_title">Приховані компоненти</string>
-    <string name="dialog_enable_non_exported_message">Ви можете увімкнути відображення прихованих компонентів, вони будуть виділені червоним кольором. Такі компоненти можна запустити тільки використовуючи Root</string>
+    <string name="dialog_enable_non_exported_message"></string>
     <string name="dialog_root_config_title">Встановити власний виконуваний файл \'su\'</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Помилка ініціалізації WebView, спробуйте пізніше</string>
