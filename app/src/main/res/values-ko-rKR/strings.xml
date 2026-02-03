@@ -3,7 +3,7 @@
     <string name="history_activity">기록</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">매개변수로 액티비티 실행</string>
-    <string name="activity_option_launch_root">루트 권한으로 액티비티 실행</string>
+    <string name="activity_option_launch_root">Launch activity with root</string>
     <string name="activity_option_create_shortcut">바로 가기 만들기</string>
     <!-- application options -->
     <string name="application_option_open">애플리케이션 실행</string>
@@ -16,11 +16,14 @@
     <string name="shortcut_name">레이블</string>
     <string name="shortcut_name_empty">레이블은 비워둘 수 없습니다</string>
     <string name="shortcut_create">만들기</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">아이콘을 변경하려면 탭하세요</string>
     <string name="icons_loading_error">아이콘을 불러오는데 실패했습니다</string>
     <string name="shortcut_icon_gallery">갤러리에서 선택</string>
     <string name="shortcut_icon_preset">아이콘 모음에서 선택</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_icon_padding">Icon padding</string>
+    <string name="shortcut_options">Options</string>
     <!-- launching activity -->
     <string name="starting_activity">액티비티를 시작하는 중: %s</string>
     <string name="starting_activity_failed">%s 액티비티를 시작하는데 실패했습니다</string>
@@ -91,7 +94,7 @@
     <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
     <string name="dialog_export_intent_copy">Copy</string>
     <string name="dialog_enable_non_exported_title">Non-exported activities</string>
-    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with ROOT permission</string>
+    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
     <string name="dialog_root_config_title">Set custom \'su\' executable</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Failed to instantiate WebView, try again later</string>
