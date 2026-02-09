@@ -1,0 +1,2 @@
+- New shortcut screen
+- Make dialog text selectable
