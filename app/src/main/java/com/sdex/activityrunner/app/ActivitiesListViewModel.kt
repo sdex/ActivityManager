@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.app
 
 import androidx.annotation.WorkerThread
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+@Stable
 data class UiData(
     val application: ApplicationModel?,
     val activities: List<ActivityModel>,
