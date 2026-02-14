@@ -2,15 +2,14 @@
 agp = "8.13.2"
 appiconloader-coil = "1.5.0"
 coil-compose = "2.7.0"
-kotlin = "2.3.0"
-ksp = "2.3.4"
+kotlin = "2.3.10"
+ksp = "2.3.5"
 kotlinx-coroutines-android = "1.10.2"
 kotlinx-serialization-json = "1.10.0"
-activity-ktx = "1.12.3"
-activity-compose = "1.12.3"
+activity = "1.12.4"
 appcompat = "1.7.1"
 browser = "1.9.0"
-compose-bom = "2026.01.01"
+compose-bom = "2026.02.00"
 compose-tv-foundation = "1.0.0-alpha12"
 compose-tv-material = "1.0.1"
 navigation-compose = "2.9.7"
@@ -38,7 +37,7 @@ androidx-test = "1.7.0"
 espresso = "3.7.0"
 
 [libraries]
-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
+activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 appiconloader-coil = { module = "me.zhanghai.android.appiconloader:appiconloader-coil", version.ref = "appiconloader-coil" }
 browser = { module = "androidx.browser:browser", version.ref = "browser" }
@@ -79,7 +78,7 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-tv-foundation = { group = "androidx.tv", name = "tv-foundation", version.ref = "compose-tv-foundation" }
 androidx-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "compose-tv-material" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
