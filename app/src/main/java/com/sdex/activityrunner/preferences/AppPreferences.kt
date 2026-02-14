@@ -113,7 +113,19 @@ class AppPreferences(context: Context) {
             }
         }
 
-    companion object {
+    var lastSequenceNumber: Int
+        get() = preferences.getInt("last_sequence_number", 0)
+        set(value) = preferences.edit {
+            putInt("last_sequence_number", value)
+        }
+
+    var lastBootCount: Int
+        get() = preferences.getInt("last_boot_count", -1)
+        set(value) = preferences.edit {
+            putInt("last_boot_count", value)
+        }
+
+    private companion object {
 
         private const val PREFERENCES_NAME = "ads_preferences"
         private const val KEY_NOT_EXPORTED_DIALOG_SHOWN = "not_exported_dialog_shown"

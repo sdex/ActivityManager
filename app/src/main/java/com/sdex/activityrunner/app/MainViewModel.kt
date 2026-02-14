@@ -50,15 +50,18 @@ class MainViewModel @Inject constructor(
 
     private fun syncDatabase() {
         coroutineScope.launch {
-            // set isSyncing to true only if there are applications in the database
-            // the app shouldn't show this progress during the initial sync
-            if (cacheRepository.count() > 0) {
-                _isSyncing.postValue(true)
+            val shouldSync = applicationsLoader.shouldSync()
+            if (shouldSync) {
+                if (cacheRepository.count() > 0) {
+                    // set isSyncing to true only if there are applications in the database
+                    // the app shouldn't show this progress during the initial sync
+                    _isSyncing.postValue(true)
+                }
+
+                applicationsLoader.sync()
+
+                _isSyncing.postValue(false)
             }
-
-            applicationsLoader.syncDatabase()
-
-            _isSyncing.postValue(false)
         }
     }
 }

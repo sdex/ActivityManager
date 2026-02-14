@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ApplicationInfo
+import android.content.pm.ChangedPackages
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Build
+import androidx.annotation.RequiresApi
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.manifest.ManifestParser
@@ -124,6 +126,10 @@ class PackageInfoProvider(
     fun getResourcesForApplication(packageName: String): Resources {
         return packageManager.getResourcesForApplication(packageName)
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getChangedPackages(lastSequenceNumber: Int): ChangedPackages? =
+        packageManager.getChangedPackages(lastSequenceNumber)
 
     private fun getApkPackageInfo(pm: PackageManager, packageName: String): PackageInfo {
         try {

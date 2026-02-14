@@ -1,8 +1,10 @@
 package com.sdex.activityrunner.di
 
 import android.content.Context
+import com.sdex.activityrunner.db.cache.CacheRepository
 import com.sdex.activityrunner.manifest.ManifestWriter
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.util.ApplicationsLoader
 import com.sdex.activityrunner.util.PackageInfoProvider
 import dagger.Module
 import dagger.Provides
@@ -38,4 +40,18 @@ object AppModule {
     @Singleton
     fun provideGlobalCoroutineScope() =
         CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+    @Provides
+    @Singleton
+    fun provideApplicationsLoader(
+        @ApplicationContext context: Context,
+        cacheRepository: CacheRepository,
+        packageInfoProvider: PackageInfoProvider,
+        preferences: AppPreferences,
+    ) = ApplicationsLoader(
+        context = context,
+        cacheRepository = cacheRepository,
+        packageInfoProvider = packageInfoProvider,
+        preferences = preferences,
+    )
 }
