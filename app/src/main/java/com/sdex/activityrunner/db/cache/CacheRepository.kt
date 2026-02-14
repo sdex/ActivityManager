@@ -19,4 +19,6 @@ class CacheRepository @Inject constructor(
     fun delete(models: List<ApplicationModel>) = applicationModelDao.delete(models)
 
     fun getApplication(packageName: String) = applicationModelDao.getApplicationModel(packageName)
+
+    fun count() = applicationModelDao.count()
 }

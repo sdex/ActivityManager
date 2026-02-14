@@ -10,9 +10,7 @@ import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.ApplicationsLoader
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -22,10 +20,14 @@ class MainViewModel @Inject constructor(
     private val cacheRepository: CacheRepository,
     private val appPreferences: AppPreferences,
     private val applicationsLoader: ApplicationsLoader,
+    private val coroutineScope: CoroutineScope,
 ) : ViewModel() {
 
     private val _searchQuery = MutableLiveData<String?>(null)
     val searchQuery: LiveData<String?> = _searchQuery
+
+    private val _isSyncing = MutableLiveData(false)
+    val isSyncing: LiveData<Boolean> = _isSyncing
 
     val items: LiveData<List<ApplicationModel>> = searchQuery.switchMap { text ->
         val query = GetApplicationsQuery(appPreferences, text)
@@ -46,10 +48,17 @@ class MainViewModel @Inject constructor(
         search(searchQuery.value)
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     private fun syncDatabase() {
-        GlobalScope.launch(Dispatchers.IO) {
+        coroutineScope.launch {
+            // set isSyncing to true only if there are applications in the database
+            // the app shouldn't show this progress during the initial sync
+            if (cacheRepository.count() > 0) {
+                _isSyncing.postValue(true)
+            }
+
             applicationsLoader.syncDatabase()
+
+            _isSyncing.postValue(false)
         }
     }
 }

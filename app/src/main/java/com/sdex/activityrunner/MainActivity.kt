@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -102,6 +103,10 @@ class MainActivity : BaseActivity() {
                     binding.list.scrollToPosition(0)
                 }
             }
+        }
+
+        viewModel.isSyncing.observe(this) { isSyncing ->
+            binding.syncProgress.isVisible = isSyncing
         }
 
         binding.progress.show()
