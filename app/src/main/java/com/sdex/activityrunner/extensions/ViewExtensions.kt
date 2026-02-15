@@ -2,28 +2,15 @@ package com.sdex.activityrunner.extensions
 
 import android.content.Context
 import android.util.TypedValue
-import android.view.View
-import android.view.ViewTreeObserver
+import android.view.Menu
+import android.view.MenuItem
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.forEach
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-
-@Suppress("DEPRECATION")
-fun View.doAfterMeasure(callback: () -> Unit) {
-    viewTreeObserver.addOnGlobalLayoutListener(
-        object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                viewTreeObserver.removeOnGlobalLayoutListener(this)
-                callback()
-            }
-        }
-    )
-}
 
 @ColorInt
 fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
@@ -49,10 +36,6 @@ fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
     return typedValue
 }
 
-fun RecyclerView.addDividerItemDecoration() {
-    addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-}
-
 fun BottomSheetDialogFragment.createBottomSheetDialog(): BottomSheetDialog {
     val dialog = BottomSheetDialog(requireContext(), theme)
     // open bottom sheet with the expanded state in the landscape
@@ -67,4 +50,15 @@ fun BottomSheetDialogFragment.createBottomSheetDialog(): BottomSheetDialog {
 fun Int.toDp(context: Context): Int {
     val scale = context.resources.displayMetrics.density
     return (this / scale + 0.5f).toInt()
+}
+
+fun Menu.setItemsVisibility(
+    exception: MenuItem? = null,
+    visible: Boolean,
+) {
+    forEach {
+        if (it != exception) {
+            it.isVisible = visible
+        }
+    }
 }

@@ -23,10 +23,10 @@ import com.sdex.activityrunner.app.dialog.ApplicationOptionsDialog
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityMainBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
+import com.sdex.activityrunner.extensions.setItemsVisibility
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.PreferencesBottomDialog
-import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -145,31 +145,35 @@ class MainActivity : BaseActivity() {
         if (!searchQuery.isNullOrEmpty()) {
             searchView.post { searchView.setQuery(searchQuery, false) }
             searchItem.expandActionView()
-            UIUtils.setMenuItemsVisibility(menu, searchItem, false)
+            menu.setItemsVisibility(exception = searchItem, visible = false)
         }
 
-        searchView.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
+        searchView.setOnQueryTextListener(
+            object : OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.search(newText)
-                return false
-            }
-        })
-        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                UIUtils.setMenuItemsVisibility(menu, item, false)
-                return true
-            }
+                override fun onQueryTextChange(newText: String): Boolean {
+                    viewModel.search(newText)
+                    return false
+                }
+            },
+        )
+        searchItem.setOnActionExpandListener(
+            object : MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                    menu.setItemsVisibility(exception = item, visible = false)
+                    return true
+                }
 
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                UIUtils.setMenuItemsVisibility(menu, true)
-                invalidateOptionsMenu()
-                return true
-            }
-        })
+                override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                    menu.setItemsVisibility(visible = true)
+                    invalidateOptionsMenu()
+                    return true
+                }
+            },
+        )
     }
 
     private fun showDonateSnackbar() {
@@ -179,7 +183,7 @@ class MainActivity : BaseActivity() {
         Snackbar.make(
             binding.coordinator,
             R.string.donate_snackbar_text,
-            Snackbar.LENGTH_INDEFINITE
+            Snackbar.LENGTH_INDEFINITE,
         )
             .setBehavior(behavior)
             .setAction(getString(R.string.donate_snackbar_action_text).uppercase()) {

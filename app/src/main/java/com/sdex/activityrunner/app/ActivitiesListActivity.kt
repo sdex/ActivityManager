@@ -16,10 +16,10 @@ import com.sdex.activityrunner.databinding.ActivityActivitiesListBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
+import com.sdex.activityrunner.extensions.setItemsVisibility
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.util.UIUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -172,7 +172,7 @@ class ActivitiesListActivity : BaseActivity() {
         if (searchText != null) {
             searchView.post { searchView.setQuery(searchText, false) }
             searchItem.expandActionView()
-            UIUtils.setMenuItemsVisibility(menu, searchItem, false)
+            menu.setItemsVisibility(exception = searchItem, visible = false)
         }
 
         searchView.setOnQueryTextListener(
@@ -190,13 +190,13 @@ class ActivitiesListActivity : BaseActivity() {
         searchItem.setOnActionExpandListener(
             object : MenuItem.OnActionExpandListener {
                 override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                    UIUtils.setMenuItemsVisibility(menu, item, false)
+                    menu.setItemsVisibility(exception = item, visible = false)
                     return true
                 }
 
                 override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                     searchText = null
-                    UIUtils.setMenuItemsVisibility(menu, true)
+                    menu.setItemsVisibility(visible = true)
                     invalidateOptionsMenu()
                     return true
                 }

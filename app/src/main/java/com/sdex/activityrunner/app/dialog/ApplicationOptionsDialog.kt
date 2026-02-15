@@ -89,7 +89,7 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
             dismissAllowingStateLoss()
         }
         binding.actionOpenAppMarket.setOnClickListener {
-            AppUtils.openAppMarket(context, packageName)
+            AppUtils.openAppMarket(requireContext(), packageName)
             dismissAllowingStateLoss()
         }
     }
