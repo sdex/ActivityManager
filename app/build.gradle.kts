@@ -109,6 +109,7 @@ dependencies {
     implementation(libs.recyclerview.fastscroll)
     implementation(libs.apk.parser)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.datastore.preferences)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.browserfip)
 

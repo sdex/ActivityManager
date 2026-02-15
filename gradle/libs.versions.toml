@@ -31,6 +31,7 @@ iconpack-community-material = "5.3.45"
 recyclerview-fastscroll = "2.0.1"
 apk-parser = "2.6.10"
 browserfip = "1.0.5"
+datastore = "1.2.0"
 junit = "4.13.2"
 mockk = "1.14.9"
 androidx-test = "1.7.0"
@@ -63,6 +64,7 @@ recyclerview-fastscroll = { module = "com.simplecityapps:recyclerview-fastscroll
 apk-parser = { module = "net.dongliu:apk-parser", version.ref = "apk-parser" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 browserfip = { module = "com.github.Y-E-P:BrowserFiP", version.ref = "browserfip" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
