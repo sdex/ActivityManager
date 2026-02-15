@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.sdex.activityrunner.MainActivity
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.DialogPreferencesBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
@@ -55,9 +54,6 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
             viewModel.state.flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collect { state ->
                     setState(state)
-                    if (state.refresh) {
-                        refresh()
-                    }
                 }
         }
 
@@ -100,7 +96,6 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         }
         binding.showSystemAppIndicator.setOnCheckedChangeListener { _, isChecked ->
             viewModel.handleIntent(PreferencesIntent.ToggleSystemAppIndicator(isChecked))
-            update()
         }
         binding.showDisabledApps.setOnCheckedChangeListener { _, isChecked ->
             binding.showDisabledAppIndicator.isEnabled = isChecked
@@ -109,7 +104,6 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         }
         binding.showDisabledAppIndicator.setOnCheckedChangeListener { _, isChecked ->
             viewModel.handleIntent(PreferencesIntent.ToggleDisabledAppIndicator(isChecked))
-            update()
         }
         binding.nonExported.setOnClickListener {
             binding.switchNonExported.isChecked = !binding.switchNonExported.isChecked
@@ -162,14 +156,6 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
             THEME_DARK -> binding.themeDark
             else -> binding.themeAuto
         }.apply { isChecked = true }
-    }
-
-    private fun refresh() {
-        (activity as MainActivity?)?.refresh()
-    }
-
-    private fun update() {
-        (activity as MainActivity?)?.update()
     }
 
     override fun onDestroyView() {

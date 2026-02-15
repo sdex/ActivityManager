@@ -1,9 +1,9 @@
 package com.sdex.activityrunner.tv.common
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,9 +30,7 @@ fun NavigationGraph() {
     val navController = rememberNavController()
 
     val viewModel = hiltViewModel<MainViewModel>()
-    val items = viewModel.items.asFlow().collectAsStateWithLifecycle(
-        initialValue = emptyList(),
-    )
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -40,9 +38,8 @@ fun NavigationGraph() {
     ) {
         composable<Screen.Main> {
             StartScreen(
-                items = items.value,
+                items = state.items,
                 navigateTo = { navController.navigate(it) },
-                onRefresh = { viewModel.refresh() },
             )
         }
 

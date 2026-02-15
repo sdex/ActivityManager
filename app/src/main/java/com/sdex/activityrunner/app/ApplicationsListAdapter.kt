@@ -15,7 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemApplicationBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.preferences.DisplayConfig
 import com.sdex.activityrunner.util.ApplicationSectionNameProvider
 import com.sdex.activityrunner.util.EmptySectionNameProvider
 import com.sdex.activityrunner.util.SectionNameProvider
@@ -23,16 +23,16 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
 
 class ApplicationsListAdapter(
     activity: FragmentActivity,
-    private val appPreferences: AppPreferences,
+    displayConfig: DisplayConfig,
 ) : ListAdapter<ApplicationModel, ApplicationsListAdapter.AppViewHolder>(DIFF_CALLBACK),
     FastScrollRecyclerView.SectionedAdapter {
 
     private val glide = Glide.with(activity)
 
-    private var showSystemAppIndicator: Boolean = appPreferences.isShowSystemAppIndicator
-    private var showDisabledAppIndicator: Boolean = appPreferences.isShowDisabledAppIndicator
+    private var showSystemAppIndicator: Boolean = displayConfig.showSystemAppIndicator
+    private var showDisabledAppIndicator: Boolean = displayConfig.showDisabledAppIndicator
     private var sectionNameProvider: SectionNameProvider =
-        if (appPreferences.sortBy == ApplicationModel.NAME) {
+        if (displayConfig.sortBy == ApplicationModel.NAME) {
             ApplicationSectionNameProvider
         } else {
             EmptySectionNameProvider
@@ -50,7 +50,7 @@ class ApplicationsListAdapter(
             glide,
             showSystemAppIndicator,
             showDisabledAppIndicator,
-            itemClickListener
+            itemClickListener,
         )
     }
 
@@ -58,19 +58,19 @@ class ApplicationsListAdapter(
         sectionNameProvider.getSectionName(getItem(position))
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update() {
-        sectionNameProvider = if (appPreferences.sortBy == ApplicationModel.NAME) {
+    fun updateDisplayConfig(displayConfig: DisplayConfig) {
+        sectionNameProvider = if (displayConfig.sortBy == ApplicationModel.NAME) {
             ApplicationSectionNameProvider
         } else {
             EmptySectionNameProvider
         }
-        if (appPreferences.isShowSystemAppIndicator != showSystemAppIndicator ||
-            appPreferences.isShowDisabledAppIndicator != showDisabledAppIndicator
+        if (displayConfig.showSystemAppIndicator != showSystemAppIndicator ||
+            displayConfig.showDisabledAppIndicator != showDisabledAppIndicator
         ) {
-            showSystemAppIndicator = appPreferences.isShowSystemAppIndicator
-            showDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator
-            notifyDataSetChanged()
+            showSystemAppIndicator = displayConfig.showSystemAppIndicator
+            showDisabledAppIndicator = displayConfig.showDisabledAppIndicator
         }
+        notifyDataSetChanged()
     }
 
     interface ItemClickListener {
@@ -81,7 +81,7 @@ class ApplicationsListAdapter(
     }
 
     class AppViewHolder(
-        private val binding: ItemApplicationBinding
+        private val binding: ItemApplicationBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
@@ -103,7 +103,7 @@ class ApplicationsListAdapter(
             binding.version.text = context.getString(
                 R.string.app_version_format,
                 item.versionName,
-                item.versionCode
+                item.versionCode,
             )
 
             val totalActivitiesFormattedText = context.resources.getQuantityString(
@@ -141,14 +141,14 @@ class ApplicationsListAdapter(
 
             override fun areItemsTheSame(
                 oldItem: ApplicationModel,
-                newItem: ApplicationModel
+                newItem: ApplicationModel,
             ): Boolean {
                 return oldItem.packageName == newItem.packageName
             }
 
             override fun areContentsTheSame(
                 oldItem: ApplicationModel,
-                newItem: ApplicationModel
+                newItem: ApplicationModel,
             ): Boolean {
                 return oldItem == newItem
             }

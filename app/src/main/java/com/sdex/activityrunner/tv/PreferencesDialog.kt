@@ -325,7 +325,6 @@ fun PreferencesContentPreviewAllEnabled() {
         showDialog = true,
         modifier = Modifier,
         state = PreferencesState(
-            refresh = false,
             sortBy = ApplicationModel.NAME,
             sortOrder = GetApplicationsQuery.ASC,
             isShowSystemApps = true,
@@ -348,7 +347,6 @@ fun PreferencesContentPreviewMinimalSettings() {
         showDialog = true,
         modifier = Modifier,
         state = PreferencesState(
-            refresh = false,
             sortBy = ApplicationModel.UPDATE_TIME,
             sortOrder = GetApplicationsQuery.DESC,
             isShowSystemApps = false,
@@ -371,7 +369,6 @@ fun PreferencesContentPreviewSortByInstallTime() {
         showDialog = true,
         modifier = Modifier,
         state = PreferencesState(
-            refresh = true,
             sortBy = ApplicationModel.INSTALL_TIME,
             sortOrder = GetApplicationsQuery.DESC,
             isShowSystemApps = true,

@@ -36,7 +36,6 @@ fun StartScreen(
     modifier: Modifier = Modifier,
     items: List<ApplicationModel>,
     navigateTo: (Screen) -> Unit,
-    onRefresh: () -> Unit,
 ) {
     var showConfigDialog by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
@@ -93,7 +92,6 @@ fun StartScreen(
             modifier = Modifier.width(480.dp),
             showDialog = showConfigDialog,
             onConfigChanged = {
-                onRefresh()
             },
             onDismissRequest = {
                 showConfigDialog = false
@@ -215,6 +213,5 @@ private fun StartScreenPreview() {
     StartScreen(
         items = fakeApps,
         navigateTo = {},
-        onRefresh = {},
     )
 }

@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">Theme</string>
     <string name="pref_header_advanced">Advanced</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
-    <string name="pref_advanced_not_exported_summary">Can be run only using Root</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>System</item>
         <item>Light</item>

@@ -1,12 +1,12 @@
 package com.sdex.activityrunner.db.cache
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.RawQuery
 import androidx.room.Upsert
 import androidx.sqlite.db.SupportSQLiteQuery
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ApplicationModelDao {
@@ -20,7 +20,7 @@ interface ApplicationModelDao {
     @RawQuery(observedEntities = [(ApplicationModel::class)])
     fun getApplicationModels(
         query: SupportSQLiteQuery,
-    ): LiveData<List<ApplicationModel>>
+    ): Flow<List<ApplicationModel>>
 
     @Query(
         "SELECT * FROM " + ApplicationModel.TABLE +

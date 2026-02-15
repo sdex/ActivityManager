@@ -10,6 +10,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -26,8 +28,10 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.setItemsVisibility
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.preferences.DisplayConfig
 import com.sdex.activityrunner.preferences.PreferencesBottomDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -79,7 +83,7 @@ class MainActivity : BaseActivity() {
             },
         )
 
-        adapter = ApplicationsListAdapter(this, appPreferences).apply {
+        adapter = ApplicationsListAdapter(this, DisplayConfig()).apply {
             itemClickListener = object : ApplicationsListAdapter.ItemClickListener {
                 override fun onItemClick(item: ApplicationModel) {
                     ActivitiesListActivity.start(this@MainActivity, item)
@@ -94,19 +98,26 @@ class MainActivity : BaseActivity() {
 
         binding.list.adapter = adapter
 
-        viewModel.items.observe(this) {
-            adapter.submitList(it) {
-                if (it.isNotEmpty()) {
-                    binding.progress.hide()
+        lifecycleScope.launch {
+            viewModel.uiState.flowWithLifecycle(lifecycle)
+                .collect { state ->
+                    adapter.updateDisplayConfig(state.displayConfig)
+                    adapter.submitList(state.items) {
+                        if (state.items.isNotEmpty()) {
+                            binding.progress.hide()
+                        }
+                        if (shouldScrollToTop()) {
+                            binding.list.scrollToPosition(0)
+                        }
+                    }
                 }
-                if (shouldScrollToTop()) {
-                    binding.list.scrollToPosition(0)
-                }
-            }
         }
 
-        viewModel.isSyncing.observe(this) { isSyncing ->
-            binding.syncProgress.isVisible = isSyncing
+        lifecycleScope.launch {
+            viewModel.isSyncing.flowWithLifecycle(lifecycle)
+                .collect { isSyncing ->
+                    binding.syncProgress.isVisible = isSyncing
+                }
         }
 
         binding.progress.show()
@@ -121,15 +132,6 @@ class MainActivity : BaseActivity() {
         return supportFragmentManager.findFragmentByTag(PreferencesBottomDialog.TAG) != null ||
             // scroll to top when the list already is at the top to display new items
             (binding.list.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() == 0
-    }
-
-    fun refresh() {
-        adapter.update()
-        viewModel.refresh()
-    }
-
-    fun update() {
-        adapter.update()
     }
 
     private fun configureSearchView(menu: Menu) {

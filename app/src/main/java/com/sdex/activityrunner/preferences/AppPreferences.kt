@@ -14,24 +14,52 @@ import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class AppPreferences(context: Context) {
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "user_preferences",
+    produceMigrations = { context ->
+        listOf(
+            SharedPreferencesMigration(context, "ads_preferences"),
+            SharedPreferencesMigration(context, context.packageName + "_preferences"),
+        )
+    },
+)
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-        name = PREFERENCES_NAME,
-        produceMigrations = { context ->
-            listOf(
-                SharedPreferencesMigration(context, "ads_preferences"),
-                SharedPreferencesMigration(context, context.packageName + "_preferences"),
-            )
-        },
-    )
+class AppPreferences(context: Context) {
 
     private val dataStore = context.dataStore
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
+
+    val preferences: Flow<PreferencesState> = dataStore.data.map {
+        PreferencesState(
+            isShowNonExportedActivities = it[KEY_SHOW_NOT_EXPORTED] ?: false,
+            isShowSystemApps = it[KEY_SHOW_SYSTEM_APPS] ?: true,
+            isShowSystemAppIndicator = it[KEY_SHOW_SYSTEM_APP_LABEL] ?: false,
+            isShowDisabledApps = it[KEY_SHOW_DISABLED_APPS] ?: true,
+            isShowDisabledAppIndicator = it[KEY_SHOW_DISABLED_APP_LABEL] ?: false,
+            theme = it[KEY_THEME]?.toInt() ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM,
+            sortBy = it[KEY_SORT_BY] ?: ApplicationModel.NAME,
+            sortOrder = it[KEY_ORDER_BY] ?: GetApplicationsQuery.ASC,
+        )
+    }.distinctUntilChanged()
+
+    val displayConfig: Flow<DisplayConfig> = dataStore.data
+        .map { prefs ->
+            DisplayConfig(
+                showSystemApps = prefs[KEY_SHOW_SYSTEM_APPS] ?: true,
+                showSystemAppIndicator = prefs[KEY_SHOW_SYSTEM_APP_LABEL] ?: false,
+                showDisabledApps = prefs[KEY_SHOW_DISABLED_APPS] ?: true,
+                showDisabledAppIndicator = prefs[KEY_SHOW_DISABLED_APP_LABEL] ?: false,
+                sortBy = prefs[KEY_SORT_BY] ?: ApplicationModel.NAME,
+                sortOrder = prefs[KEY_ORDER_BY] ?: GetApplicationsQuery.ASC,
+            )
+        }.distinctUntilChanged()
 
     var isNotExportedDialogShown: Boolean
         get() = runBlocking { dataStore.data.first()[KEY_NOT_EXPORTED_DIALOG_SHOWN] ?: false }
@@ -193,8 +221,6 @@ class AppPreferences(context: Context) {
         }
 
     private companion object {
-
-        const val PREFERENCES_NAME = "user_preferences"
 
         val KEY_NOT_EXPORTED_DIALOG_SHOWN = booleanPreferencesKey("not_exported_dialog_shown")
         val KEY_SHOW_DONATE = booleanPreferencesKey("show_donate")

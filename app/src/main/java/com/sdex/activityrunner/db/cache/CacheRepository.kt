@@ -1,13 +1,14 @@
 package com.sdex.activityrunner.db.cache
 
 import androidx.sqlite.db.SupportSQLiteQuery
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CacheRepository @Inject constructor(
     private val applicationModelDao: ApplicationModelDao,
 ) {
 
-    fun getApplications(query: SupportSQLiteQuery) =
+    fun getApplications(query: SupportSQLiteQuery): Flow<List<ApplicationModel>> =
         applicationModelDao.getApplicationModels(query)
 
     suspend fun getApplications(packages: Set<String>?) =

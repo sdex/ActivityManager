@@ -2,10 +2,10 @@ package com.sdex.activityrunner.db.cache.query
 
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.preferences.DisplayConfig
 
 class GetApplicationsQuery(
-    private val appPreferences: AppPreferences,
+    private val displayConfig: DisplayConfig,
     private val searchText: String? = null,
 ) {
 
@@ -13,9 +13,9 @@ class GetApplicationsQuery(
 
     val sqLiteQuery get() = SimpleSQLiteQuery(toString())
 
-    private val sortBy get() = appPreferences.sortBy
+    private val sortBy get() = displayConfig.sortBy
 
-    private val sortOrder get() = appPreferences.sortOrder
+    private val sortOrder get() = displayConfig.sortOrder
 
     override fun toString(): String {
         val queryStringBuilder = StringBuilder()
@@ -24,13 +24,13 @@ class GetApplicationsQuery(
             .append("WHERE ")
             .append(ApplicationModel.ACTIVITIES_COUNT).append(">0 ")
 
-        if (!appPreferences.isShowDisabledApps) {
+        if (!displayConfig.showDisabledApps) {
             queryStringBuilder.append("AND (")
                 .append(ApplicationModel.ENABLED).append("=1")
                 .append(") ")
         }
 
-        if (!appPreferences.isShowSystemApps) {
+        if (!displayConfig.showSystemApps) {
             queryStringBuilder.append("AND (")
                 .append(ApplicationModel.SYSTEM).append("=0")
                 .append(") ")
