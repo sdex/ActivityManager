@@ -80,7 +80,7 @@ class PackageInfoProvider(
         val intent = Intent(Intent.ACTION_MAIN)
         return packages
             .map { it.packageName }
-            .ifEmpty {
+            .ifEmpty { // fallback if getInstalledPackages fails
                 val intentActivities = if (isAndroidT()) {
                     packageManager.queryIntentActivities(
                         intent,
@@ -91,7 +91,6 @@ class PackageInfoProvider(
                 }
                 intentActivities.map { it.activityInfo.applicationInfo.packageName }
             }
-
     }
 
     fun getPackageInfo(packageName: String): PackageInfo {

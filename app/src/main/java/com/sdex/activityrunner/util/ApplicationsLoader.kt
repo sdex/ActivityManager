@@ -16,34 +16,71 @@ class ApplicationsLoader(
     private val preferences: AppPreferences,
 ) {
 
-    fun sync() {
-        val oldList = cacheRepository.getApplications()
-        val newList = getApplicationsList()
+    fun shouldSync(): Boolean {
+        val syncReason = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val lastSequenceNumber = preferences.lastSequenceNumber
+            val lastBootCount = preferences.lastBootCount
+            val currentBootCount = getCurrentBootCount(context)
+            if (currentBootCount != lastBootCount) {
+                "Boot count changed: $lastBootCount -> $currentBootCount"
+            } else {
+                val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
+                if (changedPackages != null) {
+                    "Sequence number changed: $lastSequenceNumber -> ${changedPackages.sequenceNumber}, \n" +
+                        "Changed packages: ${changedPackages.packageNames.joinToString()}"
+                } else {
+                    null
+                }
+            }
+        } else {
+            "API < 26" // always perform a full sync on API below 26
+        }
+        Timber.d("Sync reason: $syncReason")
+        return (syncReason != null)
+    }
 
-        val listToDelete = oldList.toMutableList().also { it.removeAll(newList) }
-        val listToInsert = newList.toMutableList().also { it.removeAll(oldList) }
-        val listToUpdate = oldList.intersect(newList.toSet()).toList()
+    suspend fun sync() {
+        val targetPackages = getTargetPackages()
+        val newList = getApplicationsList(targetPackages)
+        val oldList = cacheRepository.getApplications(targetPackages)
+
+        val oldMap = oldList.associateBy { it.packageName }
+        val newMap = newList.associateBy { it.packageName }
+
+        val listToDelete = oldList.filterNot { newMap.containsKey(it.packageName) }
+        val listToSave = newList.filter { newApp ->
+            val oldApp = oldMap[newApp.packageName]
+            // save if it's not in the database OR if the metadata differs
+            oldApp == null || oldApp != newApp
+        }
 
         if (listToDelete.isNotEmpty()) {
-            val count = cacheRepository.delete(listToDelete)
-            Timber.d("Deleted $count records")
+            cacheRepository.delete(listToDelete)
+            Timber.d("Removed ${listToDelete.size} apps")
         }
 
-        if (listToInsert.isNotEmpty()) {
-            val ids = cacheRepository.insert(listToInsert)
-            Timber.d("Inserted ${ids.size} records")
-        }
-
-        if (listToUpdate.isNotEmpty()) {
-            val count = cacheRepository.update(listToUpdate)
-            Timber.d("Updated $count records")
+        if (listToSave.isNotEmpty()) {
+            cacheRepository.upsert(listToSave)
+            Timber.d("Saved (Insert/Update) ${listToSave.size} apps")
         }
 
         updateLastSyncState()
     }
 
-    private fun getApplicationsList(): List<ApplicationModel> {
+    private fun getTargetPackages(): Set<String>? =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            packageInfoProvider.getChangedPackages(
+                preferences.lastSequenceNumber,
+            )?.packageNames?.toSet()
+        } else {
+            null
+        }
+
+    private fun getApplicationsList(
+        packages: Set<String>?,
+    ): List<ApplicationModel> {
         return packageInfoProvider.getInstalledPackages()
+            .filter { packages == null || packages.contains(it) }
             .mapNotNull { packageInfoProvider.getApplication(it) }
     }
 
@@ -51,42 +88,22 @@ class ApplicationsLoader(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
-
             val currentBootCount = getCurrentBootCount(context)
-
-            Timber.d("Last sequence number: $lastSequenceNumber")
-            Timber.d("Last boot count: $lastBootCount, current boot count: $currentBootCount")
-
             if (currentBootCount != lastBootCount) {
                 // Sequence numbers reset to 0 whenever the device reboots.
                 preferences.lastBootCount = currentBootCount
                 preferences.lastSequenceNumber = 0
+                Timber.d("Update boot count: $currentBootCount -> $currentBootCount")
             } else {
                 val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
                 if (changedPackages != null) {
                     val currentSequenceNumber = changedPackages.sequenceNumber
                     preferences.lastSequenceNumber = currentSequenceNumber
-                    Timber.d("Current sequence number: $currentSequenceNumber")
+                    Timber.d("Update sequence number: $currentSequenceNumber -> $currentSequenceNumber")
                 }
             }
         }
     }
-
-    fun shouldSync(): Boolean =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val lastSequenceNumber = preferences.lastSequenceNumber
-            val lastBootCount = preferences.lastBootCount
-            val currentBootCount = getCurrentBootCount(context)
-            if (currentBootCount != lastBootCount) {
-                true
-            } else {
-                val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
-                changedPackages != null
-            }
-        } else {
-            // always perform a full sync on API below 26
-            true
-        }
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun getCurrentBootCount(context: Context): Int {
