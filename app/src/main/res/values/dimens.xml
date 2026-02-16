@@ -27,7 +27,11 @@
     <dimen name="app_icon_size">40dp</dimen>
     <dimen name="app_icon_size_tv">60dp</dimen>
 
-    <dimen name="dialog_preferences_padding_horizontal">24dp</dimen>
+    <dimen name="dialog_preferences_padding_horizontal">12dp</dimen>
     <dimen name="dialog_preferences_padding_vertical">24dp</dimen>
+
+    <dimen name="preferences_card_content_padding_horizontal">12dp</dimen>
+    <dimen name="preferences_card_content_padding_vertical">8dp</dimen>
+    <dimen name="preferences_card_spacing">12dp</dimen>
 
 </resources>

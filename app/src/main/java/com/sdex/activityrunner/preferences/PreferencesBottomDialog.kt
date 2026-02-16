@@ -17,6 +17,7 @@ import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import com.sdex.activityrunner.extensions.createBottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 private const val THEME_LIGHT = 1
 private const val THEME_DARK = 2
@@ -117,6 +118,10 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         binding.themeLight.text = themeOptions[1]
         binding.themeDark.text = themeOptions[2]
 
+        addThemeChangeListener()
+    }
+
+    private fun addThemeChangeListener() {
         binding.themeGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 val themeId = when (checkedId) {
@@ -129,7 +134,13 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         }
     }
 
+    private fun clearThemeChangeListener() {
+        binding.themeGroup.clearOnButtonCheckedListeners()
+    }
+
     private fun setState(state: PreferencesState) {
+        Timber.d(state.toString())
+
         when (state.sortBy) {
             ApplicationModel.NAME -> binding.sortByName
             ApplicationModel.UPDATE_TIME -> binding.sortByUpdateTime
@@ -151,11 +162,13 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         binding.showDisabledAppIndicator.isChecked = state.isShowDisabledAppIndicator
         binding.switchNonExported.isChecked = state.isShowNonExportedActivities
 
+        clearThemeChangeListener()
         when (state.theme) {
             THEME_LIGHT -> binding.themeLight
             THEME_DARK -> binding.themeDark
             else -> binding.themeAuto
         }.apply { isChecked = true }
+        addThemeChangeListener()
     }
 
     override fun onDestroyView() {
