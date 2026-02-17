@@ -93,4 +93,10 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+    fun quickSync() {
+        if (applicationsLoader.isQuickSyncSupported) {
+            sync()
+        }
+    }
 }

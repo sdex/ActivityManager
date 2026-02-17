@@ -127,6 +127,12 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.quickSync()
+    }
+
     private fun shouldScrollToTop(): Boolean {
         // scroll to top when the filter dialog is shown
         return supportFragmentManager.findFragmentByTag(PreferencesBottomDialog.TAG) != null ||

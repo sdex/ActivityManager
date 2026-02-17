@@ -16,8 +16,10 @@ class ApplicationsLoader(
     private val preferences: AppPreferences,
 ) {
 
+    val isQuickSyncSupported: Boolean = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+
     fun shouldSync(): Boolean {
-        val syncReason = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val syncReason = if (isQuickSyncSupported) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
             val currentBootCount = getCurrentBootCount(context)
@@ -33,7 +35,8 @@ class ApplicationsLoader(
                 }
             }
         } else {
-            "API < 26" // always perform a full sync on API below 26
+            // always perform a full sync on API below 26
+            "Quick sync is not supported"
         }
         Timber.d("Sync reason: $syncReason")
         return (syncReason != null)
@@ -68,7 +71,7 @@ class ApplicationsLoader(
     }
 
     private fun getTargetPackages(): Set<String>? =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (isQuickSyncSupported) {
             packageInfoProvider.getChangedPackages(
                 preferences.lastSequenceNumber,
             )?.packageNames?.toSet()
@@ -85,7 +88,7 @@ class ApplicationsLoader(
     }
 
     private fun updateLastSyncState() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (isQuickSyncSupported) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
             val currentBootCount = getCurrentBootCount(context)
