@@ -29,7 +29,7 @@
 
         <ImageView
             style="@style/BottomDialogItemIconStyle"
-            app:srcCompat="@drawable/ic_activity_shortcut" />
+            app:srcCompat="@drawable/bookmark_add_24px" />
 
         <TextView
             style="@style/BottomDialogTextStyle"

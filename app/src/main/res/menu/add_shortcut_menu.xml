@@ -4,7 +4,9 @@
 
     <item
         android:id="@+id/action_save"
+        android:icon="@drawable/bookmark_add_24px"
         android:title="@string/shortcut_create"
+        app:iconTint="@color/white"
         app:showAsAction="always" />
 
 </menu>
