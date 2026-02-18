@@ -25,7 +25,7 @@ class ActivitiesListAdapter(
     @ColorInt
     private val exportedColor = activity.resolveColorAttr(android.R.attr.textColorPrimary)
     @ColorInt
-    private val notExportedColor = ContextCompat.getColor(activity, R.color.red)
+    private val notExportedColor = ContextCompat.getColor(activity, R.color.md_theme_error)
 
     var application: ApplicationModel? = null
     var itemClickListener: ItemClickListener? = null
