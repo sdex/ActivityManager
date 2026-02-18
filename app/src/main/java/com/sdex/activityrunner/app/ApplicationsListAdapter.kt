@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemApplicationBinding
@@ -119,7 +118,6 @@ class ApplicationsListAdapter(
 
             glide.load(item)
                 .apply(RequestOptions().fitCenter())
-                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.icon)
 
             binding.root.setOnClickListener {
