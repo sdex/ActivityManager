@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">主题</string>
     <string name="pref_header_advanced">高级</string>
     <string name="pref_advanced_not_exported_title">显示未导出的 Activity</string>
-    <string name="pref_advanced_not_exported_summary">只能使用 Root 运行</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>跟随系统</item>
         <item>浅色</item>
