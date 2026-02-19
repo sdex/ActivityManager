@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">Tema</string>
     <string name="pref_header_advanced">Avançado</string>
     <string name="pref_advanced_not_exported_title">Mostrar atividades não exportadas</string>
-    <string name="pref_advanced_not_exported_summary">Só pode ser executado via Root</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistema</item>
         <item>Claro</item>
