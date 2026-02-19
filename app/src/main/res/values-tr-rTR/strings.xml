@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">Tema</string>
     <string name="pref_header_advanced">Gelişmiş</string>
     <string name="pref_advanced_not_exported_title">Dışa aktarılmamış etkinlikleri göster</string>
-    <string name="pref_advanced_not_exported_summary">Yalnızca Root kullanılarak çalıştırılabilir</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistem</item>
         <item>Açık</item>
