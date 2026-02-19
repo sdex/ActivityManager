@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">Motyw</string>
     <string name="pref_header_advanced">Zaawansowane</string>
     <string name="pref_advanced_not_exported_title">Pokaż niewyeksportowane aktywności</string>
-    <string name="pref_advanced_not_exported_summary">Może być uruchomiony tylko przy użyciu Roota</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Systemowy</item>
         <item>Jasny</item>
