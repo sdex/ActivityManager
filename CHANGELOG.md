@@ -1,6 +1,10 @@
+## 5.4.18 (19 Feb 2026)
+- faster applications list sync
+- misc UI tweaks
+
 ## 5.4.17 (9 Feb 2026)
-- New shortcut screen
-- Make dialog text selectable
+- new shortcut screen
+- make dialog text selectable
 
 ## 5.4.16 (19 Jan 2026)
 - increase minimum supported Android SDK to 23

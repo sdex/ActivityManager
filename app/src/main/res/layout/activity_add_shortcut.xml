@@ -62,9 +62,9 @@
                         android:scaleType="fitCenter"
                         tools:src="@tools:sample/avatars" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/changeIconButton"
-                        style="?attr/materialButtonOutlinedStyle"
+                        style="?attr/materialButtonTonalStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -91,11 +91,55 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Activity Info -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/activityInfo"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:contentPadding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/launch_param_class_name"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?android:attr/textColorSecondary" />
+
+                    <TextView
+                        android:id="@+id/className"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        tools:text="com.activitymanager.MainActivity" />
+
+                    <TextView
+                        android:id="@+id/rootWarning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="This is not an exported activity, launching it requires root permission"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="?attr/colorError"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- Advanced Options Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/shortcut_options"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
@@ -112,26 +156,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <CheckBox
-                        android:id="@+id/useRoot"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:minHeight="56dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/activity_option_launch_root"
-                        android:visibility="gone"
-                        tools:visibility="visible" />
-
-                    <CheckBox
+                    <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/invertIconColors"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:minHeight="56dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
                         android:text="@string/shortcut_invert_icon_colors" />
 
                     <View
@@ -143,7 +172,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingTop="16dp"
+                        android:paddingTop="8dp"
                         android:paddingBottom="8dp">
 
                         <TextView
@@ -154,15 +183,15 @@
                             android:textAppearance="?attr/textAppearanceBodyLarge" />
 
                         <com.google.android.material.slider.Slider
-                            style="@style/Widget.Material3.Slider.Legacy"
                             android:id="@+id/iconPaddingSlider"
+                            style="@style/Widget.Material3.Slider.Legacy"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:stepSize="1"
                             android:value="0"
                             android:valueFrom="0"
                             android:valueTo="128"
-                            app:labelBehavior="withinBounds" />
+                            app:labelBehavior="floating" />
 
                     </LinearLayout>
 

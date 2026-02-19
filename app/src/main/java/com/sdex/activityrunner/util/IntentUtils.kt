@@ -31,7 +31,7 @@ object IntentUtils {
         context: Context,
         activityModel: ActivityModel,
         bitmap: Bitmap?,
-        useRoot: Boolean = false,
+        useRoot: Boolean = !activityModel.exported,
     ) {
         if (bitmap != null) {
             val intent = activityModel.toIntent(context).apply {

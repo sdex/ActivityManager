@@ -1,0 +1,2 @@
+- faster applications list sync
+- misc UI tweaks

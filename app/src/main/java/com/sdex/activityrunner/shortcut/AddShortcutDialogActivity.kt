@@ -23,6 +23,7 @@ import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toBitmapOrNull
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -107,8 +108,10 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                         }
                     },
                 )
-            // TODO maybe check if root is available
-            binding.useRoot.isChecked = !activityModel.exported
+
+            binding.activityInfo.isVisible = true
+            binding.className.text = activityModel.componentName.className
+            binding.rootWarning.isVisible = !activityModel.exported
 
             binding.label.doOnTextChanged { _, _, _, count ->
                 binding.valueLayout.endIconMode = if (count == 0) {
@@ -166,7 +169,6 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
                 context = this,
                 activityModel = model,
                 bitmap = bitmap,
-                useRoot = binding.useRoot.isChecked,
             )
         }
 
