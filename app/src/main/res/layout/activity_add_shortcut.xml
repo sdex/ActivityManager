@@ -98,7 +98,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:contentPadding="16dp">
+                android:visibility="gone"
+                app:contentPadding="16dp"
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
