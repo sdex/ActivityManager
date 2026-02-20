@@ -3,7 +3,7 @@
     <string name="history_activity">Histórico</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Iniciar atividade com parâmetros</string>
-    <string name="activity_option_launch_root">Iniciar atividade com ROOT</string>
+    <string name="activity_option_launch_root">Iniciar atividade com root</string>
     <string name="activity_option_create_shortcut">Criar atalho</string>
     <!-- application options -->
     <string name="application_option_open">Iniciar a “app”</string>
@@ -91,7 +91,7 @@
     <string name="dialog_add_extra_type_incorrect">Tipo de valor incorreto</string>
     <string name="dialog_export_intent_copy">Copiar</string>
     <string name="dialog_enable_non_exported_title">Atividades não-exportáveis</string>
-    <string name="dialog_enable_non_exported_message">Você pode ativar a exibição de atividades não-exportáveis, elas serão destacadas com a cor vermelha. Tais atividades só podem ser executadas com privilégios ROOT</string>
+    <string name="dialog_enable_non_exported_message">Você pode ativar a exibição de atividades não-exportáveis, elas serão destacadas com a cor vermelha. Tais atividades só podem ser executadas com privilégios root</string>
     <string name="dialog_root_config_title">Defina \'su\' executável personalizado</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Falha ao instanciar WebView, tente novamente mais tarde</string>

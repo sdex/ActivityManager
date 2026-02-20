@@ -3,7 +3,7 @@
     <string name="history_activity">ইতিহাস</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">প্যারামিটার সহ কার্যক্রম চালু করুন</string>
-    <string name="activity_option_launch_root">ROOT সহ কার্যক্রম চালু করুন</string>
+    <string name="activity_option_launch_root">Root সহ কার্যক্রম চালু করুন</string>
     <string name="activity_option_create_shortcut">শর্টকাট তৈরি করুন</string>
     <!-- application options -->
     <string name="application_option_open">অ্যাপ্লিকেশন চালু করুন</string>
@@ -26,8 +26,8 @@
     <string name="starting_activity_failed_security">আপনার এই কার্যক্রমটি চালানোর অনুমতি নেই: %s</string>
     <string name="starting_activity_intent">কার্যক্রম শুরু হচ্ছে</string>
     <string name="starting_activity_intent_failed">কার্যক্রম শুরু করতে ব্যর্থ</string>
-    <string name="starting_activity_root_error">ROOT ব্যবহার করে কার্যক্রম চালু করতে ব্যর্থ</string>
-    <string name="starting_activity_root_not_available">ROOT উপলব্ধ নয় বা অনুমতি দেওয়া হয়নি</string>
+    <string name="starting_activity_root_error">Root ব্যবহার করে কার্যক্রম চালু করতে ব্যর্থ</string>
+    <string name="starting_activity_root_not_available">Root উপলব্ধ নয় বা অনুমতি দেওয়া হয়নি</string>
     <string name="activities_list_empty_text">কোনো রপ্তানি করা কার্যক্রম নেই</string>
     <string name="activities_list_empty_action">অরপ্তানি কার্যক্রম দেখান</string>
     <string name="activities_list_failed_loading">"%1$s" খুলতে ব্যর্থ</string>
@@ -87,7 +87,7 @@
     <string name="dialog_add_extra_type_incorrect">ভুল মান টাইপ</string>
     <string name="dialog_export_intent_copy">কপি</string>
     <string name="dialog_enable_non_exported_title">অরপ্তানি কার্যক্রম</string>
-    <string name="dialog_enable_non_exported_message">আপনি অরপ্তানি কার্যক্রমগুলি প্রদর্শন করতে সক্ষম করতে পারেন, এগুলি লাল রঙে হাইলাইট হবে। এই ধরনের কার্যক্রমগুলি শুধুমাত্র ROOT অনুমতি সহ চালানো যেতে পারে।</string>
+    <string name="dialog_enable_non_exported_message">আপনি অরপ্তানি কার্যক্রমগুলি প্রদর্শন করতে সক্ষম করতে পারেন, এগুলি লাল রঙে হাইলাইট হবে। এই ধরনের কার্যক্রমগুলি শুধুমাত্র root অনুমতি সহ চালানো যেতে পারে।</string>
     <string name="dialog_root_config_title">কাস্টম \'su\' এক্সিকিউটেবল সেট করুন</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">WebView ইনস্ট্যান্সিয়েট করতে ব্যর্থ, পরে চেষ্টা করুন</string>
@@ -99,7 +99,7 @@
     <string name="pref_appearance_theme_title">থিম</string>
     <string name="pref_header_advanced">এডভান্সড</string>
     <string name="pref_advanced_not_exported_title">অরপ্তানি কার্যক্রম দেখান</string>
-    <string name="pref_advanced_not_exported_summary">এটি শুধুমাত্র ROOT ব্যবহার করে চালানো যেতে পারে</string>
+    <string name="pref_advanced_not_exported_summary">এটি শুধুমাত্র root ব্যবহার করে চালানো যেতে পারে</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>সিস্টেম</item>
         <item>লাইট</item>

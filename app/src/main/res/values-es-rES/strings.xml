@@ -3,7 +3,7 @@
     <string name="history_activity">Historial</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Lanzar actividad con parámetros</string>
-    <string name="activity_option_launch_root">Iniciar actividad con ROOT</string>
+    <string name="activity_option_launch_root">Iniciar actividad con root</string>
     <string name="activity_option_create_shortcut">Crear acceso directo</string>
     <!-- application options -->
     <string name="application_option_open">Lanzar la aplicación</string>
@@ -91,7 +91,7 @@
     <string name="dialog_add_extra_type_incorrect">Tipo de valor incorrecto</string>
     <string name="dialog_export_intent_copy">Copiar</string>
     <string name="dialog_enable_non_exported_title">Actividades no exportadas</string>
-    <string name="dialog_enable_non_exported_message">Puedes activar la visualización de actividades no exportadas, aparecerán marcadas en rojo. Estas actividades sólo pueden ser ejecutadas con permiso ROOT</string>
+    <string name="dialog_enable_non_exported_message">Puedes activar la visualización de actividades no exportadas, aparecerán marcadas en rojo. Estas actividades sólo pueden ser ejecutadas con permiso root</string>
     <string name="dialog_root_config_title">Set custom \'su\' executable</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Error al instanciar WebView, inténtalo de nuevo más tarde</string>
@@ -103,7 +103,7 @@
     <string name="pref_appearance_theme_title">Tema</string>
     <string name="pref_header_advanced">Avanzado</string>
     <string name="pref_advanced_not_exported_title">Mostrar actividades no exportadas</string>
-    <string name="pref_advanced_not_exported_summary">Se puede ejecutar sólo usando ROOT</string>
+    <string name="pref_advanced_not_exported_summary">Se puede ejecutar sólo usando root</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistema</item>
         <item>Claro</item>

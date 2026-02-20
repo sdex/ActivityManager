@@ -3,7 +3,7 @@
     <string name="history_activity">Geçmiş</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Etkinliği parametrelerle başlat</string>
-    <string name="activity_option_launch_root">Etkinliği ROOT ile başlat</string>
+    <string name="activity_option_launch_root">Etkinliği root ile başlat</string>
     <string name="activity_option_create_shortcut">Kısayol oluştur</string>
     <!-- application options -->
     <string name="application_option_open">Uygulamayı başlat</string>
@@ -91,7 +91,7 @@
     <string name="dialog_add_extra_type_incorrect">Yanlış değer türü</string>
     <string name="dialog_export_intent_copy">Kopyala</string>
     <string name="dialog_enable_non_exported_title">Dışa aktarılmamış etkinlikler</string>
-    <string name="dialog_enable_non_exported_message">Dışa aktarılmamış etkinliklerin görüntülenmesini etkinleştirebilirsiniz, bunlar kırmızı renkle vurgulanacaktır. Bu tür etkinlikler yalnızca ROOT izni ile çalıştırılabilir</string>
+    <string name="dialog_enable_non_exported_message">Dışa aktarılmamış etkinliklerin görüntülenmesini etkinleştirebilirsiniz, bunlar kırmızı renkle vurgulanacaktır. Bu tür etkinlikler yalnızca root izni ile çalıştırılabilir</string>
     <string name="dialog_root_config_title">Özel \'su\' yürütülebilir dosyasını ayarla</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">WebView örneği oluşturulamadı, daha sonra tekrar deneyin</string>
@@ -103,7 +103,7 @@
     <string name="pref_appearance_theme_title">Tema</string>
     <string name="pref_header_advanced">Gelişmiş</string>
     <string name="pref_advanced_not_exported_title">Dışa aktarılmamış etkinlikleri göster</string>
-    <string name="pref_advanced_not_exported_summary">Yalnızca Root kullanılarak çalıştırılabilir</string>
+    <string name="pref_advanced_not_exported_summary">Yalnızca root kullanılarak çalıştırılabilir</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistem</item>
         <item>Açık</item>
