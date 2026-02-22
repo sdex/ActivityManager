@@ -3,7 +3,7 @@
     <string name="history_activity">기록</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">매개변수로 액티비티 실행</string>
-    <string name="activity_option_launch_root">Launch activity with root</string>
+    <string name="activity_option_launch_root">루트 권한으로 액티비티 실행</string>
     <string name="activity_option_create_shortcut">바로 가기 만들기</string>
     <!-- application options -->
     <string name="application_option_open">애플리케이션 실행</string>
@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">Theme</string>
     <string name="pref_header_advanced">Advanced</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
-    <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
+    <string name="pref_advanced_not_exported_summary">Can be run only using root</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>System</item>
         <item>Light</item>
