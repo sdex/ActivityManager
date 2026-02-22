@@ -13,17 +13,20 @@ android {
     compileSdk = 36
     namespace = "com.sdex.activityrunner"
 
+    val newVersionCode = project.findProperty("newVersionCode")?.toString()?.toInt() ?: 558
+    val nameSuffix = project.findProperty("versionNameSuffix")?.toString() ?: ""
+
     defaultConfig {
         applicationId = "com.activitymanager"
         minSdk = 23
         targetSdk = 34
-        versionCode = 558
-        versionName = "5.4.18"
+        versionCode = newVersionCode
+        versionName = "5.4.18$nameSuffix"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
-        base.archivesBaseName = "ActivityManager-$versionName"
+        base.archivesName.set("ActivityManager-$versionName")
     }
 
     androidResources {
