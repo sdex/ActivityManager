@@ -52,6 +52,7 @@ jobs:
           alias: ${{ secrets.SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SIGNING_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          buildToolsVersion: "36.1.0"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
