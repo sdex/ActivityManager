@@ -18,7 +18,7 @@ import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.extensions.setItemsVisibility
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
-import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
+import com.sdex.activityrunner.shortcut.CreateShortcutActivity
 import com.sdex.activityrunner.util.IntentUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -129,7 +129,7 @@ class ActivitiesListActivity : BaseActivity() {
 
             R.id.create_shortcut -> {
                 val activityPackageName = packageName
-                AddShortcutDialogActivity.start(
+                CreateShortcutActivity.start(
                     this,
                     HistoryModel().apply {
                         name = title?.toString()

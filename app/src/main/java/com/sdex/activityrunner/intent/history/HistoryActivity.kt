@@ -18,7 +18,7 @@ import com.sdex.activityrunner.intent.dialog.ExportIntentAsUriDialog
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_ADD_SHORTCUT
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
-import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
+import com.sdex.activityrunner.shortcut.CreateShortcutActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -78,7 +78,7 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
     }
 
     private fun showShortcutDialog(historyModel: HistoryModel) {
-        AddShortcutDialogActivity.start(this, historyModel)
+        CreateShortcutActivity.start(this, historyModel)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

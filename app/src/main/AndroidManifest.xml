@@ -65,13 +65,17 @@
             android:exported="true"
             android:label="@string/history_activity" />
 
-        <activity android:name=".manifest.ManifestViewerActivity" />
+        <activity
+            android:name=".manifest.ManifestViewerActivity"
+            android:exported="false" />
 
         <activity
             android:name=".app.ActivitiesListActivity"
             android:exported="true" />
 
-        <activity android:name=".shortcut.AddShortcutDialogActivity" />
+        <activity
+            android:name=".shortcut.CreateShortcutActivity"
+            android:exported="false" />
 
         <activity
             android:name=".shortcut.ShortcutHandlerActivity"
@@ -80,7 +84,9 @@
             android:taskAffinity=".shortcut"
             android:theme="@android:style/Theme.Translucent" />
 
-        <activity android:name=".about.AboutActivity" />
+        <activity
+            android:name=".about.AboutActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

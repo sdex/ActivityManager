@@ -15,7 +15,7 @@ import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
 import com.sdex.activityrunner.extensions.createBottomSheetDialog
 import com.sdex.activityrunner.extensions.serializable
-import com.sdex.activityrunner.shortcut.AddShortcutDialogActivity
+import com.sdex.activityrunner.shortcut.CreateShortcutActivity
 
 class ActivityOptionsDialog : BottomSheetDialogFragment() {
 
@@ -46,7 +46,7 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
 
         binding.activityName.text = model.name
         binding.actionActivityAddShortcut.setOnClickListener {
-            AddShortcutDialogActivity.start(requireContext(), model)
+            CreateShortcutActivity.start(requireContext(), model)
             dismissAllowingStateLoss()
         }
         binding.actionActivityLaunchWithParams.isVisible = model.exported

@@ -47,7 +47,7 @@ import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.util.IntentUtils
 import kotlin.properties.Delegates
 
-class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
+class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
 
     private lateinit var binding: ActivityAddShortcutBinding
 
@@ -283,8 +283,8 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
     }
 
     private fun Bitmap.applyShortcutTweaks(
-        invertIconColors: Boolean = false,
-        iconPadding: Int = 128,
+        invertIconColors: Boolean,
+        iconPadding: Int,
     ): Bitmap {
         val paint = Paint().apply {
             if (invertIconColors) {
@@ -339,7 +339,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
         fun start(context: Context, activityModel: ActivityModel) {
             context.startActivity(
-                Intent(context, AddShortcutDialogActivity::class.java).apply {
+                Intent(context, CreateShortcutActivity::class.java).apply {
                     putExtra(ARG_ACTIVITY_MODEL, activityModel)
                 },
             )
@@ -347,7 +347,7 @@ class AddShortcutDialogActivity : AppCompatActivity(), IconDialog.Callback {
 
         fun start(context: Context, historyModel: HistoryModel) {
             context.startActivity(
-                Intent(context, AddShortcutDialogActivity::class.java).apply {
+                Intent(context, CreateShortcutActivity::class.java).apply {
                     putExtra(ARG_HISTORY_MODEL, historyModel)
                 },
             )
