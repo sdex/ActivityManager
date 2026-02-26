@@ -97,6 +97,7 @@ class MainActivity : BaseActivity() {
         }
 
         binding.list.adapter = adapter
+        binding.list.setHasFixedSize(true)
 
         lifecycleScope.launch {
             viewModel.uiState.flowWithLifecycle(lifecycle)

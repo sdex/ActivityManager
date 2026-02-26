@@ -38,6 +38,10 @@ class ApplicationsListAdapter(
         }
     var itemClickListener: ItemClickListener? = null
 
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return AppViewHolder(ItemApplicationBinding.inflate(inflater, parent, false))
@@ -51,6 +55,10 @@ class ApplicationsListAdapter(
             showDisabledAppIndicator,
             itemClickListener,
         )
+    }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).packageName.hashCode().toLong()
     }
 
     override fun getSectionName(position: Int): String =
