@@ -38,7 +38,8 @@ private fun createShortcut(
 ): Boolean {
     val isRateLimitingActive = ShortcutManagerCompat.isRateLimitingActive(context)
     if (ShortcutManagerCompat.isRequestPinShortcutSupported(context)) {
-        val pinShortcutInfo = ShortcutInfoCompat.Builder(context, name)
+        val shortcutId = name + System.currentTimeMillis()
+        val pinShortcutInfo = ShortcutInfoCompat.Builder(context, shortcutId)
             .setIcon(icon)
             .setShortLabel(name)
             .setIntent(intent)
