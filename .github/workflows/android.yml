@@ -44,19 +44,18 @@ jobs:
             -PversionNameSuffix=${{ steps.vars.outputs.short_hash }}
 
       - name: Sign APK
-        uses: r0adkll/sign-android-release@v1
+        uses: ilharp/sign-android-release@v2
         id: sign_app
         with:
-          releaseDirectory: app/build/outputs/apk/${{ matrix.flavor }}/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          releaseDir: app/build/outputs/apk/${{ matrix.flavor }}/release
+          signingKey: ${{ secrets.SIGNING_KEY }}
+          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SIGNING_KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-        env:
-            BUILD_TOOLS_VERSION: "36.1.0"
+          buildToolsVersion: 36.1.0
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ActivityManager-${{ matrix.flavor }}-${{ steps.vars.outputs.version_code }}
-          path: ${{ steps.sign_app.outputs.signedReleaseFile }}
+          path: ${{ steps.sign_app.outputs.signedFile }}
