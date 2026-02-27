@@ -127,7 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="This is not an exported activity, launching it requires root permission"
+                        android:text="@string/create_shortcut_non_exported_warning"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         android:textColor="?attr/colorError"
                         android:visibility="gone"
