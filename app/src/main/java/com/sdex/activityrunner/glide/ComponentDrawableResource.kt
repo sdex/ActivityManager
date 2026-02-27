@@ -19,7 +19,7 @@ class ComponentDrawableResource(icon: Drawable) : DrawableResource<Drawable>(ico
         } else {
             // 4 bytes per pixel for ARGB_8888 Bitmaps is something of a reasonable approximation.
             // If there are no intrinsic bounds, we can fall back just to 1.
-            return max(1, drawable.intrinsicWidth * drawable.intrinsicHeight * 4)
+            max(1, drawable.intrinsicWidth * drawable.intrinsicHeight * 4)
         }
     }
 

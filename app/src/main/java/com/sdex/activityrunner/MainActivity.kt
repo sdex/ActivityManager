@@ -13,11 +13,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.behavior.SwipeDismissBehavior
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import com.sdex.activityrunner.about.AboutActivity
-import com.sdex.activityrunner.about.DonateDialog
 import com.sdex.activityrunner.app.ActivitiesListActivity
 import com.sdex.activityrunner.app.ApplicationsListAdapter
 import com.sdex.activityrunner.app.MainViewModel
@@ -122,10 +118,6 @@ class MainActivity : BaseActivity() {
         }
 
         binding.progress.show()
-
-        if (appPreferences.showDonate && appPreferences.appOpenCounter % 10 == 0) {
-            showDonateSnackbar()
-        }
     }
 
     override fun onResume() {
@@ -183,23 +175,6 @@ class MainActivity : BaseActivity() {
                 }
             },
         )
-    }
-
-    private fun showDonateSnackbar() {
-        val behavior = BaseTransientBottomBar.Behavior().apply {
-            setSwipeDirection(SwipeDismissBehavior.SWIPE_DIRECTION_ANY)
-        }
-        Snackbar.make(
-            binding.coordinator,
-            R.string.donate_snackbar_text,
-            Snackbar.LENGTH_INDEFINITE,
-        )
-            .setBehavior(behavior)
-            .setAction(getString(R.string.donate_snackbar_action_text).uppercase()) {
-                val dialog = DonateDialog.newInstance()
-                dialog.show(supportFragmentManager, DonateDialog.TAG)
-            }
-            .show()
     }
 
     companion object {

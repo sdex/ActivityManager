@@ -35,7 +35,8 @@ class AboutActivity : BaseActivity() {
         )
 
         binding.donate.setOnClickListener {
-            AppUtils.openLink(this, getString(R.string.donate_link))
+            val dialog = DonateDialog.newInstance()
+            dialog.show(supportFragmentManager, DonateDialog.TAG)
         }
 
         binding.issuesTracker.setOnClickListener {

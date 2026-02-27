@@ -21,9 +21,9 @@ class DonateDialog : BaseDialogFragment() {
             .setIcon(R.drawable.ic_about_support_development)
             .setTitle(R.string.about_donation)
             .setMessage(R.string.donate_message)
-            .setNegativeButton(R.string.donate_negative_action_text) { _, _ ->
-                appPreferences.showDonate = false
-            }
+//            .setNegativeButton(R.string.donate_negative_action_text) { _, _ ->
+//                appPreferences.showDonate = false
+//            }
             .setPositiveButton(R.string.donate_action_text) { _, _ ->
                 AppUtils.openLink(requireActivity(), getString(R.string.donate_link))
             }
