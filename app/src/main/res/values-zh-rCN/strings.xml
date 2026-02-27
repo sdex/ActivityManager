@@ -24,6 +24,7 @@
     <string name="shortcut_invert_icon_colors">反转图标颜色</string>
     <string name="shortcut_icon_padding">Icon padding</string>
     <string name="shortcut_options">Options</string>
+    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
     <string name="starting_activity_failed">启动 Activity 失败：%s</string>
