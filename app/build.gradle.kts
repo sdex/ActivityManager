@@ -13,7 +13,7 @@ android {
     compileSdk = 36
     namespace = "com.sdex.activityrunner"
 
-    val newVersionCode = project.findProperty("newVersionCode")?.toString()?.toInt() ?: 558
+    val newVersionCode = project.findProperty("newVersionCode")?.toString()?.toInt() ?: 559
     val nameSuffix = project.findProperty("versionNameSuffix")?.toString() ?: ""
 
     defaultConfig {
@@ -21,7 +21,7 @@ android {
         minSdk = 23
         targetSdk = 34
         versionCode = newVersionCode
-        versionName = "5.4.18$nameSuffix"
+        versionName = "5.4.19$nameSuffix"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

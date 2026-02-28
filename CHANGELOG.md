@@ -1,3 +1,6 @@
+## 5.4.19 (28 Feb 2026)
+- fix loading apps list after a new installation
+
 ## 5.4.18 (19 Feb 2026)
 - faster applications list sync
 - misc UI tweaks
