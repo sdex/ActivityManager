@@ -201,7 +201,7 @@ class AppPreferences(context: Context) {
         }
 
     var lastSequenceNumber: Int
-        get() = runBlocking { dataStore.data.first()[LAST_SEQUENCE_NUMBER] ?: 0 }
+        get() = runBlocking { dataStore.data.first()[LAST_SEQUENCE_NUMBER] ?: -1 }
         set(value) {
             coroutineScope.launch {
                 dataStore.edit { prefs ->

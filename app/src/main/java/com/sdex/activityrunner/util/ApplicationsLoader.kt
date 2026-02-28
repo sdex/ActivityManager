@@ -71,7 +71,7 @@ class ApplicationsLoader(
     }
 
     private fun getTargetPackages(): Set<String>? =
-        if (isQuickSyncSupported) {
+        if (isQuickSyncSupported && preferences.lastSequenceNumber != -1) {
             packageInfoProvider.getChangedPackages(
                 preferences.lastSequenceNumber,
             )?.packageNames?.toSet()
