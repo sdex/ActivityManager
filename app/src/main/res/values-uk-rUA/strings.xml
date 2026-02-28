@@ -24,7 +24,7 @@
     <string name="shortcut_invert_icon_colors">Інвертувати кольори значків</string>
     <string name="shortcut_icon_padding">Відступ</string>
     <string name="shortcut_options">Опції</string>
-    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
+    <string name="create_shortcut_non_exported_warning">Це не експортована активність, для її запуску потрібні права root</string>
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
     <string name="starting_activity_failed">Помилка запуску: %s</string>
