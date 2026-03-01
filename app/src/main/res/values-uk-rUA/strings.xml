@@ -22,7 +22,6 @@
     <string name="shortcut_icon_gallery">Вибрати з галереї</string>
     <string name="shortcut_icon_preset">Вибрати зі значків</string>
     <string name="shortcut_invert_icon_colors">Інвертувати кольори значків</string>
-    <string name="shortcut_icon_padding">Відступ</string>
     <string name="shortcut_options">Опції</string>
     <string name="create_shortcut_non_exported_warning">Це не експортована активність, для її запуску потрібні права root</string>
     <!-- launching activity -->
