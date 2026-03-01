@@ -28,6 +28,10 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Run Unit Tests
+        run: |
+          ./gradlew testProdReleaseUnitTest
+
       - name: Generate Version Info
         id: vars
         run: |
@@ -60,3 +64,9 @@ jobs:
           name: ActivityManager-${{ matrix.flavor }}-${{ steps.vars.outputs.version_code }}
           path: ${{ steps.sign_app.outputs.signedFile }}
           archive: false
+
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "**/test-results/**/*.xml"
+        if: always() # Ensure this runs even if tests fail
