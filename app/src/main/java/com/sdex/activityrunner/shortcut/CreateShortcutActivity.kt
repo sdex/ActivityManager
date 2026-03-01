@@ -4,8 +4,6 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -19,7 +17,6 @@ import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toBitmapOrNull
 import androidx.core.view.MenuProvider
@@ -42,11 +39,16 @@ import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.databinding.ActivityAddShortcutBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
-import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
-import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
-import com.sdex.activityrunner.util.IntentUtils
+import com.sdex.activityrunner.util.makeShortcutIntent
 import kotlin.properties.Delegates
 
+/**
+ * Possible icons:
+ *  default - R.drawable.bookmark_24px
+ *  icon from icon pack
+ *  image from gallery
+ *  activity icon
+ */
 class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
 
     private lateinit var binding: ActivityAddShortcutBinding
@@ -58,7 +60,7 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
     private var bitmap: Bitmap? = null
     private var originalBitmap: Bitmap? = null
     private var iconPack: IconPack? = null
-    private var iconPadding: Int = 0
+    private var isAdaptiveBitmap = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,11 +91,11 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
         launcherLargeIconSize = activityManager.launcherLargeIconSize
 
         if (activityModel != null) {
+            isAdaptiveBitmap = true
+
             Glide.with(this)
                 .load(activityModel)
-                .error(R.mipmap.ic_launcher)
-                .apply(RequestOptions().centerCrop())
-                .override(launcherLargeIconSize)
+                .error(R.drawable.bookmark_24px)
                 .into(
                     object : CustomTarget<Drawable>() {
                         override fun onResourceReady(
@@ -120,33 +122,28 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
                     TextInputLayout.END_ICON_CLEAR_TEXT
                 }
             }
-            binding.label.setText(activityModel.label)
+            val labels = setOf(activityModel.label, activityModel.name)
+                .filterNot { it.isNullOrBlank() }
+                .toTypedArray()
+            binding.label.setText(labels.firstOrNull())
             binding.label.text?.let { binding.label.setSelection(it.length) }
-            binding.label.setSimpleItems(
-                setOf(activityModel.label, activityModel.name)
-                    .filterNotNull()
-                    .toTypedArray(),
-            )
+            binding.label.setSimpleItems(labels)
         }
 
         if (historyModel != null) {
             binding.label.setText(historyModel.name)
             binding.valueLayout.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
 
+            isAdaptiveBitmap = false
             originalBitmap = ContextCompat.getDrawable(
                 this,
-                R.mipmap.ic_launcher,
+                R.drawable.bookmark_24px,
             )?.toBitmapOrNull()
 
             updateIconPreview()
         }
 
         binding.invertIconColors.setOnCheckedChangeListener { _, _ ->
-            updateIconPreview()
-        }
-
-        binding.iconPaddingSlider.addOnChangeListener { _, value, _ ->
-            iconPadding = value.toInt()
             updateIconPreview()
         }
 
@@ -163,19 +160,17 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
             return
         }
 
-        activityModel?.let {
-            val model = it.copy(name = shortcutName)
-            IntentUtils.createLauncherIcon(
-                context = this,
-                activityModel = model,
-                bitmap = bitmap,
-            )
-        }
+        val shortcutBitmap = bitmap
 
-        historyModel?.let {
-            createHistoryModelShortcut(
-                historyModel = historyModel,
-                shortcutName = shortcutName,
+        val intent = activityModel?.makeShortcutIntent(context = this)
+            ?: historyModel?.makeShortcutIntent()
+
+        intent?.let {
+            createShortcut(
+                context = this,
+                name = shortcutName,
+                intent = intent,
+                icon = shortcutBitmap,
             )
         }
 
@@ -192,8 +187,8 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
         val source = originalBitmap ?: return
 
         bitmap = source.applyShortcutTweaks(
+            isAdaptiveBitmap = isAdaptiveBitmap,
             invertIconColors = binding.invertIconColors.isChecked,
-            iconPadding = iconPadding,
         )
 
         binding.icon.setImageBitmap(bitmap)
@@ -206,6 +201,7 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
         val icon = icons.first()
         IconDrawableLoader(this).loadDrawable(icon)
         val resource = icon.drawable
+        isAdaptiveBitmap = false
         originalBitmap = resource?.toBitmap(
             width = launcherLargeIconSize,
             height = launcherLargeIconSize,
@@ -241,37 +237,24 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
         popupMenu.show()
     }
 
-    private fun createHistoryModelShortcut(
-        historyModel: HistoryModel,
-        shortcutName: String,
-    ) {
-        val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(historyModel)
-        val launchParams = historyToLaunchParamsConverter.convert()
-        val converter = LaunchParamsToIntentConverter(launchParams)
-        val intent = converter.convert()
-
-        createShortcut(
-            context = this,
-            name = shortcutName,
-            intent = intent,
-            icon = bitmap,
-        )
-    }
-
     private fun loadIcon(uri: Uri) {
-        val am = getSystemService(ACTIVITY_SERVICE) as ActivityManager
-        val size = am.launcherLargeIconSize
         Glide.with(this)
             .asBitmap()
             .load(uri)
-            .error(R.mipmap.ic_launcher)
-            .apply(RequestOptions().centerCrop().override(size))
+            .error(R.drawable.bookmark_24px)
+            .apply(
+                RequestOptions().centerCrop(),
+            )
             .into(
-                object : CustomTarget<Bitmap>(size, size) {
+                object : CustomTarget<Bitmap>(
+                    launcherLargeIconSize,
+                    launcherLargeIconSize,
+                ) {
                     override fun onResourceReady(
                         resource: Bitmap,
                         transition: Transition<in Bitmap>?,
                     ) {
+                        isAdaptiveBitmap = true
                         originalBitmap = resource
                         updateIconPreview()
                     }
@@ -281,35 +264,6 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
                 },
             )
     }
-
-    private fun Bitmap.applyShortcutTweaks(
-        invertIconColors: Boolean,
-        iconPadding: Int,
-    ): Bitmap {
-        val paint = Paint().apply {
-            if (invertIconColors) {
-                colorFilter = ShortcutColorInvertColorFilter()
-            }
-        }
-
-        val paddedWidth = width + iconPadding
-        val paddedHeight = height + iconPadding
-        val tweakedIcon = createBitmap(
-            width = paddedWidth,
-            height = paddedHeight,
-            config = config ?: Bitmap.Config.ARGB_8888,
-        )
-        val canvas = Canvas(tweakedIcon)
-        canvas.drawBitmap(
-            this,
-            (paddedWidth - width) / 2f,
-            (paddedHeight - height) / 2f,
-            paint,
-        )
-
-        return tweakedIcon
-    }
-
 
     private inner class AddShortcutMenuProvider(
         private val activityModel: ActivityModel? = null,

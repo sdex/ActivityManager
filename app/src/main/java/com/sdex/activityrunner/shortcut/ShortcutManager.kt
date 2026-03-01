@@ -19,28 +19,34 @@ fun createShortcut(
         if (icon != null) {
             IconCompat.createWithAdaptiveBitmap(icon)
         } else {
-            IconCompat.createWithResource(context, R.mipmap.ic_launcher)
+            null
         }
-    } catch (e: Exception) { // android.os.TransactionTooLargeException
+    } catch (e: Exception) {
         Timber.i(e)
+        // android.os.TransactionTooLargeException
         // the icon is too big, fall back to the default icon
-        IconCompat.createWithResource(context, R.mipmap.ic_launcher)
+        null
     }
-
-    return createShortcut(context, name, intent, iconCompat)
+    return createShortcut(
+        context = context,
+        name = name,
+        intent = intent,
+        icon = iconCompat,
+    )
 }
 
 private fun createShortcut(
     context: Context,
     name: String,
     intent: Intent,
-    icon: IconCompat,
+    icon: IconCompat?,
 ): Boolean {
     val isRateLimitingActive = ShortcutManagerCompat.isRateLimitingActive(context)
+    val shortcutIcon = icon ?: IconCompat.createWithResource(context, R.drawable.bookmark_24px)
     if (ShortcutManagerCompat.isRequestPinShortcutSupported(context)) {
         val shortcutId = name + System.currentTimeMillis()
         val pinShortcutInfo = ShortcutInfoCompat.Builder(context, shortcutId)
-            .setIcon(icon)
+            .setIcon(shortcutIcon)
             .setShortLabel(name)
             .setIntent(intent)
             .build()

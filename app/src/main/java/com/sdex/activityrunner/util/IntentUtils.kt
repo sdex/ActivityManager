@@ -1,116 +1,57 @@
 package com.sdex.activityrunner.util
 
-import android.app.ActivityManager
 import android.content.ActivityNotFoundException
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.provider.Settings
 import android.widget.TextView
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.net.toUri
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.db.history.HistoryModel
+import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
+import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
 import com.sdex.activityrunner.shortcut.ShortcutHandlerActivity
-import com.sdex.activityrunner.shortcut.createShortcut
 import timber.log.Timber
 
+fun ActivityModel.makeShortcutIntent(
+    context: Context,
+    useRoot: Boolean = !exported,
+) = toIntent(context).apply {
+    putExtra(ShortcutHandlerActivity.ARG_USE_ROOT, useRoot)
+}
+
+fun HistoryModel.makeShortcutIntent(): Intent {
+    val historyToLaunchParamsConverter = HistoryToLaunchParamsConverter(this)
+    val launchParams = historyToLaunchParamsConverter.convert()
+    val converter = LaunchParamsToIntentConverter(launchParams)
+    return converter.convert()
+}
+
+private fun getActivityIntent(action: String? = null, component: ComponentName): Intent {
+    return Intent().apply {
+        this.action = action
+        this.component = component
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+    }
+}
+
+private fun ActivityModel.toIntent(context: Context): Intent {
+    val component = ComponentName(
+        context.packageName,
+        ShortcutHandlerActivity::class.java.canonicalName!!,
+    )
+    val intent = getActivityIntent(Intent.ACTION_VIEW, component)
+    intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, this.packageName)
+    intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, this.className)
+    return intent
+}
+
 object IntentUtils {
-
-    fun createLauncherIcon(
-        context: Context,
-        activityModel: ActivityModel,
-        bitmap: Bitmap?,
-        useRoot: Boolean = !activityModel.exported,
-    ) {
-        if (bitmap != null) {
-            val intent = activityModel.toIntent(context).apply {
-                putExtra(ShortcutHandlerActivity.ARG_USE_ROOT, useRoot)
-            }
-
-            createShortcut(
-                context = context,
-                name = activityModel.name,
-                intent = intent,
-                icon = bitmap,
-            )
-        } else {
-            loadActivityIcon(
-                context = context,
-                activityModel = activityModel,
-            )
-        }
-    }
-
-    private fun getActivityIntent(action: String? = null, component: ComponentName): Intent {
-        return Intent().apply {
-            this.action = action
-            this.component = component
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
-    }
-
-    private fun ActivityModel.toIntent(context: Context): Intent {
-        val component = ComponentName(
-            context.packageName,
-            ShortcutHandlerActivity::class.java.canonicalName!!,
-        )
-        val intent = getActivityIntent(Intent.ACTION_VIEW, component)
-        intent.putExtra(ShortcutHandlerActivity.ARG_PACKAGE_NAME, this.packageName)
-        intent.putExtra(ShortcutHandlerActivity.ARG_CLASS_NAME, this.className)
-        return intent
-    }
-
-    private fun loadActivityIcon(
-        context: Context,
-        activityModel: ActivityModel,
-    ) {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val launcherLargeIconSize = activityManager.launcherLargeIconSize
-        Glide.with(context)
-            .asDrawable()
-            .load(activityModel)
-            .error(R.mipmap.ic_launcher)
-            .override(launcherLargeIconSize)
-            .listener(
-                object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>,
-                        isFirstResource: Boolean,
-                    ): Boolean {
-                        return false
-                    }
-
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        model: Any,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource,
-                        isFirstResource: Boolean,
-                    ): Boolean {
-                        createLauncherIcon(
-                            context = context,
-                            activityModel = activityModel,
-                            bitmap = resource.toBitmap(),
-                        )
-                        return false
-                    }
-                },
-            )
-            .submit()
-    }
 
     fun launchActivity(
         context: Context,
@@ -145,7 +86,10 @@ object IntentUtils {
         }
     }
 
-    fun launchActivity(context: Context, intent: Intent) {
+    fun launchActivity(
+        context: Context,
+        intent: Intent,
+    ) {
         try {
             context.startActivity(intent)
             Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show()
@@ -161,7 +105,10 @@ object IntentUtils {
         }
     }
 
-    fun launchApplication(context: Context, packageName: String) {
+    fun launchApplication(
+        context: Context,
+        packageName: String,
+    ) {
         val intent = context.packageManager.getLaunchIntentForPackage(packageName)
         if (intent != null) {
             launchActivity(context, intent)
@@ -173,7 +120,10 @@ object IntentUtils {
         }
     }
 
-    fun openApplicationInfo(context: Context, packageName: String) {
+    fun openApplicationInfo(
+        context: Context,
+        packageName: String,
+    ) {
         try {
             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
             intent.data = "package:$packageName".toUri()
@@ -191,7 +141,10 @@ object IntentUtils {
         }
     }
 
-    fun openBrowser(context: Context, url: String) {
+    fun openBrowser(
+        context: Context,
+        url: String,
+    ) {
         try {
             val customTabsIntent = CustomTabsIntent.Builder()
                 .setShowTitle(true)

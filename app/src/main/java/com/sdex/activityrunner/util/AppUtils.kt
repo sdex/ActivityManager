@@ -9,9 +9,9 @@ import androidx.core.net.toUri
 object AppUtils {
 
     const val REPOSITORY = "https://github.com/sdex/ActivityManager"
-    const val ISSUES_TRACKER = REPOSITORY + "/issues"
-    const val CHANGELOG = REPOSITORY + "/blob/main/CHANGELOG.md"
-    const val SUGGESTION_LINK = REPOSITORY + "/discussions/categories/ideas"
+    const val ISSUES_TRACKER = "$REPOSITORY/issues"
+    const val CHANGELOG = "$REPOSITORY/blob/main/CHANGELOG.md"
+    const val SUGGESTION_LINK = "$REPOSITORY/discussions/categories/ideas"
     const val TRANSLATE_LINK = "https://crowdin.com/project/activity-manager"
 
     fun openLink(context: Context, url: String) {
