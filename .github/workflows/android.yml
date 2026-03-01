@@ -28,10 +28,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run Unit Tests
-        run: |
-          ./gradlew testProdReleaseUnitTest
-
       - name: Generate Version Info
         id: vars
         run: |
@@ -46,6 +42,10 @@ jobs:
           ./gradlew "assemble${FLAVOR_CAPITALIZED}Release" \
             -PnewVersionCode=${{ steps.vars.outputs.version_code }} \
             -PversionNameSuffix=${{ steps.vars.outputs.short_hash }}
+
+      - name: Run Unit Tests
+        run: |
+            ./gradlew testProdReleaseUnitTest
 
       - name: Sign APK
         uses: ilharp/sign-android-release@v2
@@ -68,5 +68,5 @@ jobs:
       - name: Test Summary
         uses: test-summary/action@v2
         with:
-          paths: "**/test-results/**/*.xml"
+          paths: "app/build/test-results/**/TEST-*.xml"
         if: always() # Ensure this runs even if tests fail
