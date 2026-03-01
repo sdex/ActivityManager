@@ -22,7 +22,6 @@
     <string name="shortcut_icon_gallery">Escolha da galeria</string>
     <string name="shortcut_icon_preset">Selecione dos ícones</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
-    <string name="shortcut_icon_padding">Icon padding</string>
     <string name="shortcut_options">Options</string>
     <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
     <!-- launching activity -->
