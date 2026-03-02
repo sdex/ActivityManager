@@ -3,20 +3,20 @@ name: Android CI
 on:
   push:
     branches: [ "main" ]
-#  pull_request:
-#    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      # This creates 4 parallel jobs: dev-debug, dev-release, prod-debug, prod-release
       matrix:
-        flavor: [prod]
+        flavor: [dev, prod]
+        buildType: [debug, release]
 
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Good practice for git-based versioning
+          fetch-depth: 0
 
       - name: set up JDK 17
         uses: actions/setup-java@v4
@@ -31,27 +31,27 @@ jobs:
       - name: Generate Version Info
         id: vars
         run: |
-          # 558 is your base version code. github.run_number increments by 1 every build.
+          # 558 is a base version code. github.run_number increments by 1 every build.
           echo "version_code=$((558 + ${{ github.run_number }}))" >> $GITHUB_OUTPUT
           echo "short_hash=-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Build with Gradle
-        # We capitalize the flavor name (dev -> Dev) to match the Gradle task: assembleDevRelease
+      - name: Build and Test with Gradle
         run: |
-          FLAVOR_CAPITALIZED=$(echo ${{ matrix.flavor }} | sed 's/./\u&/')
-          ./gradlew "assemble${FLAVOR_CAPITALIZED}Release" \
-            -PnewVersionCode=${{ steps.vars.outputs.version_code }} \
-            -PversionNameSuffix=${{ steps.vars.outputs.short_hash }}
+          # Convert 'dev' to 'Dev' and 'debug' to 'Debug'
+          FLAVOR_CAP=$(echo ${{ matrix.flavor }} | sed 's/./\u&/')
+          TYPE_CAP=$(echo ${{ matrix.buildType }} | sed 's/./\u&/')
 
-      - name: Run Unit Tests
-        run: |
-            ./gradlew testProdReleaseUnitTest
+          # Run tests and build the specific combination
+          ./gradlew "test${FLAVOR_CAP}${TYPE_CAP}UnitTest" \
+              "assemble${FLAVOR_CAP}${TYPE_CAP}" \
+          -PnewVersionCode=${{ steps.vars.outputs.version_code }} \
+          -PversionNameSuffix=${{ steps.vars.outputs.short_hash }}
 
       - name: Sign APK
         uses: ilharp/sign-android-release@v2
         id: sign_app
         with:
-          releaseDir: app/build/outputs/apk/${{ matrix.flavor }}/release
+          releaseDir: app/build/outputs/apk/${{ matrix.flavor }}/${{ matrix.buildType }}
           signingKey: ${{ secrets.SIGNING_KEY }}
           keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
           keyStorePassword: ${{ secrets.SIGNING_KEY_STORE_PASSWORD }}
@@ -61,7 +61,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: ActivityManager-${{ matrix.flavor }}-${{ steps.vars.outputs.version_code }}
+          name: ActivityManager-${{ matrix.flavor }}-${{ matrix.buildType }}-${{ steps.vars.outputs.version_code }}
           path: ${{ steps.sign_app.outputs.signedFile }}
           archive: false
 
@@ -69,4 +69,4 @@ jobs:
         uses: test-summary/action@v2
         with:
           paths: "app/build/test-results/**/TEST-*.xml"
-        if: always() # Ensure this runs even if tests fail
+        if: always()
