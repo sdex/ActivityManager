@@ -1,3 +1,6 @@
+## 5.4.20 (2 Mar 2026)
+- improve parsing disabled apps
+
 ## 5.4.19 (28 Feb 2026)
 - fix loading apps list after a new installation
 
