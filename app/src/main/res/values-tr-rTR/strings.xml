@@ -16,11 +16,14 @@
     <string name="shortcut_name">Etiket</string>
     <string name="shortcut_name_empty">Etiket boş olamaz</string>
     <string name="shortcut_create">Oluştur</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">Simgeyi değiştirmek için dokun</string>
     <string name="icons_loading_error">Simgeler yüklenemedi</string>
     <string name="shortcut_icon_gallery">Galeriden seç</string>
     <string name="shortcut_icon_preset">Simgelerden seç</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_options">Options</string>
+    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">Etkinlik başlatılıyor: %s</string>
     <string name="starting_activity_failed">Etkinlik başlatılamadı: %s</string>

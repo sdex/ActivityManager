@@ -16,11 +16,14 @@
     <string name="shortcut_name">Etykieta</string>
     <string name="shortcut_name_empty">Etykieta nie może być pusta</string>
     <string name="shortcut_create">Utwórz</string>
+    <string name="shortcut_change_icon">Zmień ikonę</string>
     <string name="shortcut_set_icon_tooltip">Dotknij, aby zmienić ikonę</string>
     <string name="icons_loading_error">Nie udało się załadować ikon</string>
     <string name="shortcut_icon_gallery">Wybierz z galerii</string>
     <string name="shortcut_icon_preset">Wybierz spośród ikon</string>
     <string name="shortcut_invert_icon_colors">Odwróć kolory ikon</string>
+    <string name="shortcut_options">Opcje</string>
+    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">Rozpoczęcie aktywności: %s</string>
     <string name="starting_activity_failed">Nie udało się rozpocząć aktywności: %s</string>

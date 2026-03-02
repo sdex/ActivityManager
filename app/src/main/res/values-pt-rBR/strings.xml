@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="history_activity">Histórico</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Iniciar atividade com parâmetros</string>
@@ -16,11 +16,14 @@
     <string name="shortcut_name">Descrição</string>
     <string name="shortcut_name_empty">O campo não pode estar vazio</string>
     <string name="shortcut_create">Criar</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">Toque para modificar o ícone</string>
     <string name="icons_loading_error">Falha ao carregar ícones</string>
     <string name="shortcut_icon_gallery">Escolha da galeria</string>
     <string name="shortcut_icon_preset">Selecione dos ícones</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_options">Options</string>
+    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">Iniciando atividade: %s</string>
     <string name="starting_activity_failed">Falha ao iniciar atividade: %s</string>
@@ -109,11 +112,11 @@
         <item>Claro</item>
         <item>Escuro</item>
     </string-array>
-    <plurals name="history_records" tools:ignore="MissingQuantity">
+    <plurals name="history_records">
         <item quantity="one">%d registro</item>
         <item quantity="other">%d registros</item>
     </plurals>
-    <plurals name="activities_count" tools:ignore="MissingQuantity">
+    <plurals name="activities_count">
         <item quantity="one">%d atividade</item>
         <item quantity="other">%d atividades</item>
     </plurals>
