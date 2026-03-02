@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- history -->
+    <integer name="list_history_span_count">1</integer>
+
+</resources>
