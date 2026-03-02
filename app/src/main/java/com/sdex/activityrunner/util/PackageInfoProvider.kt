@@ -12,8 +12,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.cache.ApplicationModel
-import com.sdex.activityrunner.manifest.ManifestParser
-import net.dongliu.apk.parser.ApkFile
 import timber.log.Timber
 import java.io.File
 
@@ -31,13 +29,10 @@ class PackageInfoProvider(
         val isSystemApp = applicationInfo != null &&
             (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
         val isEnabled = applicationInfo != null && applicationInfo.enabled
-        val (activitiesCount, exportedActivitiesCount) = if (isEnabled) {
-            val packageInfoActivities = packageInfo.activities ?: emptyArray()
-            (packageInfoActivities.size) to (packageInfoActivities.count { it.exported })
-        } else {
-            val manifestActivities = getActivities(packageName)
-            manifestActivities.size to manifestActivities.count { it.exported }
-        }
+        val activities = getActivities(packageInfo)
+        val activitiesCount = activities.size
+        val exportedActivitiesCount = activities.count { it.exported }
+
         ApplicationModel(
             packageName = packageName,
             name = getApplicationName(packageInfo),
@@ -60,15 +55,23 @@ class PackageInfoProvider(
         val packageInfo = getPackageInfo(packageName)
         val applicationInfo = packageInfo.applicationInfo
             ?: return emptyList()
-        if (applicationInfo.enabled) {
-            return packageInfo.activities?.map { it.toActivityModel() } ?: emptyList()
+        val activityInfos = if (applicationInfo.enabled) {
+            packageInfo.activities
         } else {
-            val publicSourceDir = applicationInfo.publicSourceDir
-            ApkFile(publicSourceDir).use { apkFile ->
-                val manifestParser = ManifestParser(apkFile.manifestXml)
-                return manifestParser.getActivities(packageName)
-            }
+            getPackageArchiveInfo(packageManager, packageName).activities
         }
+        return activityInfos?.map { it.toActivityModel() } ?: emptyList()
+    }
+
+    fun getActivities(packageInfo: PackageInfo): List<ActivityModel> {
+        val applicationInfo = packageInfo.applicationInfo
+            ?: return emptyList()
+        val activityInfos = if (applicationInfo.enabled) {
+            packageInfo.activities
+        } else {
+            getPackageArchiveInfo(packageManager, packageInfo.packageName).activities
+        }
+        return activityInfos?.map { it.toActivityModel() } ?: emptyList()
     }
 
     fun getInstalledPackages(): List<String> {
@@ -104,7 +107,7 @@ class PackageInfoProvider(
                 packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
             }
         } catch (_: Exception) {
-            getApkPackageInfo(packageManager, packageName)
+            getPackageArchiveInfo(packageManager, packageName)
         }
     }
 
@@ -130,7 +133,7 @@ class PackageInfoProvider(
     fun getChangedPackages(lastSequenceNumber: Int): ChangedPackages? =
         packageManager.getChangedPackages(lastSequenceNumber)
 
-    private fun getApkPackageInfo(pm: PackageManager, packageName: String): PackageInfo {
+    private fun getPackageArchiveInfo(pm: PackageManager, packageName: String): PackageInfo {
         try {
             val info = if (isAndroidT()) {
                 pm.getPackageInfo(
@@ -142,19 +145,26 @@ class PackageInfoProvider(
             }
             val applicationInfo = info.applicationInfo
                 ?: throw IllegalStateException("ApplicationInfo is null")
-            val file = File(applicationInfo.publicSourceDir)
-            val archiveInfo = if (isAndroidT()) {
-                pm.getPackageArchiveInfo(
-                    file.absolutePath,
-                    PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES.toLong()),
-                )
-            } else {
-                pm.getPackageArchiveInfo(file.absolutePath, PackageManager.GET_ACTIVITIES)
-            }
+            val archiveInfo = getPackageArchiveActivities(pm, applicationInfo)
             info.activities = archiveInfo?.activities
             return info
         } catch (e: Exception) {
             throw e
+        }
+    }
+
+    private fun getPackageArchiveActivities(
+        pm: PackageManager,
+        applicationInfo: ApplicationInfo,
+    ): PackageInfo? {
+        val file = File(applicationInfo.publicSourceDir)
+        return if (isAndroidT()) {
+            pm.getPackageArchiveInfo(
+                file.absolutePath,
+                PackageManager.PackageInfoFlags.of(PackageManager.GET_ACTIVITIES.toLong()),
+            )
+        } else {
+            pm.getPackageArchiveInfo(file.absolutePath, PackageManager.GET_ACTIVITIES)
         }
     }
 
