@@ -1,45 +1,54 @@
-package com.sdex.activityrunner;
+package com.sdex.activityrunner
 
-import com.sdex.activityrunner.db.history.HistoryModel;
-import com.sdex.activityrunner.intent.LaunchParams;
-import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter;
+import com.sdex.activityrunner.db.history.HistoryModel
+import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
-import org.junit.Assert;
-import org.junit.Test;
-
-public class HistoryToLaunchParamsConverterTest {
+class HistoryToLaunchParamsConverterTest {
 
     @Test
-    public void testConvertEmpty() {
-        HistoryModel historyModel = new HistoryModel(
-            0, 0L, null, null, null, null,
-            null, null, null, null, null
-        );
+    fun testConvertEmpty() {
+        val historyModel = HistoryModel(
+            timestamp = 0L,
+            name = null,
+            packageName = null,
+            className = null,
+        )
 
-        HistoryToLaunchParamsConverter converter = new HistoryToLaunchParamsConverter(historyModel);
-        LaunchParams launchParams = converter.convert();
+        val converter = HistoryToLaunchParamsConverter(historyModel)
+        val launchParams = converter.convert()
 
-        Assert.assertEquals(launchParams.getAction(), historyModel.getAction());
-        Assert.assertEquals(launchParams.getData(), historyModel.getData());
-        Assert.assertEquals(launchParams.getMimeType(), historyModel.getMimeType());
-        Assert.assertEquals(launchParams.getPackageName(), historyModel.getPackageName());
-        Assert.assertEquals(launchParams.getClassName(), historyModel.getClassName());
+        assertEquals(launchParams.action, historyModel.action)
+        assertEquals(launchParams.data, historyModel.data)
+        assertEquals(launchParams.mimeType, historyModel.mimeType)
+        assertEquals(launchParams.packageName, historyModel.packageName)
+        assertEquals(launchParams.className, historyModel.className)
     }
 
     @Test
-    public void testConvert() {
-        HistoryModel historyModel = new HistoryModel(
-            0, 0L, null, "pkg", "cls", "action",
-            "data", "type", null, null, null
-        );
+    fun testConvert() {
+        val historyModel = HistoryModel(
+            id = 0,
+            timestamp = 0L,
+            name = null,
+            packageName = "pkg",
+            className = "cls",
+            action = "action",
+            data = "data",
+            mimeType = "type",
+            categories = null,
+            flags = null,
+            extras = null,
+        )
 
-        HistoryToLaunchParamsConverter converter = new HistoryToLaunchParamsConverter(historyModel);
-        LaunchParams launchParams = converter.convert();
+        val converter = HistoryToLaunchParamsConverter(historyModel)
+        val launchParams = converter.convert()
 
-        Assert.assertEquals(launchParams.getAction(), historyModel.getAction());
-        Assert.assertEquals(launchParams.getData(), historyModel.getData());
-        Assert.assertEquals(launchParams.getMimeType(), historyModel.getMimeType());
-        Assert.assertEquals(launchParams.getPackageName(), historyModel.getPackageName());
-        Assert.assertEquals(launchParams.getClassName(), historyModel.getClassName());
+        assertEquals(launchParams.action, historyModel.action)
+        assertEquals(launchParams.data, historyModel.data)
+        assertEquals(launchParams.mimeType, historyModel.mimeType)
+        assertEquals(launchParams.packageName, historyModel.packageName)
+        assertEquals(launchParams.className, historyModel.className)
     }
 }
