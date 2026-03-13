@@ -1,0 +1,2 @@
+- improve parsing disabled apps
+- faster applications list sync
