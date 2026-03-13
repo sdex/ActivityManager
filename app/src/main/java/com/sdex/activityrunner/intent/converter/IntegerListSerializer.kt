@@ -17,7 +17,6 @@ class IntegerListSerializer {
     }
 
     companion object {
-
-        private const val DELIMITER = ","
+        internal const val DELIMITER = ","
     }
 }

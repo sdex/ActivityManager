@@ -43,8 +43,7 @@ class ExtrasSerializer {
     }
 
     companion object {
-
-        private const val DELIMITER_KEY_VALUE = "†"
-        private const val DELIMITER_EXTRA = "‡"
+        internal const val DELIMITER_KEY_VALUE = "†"
+        internal const val DELIMITER_EXTRA = "‡"
     }
 }
