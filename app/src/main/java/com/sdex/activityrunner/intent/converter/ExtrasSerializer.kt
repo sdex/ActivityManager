@@ -26,18 +26,20 @@ class ExtrasSerializer {
         val extras = input.split(DELIMITER_EXTRA.toRegex())
             .dropLastWhile { it.isEmpty() }
             .toTypedArray()
-        val output = ArrayList<LaunchParamsExtra>(extras.size)
-        for (extra in extras) {
-            val values = extra.split(DELIMITER_KEY_VALUE.toRegex())
-                .dropLastWhile { it.isEmpty() }
-                .toTypedArray()
-            val paramsExtra = LaunchParamsExtra(
-                values[0], values[1], Integer.parseInt(values[2]),
-                java.lang.Boolean.parseBoolean(values[3])
-            )
-            output.add(paramsExtra)
-        }
-        return output
+        val keyValueDelimiterRegex = DELIMITER_KEY_VALUE.toRegex()
+        return ArrayList(
+            extras.map { extra ->
+                val values = extra.split(keyValueDelimiterRegex)
+                    .dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
+                LaunchParamsExtra(
+                    key = values[0],
+                    value = values[1],
+                    type = Integer.parseInt(values[2]),
+                    isArray = java.lang.Boolean.parseBoolean(values[3]),
+                )
+            },
+        )
     }
 
     companion object {

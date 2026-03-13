@@ -60,6 +60,7 @@ class ActivitiesListActivity : BaseActivity() {
             }
         }
         binding.list.adapter = adapter
+        binding.list.setHasFixedSize(true)
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
@@ -131,12 +132,13 @@ class ActivitiesListActivity : BaseActivity() {
                 val activityPackageName = packageName
                 CreateShortcutActivity.start(
                     this,
-                    HistoryModel().apply {
-                        name = title?.toString()
-                        packageName = activityPackageName
-                        className = ActivitiesListActivity::class.java.name
-                        data = appPackageName
-                    },
+                    HistoryModel(
+                        timestamp = System.currentTimeMillis(),
+                        name = title?.toString(),
+                        packageName = activityPackageName,
+                        className = ActivitiesListActivity::class.java.name,
+                        data = appPackageName,
+                    ),
                 )
                 true
             }

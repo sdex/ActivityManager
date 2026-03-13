@@ -5,27 +5,25 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-class HistoryModel : Serializable {
-
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-    var timestamp: Long = 0
-    var name: String? = null
-    var packageName: String? = null
-    var className: String? = null
-    var action: String? = null
-    var data: String? = null
-    var mimeType: String? = null
-    var categories: String? = null
-    var flags: String? = null
-    var extras: String? = null
+data class HistoryModel(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val timestamp: Long,
+    val name: String?,
+    val packageName: String?,
+    val className: String?,
+    val action: String? = null,
+    val data: String? = null,
+    val mimeType: String? = null,
+    val categories: String? = null,
+    val flags: String? = null,
+    val extras: String? = null,
+) : Serializable {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
         other as HistoryModel
-        if (id != other.id) return false
-        return true
+        return id == other.id
     }
 
     override fun hashCode(): Int {

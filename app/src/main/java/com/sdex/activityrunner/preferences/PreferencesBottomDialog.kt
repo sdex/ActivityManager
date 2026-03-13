@@ -91,16 +91,12 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
             }
         }
         binding.showSystemApps.setOnCheckedChangeListener { _, isChecked ->
-            binding.showSystemAppIndicator.isEnabled = isChecked
-
             viewModel.handleIntent(PreferencesIntent.ToggleSystemApps(isChecked))
         }
         binding.showSystemAppIndicator.setOnCheckedChangeListener { _, isChecked ->
             viewModel.handleIntent(PreferencesIntent.ToggleSystemAppIndicator(isChecked))
         }
         binding.showDisabledApps.setOnCheckedChangeListener { _, isChecked ->
-            binding.showDisabledAppIndicator.isEnabled = isChecked
-
             viewModel.handleIntent(PreferencesIntent.ToggleDisabledApps(isChecked))
         }
         binding.showDisabledAppIndicator.setOnCheckedChangeListener { _, isChecked ->

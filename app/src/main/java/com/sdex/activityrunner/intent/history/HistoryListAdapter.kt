@@ -21,6 +21,10 @@ class HistoryListAdapter(
 
     var contextMenuItemPosition: Int = 0
 
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -38,7 +42,7 @@ class HistoryListAdapter(
     }
 
     override fun getItemId(position: Int): Long =
-        getItem(position)?.id?.toLong() ?: 0L
+        getItem(position).id.toLong()
 
     override fun onViewRecycled(holder: ViewHolder) {
         holder.itemView.setOnLongClickListener(null)

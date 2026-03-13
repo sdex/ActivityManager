@@ -11,7 +11,10 @@ public class HistoryToLaunchParamsConverterTest {
 
     @Test
     public void testConvertEmpty() {
-        HistoryModel historyModel = new HistoryModel();
+        HistoryModel historyModel = new HistoryModel(
+            0, 0L, null, null, null, null,
+            null, null, null, null, null
+        );
 
         HistoryToLaunchParamsConverter converter = new HistoryToLaunchParamsConverter(historyModel);
         LaunchParams launchParams = converter.convert();
@@ -25,12 +28,10 @@ public class HistoryToLaunchParamsConverterTest {
 
     @Test
     public void testConvert() {
-        HistoryModel historyModel = new HistoryModel();
-        historyModel.setAction("action");
-        historyModel.setData("data");
-        historyModel.setMimeType("type");
-        historyModel.setPackageName("pkg");
-        historyModel.setClassName("cls");
+        HistoryModel historyModel = new HistoryModel(
+            0, 0L, null, "pkg", "cls", "action",
+            "data", "type", null, null, null
+        );
 
         HistoryToLaunchParamsConverter converter = new HistoryToLaunchParamsConverter(historyModel);
         LaunchParams launchParams = converter.convert();

@@ -30,6 +30,10 @@ class ActivitiesListAdapter(
     var application: ApplicationModel? = null
     var itemClickListener: ItemClickListener? = null
 
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(ItemActivityBinding.inflate(inflater, parent, false))
@@ -44,6 +48,10 @@ class ActivitiesListAdapter(
             notExportedColor,
             itemClickListener
         )
+    }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).hashCode().toLong()
     }
 
     interface ItemClickListener {

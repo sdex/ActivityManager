@@ -35,7 +35,6 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
         setupToolbar(isBackButtonEnabled = true)
 
         adapter = HistoryListAdapter(this)
-        adapter.setHasStableIds(true)
         binding.list.setHasFixedSize(true)
         binding.list.adapter = adapter
         registerForContextMenu(binding.list)
