@@ -16,11 +16,14 @@
     <string name="shortcut_name">레이블</string>
     <string name="shortcut_name_empty">레이블은 비워둘 수 없습니다</string>
     <string name="shortcut_create">만들기</string>
+    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">아이콘을 변경하려면 탭하세요</string>
     <string name="icons_loading_error">아이콘을 불러오는데 실패했습니다</string>
     <string name="shortcut_icon_gallery">갤러리에서 선택</string>
     <string name="shortcut_icon_preset">아이콘 모음에서 선택</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_options">Options</string>
+    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">액티비티를 시작하는 중: %s</string>
     <string name="starting_activity_failed">%s 액티비티를 시작하는데 실패했습니다</string>
