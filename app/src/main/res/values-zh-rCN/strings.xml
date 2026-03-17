@@ -23,7 +23,7 @@
     <string name="shortcut_icon_preset">选择图标</string>
     <string name="shortcut_invert_icon_colors">反转图标颜色</string>
     <string name="shortcut_options">设置</string>
-    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
+    <string name="create_shortcut_non_exported_warning"></string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
     <string name="starting_activity_failed">启动 Activity 失败：%s</string>
@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">主题</string>
     <string name="pref_header_advanced">高级</string>
     <string name="pref_advanced_not_exported_title">显示未导出的 Activity</string>
-    <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
+    <string name="pref_advanced_not_exported_summary"></string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>跟随系统</item>
         <item>浅色</item>
