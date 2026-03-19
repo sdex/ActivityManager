@@ -48,9 +48,7 @@ object Category {
                 put("CATEGORY_TYPED_OPENABLE", Intent.CATEGORY_TYPED_OPENABLE)
             }
             put("CATEGORY_UNIT_TEST", Intent.CATEGORY_UNIT_TEST)
-            if (VERSION.SDK_INT >= VERSION_CODES.M) {
-                put("CATEGORY_VOICE", Intent.CATEGORY_VOICE)
-            }
+            put("CATEGORY_VOICE", Intent.CATEGORY_VOICE)
             if (VERSION.SDK_INT >= VERSION_CODES.O) {
                 put("CATEGORY_VR_HOME", Intent.CATEGORY_VR_HOME)
             }

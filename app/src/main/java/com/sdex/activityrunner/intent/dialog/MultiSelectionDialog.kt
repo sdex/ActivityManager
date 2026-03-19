@@ -1,20 +1,23 @@
 package com.sdex.activityrunner.intent.dialog
 
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.util.SparseBooleanArray
 import androidx.core.os.bundleOf
 import androidx.core.util.size
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
+import com.sdex.activityrunner.intent.LaunchParamsViewModel
 import com.sdex.activityrunner.intent.dialog.source.CategoriesSource
 import com.sdex.activityrunner.intent.dialog.source.FlagsSource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MultiSelectionDialog : BaseDialogFragment() {
 
-    private lateinit var callback: OnItemsSelectedCallback
+    private val viewModel: LaunchParamsViewModel by activityViewModels()
     private val selectedItems = SparseBooleanArray()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -50,25 +53,10 @@ class MultiSelectionDialog : BaseDialogFragment() {
                     selectedPositions.add(key)
                 }
             }
-            callback.onItemsSelected(type, selectedPositions)
+            viewModel.setMultiSelection(type, selectedPositions)
         }
         builder.setTitle(type)
         return builder.create()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            callback = context as OnItemsSelectedCallback
-        } catch (_: ClassCastException) {
-            throw ClassCastException("$context must implement OnItemsSelectedCallback")
-        }
-
-    }
-
-    interface OnItemsSelectedCallback {
-
-        fun onItemsSelected(type: Int, positions: ArrayList<Int>)
     }
 
     companion object {

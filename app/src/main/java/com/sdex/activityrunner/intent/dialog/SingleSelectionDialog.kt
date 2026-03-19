@@ -1,17 +1,20 @@
 package com.sdex.activityrunner.intent.dialog
 
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
+import com.sdex.activityrunner.intent.LaunchParamsViewModel
 import com.sdex.activityrunner.intent.dialog.source.ActionSource
 import com.sdex.activityrunner.intent.dialog.source.MimeTypeSource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SingleSelectionDialog : BaseDialogFragment() {
 
-    private lateinit var callback: OnItemSelectedCallback
+    private val viewModel: LaunchParamsViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val type: Int = requireArguments().getInt(ARG_TYPE)
@@ -29,25 +32,11 @@ class SingleSelectionDialog : BaseDialogFragment() {
             list.toTypedArray(),
             initialPosition
         ) { _, which ->
-            callback.onItemSelected(type, which)
+            viewModel.setSingleSelection(type, which)
             dismiss()
         }
         builder.setTitle(type)
         return builder.create()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            callback = context as OnItemSelectedCallback
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement OnItemSelectedCallback")
-        }
-    }
-
-    interface OnItemSelectedCallback {
-
-        fun onItemSelected(type: Int, position: Int)
     }
 
     companion object {

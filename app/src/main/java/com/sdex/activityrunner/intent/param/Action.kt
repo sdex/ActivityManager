@@ -120,9 +120,7 @@ object Action {
             //      put("ACTION_POWER_CONNECTED", Intent.ACTION_POWER_CONNECTED);
             //      put("ACTION_POWER_DISCONNECTED", Intent.ACTION_POWER_DISCONNECTED);
             put("ACTION_POWER_USAGE_SUMMARY", Intent.ACTION_POWER_USAGE_SUMMARY)
-            if (VERSION.SDK_INT >= VERSION_CODES.M) {
-                put("ACTION_PROCESS_TEXT", Intent.ACTION_PROCESS_TEXT)
-            }
+            put("ACTION_PROCESS_TEXT", Intent.ACTION_PROCESS_TEXT)
             //      put("ACTION_PROVIDER_CHANGED", Intent.ACTION_PROVIDER_CHANGED); // Broadcast Action
             put("ACTION_QUICK_CLOCK", Intent.ACTION_QUICK_CLOCK)
             if (VERSION.SDK_INT >= VERSION_CODES.N) {

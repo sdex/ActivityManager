@@ -10,6 +10,9 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
@@ -24,20 +27,15 @@ import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.history.HistoryActivity
-import com.sdex.activityrunner.intent.param.Action
-import com.sdex.activityrunner.intent.param.MimeType
 import com.sdex.activityrunner.util.IntentUtils
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class IntentBuilderActivity : BaseActivity(),
-    ValueInputDialog.OnValueInputDialogCallback, SingleSelectionDialog.OnItemSelectedCallback,
-    MultiSelectionDialog.OnItemsSelectedCallback, ExtraInputDialog.OnKeyValueInputDialogCallback {
+class IntentBuilderActivity : BaseActivity() {
 
     private val viewModel: LaunchParamsViewModel by viewModels()
     private lateinit var binding: ActivityIntentBuilderBinding
-
-    private val launchParams = LaunchParams()
 
     private val categoriesAdapter = LaunchParamsListAdapter()
     private val flagsAdapter = LaunchParamsListAdapter()
@@ -47,8 +45,7 @@ class IntentBuilderActivity : BaseActivity(),
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             it.data?.let { intent ->
                 val result = intent.parcelable<LaunchParams>(HistoryActivity.RESULT)
-                launchParams.setFrom(result)
-                showLaunchParams()
+                viewModel.setLaunchParams(result)
             }
         }
 
@@ -58,15 +55,10 @@ class IntentBuilderActivity : BaseActivity(),
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
-        val params = savedInstanceState?.parcelable<LaunchParams>(STATE_LAUNCH_PARAMS)
-        launchParams.setFrom(params)
-
         val activityModel = intent.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
+        viewModel.initialize(activityModel)
 
         title = activityModel?.name ?: getString(R.string.intent_launcher_activity)
-
-        launchParams.packageName = activityModel?.packageName
-        launchParams.className = activityModel?.className
 
         binding.listExtrasView.configureRecyclerView()
         binding.listCategoriesView.configureRecyclerView()
@@ -74,17 +66,16 @@ class IntentBuilderActivity : BaseActivity(),
 
         extraAdapter.callback = object : Callback {
             override fun onItemSelected(position: Int) {
-                val extra = launchParams.extras[position]
+                val extra = viewModel.launchParamsState.value.extras[position]
                 val dialog = ExtraInputDialog.newInstance(extra, position)
                 dialog.show(supportFragmentManager, ExtraInputDialog.TAG)
             }
 
             @SuppressLint("NotifyDataSetChanged")
             override fun removeItem(position: Int) {
-                launchParams.extras.removeAt(position)
+                viewModel.removeExtra(position)
                 extraAdapter.notifyDataSetChanged()
                 binding.listExtrasView.requestLayout()
-                updateExtrasAdd()
             }
         }
         extraAdapter.setHasStableIds(true)
@@ -106,25 +97,26 @@ class IntentBuilderActivity : BaseActivity(),
         bindKeyValueDialog(binding.containerExtras)
         bindMultiSelectionDialog(
             binding.categoriesClickInterceptor,
-            R.string.launch_param_categories
+            R.string.launch_param_categories,
         )
         bindMultiSelectionDialog(binding.flagsClickInterceptor, R.string.launch_param_flags)
 
         binding.launch.setOnClickListener {
             if (binding.saveToHistory.isChecked) {
-                viewModel.addToHistory(launchParams)
+                viewModel.addToHistory()
             }
-            val converter = LaunchParamsToIntentConverter(launchParams)
+            val converter = LaunchParamsToIntentConverter(viewModel.launchParamsState.value)
             val intent = converter.convert()
             IntentUtils.launchActivity(this@IntentBuilderActivity, intent)
         }
 
-        showLaunchParams()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelable(STATE_LAUNCH_PARAMS, launchParams)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.launchParamsState.collect {
+                    showLaunchParams(it)
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -143,50 +135,6 @@ class IntentBuilderActivity : BaseActivity(),
         }
     }
 
-    override fun onValueSet(type: Int, value: String) {
-        when (type) {
-            R.string.launch_param_package_name -> launchParams.packageName = value
-            R.string.launch_param_class_name -> launchParams.className = value
-            R.string.launch_param_data -> launchParams.data = value
-            R.string.launch_param_action -> launchParams.action = value
-            R.string.launch_param_mime_type -> launchParams.mimeType = value
-        }
-        showLaunchParams()
-    }
-
-    override fun onItemSelected(type: Int, position: Int) {
-        when (type) {
-            R.string.launch_param_action -> {
-                launchParams.action = if (position == 0) null
-                else Action.getAction(Action.list()[position])
-            }
-
-            R.string.launch_param_mime_type -> {
-                launchParams.mimeType = if (position == 0) null
-                else MimeType.list()[position]
-            }
-        }
-        showLaunchParams()
-    }
-
-    override fun onItemsSelected(type: Int, positions: ArrayList<Int>) {
-        when (type) {
-            R.string.launch_param_categories -> launchParams.categories = positions
-            R.string.launch_param_flags -> launchParams.flags = positions
-        }
-        showLaunchParams()
-    }
-
-    override fun onValueSet(extra: LaunchParamsExtra, position: Int) {
-        val extras = launchParams.extras
-        if (position == -1) {
-            extras.add(extra)
-        } else {
-            extras[position] = extra
-        }
-        showLaunchParams()
-    }
-
     private fun RecyclerView.configureRecyclerView() {
         isNestedScrollingEnabled = false
         setHasFixedSize(false)
@@ -194,7 +142,7 @@ class IntentBuilderActivity : BaseActivity(),
 
     private fun bindInputValueDialog(view: View, type: Int) {
         view.setOnClickListener {
-            val initialValue = getValueInitialPosition(type)
+            val initialValue = viewModel.getValueInitialValue(type)
             val dialog = ValueInputDialog.newInstance(type, initialValue)
             dialog.show(supportFragmentManager, ValueInputDialog.TAG)
         }
@@ -202,7 +150,7 @@ class IntentBuilderActivity : BaseActivity(),
 
     private fun bindSingleSelectionDialog(view: View, type: Int) {
         view.setOnClickListener {
-            val initialPosition = getSingleSelectionInitialPosition(type)
+            val initialPosition = viewModel.getSingleSelectionInitialPosition(type)
             val dialog = SingleSelectionDialog.newInstance(type, initialPosition)
             dialog.show(supportFragmentManager, SingleSelectionDialog.TAG)
         }
@@ -210,7 +158,7 @@ class IntentBuilderActivity : BaseActivity(),
 
     private fun bindMultiSelectionDialog(view: View, type: Int) {
         view.setOnClickListener {
-            val initialPositions = getMultiSelectionInitialPositions(type)
+            val initialPositions = viewModel.getMultiSelectionInitialPositions(type)
             val dialog = MultiSelectionDialog.newInstance(type, initialPositions)
             dialog.show(supportFragmentManager, MultiSelectionDialog.TAG)
         }
@@ -223,42 +171,7 @@ class IntentBuilderActivity : BaseActivity(),
         }
     }
 
-    private fun getValueInitialPosition(type: Int): String? {
-        return when (type) {
-            R.string.launch_param_package_name -> launchParams.packageName
-            R.string.launch_param_class_name -> launchParams.className
-            R.string.launch_param_data -> launchParams.data
-            R.string.launch_param_action -> launchParams.action
-            R.string.launch_param_mime_type -> launchParams.mimeType
-            else -> throw IllegalStateException("Unknown type $type")
-        }
-    }
-
-    private fun getSingleSelectionInitialPosition(type: Int): Int {
-        return when (type) {
-            R.string.launch_param_action -> {
-                if (launchParams.action == null) 0
-                else Action.getActionKeyPosition(launchParams.action!!)
-            }
-
-            R.string.launch_param_mime_type -> {
-                if (launchParams.mimeType == null) 0
-                else MimeType.list().indexOf(launchParams.mimeType!!)
-            }
-
-            else -> throw IllegalStateException("Unknown type $type")
-        }
-    }
-
-    private fun getMultiSelectionInitialPositions(type: Int): ArrayList<Int> {
-        return when (type) {
-            R.string.launch_param_categories -> launchParams.categories
-            R.string.launch_param_flags -> launchParams.flags
-            else -> throw IllegalStateException("Unknown type $type")
-        }
-    }
-
-    private fun showLaunchParams() {
+    private fun showLaunchParams(launchParams: LaunchParams) {
         binding.packageNameView.text = launchParams.packageName
         binding.classNameView.text = launchParams.className
         binding.dataView.text = launchParams.data
@@ -267,18 +180,16 @@ class IntentBuilderActivity : BaseActivity(),
         extraAdapter.setItems(launchParams.extras)
         categoriesAdapter.setItems(launchParams.getCategoriesValues())
         flagsAdapter.setItems(launchParams.getFlagsValues())
-        updateExtrasAdd()
+        updateExtrasAdd(launchParams)
     }
 
-    private fun updateExtrasAdd() {
-        val extras = launchParams.extras
-        binding.addExtraView.isVisible = extras.isNotEmpty()
+    private fun updateExtrasAdd(launchParams: LaunchParams) {
+        binding.addExtraView.isVisible = launchParams.extras.isNotEmpty()
     }
 
     companion object {
 
         private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
-        private const val STATE_LAUNCH_PARAMS = "state_launch_params"
 
         fun start(context: Context, model: ActivityModel?) {
             val starter = Intent(context, IntentBuilderActivity::class.java)

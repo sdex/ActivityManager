@@ -1,10 +1,10 @@
 package com.sdex.activityrunner.intent.dialog
 
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
@@ -12,11 +12,13 @@ import com.sdex.activityrunner.databinding.DialogInputExtraBinding
 import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.intent.LaunchParamsExtra
 import com.sdex.activityrunner.intent.LaunchParamsExtraType
-import timber.log.Timber
+import com.sdex.activityrunner.intent.LaunchParamsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExtraInputDialog : BaseDialogFragment() {
 
-    private lateinit var callback: OnKeyValueInputDialogCallback
+    private val viewModel: LaunchParamsViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val initialExtra = requireArguments().parcelable<LaunchParamsExtra>(ARG_INITIAL_EXTRA)
@@ -55,42 +57,37 @@ class ExtraInputDialog : BaseDialogFragment() {
                             binding.keyLayout.error = null
                             binding.valueLayout.error = null
 
-                            if (newKey.isEmpty()) {
-                                binding.keyLayout.error =
-                                    getString(R.string.dialog_add_extra_key_empty)
-                                binding.keyView.requestFocus()
-                                return@setOnClickListener
-                            }
+                            when (viewModel.validateExtraInput(newKey, newValue, type)) {
+                                LaunchParamsViewModel.ExtraInputValidationResult.KeyEmpty -> {
+                                    binding.keyLayout.error =
+                                        getString(R.string.dialog_add_extra_key_empty)
+                                    binding.keyView.requestFocus()
+                                    return@setOnClickListener
+                                }
 
-                            if (newValue.isEmpty()) {
-                                binding.valueLayout.error =
-                                    getString(R.string.dialog_add_extra_value_empty)
-                                binding.valueView.requestFocus()
-                                return@setOnClickListener
-                            }
+                                LaunchParamsViewModel.ExtraInputValidationResult.ValueEmpty -> {
+                                    binding.valueLayout.error =
+                                        getString(R.string.dialog_add_extra_value_empty)
+                                    binding.valueView.requestFocus()
+                                    return@setOnClickListener
+                                }
 
-                            if (!isExtraFormatValid(type, newValue)) {
-                                binding.valueLayout.error =
-                                    getString(R.string.dialog_add_extra_type_incorrect)
-                                return@setOnClickListener
+                                LaunchParamsViewModel.ExtraInputValidationResult.InvalidType -> {
+                                    binding.valueLayout.error =
+                                        getString(R.string.dialog_add_extra_type_incorrect)
+                                    return@setOnClickListener
+                                }
+
+                                LaunchParamsViewModel.ExtraInputValidationResult.Valid -> Unit
                             }
 
                             val extra =
                                 LaunchParamsExtra(newKey, newValue, type, binding.array.isChecked)
-                            callback.onValueSet(extra, position)
+                            viewModel.upsertExtra(extra, position)
                             dismiss()
                         }
                 }
             }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        try {
-            callback = context as OnKeyValueInputDialogCallback
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$context must implement OnKeyValueInputDialogCallback")
-        }
     }
 
     private fun getSelectedType(binding: DialogInputExtraBinding): Int {
@@ -124,27 +121,6 @@ class ExtraInputDialog : BaseDialogFragment() {
             LaunchParamsExtraType.BOOLEAN -> binding.rbBoolean
             else -> null
         }?.isChecked = true
-    }
-
-    private fun isExtraFormatValid(type: Int, value: String): Boolean {
-        try {
-            when (type) {
-                LaunchParamsExtraType.INT -> Integer.parseInt(value)
-                LaunchParamsExtraType.LONG -> java.lang.Long.parseLong(value)
-                LaunchParamsExtraType.FLOAT -> java.lang.Float.parseFloat(value)
-                LaunchParamsExtraType.DOUBLE -> java.lang.Double.parseDouble(value)
-            }
-        } catch (e: NumberFormatException) {
-            Timber.d("Failed to parse number")
-            return false
-        }
-
-        return true
-    }
-
-    interface OnKeyValueInputDialogCallback {
-
-        fun onValueSet(extra: LaunchParamsExtra, position: Int)
     }
 
     companion object {
