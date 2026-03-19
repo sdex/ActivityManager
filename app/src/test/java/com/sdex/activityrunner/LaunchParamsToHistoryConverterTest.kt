@@ -35,13 +35,13 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert with basic fields populated`() {
-        val launchParams = LaunchParams().apply {
-            packageName = "com.example.app"
-            className = "com.example.app.MainActivity"
-            action = "android.intent.action.MAIN"
-            data = "https://example.com"
-            mimeType = "text/plain"
-        }
+        val launchParams = LaunchParams(
+            packageName = "com.example.app",
+            className = "com.example.app.MainActivity",
+            action = "android.intent.action.MAIN",
+            data = "https://example.com",
+            mimeType = "text/plain",
+        )
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -56,9 +56,7 @@ class LaunchParamsToHistoryConverterTest {
     @Test
     fun `convert with categories serialized`() {
         val categories = arrayListOf(1, 2, 3)
-        val launchParams = LaunchParams().apply {
-            this.categories = categories
-        }
+        val launchParams = LaunchParams(categories = categories)
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -68,9 +66,7 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert with empty categories`() {
-        val launchParams = LaunchParams().apply {
-            categories = arrayListOf()
-        }
+        val launchParams = LaunchParams(categories = arrayListOf())
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -81,9 +77,7 @@ class LaunchParamsToHistoryConverterTest {
     @Test
     fun `convert with flags serialized`() {
         val flags = arrayListOf(268435456, 67108864)
-        val launchParams = LaunchParams().apply {
-            this.flags = flags
-        }
+        val launchParams = LaunchParams(flags = flags)
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -93,9 +87,7 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert with empty flags`() {
-        val launchParams = LaunchParams().apply {
-            flags = arrayListOf()
-        }
+        val launchParams = LaunchParams(flags = arrayListOf())
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -109,9 +101,7 @@ class LaunchParamsToHistoryConverterTest {
             LaunchParamsExtra("key1", "value1", LaunchParamsExtraType.STRING, false),
             LaunchParamsExtra("key2", "42", LaunchParamsExtraType.INT, false),
         )
-        val launchParams = LaunchParams().apply {
-            this.extras = extras
-        }
+        val launchParams = LaunchParams(extras = extras)
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -122,9 +112,7 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert with empty extras`() {
-        val launchParams = LaunchParams().apply {
-            extras = arrayListOf()
-        }
+        val launchParams = LaunchParams(extras = arrayListOf())
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -142,16 +130,16 @@ class LaunchParamsToHistoryConverterTest {
             LaunchParamsExtra("bool_key", "true", LaunchParamsExtraType.BOOLEAN, false),
         )
 
-        val launchParams = LaunchParams().apply {
-            packageName = "com.test.package"
-            className = "com.test.package.TestActivity"
-            action = "android.intent.action.VIEW"
-            data = "content://test/data"
-            mimeType = "application/json"
-            this.categories = categories
-            this.flags = flags
-            this.extras = extras
-        }
+        val launchParams = LaunchParams(
+            packageName = "com.test.package",
+            className = "com.test.package.TestActivity",
+            action = "android.intent.action.VIEW",
+            data = "content://test/data",
+            mimeType = "application/json",
+            categories = categories,
+            flags = flags,
+            extras = extras,
+        )
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -182,9 +170,7 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert sets name to null`() {
-        val launchParams = LaunchParams().apply {
-            packageName = "test"
-        }
+        val launchParams = LaunchParams(packageName = "test")
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -194,10 +180,10 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert with only package and class name minimal case`() {
-        val launchParams = LaunchParams().apply {
-            packageName = "com.minimal.app"
-            className = "com.minimal.app.MainActivity"
-        }
+        val launchParams = LaunchParams(
+            packageName = "com.minimal.app",
+            className = "com.minimal.app.MainActivity",
+        )
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -218,9 +204,7 @@ class LaunchParamsToHistoryConverterTest {
             LaunchParamsExtra("int_array", "[1,2,3]", LaunchParamsExtraType.INT, true),
             LaunchParamsExtra("string_array", "[a,b,c]", LaunchParamsExtraType.STRING, true),
         )
-        val launchParams = LaunchParams().apply {
-            this.extras = extras
-        }
+        val launchParams = LaunchParams(extras = extras)
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -231,10 +215,10 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert with single category and flag`() {
-        val launchParams = LaunchParams().apply {
-            categories = arrayListOf(1)
-            flags = arrayListOf(268435456)
-        }
+        val launchParams = LaunchParams(
+            categories = arrayListOf(1),
+            flags = arrayListOf(268435456),
+        )
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -245,18 +229,18 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert round-trip with HistoryToLaunchParamsConverter`() {
-        val originalLaunchParams = LaunchParams().apply {
-            packageName = "com.roundtrip.app"
-            className = "com.roundtrip.app.Activity"
-            action = "android.intent.action.SEND"
-            data = "file:///test.txt"
-            mimeType = "text/plain"
-            categories = arrayListOf(1, 2)
-            flags = arrayListOf(1, 2, 3)
+        val originalLaunchParams = LaunchParams(
+            packageName = "com.roundtrip.app",
+            className = "com.roundtrip.app.Activity",
+            action = "android.intent.action.SEND",
+            data = "file:///test.txt",
+            mimeType = "text/plain",
+            categories = arrayListOf(1, 2),
+            flags = arrayListOf(1, 2, 3),
             extras = arrayListOf(
                 LaunchParamsExtra("key", "value", LaunchParamsExtraType.STRING, false),
-            )
-        }
+            ),
+        )
 
         // Convert to HistoryModel
         val toHistoryConverter = LaunchParamsToHistoryConverter(originalLaunchParams)
@@ -275,10 +259,10 @@ class LaunchParamsToHistoryConverterTest {
 
     @Test
     fun `convert with negative integers in categories and flags`() {
-        val launchParams = LaunchParams().apply {
-            categories = arrayListOf(-1, 0, 1)
-            flags = arrayListOf(-999, Int.MIN_VALUE)
-        }
+        val launchParams = LaunchParams(
+            categories = arrayListOf(-1, 0, 1),
+            flags = arrayListOf(-999, Int.MIN_VALUE),
+        )
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
@@ -297,9 +281,7 @@ class LaunchParamsToHistoryConverterTest {
             LaunchParamsExtra("double", "2.71828", LaunchParamsExtraType.DOUBLE, false),
             LaunchParamsExtra("bool", "false", LaunchParamsExtraType.BOOLEAN, false),
         )
-        val launchParams = LaunchParams().apply {
-            this.extras = extras
-        }
+        val launchParams = LaunchParams(extras = extras)
 
         val converter = LaunchParamsToHistoryConverter(launchParams)
         val historyModel = converter.convert()
