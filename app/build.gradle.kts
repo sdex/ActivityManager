@@ -13,17 +13,19 @@ android {
     compileSdk = 36
     namespace = "com.sdex.activityrunner"
 
-//    val newVersionCode = project.findProperty("newVersionCode")?.toString()?.toInt() ?: 560
-//    val nameSuffix = project.findProperty("versionNameSuffix")?.toString() ?: ""
-
     defaultConfig {
         applicationId = "com.activitymanager"
         minSdk = 23
         targetSdk = 34
-//        versionCode = newVersionCode
-//        versionName = "5.4.20$nameSuffix"
         versionCode = 561
         versionName = "5.4.21"
+
+        project.findProperty("newVersionCode")?.toString()?.toIntOrNull()?.let {
+            versionCode = it
+        }
+        project.findProperty("versionNameSuffix")?.toString()?.let {
+            versionName = "${versionName}${it}-$versionCode"
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
