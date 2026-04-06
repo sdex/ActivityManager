@@ -3,7 +3,7 @@
     <string name="history_activity">历史记录</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">使用参数启动 Activity</string>
-    <string name="activity_option_launch_root"></string>
+    <string name="activity_option_launch_root">使用 root 啟動活動</string>
     <string name="activity_option_create_shortcut">创建快捷方式</string>
     <!-- application options -->
     <string name="application_option_open">启动应用程序</string>
@@ -16,14 +16,14 @@
     <string name="shortcut_name">标签</string>
     <string name="shortcut_name_empty">标签不能为空</string>
     <string name="shortcut_create">创建</string>
-    <string name="shortcut_change_icon"></string>
-    <string name="shortcut_set_icon_tooltip">点击更改图标</string>
-    <string name="icons_loading_error">加载图标失败</string>
-    <string name="shortcut_icon_gallery">从图库中选取</string>
+    <string name="shortcut_change_icon">更改圖示</string>
+    <string name="shortcut_set_icon_tooltip">點擊以更改圖示</string>
+    <string name="icons_loading_error">載入圖示失敗</string>
+    <string name="shortcut_icon_gallery">從圖庫中選取</string>
     <string name="shortcut_icon_preset">选择图标</string>
     <string name="shortcut_invert_icon_colors">反转图标颜色</string>
     <string name="shortcut_options">设置</string>
-    <string name="create_shortcut_non_exported_warning"></string>
+    <string name="create_shortcut_non_exported_warning">这不是一个导出的活动，启动它需要root权限</string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
     <string name="starting_activity_failed">启动 Activity 失败：%s</string>
@@ -69,7 +69,7 @@
     <string name="about_open_source">开源许可证</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
-    <string name="donate_message">如果您喜欢这个应用，捐赠我们吧</string>
+    <string name="donate_message">如果您正在使用活动管理器并喜欢它，那么这是一种非常强大的方式来向您表示感谢！ 通过捐赠，您正在帮助制作这个工具，这个工具已经帮助您可持续和健康。</string>
     <string name="donate_action_text">捐赠</string>
     <string name="donate_negative_action_text">不再询问</string>
     <string name="input_key">输入键</string>
@@ -94,7 +94,7 @@
     <string name="dialog_add_extra_type_incorrect">类型错误</string>
     <string name="dialog_export_intent_copy">复制</string>
     <string name="dialog_enable_non_exported_title">未导出的 Activity</string>
-    <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
+    <string name="dialog_enable_non_exported_message">您可以启用显示非导出的活动，它们将用红色高亮显示。这类活动只能在超级用户权限下运行</string>
     <string name="dialog_root_config_title">设置自定义的 \'su\' 可执行文件</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">实例化 WebView 失败，请稍后再试</string>
@@ -106,7 +106,7 @@
     <string name="pref_appearance_theme_title">主题</string>
     <string name="pref_header_advanced">高级</string>
     <string name="pref_advanced_not_exported_title">显示未导出的 Activity</string>
-    <string name="pref_advanced_not_exported_summary"></string>
+    <string name="pref_advanced_not_exported_summary">只能使用 root 权限运行</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>跟随系统</item>
         <item>浅色</item>
