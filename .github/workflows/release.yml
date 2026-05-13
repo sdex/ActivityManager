@@ -29,9 +29,7 @@ jobs:
 
       - name: Build Prod Release
         run: |
-          # We pass the version code calculation to keep it in sync with your logic
-          ./gradlew assembleProdRelease \
-          -PnewVersionCode=$((558 + ${{ github.run_number }}))
+          ./gradlew assembleProdRelease
 
       - name: Sign APK
         uses: ilharp/sign-android-release@v2
