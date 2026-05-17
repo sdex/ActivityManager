@@ -5,18 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
     android:paddingVertical="10dp">
 
-    <ImageView
-        android:id="@+id/icon"
+    <FrameLayout
         android:layout_width="@dimen/app_icon_size"
         android:layout_height="@dimen/app_icon_size"
         android:layout_gravity="center_vertical"
         android:layout_margin="12dp"
-        tools:ignore="ContentDescription"
-        tools:src="@mipmap/ic_launcher" />
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ContentDescription"
+            tools:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/pinnedIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top|end"
+            android:background="@drawable/background_pinned_icon"
+            android:contentDescription="@string/application_pinned"
+            android:padding="3dp"
+            android:translationX="10dp"
+            android:translationY="-10dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_push_pin_filled_24"
+            app:tint="@color/icon_tint"
+            tools:visibility="visible" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -27,7 +52,7 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceTitleMedium"
             tools:text="Application name" />

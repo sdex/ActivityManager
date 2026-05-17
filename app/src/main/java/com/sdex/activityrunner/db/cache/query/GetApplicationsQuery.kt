@@ -47,7 +47,10 @@ class GetApplicationsQuery(
                 .append(") ")
         }
 
-        queryStringBuilder.append("ORDER BY ").append(sortBy).append(" ")
+        queryStringBuilder.append("ORDER BY ")
+            .append(ApplicationModel.PINNED_AT).append(" ")
+            .append(DESC).append(", ")
+            .append(sortBy).append(" ")
             .append(sortCaseSensitive).append(" ").append(sortOrder)
 
         return queryStringBuilder.toString()

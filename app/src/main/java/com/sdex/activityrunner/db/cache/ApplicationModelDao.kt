@@ -45,6 +45,13 @@ interface ApplicationModelDao {
         packageName: String,
     ): ApplicationModel?
 
+    @Query(
+        "UPDATE " + ApplicationModel.TABLE +
+            " SET " + ApplicationModel.PINNED_AT + " = :pinnedAt" +
+            " WHERE " + ApplicationModel.PACKAGE_NAME + " = :packageName",
+    )
+    suspend fun updatePinnedAt(packageName: String, pinnedAt: Long): Int
+
     @Query("SELECT COUNT(*) FROM " + ApplicationModel.TABLE)
     suspend fun count(): Int
 

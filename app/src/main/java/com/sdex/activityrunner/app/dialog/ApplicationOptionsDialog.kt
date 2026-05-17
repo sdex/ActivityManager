@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -20,8 +21,12 @@ import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.util.AppUtils
 import com.sdex.activityrunner.util.IntentUtils
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ApplicationOptionsDialog : BottomSheetDialogFragment() {
+
+    private val viewModel by viewModels<ApplicationOptionsViewModel>()
 
     private var _binding: DialogApplicationMenuBinding? = null
     private val binding get() = _binding!!
@@ -78,6 +83,24 @@ class ApplicationOptionsDialog : BottomSheetDialogFragment() {
         binding.actionOpenApp.isVisible = intent != null
         binding.actionOpenApp.setOnClickListener {
             IntentUtils.launchApplication(requireActivity(), packageName)
+            dismissAllowingStateLoss()
+        }
+        binding.actionPinAppText.setText(
+            if (model.pinnedAt == 0L) {
+                R.string.application_option_pin
+            } else {
+                R.string.application_option_unpin
+            },
+        )
+        binding.actionPinAppIcon.setImageResource(
+            if (model.pinnedAt == 0L) {
+                R.drawable.ic_push_pin_outlined_24
+            } else {
+                R.drawable.ic_push_pin_filled_24
+            },
+        )
+        binding.actionPinApp.setOnClickListener {
+            viewModel.togglePinned(model)
             dismissAllowingStateLoss()
         }
         binding.actionOpenAppManifest.setOnClickListener {

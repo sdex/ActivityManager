@@ -47,6 +47,7 @@ class ApplicationsLoader(
     }
 
     suspend fun sync() {
+        Timber.d("Sync")
         val targetPackages = getTargetPackages()
         val newList = getApplicationsList(targetPackages)
         val oldList = cacheRepository.getApplications(targetPackages)
@@ -55,7 +56,11 @@ class ApplicationsLoader(
         val newMap = newList.associateBy { it.packageName }
 
         val listToDelete = oldList.filterNot { newMap.containsKey(it.packageName) }
-        val listToSave = newList.filter { newApp ->
+        // preserve pinned state
+        val listToSave = newList.map { newApp ->
+            val oldApp = oldMap[newApp.packageName]
+            newApp.copy(pinnedAt = oldApp?.pinnedAt ?: 0)
+        }.filter { newApp ->
             val oldApp = oldMap[newApp.packageName]
             // save if it's not in the database OR if the metadata differs
             oldApp == null || oldApp != newApp

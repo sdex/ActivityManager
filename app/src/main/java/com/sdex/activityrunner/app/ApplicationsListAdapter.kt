@@ -100,6 +100,7 @@ class ApplicationsListAdapter(
         ) {
             binding.name.text = item.name
             binding.packageName.text = item.packageName
+            binding.pinnedIcon.isVisible = item.pinnedAt != 0L
             val showSystemLabel = item.system && showSystemAppIndicator
             val showDisabledLabel = !item.enabled && showDisabledAppIndicator
             binding.info.isVisible = showDisabledLabel || showSystemLabel

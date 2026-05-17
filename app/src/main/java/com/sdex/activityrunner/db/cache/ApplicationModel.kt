@@ -2,6 +2,7 @@ package com.sdex.activityrunner.db.cache
 
 import android.content.Context
 import android.content.pm.PackageInfo
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.sdex.activityrunner.util.PackageInfoProvider
@@ -20,6 +21,8 @@ data class ApplicationModel(
     val updateTime: Long,
     val installTime: Long,
     val installerPackage: String? = null,
+    @ColumnInfo(defaultValue = "0")
+    val pinnedAt: Long = 0,
 ) : Serializable {
 
     fun getPackageInfo(context: Context): PackageInfo {
@@ -40,5 +43,6 @@ data class ApplicationModel(
         const val UPDATE_TIME = "updateTime"
         const val INSTALL_TIME = "installTime"
         const val INSTALLER_PACKAGE = "installerPackage"
+        const val PINNED_AT = "pinnedAt"
     }
 }

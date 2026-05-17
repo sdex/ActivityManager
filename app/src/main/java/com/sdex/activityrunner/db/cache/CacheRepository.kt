@@ -26,5 +26,8 @@ class CacheRepository @Inject constructor(
 
     suspend fun getApplication(packageName: String) = applicationModelDao.getApplicationModel(packageName)
 
+    suspend fun updatePinnedAt(packageName: String, pinnedAt: Long) =
+        applicationModelDao.updatePinnedAt(packageName, pinnedAt)
+
     suspend fun count() = applicationModelDao.count()
 }

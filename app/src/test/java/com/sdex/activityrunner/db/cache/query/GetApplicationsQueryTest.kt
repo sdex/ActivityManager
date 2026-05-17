@@ -18,7 +18,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig)
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -33,7 +33,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig)
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -48,7 +48,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig)
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (system=0) ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (system=0) ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -63,7 +63,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig)
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) AND (system=0) ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) AND (system=0) ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -78,7 +78,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig, "test")
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -93,7 +93,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig, "test")
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -108,7 +108,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig, "test")
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (system=0) AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (system=0) AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -123,7 +123,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig, "test")
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) AND (system=0) AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (enabled=1) AND (system=0) AND (name LIKE '%test%' OR packageName LIKE '%test%') ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -138,7 +138,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig)
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 ORDER BY packageName COLLATE NOCASE DESC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 ORDER BY pinnedAt DESC, packageName COLLATE NOCASE DESC"
         assertEquals(expected, query.toString().trim())
     }
 
@@ -153,7 +153,7 @@ class GetApplicationsQueryTest {
 
         val query = GetApplicationsQuery(displayConfig, "test's")
         val expected =
-            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (name LIKE '%test''s%' OR packageName LIKE '%test''s%') ORDER BY name COLLATE NOCASE ASC"
+            "SELECT * FROM ApplicationModel WHERE activitiesCount>0 AND (name LIKE '%test''s%' OR packageName LIKE '%test''s%') ORDER BY pinnedAt DESC, name COLLATE NOCASE ASC"
         assertEquals(expected, query.toString().trim())
     }
 }

@@ -99,6 +99,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/action_pin_app"
+            style="@style/BottomDialogItemStyle">
+
+            <ImageView
+                android:id="@+id/action_pin_app_icon"
+                style="@style/BottomDialogItemIconStyle"
+                app:srcCompat="@drawable/ic_push_pin_outlined_24" />
+
+            <TextView
+                android:id="@+id/action_pin_app_text"
+                style="@style/BottomDialogTextStyle"
+                android:text="@string/application_option_pin" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/action_open_app_manifest"
             style="@style/BottomDialogItemStyle">
 
