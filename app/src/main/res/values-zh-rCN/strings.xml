@@ -23,7 +23,7 @@
     <string name="shortcut_icon_preset">选择图标</string>
     <string name="shortcut_invert_icon_colors">反转图标颜色</string>
     <string name="shortcut_options">设置</string>
-    <string name="create_shortcut_non_exported_warning">这不是一个导出的活动，启动它需要root权限</string>
+    <string name="create_shortcut_non_exported_warning">Launching this activity requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
     <string name="starting_activity_failed">启动 Activity 失败：%s</string>
