@@ -35,7 +35,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:divider="@drawable/divider"
+                        android:dividerPadding="16dp"
+                        android:orientation="vertical"
+                        android:showDividers="middle">
 
                         <LinearLayout
                             android:id="@+id/container_package_name"
@@ -64,12 +67,6 @@
                                 tools:text="com.activitymanager" />
 
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="?colorOnSecondaryContainer" />
 
                         <LinearLayout
                             android:id="@+id/container_class_name"
@@ -165,7 +162,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:divider="@drawable/divider"
+                        android:dividerPadding="16dp"
+                        android:orientation="vertical"
+                        android:showDividers="middle">
 
                         <LinearLayout
                             android:id="@+id/container_data"
@@ -195,12 +195,6 @@
                                 tools:text="122" />
 
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="?colorOnSecondaryContainer" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/container_mime_type"

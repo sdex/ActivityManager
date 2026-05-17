@@ -41,7 +41,7 @@ class LaunchParamsToIntentConverter(
         }
         // data and mime type
         if (!launchParams.data.isNullOrEmpty()) {
-            val data = launchParams.data?.toUri()
+            val data = launchParams.data.toUri()
             val type = if (launchParams.mimeType.isNullOrEmpty()) {
                 null
             } else {

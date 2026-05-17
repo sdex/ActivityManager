@@ -46,7 +46,7 @@ class ActivitiesListAdapter(
             glide,
             exportedColor,
             notExportedColor,
-            itemClickListener
+            itemClickListener,
         )
     }
 
@@ -62,7 +62,7 @@ class ActivitiesListAdapter(
     }
 
     class ViewHolder(
-        private val binding: ItemActivityBinding
+        private val binding: ItemActivityBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
@@ -101,14 +101,14 @@ class ActivitiesListAdapter(
 
             override fun areItemsTheSame(
                 oldItem: ActivityModel,
-                newItem: ActivityModel
+                newItem: ActivityModel,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: ActivityModel,
-                newItem: ActivityModel
+                newItem: ActivityModel,
             ): Boolean {
                 return oldItem == newItem
             }

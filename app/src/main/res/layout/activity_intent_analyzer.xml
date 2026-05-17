@@ -67,8 +67,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:divider="@drawable/divider"
                         android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/analyzer_item_padding_horizontal">
+                        android:paddingHorizontal="@dimen/analyzer_item_padding_horizontal"
+                        android:showDividers="middle">
 
                         <LinearLayout
                             android:id="@+id/linearLayout3"
@@ -92,11 +94,6 @@
                                 tools:text="122" />
 
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="?colorOnSecondaryContainer" />
 
                         <LinearLayout
                             android:id="@+id/linearLayout4"
