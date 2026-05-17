@@ -23,7 +23,7 @@
     <string name="shortcut_icon_preset">아이콘 모음에서 선택</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
     <string name="shortcut_options">Options</string>
-    <string name="create_shortcut_non_exported_warning">This is not an exported activity, launching it requires root permission</string>
+    <string name="create_shortcut_non_exported_warning">Launching this activity requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">액티비티를 시작하는 중: %s</string>
     <string name="starting_activity_failed">%s 액티비티를 시작하는데 실패했습니다</string>
