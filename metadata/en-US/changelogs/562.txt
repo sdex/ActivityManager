@@ -1,0 +1,2 @@
+- improve handling activities with a custom permission
+- add an option to set using root to launch an activity from a shortcut

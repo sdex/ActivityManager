@@ -1,3 +1,10 @@
+## 5.4.22 (17 May 2026)
+- improve handling activities with a custom permission
+- add an option to set using root to launch an activity from a shortcut
+
+## 5.4.21 (13 Mar 2026)
+- no changes
+
 ## 5.4.20 (2 Mar 2026)
 - improve parsing disabled apps
 
