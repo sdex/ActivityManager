@@ -76,6 +76,9 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
         val historyModel = intent?.serializable<HistoryModel>(ARG_HISTORY_MODEL)
 
+        // launch with root is available only for external activities
+        binding.launchWithRoot.isVisible = (activityModel != null)
+
         addMenuProvider(
             AddShortcutMenuProvider(
                 activityModel = activityModel,
@@ -113,7 +116,9 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
 
             binding.activityInfo.isVisible = true
             binding.className.text = activityModel.componentName.className
-            binding.rootWarning.isVisible = !activityModel.exported
+
+            binding.rootWarning.isVisible = activityModel.launchRequiresRoot
+            binding.launchWithRoot.isChecked = activityModel.launchRequiresRoot
 
             binding.label.doOnTextChanged { _, _, _, count ->
                 binding.valueLayout.endIconMode = if (count == 0) {
@@ -162,8 +167,10 @@ class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
 
         val shortcutBitmap = bitmap
 
-        val intent = activityModel?.makeShortcutIntent(context = this)
-            ?: historyModel?.makeShortcutIntent()
+        val intent = activityModel?.makeShortcutIntent(
+            context = this,
+            useRoot = binding.launchWithRoot.isChecked,
+        ) ?: historyModel?.makeShortcutIntent()
 
         intent?.let {
             createShortcut(

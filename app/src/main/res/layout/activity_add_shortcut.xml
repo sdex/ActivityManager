@@ -155,7 +155,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:divider="@drawable/divider"
+                    android:dividerPadding="16dp"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
 
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/invertIconColors"
@@ -164,6 +167,14 @@
                         android:layout_marginHorizontal="10dp"
                         android:checked="false"
                         android:text="@string/shortcut_invert_icon_colors" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/launchWithRoot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:checked="false"
+                        android:text="@string/activity_option_launch_root" />
 
                 </LinearLayout>
 
