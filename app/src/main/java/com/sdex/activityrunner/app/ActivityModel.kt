@@ -10,10 +10,17 @@ data class ActivityModel(
     val label: String?,
     val exported: Boolean,
     val enabled: Boolean,
+    val permission: String?,
 ) : Serializable {
 
     val componentName: ComponentName
         get() = ComponentName(packageName, className)
+
+    val hasPermission: Boolean
+        get() = (permission != null)
+
+    val launchRequiresRoot: Boolean
+        get() = !exported || hasPermission
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

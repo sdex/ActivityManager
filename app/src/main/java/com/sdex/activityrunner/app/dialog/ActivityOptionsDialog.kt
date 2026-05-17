@@ -45,6 +45,10 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
         val model = requireArguments().serializable<ActivityModel>(ARG_MODEL)!!
 
         binding.activityName.text = model.name
+        binding.permission.text = model.permission
+
+        binding.activityInfo.isVisible = model.hasPermission
+
         binding.actionActivityAddShortcut.setOnClickListener {
             CreateShortcutActivity.start(requireContext(), model)
             dismissAllowingStateLoss()

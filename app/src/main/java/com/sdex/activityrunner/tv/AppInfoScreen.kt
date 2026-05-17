@@ -55,7 +55,7 @@ private fun AppInfoContent(
             val item = uiState.activities[index]
             ListItem(
                 selected = false,
-                enabled = item.exported,
+                enabled = !item.launchRequiresRoot,
                 onClick = { onItemClick(item) },
                 headlineContent = { Text(text = item.name) },
                 supportingContent = { Text(text = item.packageName) },
@@ -89,6 +89,7 @@ private fun AppInfoContentPreview() {
             label = "Main",
             exported = true,
             enabled = true,
+            permission = null,
         ),
         ActivityModel(
             name = "SettingsActivity",
@@ -97,6 +98,7 @@ private fun AppInfoContentPreview() {
             label = "Settings",
             exported = true,
             enabled = true,
+            permission = null,
         ),
         ActivityModel(
             name = "AboutActivity",
@@ -105,6 +107,7 @@ private fun AppInfoContentPreview() {
             label = "About",
             exported = true,
             enabled = true,
+            permission = "permission",
         ),
         ActivityModel(
             name = "DebugActivity",
@@ -113,6 +116,7 @@ private fun AppInfoContentPreview() {
             label = "Debug",
             exported = false,
             enabled = false,
+            permission = null,
         ),
         ActivityModel(
             name = "TestActivity",
@@ -121,6 +125,7 @@ private fun AppInfoContentPreview() {
             label = "Test",
             exported = false,
             enabled = true,
+            permission = null,
         ),
     )
 

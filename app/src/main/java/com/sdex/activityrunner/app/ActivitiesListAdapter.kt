@@ -74,7 +74,7 @@ class ActivitiesListAdapter(
             itemClickListener: ItemClickListener?,
         ) {
             binding.name.text = item.name
-            binding.name.setTextColor(if (item.exported) exportedColor else notExportedColor)
+            binding.name.setTextColor(if (item.launchRequiresRoot) notExportedColor else exportedColor)
             binding.packageName.text = item.componentName.shortClassName
             binding.label.text = item.label
             binding.label.isVisible = !item.label.isNullOrBlank() &&

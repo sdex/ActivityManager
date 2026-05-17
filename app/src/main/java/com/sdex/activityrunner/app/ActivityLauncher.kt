@@ -29,7 +29,7 @@ fun Context.launchActivity(
             context = this,
             model = model,
         )
-    } else if (!model.exported || useRoot) {
+    } else if (model.launchRequiresRoot || useRoot) {
         launchActivityWithRoot(
             context = this,
             componentName = model.componentName,

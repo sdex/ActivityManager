@@ -171,12 +171,13 @@ class PackageInfoProvider(
     private fun isAndroidT() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
 
     private fun ActivityInfo.toActivityModel() = ActivityModel(
-        name.split(".").last(),
-        packageName,
-        name,
-        loadLabel(packageManager).toString(),
-        exported,
-        enabled,
+        name = name.split(".").last(),
+        packageName = packageName,
+        className = name,
+        label = loadLabel(packageManager).toString(),
+        exported = exported,
+        enabled = enabled,
+        permission = permission?.ifEmpty { null },
     )
 
     private fun getInstallerPackage(packageName: String): String? = try {
