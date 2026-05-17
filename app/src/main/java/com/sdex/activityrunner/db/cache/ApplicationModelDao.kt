@@ -34,6 +34,9 @@ interface ApplicationModelDao {
     @Query("SELECT * FROM " + ApplicationModel.TABLE)
     suspend fun getApplicationModels(): List<ApplicationModel>
 
+    @Query("SELECT " + ApplicationModel.PACKAGE_NAME + " FROM " + ApplicationModel.TABLE)
+    suspend fun getApplicationPackageNames(): List<String>
+
     @Query(
         "SELECT * FROM " + ApplicationModel.TABLE +
             " WHERE " + ApplicationModel.PACKAGE_NAME + " = :packageName",

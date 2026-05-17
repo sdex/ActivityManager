@@ -18,6 +18,8 @@ class CacheRepository @Inject constructor(
             applicationModelDao.getApplicationModels(packages)
         }
 
+    suspend fun getApplicationPackageNames() = applicationModelDao.getApplicationPackageNames()
+
     suspend fun upsert(models: List<ApplicationModel>) = applicationModelDao.upsert(models)
 
     suspend fun delete(models: List<ApplicationModel>) = applicationModelDao.delete(models)

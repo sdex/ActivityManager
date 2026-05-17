@@ -18,18 +18,22 @@ class ApplicationsLoader(
 
     val isQuickSyncSupported: Boolean = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 
-    fun shouldSync(): Boolean {
+    suspend fun shouldSync(): Boolean {
         val syncReason = if (isQuickSyncSupported) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
             val currentBootCount = getCurrentBootCount(context)
-            if (currentBootCount != lastBootCount) {
+            if (lastSequenceNumber == -1) {
+                "Initial sync"
+            } else if (currentBootCount != lastBootCount) {
                 "Boot count changed: $lastBootCount -> $currentBootCount"
             } else {
                 val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
                 if (changedPackages != null) {
                     "Sequence number changed: $lastSequenceNumber -> ${changedPackages.sequenceNumber}, \n" +
                         "Changed packages: ${changedPackages.packageNames.joinToString()}"
+                } else if (hasStaleCachedApplications()) {
+                    "Cache contains applications that are no longer installed"
                 } else {
                     null
                 }
@@ -87,16 +91,24 @@ class ApplicationsLoader(
             .mapNotNull { packageInfoProvider.getApplication(it) }
     }
 
+    private suspend fun hasStaleCachedApplications(): Boolean {
+        val installedPackages = packageInfoProvider.getInstalledPackages().toSet()
+        return cacheRepository.getApplicationPackageNames()
+            .any { it !in installedPackages }
+    }
+
     private fun updateLastSyncState() {
         if (isQuickSyncSupported) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
             val currentBootCount = getCurrentBootCount(context)
-            if (currentBootCount != lastBootCount) {
+            if (lastSequenceNumber == -1 || currentBootCount != lastBootCount) {
                 // Sequence numbers reset to 0 whenever the device reboots.
                 preferences.lastBootCount = currentBootCount
-                preferences.lastSequenceNumber = 0
-                Timber.d("Update boot count: $currentBootCount -> $currentBootCount")
+                val currentSequenceNumber = packageInfoProvider.getChangedPackages(0)
+                    ?.sequenceNumber ?: 0
+                preferences.lastSequenceNumber = currentSequenceNumber
+                Timber.d("Update sync state: bootCount=$currentBootCount, sequence=$currentSequenceNumber")
             } else {
                 val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
                 if (changedPackages != null) {
@@ -109,12 +121,10 @@ class ApplicationsLoader(
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun getCurrentBootCount(context: Context): Int {
-        val currentBootCount = Settings.Global.getInt(
+    private fun getCurrentBootCount(context: Context): Int =
+        Settings.Global.getInt(
             context.contentResolver,
             Settings.Global.BOOT_COUNT,
             0,
         )
-        return currentBootCount
-    }
 }
