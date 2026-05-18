@@ -1,11 +1,8 @@
 package com.sdex.activityrunner.db.cache
 
-import android.content.Context
-import android.content.pm.PackageInfo
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.sdex.activityrunner.util.PackageInfoProvider
 import java.io.Serializable
 
 @Entity(tableName = ApplicationModel.TABLE)
@@ -24,10 +21,6 @@ data class ApplicationModel(
     @ColumnInfo(defaultValue = "0")
     val pinnedAt: Long = 0,
 ) : Serializable {
-
-    fun getPackageInfo(context: Context): PackageInfo {
-        return PackageInfoProvider(context).getPackageInfo(packageName)
-    }
 
     companion object {
 

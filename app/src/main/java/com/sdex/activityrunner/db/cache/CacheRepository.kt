@@ -2,32 +2,14 @@ package com.sdex.activityrunner.db.cache
 
 import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class CacheRepository @Inject constructor(
-    private val applicationModelDao: ApplicationModelDao,
-) {
-
-    fun getApplications(query: SupportSQLiteQuery): Flow<List<ApplicationModel>> =
-        applicationModelDao.getApplicationModels(query)
-
-    suspend fun getApplications(packages: Set<String>?) =
-        if (packages.isNullOrEmpty()) {
-            applicationModelDao.getApplicationModels()
-        } else {
-            applicationModelDao.getApplicationModels(packages)
-        }
-
-    suspend fun getApplicationPackageNames() = applicationModelDao.getApplicationPackageNames()
-
-    suspend fun upsert(models: List<ApplicationModel>) = applicationModelDao.upsert(models)
-
-    suspend fun delete(models: List<ApplicationModel>) = applicationModelDao.delete(models)
-
-    suspend fun getApplication(packageName: String) = applicationModelDao.getApplicationModel(packageName)
-
-    suspend fun updatePinnedAt(packageName: String, pinnedAt: Long) =
-        applicationModelDao.updatePinnedAt(packageName, pinnedAt)
-
-    suspend fun count() = applicationModelDao.count()
+interface CacheRepository {
+    fun getApplications(query: SupportSQLiteQuery): Flow<List<ApplicationModel>>
+    suspend fun getApplications(packages: Set<String>?): List<ApplicationModel>
+    suspend fun getApplicationPackageNames(): List<String>
+    suspend fun upsert(models: List<ApplicationModel>)
+    suspend fun delete(models: List<ApplicationModel>): Int
+    suspend fun getApplication(packageName: String): ApplicationModel?
+    suspend fun updatePinnedAt(packageName: String, pinnedAt: Long): Int
+    suspend fun count(): Int
 }

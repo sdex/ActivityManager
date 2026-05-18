@@ -5,7 +5,7 @@ import android.content.Context
 import android.widget.Toast
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.intent.IntentBuilderActivity
-import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.preferences.AppPreferencesImpl
 import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.RootUtils
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -67,7 +67,8 @@ private fun launchActivityWithRoot(
     context: Context,
     componentName: ComponentName,
 ) {
-    val appPreferences = AppPreferences(context)
+    // TODO inject AppPreferences
+    val appPreferences = AppPreferencesImpl(context)
     val suExecutable = appPreferences.suExecutable
     GlobalScope.launch(Dispatchers.IO) {
         when (launchActivityUsingRoot(suExecutable, componentName)) {

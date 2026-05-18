@@ -1,7 +1,10 @@
 package com.sdex.activityrunner.di
 
 import android.content.Context
+import com.sdex.activityrunner.db.cache.ApplicationModelDao
 import com.sdex.activityrunner.db.cache.CacheDatabase
+import com.sdex.activityrunner.db.cache.CacheRepository
+import com.sdex.activityrunner.db.cache.CacheRepositoryImpl
 import com.sdex.activityrunner.db.history.HistoryDatabase
 import dagger.Module
 import dagger.Provides
@@ -17,16 +20,21 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideCacheDatabase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ) = CacheDatabase.getDatabase(context)
 
     @Provides
     fun provideApplicationDao(database: CacheDatabase) = database.applicationDao
 
     @Provides
+    fun provideCacheRepository(
+        applicationDao: ApplicationModelDao,
+    ): CacheRepository = CacheRepositoryImpl(applicationDao)
+
+    @Provides
     @Singleton
     fun provideHistoryDatabase(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ) = HistoryDatabase.getDatabase(context)
 
     @Provides

@@ -1,28 +1,25 @@
 package com.sdex.activityrunner.util
 
-import android.content.Context
-import android.os.Build
-import android.provider.Settings
-import androidx.annotation.RequiresApi
+import com.sdex.activityrunner.commons.platform.EnvironmentInfoProvider
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
 import com.sdex.activityrunner.preferences.AppPreferences
 import timber.log.Timber
 
 class ApplicationsLoader(
-    private val context: Context,
     private val cacheRepository: CacheRepository,
     private val packageInfoProvider: PackageInfoProvider,
     private val preferences: AppPreferences,
+    private val environmentInfoProvider: EnvironmentInfoProvider,
 ) {
 
-    val isQuickSyncSupported: Boolean = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+    val isQuickSyncSupported: Boolean = environmentInfoProvider.isQuickSyncSupported
 
     suspend fun shouldSync(): Boolean {
         val syncReason = if (isQuickSyncSupported) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
-            val currentBootCount = getCurrentBootCount(context)
+            val currentBootCount = environmentInfoProvider.bootCount
             if (lastSequenceNumber == -1) {
                 "Initial sync"
             } else if (currentBootCount != lastBootCount) {
@@ -106,7 +103,7 @@ class ApplicationsLoader(
         if (isQuickSyncSupported) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
-            val currentBootCount = getCurrentBootCount(context)
+            val currentBootCount = environmentInfoProvider.bootCount
             if (lastSequenceNumber == -1 || currentBootCount != lastBootCount) {
                 // Sequence numbers reset to 0 whenever the device reboots.
                 preferences.lastBootCount = currentBootCount
@@ -124,12 +121,4 @@ class ApplicationsLoader(
             }
         }
     }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun getCurrentBootCount(context: Context): Int =
-        Settings.Global.getInt(
-            context.contentResolver,
-            Settings.Global.BOOT_COUNT,
-            0,
-        )
 }

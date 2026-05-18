@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -77,7 +76,9 @@ fun StartScreen(
                         model = if (LocalInspectionMode.current) {
                             R.drawable.ic_app_market
                         } else {
-                            item.getPackageInfo(LocalContext.current)
+                            //item.getPackageInfo(LocalContext.current)
+                            // TODO load the app icon
+                            R.drawable.ic_app_market
                         },
                         contentDescription = item.name,
                         modifier = Modifier.size(dimensionResource(R.dimen.app_icon_size_tv)),
