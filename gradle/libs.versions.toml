@@ -35,6 +35,7 @@ browserfip = "1.0.5"
 datastore = "1.2.1"
 junit = "4.13.2"
 mockk = "1.14.9"
+truth = "1.4.5"
 androidx-test = "1.7.0"
 espresso = "3.7.0"
 
@@ -64,10 +65,12 @@ iconpack-community-material = { module = "com.maltaisn:iconpack-community-materi
 recyclerview-fastscroll = { module = "com.simplecityapps:recyclerview-fastscroll", version.ref = "recyclerview-fastscroll" }
 apk-parser = { module = "net.dongliu:apk-parser", version.ref = "apk-parser" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-android" }
 browserfip = { module = "com.github.Y-E-P:BrowserFiP", version.ref = "browserfip" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }

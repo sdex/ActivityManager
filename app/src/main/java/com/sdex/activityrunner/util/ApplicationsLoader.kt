@@ -16,18 +16,18 @@ class ApplicationsLoader(
     val isQuickSyncSupported: Boolean = environmentInfoProvider.isQuickSyncSupported
 
     suspend fun shouldSync(): Boolean {
-        val syncReason = if (isQuickSyncSupported) {
+        val syncTrigger = if (isQuickSyncSupported) {
             val lastSequenceNumber = preferences.lastSequenceNumber
             val lastBootCount = preferences.lastBootCount
             val currentBootCount = environmentInfoProvider.bootCount
             if (lastSequenceNumber == -1) {
                 "Initial sync"
             } else if (currentBootCount != lastBootCount) {
-                "Boot count changed: $lastBootCount -> $currentBootCount"
+                "Boot count changed: $lastBootCount->$currentBootCount"
             } else {
                 val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
                 if (changedPackages != null) {
-                    "Sequence number changed: $lastSequenceNumber -> ${changedPackages.sequenceNumber}, \n" +
+                    "Sequence number changed: $lastSequenceNumber->${changedPackages.sequenceNumber}, \n" +
                         "Changed packages: ${changedPackages.packageNames.joinToString()}"
                 } else if (hasStaleCachedApplications()) {
                     "Cache contains applications that are no longer installed"
@@ -37,15 +37,17 @@ class ApplicationsLoader(
             }
         } else {
             // always perform a full sync on API below 26
-            "Quick sync is not supported"
+            "Initial sync, quick sync is not supported"
         }
-        Timber.d("Sync reason: $syncReason")
-        return (syncReason != null)
+        Timber.d("Sync trigger: $syncTrigger")
+        return (syncTrigger != null)
     }
 
     suspend fun sync() {
-        Timber.d("Sync")
-        val targetPackages = getTargetPackages()
+        val syncPlan = getSyncPlan()
+        Timber.d("Sync: $syncPlan")
+
+        val targetPackages = syncPlan.targetPackages
         val newList = getApplicationsList(targetPackages)
         val oldList = cacheRepository.getApplications(targetPackages)
 
@@ -73,17 +75,40 @@ class ApplicationsLoader(
             Timber.d("Saved (Insert/Update) ${listToSave.size} apps")
         }
 
-        updateLastSyncState()
+        updateLastSyncState(syncPlan.syncState)
     }
 
-    private fun getTargetPackages(): Set<String>? =
-        if (isQuickSyncSupported && preferences.lastSequenceNumber != -1) {
-            packageInfoProvider.getChangedPackages(
-                preferences.lastSequenceNumber,
-            )?.packageNames?.toSet()
-        } else {
-            null
+    private fun getSyncPlan(): SyncPlan {
+        if (!isQuickSyncSupported) {
+            return SyncPlan(targetPackages = null, syncState = null)
         }
+
+        val lastSequenceNumber = preferences.lastSequenceNumber
+        val currentBootCount = environmentInfoProvider.bootCount
+        if (lastSequenceNumber == -1 || currentBootCount != preferences.lastBootCount) {
+            // Sequence numbers reset to 0 whenever the device reboots.
+            val currentSequenceNumber = packageInfoProvider.getChangedPackages(0)
+                ?.sequenceNumber ?: 0
+            return SyncPlan(
+                targetPackages = null,
+                syncState = SyncState(
+                    bootCount = currentBootCount,
+                    sequenceNumber = currentSequenceNumber,
+                ),
+            )
+        }
+
+        val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
+        return SyncPlan(
+            targetPackages = changedPackages?.packageNames?.toSet(),
+            syncState = changedPackages?.let {
+                SyncState(
+                    bootCount = currentBootCount,
+                    sequenceNumber = it.sequenceNumber,
+                )
+            },
+        )
+    }
 
     private fun getApplicationsList(
         packages: Set<String>?,
@@ -99,26 +124,26 @@ class ApplicationsLoader(
             .any { it !in installedPackages }
     }
 
-    private fun updateLastSyncState() {
-        if (isQuickSyncSupported) {
-            val lastSequenceNumber = preferences.lastSequenceNumber
-            val lastBootCount = preferences.lastBootCount
-            val currentBootCount = environmentInfoProvider.bootCount
-            if (lastSequenceNumber == -1 || currentBootCount != lastBootCount) {
-                // Sequence numbers reset to 0 whenever the device reboots.
-                preferences.lastBootCount = currentBootCount
-                val currentSequenceNumber = packageInfoProvider.getChangedPackages(0)
-                    ?.sequenceNumber ?: 0
-                preferences.lastSequenceNumber = currentSequenceNumber
-                Timber.d("Update sync state: bootCount=$currentBootCount, sequence=$currentSequenceNumber")
-            } else {
-                val changedPackages = packageInfoProvider.getChangedPackages(lastSequenceNumber)
-                if (changedPackages != null) {
-                    val currentSequenceNumber = changedPackages.sequenceNumber
-                    preferences.lastSequenceNumber = currentSequenceNumber
-                    Timber.d("Update sequence number: $currentSequenceNumber -> $currentSequenceNumber")
-                }
-            }
+    private fun updateLastSyncState(syncState: SyncState?) {
+        if (syncState != null) {
+            val previousBootCount = preferences.lastBootCount
+            val previousSequenceNumber = preferences.lastSequenceNumber
+            preferences.lastBootCount = syncState.bootCount
+            preferences.lastSequenceNumber = syncState.sequenceNumber
+            Timber.d(
+                "Update sync state: bootCount=$previousBootCount->${syncState.bootCount}, " +
+                    "sequence=$previousSequenceNumber->${syncState.sequenceNumber}",
+            )
         }
     }
+
+    private data class SyncPlan(
+        val targetPackages: Set<String>?,
+        val syncState: SyncState?,
+    )
+
+    private data class SyncState(
+        val bootCount: Int,
+        val sequenceNumber: Int,
+    )
 }
