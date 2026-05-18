@@ -11,6 +11,7 @@ import com.sdex.activityrunner.util.ApplicationsLoader
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -42,6 +43,7 @@ class MainViewModel @Inject constructor(
 
     private val _isSyncing = MutableStateFlow(false)
     val isSyncing: StateFlow<Boolean> = _isSyncing
+    private var syncJob: Job? = null
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<UiState> = combine(
@@ -78,18 +80,26 @@ class MainViewModel @Inject constructor(
     }
 
     private fun sync() {
-        coroutineScope.launch {
-            val shouldSync = applicationsLoader.shouldSync()
-            if (shouldSync) {
-                if (cacheRepository.count() > 0) {
-                    // set isSyncing to true only if there are applications in the database
-                    // the app shouldn't show this progress during the initial sync
-                    _isSyncing.update { true }
+        if (syncJob?.isActive == true) {
+            Timber.d("Sync is already running")
+            return
+        }
+
+        syncJob = coroutineScope.launch {
+            try {
+                val shouldSync = applicationsLoader.shouldSync()
+                if (shouldSync) {
+                    if (cacheRepository.count() > 0) {
+                        // set isSyncing to true only if there are applications in the database
+                        // the app shouldn't show this progress during the initial sync
+                        _isSyncing.update { true }
+                    }
+
+                    applicationsLoader.sync()
                 }
-
-                applicationsLoader.sync()
-
+            } finally {
                 _isSyncing.update { false }
+                syncJob = null
             }
         }
     }
