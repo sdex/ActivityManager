@@ -3,11 +3,11 @@
     <string name="history_activity">Історія</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Запустити з параметрами</string>
-    <string name="activity_option_launch_root">Запустити з правами root</string>
+    <string name="activity_option_launch_root">Запуск активності з root</string>
     <string name="activity_option_create_shortcut">Створити ярлик</string>
     <!-- application options -->
-    <string name="application_option_open">Запустити додаток</string>
-    <string name="application_option_open_manifest">Відкрити маніфест</string>
+    <string name="application_option_open">Запустіть додаток</string>
+    <string name="application_option_open_manifest">Відкрити переглядач маніфесту</string>
     <string name="application_option_open_info">Відкрити інформацію</string>
     <string name="application_option_open_market">Відкрити в магазині додатків</string>
     <string name="application_disabled">Вимкнено</string>
@@ -23,7 +23,7 @@
     <string name="shortcut_icon_preset">Вибрати зі значків</string>
     <string name="shortcut_invert_icon_colors">Інвертувати кольори значків</string>
     <string name="shortcut_options">Опції</string>
-    <string name="create_shortcut_non_exported_warning">Launching this activity requires root permission</string>
+    <string name="create_shortcut_non_exported_warning">Запуск цієї активності потребує root дозволу</string>
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
     <string name="starting_activity_failed">Помилка запуску: %s</string>
