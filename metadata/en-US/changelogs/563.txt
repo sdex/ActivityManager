@@ -1,0 +1,2 @@
+- add option to pin applications to the top
+- fix inconsistencies and handle edge cases in applications loader

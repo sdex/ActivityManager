@@ -1,3 +1,0 @@
-- update shortcut activity to match the app's style
-- add more links to about screen
-- update translations

@@ -1,3 +1,0 @@
-- add an option to configure the 'su' binary name #98
-- fix bottom sheet dialogs expand/collapse states for landscape orientation
-- fix preferences components' color to match the theme

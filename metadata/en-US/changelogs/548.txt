@@ -1,8 +1,0 @@
-- avoid duplicates in a shortcut name suggestions
-- add filter bottom sheet drag handle
-- scroll the list to the top to display new items
-- scroll the activities list to the top when toggle non-exported activities visibility
-- hide the fast scroll popup when the list is sorted in non-alphabetical order
-- handle the case when an application versionName is null
-- add an option to create an application shortcut
-- update snackbar style

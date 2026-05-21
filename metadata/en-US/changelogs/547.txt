@@ -1,1 +1,0 @@
-- Add a new filter menu with sorting options

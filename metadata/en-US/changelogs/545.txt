@@ -1,1 +1,0 @@
-- Support per-app language preferences on Android 13+

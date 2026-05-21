@@ -1,3 +1,7 @@
+## 5.4.23 (21 May 2026)
+- add option to pin applications to the top
+- fix inconsistencies and handle edge cases in applications loader
+
 ## 5.4.22 (17 May 2026)
 - improve handling activities with a custom permission
 - add an option to set using root to launch an activity from a shortcut
