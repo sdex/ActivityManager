@@ -3,10 +3,13 @@
     <string name="history_activity">历史记录</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">使用参数启动 Activity</string>
-    <string name="activity_option_launch_root">使用 root 啟動活動</string>
+    <string name="activity_option_launch_root">使用 Root 启动 Activity</string>
     <string name="activity_option_create_shortcut">创建快捷方式</string>
     <!-- application options -->
     <string name="application_option_open">启动应用程序</string>
+    <string name="application_option_pin">置顶</string>
+    <string name="application_option_unpin">取消置顶</string>
+    <string name="application_pinned">已置顶</string>
     <string name="application_option_open_manifest">打开清单查看器</string>
     <string name="application_option_open_info">打开应用信息</string>
     <string name="application_option_open_market">在应用市场中打开</string>
@@ -16,14 +19,14 @@
     <string name="shortcut_name">标签</string>
     <string name="shortcut_name_empty">标签不能为空</string>
     <string name="shortcut_create">创建</string>
-    <string name="shortcut_change_icon">更改圖示</string>
-    <string name="shortcut_set_icon_tooltip">點擊以更改圖示</string>
-    <string name="icons_loading_error">載入圖示失敗</string>
-    <string name="shortcut_icon_gallery">從圖庫中選取</string>
+    <string name="shortcut_change_icon">更改图标</string>
+    <string name="shortcut_set_icon_tooltip">点击更改图标</string>
+    <string name="icons_loading_error">加载图标失败</string>
+    <string name="shortcut_icon_gallery">从图库中选取</string>
     <string name="shortcut_icon_preset">选择图标</string>
     <string name="shortcut_invert_icon_colors">反转图标颜色</string>
     <string name="shortcut_options">设置</string>
-    <string name="create_shortcut_non_exported_warning">Launching this activity requires root permission</string>
+    <string name="create_shortcut_non_exported_warning">启动此 Activity 需要 Root 权限</string>
     <!-- launching activity -->
     <string name="starting_activity">正在启动 Activity：%s</string>
     <string name="starting_activity_failed">启动 Activity 失败：%s</string>
