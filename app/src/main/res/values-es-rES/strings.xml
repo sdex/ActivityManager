@@ -7,6 +7,9 @@
     <string name="activity_option_create_shortcut">Crear acceso directo</string>
     <!-- application options -->
     <string name="application_option_open">Lanzar la aplicación</string>
+    <string name="application_option_pin">Pin to top</string>
+    <string name="application_option_unpin">Unpin from top</string>
+    <string name="application_pinned">Pinned</string>
     <string name="application_option_open_manifest">Abrir el visor del manifiesto</string>
     <string name="application_option_open_info">Abrir informacione la aplicación</string>
     <string name="application_option_open_market">Open in app market</string>
