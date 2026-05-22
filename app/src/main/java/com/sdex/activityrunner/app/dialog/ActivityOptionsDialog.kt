@@ -13,6 +13,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
+import com.sdex.activityrunner.extensions.copyToClipboardOnLongClick
 import com.sdex.activityrunner.extensions.createBottomSheetDialog
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.shortcut.CreateShortcutActivity
@@ -46,6 +47,7 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
 
         binding.activityName.text = model.name
         binding.permission.text = model.permission
+        binding.permission.copyToClipboardOnLongClick()
 
         binding.activityInfo.isVisible = model.hasPermission
 

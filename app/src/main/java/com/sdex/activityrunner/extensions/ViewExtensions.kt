@@ -1,9 +1,12 @@
 package com.sdex.activityrunner.extensions
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -60,5 +63,14 @@ fun Menu.setItemsVisibility(
         if (it != exception) {
             it.isVisible = visible
         }
+    }
+}
+
+fun TextView.copyToClipboardOnLongClick() {
+    setOnLongClickListener {
+        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("label", text)
+        clipboard.setPrimaryClip(clip)
+        false
     }
 }

@@ -25,6 +25,8 @@ class ActivitiesListAdapter(
     @ColorInt
     private val exportedColor = activity.resolveColorAttr(android.R.attr.textColorPrimary)
     @ColorInt
+    private val permissionColor = activity.resolveColorAttr(android.R.attr.textColorHint)
+    @ColorInt
     private val notExportedColor = ContextCompat.getColor(activity, R.color.md_theme_error)
 
     var application: ApplicationModel? = null
@@ -41,12 +43,13 @@ class ActivitiesListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-            application,
-            getItem(position),
-            glide,
-            exportedColor,
-            notExportedColor,
-            itemClickListener,
+            application = application,
+            item = getItem(position),
+            glide = glide,
+            exportedColor = exportedColor,
+            permissionColor = permissionColor,
+            notExportedColor = notExportedColor,
+            itemClickListener = itemClickListener,
         )
     }
 
@@ -70,11 +73,18 @@ class ActivitiesListAdapter(
             item: ActivityModel,
             glide: RequestManager,
             @ColorInt exportedColor: Int,
+            @ColorInt permissionColor: Int,
             @ColorInt notExportedColor: Int,
             itemClickListener: ItemClickListener?,
         ) {
             binding.name.text = item.name
-            binding.name.setTextColor(if (item.launchRequiresRoot) notExportedColor else exportedColor)
+            binding.name.setTextColor(
+                when {
+                    !item.exported -> notExportedColor
+                    item.hasPermission -> permissionColor
+                    else -> exportedColor
+                },
+            )
             binding.packageName.text = item.componentName.shortClassName
             binding.label.text = item.label
             binding.label.isVisible = !item.label.isNullOrBlank() &&
