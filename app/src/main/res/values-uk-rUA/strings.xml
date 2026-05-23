@@ -7,9 +7,9 @@
     <string name="activity_option_create_shortcut">Створити ярлик</string>
     <!-- application options -->
     <string name="application_option_open">Запустіть додаток</string>
-    <string name="application_option_pin">Pin to top</string>
-    <string name="application_option_unpin">Unpin from top</string>
-    <string name="application_pinned">Pinned</string>
+    <string name="application_option_pin">Закріпити зверху</string>
+    <string name="application_option_unpin">Відкріпити зверху</string>
+    <string name="application_pinned">Закріплено</string>
     <string name="application_option_open_manifest">Відкрити переглядач маніфесту</string>
     <string name="application_option_open_info">Відкрити інформацію про додаток</string>
     <string name="application_option_open_market">Відкрити в магазині додатків</string>
