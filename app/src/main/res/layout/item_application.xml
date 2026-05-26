@@ -91,10 +91,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/application_system"
                 android:textSize="12sp"
+                app:chipBackgroundColor="@android:color/transparent"
                 app:chipEndPadding="0dp"
                 app:chipMinTouchTargetSize="0dp"
                 app:chipStartPadding="0dp"
-                app:chipStrokeColor="@color/md_theme_error" />
+                app:chipStrokeColor="@color/md_theme_error"
+                app:chipSurfaceColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/disabled"
@@ -102,9 +104,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/application_disabled"
                 android:textSize="12sp"
+                app:chipBackgroundColor="@android:color/transparent"
                 app:chipEndPadding="0dp"
                 app:chipMinTouchTargetSize="0dp"
-                app:chipStartPadding="0dp" />
+                app:chipStartPadding="0dp"
+                app:chipSurfaceColor="@android:color/transparent" />
 
         </com.google.android.material.chip.ChipGroup>
 
