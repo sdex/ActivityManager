@@ -7,6 +7,7 @@ hilt = "2.58"
 appiconloader-coil = "1.5.0"
 coil-compose = "2.7.0"
 kotlinx-coroutines-android = "1.11.0"
+kotlinx-collections-immutable = "0.4.0"
 kotlinx-serialization-json = "1.11.0"
 activity = "1.13.0"
 appcompat = "1.7.1"
@@ -66,6 +67,7 @@ recyclerview-fastscroll = { module = "com.simplecityapps:recyclerview-fastscroll
 apk-parser = { module = "net.dongliu:apk-parser", version.ref = "apk-parser" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-android" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 browserfip = { module = "com.github.Y-E-P:BrowserFiP", version.ref = "browserfip" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 junit = { module = "junit:junit", version.ref = "junit" }

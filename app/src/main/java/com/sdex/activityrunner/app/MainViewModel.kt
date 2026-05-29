@@ -9,6 +9,9 @@ import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.DisplayConfig
 import com.sdex.activityrunner.util.ApplicationsLoader
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -25,7 +28,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 data class UiState(
-    val items: List<ApplicationModel>,
+    val items: ImmutableList<ApplicationModel>,
     val displayConfig: DisplayConfig,
     val isSyncing: Boolean = false,
 )
@@ -56,7 +59,7 @@ class MainViewModel @Inject constructor(
             cacheRepository.getApplications(query.sqLiteQuery)
                 .map { items ->
                     UiState(
-                        items = items,
+                        items = items.toPersistentList(),
                         displayConfig = displayConfig,
                     )
                 }
@@ -65,7 +68,7 @@ class MainViewModel @Inject constructor(
             viewModelScope,
             SharingStarted.WhileSubscribed(5_000),
             UiState(
-                items = emptyList(),
+                items = persistentListOf(),
                 displayConfig = DisplayConfig(),
             ),
         )
