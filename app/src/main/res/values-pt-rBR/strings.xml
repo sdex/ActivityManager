@@ -6,27 +6,27 @@
     <string name="activity_option_launch_root">Iniciar atividade com root</string>
     <string name="activity_option_create_shortcut">Criar atalho</string>
     <!-- application options -->
-    <string name="application_option_open">Iniciar a “app”</string>
+    <string name="application_option_open">Iniciar aplicativo</string>
     <string name="application_option_pin">Fixar no topo</string>
-    <string name="application_option_unpin">Unpin from top</string>
-    <string name="application_pinned">Pinned</string>
+    <string name="application_option_unpin">Desafixar</string>
+    <string name="application_pinned">Fixado</string>
     <string name="application_option_open_manifest">Abrir visualizador de manifesto</string>
     <string name="application_option_open_info">Abrir informações do app</string>
-    <string name="application_option_open_market">Open in app market</string>
+    <string name="application_option_open_market">Abrir na loja dos apps</string>
     <string name="application_disabled">Desativado</string>
     <string name="application_system">Sistema</string>
     <!-- create shortcut -->
     <string name="shortcut_name">Descrição</string>
     <string name="shortcut_name_empty">O campo não pode estar vazio</string>
     <string name="shortcut_create">Criar</string>
-    <string name="shortcut_change_icon">Change icon</string>
+    <string name="shortcut_change_icon">Mudar ícone</string>
     <string name="shortcut_set_icon_tooltip">Toque para modificar o ícone</string>
     <string name="icons_loading_error">Falha ao carregar ícones</string>
     <string name="shortcut_icon_gallery">Escolha da galeria</string>
     <string name="shortcut_icon_preset">Selecione dos ícones</string>
-    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
-    <string name="shortcut_options">Options</string>
-    <string name="create_shortcut_non_exported_warning">Launching this activity requires root permission</string>
+    <string name="shortcut_invert_icon_colors">Inverter cor do ícone</string>
+    <string name="shortcut_options">Opções</string>
+    <string name="create_shortcut_non_exported_warning">Uso dessa atividade requer acesso root</string>
     <!-- launching activity -->
     <string name="starting_activity">Iniciando atividade: %s</string>
     <string name="starting_activity_failed">Falha ao iniciar atividade: %s</string>
@@ -38,8 +38,8 @@
     <string name="starting_activity_root_not_available">Root não está disponível ou a permissão não foi concedida</string>
     <string name="activities_list_empty_text">Existem atividades não exportáveis</string>
     <string name="activities_list_empty_action">Mostrar não exportáveis</string>
-    <string name="activities_list_non_exported_show_once">Just once</string>
-    <string name="activities_list_non_exported_show_always">Always show</string>
+    <string name="activities_list_non_exported_show_once">Apenas uma vez</string>
+    <string name="activities_list_non_exported_show_always">Mostrar sempre</string>
     <string name="activities_list_failed_loading">Falha ao abrir \"%1$s\"</string>
     <string name="action_about">Sobre</string>
     <string name="action_launch_intent">Iniciador de intenção</string>
@@ -131,15 +131,15 @@
     <string name="manifest_viewer_search_hint">Buscar palavra-chave</string>
     <!-- filter -->
     <string name="filter">Filtros</string>
-    <string name="filter_header">%1$d applications</string>
+    <string name="filter_header">%1$d apps</string>
     <string name="filter_header_sort_by">Ordenar por</string>
     <string name="filter_sort_by_name">Nome</string>
-    <string name="filter_sort_by_update_time">Data de atualização</string>
-    <string name="filter_sort_by_install_time">Data de instalação</string>
+    <string name="filter_sort_by_update_time">Data da atualização</string>
+    <string name="filter_sort_by_install_time">Data da instalação</string>
     <string name="filter_sort_order_asc">Crescente</string>
     <string name="filter_sort_order_desc">Decrescente</string>
     <string name="filter_system_apps_title">Apps do sistema</string>
     <string name="filter_disabled_apps_title">Apps desativados</string>
     <string name="filter_toggle_show">Mostrar</string>
-    <string name="filter_toggle_label">Descrição</string>
+    <string name="filter_toggle_label">Indicador</string>
 </resources>
