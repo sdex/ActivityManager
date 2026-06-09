@@ -7,9 +7,9 @@
     <string name="activity_option_create_shortcut">Utwórz skrót</string>
     <!-- application options -->
     <string name="application_option_open">Uruchom aplikację</string>
-    <string name="application_option_pin">Pin to top</string>
-    <string name="application_option_unpin">Unpin from top</string>
-    <string name="application_pinned">Pinned</string>
+    <string name="application_option_pin">Przypnij do góry</string>
+    <string name="application_option_unpin">Odepnij z góry</string>
+    <string name="application_pinned">Przypięto</string>
     <string name="application_option_open_manifest">Otwórz przeglądarkę manifestu</string>
     <string name="application_option_open_info">Otwórz informacje o aplikacji</string>
     <string name="application_option_open_market">Otwórz w sklepie aplikacji</string>
@@ -26,7 +26,7 @@
     <string name="shortcut_icon_preset">Wybierz spośród ikon</string>
     <string name="shortcut_invert_icon_colors">Odwróć kolory ikon</string>
     <string name="shortcut_options">Opcje</string>
-    <string name="create_shortcut_non_exported_warning">Launching this activity requires root permission</string>
+    <string name="create_shortcut_non_exported_warning">Uruchamianie tej aktywności wymaga uprawnień roota</string>
     <!-- launching activity -->
     <string name="starting_activity">Rozpoczęcie aktywności: %s</string>
     <string name="starting_activity_failed">Nie udało się rozpocząć aktywności: %s</string>
