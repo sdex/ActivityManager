@@ -1,8 +1,8 @@
 [versions]
-agp = "8.13.2"
+agp = "9.2.1"
 kotlin = "2.3.21"
 ksp = "2.3.9"
-hilt = "2.58"
+hilt = "2.59.2"
 
 appiconloader-coil = "1.5.0"
 coil-compose = "2.7.0"
@@ -98,7 +98,6 @@ androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinCompiler)
     alias(libs.plugins.kotlinParcelize)
     alias(libs.plugins.kotlinSerialization)
@@ -72,7 +71,7 @@ android {
     }
 
     sourceSets {
-        getByName("androidTest").assets.srcDir("$projectDir/schemas")
+        getByName("androidTest").assets.directories.add("schemas")
     }
 
     lint {
