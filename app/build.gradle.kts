@@ -8,8 +8,19 @@ plugins {
     alias(libs.plugins.room)
 }
 
+// TODO: Remove when Dagger bumps Kotlin metadata dependency to 2.4.0
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.jetbrains.kotlin" && requested.name == "kotlin-metadata-jvm") {
+            // Hilt 2.59.2 reads Kotlin metadata through this library and does not yet
+            // declare a version that can parse Kotlin 2.4 metadata.
+            useVersion(libs.versions.kotlin.get())
+        }
+    }
+}
+
 android {
-    compileSdk = 36
+    compileSdk = 37
     namespace = "com.sdex.activityrunner"
 
     defaultConfig {
