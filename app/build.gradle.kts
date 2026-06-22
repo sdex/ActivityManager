@@ -92,6 +92,7 @@ room {
 
 dependencies {
     implementation(libs.activity.ktx)
+    implementation(libs.androidx.junit.ktx)
     implementation(libs.appcompat)
     implementation(libs.browser)
     implementation(libs.constraintlayout)
