@@ -11,17 +11,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
-import com.sdex.activityrunner.util.highlightjs.models.Language;
-import com.sdex.activityrunner.util.highlightjs.models.Theme;
-import com.sdex.activityrunner.util.highlightjs.utils.FileUtils;
-import com.sdex.activityrunner.util.highlightjs.utils.SourceUtils;
-
-import java.io.File;
-import java.net.URL;
 
 import timber.log.Timber;
 
@@ -31,10 +22,8 @@ import timber.log.Timber;
  * have a look at the README.md
  */
 
-public class HighlightJsView extends WebView implements FileUtils.Callback {
+public class HighlightJsView extends WebView {
 
-    //local variables to store language and theme
-    private Language language = Language.XML;
     private Theme theme = Theme.LIGHT;
     private String content;
     private boolean zoomSupport = false;
@@ -42,22 +31,7 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
     private int scrollPosition = 0;
 
     //local variables to register callbacks
-    private OnLanguageChangedListener onLanguageChangedListener;
-    private OnThemeChangedListener onThemeChangedListener;
     private OnContentChangedListener onContentChangedListener;
-
-    @Override
-    public void onDataLoaded(boolean success, String source) {
-        if (success) setSource(source);
-    }
-
-    public interface OnLanguageChangedListener {
-        void onLanguageChanged(@NonNull Language language);
-    }
-
-    public interface OnThemeChangedListener {
-        void onThemeChanged(@NonNull Theme theme);
-    }
 
     public interface OnContentChangedListener {
         void onContentChanged();
@@ -110,43 +84,12 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
     }
 
     /**
-     * Attach a callback to receive calls when the Highlight-Language has changed
-     *
-     * @param onLanguageChangedListener
-     */
-    public void setOnLanguageChangedListener(OnLanguageChangedListener onLanguageChangedListener) {
-        this.onLanguageChangedListener = onLanguageChangedListener;
-    }
-
-    /**
-     * Attach a callback to receive calls when the Theme has changed
-     *
-     * @param onThemeChangedListener
-     */
-    public void setOnThemeChangedListener(OnThemeChangedListener onThemeChangedListener) {
-        this.onThemeChangedListener = onThemeChangedListener;
-    }
-
-    /**
      * Attach a callback to receive calls when the content has changed
      *
      * @param onContentChangedListener
      */
     public void setOnContentChangedListener(OnContentChangedListener onContentChangedListener) {
         this.onContentChangedListener = onContentChangedListener;
-    }
-
-    /**
-     * Set the desired language to highlight the given source.
-     * Default: {@link Language#XML}
-     *
-     * @param language
-     */
-    public void setHighlightLanguage(Language language) {
-        this.language = language;
-        //notify the callback (if set)
-        if (onLanguageChangedListener != null)
-            onLanguageChangedListener.onLanguageChanged(language);
     }
 
     /**
@@ -157,17 +100,6 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
      */
     public void setTheme(Theme theme) {
         this.theme = theme;
-        //notify the callback (if set)
-        if (onThemeChangedListener != null) onThemeChangedListener.onThemeChanged(theme);
-    }
-
-    /**
-     * Receive the {@link Language} which is currently highlighted.
-     *
-     * @return The {@link Language} which is currently highlighted.
-     */
-    public Language getHighlightLanguage() {
-        return language;
     }
 
     /**
@@ -185,39 +117,14 @@ public class HighlightJsView extends WebView implements FileUtils.Callback {
      * @param source - The source as String
      */
     public void setSource(String source) {
-        if (source != null && !(source.length() == 0)) {
+        if (source != null && !source.isEmpty()) {
             //generate and load the content
             this.content = source;
-            String page = SourceUtils.generateContent(source, theme.getName(), language.getName(), zoomSupport, showLineNumbers);
+            String page = SourceUtils.generateContent(source, theme.getName(), "xml", zoomSupport, showLineNumbers);
             loadDataWithBaseURL("file:///android_asset/", page, "text/html", "utf-8", null);
         } else {
             Timber.e("Source can't be null or empty.");
         }
-    }
-
-    /**
-     * Set the source to highlight from a File
-     *
-     * @param source - The source as {@linkplain File}
-     */
-    public void setSource(File source) {
-        //try to encode and set the source
-        String encSource = FileUtils.loadSourceFromFile(source);
-        if (encSource == null) {
-            Timber.e("Unable to encode file: %s", source.getAbsolutePath());
-        } else {
-            setSource(encSource);
-        }
-    }
-
-    /**
-     * Set the source to highlight from a remote URL
-     *
-     * @param url - The source as {@linkplain URL}
-     */
-    public void setSource(URL url) {
-        //try to encode and set the source
-        FileUtils.loadSourceFromUrl(this, url);
     }
 
     /**

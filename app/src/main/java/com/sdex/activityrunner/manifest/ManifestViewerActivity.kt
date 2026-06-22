@@ -20,8 +20,7 @@ import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.util.highlightjs.models.Language
-import com.sdex.activityrunner.util.highlightjs.models.Theme
+import com.sdex.activityrunner.util.highlightjs.Theme
 import com.yupo.browserfiplib.FiPSearchView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -60,7 +59,6 @@ class ManifestViewerActivity : BaseActivity() {
 
         binding.highlightView.apply {
             setBackgroundColor(Color.TRANSPARENT)
-            highlightLanguage = Language.XML
             theme = if (isNightTheme(appPreferences.theme)) {
                 Theme.DARK
             } else {

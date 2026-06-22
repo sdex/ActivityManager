@@ -1,4 +1,4 @@
-package com.sdex.activityrunner.util.highlightjs.models;
+package com.sdex.activityrunner.util.highlightjs;
 
 /**
  * This Class was created by Patrick J
