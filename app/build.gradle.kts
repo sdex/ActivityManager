@@ -128,9 +128,11 @@ dependencies {
     implementation(libs.androidx.tv.foundation)
     implementation(libs.androidx.tv.material)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.navigation.compose)
+    implementation(libs.navigation3.runtime)
+    implementation(libs.navigation3.ui)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.viewmodel.navigation3)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
