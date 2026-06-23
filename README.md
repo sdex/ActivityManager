@@ -39,7 +39,8 @@ Screenshots
 
 Download
 ----------
-Pre-compiled binaries are available as [release assets](https://github.com/sdex/ActivityManager/releases).
+Pre-compiled binaries are available as [release assets](https://github.com/sdex/ActivityManager/releases). It's a recommended way to download the app. \
+Use [Obtainium](https://github.com/ImranR98/Obtainium/) to install the app and get updates automatically:
 <div style="display:flex;">
     <a href="https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/sdex/ActivityManager">
         <img alt="Get it on Obtainium" height="80"
