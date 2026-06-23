@@ -14,7 +14,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -36,6 +35,7 @@ import com.maltaisn.icondialog.pack.IconPackLoader
 import com.maltaisn.iconpack.mdi.createMaterialDesignIconPack
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityAddShortcutBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
@@ -49,7 +49,7 @@ import kotlin.properties.Delegates
  *  image from gallery
  *  activity icon
  */
-class CreateShortcutActivity : AppCompatActivity(), IconDialog.Callback {
+class CreateShortcutActivity : BaseActivity(), IconDialog.Callback {
 
     private lateinit var binding: ActivityAddShortcutBinding
 
