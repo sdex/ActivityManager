@@ -41,11 +41,15 @@ jobs:
           FLAVOR_CAP=$(echo ${{ matrix.flavor }} | sed 's/./\u&/')
           TYPE_CAP=$(echo ${{ matrix.buildType }} | sed 's/./\u&/')
 
-          # Run tests and build the specific combination
-          ./gradlew "test${FLAVOR_CAP}${TYPE_CAP}UnitTest" \
-              "assemble${FLAVOR_CAP}${TYPE_CAP}" \
-          -PnewVersionCode=${{ steps.vars.outputs.version_code }} \
-          -PversionNameSuffix=${{ steps.vars.outputs.short_hash }}
+          GRADLE_TASKS=("assemble${FLAVOR_CAP}${TYPE_CAP}")
+
+          if [ "${{ matrix.buildType }}" = "debug" ]; then
+            GRADLE_TASKS=("test${FLAVOR_CAP}${TYPE_CAP}UnitTest" "${GRADLE_TASKS[@]}")
+          fi
+
+          ./gradlew "${GRADLE_TASKS[@]}" \
+            -PnewVersionCode=${{ steps.vars.outputs.version_code }} \
+            -PversionNameSuffix=${{ steps.vars.outputs.short_hash }}
 
       - name: Sign APK
         uses: ilharp/sign-android-release@v2
