@@ -3,7 +3,9 @@ package com.sdex.activityrunner.tv
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.tv.material3.Surface
@@ -21,6 +23,7 @@ class TvActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         val iconSize = resources.getDimensionPixelSize(R.dimen.app_icon_size_tv)
         Coil.setImageLoader(
@@ -41,7 +44,9 @@ class TvActivity : ComponentActivity() {
         setContent {
             ActivityManagerTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .safeDrawingPadding(),
                     shape = RectangleShape,
                 ) {
                     NavigationGraph()

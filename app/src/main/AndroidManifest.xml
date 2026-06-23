@@ -28,7 +28,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +43,8 @@
 
         <activity
             android:name=".tv.TvActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,7 +55,8 @@
         <activity
             android:name=".intent.IntentBuilderActivity"
             android:exported="true"
-            android:label="@string/intent_launcher_activity" />
+            android:label="@string/intent_launcher_activity"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".intent.analyzer.IntentAnalyzerActivity"
@@ -63,19 +66,23 @@
         <activity
             android:name=".intent.history.HistoryActivity"
             android:exported="true"
-            android:label="@string/history_activity" />
+            android:label="@string/history_activity"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".manifest.ManifestViewerActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".app.ActivitiesListActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".shortcut.CreateShortcutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".shortcut.ShortcutHandlerActivity"
@@ -86,7 +93,8 @@
 
         <activity
             android:name=".about.AboutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
