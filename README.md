@@ -37,23 +37,23 @@ Screenshots
         alt="Screenshot" width="30%" />
 </div>
 
-Installing
+Download
 ----------
 Pre-compiled binaries are available as [release assets](https://github.com/sdex/ActivityManager/releases).
+<div style="display:flex;">
+    <a href="https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/sdex/ActivityManager">
+        <img alt="Get it on Obtainium" height="80"
+            src="docs/graphics/logos/obtainium-badge.png"/>
+    </a>
+</div>
 
-Also available on F-droid:
+Also, available on F-droid:
 <div style="display:flex;">
     <a href="https://f-droid.org/packages/com.activitymanager/">
         <img alt="Get it on F-Droid" height="80"
             src="docs/graphics/logos/f-droid-badge.png"/>
     </a>
 </div>
-
-Or build from the repo directly. \
-NOTE: Android SDK should be added to PATH environment variable for this to work.
-```
-./gradlew assemble
-```
 
 Contributing to the project
 ----------
