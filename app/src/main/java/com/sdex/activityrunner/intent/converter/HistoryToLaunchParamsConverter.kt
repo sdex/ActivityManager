@@ -4,7 +4,7 @@ import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.LaunchParams
 
 class HistoryToLaunchParamsConverter(
-    private val historyModel: HistoryModel
+    private val historyModel: HistoryModel,
 ) : Converter<LaunchParams> {
 
     override fun convert(): LaunchParams {

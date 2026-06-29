@@ -29,7 +29,7 @@ object Category {
             put("CATEGORY_EMBED", Intent.CATEGORY_EMBED)
             put(
                 "CATEGORY_FRAMEWORK_INSTRUMENTATION_TEST",
-                Intent.CATEGORY_FRAMEWORK_INSTRUMENTATION_TEST
+                Intent.CATEGORY_FRAMEWORK_INSTRUMENTATION_TEST,
             )
             put("CATEGORY_HE_DESK_DOCK", Intent.CATEGORY_HE_DESK_DOCK)
             put("CATEGORY_HOME", Intent.CATEGORY_HOME)

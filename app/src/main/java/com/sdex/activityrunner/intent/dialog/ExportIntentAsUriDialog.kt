@@ -30,7 +30,7 @@ class ExportIntentAsUriDialog : BaseDialogFragment() {
             .setView(binding.root)
             .setPositiveButton(R.string.dialog_export_intent_copy) { _, _ ->
                 val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE)
-                        as ClipboardManager?
+                    as ClipboardManager?
                 val clip = ClipData.newPlainText("Intent URI", value)
                 clipboard?.setPrimaryClip(clip)
             }

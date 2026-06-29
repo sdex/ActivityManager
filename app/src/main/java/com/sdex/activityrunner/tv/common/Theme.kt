@@ -29,6 +29,6 @@ fun ActivityManagerTheme(
     MaterialTheme(
         colorScheme = colorScheme,
 //        typography = Typography,
-        content = content
+        content = content,
     )
 }

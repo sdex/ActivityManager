@@ -30,7 +30,7 @@ class SingleSelectionDialog : BaseDialogFragment() {
         val builder = MaterialAlertDialogBuilder(requireActivity())
         builder.setSingleChoiceItems(
             list.toTypedArray(),
-            initialPosition
+            initialPosition,
         ) { _, which ->
             viewModel.setSingleSelection(type, which)
             dismiss()

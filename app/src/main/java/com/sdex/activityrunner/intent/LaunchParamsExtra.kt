@@ -8,5 +8,5 @@ data class LaunchParamsExtra(
     val key: String,
     val value: String,
     val type: Int,
-    val isArray: Boolean = false
+    val isArray: Boolean = false,
 ) : Parcelable

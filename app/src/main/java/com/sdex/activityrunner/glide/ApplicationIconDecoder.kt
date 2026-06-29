@@ -8,14 +8,14 @@ import com.bumptech.glide.load.engine.Resource
 import com.sdex.activityrunner.db.cache.ApplicationModel
 
 internal class ApplicationIconDecoder(
-    private val context: Context
+    private val context: Context,
 ) : ResourceDecoder<ApplicationModel, Drawable> {
 
     override fun decode(
         source: ApplicationModel,
         width: Int,
         height: Int,
-        options: Options
+        options: Options,
     ): Resource<Drawable> {
         val packageManager = context.packageManager
         val icon: Drawable = try {

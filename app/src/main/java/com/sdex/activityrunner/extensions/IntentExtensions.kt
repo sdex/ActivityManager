@@ -23,12 +23,12 @@ fun Intent.getFlagsList(): List<String> {
     return list
 }
 
-inline fun <reified T: Serializable?> Bundle.serializable(key: String): T? = when {
+inline fun <reified T : Serializable?> Bundle.serializable(key: String): T? = when {
     isAndroidT() -> getSerializable(key, T::class.java)
     else -> @Suppress("DEPRECATION") getSerializable(key) as? T
 }
 
-inline fun <reified T: Serializable?> Intent.serializable(key: String): T? = when {
+inline fun <reified T : Serializable?> Intent.serializable(key: String): T? = when {
     isAndroidT() -> getSerializableExtra(key, T::class.java)
     else -> @Suppress("DEPRECATION") getSerializableExtra(key) as? T
 }

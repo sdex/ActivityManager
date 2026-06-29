@@ -41,7 +41,7 @@ class LaunchParamsExtraListAdapter :
     }
 
     class ViewHolder(
-        private val binding: ItemLaunchParamExtraBinding
+        private val binding: ItemLaunchParamExtraBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: LaunchParamsExtra, callback: Callback?, viewMode: Boolean) {

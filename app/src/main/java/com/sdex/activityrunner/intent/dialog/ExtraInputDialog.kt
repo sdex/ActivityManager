@@ -134,7 +134,7 @@ class ExtraInputDialog : BaseDialogFragment() {
             return ExtraInputDialog().apply {
                 arguments = bundleOf(
                     ARG_INITIAL_EXTRA to initialExtra,
-                    ARG_POSITION to position
+                    ARG_POSITION to position,
                 )
             }
         }

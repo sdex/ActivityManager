@@ -12,14 +12,14 @@ internal class ActivityIconModelLoader : ModelLoader<ActivityModel, ActivityMode
 
     override fun buildLoadData(
         applicationInfo: ActivityModel,
-        width: Int, height: Int, options: Options
+        width: Int, height: Int, options: Options,
     ): ModelLoader.LoadData<ActivityModel> {
         return ModelLoader.LoadData(
             ObjectKey(applicationInfo),
             object : DataFetcher<ActivityModel> {
                 override fun loadData(
                     priority: Priority,
-                    callback: DataFetcher.DataCallback<in ActivityModel>
+                    callback: DataFetcher.DataCallback<in ActivityModel>,
                 ) {
                     callback.onDataReady(applicationInfo)
                 }
@@ -39,7 +39,8 @@ internal class ActivityIconModelLoader : ModelLoader<ActivityModel, ActivityMode
                 override fun getDataSource(): DataSource {
                     return DataSource.LOCAL
                 }
-            })
+            },
+        )
     }
 
     override fun handles(applicationInfo: ActivityModel) = true

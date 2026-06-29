@@ -133,9 +133,11 @@ class MainActivityTest {
             InstrumentationRegistry.getInstrumentation().waitForIdleSync()
 
             onView(withId(R.id.list))
-                .perform(RecyclerViewActions.scrollTo<ApplicationsListAdapter.AppViewHolder>(
-                    hasDescendant(withText("Beta Camera")),
-                ))
+                .perform(
+                    RecyclerViewActions.scrollTo<ApplicationsListAdapter.AppViewHolder>(
+                        hasDescendant(withText("Beta Camera")),
+                    ),
+                )
             onView(withText("Beta Camera")).check(matches(isDisplayed()))
             onView(withId(R.id.list)).check(matches(hasItemCount(1)))
         }
@@ -157,9 +159,13 @@ class MainActivityTest {
             onView(withText("Alpha Browser")).check(matches(isDisplayed()))
             onView(withText("Beta Camera")).check(doesNotExist())
             onView(withId(R.id.list))
-                .check(matches(allOf(
-                    hasDescendant(withText("Alpha Browser")),
-                )))
+                .check(
+                    matches(
+                        allOf(
+                            hasDescendant(withText("Alpha Browser")),
+                        ),
+                    ),
+                )
         }
 
         assertTrue(fakeCacheRepository.applicationQueries.last().contains("AND (enabled=1)"))
@@ -198,16 +204,17 @@ class MainActivityTest {
         throw AssertionError("Expected $actual to contain $expected in order")
     }
 
-    private fun hasItemCount(expectedCount: Int) = object : org.hamcrest.TypeSafeMatcher<android.view.View>() {
+    private fun hasItemCount(expectedCount: Int) =
+        object : org.hamcrest.TypeSafeMatcher<android.view.View>() {
 
-        override fun describeTo(description: org.hamcrest.Description) {
-            description.appendText("RecyclerView with $expectedCount items")
-        }
+            override fun describeTo(description: org.hamcrest.Description) {
+                description.appendText("RecyclerView with $expectedCount items")
+            }
 
-        override fun matchesSafely(item: android.view.View): Boolean {
-            return (item as? RecyclerView)?.adapter?.itemCount == expectedCount
+            override fun matchesSafely(item: android.view.View): Boolean {
+                return (item as? RecyclerView)?.adapter?.itemCount == expectedCount
+            }
         }
-    }
 
     private class FakeCacheRepository(
         private val applications: List<ApplicationModel>,
@@ -293,7 +300,9 @@ class MainActivityTest {
 
         override fun getInstalledPackages(): List<String> = packageNames
         override fun getApplication(packageName: String): ApplicationModel? = null
-        override fun getActivities(packageName: String) = emptyList<com.sdex.activityrunner.app.ActivityModel>()
+        override fun getActivities(packageName: String) =
+            emptyList<com.sdex.activityrunner.app.ActivityModel>()
+
         override fun getPackageInfo(packageName: String): PackageInfo = error("Not used")
         override fun getResourcesForApplication(packageName: String): Resources = error("Not used")
         override fun getChangedPackages(lastSequenceNumber: Int): ChangedPackages? = null

@@ -4,7 +4,7 @@ import android.content.Intent
 import com.sdex.activityrunner.intent.LaunchParams
 
 class LaunchParamsToWebIntentConverter(
-    private val launchParams: LaunchParams
+    private val launchParams: LaunchParams,
 ) : Converter<String> {
 
     override fun convert(): String {

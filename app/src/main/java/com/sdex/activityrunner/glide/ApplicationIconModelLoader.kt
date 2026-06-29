@@ -13,14 +13,14 @@ internal class ApplicationIconModelLoader :
 
     override fun buildLoadData(
         applicationInfo: ApplicationModel,
-        width: Int, height: Int, options: Options
+        width: Int, height: Int, options: Options,
     ): ModelLoader.LoadData<ApplicationModel> {
         return ModelLoader.LoadData(
             ObjectKey(applicationInfo),
             object : DataFetcher<ApplicationModel> {
                 override fun loadData(
                     priority: Priority,
-                    callback: DataFetcher.DataCallback<in ApplicationModel>
+                    callback: DataFetcher.DataCallback<in ApplicationModel>,
                 ) {
                     callback.onDataReady(applicationInfo)
                 }
@@ -40,7 +40,8 @@ internal class ApplicationIconModelLoader :
                 override fun getDataSource(): DataSource {
                     return DataSource.LOCAL
                 }
-            })
+            },
+        )
     }
 
     override fun handles(applicationInfo: ApplicationModel) = true

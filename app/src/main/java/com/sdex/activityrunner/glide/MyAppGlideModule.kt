@@ -24,7 +24,7 @@ class MyAppGlideModule : AppGlideModule() {
     private val applicationModelLoaderFactory =
         object : ModelLoaderFactory<ApplicationModel, ApplicationModel> {
             override fun build(
-                multiFactory: MultiModelLoaderFactory
+                multiFactory: MultiModelLoaderFactory,
             ): ModelLoader<ApplicationModel, ApplicationModel> {
                 return ApplicationIconModelLoader()
             }
@@ -37,7 +37,7 @@ class MyAppGlideModule : AppGlideModule() {
     private val activityModelLoaderFactory =
         object : ModelLoaderFactory<ActivityModel, ActivityModel> {
             override fun build(
-                multiFactory: MultiModelLoaderFactory
+                multiFactory: MultiModelLoaderFactory,
             ): ModelLoader<ActivityModel, ActivityModel> {
                 return ActivityIconModelLoader()
             }
@@ -67,16 +67,16 @@ class MyAppGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         registry.append(
             ApplicationModel::class.java, ApplicationModel::class.java,
-            applicationModelLoaderFactory
+            applicationModelLoaderFactory,
         ).append(
             ApplicationModel::class.java, Drawable::class.java,
-            ApplicationIconDecoder(context)
+            ApplicationIconDecoder(context),
         ).append(
             ActivityModel::class.java, ActivityModel::class.java,
-            activityModelLoaderFactory
+            activityModelLoaderFactory,
         ).append(
             ActivityModel::class.java, Drawable::class.java,
-            ActivityIconDecoder(context)
+            ActivityIconDecoder(context),
         )
     }
 

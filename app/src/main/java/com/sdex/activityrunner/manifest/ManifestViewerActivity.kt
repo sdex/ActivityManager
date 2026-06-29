@@ -50,7 +50,7 @@ class ManifestViewerActivity : BaseActivity() {
             Toast.makeText(
                 this,
                 R.string.error_failed_to_instantiate_web_view,
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_SHORT,
             ).show()
             finish()
             return
@@ -93,10 +93,11 @@ class ManifestViewerActivity : BaseActivity() {
                         Toast.makeText(
                             this@ManifestViewerActivity,
                             R.string.error_failed_to_open_manifest,
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         ).show()
                         finish()
                     }
+
                     is ManifestUiState.Loaded -> binding.highlightView.setSource(it.manifest)
                 }
             }
@@ -106,19 +107,21 @@ class ManifestViewerActivity : BaseActivity() {
         setupFindInPage()
         savedInstanceState?.let {
             val isVisible = it.getBoolean(ARG_SHOULD_SHOW_FIP, false)
-            if(isVisible) showFindInPage() else hideFindInPage()
+            if (isVisible) showFindInPage() else hideFindInPage()
         }
-        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                isEnabled = false
-                if (binding.fip.isVisible) {
-                    hideFindInPage()
-                    isEnabled = true
-                } else {
-                    onBackPressedDispatcher.onBackPressed()
+        onBackPressedDispatcher.addCallback(
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    isEnabled = false
+                    if (binding.fip.isVisible) {
+                        hideFindInPage()
+                        isEnabled = true
+                    } else {
+                        onBackPressedDispatcher.onBackPressed()
+                    }
                 }
-            }
-        })
+            },
+        )
     }
 
     private fun setupFindInPage() {
@@ -161,6 +164,7 @@ class ManifestViewerActivity : BaseActivity() {
                 IntentUtils.openBrowser(this, url)
                 true
             }
+
             R.id.action_search -> {
                 showFindInPage()
                 false
@@ -212,10 +216,12 @@ class ManifestViewerActivity : BaseActivity() {
 
 
         fun start(context: Context, model: ApplicationModel) {
-            context.startActivity(Intent(context, ManifestViewerActivity::class.java).apply {
-                putExtra(ARG_PACKAGE_NAME, model.packageName)
-                putExtra(ARG_NAME, model.name)
-            })
+            context.startActivity(
+                Intent(context, ManifestViewerActivity::class.java).apply {
+                    putExtra(ARG_PACKAGE_NAME, model.packageName)
+                    putExtra(ARG_NAME, model.name)
+                },
+            )
         }
     }
 }

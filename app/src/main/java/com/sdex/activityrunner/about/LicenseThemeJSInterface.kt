@@ -15,14 +15,21 @@ class LicenseThemeJSInterface(val context: Context) {
 
     @JavascriptInterface
     fun getThemeStyle(): String {
-        val htmlBackground = context.resolveColorAttr(MaterialR.attr.colorSurfaceContainerHigh).toCssColor()
+        val htmlBackground =
+            context.resolveColorAttr(MaterialR.attr.colorSurfaceContainerHigh).toCssColor()
         val htmlColor = context.resolveColorAttr(MaterialR.attr.colorOnSurfaceVariant).toCssColor()
         val htmlLetterSpacing =
-            ContextThemeWrapper(context, context.resolveResIdAttr(MaterialR.attr.textAppearanceBodyMedium))
+            ContextThemeWrapper(
+                context,
+                context.resolveResIdAttr(MaterialR.attr.textAppearanceBodyMedium),
+            )
                 .resolveIntAttr(android.R.attr.letterSpacing)
-        val preBackground = context.resolveColorAttr(MaterialR.attr.colorSurfaceContainerHighest).toCssColor()
+        val preBackground =
+            context.resolveColorAttr(MaterialR.attr.colorSurfaceContainerHighest).toCssColor()
         val preColor = context.resolveColorAttr(MaterialR.attr.colorOnSurface).toCssColor()
-        val preBorderRadius = context.resources.getDimensionPixelSize(R.dimen.default_card_corner_radius).toDp(context)
+        val preBorderRadius =
+            context.resources.getDimensionPixelSize(R.dimen.default_card_corner_radius)
+                .toDp(context)
         val aColor = context.resolveColorAttr(MaterialR.attr.colorPrimaryVariant).toCssColor()
         return """
             html {

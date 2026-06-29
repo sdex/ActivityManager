@@ -12,7 +12,7 @@ interface ManifestWriter {
 }
 
 class DefaultManifestWriter(
-    private val context: Context
+    private val context: Context,
 ) : ManifestWriter {
 
     @WorkerThread

@@ -13,7 +13,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = true,
             showSystemApps = true,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig)
@@ -28,7 +28,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = false,
             showSystemApps = true,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig)
@@ -43,7 +43,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = true,
             showSystemApps = false,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig)
@@ -58,7 +58,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = false,
             showSystemApps = false,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig)
@@ -73,7 +73,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = true,
             showSystemApps = true,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig, "test")
@@ -88,7 +88,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = false,
             showSystemApps = true,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig, "test")
@@ -103,7 +103,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = true,
             showSystemApps = false,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig, "test")
@@ -118,7 +118,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = false,
             showSystemApps = false,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig, "test")
@@ -133,7 +133,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = true,
             showSystemApps = true,
             sortBy = "packageName",
-            sortOrder = GetApplicationsQuery.DESC
+            sortOrder = GetApplicationsQuery.DESC,
         )
 
         val query = GetApplicationsQuery(displayConfig)
@@ -148,7 +148,7 @@ class GetApplicationsQueryTest {
             showDisabledApps = true,
             showSystemApps = true,
             sortBy = ApplicationModel.NAME,
-            sortOrder = GetApplicationsQuery.ASC
+            sortOrder = GetApplicationsQuery.ASC,
         )
 
         val query = GetApplicationsQuery(displayConfig, "test's")

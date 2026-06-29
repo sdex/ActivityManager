@@ -12,7 +12,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseDialogFragment
 import com.sdex.activityrunner.util.IntentUtils
-import com.sdex.activityrunner.about.LicenseThemeJSInterface
 
 class LicensesDialogFragment : BaseDialogFragment() {
 
@@ -39,7 +38,7 @@ class LicensesDialogFragment : BaseDialogFragment() {
     private fun createWebView(
         context: Context,
         position: Int,
-        onPositionChanged: (Int) -> Unit
+        onPositionChanged: (Int) -> Unit,
     ): WebView {
         val webView = object : WebView(context) {
             override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
@@ -64,7 +63,7 @@ class LicensesDialogFragment : BaseDialogFragment() {
         webView.webChromeClient = object : WebChromeClient() {
             override fun onCreateWindow(
                 view: WebView, isDialog: Boolean,
-                isUserGesture: Boolean, resultMsg: Message
+                isUserGesture: Boolean, resultMsg: Message,
             ): Boolean {
                 view.hitTestResult.extra?.let { IntentUtils.openBrowser(requireContext(), it) }
                 return false

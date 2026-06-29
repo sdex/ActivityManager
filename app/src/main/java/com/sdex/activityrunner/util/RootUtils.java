@@ -22,7 +22,7 @@ public class RootUtils {
         try {
             Process exec = Runtime.getRuntime().exec(suExecutable + "\n");
             BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(exec.getInputStream()));
+                new InputStreamReader(exec.getInputStream()));
             DataOutputStream dataOutputStream = new DataOutputStream(exec.getOutputStream());
             dataOutputStream.writeBytes(command);
             dataOutputStream.writeBytes("\nexit\n");

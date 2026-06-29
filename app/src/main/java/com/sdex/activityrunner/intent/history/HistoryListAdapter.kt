@@ -16,7 +16,7 @@ import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.param.None
 
 class HistoryListAdapter(
-    private val callback: Callback
+    private val callback: Callback,
 ) : ListAdapter<HistoryModel, HistoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     var contextMenuItemPosition: Int = 0
@@ -27,7 +27,7 @@ class HistoryListAdapter(
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(ItemHistoryBinding.inflate(inflater, parent, false))
@@ -57,7 +57,7 @@ class HistoryListAdapter(
     }
 
     class ViewHolder(
-        private val binding: ItemHistoryBinding
+        private val binding: ItemHistoryBinding,
     ) : RecyclerView.ViewHolder(binding.root),
         View.OnCreateContextMenuListener {
 
@@ -94,15 +94,15 @@ class HistoryListAdapter(
         private fun populateMenu(menu: Menu) {
             menu.add(
                 Menu.NONE, MENU_ITEM_ADD_SHORTCUT, Menu.NONE,
-                R.string.history_item_dialog_add_shortcut
+                R.string.history_item_dialog_add_shortcut,
             )
             menu.add(
                 Menu.NONE, MENU_ITEM_EXPORT_URI, Menu.NONE,
-                R.string.history_item_dialog_export_uri
+                R.string.history_item_dialog_export_uri,
             )
             menu.add(
                 Menu.NONE, MENU_ITEM_REMOVE, Menu.NONE,
-                R.string.history_item_dialog_remove
+                R.string.history_item_dialog_remove,
             )
         }
 

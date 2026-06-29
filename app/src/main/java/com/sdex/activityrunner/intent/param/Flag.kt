@@ -35,7 +35,7 @@ object Flag {
             put("FLAG_FROM_BACKGROUND", Intent.FLAG_FROM_BACKGROUND)
             put(
                 "FLAG_GRANT_PERSISTABLE_URI_PERMISSION",
-                Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION,
             )
             put("FLAG_GRANT_PREFIX_URI_PERMISSION", Intent.FLAG_GRANT_PREFIX_URI_PERMISSION)
             put("FLAG_GRANT_READ_URI_PERMISSION", Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -48,7 +48,7 @@ object Flag {
             if (VERSION.SDK_INT >= VERSION_CODES.O) {
                 put(
                     "FLAG_RECEIVER_VISIBLE_TO_INSTANT_APPS",
-                    Intent.FLAG_RECEIVER_VISIBLE_TO_INSTANT_APPS
+                    Intent.FLAG_RECEIVER_VISIBLE_TO_INSTANT_APPS,
                 )
             }
             // deprecated

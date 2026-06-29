@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(
     entities = [(HistoryModel::class)],
     version = 1,
-    exportSchema = true
+    exportSchema = true,
 )
 abstract class HistoryDatabase : RoomDatabase() {
 

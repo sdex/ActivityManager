@@ -3,7 +3,7 @@ package com.sdex.activityrunner.db.history
 import javax.inject.Inject
 
 class HistoryRepository @Inject constructor(
-    private val historyModelDao: HistoryModelDao
+    private val historyModelDao: HistoryModelDao,
 ) {
 
     suspend fun delete(vararg model: HistoryModel) {

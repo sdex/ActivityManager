@@ -55,7 +55,7 @@ class ValueInputDialog : BaseDialogFragment() {
             return ValueInputDialog().apply {
                 arguments = bundleOf(
                     ARG_TYPE to type,
-                    ARG_INITIAL_VALUE to initialValue
+                    ARG_INITIAL_VALUE to initialValue,
                 )
             }
         }

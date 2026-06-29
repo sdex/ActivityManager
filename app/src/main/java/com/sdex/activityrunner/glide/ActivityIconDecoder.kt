@@ -12,14 +12,14 @@ import com.bumptech.glide.load.engine.Resource
 import com.sdex.activityrunner.app.ActivityModel
 
 internal class ActivityIconDecoder(
-    private val context: Context
+    private val context: Context,
 ) : ResourceDecoder<ActivityModel, Drawable> {
 
     override fun decode(
         source: ActivityModel,
         width: Int,
         height: Int,
-        options: Options
+        options: Options,
     ): Resource<Drawable> {
         val icon = getComponentIcon(context.packageManager, source.componentName)
         return ComponentDrawableResource(icon)
