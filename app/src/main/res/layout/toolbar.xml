@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
-    android:elevation="2dp"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ToolbarStyle"
     app:popupTheme="@style/AppTheme.PopupOverlay"
-    tools:ignore="UnusedAttribute" />
+    app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
+    app:titleTextAppearance="@style/TextAppearance.AppCompat.Title"
+    tools:subtitle="1000 activities - 999 exported"
+    tools:title="Application name" />
