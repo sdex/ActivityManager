@@ -8,17 +8,6 @@ plugins {
     alias(libs.plugins.room)
 }
 
-// TODO: Remove when Dagger bumps Kotlin metadata dependency to 2.4.0
-configurations.configureEach {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "org.jetbrains.kotlin" && requested.name == "kotlin-metadata-jvm") {
-            // Hilt 2.59.2 reads Kotlin metadata through this library and does not yet
-            // declare a version that can parse Kotlin 2.4 metadata.
-            useVersion(libs.versions.kotlin.get())
-        }
-    }
-}
-
 android {
     compileSdk = 37
     namespace = "com.sdex.activityrunner"
@@ -37,7 +26,7 @@ android {
             versionName = "${versionName}${it}-$versionCode"
         }
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.sdex.activityrunner.HiltTestRunner"
 
         vectorDrawables.useSupportLibrary = true
         base.archivesName.set("ActivityManager-$versionName")
@@ -121,6 +110,7 @@ dependencies {
     }
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
     implementation(libs.timber)
     implementation(libs.icondialog)
     implementation(libs.iconpack.community.material)
@@ -154,10 +144,14 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.truth)
+    testImplementation(libs.turbine)
 
     androidTestImplementation(libs.room.testing)
+    androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.espresso.contrib)
     androidTestImplementation(libs.espresso.intents)
+    androidTestImplementation(libs.hamcrest)
 }

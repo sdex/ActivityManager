@@ -2,26 +2,31 @@ package com.sdex.activityrunner.app
 
 import androidx.annotation.WorkerThread
 import androidx.compose.runtime.Stable
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
+import com.sdex.activityrunner.di.IoDispatcher
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.PackageInfoProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
 @Stable
 data class UiData(
-    val application: ApplicationModel?,
-    val activities: List<ActivityModel>,
+    val application: ApplicationModel? = null,
+    val activities: List<ActivityModel> = emptyList(),
+    val allActivities: List<ActivityModel> = emptyList(),
+    val searchText: String? = null,
+    val isLoading: Boolean = true,
 )
 
 @HiltViewModel
@@ -29,12 +34,11 @@ class ActivitiesListViewModel @Inject constructor(
     private val packageInfoProvider: PackageInfoProvider,
     private val appPreferences: AppPreferences,
     private val cacheRepository: CacheRepository,
+    @param:IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
-    private val liveData = MutableLiveData<UiData>()
-    val uiState: Flow<UiData> = liveData.asFlow()
-
-    private lateinit var list: List<ActivityModel>
+    private val _uiState = MutableStateFlow(UiData())
+    val uiState: StateFlow<UiData> = _uiState.asStateFlow()
 
     var showNotExported
         get() = appPreferences.showNotExported
@@ -53,47 +57,67 @@ class ActivitiesListViewModel @Inject constructor(
             !appPreferences.isNotExportedDialogShown &&
             appPreferences.appOpenCounter > 3
 
-    fun getItems(packageName: String, application: ApplicationModel?): LiveData<UiData> {
-        viewModelScope.launch(Dispatchers.IO) {
-            val app = application ?: (cacheRepository.getApplication(packageName)
-                ?: packageInfoProvider.getApplication(packageName))
-            list = getActivitiesList(packageName, appPreferences.showNotExported)
-            liveData.postValue(UiData(app, list))
+    fun getItems(packageName: String, application: ApplicationModel?) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+            val app = withContext(ioDispatcher) {
+                application ?: (cacheRepository.getApplication(packageName)
+                    ?: packageInfoProvider.getApplication(packageName))
+            }
+            val activities = withContext(ioDispatcher) {
+                getActivitiesList(packageName, appPreferences.showNotExported)
+            }
+            _uiState.update {
+                it.copy(
+                    application = app,
+                    activities = getFilteredList(activities, it.searchText),
+                    allActivities = activities,
+                    isLoading = false,
+                )
+            }
         }
-        return liveData
     }
 
     fun reloadItems(packageName: String, showNotExported: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            list = getActivitiesList(packageName, showNotExported)
-            liveData.postValue(
-                liveData.value?.copy(
-                    activities = list
+        viewModelScope.launch {
+            val activities = withContext(ioDispatcher) {
+                getActivitiesList(packageName, showNotExported)
+            }
+            _uiState.update {
+                it.copy(
+                    activities = getFilteredList(activities, it.searchText),
+                    allActivities = activities,
                 )
-            )
+            }
         }
     }
 
     fun filterItems(searchText: String?) {
-        if (::list.isInitialized) {
-            if (searchText != null) {
-                viewModelScope.launch(Dispatchers.IO) {
-                    val filteredList = list.filter {
-                        it.name.contains(searchText, true) ||
-                            it.className.contains(searchText, true) ||
-                            (!it.label.isNullOrEmpty() && it.label.contains(searchText, true))
-                    }
-                    liveData.postValue(
-                        liveData.value?.copy(
-                            activities = filteredList
-                        )
-                    )
-                }
+        val normalizedSearchText = normalizeSearchText(searchText)
+        _uiState.update {
+            if (it.searchText == normalizedSearchText) {
+                it
             } else {
-                liveData.value = liveData.value?.copy(
-                    activities = list
+                it.copy(
+                    activities = getFilteredList(it.allActivities, normalizedSearchText),
+                    searchText = normalizedSearchText,
                 )
             }
+        }
+    }
+
+    private fun normalizeSearchText(searchText: String?): String? =
+        searchText?.takeIf { it.isNotEmpty() }
+
+    private fun getFilteredList(
+        activities: List<ActivityModel>,
+        searchText: String?,
+    ): List<ActivityModel> {
+        searchText ?: return activities
+        return activities.filter {
+            it.name.contains(searchText, true) ||
+                it.className.contains(searchText, true) ||
+                (!it.label.isNullOrEmpty() && it.label.contains(searchText, true))
         }
     }
 

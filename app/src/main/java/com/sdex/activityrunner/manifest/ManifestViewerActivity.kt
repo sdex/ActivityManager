@@ -14,6 +14,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivityManifestViewerBinding
@@ -23,6 +25,7 @@ import com.sdex.activityrunner.util.IntentUtils
 import com.sdex.activityrunner.util.highlightjs.Theme
 import com.yupo.browserfiplib.FiPSearchView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -81,16 +84,21 @@ class ManifestViewerActivity : BaseActivity() {
 
         title = name
 
-        viewModel.manifestLiveData.observe(this) {
-            if (it == null) {
-                Toast.makeText(
-                    this,
-                    R.string.error_failed_to_open_manifest,
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            } else {
-                binding.highlightView.setSource(it)
+        lifecycleScope.launch {
+            viewModel.uiState.flowWithLifecycle(lifecycle).collect {
+                when (it) {
+                    ManifestUiState.Idle -> Unit
+                    ManifestUiState.Loading -> binding.progress.show()
+                    ManifestUiState.Failed -> {
+                        Toast.makeText(
+                            this@ManifestViewerActivity,
+                            R.string.error_failed_to_open_manifest,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        finish()
+                    }
+                    is ManifestUiState.Loaded -> binding.highlightView.setSource(it.manifest)
+                }
             }
         }
 
@@ -162,7 +170,8 @@ class ManifestViewerActivity : BaseActivity() {
                 item.isChecked = !item.isChecked
                 appPreferences.showLineNumbers = item.isChecked
                 binding.highlightView.setShowLineNumbers(item.isChecked)
-                binding.highlightView.setSource(viewModel.manifestLiveData.value)
+                val manifest = (viewModel.uiState.value as? ManifestUiState.Loaded)?.manifest
+                binding.highlightView.setSource(manifest)
                 true
             }
 

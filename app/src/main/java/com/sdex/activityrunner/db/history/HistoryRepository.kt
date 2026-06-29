@@ -6,17 +6,17 @@ class HistoryRepository @Inject constructor(
     private val historyModelDao: HistoryModelDao
 ) {
 
-    fun delete(vararg model: HistoryModel) {
+    suspend fun delete(vararg model: HistoryModel) {
         historyModelDao.delete(*model)
     }
 
-    fun clean() {
+    suspend fun clean() {
         historyModelDao.clean()
     }
 
     fun getHistory() = historyModelDao.getHistory()
 
-    fun insert(vararg historyModel: HistoryModel) {
+    suspend fun insert(vararg historyModel: HistoryModel) {
         historyModelDao.insert(*historyModel)
     }
 }

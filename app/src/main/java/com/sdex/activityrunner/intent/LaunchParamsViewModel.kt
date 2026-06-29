@@ -5,11 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.history.HistoryRepository
+import com.sdex.activityrunner.di.IoDispatcher
 import com.sdex.activityrunner.intent.converter.LaunchParamsToHistoryConverter
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LaunchParamsViewModel @Inject constructor(
     private val historyRepository: HistoryRepository,
+    @param:IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private var isInitialized = false
@@ -168,7 +170,7 @@ class LaunchParamsViewModel @Inject constructor(
     }
 
     fun addToHistory() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(ioDispatcher) {
             val historyConverter = LaunchParamsToHistoryConverter(launchParamsState.value)
             val historyModel = historyConverter.convert()
             historyRepository.insert(historyModel)

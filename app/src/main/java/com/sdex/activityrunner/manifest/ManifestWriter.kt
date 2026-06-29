@@ -5,12 +5,18 @@ import android.net.Uri
 import androidx.annotation.WorkerThread
 import java.io.FileWriter
 
-class ManifestWriter(
-    private val context: Context
-) {
+interface ManifestWriter {
 
     @WorkerThread
-    fun write(uri: Uri, data: String) {
+    fun write(uri: Uri, data: String)
+}
+
+class DefaultManifestWriter(
+    private val context: Context
+) : ManifestWriter {
+
+    @WorkerThread
+    override fun write(uri: Uri, data: String) {
         context.contentResolver.openFileDescriptor(uri, "w")?.use {
             val fileWriter = FileWriter(it.fileDescriptor)
             fileWriter.use { fileWriter.write(data) }

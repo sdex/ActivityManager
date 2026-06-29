@@ -17,12 +17,18 @@ import javax.xml.transform.TransformerFactory
 import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.stream.StreamSource
 
-class ManifestReader @Inject constructor(
-    private val packageInfoProvider: PackageInfoProvider,
-) {
+interface ManifestReader {
 
     @WorkerThread
-    fun load(
+    fun load(packageName: String): String?
+}
+
+class DefaultManifestReader @Inject constructor(
+    private val packageInfoProvider: PackageInfoProvider,
+) : ManifestReader {
+
+    @WorkerThread
+    override fun load(
         packageName: String,
     ): String? {
         try {

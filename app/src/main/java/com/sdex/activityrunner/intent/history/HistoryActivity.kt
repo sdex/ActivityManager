@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.commons.BaseActivity
@@ -20,6 +22,7 @@ import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.shortcut.CreateShortcutActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
@@ -39,13 +42,14 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
         binding.list.adapter = adapter
         registerForContextMenu(binding.list)
 
-        viewModel.list.observe(this) {
-            adapter.submitList(it)
-            it?.let {
-                val size = it.size
-                subTitle = resources.getQuantityString(R.plurals.history_records, size, size)
-                binding.empty.isVisible = (size == 0)
-            }
+        lifecycleScope.launch {
+            viewModel.list.flowWithLifecycle(lifecycle)
+                .collect {
+                    adapter.submitList(it)
+                    val size = it.size
+                    subTitle = resources.getQuantityString(R.plurals.history_records, size, size)
+                    binding.empty.isVisible = (size == 0)
+                }
         }
 
         binding.finish.setOnClickListener {

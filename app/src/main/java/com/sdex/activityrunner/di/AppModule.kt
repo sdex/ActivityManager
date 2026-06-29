@@ -3,6 +3,9 @@ package com.sdex.activityrunner.di
 import android.content.Context
 import com.sdex.activityrunner.commons.platform.EnvironmentInfoProvider
 import com.sdex.activityrunner.db.cache.CacheRepository
+import com.sdex.activityrunner.manifest.DefaultManifestReader
+import com.sdex.activityrunner.manifest.DefaultManifestWriter
+import com.sdex.activityrunner.manifest.ManifestReader
 import com.sdex.activityrunner.manifest.ManifestWriter
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.AppPreferencesImpl
@@ -13,6 +16,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -29,14 +33,23 @@ object AppModule {
     ): AppPreferences = AppPreferencesImpl(context)
 
     @Provides
+    fun provideManifestReader(
+        packageInfoProvider: PackageInfoProvider,
+    ): ManifestReader = DefaultManifestReader(packageInfoProvider)
+
+    @Provides
     fun provideManifestWriter(
         @ApplicationContext context: Context,
-    ) = ManifestWriter(context)
+    ): ManifestWriter = DefaultManifestWriter(context)
 
     @Provides
     @Singleton
     fun provideGlobalCoroutineScope() =
         CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+    @Provides
+    @IoDispatcher
+    fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Provides
     @Singleton

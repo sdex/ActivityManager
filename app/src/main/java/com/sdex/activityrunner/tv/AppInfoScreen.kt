@@ -25,13 +25,11 @@ fun AppInfoScreen(
     modifier: Modifier = Modifier,
     onItemClick: (ActivityModel) -> Unit,
 ) {
-    LaunchedEffect(Unit) {
+    LaunchedEffect(packageName) {
         viewModel.getItems(packageName, null)
     }
 
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle(
-        initialValue = UiData(null, emptyList()),
-    )
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     AppInfoContent(modifier, uiState, onItemClick)
 }

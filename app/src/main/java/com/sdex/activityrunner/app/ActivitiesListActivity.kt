@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.ActivityOptionsDialog
 import com.sdex.activityrunner.commons.BaseActivity
@@ -21,6 +23,7 @@ import com.sdex.activityrunner.manifest.ManifestViewerActivity
 import com.sdex.activityrunner.shortcut.CreateShortcutActivity
 import com.sdex.activityrunner.util.IntentUtils
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ActivitiesListActivity : BaseActivity() {
@@ -64,34 +67,42 @@ class ActivitiesListActivity : BaseActivity() {
 
         searchText = savedInstanceState?.getString(STATE_SEARCH_TEXT)
 
-        viewModel.getItems(appPackageName, item).observe(this) { uiData ->
-            if (uiData.application == null) {
-                Toast.makeText(
-                    this,
-                    getString(R.string.activities_list_failed_loading, appPackageName),
-                    Toast.LENGTH_LONG,
-                ).show()
-                finish()
-                return@observe
-            }
+        viewModel.getItems(appPackageName, item)
+        lifecycleScope.launch {
+            viewModel.uiState.flowWithLifecycle(lifecycle)
+                .collect { uiData ->
+                    if (uiData.application == null) {
+                        if (uiData.isLoading) {
+                            return@collect
+                        }
+                        Toast.makeText(
+                            this@ActivitiesListActivity,
+                            getString(R.string.activities_list_failed_loading, appPackageName),
+                            Toast.LENGTH_LONG,
+                        ).show()
+                        finish()
+                        return@collect
+                    }
 
-            application = uiData.application
-            title = uiData.application.name
-            val totalActivitiesFormattedText = resources.getQuantityString(
-                R.plurals.activities_count,
-                uiData.application.activitiesCount,
-                uiData.application.activitiesCount,
-            )
-            subTitle = getString(
-                R.string.app_info_activities_number,
-                totalActivitiesFormattedText,
-                uiData.application.exportedActivitiesCount,
-            )
-            binding.empty.isVisible = (uiData.activities.isEmpty() && searchText == null)
-            adapter.application = uiData.application
-            adapter.submitList(uiData.activities) {
-                binding.list.scrollToPosition(0)
-            }
+                    application = uiData.application
+                    title = uiData.application.name
+                    val totalActivitiesFormattedText = resources.getQuantityString(
+                        R.plurals.activities_count,
+                        uiData.application.activitiesCount,
+                        uiData.application.activitiesCount,
+                    )
+                    subTitle = getString(
+                        R.string.app_info_activities_number,
+                        totalActivitiesFormattedText,
+                        uiData.application.exportedActivitiesCount,
+                    )
+                    binding.empty.isVisible =
+                        uiData.activities.isEmpty() && uiData.searchText == null
+                    adapter.application = uiData.application
+                    adapter.submitList(uiData.activities) {
+                        binding.list.scrollToPosition(0)
+                    }
+                }
         }
 
         binding.showNonExported.setOnClickListener {
@@ -197,7 +208,7 @@ class ActivitiesListActivity : BaseActivity() {
                 }
 
                 override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                    searchText = null
+                    filter(null)
                     menu.setItemsVisibility(visible = true)
                     invalidateOptionsMenu()
                     return true
