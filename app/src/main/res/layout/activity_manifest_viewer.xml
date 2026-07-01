@@ -9,8 +9,10 @@
     tools:ignore="ContentDescription">
 
     <FrameLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary">
 
         <include layout="@layout/toolbar" />
 

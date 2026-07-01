@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar"
+    android:id="@+id/toolbarContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
-    android:minHeight="?attr/actionBarSize"
-    android:theme="@style/ToolbarStyle"
-    app:popupTheme="@style/AppTheme.PopupOverlay"
-    app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
-    app:titleTextAppearance="@style/TextAppearance.AppCompat.Title"
-    tools:subtitle="1000 activities - 999 exported"
-    tools:title="Application name" />
+    android:background="?attr/colorPrimary">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ToolbarStyle"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        tools:subtitle="1000 activities - 999 exported"
+        tools:title="Application name" />
+
+</FrameLayout>

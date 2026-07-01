@@ -6,19 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="2dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ToolbarStyle"
-        app:navigationContentDescription="@android:string/cancel"
-        app:navigationIcon="@drawable/ic_close"
-        app:navigationIconTint="@color/white"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="@string/activity_option_create_shortcut" />
+    <include
+        android:id="@+id/toolbarContainer"
+        layout="@layout/toolbar" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -34,10 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="16dp">
+            android:padding="16dp">
 
             <!-- Icon Preview Card -->
             <com.google.android.material.card.MaterialCardView

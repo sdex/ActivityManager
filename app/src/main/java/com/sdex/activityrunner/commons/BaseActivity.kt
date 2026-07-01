@@ -17,11 +17,20 @@ import kotlin.math.max
 
 open class BaseActivity : AppCompatActivity() {
 
+    var subTitle: CharSequence?
+        get() {
+            return supportActionBar?.subtitle
+        }
+        set(value) {
+            supportActionBar?.subtitle = value
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
-            false
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = false
+        }
         applySystemBarInsets()
     }
 
@@ -31,23 +40,27 @@ open class BaseActivity : AppCompatActivity() {
         val initialPaddingTop = content.paddingTop
         val initialPaddingRight = content.paddingRight
         val initialPaddingBottom = content.paddingBottom
-        var toolbarInitialPaddingTop: Int? = null
+        var appBarInitialPaddingTop: Int? = null
 
         ViewCompat.setOnApplyWindowInsetsListener(content) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val toolbar = findToolbar(view)
+            val appBar = findAppBar(view)
 
-            toolbar?.let {
-                val initialTop = toolbarInitialPaddingTop ?: toolbar.paddingTop.also { padding ->
-                    toolbarInitialPaddingTop = padding
+            appBar?.let {
+                val initialTop = appBarInitialPaddingTop ?: appBar.paddingTop.also { padding ->
+                    appBarInitialPaddingTop = padding
                 }
-                toolbar.updatePadding(top = initialTop + systemBars.top)
+                appBar.updatePadding(top = initialTop + systemBars.top)
             }
 
             view.updatePadding(
                 left = initialPaddingLeft + systemBars.left,
-                top = initialPaddingTop + if (toolbar == null) systemBars.top else 0,
+                top = initialPaddingTop + if (appBar == null) {
+                    systemBars.top
+                } else {
+                    0
+                },
                 right = initialPaddingRight + systemBars.right,
                 bottom = initialPaddingBottom + max(systemBars.bottom, ime.bottom),
             )
@@ -55,9 +68,9 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun findToolbar(root: View): Toolbar? {
-        val content = root.findViewById<View>(android.R.id.content)
-        return content?.findVisibleViewById(R.id.toolbar) ?: root.findVisibleViewById(R.id.toolbar)
+    private fun findAppBar(root: View): View? {
+        return root.findVisibleViewById(R.id.toolbarContainer)
+            ?: root.findVisibleViewById(R.id.appBar)
     }
 
     private inline fun <reified T : View> View.findVisibleViewById(@IdRes id: Int): T? {
@@ -85,12 +98,4 @@ open class BaseActivity : AppCompatActivity() {
         super.setTitle(title)
         supportActionBar?.title = title
     }
-
-    var subTitle: CharSequence?
-        get() {
-            return supportActionBar?.subtitle
-        }
-        set(value) {
-            supportActionBar?.subtitle = value
-        }
 }

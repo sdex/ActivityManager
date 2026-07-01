@@ -67,10 +67,16 @@ class CreateShortcutActivity : BaseActivity(), IconDialog.Callback {
         binding = ActivityAddShortcutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
-        binding.toolbar.setNavigationOnClickListener {
-            finish()
+        binding.toolbarContainer.toolbar.apply {
+            setNavigationIcon(R.drawable.ic_close)
+            setNavigationIconTint(
+                ContextCompat.getColor(this@CreateShortcutActivity, R.color.white),
+            )
+            setNavigationContentDescription(android.R.string.cancel)
+            setNavigationOnClickListener {
+                finish()
+            }
+            setSupportActionBar(this)
         }
 
         val activityModel = intent?.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
