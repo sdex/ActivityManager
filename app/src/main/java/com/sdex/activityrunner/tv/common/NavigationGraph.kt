@@ -2,7 +2,6 @@ package com.sdex.activityrunner.tv.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -13,7 +12,6 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.sdex.activityrunner.app.ActivitiesListViewModel
 import com.sdex.activityrunner.app.MainViewModel
-import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.tv.AppInfoScreen
 import com.sdex.activityrunner.tv.StartScreen
 import kotlinx.serialization.Serializable
@@ -28,7 +26,6 @@ sealed class Screen : NavKey {
 
 @Composable
 fun NavigationGraph() {
-    val context = LocalContext.current
     val backStack = rememberNavBackStack(Screen.Main)
 
     val viewModel = hiltViewModel<MainViewModel>()
@@ -58,7 +55,7 @@ fun NavigationGraph() {
                     viewModel = viewModel,
                     packageName = appInfo.packageName,
                     onItemClick = {
-                        context.launchActivity(it)
+                        viewModel.launchActivity(it)
                     },
                 )
             }

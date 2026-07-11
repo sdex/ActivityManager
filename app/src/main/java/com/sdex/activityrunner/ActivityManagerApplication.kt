@@ -3,6 +3,7 @@ package com.sdex.activityrunner
 import android.app.Application
 import android.content.pm.ApplicationInfo
 import androidx.appcompat.app.AppCompatDelegate
+import com.sdex.activityrunner.app.launcher.ShizukuLaunchStrategy
 import com.sdex.activityrunner.preferences.AppPreferences
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
@@ -21,5 +22,7 @@ class ActivityManagerApplication : Application() {
         }
         appPreferences.onAppOpened()
         AppCompatDelegate.setDefaultNightMode(appPreferences.theme)
+        // Restore the user's assistant setting if a previous Shizuku launch was interrupted.
+        ShizukuLaunchStrategy.restorePendingBackup(this, appPreferences)
     }
 }

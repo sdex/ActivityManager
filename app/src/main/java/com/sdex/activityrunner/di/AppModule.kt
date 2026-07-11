@@ -1,12 +1,17 @@
 package com.sdex.activityrunner.di
 
 import android.content.Context
+import com.sdex.activityrunner.app.launcher.LaunchStrategyFactory
+import com.sdex.activityrunner.app.launcher.RootLaunchStrategy
+import com.sdex.activityrunner.app.launcher.ShizukuLaunchStrategy
 import com.sdex.activityrunner.commons.platform.EnvironmentInfoProvider
 import com.sdex.activityrunner.db.cache.CacheRepository
 import com.sdex.activityrunner.manifest.DefaultManifestReader
 import com.sdex.activityrunner.manifest.DefaultManifestWriter
 import com.sdex.activityrunner.manifest.ManifestReader
 import com.sdex.activityrunner.manifest.ManifestWriter
+import com.sdex.activityrunner.onboarding.DefaultShizukuSetupChecker
+import com.sdex.activityrunner.onboarding.ShizukuSetupChecker
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.AppPreferencesImpl
 import com.sdex.activityrunner.util.ApplicationsLoader
@@ -31,6 +36,22 @@ object AppModule {
     fun providePreferences(
         @ApplicationContext context: Context,
     ): AppPreferences = AppPreferencesImpl(context)
+
+    @Provides
+    @Singleton
+    fun provideLaunchStrategyFactory(
+        appPreferences: AppPreferences,
+    ): LaunchStrategyFactory = LaunchStrategyFactory(
+        strategies = listOf(
+            RootLaunchStrategy(appPreferences),
+            ShizukuLaunchStrategy(appPreferences),
+        ).associateBy { it.method },
+    )
+
+    @Provides
+    fun provideShizukuSetupChecker(
+        @ApplicationContext context: Context,
+    ): ShizukuSetupChecker = DefaultShizukuSetupChecker(context)
 
     @Provides
     fun provideManifestReader(

@@ -34,11 +34,16 @@ class ActivitiesListViewModel @Inject constructor(
     private val packageInfoProvider: PackageInfoProvider,
     private val appPreferences: AppPreferences,
     private val cacheRepository: CacheRepository,
+    private val activityLauncher: ActivityLauncher,
     @param:IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(UiData())
     val uiState: StateFlow<UiData> = _uiState.asStateFlow()
+
+    fun launchActivity(model: ActivityModel) {
+        activityLauncher.launch(model)
+    }
 
     var showNotExported
         get() = appPreferences.showNotExported

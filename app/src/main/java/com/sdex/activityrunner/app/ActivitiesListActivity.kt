@@ -53,7 +53,7 @@ class ActivitiesListActivity : BaseActivity() {
             application = item
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
-                    launchActivity(item)
+                    viewModel.launchActivity(item)
                 }
 
                 override fun onItemLongClick(item: ActivityModel) {

@@ -3,6 +3,7 @@ package com.sdex.activityrunner.app
 import androidx.sqlite.db.SupportSQLiteQuery
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
+import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
@@ -244,7 +245,7 @@ class MainViewModelTest {
         override var suExecutable: String = ""
         override var lastSequenceNumber: Int = 0
         override var lastBootCount: Int = 0
-
+        override var assistantBackup: AssistantBackup? = null
         override fun onAppOpened() = Unit
     }
 

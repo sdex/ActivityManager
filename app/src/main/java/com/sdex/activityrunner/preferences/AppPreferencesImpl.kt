@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
 import kotlinx.coroutines.CoroutineScope
@@ -210,6 +212,35 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
             }
         }
 
+    override var assistantBackup: AssistantBackup?
+        get() = runBlocking {
+            val prefs = dataStore.data.first()
+            if (prefs[KEY_ASSISTANT_BACKUP_PENDING] != true) {
+                null
+            } else {
+                AssistantBackup(
+                    assistant = prefs[KEY_ASSISTANT_BACKUP_ASSISTANT],
+                    voiceInteraction = prefs[KEY_ASSISTANT_BACKUP_VOICE_INTERACTION],
+                )
+            }
+        }
+        set(value) {
+            runBlocking {
+                dataStore.edit { prefs ->
+                    prefs[KEY_ASSISTANT_BACKUP_PENDING] = (value != null)
+                    prefs.setOrRemove(KEY_ASSISTANT_BACKUP_ASSISTANT, value?.assistant)
+                    prefs.setOrRemove(
+                        KEY_ASSISTANT_BACKUP_VOICE_INTERACTION,
+                        value?.voiceInteraction,
+                    )
+                }
+            }
+        }
+
+    private fun MutablePreferences.setOrRemove(key: Preferences.Key<String>, value: String?) {
+        if (value != null) this[key] = value else remove(key)
+    }
+
     private companion object {
 
         val KEY_NOT_EXPORTED_DIALOG_SHOWN = booleanPreferencesKey("not_exported_dialog_shown")
@@ -229,5 +260,10 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
 
         val LAST_SEQUENCE_NUMBER = intPreferencesKey("last_sequence_number")
         val LAST_BOOT_COUNT = intPreferencesKey("last_boot_count")
+
+        val KEY_ASSISTANT_BACKUP_PENDING = booleanPreferencesKey("assistant_backup_pending")
+        val KEY_ASSISTANT_BACKUP_ASSISTANT = stringPreferencesKey("assistant_backup_assistant")
+        val KEY_ASSISTANT_BACKUP_VOICE_INTERACTION =
+            stringPreferencesKey("assistant_backup_voice_interaction")
     }
 }

@@ -19,6 +19,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.sdex.activityrunner.app.ApplicationsListAdapter
+import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.commons.platform.EnvironmentInfoProvider
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
@@ -290,7 +291,7 @@ class MainActivityTest {
         override var suExecutable: String = ""
         override var lastSequenceNumber: Int = 1
         override var lastBootCount: Int = 1
-
+        override var assistantBackup: AssistantBackup? = null
         override fun onAppOpened() = Unit
     }
 

@@ -33,6 +33,15 @@
         <item name="backgroundTint">@color/md_theme_background</item>
     </style>
 
+    <style name="OnboardingStepBadge" parent="">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:background">@drawable/bg_step_badge</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Filled">
         <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
     </style>

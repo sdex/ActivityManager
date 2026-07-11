@@ -34,6 +34,7 @@ recyclerview-fastscroll = "2.0.1"
 apk-parser = "2.6.10"
 browserfip = "1.0.5"
 datastore = "1.2.1"
+shizuku = "13.1.5"
 junit = "4.13.2"
 mockk = "1.14.11"
 truth = "1.4.5"
@@ -74,6 +75,8 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 browserfip = { module = "com.github.Y-E-P:BrowserFiP", version.ref = "browserfip" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+shizuku-api = { module = "dev.rikka.shizuku:api", version.ref = "shizuku" }
+shizuku-provider = { module = "dev.rikka.shizuku:provider", version.ref = "shizuku" }
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }

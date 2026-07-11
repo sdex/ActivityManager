@@ -1,6 +1,7 @@
 package com.sdex.activityrunner.preferences
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.sdex.activityrunner.app.launcher.AssistantBackup
 import kotlinx.coroutines.flow.Flow
 
 interface AppPreferences {
@@ -22,5 +23,7 @@ interface AppPreferences {
     var suExecutable: String
     var lastSequenceNumber: Int
     var lastBootCount: Int
+    /** Persisted secure-assistant snapshot for the restore flow; set to null to clear it. */
+    var assistantBackup: AssistantBackup?
     fun onAppOpened()
 }

@@ -10,15 +10,22 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.app.ActivityLauncher
 import com.sdex.activityrunner.app.ActivityModel
-import com.sdex.activityrunner.app.launchActivity
 import com.sdex.activityrunner.databinding.DialogActivityMenuBinding
 import com.sdex.activityrunner.extensions.copyToClipboardOnLongClick
 import com.sdex.activityrunner.extensions.createBottomSheetDialog
 import com.sdex.activityrunner.extensions.serializable
+import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.shortcut.CreateShortcutActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ActivityOptionsDialog : BottomSheetDialogFragment() {
+
+    @Inject
+    lateinit var activityLauncher: ActivityLauncher
 
     private var _binding: DialogActivityMenuBinding? = null
     private val binding get() = _binding!!
@@ -57,11 +64,11 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
         }
         binding.actionActivityLaunchWithParams.isVisible = model.exported
         binding.actionActivityLaunchWithParams.setOnClickListener {
-            requireActivity().launchActivity(model, useParams = true)
+            IntentBuilderActivity.start(requireContext(), model)
             dismissAllowingStateLoss()
         }
         binding.actionActivityLaunchWithRoot.setOnClickListener {
-            requireActivity().launchActivity(model, useRoot = true)
+            activityLauncher.launchWithRoot(model)
             dismissAllowingStateLoss()
         }
         binding.rootSettings.setOnClickListener {

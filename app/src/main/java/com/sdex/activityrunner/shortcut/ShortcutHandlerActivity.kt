@@ -1,12 +1,18 @@
 package com.sdex.activityrunner.shortcut
 
-import android.app.Activity
 import android.content.ComponentName
 import android.os.Bundle
-import com.sdex.activityrunner.app.launchActivity
+import androidx.activity.ComponentActivity
+import com.sdex.activityrunner.app.ActivityLauncher
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
-class ShortcutHandlerActivity : Activity() {
+@AndroidEntryPoint
+class ShortcutHandlerActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var activityLauncher: ActivityLauncher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,13 +22,12 @@ class ShortcutHandlerActivity : Activity() {
         if (packageName != null && className != null) {
             val componentName = ComponentName(packageName, className)
             // keep it to support shortcuts created before #56
-            if (intent.hasExtra(ARG_EXPORTED)) {
-                val isExported = intent.getBooleanExtra(ARG_EXPORTED, false)
-                launchActivity(componentName, useRoot = !isExported)
+            val requiresElevation = if (intent.hasExtra(ARG_EXPORTED)) {
+                !intent.getBooleanExtra(ARG_EXPORTED, false)
             } else {
-                val useRoot = intent.getBooleanExtra(ARG_USE_ROOT, false)
-                launchActivity(componentName, useRoot = useRoot)
+                intent.getBooleanExtra(ARG_USE_ROOT, false)
             }
+            activityLauncher.launch(componentName, requiresElevation)
         }
         finishAffinity()
     }

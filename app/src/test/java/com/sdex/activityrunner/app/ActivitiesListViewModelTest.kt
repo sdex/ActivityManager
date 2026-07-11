@@ -5,6 +5,7 @@ import android.content.res.Resources
 import androidx.sqlite.db.SupportSQLiteQuery
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
+import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
 import com.sdex.activityrunner.preferences.AppPreferences
@@ -12,6 +13,7 @@ import com.sdex.activityrunner.preferences.DisplayConfig
 import com.sdex.activityrunner.preferences.PreferencesState
 import com.sdex.activityrunner.util.ChangedPackages
 import com.sdex.activityrunner.util.PackageInfoProvider
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -143,6 +145,7 @@ class ActivitiesListViewModelTest {
         packageInfoProvider = FakePackageInfoProvider(activities),
         appPreferences = FakeAppPreferences(showNotExported),
         cacheRepository = FakeCacheRepository(),
+        activityLauncher = mockk(relaxed = true),
         ioDispatcher = dispatcher,
     )
 
@@ -205,7 +208,7 @@ class ActivitiesListViewModelTest {
         override var suExecutable: String = ""
         override var lastSequenceNumber: Int = 0
         override var lastBootCount: Int = 0
-
+        override var assistantBackup: AssistantBackup? = null
         override fun onAppOpened() = Unit
     }
 

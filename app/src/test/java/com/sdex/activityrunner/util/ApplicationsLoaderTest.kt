@@ -5,6 +5,7 @@ import android.content.res.Resources
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.google.common.truth.Truth.assertThat
 import com.sdex.activityrunner.app.ActivityModel
+import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.commons.platform.EnvironmentInfoProvider
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
@@ -503,6 +504,7 @@ class ApplicationsLoaderTest {
         override var sortBy: String = ApplicationModel.NAME
         override var sortOrder: String = "ASC"
         override var suExecutable: String = "su"
+        override var assistantBackup: AssistantBackup? = null
         override fun onAppOpened() = Unit
     }
 
