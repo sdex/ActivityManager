@@ -100,7 +100,10 @@ class ActivitiesListActivity : BaseActivity() {
                         uiData.activities.isEmpty() && uiData.searchText == null
                     adapter.application = uiData.application
                     adapter.submitList(uiData.activities) {
-                        binding.list.scrollToPosition(0)
+                        if (uiData.scrollToTop) {
+                            binding.list.scrollToPosition(0)
+                            viewModel.onScrollToTopApplied()
+                        }
                     }
                 }
         }

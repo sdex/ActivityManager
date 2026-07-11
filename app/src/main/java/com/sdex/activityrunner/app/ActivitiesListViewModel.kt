@@ -27,6 +27,7 @@ data class UiData(
     val allActivities: List<ActivityModel> = emptyList(),
     val searchText: String? = null,
     val isLoading: Boolean = true,
+    val scrollToTop: Boolean = false,
 )
 
 @HiltViewModel
@@ -92,6 +93,7 @@ class ActivitiesListViewModel @Inject constructor(
                 it.copy(
                     activities = getFilteredList(activities, it.searchText),
                     allActivities = activities,
+                    scrollToTop = true,
                 )
             }
         }
@@ -106,9 +108,14 @@ class ActivitiesListViewModel @Inject constructor(
                 it.copy(
                     activities = getFilteredList(it.allActivities, normalizedSearchText),
                     searchText = normalizedSearchText,
+                    scrollToTop = true,
                 )
             }
         }
+    }
+
+    fun onScrollToTopApplied() {
+        _uiState.update { it.copy(scrollToTop = false) }
     }
 
     private fun normalizeSearchText(searchText: String?): String? =
