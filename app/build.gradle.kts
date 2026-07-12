@@ -110,7 +110,6 @@ dependencies {
     }
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
-    kspAndroidTest(libs.hilt.compiler)
     implementation(libs.timber)
     implementation(libs.icondialog)
     implementation(libs.iconpack.community.material)
@@ -148,6 +147,7 @@ dependencies {
     testImplementation(libs.truth)
     testImplementation(libs.turbine)
 
+    kspAndroidTest(libs.hilt.compiler)
     androidTestImplementation(libs.room.testing)
     androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.androidx.test.runner)
