@@ -16,8 +16,9 @@ import com.sdex.activityrunner.databinding.ActivityHistoryBinding
 import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.intent.IntentBuilderActivity
 import com.sdex.activityrunner.intent.converter.HistoryToLaunchParamsConverter
-import com.sdex.activityrunner.intent.dialog.ExportIntentAsUriDialog
+import com.sdex.activityrunner.intent.dialog.ExportIntentDialog
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_ADD_SHORTCUT
+import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_SHELL
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_EXPORT_URI
 import com.sdex.activityrunner.intent.history.HistoryListAdapter.Companion.MENU_ITEM_REMOVE
 import com.sdex.activityrunner.shortcut.CreateShortcutActivity
@@ -67,17 +68,19 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
             when (itemId) {
                 MENU_ITEM_REMOVE -> viewModel.deleteItem(historyModel)
                 MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(historyModel)
-                MENU_ITEM_EXPORT_URI -> showExportUriDialog(historyModel)
+                MENU_ITEM_EXPORT_URI -> showExportDialog(historyModel, ExportIntentDialog.Format.URI)
+                MENU_ITEM_EXPORT_SHELL ->
+                    showExportDialog(historyModel, ExportIntentDialog.Format.SHELL_COMMAND)
             }
         }
         return super.onContextItemSelected(item)
     }
 
-    private fun showExportUriDialog(historyModel: HistoryModel) {
+    private fun showExportDialog(historyModel: HistoryModel, format: ExportIntentDialog.Format) {
         val converter = HistoryToLaunchParamsConverter(historyModel)
         val launchParams = converter.convert()
-        ExportIntentAsUriDialog.newInstance(launchParams)
-            .show(supportFragmentManager, ExportIntentAsUriDialog.TAG)
+        ExportIntentDialog.newInstance(launchParams, format)
+            .show(supportFragmentManager, ExportIntentDialog.TAG)
     }
 
     private fun showShortcutDialog(historyModel: HistoryModel) {
@@ -120,7 +123,8 @@ class HistoryActivity : BaseActivity(), HistoryListAdapter.Callback {
         when (menuItemId) {
             MENU_ITEM_REMOVE -> viewModel.deleteItem(item)
             MENU_ITEM_ADD_SHORTCUT -> showShortcutDialog(item)
-            MENU_ITEM_EXPORT_URI -> showExportUriDialog(item)
+            MENU_ITEM_EXPORT_URI -> showExportDialog(item, ExportIntentDialog.Format.URI)
+            MENU_ITEM_EXPORT_SHELL -> showExportDialog(item, ExportIntentDialog.Format.SHELL_COMMAND)
         }
     }
 

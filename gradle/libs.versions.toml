@@ -37,6 +37,7 @@ datastore = "1.2.1"
 shizuku = "13.1.5"
 junit = "4.13.2"
 mockk = "1.14.11"
+robolectric = "4.16"
 truth = "1.4.5"
 turbine = "1.2.1"
 hamcrest = "3.0"
@@ -79,6 +80,7 @@ shizuku-api = { module = "dev.rikka.shizuku:api", version.ref = "shizuku" }
 shizuku-provider = { module = "dev.rikka.shizuku:provider", version.ref = "shizuku" }
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 turbine = { module = "app.cash.turbine:turbine-jvm", version.ref = "turbine" }
 hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }

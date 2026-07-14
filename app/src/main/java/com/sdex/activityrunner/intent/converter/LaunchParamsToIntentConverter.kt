@@ -62,13 +62,36 @@ class LaunchParamsToIntentConverter(
         val key = extra.key
         val value = extra.value
         try {
-            when (extra.type) {
-                LaunchParamsExtraType.STRING -> intent.putExtra(key, value)
-                LaunchParamsExtraType.INT -> intent.putExtra(key, value.toInt())
-                LaunchParamsExtraType.LONG -> intent.putExtra(key, value.toLong())
-                LaunchParamsExtraType.FLOAT -> intent.putExtra(key, value.toFloat())
-                LaunchParamsExtraType.DOUBLE -> intent.putExtra(key, value.toDouble())
-                LaunchParamsExtraType.BOOLEAN -> intent.putExtra(key, value.toBooleanStrict())
+            if (extra.isArray) {
+                val values = value.split(",")
+                when (extra.type) {
+                    LaunchParamsExtraType.STRING ->
+                        intent.putExtra(key, values.toTypedArray())
+
+                    LaunchParamsExtraType.INT ->
+                        intent.putExtra(key, values.map { it.toInt() }.toIntArray())
+
+                    LaunchParamsExtraType.LONG ->
+                        intent.putExtra(key, values.map { it.toLong() }.toLongArray())
+
+                    LaunchParamsExtraType.FLOAT ->
+                        intent.putExtra(key, values.map { it.toFloat() }.toFloatArray())
+
+                    LaunchParamsExtraType.DOUBLE ->
+                        intent.putExtra(key, values.map { it.toDouble() }.toDoubleArray())
+
+                    LaunchParamsExtraType.BOOLEAN ->
+                        intent.putExtra(key, values.map { it.toBooleanStrict() }.toBooleanArray())
+                }
+            } else {
+                when (extra.type) {
+                    LaunchParamsExtraType.STRING -> intent.putExtra(key, value)
+                    LaunchParamsExtraType.INT -> intent.putExtra(key, value.toInt())
+                    LaunchParamsExtraType.LONG -> intent.putExtra(key, value.toLong())
+                    LaunchParamsExtraType.FLOAT -> intent.putExtra(key, value.toFloat())
+                    LaunchParamsExtraType.DOUBLE -> intent.putExtra(key, value.toDouble())
+                    LaunchParamsExtraType.BOOLEAN -> intent.putExtra(key, value.toBooleanStrict())
+                }
             }
         } catch (_: Exception) {
             Timber.d("Failed to parse the value")

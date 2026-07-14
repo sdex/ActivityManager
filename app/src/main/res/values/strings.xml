@@ -101,6 +101,7 @@
     <string name="history_item_dialog_remove">Remove</string>
     <string name="history_item_dialog_add_shortcut">Create shortcut</string>
     <string name="history_item_dialog_export_uri">Export as URI</string>
+    <string name="history_item_dialog_export_shell">Export as shell command</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="dialog_add_extra_title">Add extra</string>
@@ -108,6 +109,8 @@
     <string name="dialog_add_extra_value_empty">Value cannot be empty</string>
     <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
     <string name="dialog_export_intent_copy">Copy</string>
+    <string name="dialog_export_intent_warning_array_extras">This intent contains array extras that cannot be represented as a URI. They are not included.</string>
+    <string name="dialog_export_intent_warning_boolean_array_extras">Boolean array extras are not supported by the \'am\' command and are not included.</string>
     <string name="dialog_enable_non_exported_title">Non-exported activities</string>
     <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
     <string name="dialog_root_config_title">Set custom \'su\' executable</string>

@@ -57,7 +57,8 @@ class ExtraInputDialog : BaseDialogFragment() {
                             binding.keyLayout.error = null
                             binding.valueLayout.error = null
 
-                            when (viewModel.validateExtraInput(newKey, newValue, type)) {
+                            val isArray = binding.array.isChecked
+                            when (viewModel.validateExtraInput(newKey, newValue, type, isArray)) {
                                 LaunchParamsViewModel.ExtraInputValidationResult.KeyEmpty -> {
                                     binding.keyLayout.error =
                                         getString(R.string.dialog_add_extra_key_empty)
@@ -81,8 +82,7 @@ class ExtraInputDialog : BaseDialogFragment() {
                                 LaunchParamsViewModel.ExtraInputValidationResult.Valid -> Unit
                             }
 
-                            val extra =
-                                LaunchParamsExtra(newKey, newValue, type, binding.array.isChecked)
+                            val extra = LaunchParamsExtra(newKey, newValue, type, isArray)
                             viewModel.upsertExtra(extra, position)
                             dismiss()
                         }

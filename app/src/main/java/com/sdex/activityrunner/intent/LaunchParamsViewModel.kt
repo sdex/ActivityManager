@@ -153,7 +153,12 @@ class LaunchParamsViewModel @Inject constructor(
         }
     }
 
-    fun validateExtraInput(key: String, value: String, type: Int): ExtraInputValidationResult {
+    fun validateExtraInput(
+        key: String,
+        value: String,
+        type: Int,
+        isArray: Boolean,
+    ): ExtraInputValidationResult {
         if (key.isEmpty()) {
             return ExtraInputValidationResult.KeyEmpty
         }
@@ -162,7 +167,8 @@ class LaunchParamsViewModel @Inject constructor(
             return ExtraInputValidationResult.ValueEmpty
         }
 
-        if (!isExtraFormatValid(type, value)) {
+        val values = if (isArray) value.split(",") else listOf(value)
+        if (values.any { !isExtraFormatValid(type, it) }) {
             return ExtraInputValidationResult.InvalidType
         }
 
