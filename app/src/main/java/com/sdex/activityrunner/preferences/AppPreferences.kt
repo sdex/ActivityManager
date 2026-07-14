@@ -15,6 +15,7 @@ interface AppPreferences {
     var isShowDisabledAppIndicator: Boolean
     var showNotExported: Boolean
     var showLineNumbers: Boolean
+    var isShowLaunchToast: Boolean
     @get:AppCompatDelegate.NightMode
     @setparam:AppCompatDelegate.NightMode
     var theme: Int

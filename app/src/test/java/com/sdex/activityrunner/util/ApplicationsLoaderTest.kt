@@ -5,13 +5,10 @@ import android.content.res.Resources
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.google.common.truth.Truth.assertThat
 import com.sdex.activityrunner.app.ActivityModel
-import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.commons.platform.EnvironmentInfoProvider
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
-import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.preferences.DisplayConfig
-import com.sdex.activityrunner.preferences.PreferencesState
+import com.sdex.activityrunner.preferences.FakeAppPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.test.runTest
@@ -484,28 +481,6 @@ class ApplicationsLoaderTest {
             changedPackagesRequests += lastSequenceNumber
             return changedPackages[lastSequenceNumber]
         }
-    }
-
-    private class FakeAppPreferences(
-        override var lastSequenceNumber: Int = -1,
-        override var lastBootCount: Int = -1,
-    ) : AppPreferences {
-        override val preferences: Flow<PreferencesState> = emptyFlow()
-        override val displayConfig: Flow<DisplayConfig> = emptyFlow()
-        override var isNotExportedDialogShown: Boolean = false
-        override val appOpenCounter: Int = 0
-        override var isShowSystemApps: Boolean = true
-        override var isShowSystemAppIndicator: Boolean = false
-        override var isShowDisabledApps: Boolean = true
-        override var isShowDisabledAppIndicator: Boolean = false
-        override var showNotExported: Boolean = false
-        override var showLineNumbers: Boolean = true
-        override var theme: Int = 0
-        override var sortBy: String = ApplicationModel.NAME
-        override var sortOrder: String = "ASC"
-        override var suExecutable: String = "su"
-        override var assistantBackup: AssistantBackup? = null
-        override fun onAppOpened() = Unit
     }
 
     private class FakeEnvironmentInfoProvider(

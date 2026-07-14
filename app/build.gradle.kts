@@ -72,6 +72,9 @@ android {
 
     sourceSets {
         getByName("androidTest").assets.directories.add("schemas")
+        // test fakes shared between unit and instrumentation tests
+        getByName("test").kotlin.srcDir("src/sharedTest/java")
+        getByName("androidTest").kotlin.srcDir("src/sharedTest/java")
     }
 
     lint {

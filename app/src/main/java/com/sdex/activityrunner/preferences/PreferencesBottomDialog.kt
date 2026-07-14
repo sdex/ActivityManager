@@ -108,6 +108,9 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         binding.switchNonExported.setOnCheckedChangeListener { _, isChecked ->
             viewModel.handleIntent(PreferencesIntent.ToggleNonExportedActivities(isChecked))
         }
+        binding.openSettings.setOnClickListener {
+            SettingsActivity.start(requireContext())
+        }
 
         val themeOptions = resources.getStringArray(R.array.pref_appearance_theme_list_titles)
         binding.themeAuto.text = themeOptions[0]

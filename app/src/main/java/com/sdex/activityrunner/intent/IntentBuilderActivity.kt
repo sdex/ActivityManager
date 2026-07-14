@@ -27,12 +27,17 @@ import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.history.HistoryActivity
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class IntentBuilderActivity : BaseActivity() {
+
+    @Inject
+    lateinit var appPreferences: AppPreferences
 
     private val viewModel: LaunchParamsViewModel by viewModels()
     private lateinit var binding: ActivityIntentBuilderBinding
@@ -107,7 +112,11 @@ class IntentBuilderActivity : BaseActivity() {
             }
             val converter = LaunchParamsToIntentConverter(viewModel.launchParamsState.value)
             val intent = converter.convert()
-            IntentUtils.launchActivity(this@IntentBuilderActivity, intent)
+            IntentUtils.launchActivity(
+                context = this@IntentBuilderActivity,
+                intent = intent,
+                showMessage = appPreferences.isShowLaunchToast,
+            )
         }
 
         lifecycleScope.launch {

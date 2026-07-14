@@ -104,6 +104,11 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".preferences.SettingsActivity"
+            android:exported="false"
+            android:label="@string/action_settings" />
+
+        <activity
             android:name=".onboarding.ShizukuOnboardingActivity"
             android:exported="false"
             android:label="@string/onboarding_title" />

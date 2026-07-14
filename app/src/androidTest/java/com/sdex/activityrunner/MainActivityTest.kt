@@ -19,7 +19,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.sdex.activityrunner.app.ApplicationsListAdapter
-import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.commons.platform.EnvironmentInfoProvider
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
@@ -33,7 +32,7 @@ import com.sdex.activityrunner.manifest.ManifestReader
 import com.sdex.activityrunner.manifest.ManifestWriter
 import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.DisplayConfig
-import com.sdex.activityrunner.preferences.PreferencesState
+import com.sdex.activityrunner.preferences.FakeAppPreferences
 import com.sdex.activityrunner.util.ApplicationsLoader
 import com.sdex.activityrunner.util.ChangedPackages
 import com.sdex.activityrunner.util.PackageInfoProvider
@@ -47,7 +46,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
 import org.hamcrest.Matchers.allOf
 import org.junit.Assert.assertTrue
@@ -68,7 +66,12 @@ class MainActivityTest {
             application(name = "Beta Camera", packageName = "com.test.beta"),
         ),
     )
-    private val fakeAppPreferences = FakeAppPreferences()
+    private val fakeAppPreferences = FakeAppPreferences(
+        lastSequenceNumber = 1,
+        lastBootCount = 1,
+    ).apply {
+        isNotExportedDialogShown = true
+    }
     private val fakePackageInfoProvider = FakePackageInfoProvider(
         packageNames = fakeCacheRepository.applicationPackageNames,
     )
@@ -269,30 +272,6 @@ class MainActivityTest {
                 comparator
             }
         }
-    }
-
-    private class FakeAppPreferences : AppPreferences {
-
-        val displayConfigState = MutableStateFlow(DisplayConfig())
-
-        override val preferences: Flow<PreferencesState> = emptyFlow()
-        override val displayConfig: Flow<DisplayConfig> = displayConfigState
-        override var isNotExportedDialogShown: Boolean = true
-        override val appOpenCounter: Int = 0
-        override var isShowSystemApps: Boolean = true
-        override var isShowSystemAppIndicator: Boolean = false
-        override var isShowDisabledApps: Boolean = true
-        override var isShowDisabledAppIndicator: Boolean = false
-        override var showNotExported: Boolean = false
-        override var showLineNumbers: Boolean = false
-        override var theme: Int = 0
-        override var sortBy: String = ApplicationModel.NAME
-        override var sortOrder: String = "ASC"
-        override var suExecutable: String = ""
-        override var lastSequenceNumber: Int = 1
-        override var lastBootCount: Int = 1
-        override var assistantBackup: AssistantBackup? = null
-        override fun onAppOpened() = Unit
     }
 
     private class FakePackageInfoProvider(

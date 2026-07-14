@@ -89,10 +89,14 @@ object IntentUtils {
     fun launchActivity(
         context: Context,
         intent: Intent,
+        showMessage: Boolean = true,
     ) {
         try {
             context.startActivity(intent)
-            Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show()
+            if (showMessage) {
+                Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT)
+                    .show()
+            }
         } catch (e: Exception) {
             MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.starting_activity_intent_failed)

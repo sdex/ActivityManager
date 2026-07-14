@@ -38,14 +38,14 @@
     <string name="starting_activity_root_not_available">Root is not available or the permission is not granted</string>
     <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">Set up Shizuku</string>
-    <string name="onboarding_intro"><![CDATA[The <a href="%1$s">Shizuku</a> method launches non-exported activities without root. Complete setup once.]]></string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
     <string name="onboarding_step_done">✓</string>
     <string name="onboarding_step_install_title">Install Shizuku</string>
     <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
     <string name="onboarding_action_install_shizuku">Install</string>
     <string name="onboarding_action_open_shizuku">Open</string>
     <string name="onboarding_step_permission_title">Grant Shizuku access</string>
-    <string name="onboarding_step_permission_desc">Allow this app to use Shizuku.</string>
+    <string name="onboarding_step_permission_desc">Allow Activity Manager to use Shizuku.</string>
     <string name="onboarding_action_grant_shizuku">Grant access</string>
     <string name="onboarding_action_done">Done</string>
     <string name="activities_list_empty_text">There are no exported activities</string>
@@ -122,6 +122,11 @@
     <string name="pref_header_advanced">Advanced</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
     <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
+    <string name="pref_header_launch">Launch</string>
+    <string name="pref_launch_toast_title">Show launch message</string>
+    <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>
+    <string name="pref_header_root">Root</string>
+    <string name="pref_root_config_summary">Customize the \'su\' executable used to launch activities with root</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>System</item>
         <item>Light</item>

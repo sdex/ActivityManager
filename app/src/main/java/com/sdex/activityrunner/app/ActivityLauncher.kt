@@ -10,6 +10,7 @@ import com.sdex.activityrunner.app.launcher.LaunchResult
 import com.sdex.activityrunner.app.launcher.LaunchStrategy
 import com.sdex.activityrunner.app.launcher.LaunchStrategyFactory
 import com.sdex.activityrunner.onboarding.ShizukuOnboardingActivity
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.util.IntentUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +31,7 @@ class ActivityLauncher @Inject constructor(
     @param:ApplicationContext private val context: Context,
     private val strategyFactory: LaunchStrategyFactory,
     private val coroutineScope: CoroutineScope,
+    private val appPreferences: AppPreferences,
 ) {
 
     fun launch(model: ActivityModel) {
@@ -48,7 +50,12 @@ class ActivityLauncher @Inject constructor(
 
     private fun launch(component: ComponentName, name: String, requiresElevation: Boolean) {
         if (!requiresElevation) {
-            IntentUtils.launchActivity(context, component, name)
+            IntentUtils.launchActivity(
+                context = context,
+                component = component,
+                name = name,
+                showMessage = appPreferences.isShowLaunchToast,
+            )
             return
         }
         coroutineScope.launch {
@@ -66,7 +73,9 @@ class ActivityLauncher @Inject constructor(
         component: ComponentName,
         name: String,
     ) {
-        toast(context.getString(R.string.starting_activity, name))
+        if (appPreferences.isShowLaunchToast) {
+            toast(context.getString(R.string.starting_activity, name))
+        }
         when (val result = strategy.launch(context, component)) {
             LaunchResult.Success -> Unit
             LaunchResult.Unavailable ->

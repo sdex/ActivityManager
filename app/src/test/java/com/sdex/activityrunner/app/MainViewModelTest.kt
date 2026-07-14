@@ -3,13 +3,11 @@ package com.sdex.activityrunner.app
 import androidx.sqlite.db.SupportSQLiteQuery
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.sdex.activityrunner.app.launcher.AssistantBackup
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.db.cache.CacheRepository
 import com.sdex.activityrunner.db.cache.query.GetApplicationsQuery
-import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.DisplayConfig
-import com.sdex.activityrunner.preferences.PreferencesState
+import com.sdex.activityrunner.preferences.FakeAppPreferences
 import com.sdex.activityrunner.util.ApplicationsLoader
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -20,8 +18,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
@@ -222,32 +218,6 @@ class MainViewModelTest {
         updateTime = 0,
         installTime = 0,
     )
-
-    private class FakeAppPreferences(
-        displayConfig: DisplayConfig = DisplayConfig(),
-    ) : AppPreferences {
-
-        val displayConfigState = MutableStateFlow(displayConfig)
-
-        override val preferences: Flow<PreferencesState> = emptyFlow()
-        override val displayConfig: Flow<DisplayConfig> = displayConfigState
-        override var isNotExportedDialogShown: Boolean = false
-        override val appOpenCounter: Int = 0
-        override var isShowSystemApps: Boolean = false
-        override var isShowSystemAppIndicator: Boolean = false
-        override var isShowDisabledApps: Boolean = false
-        override var isShowDisabledAppIndicator: Boolean = false
-        override var showNotExported: Boolean = false
-        override var showLineNumbers: Boolean = false
-        override var theme: Int = 0
-        override var sortBy: String = ApplicationModel.NAME
-        override var sortOrder: String = GetApplicationsQuery.ASC
-        override var suExecutable: String = ""
-        override var lastSequenceNumber: Int = 0
-        override var lastBootCount: Int = 0
-        override var assistantBackup: AssistantBackup? = null
-        override fun onAppOpened() = Unit
-    }
 
     private class FakeCacheRepository(
         private val count: Int = 0,

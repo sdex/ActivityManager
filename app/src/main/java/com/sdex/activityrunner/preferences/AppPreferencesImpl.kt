@@ -147,6 +147,16 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
             }
         }
 
+    override var isShowLaunchToast: Boolean
+        get() = runBlocking { dataStore.data.first()[KEY_SHOW_LAUNCH_TOAST] ?: true }
+        set(value) {
+            coroutineScope.launch {
+                dataStore.edit { prefs ->
+                    prefs[KEY_SHOW_LAUNCH_TOAST] = value
+                }
+            }
+        }
+
     @get:AppCompatDelegate.NightMode
     @setparam:AppCompatDelegate.NightMode
     override var theme: Int
@@ -247,6 +257,7 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
         val KEY_OPEN_APP_COUNTER = intPreferencesKey("open_app_counter")
         val KEY_SHOW_LINE_NUMBERS = booleanPreferencesKey("show_line_numbers")
 
+        val KEY_SHOW_LAUNCH_TOAST = booleanPreferencesKey("show_launch_toast")
         val KEY_SHOW_NOT_EXPORTED = booleanPreferencesKey("advanced_not_exported")
         val KEY_SHOW_SYSTEM_APPS = booleanPreferencesKey("show_system_apps")
         val KEY_SHOW_SYSTEM_APP_LABEL = booleanPreferencesKey("advanced_system_app")
