@@ -7,13 +7,17 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.commons.BaseActivity
@@ -21,14 +25,13 @@ import com.sdex.activityrunner.databinding.ActivityIntentBuilderBinding
 import com.sdex.activityrunner.extensions.parcelable
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.intent.LaunchParamsExtraListAdapter.Callback
-import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
+import com.sdex.activityrunner.intent.converter.LaunchParamsToShellCommandConverter
 import com.sdex.activityrunner.intent.dialog.ExtraInputDialog
 import com.sdex.activityrunner.intent.dialog.MultiSelectionDialog
 import com.sdex.activityrunner.intent.dialog.SingleSelectionDialog
 import com.sdex.activityrunner.intent.dialog.ValueInputDialog
 import com.sdex.activityrunner.intent.history.HistoryActivity
 import com.sdex.activityrunner.preferences.AppPreferences
-import com.sdex.activityrunner.util.IntentUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -106,26 +109,59 @@ class IntentBuilderActivity : BaseActivity() {
         )
         bindMultiSelectionDialog(binding.flagsClickInterceptor, R.string.launch_param_flags)
 
+        binding.launchWithRoot.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.setUseRoot(isChecked)
+        }
+
+        binding.launchWithRoot.isChecked = (activityModel?.launchRequiresRoot == true)
+
         binding.launch.setOnClickListener {
-            if (binding.saveToHistory.isChecked) {
-                viewModel.addToHistory()
-            }
-            val converter = LaunchParamsToIntentConverter(viewModel.launchParamsState.value)
-            val intent = converter.convert()
-            IntentUtils.launchActivity(
-                context = this@IntentBuilderActivity,
-                intent = intent,
-                showMessage = appPreferences.isShowLaunchToast,
-            )
+            viewModel.launch(binding.saveToHistory.isChecked)
         }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.launchParamsState.collect {
-                    showLaunchParams(it)
+                launch {
+                    viewModel.launchParamsState.collect {
+                        showLaunchParams(it)
+                    }
+                }
+                launch {
+                    viewModel.events.collect {
+                        handleLaunchEvent(it)
+                    }
                 }
             }
         }
+    }
+
+    private fun handleLaunchEvent(event: LaunchParamsViewModel.LaunchEvent) {
+        when (event) {
+            is LaunchParamsViewModel.LaunchEvent.LaunchError ->
+                showErrorDialog(R.string.starting_activity_intent_failed, event.details)
+
+            LaunchParamsViewModel.LaunchEvent.RootUnavailable ->
+                Toast.makeText(this, R.string.starting_activity_root_not_available, Toast.LENGTH_SHORT)
+                    .show()
+
+            LaunchParamsViewModel.LaunchEvent.RootSuccess -> if (appPreferences.isShowLaunchToast) {
+                Toast.makeText(this, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show()
+            }
+
+            is LaunchParamsViewModel.LaunchEvent.RootError ->
+                showErrorDialog(R.string.starting_activity_root_error, event.details)
+        }
+    }
+
+    private fun showErrorDialog(@StringRes titleRes: Int, message: String?) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(titleRes)
+            .setMessage(message)
+            .setPositiveButton(android.R.string.ok, null)
+            .show().apply {
+                val messageTextView = findViewById<TextView>(android.R.id.message)
+                messageTextView?.setTextIsSelectable(true)
+            }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -189,6 +225,11 @@ class IntentBuilderActivity : BaseActivity() {
         extraAdapter.setItems(launchParams.extras)
         categoriesAdapter.setItems(launchParams.getCategoriesValues())
         flagsAdapter.setItems(launchParams.getFlagsValues())
+        if (binding.launchWithRoot.isChecked != launchParams.useRoot) {
+            binding.launchWithRoot.isChecked = launchParams.useRoot
+        }
+        binding.rootExtrasWarning.isVisible = launchParams.useRoot &&
+            LaunchParamsToShellCommandConverter.getUnsupportedExtras(launchParams).isNotEmpty()
         updateExtrasAdd(launchParams)
     }
 

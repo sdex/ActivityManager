@@ -13,4 +13,5 @@ data class LaunchParams(
     val categories: List<Int> = emptyList(),
     val flags: List<Int> = emptyList(),
     val extras: List<LaunchParamsExtra> = emptyList(),
+    val useRoot: Boolean = false,
 ) : Parcelable

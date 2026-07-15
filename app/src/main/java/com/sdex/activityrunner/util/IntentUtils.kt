@@ -5,11 +5,9 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
-import android.widget.TextView
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.history.HistoryModel
@@ -86,36 +84,19 @@ object IntentUtils {
         }
     }
 
-    fun launchActivity(
-        context: Context,
-        intent: Intent,
-        showMessage: Boolean = true,
-    ) {
-        try {
-            context.startActivity(intent)
-            if (showMessage) {
-                Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT)
-                    .show()
-            }
-        } catch (e: Exception) {
-            MaterialAlertDialogBuilder(context)
-                .setTitle(R.string.starting_activity_intent_failed)
-                .setMessage(e.message)
-                .setPositiveButton(android.R.string.ok, null)
-                .show().apply {
-                    val messageTextView = findViewById<TextView>(android.R.id.message)
-                    messageTextView?.setTextIsSelectable(true)
-                }
-        }
-    }
-
     fun launchApplication(
         context: Context,
         packageName: String,
     ) {
         val intent = context.packageManager.getLaunchIntentForPackage(packageName)
         if (intent != null) {
-            launchActivity(context, intent)
+            try {
+                context.startActivity(intent)
+            } catch (e: Exception) {
+                Timber.e(e)
+                Toast.makeText(context, R.string.starting_activity_intent_failed, Toast.LENGTH_SHORT)
+                    .show()
+            }
         } else {
             Toast.makeText(
                 context, R.string.starting_activity_launch_intent_failed,

@@ -316,4 +316,35 @@ class HistoryToLaunchParamsConverterTest {
         assertEquals(listOf(1), launchParams.categories)
         assertEquals(listOf(268435456), launchParams.flags)
     }
+
+    @Test
+    fun `convert restores useRoot flag`() {
+        val historyModel = HistoryModel(
+            id = 0,
+            timestamp = 0L,
+            name = null,
+            packageName = "com.test",
+            className = null,
+            useRoot = true,
+        )
+
+        val launchParams = HistoryToLaunchParamsConverter(historyModel).convert()
+
+        assertEquals(true, launchParams.useRoot)
+    }
+
+    @Test
+    fun `convert defaults useRoot to false`() {
+        val historyModel = HistoryModel(
+            id = 0,
+            timestamp = 0L,
+            name = null,
+            packageName = "com.test",
+            className = null,
+        )
+
+        val launchParams = HistoryToLaunchParamsConverter(historyModel).convert()
+
+        assertEquals(false, launchParams.useRoot)
+    }
 }

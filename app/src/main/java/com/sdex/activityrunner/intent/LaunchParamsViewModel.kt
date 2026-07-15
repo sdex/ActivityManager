@@ -3,23 +3,34 @@ package com.sdex.activityrunner.intent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sdex.activityrunner.R
+import com.sdex.activityrunner.app.ActivityLauncher
 import com.sdex.activityrunner.app.ActivityModel
 import com.sdex.activityrunner.db.history.HistoryRepository
 import com.sdex.activityrunner.di.IoDispatcher
 import com.sdex.activityrunner.intent.converter.LaunchParamsToHistoryConverter
+import com.sdex.activityrunner.intent.converter.LaunchParamsToIntentConverter
+import com.sdex.activityrunner.intent.converter.LaunchParamsToShellCommandConverter
 import com.sdex.activityrunner.intent.param.Action
 import com.sdex.activityrunner.intent.param.MimeType
+import com.sdex.activityrunner.preferences.AppPreferences
+import com.sdex.activityrunner.util.RootUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class LaunchParamsViewModel @Inject constructor(
     private val historyRepository: HistoryRepository,
+    private val appPreferences: AppPreferences,
+    private val activityLauncher: ActivityLauncher,
     @param:IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
@@ -27,6 +38,9 @@ class LaunchParamsViewModel @Inject constructor(
 
     private val _launchParamsState = MutableStateFlow(LaunchParams())
     val launchParamsState: StateFlow<LaunchParams> = _launchParamsState
+
+    private val _events = Channel<LaunchEvent>(Channel.BUFFERED)
+    val events: Flow<LaunchEvent> = _events.receiveAsFlow()
 
     fun initialize(activityModel: ActivityModel?) {
         if (isInitialized) return
@@ -42,6 +56,50 @@ class LaunchParamsViewModel @Inject constructor(
 
     fun setLaunchParams(params: LaunchParams?) {
         _launchParamsState.value = params ?: LaunchParams()
+    }
+
+    fun setUseRoot(useRoot: Boolean) {
+        _launchParamsState.update { it.copy(useRoot = useRoot) }
+    }
+
+    /**
+     * Single launch entry point. Decides *how* to run the current [LaunchParams] — a normal
+     * in-process launch, or `am start` as root when [LaunchParams.useRoot] is set — and reports the
+     * outcome through [events] so the screen only has to render it.
+     */
+    fun launch(saveToHistory: Boolean) {
+        val params = _launchParamsState.value
+        if (saveToHistory) {
+            addToHistory()
+        }
+        if (params.useRoot) {
+            launchAsRoot(params)
+        } else {
+            val intent = LaunchParamsToIntentConverter(params).convert()
+            val error = activityLauncher.launchIntent(intent)
+            if (error != null) {
+                _events.trySend(LaunchEvent.LaunchError(error))
+            }
+        }
+    }
+
+    private fun launchAsRoot(params: LaunchParams) {
+        viewModelScope.launch {
+            val event = withContext(ioDispatcher) {
+                val suExecutable = appPreferences.suExecutable
+                if (!RootUtils.isSuAvailable(suExecutable)) {
+                    return@withContext LaunchEvent.RootUnavailable
+                }
+                val command = LaunchParamsToShellCommandConverter(params).convert()
+                val output = RootUtils.execute(suExecutable, command)
+                if (output != null && output.contains("Error")) {
+                    LaunchEvent.RootError(output)
+                } else {
+                    LaunchEvent.RootSuccess
+                }
+            }
+            _events.send(event)
+        }
     }
 
     fun setValue(type: Int, value: String) {
@@ -202,5 +260,19 @@ class LaunchParamsViewModel @Inject constructor(
         data object KeyEmpty : ExtraInputValidationResult()
         data object ValueEmpty : ExtraInputValidationResult()
         data object InvalidType : ExtraInputValidationResult()
+    }
+
+    sealed interface LaunchEvent {
+        /** The in-process launch failed; [details] is the failure message to render. */
+        data class LaunchError(val details: String?) : LaunchEvent
+
+        /** Root launch requested but `su` is unavailable / not granted. */
+        data object RootUnavailable : LaunchEvent
+
+        /** The `am start` command completed without reporting an error. */
+        data object RootSuccess : LaunchEvent
+
+        /** The `am start` command failed; [details] is the captured shell output. */
+        data class RootError(val details: String?) : LaunchEvent
     }
 }

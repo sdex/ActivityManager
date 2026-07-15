@@ -19,6 +19,7 @@ class HistoryToLaunchParamsConverter(
             categories = integerListSerializer.deserialize(historyModel.categories),
             flags = integerListSerializer.deserialize(historyModel.flags),
             extras = extrasSerializer.deserialize(historyModel.extras),
+            useRoot = historyModel.useRoot,
         )
     }
 }

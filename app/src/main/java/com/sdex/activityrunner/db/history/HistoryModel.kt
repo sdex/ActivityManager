@@ -17,6 +17,7 @@ data class HistoryModel(
     val categories: String? = null,
     val flags: String? = null,
     val extras: String? = null,
+    val useRoot: Boolean = false,
 ) : Serializable {
 
     override fun equals(other: Any?): Boolean {

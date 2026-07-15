@@ -272,6 +272,24 @@ class LaunchParamsToHistoryConverterTest {
     }
 
     @Test
+    fun `convert defaults useRoot to false`() {
+        val launchParams = LaunchParams()
+
+        val historyModel = LaunchParamsToHistoryConverter(launchParams).convert()
+
+        assertEquals(false, historyModel.useRoot)
+    }
+
+    @Test
+    fun `convert preserves useRoot flag`() {
+        val launchParams = LaunchParams(packageName = "com.test", useRoot = true)
+
+        val historyModel = LaunchParamsToHistoryConverter(launchParams).convert()
+
+        assertEquals(true, historyModel.useRoot)
+    }
+
+    @Test
     fun `convert with all extra types`() {
         val extras = arrayListOf(
             LaunchParamsExtra("str", "text", LaunchParamsExtraType.STRING, false),

@@ -430,13 +430,45 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/launch_params_item_card_margin">
 
-                    <CheckBox
-                        android:id="@+id/save_to_history"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:checked="true"
-                        android:text="@string/save_to_history" />
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/save_to_history"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:checked="true"
+                            android:text="@string/save_to_history" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@drawable/divider"
+                            android:layout_marginHorizontal="16dp" />
+
+                        <CheckBox
+                            android:id="@+id/launch_with_root"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:text="@string/launch_with_root" />
+
+                        <TextView
+                            android:id="@+id/root_extras_warning"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/dialog_export_intent_warning_boolean_array_extras"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorError"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 

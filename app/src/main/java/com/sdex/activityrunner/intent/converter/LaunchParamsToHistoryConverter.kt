@@ -21,6 +21,7 @@ class LaunchParamsToHistoryConverter(
             categories = integerListSerializer.serialize(launchParams.categories),
             flags = integerListSerializer.serialize(launchParams.flags),
             extras = extrasSerializer.serialize(launchParams.extras),
+            useRoot = launchParams.useRoot,
         )
     }
 }

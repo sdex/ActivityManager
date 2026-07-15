@@ -17,6 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -40,6 +41,25 @@ class ActivityLauncher @Inject constructor(
 
     fun launch(component: ComponentName, requiresElevation: Boolean) {
         launch(component, component.shortName(), requiresElevation)
+    }
+
+    /**
+     * Launches an already-built [intent] in-process (e.g. from the intent builder). Runs from the
+     * application context, so [Intent.FLAG_ACTIVITY_NEW_TASK] is enforced. Returns `null` on
+     * success, or the failure message on error so the caller can surface it with a UI context.
+     */
+    fun launchIntent(intent: Intent): String? {
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        return try {
+            context.startActivity(intent)
+            if (appPreferences.isShowLaunchToast) {
+                Toast.makeText(context, R.string.starting_activity_intent, Toast.LENGTH_SHORT).show()
+            }
+            null
+        } catch (e: Exception) {
+            Timber.e(e)
+            e.message ?: context.getString(R.string.starting_activity_intent_failed)
+        }
     }
 
     fun launchWithRoot(model: ActivityModel) {

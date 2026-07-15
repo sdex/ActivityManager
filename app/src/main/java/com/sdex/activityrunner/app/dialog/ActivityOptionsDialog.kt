@@ -62,7 +62,6 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
             CreateShortcutActivity.start(requireContext(), model)
             dismissAllowingStateLoss()
         }
-        binding.actionActivityLaunchWithParams.isVisible = model.exported
         binding.actionActivityLaunchWithParams.setOnClickListener {
             IntentBuilderActivity.start(requireContext(), model)
             dismissAllowingStateLoss()
