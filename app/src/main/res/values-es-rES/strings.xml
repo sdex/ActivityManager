@@ -36,6 +36,18 @@
     <string name="starting_activity_intent_failed">Error al iniciar la actividad</string>
     <string name="starting_activity_root_error">Error al iniciar la actividad usando root</string>
     <string name="starting_activity_root_not_available">El root no está disponible o el permiso no fue concedido</string>
+    <!-- Shizuku method setup wizard -->
+    <string name="onboarding_title">Set up Shizuku</string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
+    <string name="onboarding_step_done">✓</string>
+    <string name="onboarding_step_install_title">Install Shizuku</string>
+    <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
+    <string name="onboarding_action_install_shizuku">Install</string>
+    <string name="onboarding_action_open_shizuku">Open</string>
+    <string name="onboarding_step_permission_title">Grant Shizuku access</string>
+    <string name="onboarding_step_permission_desc">Allow Activity Manager to use Shizuku.</string>
+    <string name="onboarding_action_grant_shizuku">Grant access</string>
+    <string name="onboarding_action_done">Done</string>
     <string name="activities_list_empty_text">No hay actividades exportadas</string>
     <string name="activities_list_empty_action">Mostrar no exportadas</string>
     <string name="activities_list_non_exported_show_once">Newline. : \"Empty\", \"translation\", \"root\", \"magisck\"</string>
@@ -60,6 +72,7 @@
     <string name="launch_param_categories">Categorías</string>
     <string name="launch_param_flags">Banderas</string>
     <string name="save_to_history">Guardar en historial</string>
+    <string name="launch_with_root">Launch with root</string>
     <string name="item_history_has_extras">Extras</string>
     <string name="item_history_has_categories">Categorías</string>
     <string name="item_history_has_flags">Banderas</string>
@@ -89,6 +102,7 @@
     <string name="history_item_dialog_remove">Eliminar</string>
     <string name="history_item_dialog_add_shortcut">Crear acceso directo</string>
     <string name="history_item_dialog_export_uri">Exportar como URI</string>
+    <string name="history_item_dialog_export_shell">Export as shell command</string>
     <string name="no">No</string>
     <string name="yes">Si</string>
     <string name="dialog_add_extra_title">Añadir extra</string>
@@ -96,6 +110,8 @@
     <string name="dialog_add_extra_value_empty">El valor no puede estar vacío</string>
     <string name="dialog_add_extra_type_incorrect">Tipo de valor incorrecto</string>
     <string name="dialog_export_intent_copy">Copiar</string>
+    <string name="dialog_export_intent_warning_array_extras">This intent contains array extras that cannot be represented as a URI. They are not included.</string>
+    <string name="dialog_export_intent_warning_boolean_array_extras">Boolean array extras are not supported by the \'am\' command and are not included.</string>
     <string name="dialog_enable_non_exported_title">Actividades no exportadas</string>
     <string name="dialog_enable_non_exported_message">Puedes activar la visualización de actividades no exportadas, aparecerán marcadas en rojo. Estas actividades sólo pueden ser ejecutadas con permiso root</string>
     <string name="dialog_root_config_title">Set custom \'su\' executable</string>
@@ -110,6 +126,11 @@
     <string name="pref_header_advanced">Avanzado</string>
     <string name="pref_advanced_not_exported_title">Mostrar actividades no exportadas</string>
     <string name="pref_advanced_not_exported_summary">Se puede ejecutar sólo usando root</string>
+    <string name="pref_header_launch">Launch</string>
+    <string name="pref_launch_toast_title">Show launch message</string>
+    <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>
+    <string name="pref_header_root">Root</string>
+    <string name="pref_root_config_summary">Customize the \'su\' executable used to launch activities with root</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistema</item>
         <item>Claro</item>
