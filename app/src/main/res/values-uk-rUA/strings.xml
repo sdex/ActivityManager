@@ -36,6 +36,18 @@
     <string name="starting_activity_intent_failed">Не вдалося запустити активність</string>
     <string name="starting_activity_root_error">Не вдалося запустити активність за допомогою root</string>
     <string name="starting_activity_root_not_available">Root недоступний або дозвіл не надано</string>
+    <!-- Shizuku method setup wizard -->
+    <string name="onboarding_title">Set up Shizuku</string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
+    <string name="onboarding_step_done">✓</string>
+    <string name="onboarding_step_install_title">Install Shizuku</string>
+    <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
+    <string name="onboarding_action_install_shizuku">Install</string>
+    <string name="onboarding_action_open_shizuku">Open</string>
+    <string name="onboarding_step_permission_title">Grant Shizuku access</string>
+    <string name="onboarding_step_permission_desc">Allow Activity Manager to use Shizuku.</string>
+    <string name="onboarding_action_grant_shizuku">Grant access</string>
+    <string name="onboarding_action_done">Done</string>
     <string name="activities_list_empty_text">Там немає експортованих активностей</string>
     <string name="activities_list_empty_action">Показати не експортовані</string>
     <string name="activities_list_non_exported_show_once">Тільки раз</string>
@@ -60,6 +72,7 @@
     <string name="launch_param_categories">Категорії</string>
     <string name="launch_param_flags">Flags</string>
     <string name="save_to_history">Зберегти в історію</string>
+    <string name="launch_with_root">Launch with root</string>
     <string name="item_history_has_extras">Додаткові</string>
     <string name="item_history_has_categories">Категорії</string>
     <string name="item_history_has_flags">Flags</string>
@@ -89,6 +102,7 @@
     <string name="history_item_dialog_remove">Видалити</string>
     <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
     <string name="history_item_dialog_export_uri">Експортувати як URI</string>
+    <string name="history_item_dialog_export_shell">Export as shell command</string>
     <string name="no">Ні</string>
     <string name="yes">Так</string>
     <string name="dialog_add_extra_title">Додати додаткові</string>
@@ -96,6 +110,8 @@
     <string name="dialog_add_extra_value_empty">Значення не може бути порожнім</string>
     <string name="dialog_add_extra_type_incorrect">Неправильний тип значення</string>
     <string name="dialog_export_intent_copy">Копіювати</string>
+    <string name="dialog_export_intent_warning_array_extras">This intent contains array extras that cannot be represented as a URI. They are not included.</string>
+    <string name="dialog_export_intent_warning_boolean_array_extras">Boolean array extras are not supported by the \'am\' command and are not included.</string>
     <string name="dialog_enable_non_exported_title">Неекспортні активності</string>
     <string name="dialog_enable_non_exported_message">Ви можете ввімкнути показ не експортованих дій, вони будуть виділені червоним кольором. Такі дії можна виконувати лише з правами root</string>
     <string name="dialog_root_config_title">Встановити свій \'su\' виконуваний файл</string>
@@ -110,6 +126,11 @@
     <string name="pref_header_advanced">Просунуті</string>
     <string name="pref_advanced_not_exported_title">Показати не експортовані активності</string>
     <string name="pref_advanced_not_exported_summary">Можна запустити лише з root дозволом</string>
+    <string name="pref_header_launch">Launch</string>
+    <string name="pref_launch_toast_title">Show launch message</string>
+    <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>
+    <string name="pref_header_root">Root</string>
+    <string name="pref_root_config_summary">Customize the \'su\' executable used to launch activities with root</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Система</item>
         <item>Світла</item>
