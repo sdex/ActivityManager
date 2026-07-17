@@ -36,6 +36,18 @@
     <string name="starting_activity_intent_failed">액티비티를 시작하는데 실패했습니다</string>
     <string name="starting_activity_root_error">루트 권한을 사용하여 액티비티를 실행하는데 실패했습니다</string>
     <string name="starting_activity_root_not_available">루트 권한을 사용할 수 없거나 권한이 부여돼지 않았습니다</string>
+    <!-- Shizuku method setup wizard -->
+    <string name="onboarding_title">Set up Shizuku</string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
+    <string name="onboarding_step_done">✓</string>
+    <string name="onboarding_step_install_title">Install Shizuku</string>
+    <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
+    <string name="onboarding_action_install_shizuku">Install</string>
+    <string name="onboarding_action_open_shizuku">Open</string>
+    <string name="onboarding_step_permission_title">Grant Shizuku access</string>
+    <string name="onboarding_step_permission_desc">Allow Activity Manager to use Shizuku.</string>
+    <string name="onboarding_action_grant_shizuku">Grant access</string>
+    <string name="onboarding_action_done">Done</string>
     <string name="activities_list_empty_text">내보낸 액티비티가 없습니다</string>
     <string name="activities_list_empty_action">내보내지 않은 항목 표시</string>
     <string name="activities_list_non_exported_show_once">Just once</string>
@@ -60,6 +72,7 @@
     <string name="launch_param_categories">분류</string>
     <string name="launch_param_flags">플래그</string>
     <string name="save_to_history">기록에 저장하기</string>
+    <string name="launch_with_root">Launch with root</string>
     <string name="item_history_has_extras">기타</string>
     <string name="item_history_has_categories">분류</string>
     <string name="item_history_has_flags">플래그</string>
@@ -89,6 +102,7 @@
     <string name="history_item_dialog_remove">Remove</string>
     <string name="history_item_dialog_add_shortcut">Create shortcut</string>
     <string name="history_item_dialog_export_uri">Export as URI</string>
+    <string name="history_item_dialog_export_shell">Export as shell command</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="dialog_add_extra_title">Add extra</string>
@@ -96,6 +110,8 @@
     <string name="dialog_add_extra_value_empty">Value cannot be empty</string>
     <string name="dialog_add_extra_type_incorrect">Incorrect value type</string>
     <string name="dialog_export_intent_copy">Copy</string>
+    <string name="dialog_export_intent_warning_array_extras">This intent contains array extras that cannot be represented as a URI. They are not included.</string>
+    <string name="dialog_export_intent_warning_boolean_array_extras">Boolean array extras are not supported by the \'am\' command and are not included.</string>
     <string name="dialog_enable_non_exported_title">Non-exported activities</string>
     <string name="dialog_enable_non_exported_message">You can enable displaying non-exported activities, they will be highlighted with red color. Such activities can be run only with root permission</string>
     <string name="dialog_root_config_title">Set custom \'su\' executable</string>
@@ -110,6 +126,11 @@
     <string name="pref_header_advanced">Advanced</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
     <string name="pref_advanced_not_exported_summary">Can be run only using root</string>
+    <string name="pref_header_launch">Launch</string>
+    <string name="pref_launch_toast_title">Show launch message</string>
+    <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>
+    <string name="pref_header_root">Root</string>
+    <string name="pref_root_config_summary">Customize the \'su\' executable used to launch activities with root</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>System</item>
         <item>Light</item>
