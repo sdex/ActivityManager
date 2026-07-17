@@ -1,3 +1,9 @@
+## 5.5.0 (17 Jul 2026)
+- use Shizuku to launch non-exported activities
+- add extended settings screen
+- add option to export intent as shell command
+- add launching intents using root
+
 ## 5.4.23 (21 May 2026)
 - add option to pin applications to the top
 - fix inconsistencies and handle edge cases in applications loader

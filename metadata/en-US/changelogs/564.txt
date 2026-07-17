@@ -1,0 +1,4 @@
+- use Shizuku to launch non-exported activities
+- add extended settings screen
+- add option to export intent as shell command
+- add launching intents using root
