@@ -37,17 +37,19 @@
     <string name="starting_activity_root_error">无法使用 Root 权限启动 Activity</string>
     <string name="starting_activity_root_not_available">Root 不可用或未授予权限</string>
     <!-- Shizuku method setup wizard -->
-    <string name="onboarding_title">Set up Shizuku</string>
-    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
-    <string name="onboarding_step_done">✓</string>
-    <string name="onboarding_step_install_title">Install Shizuku</string>
-    <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
-    <string name="onboarding_action_install_shizuku">Install</string>
-    <string name="onboarding_action_open_shizuku">Open</string>
-    <string name="onboarding_step_permission_title">Grant Shizuku access</string>
-    <string name="onboarding_step_permission_desc">Allow Activity Manager to use Shizuku.</string>
-    <string name="onboarding_action_grant_shizuku">Grant access</string>
-    <string name="onboarding_action_done">Done</string>
+    <string name="onboarding_title">设置 Shizuku</string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a>用于在无需 root 权限的情况下启动未导出的 Activity。
+只需完成一次设置。]]></string>
+    <string name="onboarding_step_done">完成</string>
+    <string name="onboarding_step_install_title">安装shizuku</string>
+    <string name="onboarding_step_install_desc">使用 Shizuku 运行系统命令。
+安装它并启动服务。</string>
+    <string name="onboarding_action_install_shizuku">安装到您的设备</string>
+    <string name="onboarding_action_open_shizuku">启动</string>
+    <string name="onboarding_step_permission_title">授予 Shizuku 访问权限</string>
+    <string name="onboarding_step_permission_desc">允许 Activity Manager 使用 Shizuku。</string>
+    <string name="onboarding_action_grant_shizuku">授予访问权限</string>
+    <string name="onboarding_action_done">完成</string>
     <string name="activities_list_empty_text">没有已导出的 Activity</string>
     <string name="activities_list_empty_action">显示未导出的 Activity</string>
     <string name="activities_list_non_exported_show_once">仅一次</string>
@@ -72,7 +74,7 @@
     <string name="launch_param_categories">类别（Categories）</string>
     <string name="launch_param_flags">标志（Flags）</string>
     <string name="save_to_history">保存到历史记录</string>
-    <string name="launch_with_root">Launch with root</string>
+    <string name="launch_with_root">通过root权限启动</string>
     <string name="item_history_has_extras">附加（Extras）</string>
     <string name="item_history_has_categories">类别</string>
     <string name="item_history_has_flags">标志</string>
@@ -102,7 +104,7 @@
     <string name="history_item_dialog_remove">删除</string>
     <string name="history_item_dialog_add_shortcut">创建快捷方式</string>
     <string name="history_item_dialog_export_uri">导出为 URI</string>
-    <string name="history_item_dialog_export_shell">Export as shell command</string>
+    <string name="history_item_dialog_export_shell">导出为 shell 命令</string>
     <string name="no">否</string>
     <string name="yes">是</string>
     <string name="dialog_add_extra_title">添加 Extra</string>
@@ -110,8 +112,8 @@
     <string name="dialog_add_extra_value_empty">值不能为空</string>
     <string name="dialog_add_extra_type_incorrect">类型错误</string>
     <string name="dialog_export_intent_copy">复制</string>
-    <string name="dialog_export_intent_warning_array_extras">This intent contains array extras that cannot be represented as a URI. They are not included.</string>
-    <string name="dialog_export_intent_warning_boolean_array_extras">Boolean array extras are not supported by the \'am\' command and are not included.</string>
+    <string name="dialog_export_intent_warning_array_extras">此 Intent 包含无法表示为 URI 的数组附加数据，因此未包含在内。</string>
+    <string name="dialog_export_intent_warning_boolean_array_extras">\'am\' 命令不支持布尔类型的数组附加数据，因此未包含在内。</string>
     <string name="dialog_enable_non_exported_title">未导出的 Activity</string>
     <string name="dialog_enable_non_exported_message">您可以启用显示非导出的活动，它们将用红色高亮显示。这类活动只能在超级用户权限下运行</string>
     <string name="dialog_root_config_title">设置自定义的 \'su\' 可执行文件</string>
@@ -126,11 +128,11 @@
     <string name="pref_header_advanced">高级</string>
     <string name="pref_advanced_not_exported_title">显示未导出的 Activity</string>
     <string name="pref_advanced_not_exported_summary">只能使用 root 权限运行</string>
-    <string name="pref_header_launch">Launch</string>
-    <string name="pref_launch_toast_title">Show launch message</string>
-    <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>
-    <string name="pref_header_root">Root</string>
-    <string name="pref_root_config_summary">Customize the \'su\' executable used to launch activities with root</string>
+    <string name="pref_header_launch">启动器</string>
+    <string name="pref_launch_toast_title">显示启动消息</string>
+    <string name="pref_launch_toast_summary">在启动活动时显示 Toast 消息</string>
+    <string name="pref_header_root">超级用户权限</string>
+    <string name="pref_root_config_summary">自定义用于以 Root 权限启动 Activity 的 \'su\' 可执行文件</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>跟随系统</item>
         <item>浅色</item>
