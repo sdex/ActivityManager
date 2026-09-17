@@ -134,6 +134,23 @@
     <string name="pref_header_intent">Intents</string>
     <string name="pref_intercept_intents_title">Intercept intents</string>
     <string name="pref_intercept_intents_summary">Show Activity Manager in the system share and open dialogs to inspect incoming intents</string>
+    <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
+    <string name="analyzer_section_general">General</string>
+    <string name="analyzer_section_clip_data">Clip data</string>
+    <string name="analyzer_section_handlers">Handlers</string>
+    <string name="analyzer_section_export">Export</string>
+    <string name="analyzer_label_resolved_mime_type">Resolved mime type</string>
+    <string name="analyzer_label_calling_package">Calling package</string>
+    <string name="analyzer_label_calling_activity">Calling activity</string>
+    <string name="analyzer_label_flags_raw">Raw value</string>
+    <string name="analyzer_label_clip_label">Label</string>
+    <string name="analyzer_label_clip_mime_types">Mime types</string>
+    <string name="analyzer_clip_text">Text</string>
+    <string name="analyzer_type_query_parameter">query parameter</string>
+    <string name="analyzer_extras_error">Failed to read the extras</string>
+    <string name="analyzer_action_open_in_launcher">Open in Intent launcher</string>
+    <string name="analyzer_dialog_unsupported_uris_title">Attached files will be lost</string>
+    <string name="analyzer_dialog_unsupported_uris_message">These uris are readable only through the temporary permission this screen was granted. The launcher passes them on as plain text, so the target application will not be able to open them.\n\n%1$s</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>System</item>
         <item>Light</item>

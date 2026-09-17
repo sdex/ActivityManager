@@ -27,4 +27,28 @@
 
     <string name="app_info_activities_number" translatable="false">%1$s • %2$d exported</string>
 
+    <string name="analyzer_clip_item" translatable="false">Item %1$d • %2$s</string>
+    <string name="analyzer_section_count" translatable="false">%1$s (%2$d)</string>
+    <string name="analyzer_label_html" translatable="false">HTML</string>
+    <string name="analyzer_label_uri" translatable="false">URI</string>
+    <string name="analyzer_label_intent" translatable="false">Intent</string>
+
+    <!-- names of Intent and Uri fields, kept as they appear in the Android API -->
+    <string name="analyzer_section_uri" translatable="false">URI</string>
+    <string name="analyzer_section_selector" translatable="false">Selector</string>
+    <string name="analyzer_label_component" translatable="false">Component</string>
+    <string name="analyzer_label_identifier" translatable="false">Identifier</string>
+    <string name="analyzer_label_referrer" translatable="false">Referrer</string>
+    <string name="analyzer_label_source_bounds" translatable="false">Source bounds</string>
+    <string name="analyzer_label_scheme" translatable="false">Scheme</string>
+    <string name="analyzer_label_scheme_specific_part" translatable="false">Scheme specific part</string>
+    <string name="analyzer_label_authority" translatable="false">Authority</string>
+    <string name="analyzer_label_user_info" translatable="false">User info</string>
+    <string name="analyzer_label_host" translatable="false">Host</string>
+    <string name="analyzer_label_port" translatable="false">Port</string>
+    <string name="analyzer_label_path" translatable="false">Path</string>
+    <string name="analyzer_label_query" translatable="false">Query</string>
+    <string name="analyzer_label_fragment" translatable="false">Fragment</string>
+    <string name="analyzer_label_intent_uri" translatable="false">Intent URI</string>
+
 </resources>
