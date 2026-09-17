@@ -30,6 +30,7 @@ class FakeAppPreferences(
     override var isShowDisabledAppIndicator: Boolean = false
     override var showLineNumbers: Boolean = true
     override var isShowLaunchToast: Boolean = true
+    override var isInterceptIntents: Boolean = false
     override var theme: Int = 0
     override var sortBy: String = ApplicationModel.NAME
     override var sortOrder: String = GetApplicationsQuery.ASC

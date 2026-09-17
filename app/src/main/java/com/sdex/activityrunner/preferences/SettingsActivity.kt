@@ -7,6 +7,7 @@ import com.sdex.activityrunner.R
 import com.sdex.activityrunner.app.dialog.RootConfigDialog
 import com.sdex.activityrunner.commons.BaseActivity
 import com.sdex.activityrunner.databinding.ActivitySettingsBinding
+import com.sdex.activityrunner.intent.analyzer.IntentInterceptor
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -31,6 +32,15 @@ class SettingsActivity : BaseActivity() {
         }
         binding.launchToast.setOnClickListener {
             binding.switchLaunchToast.isChecked = !binding.switchLaunchToast.isChecked
+        }
+
+        binding.switchInterceptIntents.isChecked = appPreferences.isInterceptIntents
+        binding.switchInterceptIntents.setOnCheckedChangeListener { _, isChecked ->
+            appPreferences.isInterceptIntents = isChecked
+            IntentInterceptor.setEnabled(this, isChecked)
+        }
+        binding.interceptIntents.setOnClickListener {
+            binding.switchInterceptIntents.isChecked = !binding.switchInterceptIntents.isChecked
         }
 
         binding.rootConfig.setOnClickListener {

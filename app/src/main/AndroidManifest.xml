@@ -67,8 +67,84 @@
 
         <activity
             android:name=".intent.analyzer.IntentAnalyzerActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/intent_analyzer_activity" />
+
+        <!--
+            System wide intent interceptor. Ships disabled so the analyzer stays out of the share
+            and open dialogs until the user turns it on in the settings, which flips this component
+            through PackageManager.setComponentEnabledSetting. See IntentInterceptor.
+        -->
+        <activity-alias
+            android:name=".intent.analyzer.IntentInterceptorActivity"
+            android:enabled="false"
+            android:exported="true"
+            android:label="@string/intent_analyzer_activity"
+            android:targetActivity=".intent.analyzer.IntentAnalyzerActivity">
+
+            <!-- Anything shared from another application. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
+
+            <!-- Typed payloads: content and file uris, and intents that carry a type only. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.PICK" />
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <action android:name="android.intent.action.ATTACH_DATA" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.OPENABLE" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
+
+            <!-- Untyped uris: links and custom schemes. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="ftp" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:scheme="market" />
+                <data android:scheme="intent" />
+                <data android:scheme="package" />
+                <data android:scheme="geo" />
+                <data android:scheme="tel" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mailto" />
+            </intent-filter>
+
+            <!-- Text selection toolbar. -->
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!--
+                No catch-all filter for intents without data or a type: nothing else in the system
+                declares one, so the alias would become the sole match and the chooser would be
+                skipped, silently swallowing every such intent.
+            -->
+
+        </activity-alias>
 
         <activity
             android:name=".intent.history.HistoryActivity"

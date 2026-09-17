@@ -82,6 +82,12 @@ android {
         baseline = file("lint-baseline.xml")
         lintConfig = file("lint.xml")
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 kotlin {
