@@ -64,7 +64,10 @@ class IntentBuilderActivity : BaseActivity() {
         setupToolbar(isBackButtonEnabled = true)
 
         val activityModel = intent.serializable<ActivityModel>(ARG_ACTIVITY_MODEL)
-        viewModel.initialize(activityModel)
+        viewModel.initialize(
+            activityModel = activityModel,
+            launchParams = intent.parcelable(ARG_LAUNCH_PARAMS),
+        )
 
         title = activityModel?.name ?: getString(R.string.intent_launcher_activity)
 
@@ -240,10 +243,18 @@ class IntentBuilderActivity : BaseActivity() {
     companion object {
 
         private const val ARG_ACTIVITY_MODEL = "arg_activity_model"
+        private const val ARG_LAUNCH_PARAMS = "arg_launch_params"
 
         fun start(context: Context, model: ActivityModel?) {
             val starter = Intent(context, IntentBuilderActivity::class.java)
             starter.putExtra(ARG_ACTIVITY_MODEL, model)
+            context.startActivity(starter)
+        }
+
+        /** Opens the launcher pre-filled with [launchParams], ready to be edited and sent. */
+        fun start(context: Context, launchParams: LaunchParams) {
+            val starter = Intent(context, IntentBuilderActivity::class.java)
+            starter.putExtra(ARG_LAUNCH_PARAMS, launchParams)
             context.startActivity(starter)
         }
     }

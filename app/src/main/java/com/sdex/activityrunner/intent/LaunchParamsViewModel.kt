@@ -42,16 +42,24 @@ class LaunchParamsViewModel @Inject constructor(
     private val _events = Channel<LaunchEvent>(Channel.BUFFERED)
     val events: Flow<LaunchEvent> = _events.receiveAsFlow()
 
-    fun initialize(activityModel: ActivityModel?) {
+    /**
+     * Seeds the screen once per instance. [launchParams] wins when both are given - it carries a
+     * fully formed intent, e.g. one handed over by the intent analyzer.
+     */
+    fun initialize(activityModel: ActivityModel? = null, launchParams: LaunchParams? = null) {
         if (isInitialized) return
+        isInitialized = true
 
+        if (launchParams != null) {
+            _launchParamsState.value = launchParams
+            return
+        }
         _launchParamsState.update {
             it.copy(
                 packageName = activityModel?.packageName,
                 className = activityModel?.className,
             )
         }
-        isInitialized = true
     }
 
     fun setLaunchParams(params: LaunchParams?) {
