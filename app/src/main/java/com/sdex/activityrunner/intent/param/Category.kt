@@ -74,4 +74,17 @@ object Category {
         }
         return list
     }
+
+    /**
+     * Maps category values, as they appear on an [Intent], back to their positions in [list].
+     * Values this build does not know about are dropped.
+     */
+    fun positions(values: Collection<String>): List<Int> {
+        val keys = list()
+        return values
+            .mapNotNull { value -> CATEGORIES.entries.firstOrNull { it.value == value }?.key }
+            .map { keys.indexOf(it) }
+            .filter { it != -1 }
+            .sorted()
+    }
 }

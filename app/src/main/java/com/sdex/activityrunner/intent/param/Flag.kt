@@ -75,4 +75,22 @@ object Flag {
         }
         return list
     }
+
+    /**
+     * Maps a raw [Intent.getFlags] bit mask back to the positions in [list]. Bits this build does
+     * not know about are dropped, and a bit that several names share, e.g.
+     * `FLAG_ACTIVITY_NEW_TASK` and `FLAG_RECEIVER_FOREGROUND`, yields all of them - the mask alone
+     * cannot tell which one the sender meant.
+     */
+    fun positions(flags: Int): List<Int> {
+        val keys = list()
+        val result = ArrayList<Int>()
+        keys.forEachIndexed { position, key ->
+            val flag = FLAGS[key] ?: return@forEachIndexed
+            if (flags and flag != 0) {
+                result.add(position)
+            }
+        }
+        return result
+    }
 }
