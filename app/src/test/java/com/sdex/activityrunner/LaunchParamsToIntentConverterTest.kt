@@ -78,11 +78,13 @@ class LaunchParamsToIntentConverterTest {
     }
 
     @Test
-    fun `convert ignores mime type without data`() {
+    fun `convert keeps mime type without data`() {
+        // an ACTION_SEND intent carries a type and no data, dropping it leaves an intent that
+        // nothing in the system can resolve
         val intent = convert(LaunchParams(mimeType = "text/plain"))
 
         assertNull(intent.data)
-        assertNull(intent.type)
+        assertEquals("text/plain", intent.type)
     }
 
     @Test

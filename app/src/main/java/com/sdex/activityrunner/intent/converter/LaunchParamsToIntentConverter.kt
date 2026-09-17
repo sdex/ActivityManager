@@ -39,14 +39,10 @@ class LaunchParamsToIntentConverter(
         } else {
             launchParams.action
         }
-        // data and mime type
-        if (!launchParams.data.isNullOrEmpty()) {
-            val data = launchParams.data.toUri()
-            val type = if (launchParams.mimeType.isNullOrEmpty()) {
-                null
-            } else {
-                launchParams.mimeType
-            }
+        // data and mime type, set together because setData and setType clear each other
+        val data = if (launchParams.data.isNullOrEmpty()) null else launchParams.data.toUri()
+        val type = if (launchParams.mimeType.isNullOrEmpty()) null else launchParams.mimeType
+        if (data != null || type != null) {
             intent.setDataAndType(data, type)
         }
         // categories
