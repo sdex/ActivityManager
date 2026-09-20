@@ -7,12 +7,11 @@ Discover the activities of installed applications, run them, and create shortcut
 Features
 ----------
 * Launch exported activities
-* Launch non-exported activities with the root permission
+* Launch non-exported activities with root or rootless with Shizuku
 * Create custom shortcuts for activities
 * Set any shortcut icon from the storage or use built-in Material icons
 * Create and start any custom intents using Intent Builder
 * Explore an app's details with Manifest Viewer
-* Light/Dark theme support
 
 Screenshots
 ----------
