@@ -246,6 +246,8 @@ class MainActivityTest {
         override suspend fun updatePinnedAt(packageName: String, pinnedAt: Long): Int = 0
         override suspend fun count(): Int = applications.size
 
+        override suspend fun clean() = Unit
+
         private fun ApplicationModel.matches(sql: String): Boolean {
             if (sql.contains("(enabled=1)") && !enabled) {
                 return false

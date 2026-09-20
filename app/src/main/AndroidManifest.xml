@@ -9,6 +9,8 @@
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="PackageVisibilityPolicy,QueryAllPackagesPermission" />
+    <!-- Custom runtime permission declared by some OEM ROMs -->
+    <uses-permission android:name="com.android.permission.GET_INSTALLED_APPS" />
     <!-- Used to swap and restore the secure "assistant" setting. -->
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"

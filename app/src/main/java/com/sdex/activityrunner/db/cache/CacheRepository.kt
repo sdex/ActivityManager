@@ -12,4 +12,5 @@ interface CacheRepository {
     suspend fun getApplication(packageName: String): ApplicationModel?
     suspend fun updatePinnedAt(packageName: String, pinnedAt: Long): Int
     suspend fun count(): Int
+    suspend fun clean()
 }

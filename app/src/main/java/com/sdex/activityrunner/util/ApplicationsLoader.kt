@@ -78,6 +78,24 @@ class ApplicationsLoader(
         updateLastSyncState(syncPlan.syncState)
     }
 
+    suspend fun rebuildCache() {
+        val pinned = cacheRepository.getApplications(packages = null)
+            .filter { it.pinnedAt > 0 }
+            .associate { it.packageName to it.pinnedAt }
+        Timber.d("Rebuilding the cache, pinned apps: ${pinned.keys.joinToString()}")
+
+        cacheRepository.clean()
+        preferences.lastSequenceNumber = -1
+        preferences.lastBootCount = -1
+        sync()
+
+        // apps that are no longer installed are simply not restored
+        val restored = pinned.count { (packageName, pinnedAt) ->
+            cacheRepository.updatePinnedAt(packageName, pinnedAt) > 0
+        }
+        Timber.d("Restored $restored of ${pinned.size} pinned apps")
+    }
+
     private fun getSyncPlan(): SyncPlan {
         if (!isQuickSyncSupported) {
             return SyncPlan(targetPackages = null, syncState = null)

@@ -33,4 +33,6 @@ class CacheRepositoryImpl(
         applicationModelDao.updatePinnedAt(packageName, pinnedAt)
 
     override suspend fun count(): Int = applicationModelDao.count()
+
+    override suspend fun clean() = applicationModelDao.clean()
 }

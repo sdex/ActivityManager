@@ -364,6 +364,54 @@ class ApplicationsLoaderTest {
             assertThat(provider.changedPackagesRequests).isEqualTo(listOf(10))
         }
 
+    @Test
+    fun `rebuildCache cleans the cache and performs a full sync`() = runTest {
+        val preferences = FakeAppPreferences(lastSequenceNumber = 10, lastBootCount = 3)
+        val installed = app("com.test.installed")
+        val repository = FakeCacheRepository()
+        val provider = FakePackageInfoProvider(
+            installedPackages = listOf("com.test.installed"),
+            applications = mapOf(installed.packageName to installed),
+            changedPackages = mapOf(0 to ChangedPackages(7, emptyList())),
+        )
+
+        loader(
+            cacheRepository = repository,
+            preferences = preferences,
+            packageInfoProvider = provider,
+        ).rebuildCache()
+
+        assertThat(repository.cleanCalls).isEqualTo(1)
+        // the whole list is re-read, not only the packages reported as changed
+        assertThat(repository.getApplicationsPackageRequests).isEqualTo(listOf(null, null))
+        assertThat(repository.upsertedModels.single()).isEqualTo(listOf(installed))
+        assertThat(preferences.lastSequenceNumber).isEqualTo(7)
+        assertThat(preferences.lastBootCount).isEqualTo(3)
+    }
+
+    @Test
+    fun `rebuildCache restores pinned apps after the sync`() = runTest {
+        val pinned = app("com.test.pinned", pinnedAt = 42)
+        val plain = app("com.test.plain")
+        val repository = FakeCacheRepository(applications = listOf(pinned, plain))
+        val provider = FakePackageInfoProvider(
+            installedPackages = listOf(pinned.packageName, plain.packageName),
+            applications = mapOf(
+                // the rebuilt entry comes from the package manager without the pinned state
+                pinned.packageName to pinned.copy(pinnedAt = 0),
+                plain.packageName to plain,
+            ),
+            changedPackages = mapOf(0 to ChangedPackages(7, emptyList())),
+        )
+
+        loader(
+            cacheRepository = repository,
+            packageInfoProvider = provider,
+        ).rebuildCache()
+
+        assertThat(repository.pinnedUpdates).isEqualTo(listOf(pinned.packageName to 42L))
+    }
+
     private fun loader(
         cacheRepository: FakeCacheRepository = FakeCacheRepository(),
         packageInfoProvider: FakePackageInfoProvider = FakePackageInfoProvider(),
@@ -415,6 +463,8 @@ class ApplicationsLoaderTest {
         val upsertedModels = mutableListOf<List<ApplicationModel>>()
         val deletedModels = mutableListOf<List<ApplicationModel>>()
         var getApplicationPackageNamesCalls = 0
+        var cleanCalls = 0
+        val pinnedUpdates = mutableListOf<Pair<String, Long>>()
 
         override fun getApplications(query: SupportSQLiteQuery): Flow<List<ApplicationModel>> =
             emptyFlow()
@@ -445,9 +495,16 @@ class ApplicationsLoaderTest {
         override suspend fun getApplication(packageName: String): ApplicationModel? =
             applications.firstOrNull { it.packageName == packageName }
 
-        override suspend fun updatePinnedAt(packageName: String, pinnedAt: Long): Int = 0
+        override suspend fun updatePinnedAt(packageName: String, pinnedAt: Long): Int {
+            pinnedUpdates += packageName to pinnedAt
+            return 1
+        }
 
         override suspend fun count(): Int = applications.size
+
+        override suspend fun clean() {
+            cleanCalls++
+        }
     }
 
     private class FakePackageInfoProvider(

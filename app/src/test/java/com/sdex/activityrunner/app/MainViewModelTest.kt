@@ -241,5 +241,7 @@ class MainViewModelTest {
         override suspend fun getApplication(packageName: String): ApplicationModel? = null
         override suspend fun updatePinnedAt(packageName: String, pinnedAt: Long): Int = 0
         override suspend fun count(): Int = count
+
+        override suspend fun clean() = Unit
     }
 }
