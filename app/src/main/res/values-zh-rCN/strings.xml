@@ -136,6 +136,12 @@
     <string name="pref_header_intent">Intents</string>
     <string name="pref_intercept_intents_title">Intercept intents</string>
     <string name="pref_intercept_intents_summary">Show Activity Manager in the system share and open dialogs to inspect incoming intents</string>
+    <string name="pref_advanced_clear_cache_title">Clear app cache</string>
+    <string name="pref_advanced_clear_cache_summary">Rebuild the list of installed apps from scratch</string>
+    <string name="pref_advanced_clear_cache_done">App cache cleared</string>
+    <string name="dialog_clear_cache_title">Clear app cache?</string>
+    <string name="dialog_clear_cache_message">Clear the cache when the list looks wrong: apps are missing, the list is empty, or it still shows apps that were uninstalled. \n\nThe cache is rebuilt immediately, which can take a while if many apps are installed. Pinned apps are kept.</string>
+    <string name="dialog_clear_cache_action">Clear</string>
     <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
     <string name="analyzer_section_general">General</string>
     <string name="analyzer_section_clip_data">Clip data</string>
