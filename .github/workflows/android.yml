@@ -8,10 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      # This creates 4 parallel jobs: dev-debug, dev-release, prod-debug, prod-release
+      fail-fast: false
+      # Exactly 2 jobs: dev-debug and prod-release
       matrix:
-        flavor: [dev, prod]
-        buildType: [debug, release]
+        include:
+          - flavor: dev
+            buildType: debug
+          - flavor: prod
+            buildType: release
 
     steps:
       - uses: actions/checkout@v7
@@ -28,6 +32,14 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Decode signing keystore
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: |
+          echo "$SIGNING_KEY" | base64 --decode > "$RUNNER_TEMP/keystore.jks"
+          # An empty or missing secret would silently produce unsigned APKs.
+          test -s "$RUNNER_TEMP/keystore.jks"
+
       - name: Generate Version Info
         id: vars
         run: |
@@ -36,6 +48,11 @@ jobs:
           echo "short_hash=-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build and Test with Gradle
+        env:
+          SIGNING_KEYSTORE_FILE: ${{ runner.temp }}/keystore.jks
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_STORE_PASSWORD: ${{ secrets.SIGNING_KEY_STORE_PASSWORD }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
           # Convert 'dev' to 'Dev' and 'debug' to 'Debug'
           FLAVOR_CAP=$(echo ${{ matrix.flavor }} | sed 's/./\u&/')
@@ -51,22 +68,24 @@ jobs:
             -PnewVersionCode=${{ steps.vars.outputs.version_code }} \
             -PversionNameSuffix=${{ steps.vars.outputs.short_hash }}
 
-      - name: Sign APK
-        uses: ilharp/sign-android-release@v2
-        id: sign_app
-        with:
-          releaseDir: app/build/outputs/apk/${{ matrix.flavor }}/${{ matrix.buildType }}
-          signingKey: ${{ secrets.SIGNING_KEY }}
-          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.SIGNING_KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-          buildToolsVersion: 36.1.0
+      - name: Locate APK
+        id: apk
+        run: |
+          APK=$(ls app/build/outputs/apk/${{ matrix.flavor }}/${{ matrix.buildType }}/*.apk)
+          # AGP only appends '-unsigned' when the variant has no signing config.
+          case "$APK" in
+            *-unsigned.apk)
+              echo "::error::$APK is unsigned - refusing to publish it"
+              exit 1
+              ;;
+          esac
+          echo "path=$APK" >> $GITHUB_OUTPUT
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
           name: ActivityManager-${{ matrix.flavor }}-${{ matrix.buildType }}-${{ steps.vars.outputs.version_code }}
-          path: ${{ steps.sign_app.outputs.signedFile }}
+          path: ${{ steps.apk.outputs.path }}
           archive: false
 
       - name: Test Summary

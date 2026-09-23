@@ -27,29 +27,40 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Decode signing keystore
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: |
+          echo "$SIGNING_KEY" | base64 --decode > "$RUNNER_TEMP/keystore.jks"
+          # An empty or missing secret would silently produce an unsigned APK.
+          test -s "$RUNNER_TEMP/keystore.jks"
+
       - name: Build Prod Release
+        env:
+          SIGNING_KEYSTORE_FILE: ${{ runner.temp }}/keystore.jks
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_STORE_PASSWORD: ${{ secrets.SIGNING_KEY_STORE_PASSWORD }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
           ./gradlew assembleProdRelease
-
-      - name: Sign APK
-        uses: ilharp/sign-android-release@v2
-        id: sign_app
-        with:
-          releaseDir: app/build/outputs/apk/prod/release
-          signingKey: ${{ secrets.SIGNING_KEY }}
-          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.SIGNING_KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-          buildToolsVersion: 36.1.0
 
       - name: Rename APK
         id: rename
         run: |
+          APK=$(ls app/build/outputs/apk/prod/release/*.apk)
+          # AGP only appends '-unsigned' when the variant has no signing config.
+          case "$APK" in
+            *-unsigned.apk)
+              echo "::error::$APK is unsigned - refusing to publish it"
+              exit 1
+              ;;
+          esac
+
           # Use github.ref_name to get the tag directly (e.g., 5.4.21)
           VERSION="${{ github.ref_name }}"
           NEW_NAME="ActivityManager-${VERSION}.apk"
 
-          mv "${{ steps.sign_app.outputs.signedFile }}" "$NEW_NAME"
+          mv "$APK" "$NEW_NAME"
           echo "path=$NEW_NAME" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release

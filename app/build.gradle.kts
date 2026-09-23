@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinCompiler)
@@ -7,6 +9,20 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.room)
 }
+
+val keystoreProperties = Properties().apply {
+    providers.fileContents(rootProject.layout.projectDirectory.file("keystore.properties"))
+        .asText.orNull?.let { load(it.reader()) }
+}
+
+val releaseKeystore = keystoreProperties.getProperty("storeFile")
+    ?: providers.environmentVariable("SIGNING_KEYSTORE_FILE").orNull
+val releaseStorePassword = keystoreProperties.getProperty("storePassword")
+    ?: providers.environmentVariable("SIGNING_KEY_STORE_PASSWORD").orNull
+val releaseKeyAlias = keystoreProperties.getProperty("keyAlias")
+    ?: providers.environmentVariable("SIGNING_KEY_ALIAS").orNull
+val releaseKeyPassword = keystoreProperties.getProperty("keyPassword")
+    ?: providers.environmentVariable("SIGNING_KEY_PASSWORD").orNull
 
 android {
     compileSdk = 37
@@ -49,7 +65,24 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            if (releaseKeystore != null) {
+                storeFile = file(releaseKeystore)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
+        configureEach {
+            if (releaseKeystore != null) {
+                signingConfig = signingConfigs.getByName("release")
+            }
+        }
+
         release {
             isMinifyEnabled = true
             isShrinkResources = true
