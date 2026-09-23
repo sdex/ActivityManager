@@ -46,15 +46,15 @@
     <!-- intent builder -->
     <string name="launch_param_package_name">包名</string>
     <string name="launch_param_class_name">类名</string>
-    <string name="launch_param_action">操作（Action）</string>
-    <string name="launch_param_data">数据（Data）</string>
+    <string name="launch_param_action">操作</string>
+    <string name="launch_param_data">数据</string>
     <string name="launch_param_mime_type">Mime 类型</string>
-    <string name="launch_param_extras">附加（Extras）</string>
+    <string name="launch_param_extras">附加</string>
     <string name="launch_param_extras_add">+ 添加选项</string>
-    <string name="launch_param_categories">类别（Categories）</string>
-    <string name="launch_param_flags">标志（Flags）</string>
+    <string name="launch_param_categories">类别</string>
+    <string name="launch_param_flags">标志</string>
     <string name="save_to_history">保存到历史记录</string>
-    <string name="item_history_has_extras">附加（Extras）</string>
+    <string name="item_history_has_extras">附加</string>
     <string name="item_history_has_categories">类别</string>
     <string name="item_history_has_flags">标志</string>
     <string name="about_donation">支持开发</string>
