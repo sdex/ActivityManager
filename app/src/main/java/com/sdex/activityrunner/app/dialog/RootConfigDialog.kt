@@ -2,6 +2,7 @@ package com.sdex.activityrunner.app.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sdex.activityrunner.R
@@ -43,7 +44,9 @@ class RootConfigDialog : BaseDialogFragment() {
                 setValue(newValue)
             }
             .setNegativeButton(android.R.string.cancel, null)
-            .create()
+            .create().apply {
+                window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+            }
     }
 
     private fun setValue(value: String) {

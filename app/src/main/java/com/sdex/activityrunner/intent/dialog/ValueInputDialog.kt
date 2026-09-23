@@ -2,6 +2,7 @@ package com.sdex.activityrunner.intent.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
@@ -41,7 +42,9 @@ class ValueInputDialog : BaseDialogFragment() {
                 viewModel.setValue(type, newValue)
             }
             .setNegativeButton(android.R.string.cancel, null)
-            .create()
+            .create().apply {
+                window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+            }
     }
 
     companion object {

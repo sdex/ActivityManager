@@ -2,6 +2,7 @@ package com.sdex.activityrunner.intent.dialog
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
@@ -47,6 +48,7 @@ class ExtraInputDialog : BaseDialogFragment() {
             .setPositiveButton(android.R.string.ok, null)
             .setNegativeButton(android.R.string.cancel, null)
             .create().apply {
+                window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
                 setOnShowListener {
                     getButton(AlertDialog.BUTTON_POSITIVE)
                         .setOnClickListener {
