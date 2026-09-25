@@ -6,9 +6,14 @@ import androidx.annotation.WorkerThread
 import androidx.core.text.htmlEncode
 import com.sdex.activityrunner.util.PackageInfoProvider
 import net.dongliu.apk.parser.ApkFile
+import net.dongliu.apk.parser.exception.ParserException
+import net.dongliu.apk.parser.parser.BinaryXmlParser
+import net.dongliu.apk.parser.parser.XmlTranslator
+import net.dongliu.apk.parser.struct.AndroidConstants
 import timber.log.Timber
 import java.io.ByteArrayInputStream
 import java.io.StringWriter
+import java.nio.ByteBuffer
 import java.nio.charset.Charset
 import javax.inject.Inject
 import javax.xml.transform.OutputKeys
@@ -49,11 +54,14 @@ class DefaultManifestReader @Inject constructor(
         val packageInfo = packageInfoProvider.getPackageInfo(packageName)
         if (packageInfo.splitNames != null) { // it's nullable
             val publicSourceDir = packageInfo.applicationInfo?.publicSourceDir
-            val apkFile = ApkFile(publicSourceDir)
-            val manifestXml = apkFile.use {
-                it.manifestXml
+            return ApkFile(publicSourceDir).use { apkFile ->
+                try {
+                    apkFile.manifestXml
+                } catch (e: Exception) {
+                    Timber.w(e, "Failed to parse manifest: $packageName")
+                    parseWithoutResourceTable(apkFile, packageName)
+                }
             }
-            return manifestXml
         } else {
             val resources = packageInfoProvider.getResourcesForApplication(packageName)
             val parser = resources.assets.openXmlResourceParser("AndroidManifest.xml")
@@ -92,25 +100,51 @@ class DefaultManifestReader @Inject constructor(
         }
     }
 
+    private fun parseWithoutResourceTable(apkFile: ApkFile, packageName: String): String {
+        val data = apkFile.getFileData(AndroidConstants.MANIFEST_FILE)
+            ?: throw ParserException("Manifest file not found")
+        val xmlTranslator = XmlTranslator()
+        // without a resource table references are rendered as resourceId:0x...
+        BinaryXmlParser(ByteBuffer.wrap(data), null).apply {
+            xmlStreamer = xmlTranslator
+        }.parse()
+        val resources = packageInfoProvider.getResourcesForApplication(packageName)
+        return unresolvedReferenceRegex.replace(xmlTranslator.xml) { match ->
+            val (attributeName, id) = match.destructured
+            val value = resolveReference(attributeName, id.toLong(16).toInt(), resources)
+                ?: return@replace match.value
+            "$attributeName=\"$value\""
+        }
+    }
+
     private fun getAttributeValue(
         attributeName: String,
         attributeValue: String,
         resources: Resources,
     ): String {
         if (attributeValue.startsWith("@")) {
-            try {
-                val id = Integer.valueOf(attributeValue.substring(1))
-                val value = if (attributeName == "theme" || attributeName == "resource") {
-                    resources.getResourceEntryName(id)
-                } else {
-                    resources.getString(id)
-                }
-                return value.htmlEncode()
-            } catch (e: Exception) {
-                e.printStackTrace()
+            val id = attributeValue.substring(1).toIntOrNull()
+            if (id != null) {
+                resolveReference(attributeName, id, resources)?.let { return it }
             }
         }
         return attributeValue
+    }
+
+    private fun resolveReference(
+        attributeName: String,
+        id: Int,
+        resources: Resources,
+    ): String? = try {
+        val value = if (attributeName == "theme" || attributeName == "resource") {
+            resources.getResourceEntryName(id)
+        } else {
+            resources.getString(id)
+        }
+        value.htmlEncode()
+    } catch (e: Exception) {
+        Timber.e(e, "Failed to resolve reference: $attributeName")
+        null
     }
 
     @Throws(TransformerException::class)
@@ -161,5 +195,10 @@ class DefaultManifestReader @Inject constructor(
             indent.append(" ")
         }
         return indent.toString()
+    }
+
+    private companion object {
+        // matches e.g. android:label="resourceId:0x7f120034", capturing the name without a prefix
+        val unresolvedReferenceRegex = Regex("""([\w.]+)="resourceId:0x([0-9a-fA-F]+)"""")
     }
 }
