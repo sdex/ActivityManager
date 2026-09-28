@@ -28,7 +28,8 @@
             app:fastScrollThumbColor="?colorPrimary"
             app:fastScrollThumbInactiveColor="@color/scrollbar_inactive_thumb"
             app:fastScrollTrackColor="@color/scrollbar_background"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="@integer/list_history_span_count"
             tools:itemCount="15"
             tools:listitem="@layout/item_history"
             tools:visibility="visible" />
