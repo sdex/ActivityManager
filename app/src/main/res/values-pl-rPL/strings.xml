@@ -38,14 +38,13 @@
     <string name="starting_activity_root_not_available">Root nie jest dostępny lub zezwolenie nie jest przyznane</string>
     <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">Skonfiguruj Shizuku</string>
-    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> jest używany do uruchamiania nieeksportowanych aktywności bez roota. Zakończ konfigurację jeden raz.]]></string>
-    <string name="onboarding_step_done">✓</string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> służy do uruchamiania nieeksportowanych aktywności bez roota. Wykonaj konfigurację jednorazowo.]]></string>
     <string name="onboarding_step_install_title">Zainstaluj Shizuku</string>
     <string name="onboarding_step_install_desc">Używaj Shizuku do uruchamiania poleceń systemowych. Zainstaluj i uruchom usługę.</string>
     <string name="onboarding_action_install_shizuku">Zainstaluj</string>
     <string name="onboarding_action_open_shizuku">Otwórz</string>
     <string name="onboarding_step_permission_title">Przyznaj dostęp Shizuku</string>
-    <string name="onboarding_step_permission_desc">Zezwól programowi Activity Manager na korzystanie z Shizuku.</string>
+    <string name="onboarding_step_permission_desc">Zezwól aplikacji Activity Manager na korzystanie z Shizuku.</string>
     <string name="onboarding_action_grant_shizuku">Przyznaj dostęp</string>
     <string name="onboarding_action_done">Gotowe</string>
     <string name="activities_list_empty_text">Nie znaleziono wyeksportowanych aktywności</string>
@@ -72,7 +71,7 @@
     <string name="launch_param_categories">Kategorie</string>
     <string name="launch_param_flags">Flagi</string>
     <string name="save_to_history">Zapisz w historii</string>
-    <string name="launch_with_root">Uruchom z uprawnieniami Roota</string>
+    <string name="launch_with_root">Uruchom jako root</string>
     <string name="item_history_has_extras">Dodatki</string>
     <string name="item_history_has_categories">Kategorie</string>
     <string name="item_history_has_flags">Flagi</string>
@@ -130,7 +129,7 @@
     <string name="pref_launch_toast_title">Pokazuj komunikat startowy</string>
     <string name="pref_launch_toast_summary">Wyświetlaj komunikat podczas uruchamiania aktywności</string>
     <string name="pref_header_root">Baza</string>
-    <string name="pref_root_config_summary">Dostosuj polecenie wykonywalne „su” używane do uruchamiania działań z uprawnieniami Roota</string>
+    <string name="pref_root_config_summary">Dostosuj plik wykonywalny „su” używany do uruchamiania aktywności z uprawnieniami roota</string>
     <string name="pref_header_intent">Intents</string>
     <string name="pref_intercept_intents_title">Intercept intents</string>
     <string name="pref_intercept_intents_summary">Show Activity Manager in the system share and open dialogs to inspect incoming intents</string>
