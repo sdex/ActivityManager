@@ -3,7 +3,7 @@
     <string name="history_activity">Geçmiş</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Etkinliği parametrelerle başlat</string>
-    <string name="activity_option_launch_root">Etkinliği root ile başlat</string>
+    <string name="activity_option_launch_root">Launch with root or Shizuku</string>
     <string name="activity_option_create_shortcut">Kısayol oluştur</string>
     <!-- application options -->
     <string name="application_option_open">Uygulamayı başlat</string>
@@ -39,7 +39,6 @@
     <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">Set up Shizuku</string>
     <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
-    <string name="onboarding_step_done">✓</string>
     <string name="onboarding_step_install_title">Install Shizuku</string>
     <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
     <string name="onboarding_action_install_shizuku">Install</string>
