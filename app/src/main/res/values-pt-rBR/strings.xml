@@ -7,6 +7,9 @@
     <string name="activity_option_create_shortcut">Criar atalho</string>
     <!-- application options -->
     <string name="application_option_open">Iniciar a “app”</string>
+    <string name="application_option_pin">Fixar no topo</string>
+    <string name="application_option_unpin">Desafixar</string>
+    <string name="application_pinned">Fixado</string>
     <string name="application_option_open_manifest">Abrir visualizador de manifesto</string>
     <string name="application_option_open_info">Abrir informações do app</string>
     <string name="application_option_open_market">Open in app market</string>
@@ -16,11 +19,14 @@
     <string name="shortcut_name">Descrição</string>
     <string name="shortcut_name_empty">O campo não pode estar vazio</string>
     <string name="shortcut_create">Criar</string>
+    <string name="shortcut_change_icon">Mudar ícone</string>
     <string name="shortcut_set_icon_tooltip">Toque para modificar o ícone</string>
     <string name="icons_loading_error">Falha ao carregar ícones</string>
     <string name="shortcut_icon_gallery">Escolha da galeria</string>
     <string name="shortcut_icon_preset">Selecione dos ícones</string>
     <string name="shortcut_invert_icon_colors">Invert icon colors</string>
+    <string name="shortcut_options">Opções</string>
+    <string name="create_shortcut_non_exported_warning">Uso dessa atividade requer acesso root</string>
     <!-- launching activity -->
     <string name="starting_activity">Iniciando atividade: %s</string>
     <string name="starting_activity_failed">Falha ao iniciar atividade: %s</string>

@@ -7,6 +7,9 @@
     <string name="activity_option_create_shortcut">Utwórz skrót</string>
     <!-- application options -->
     <string name="application_option_open">Uruchom aplikację</string>
+    <string name="application_option_pin">Przypnij do góry</string>
+    <string name="application_option_unpin">Odepnij z góry</string>
+    <string name="application_pinned">Przypięto</string>
     <string name="application_option_open_manifest">Otwórz przeglądarkę manifestu</string>
     <string name="application_option_open_info">Otwórz informacje o aplikacji</string>
     <string name="application_option_open_market">Otwórz w sklepie aplikacji</string>
@@ -16,11 +19,14 @@
     <string name="shortcut_name">Etykieta</string>
     <string name="shortcut_name_empty">Etykieta nie może być pusta</string>
     <string name="shortcut_create">Utwórz</string>
+    <string name="shortcut_change_icon">Zmień ikonę</string>
     <string name="shortcut_set_icon_tooltip">Dotknij, aby zmienić ikonę</string>
     <string name="icons_loading_error">Nie udało się załadować ikon</string>
     <string name="shortcut_icon_gallery">Wybierz z galerii</string>
     <string name="shortcut_icon_preset">Wybierz spośród ikon</string>
     <string name="shortcut_invert_icon_colors">Odwróć kolory ikon</string>
+    <string name="shortcut_options">Opcje</string>
+    <string name="create_shortcut_non_exported_warning">Uruchamianie tej aktywności wymaga uprawnień roota</string>
     <!-- launching activity -->
     <string name="starting_activity">Rozpoczęcie aktywności: %s</string>
     <string name="starting_activity_failed">Nie udało się rozpocząć aktywności: %s</string>
@@ -30,6 +36,16 @@
     <string name="starting_activity_intent_failed">Nie udało się rozpocząć aktywności</string>
     <string name="starting_activity_root_error">Nie udało się uruchomić aktywności przy użyciu roota</string>
     <string name="starting_activity_root_not_available">Root nie jest dostępny lub zezwolenie nie jest przyznane</string>
+    <string name="onboarding_title">Skonfiguruj Shizuku</string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> służy do uruchamiania nieeksportowanych aktywności bez roota. Wykonaj konfigurację jednorazowo.]]></string>
+    <string name="onboarding_step_install_title">Zainstaluj Shizuku</string>
+    <string name="onboarding_step_install_desc">Używaj Shizuku do uruchamiania poleceń systemowych. Zainstaluj i uruchom usługę.</string>
+    <string name="onboarding_action_install_shizuku">Zainstaluj</string>
+    <string name="onboarding_action_open_shizuku">Otwórz</string>
+    <string name="onboarding_step_permission_title">Przyznaj dostęp Shizuku</string>
+    <string name="onboarding_step_permission_desc">Zezwól aplikacji Activity Manager na korzystanie z Shizuku.</string>
+    <string name="onboarding_action_grant_shizuku">Przyznaj dostęp</string>
+    <string name="onboarding_action_done">Gotowe</string>
     <string name="activities_list_empty_text">Nie znaleziono wyeksportowanych aktywności</string>
     <string name="activities_list_empty_action">Pokaż niewyeksportowane</string>
     <string name="activities_list_non_exported_show_once">Tylko raz</string>
@@ -54,6 +70,7 @@
     <string name="launch_param_categories">Kategorie</string>
     <string name="launch_param_flags">Flagi</string>
     <string name="save_to_history">Zapisz w historii</string>
+    <string name="launch_with_root">Uruchom jako root</string>
     <string name="item_history_has_extras">Dodatki</string>
     <string name="item_history_has_categories">Kategorie</string>
     <string name="item_history_has_flags">Flagi</string>
@@ -83,6 +100,7 @@
     <string name="history_item_dialog_remove">Usuń</string>
     <string name="history_item_dialog_add_shortcut">Utwórz skrót</string>
     <string name="history_item_dialog_export_uri">Wyeksportuj jako URI</string>
+    <string name="history_item_dialog_export_shell">Eksportuj jako polecenie powłoki</string>
     <string name="no">Nie</string>
     <string name="yes">Tak</string>
     <string name="dialog_add_extra_title">Dodaj więcej</string>
@@ -90,6 +108,8 @@
     <string name="dialog_add_extra_value_empty">Wartość nie może być pusta</string>
     <string name="dialog_add_extra_type_incorrect">Nieprawidłowy typ wartości</string>
     <string name="dialog_export_intent_copy">Kopiuj</string>
+    <string name="dialog_export_intent_warning_array_extras">Ten wpis zawiera elementy dodatkowe typu tablicowego, których nie da się przedstawić jako URI. Nie są one uwzględniane.</string>
+    <string name="dialog_export_intent_warning_boolean_array_extras">Dodatkowe elementy tablicy boolowskiej nie są obsługiwane przez polecenie „am” i nie są uwzględniane.</string>
     <string name="dialog_enable_non_exported_title">Aktywności niewyeksportowane</string>
     <string name="dialog_enable_non_exported_message">Możesz włączyć wyświetlanie nieeksportowanych działań, będą one podświetlone czerwonym kolorem. Takie aktywności mogą być uruchamiane tylko z uprawnieniami root</string>
     <string name="dialog_root_config_title">Ustaw własny plik wykonywalny \'su\'</string>
@@ -104,6 +124,10 @@
     <string name="pref_header_advanced">Zaawansowane</string>
     <string name="pref_advanced_not_exported_title">Pokaż niewyeksportowane aktywności</string>
     <string name="pref_advanced_not_exported_summary">Może być uruchomiony tylko przy użyciu Roota</string>
+    <string name="pref_header_launch">Uruchom</string>
+    <string name="pref_launch_toast_title">Pokazuj komunikat startowy</string>
+    <string name="pref_launch_toast_summary">Wyświetlaj komunikat podczas uruchamiania aktywności</string>
+    <string name="pref_root_config_summary">Dostosuj plik wykonywalny „su” używany do uruchamiania aktywności z uprawnieniami roota</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Systemowy</item>
         <item>Jasny</item>

@@ -7,6 +7,9 @@
     <string name="activity_option_create_shortcut">Створити ярлик</string>
     <!-- application options -->
     <string name="application_option_open">Запустити додаток</string>
+    <string name="application_option_pin">Закріпити вгорі</string>
+    <string name="application_option_unpin">Відкріпити зверху</string>
+    <string name="application_pinned">Закріплено</string>
     <string name="application_option_open_manifest">Вікрити маніфест</string>
     <string name="application_option_open_info">Вікрити інфо</string>
     <string name="application_option_open_market">Відкрити в магазині додатків</string>
@@ -16,11 +19,14 @@
     <string name="shortcut_name">Назва</string>
     <string name="shortcut_name_empty">Обов\'язкове поле</string>
     <string name="shortcut_create">Створити</string>
+    <string name="shortcut_change_icon">Змінити іконку</string>
     <string name="shortcut_set_icon_tooltip">Натисніть щоб змінити зображення</string>
     <string name="icons_loading_error">Не вдалося завантажити значок</string>
     <string name="shortcut_icon_gallery">Вибрати з галереї</string>
     <string name="shortcut_icon_preset">Вибрати зі значків</string>
     <string name="shortcut_invert_icon_colors">Інвертувати кольори значків</string>
+    <string name="shortcut_options">Опції</string>
+    <string name="create_shortcut_non_exported_warning">Запуск цієї активності потребує root-доступу</string>
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
     <string name="starting_activity_failed">Помилка запуску: %s</string>
@@ -30,6 +36,16 @@
     <string name="starting_activity_intent_failed">Помилка запуску</string>
     <string name="starting_activity_root_error">Помилка запуску</string>
     <string name="starting_activity_root_not_available">Root недоступний або права не надані</string>
+    <string name="onboarding_title">Налаштувати Shizuku</string>
+    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> використовується для запуску неекспортованих активностей без root. Виконайте налаштування один раз.]]></string>
+    <string name="onboarding_step_install_title">Встановити Shizuku</string>
+    <string name="onboarding_step_install_desc">Використовуйте Shizuku для запуску системних команд. Встановіть його та запустіть службу.</string>
+    <string name="onboarding_action_install_shizuku">Встановити</string>
+    <string name="onboarding_action_open_shizuku">Відкрити</string>
+    <string name="onboarding_step_permission_title">Надати доступ Shizuku</string>
+    <string name="onboarding_step_permission_desc">Дозвольте Activity Manager використовувати Shizuku.</string>
+    <string name="onboarding_action_grant_shizuku">Надати доступ</string>
+    <string name="onboarding_action_done">Готово</string>
     <string name="activities_list_empty_text">Додаток не містить доступних компонентів</string>
     <string name="activities_list_empty_action">Увімкнути показ прихованих компонентів</string>
     <string name="activities_list_non_exported_show_once">Тільки раз</string>
@@ -54,6 +70,7 @@
     <string name="launch_param_categories">Категорії</string>
     <string name="launch_param_flags">Параметри</string>
     <string name="save_to_history">Зберегти в історії</string>
+    <string name="launch_with_root">Запуск від root</string>
     <string name="item_history_has_extras">Дані</string>
     <string name="item_history_has_categories">Категорії</string>
     <string name="item_history_has_flags">Парамерти</string>
@@ -83,6 +100,7 @@
     <string name="history_item_dialog_remove">Видалити</string>
     <string name="history_item_dialog_add_shortcut">Створити ярлик</string>
     <string name="history_item_dialog_export_uri">Експортувати як URI</string>
+    <string name="history_item_dialog_export_shell">Експортувати як команду shell</string>
     <string name="no">Ні</string>
     <string name="yes">Так</string>
     <string name="dialog_add_extra_title">Додати дані</string>
@@ -90,6 +108,8 @@
     <string name="dialog_add_extra_value_empty">Обов\'язкове поле</string>
     <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
     <string name="dialog_export_intent_copy">Копіювати</string>
+    <string name="dialog_export_intent_warning_array_extras">Цей intent містить додаткові дані типу масив, які не можна представити як URI. Вони не включені.</string>
+    <string name="dialog_export_intent_warning_boolean_array_extras">Додаткові дані типу масив логічних значень не підтримуються командою \'am\' і не включені.</string>
     <string name="dialog_enable_non_exported_title">Приховані компоненти</string>
     <string name="dialog_enable_non_exported_message">Ви можете увімкнути відображення прихованих компонентів, вони будуть виділені червоним кольором. Такі компоненти можна запустити тільки використовуючи root</string>
     <string name="dialog_root_config_title">Встановити власний виконуваний файл \'su\'</string>
@@ -104,6 +124,35 @@
     <string name="pref_header_advanced">Додаткові можливості</string>
     <string name="pref_advanced_not_exported_title">Показувати приховані компоненти</string>
     <string name="pref_advanced_not_exported_summary">Можна запускати лише від імені root</string>
+    <string name="pref_header_launch">Запуск</string>
+    <string name="pref_launch_toast_title">Показувати повідомлення про запуск</string>
+    <string name="pref_launch_toast_summary">Показувати toast-повідомлення під час запуску активності</string>
+    <string name="pref_root_config_summary">Налаштуйте виконуваний файл \'su\', який використовується для запуску активностей з правами root</string>
+    <string name="pref_header_intent">Intent</string>
+    <string name="pref_intercept_intents_title">Перехоплення intent</string>
+    <string name="pref_intercept_intents_summary">Показувати Activity Manager у системних діалогах «Поділитися» та «Відкрити через», щоб переглядати вхідні intent</string>
+    <string name="pref_advanced_clear_cache_title">Очистити кеш додатка</string>
+    <string name="pref_advanced_clear_cache_summary">Заново створити список встановлених додатків</string>
+    <string name="pref_advanced_clear_cache_done">Кеш додатка очищено</string>
+    <string name="dialog_clear_cache_title">Очистити кеш додатка?</string>
+    <string name="dialog_clear_cache_message">Очистіть кеш, якщо список відображається неправильно: бракує додатків, список порожній або в ньому досі є видалені додатки.\n\nКеш відновлюється одразу, що може тривати довше, якщо встановлено багато додатків. Закріплені додатки зберігаються.</string>
+    <string name="dialog_clear_cache_action">Очистити</string>
+    <string name="analyzer_section_general">Загальне</string>
+    <string name="analyzer_section_clip_data">Дані буфера обміну</string>
+    <string name="analyzer_section_handlers">Обробники</string>
+    <string name="analyzer_section_export">Експорт</string>
+    <string name="analyzer_label_resolved_mime_type">Визначений MIME-тип</string>
+    <string name="analyzer_label_calling_package">Викликаючий пакет</string>
+    <string name="analyzer_label_calling_activity">Викликаюча активність</string>
+    <string name="analyzer_label_flags_raw">Необроблене значення</string>
+    <string name="analyzer_label_clip_label">Мітка</string>
+    <string name="analyzer_label_clip_mime_types">MIME-типи</string>
+    <string name="analyzer_clip_text">Текст</string>
+    <string name="analyzer_type_query_parameter">параметр запиту</string>
+    <string name="analyzer_extras_error">Не вдалося прочитати додаткові дані</string>
+    <string name="analyzer_action_open_in_launcher">Відкрити в запуску intent</string>
+    <string name="analyzer_dialog_unsupported_uris_title">Вкладені файли будуть втрачені</string>
+    <string name="analyzer_dialog_unsupported_uris_message">Ці URI доступні для читання лише через тимчасовий дозвіл, наданий цьому екрану. Запуск передає їх як звичайний текст, тому цільовий додаток не зможе їх відкрити.\n\n%1$s</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Системна</item>
         <item>Світла</item>

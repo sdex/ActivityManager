@@ -39,7 +39,6 @@
     <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">設定 Shizuku</string>
     <string name="onboarding_intro"><![CDATA[只要設定一次 <a href="%1$s">Shizuku</a>，之後無需 root 即可啟動未匯出的活動。]]></string>
-    <string name="onboarding_step_done">✓</string>
     <string name="onboarding_step_install_title">安裝 Shizuku</string>
     <string name="onboarding_step_install_desc">使用 Shizuku 執行系統指令。請先安裝 Shizuku，再啟動服務。</string>
     <string name="onboarding_action_install_shizuku">安裝</string>
