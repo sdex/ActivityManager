@@ -39,7 +39,6 @@
     <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">Set up Shizuku</string>
     <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
-    <string name="onboarding_step_done">✓</string>
     <string name="onboarding_step_install_title">Install Shizuku</string>
     <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
     <string name="onboarding_action_install_shizuku">Install</string>
