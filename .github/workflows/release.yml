@@ -63,11 +63,22 @@ jobs:
           mv "$APK" "$NEW_NAME"
           echo "path=$NEW_NAME" >> $GITHUB_OUTPUT
 
+      - name: Read release notes from F-Droid changelog
+        id: notes
+        run: |
+          VERSION_CODE=$(sed -n 's/^ *versionCode = \([0-9]*\)$/\1/p' app/build.gradle.kts | head -n 1)
+          FILE="metadata/en-US/changelogs/${VERSION_CODE}.txt"
+          if ! test -s "$FILE"; then
+            echo "::error::$FILE is missing or empty"
+            exit 1
+          fi
+          echo "path=$FILE" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ steps.rename.outputs.path }}
-          generate_release_notes: true
+          body_path: ${{ steps.notes.outputs.path }}
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
