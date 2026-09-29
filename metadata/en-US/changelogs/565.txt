@@ -1,0 +1,5 @@
+- add system-wide intent interceptor
+- add option to clear and rebuild app cache while preserving pinned apps
+- improve manifest parsing
+- add Traditional Chinese (zh-TW) translation (thanks @PeterDaveHello)
+- update translations

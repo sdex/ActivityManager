@@ -1,3 +1,10 @@
+## 5.5.1 (29 Sep 2026)
+- add system-wide intent interceptor
+- add option to clear and rebuild app cache while preserving pinned apps
+- improve manifest parsing
+- add Traditional Chinese (zh-TW) translation (thanks @PeterDaveHello)
+- update translations
+
 ## 5.5.0 (17 Jul 2026)
 - use Shizuku to launch non-exported activities
 - add extended settings screen

@@ -32,8 +32,8 @@ android {
         applicationId = "com.activitymanager"
         minSdk = 23
         targetSdk = 36
-        versionCode = 564
-        versionName = "5.5.0"
+        versionCode = 565
+        versionName = "5.5.1"
 
         project.findProperty("newVersionCode")?.toString()?.toIntOrNull()?.let {
             versionCode = it
