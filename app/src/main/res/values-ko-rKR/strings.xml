@@ -3,7 +3,7 @@
     <string name="history_activity">기록</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">매개변수로 액티비티 실행</string>
-    <string name="activity_option_launch_root">루트 권한으로 액티비티 실행</string>
+    <string name="activity_option_launch_root">Launch with root or Shizuku</string>
     <string name="activity_option_create_shortcut">바로 가기 만들기</string>
     <!-- application options -->
     <string name="application_option_open">애플리케이션 실행</string>
@@ -39,7 +39,6 @@
     <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">Set up Shizuku</string>
     <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
-    <string name="onboarding_step_done">✓</string>
     <string name="onboarding_step_install_title">Install Shizuku</string>
     <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
     <string name="onboarding_action_install_shizuku">Install</string>
