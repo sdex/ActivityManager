@@ -130,14 +130,14 @@
     <string name="pref_launch_toast_summary">在启动活动时显示 Toast 消息</string>
     <string name="pref_header_root">超级用户权限</string>
     <string name="pref_root_config_summary">自定义用于以 Root 权限启动 Activity 的 \'su\' 可执行文件</string>
-    <string name="pref_header_intent">Intents</string>
-    <string name="pref_intercept_intents_title">Intercept intents</string>
-    <string name="pref_intercept_intents_summary">Show Activity Manager in the system share and open dialogs to inspect incoming intents</string>
-    <string name="pref_advanced_clear_cache_title">Clear app cache</string>
-    <string name="pref_advanced_clear_cache_summary">Rebuild the list of installed apps from scratch</string>
+    <string name="pref_header_intent">意图</string>
+    <string name="pref_intercept_intents_title">拦截意图</string>
+    <string name="pref_intercept_intents_summary">在系统共享和打开对话框中显示活动管理器检查传入的意图</string>
+    <string name="pref_advanced_clear_cache_title">清除应用缓存</string>
+    <string name="pref_advanced_clear_cache_summary">从零开始重建已安装应用列表</string>
     <string name="pref_advanced_clear_cache_done">App cache cleared</string>
     <string name="dialog_clear_cache_title">Clear app cache?</string>
-    <string name="dialog_clear_cache_message">Clear the cache when the list looks wrong: apps are missing, the list is empty, or it still shows apps that were uninstalled. \n\nThe cache is rebuilt immediately, which can take a while if many apps are installed. Pinned apps are kept.</string>
+    <string name="dialog_clear_cache_message">当列表看起来有问题时清除缓存：应用程序丢失，列表为空，或者它仍然显示已卸载的应用程序。 \n\n缓存立即重建，如果安装了许多应用，重建缓存可能需要一段时间。固定的应用将被保存。</string>
     <string name="dialog_clear_cache_action">Clear</string>
     <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
     <string name="analyzer_section_general">General</string>
