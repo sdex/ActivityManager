@@ -69,8 +69,10 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun findAppBar(root: View): View? {
-        return root.findVisibleViewById(R.id.toolbarContainer)
-            ?: root.findVisibleViewById(R.id.appBar)
+        // appBar wraps toolbarContainer and siblings (e.g. find-in-page view),
+        // so it must take precedence to keep all of them below the status bar
+        return root.findVisibleViewById(R.id.appBar)
+            ?: root.findVisibleViewById(R.id.toolbarContainer)
     }
 
     private inline fun <reified T : View> View.findVisibleViewById(@IdRes id: Int): T? {
