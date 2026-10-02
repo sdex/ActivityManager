@@ -1,0 +1,3 @@
+- add card layouts for app and activity lists on tablets
+- fix manifest search bar overlapping the status bar
+- update translations

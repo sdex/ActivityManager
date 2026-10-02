@@ -1,3 +1,8 @@
+## 5.5.2 (2 Oct 2026)
+- add card layouts for app and activity lists on tablets
+- fix manifest search bar overlapping the status bar
+- update translations
+
 ## 5.5.1 (29 Sep 2026)
 - add system-wide intent interceptor
 - add option to clear and rebuild app cache while preserving pinned apps
