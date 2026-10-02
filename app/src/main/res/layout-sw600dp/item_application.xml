@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/materialCardViewFilledStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/app_item_card_margin_horizontal"
+    android:layout_marginVertical="@dimen/app_item_card_margin_vertical"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:orientation="horizontal"
+        android:padding="@dimen/app_item_card_content_padding">
+
+        <FrameLayout
+            android:layout_width="@dimen/app_icon_size"
+            android:layout_height="@dimen/app_icon_size"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="16dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="ContentDescription"
+                tools:src="@mipmap/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/pinnedIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/background_pinned_icon"
+                android:contentDescription="@string/application_pinned"
+                android:padding="3dp"
+                android:translationX="10dp"
+                android:translationY="-10dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_push_pin_filled_24"
+                app:tint="@color/icon_tint"
+                tools:visibility="visible" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                tools:text="Application name" />
+
+            <TextView
+                android:id="@+id/packageName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                tools:text="com.android.application" />
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                tools:text="1.0 (10)" />
+
+            <TextView
+                android:id="@+id/activities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                tools:text="500 activities • 20 exported" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:paddingTop="4dp"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/system"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/application_system"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@android:color/transparent"
+                    app:chipEndPadding="0dp"
+                    app:chipMinTouchTargetSize="0dp"
+                    app:chipStartPadding="0dp"
+                    app:chipStrokeColor="@color/md_theme_error"
+                    app:chipSurfaceColor="@android:color/transparent" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/disabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/application_disabled"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@android:color/transparent"
+                    app:chipEndPadding="0dp"
+                    app:chipMinTouchTargetSize="0dp"
+                    app:chipStartPadding="0dp"
+                    app:chipSurfaceColor="@android:color/transparent" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/appMenu"
+            android:layout_width="?minTouchTargetSize"
+            android:layout_height="match_parent"
+            android:background="?actionBarItemBackground"
+            android:hapticFeedbackEnabled="true"
+            app:srcCompat="@drawable/ic_more_vert"
+            app:tint="@color/icon_tint"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
