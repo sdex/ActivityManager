@@ -130,8 +130,8 @@
     <string name="pref_launch_toast_summary">Wyświetlaj komunikat podczas uruchamiania aktywności</string>
     <string name="pref_header_root">Baza</string>
     <string name="pref_root_config_summary">Dostosuj plik wykonywalny „su” używany do uruchamiania aktywności z uprawnieniami roota</string>
-    <string name="pref_header_intent">Intents</string>
-    <string name="pref_intercept_intents_title">Intercept intents</string>
+    <string name="pref_header_intent">Intencje</string>
+    <string name="pref_intercept_intents_title">Przechwyć intencje</string>
     <string name="pref_intercept_intents_summary">Show Activity Manager in the system share and open dialogs to inspect incoming intents</string>
     <string name="pref_advanced_clear_cache_title">Clear app cache</string>
     <string name="pref_advanced_clear_cache_summary">Rebuild the list of installed apps from scratch</string>
