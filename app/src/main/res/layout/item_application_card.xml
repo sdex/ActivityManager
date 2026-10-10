@@ -11,19 +11,20 @@
     android:focusable="true">
 
     <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:orientation="horizontal"
-        android:padding="@dimen/app_item_card_content_padding">
+        android:paddingVertical="@dimen/app_content_padding_vertical">
 
         <FrameLayout
             android:layout_width="@dimen/app_icon_size"
             android:layout_height="@dimen/app_icon_size"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="16dp"
+            android:layout_marginHorizontal="@dimen/app_icon_margin_horizontal"
             android:clipChildren="false"
             android:clipToPadding="false">
 

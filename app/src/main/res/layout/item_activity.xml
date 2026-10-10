@@ -7,14 +7,14 @@
     android:background="?selectableItemBackground"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
-    android:paddingVertical="10dp">
+    android:paddingVertical="@dimen/app_content_padding_vertical">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="@dimen/app_icon_size"
         android:layout_height="@dimen/app_icon_size"
         android:layout_gravity="center_vertical"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/app_icon_margin_horizontal"
         tools:ignore="ContentDescription"
         tools:src="@mipmap/ic_launcher" />
 

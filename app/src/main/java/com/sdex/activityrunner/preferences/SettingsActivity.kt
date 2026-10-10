@@ -51,6 +51,14 @@ class SettingsActivity : BaseActivity() {
             binding.switchInterceptIntents.isChecked = !binding.switchInterceptIntents.isChecked
         }
 
+        binding.switchCardLayout.isChecked = appPreferences.isCardLayoutEnabled
+        binding.switchCardLayout.setOnCheckedChangeListener { _, isChecked ->
+            appPreferences.isCardLayoutEnabled = isChecked
+        }
+        binding.cardLayout.setOnClickListener {
+            binding.switchCardLayout.isChecked = !binding.switchCardLayout.isChecked
+        }
+
         binding.rootConfig.setOnClickListener {
             RootConfigDialog.newInstance()
                 .show(supportFragmentManager, RootConfigDialog.TAG)

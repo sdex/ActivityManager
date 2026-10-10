@@ -23,13 +23,18 @@ import com.sdex.activityrunner.databinding.ActivityMainBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.extensions.setItemsVisibility
 import com.sdex.activityrunner.intent.IntentBuilderActivity
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.preferences.DisplayConfig
 import com.sdex.activityrunner.preferences.PreferencesBottomDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
+
+    @Inject
+    lateinit var appPreferences: AppPreferences
 
     private val viewModel by viewModels<MainViewModel>()
 
@@ -119,6 +124,8 @@ class MainActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
 
+        // the setting may have been changed in SettingsActivity
+        adapter.isCardLayoutEnabled = appPreferences.isCardLayoutEnabled
         viewModel.quickSync()
     }
 

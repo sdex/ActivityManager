@@ -17,6 +17,7 @@ interface AppPreferences {
     var showLineNumbers: Boolean
     var isShowLaunchToast: Boolean
     var isInterceptIntents: Boolean
+    var isCardLayoutEnabled: Boolean
     @get:AppCompatDelegate.NightMode
     @setparam:AppCompatDelegate.NightMode
     var theme: Int

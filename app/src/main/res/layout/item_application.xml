@@ -9,13 +9,13 @@
     android:clipToPadding="false"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
-    android:paddingVertical="10dp">
+    android:paddingVertical="@dimen/app_content_padding_vertical">
 
     <FrameLayout
         android:layout_width="@dimen/app_icon_size"
         android:layout_height="@dimen/app_icon_size"
         android:layout_gravity="center_vertical"
-        android:layout_margin="12dp"
+        android:layout_marginHorizontal="@dimen/app_icon_margin_horizontal"
         android:clipChildren="false"
         android:clipToPadding="false">
 

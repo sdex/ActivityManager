@@ -134,6 +134,9 @@
     <string name="pref_header_intent">Intents</string>
     <string name="pref_intercept_intents_title">Intercept intents</string>
     <string name="pref_intercept_intents_summary">Show Activity Manager in the system share and open dialogs to inspect incoming intents</string>
+    <string name="pref_header_experimental">Experimental</string>
+    <string name="pref_card_layout_title">Card layout</string>
+    <string name="pref_card_layout_summary">Show apps and activities as cards</string>
     <string name="pref_advanced_clear_cache_title">Clear app cache</string>
     <string name="pref_advanced_clear_cache_summary">Rebuild the list of installed apps from scratch</string>
     <string name="pref_advanced_clear_cache_done">App cache cleared</string>

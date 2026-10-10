@@ -167,6 +167,16 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
             }
         }
 
+    override var isCardLayoutEnabled: Boolean
+        get() = runBlocking { dataStore.data.first()[KEY_CARD_LAYOUT] ?: false }
+        set(value) {
+            coroutineScope.launch {
+                dataStore.edit { prefs ->
+                    prefs[KEY_CARD_LAYOUT] = value
+                }
+            }
+        }
+
     @get:AppCompatDelegate.NightMode
     @setparam:AppCompatDelegate.NightMode
     override var theme: Int
@@ -269,6 +279,7 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
 
         val KEY_SHOW_LAUNCH_TOAST = booleanPreferencesKey("show_launch_toast")
         val KEY_INTERCEPT_INTENTS = booleanPreferencesKey("intercept_intents")
+        val KEY_CARD_LAYOUT = booleanPreferencesKey("experimental_card_layout")
         val KEY_SHOW_NOT_EXPORTED = booleanPreferencesKey("advanced_not_exported")
         val KEY_SHOW_SYSTEM_APPS = booleanPreferencesKey("show_system_apps")
         val KEY_SHOW_SYSTEM_APP_LABEL = booleanPreferencesKey("advanced_system_app")

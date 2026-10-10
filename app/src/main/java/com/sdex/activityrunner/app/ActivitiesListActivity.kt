@@ -20,13 +20,18 @@ import com.sdex.activityrunner.db.history.HistoryModel
 import com.sdex.activityrunner.extensions.serializable
 import com.sdex.activityrunner.extensions.setItemsVisibility
 import com.sdex.activityrunner.manifest.ManifestViewerActivity
+import com.sdex.activityrunner.preferences.AppPreferences
 import com.sdex.activityrunner.shortcut.CreateShortcutActivity
 import com.sdex.activityrunner.util.IntentUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ActivitiesListActivity : BaseActivity() {
+
+    @Inject
+    lateinit var appPreferences: AppPreferences
 
     private val viewModel by viewModels<ActivitiesListViewModel>()
 
@@ -51,6 +56,7 @@ class ActivitiesListActivity : BaseActivity() {
 
         val adapter = ActivitiesListAdapter(this).apply {
             application = item
+            isCardLayoutEnabled = appPreferences.isCardLayoutEnabled
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
                     viewModel.launchActivity(item)

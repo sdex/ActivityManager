@@ -2,6 +2,7 @@ package com.sdex.activityrunner.app
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
@@ -13,6 +14,7 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.sdex.activityrunner.R
 import com.sdex.activityrunner.databinding.ItemApplicationBinding
+import com.sdex.activityrunner.databinding.ItemApplicationCardBinding
 import com.sdex.activityrunner.db.cache.ApplicationModel
 import com.sdex.activityrunner.preferences.DisplayConfig
 import com.sdex.activityrunner.util.ApplicationSectionNameProvider
@@ -38,13 +40,32 @@ class ApplicationsListAdapter(
         }
     var itemClickListener: ItemClickListener? = null
 
+    @SuppressLint("NotifyDataSetChanged")
+    var isCardLayoutEnabled: Boolean = false
+        set(value) {
+            if (field != value) {
+                field = value
+                notifyDataSetChanged()
+            }
+        }
+
     init {
         setHasStableIds(true)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return if (isCardLayoutEnabled) VIEW_TYPE_CARD else VIEW_TYPE_DEFAULT
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return AppViewHolder(ItemApplicationBinding.inflate(inflater, parent, false))
+        return if (viewType == VIEW_TYPE_CARD) {
+            val cardBinding = ItemApplicationCardBinding.inflate(inflater, parent, false)
+            AppViewHolder(cardBinding.root, ItemApplicationBinding.bind(cardBinding.content))
+        } else {
+            val binding = ItemApplicationBinding.inflate(inflater, parent, false)
+            AppViewHolder(binding.root, binding)
+        }
     }
 
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
@@ -88,8 +109,9 @@ class ApplicationsListAdapter(
     }
 
     class AppViewHolder(
+        itemView: View,
         private val binding: ItemApplicationBinding,
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(
             item: ApplicationModel,
@@ -129,10 +151,10 @@ class ApplicationsListAdapter(
                 .apply(RequestOptions().fitCenter())
                 .into(binding.icon)
 
-            binding.root.setOnClickListener {
+            itemView.setOnClickListener {
                 itemClickListener?.onItemClick(item)
             }
-            binding.root.setOnLongClickListener {
+            itemView.setOnLongClickListener {
                 itemClickListener?.onItemLongClick(item)
                 true
             }
@@ -143,6 +165,9 @@ class ApplicationsListAdapter(
     }
 
     companion object {
+
+        private const val VIEW_TYPE_DEFAULT = 0
+        private const val VIEW_TYPE_CARD = 1
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ApplicationModel>() {
 
