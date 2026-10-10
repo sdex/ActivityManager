@@ -133,6 +133,9 @@
     <string name="pref_header_intent">Intent</string>
     <string name="pref_intercept_intents_title">Перехоплення intent</string>
     <string name="pref_intercept_intents_summary">Показувати Activity Manager у системних діалогах «Поділитися» та «Відкрити через», щоб переглядати вхідні intent</string>
+    <string name="pref_header_experimental">Experimental</string>
+    <string name="pref_card_layout_title">Card layout</string>
+    <string name="pref_card_layout_summary">Show apps and activities as cards</string>
     <string name="pref_advanced_clear_cache_title">Очистити кеш додатка</string>
     <string name="pref_advanced_clear_cache_summary">Заново створити список встановлених додатків</string>
     <string name="pref_advanced_clear_cache_done">Кеш додатка очищено</string>
