@@ -128,6 +128,28 @@
     <string name="pref_launch_toast_title">Pokazuj komunikat startowy</string>
     <string name="pref_launch_toast_summary">Wyświetlaj komunikat podczas uruchamiania aktywności</string>
     <string name="pref_root_config_summary">Dostosuj plik wykonywalny „su” używany do uruchamiania aktywności z uprawnieniami roota</string>
+    <string name="pref_header_intent">Intencje</string>
+    <string name="pref_intercept_intents_title">Przechwyć intencje</string>
+    <string name="pref_intercept_intents_summary">Wyświetlaj aplikację Activity Manager w oknach dialogowych udostępniania systemowego i otwierania, aby sprawdzić przychodzące intencje</string>
+    <string name="pref_advanced_clear_cache_title">Usuń pliki pamięci podręcznej</string>
+    <string name="pref_advanced_clear_cache_summary">Przebuduj listę zainstalowanych aplikacji od podstaw</string>
+    <string name="pref_advanced_clear_cache_done">Wyczyszczono pamięć podręczną</string>
+    <string name="dialog_clear_cache_title">Wyczyścić pamięć podręczną?</string>
+    <string name="dialog_clear_cache_message">Wyczyść pamięć podręczną, jeśli lista wygląda nieprawidłowo: brakuje aplikacji, lista jest pusta lub nadal wyświetla aplikacje, które zostały odinstalowane. \n\nPamięć podręczna zostanie natychmiast odbudowana, co może chwilę potrwać, jeśli zainstalowanych jest wiele aplikacji. Przypięte aplikacje zostaną zachowane.</string>
+    <string name="dialog_clear_cache_action">Wyczyść</string>
+    <string name="analyzer_section_general">Ogólne</string>
+    <string name="analyzer_section_clip_data">Dane klipu</string>
+    <string name="analyzer_section_handlers">Moduły obsługi</string>
+    <string name="analyzer_section_export">Eksportuj</string>
+    <string name="analyzer_label_flags_raw">Wartość surowa</string>
+    <string name="analyzer_label_clip_label">Etykieta</string>
+    <string name="analyzer_label_clip_mime_types">Typy MIME</string>
+    <string name="analyzer_clip_text">Tekst</string>
+    <string name="analyzer_type_query_parameter">parametr zapytania</string>
+    <string name="analyzer_extras_error">Nie udało się odczytać dodatków</string>
+    <string name="analyzer_action_open_in_launcher">Otwórz w launcherze intencji</string>
+    <string name="analyzer_dialog_unsupported_uris_title">Załączone pliki zostaną utracone</string>
+    <string name="analyzer_dialog_unsupported_uris_message">Te adresy URI można odczytać wyłącznie dzięki tymczasowemu uprawnieniu przyznanemu temu ekranowi. Program uruchamiający przekazuje je w postaci zwykłego tekstu, więc aplikacja docelowa nie będzie w stanie ich otworzyć.\n\n%1$s</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Systemowy</item>
         <item>Jasny</item>

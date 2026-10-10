@@ -3,7 +3,7 @@
     <string name="history_activity">Історія</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Запустити з параметрами</string>
-    <string name="activity_option_launch_root">Запустити з правами root</string>
+    <string name="activity_option_launch_root">Запуск з root або Shizuku</string>
     <string name="activity_option_create_shortcut">Створити ярлик</string>
     <!-- application options -->
     <string name="application_option_open">Запустити додаток</string>
