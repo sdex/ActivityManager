@@ -132,7 +132,10 @@
     <string name="pref_root_config_summary">Dostosuj plik wykonywalny „su” używany do uruchamiania aktywności z uprawnieniami roota</string>
     <string name="pref_header_intent">Intencje</string>
     <string name="pref_intercept_intents_title">Przechwyć intencje</string>
-    <string name="pref_intercept_intents_summary">Wyświetlaj Menedżera aktywności w oknach dialogowych udostępniania systemowego i otwierania, aby sprawdzić przychodzące intencje</string>
+    <string name="pref_intercept_intents_summary">Wyświetlaj aplikację Activity Manager w oknach dialogowych udostępniania systemowego i otwierania, aby sprawdzić przychodzące intencje</string>
+    <string name="pref_header_experimental">Experimental</string>
+    <string name="pref_card_layout_title">Card layout</string>
+    <string name="pref_card_layout_summary">Show apps and activities as cards</string>
     <string name="pref_advanced_clear_cache_title">Usuń pliki pamięci podręcznej</string>
     <string name="pref_advanced_clear_cache_summary">Przebuduj listę zainstalowanych aplikacji od podstaw</string>
     <string name="pref_advanced_clear_cache_done">Wyczyszczono pamięć podręczną</string>
@@ -153,7 +156,7 @@
     <string name="analyzer_clip_text">Tekst</string>
     <string name="analyzer_type_query_parameter">parametr zapytania</string>
     <string name="analyzer_extras_error">Nie udało się odczytać dodatków</string>
-    <string name="analyzer_action_open_in_launcher">Otwórz w Intent Launcher</string>
+    <string name="analyzer_action_open_in_launcher">Otwórz w launcherze intencji</string>
     <string name="analyzer_dialog_unsupported_uris_title">Załączone pliki zostaną utracone</string>
     <string name="analyzer_dialog_unsupported_uris_message">Te adresy URI można odczytać wyłącznie dzięki tymczasowemu uprawnieniu przyznanemu temu ekranowi. Program uruchamiający przekazuje je w postaci zwykłego tekstu, więc aplikacja docelowa nie będzie w stanie ich otworzyć.\n\n%1$s</string>
     <string-array name="pref_appearance_theme_list_titles">
