@@ -1,3 +1,7 @@
+## 5.5.3 (10 Oct 2026)
+- add experimental card layout option for app and activity lists
+- update translations
+
 ## 5.5.2 (2 Oct 2026)
 - add card layouts for app and activity lists on tablets
 - fix manifest search bar overlapping the status bar

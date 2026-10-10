@@ -1,0 +1,2 @@
+- add experimental card layout option for app and activity lists
+- update translations
