@@ -3,13 +3,9 @@
     <string name="history_activity">Historial</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Lanzar actividad con parámetros</string>
-    <string name="activity_option_launch_root">Launch with root or Shizuku</string>
     <string name="activity_option_create_shortcut">Crear acceso directo</string>
     <!-- application options -->
     <string name="application_option_open">Lanzar la aplicación</string>
-    <string name="application_option_pin">Pin to top</string>
-    <string name="application_option_unpin">Unpin from top</string>
-    <string name="application_pinned">Pinned</string>
     <string name="application_option_open_manifest">Abrir el visor del manifiesto</string>
     <string name="application_option_open_info">Abrir informacione la aplicación</string>
     <string name="application_option_open_market">Open in app market</string>
@@ -19,14 +15,10 @@
     <string name="shortcut_name">Etiqueta</string>
     <string name="shortcut_name_empty">La etiqueta no puede estar vacía</string>
     <string name="shortcut_create">Crear</string>
-    <string name="shortcut_change_icon">Change icon</string>
     <string name="shortcut_set_icon_tooltip">Pulsa para cambiar el icono</string>
     <string name="icons_loading_error">No se pudo cargar los íconos</string>
     <string name="shortcut_icon_gallery">Elegir de la galería</string>
     <string name="shortcut_icon_preset">Seleccionar desde iconos</string>
-    <string name="shortcut_invert_icon_colors">Invert icon colors</string>
-    <string name="shortcut_options">Options</string>
-    <string name="create_shortcut_non_exported_warning">Launching this activity requires root permission</string>
     <!-- launching activity -->
     <string name="starting_activity">Iniciando actividad: %s</string>
     <string name="starting_activity_failed">Error al iniciar la actividad: %s</string>
@@ -37,20 +29,9 @@
     <string name="starting_activity_root_error">Error al iniciar la actividad usando root</string>
     <string name="starting_activity_root_not_available">El root no está disponible o el permiso no fue concedido</string>
     <!-- Shizuku method setup wizard -->
-    <string name="onboarding_title">Set up Shizuku</string>
-    <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> is used to launch non-exported activities without root. Complete setup once.]]></string>
-    <string name="onboarding_step_install_title">Install Shizuku</string>
-    <string name="onboarding_step_install_desc">Use Shizuku to run system commands. Install it and start the service.</string>
-    <string name="onboarding_action_install_shizuku">Install</string>
-    <string name="onboarding_action_open_shizuku">Open</string>
-    <string name="onboarding_step_permission_title">Grant Shizuku access</string>
-    <string name="onboarding_step_permission_desc">Allow Activity Manager to use Shizuku.</string>
-    <string name="onboarding_action_grant_shizuku">Grant access</string>
-    <string name="onboarding_action_done">Done</string>
     <string name="activities_list_empty_text">No hay actividades exportadas</string>
     <string name="activities_list_empty_action">Mostrar no exportadas</string>
     <string name="activities_list_non_exported_show_once">Newline. : \"Empty\", \"translation\", \"root\", \"magisck\"</string>
-    <string name="activities_list_non_exported_show_always">Always show</string>
     <string name="activities_list_failed_loading">%1$s</string>
     <string name="action_about">Acerca de</string>
     <string name="action_launch_intent">Lanzador de intents</string>
@@ -71,7 +52,6 @@
     <string name="launch_param_categories">Categorías</string>
     <string name="launch_param_flags">Banderas</string>
     <string name="save_to_history">Guardar en historial</string>
-    <string name="launch_with_root">Launch with root</string>
     <string name="item_history_has_extras">Extras</string>
     <string name="item_history_has_categories">Categorías</string>
     <string name="item_history_has_flags">Banderas</string>
@@ -79,14 +59,9 @@
     <string name="about_source_code">Código fuente</string>
     <string name="about_version">Versión</string>
     <string name="about_bug_tracker">Reporte un problema</string>
-    <string name="about_suggest_idea">Suggest an idea</string>
-    <string name="about_translation">Help with translation</string>
     <string name="about_open_source">Librerías Open-Source</string>
-    <string name="donate_snackbar_text">@string/about_donation</string>
-    <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">Si te gusta la app, por favor considera hacer una donación</string>
     <string name="donate_action_text">Donar</string>
-    <string name="donate_negative_action_text">Never ask</string>
     <string name="input_key">Clave de entrada</string>
     <string name="input_value">Valor de entrada</string>
     <string name="key">Clave</string>
@@ -97,23 +72,17 @@
     <string name="history_empty_action">Ejecutar algunos intents</string>
     <string name="history_dialog_clear_title">Limpiar historial</string>
     <string name="history_dialog_clear_message">¿Estás seguro?</string>
-    <string name="history_item_dialog_title">Intent</string>
     <string name="history_item_dialog_remove">Eliminar</string>
     <string name="history_item_dialog_add_shortcut">Crear acceso directo</string>
     <string name="history_item_dialog_export_uri">Exportar como URI</string>
-    <string name="history_item_dialog_export_shell">Export as shell command</string>
-    <string name="no">No</string>
     <string name="yes">Si</string>
     <string name="dialog_add_extra_title">Añadir extra</string>
     <string name="dialog_add_extra_key_empty">La clave no puede estar vacía</string>
     <string name="dialog_add_extra_value_empty">El valor no puede estar vacío</string>
     <string name="dialog_add_extra_type_incorrect">Tipo de valor incorrecto</string>
     <string name="dialog_export_intent_copy">Copiar</string>
-    <string name="dialog_export_intent_warning_array_extras">This intent contains array extras that cannot be represented as a URI. They are not included.</string>
-    <string name="dialog_export_intent_warning_boolean_array_extras">Boolean array extras are not supported by the \'am\' command and are not included.</string>
     <string name="dialog_enable_non_exported_title">Actividades no exportadas</string>
     <string name="dialog_enable_non_exported_message">Puedes activar la visualización de actividades no exportadas, aparecerán marcadas en rojo. Estas actividades sólo pueden ser ejecutadas con permiso root</string>
-    <string name="dialog_root_config_title">Set custom \'su\' executable</string>
     <!-- errors -->
     <string name="error_failed_to_instantiate_web_view">Error al instanciar WebView, inténtalo de nuevo más tarde</string>
     <string name="error_failed_to_open_manifest">Error al abrir AndroidManifest.xml</string>
@@ -125,40 +94,7 @@
     <string name="pref_header_advanced">Avanzado</string>
     <string name="pref_advanced_not_exported_title">Mostrar actividades no exportadas</string>
     <string name="pref_advanced_not_exported_summary">Se puede ejecutar sólo usando root</string>
-    <string name="pref_header_launch">Launch</string>
-    <string name="pref_launch_toast_title">Show launch message</string>
-    <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>
-    <string name="pref_header_root">Root</string>
-    <string name="pref_root_config_summary">Customize the \'su\' executable used to launch activities with root</string>
-    <string name="pref_header_intent">Intents</string>
-    <string name="pref_intercept_intents_title">Intercept intents</string>
-    <string name="pref_intercept_intents_summary">Show Activity Manager in the system share and open dialogs to inspect incoming intents</string>
-    <string name="pref_header_experimental">Experimental</string>
-    <string name="pref_card_layout_title">Card layout</string>
-    <string name="pref_card_layout_summary">Show apps and activities as cards</string>
-    <string name="pref_advanced_clear_cache_title">Clear app cache</string>
-    <string name="pref_advanced_clear_cache_summary">Rebuild the list of installed apps from scratch</string>
-    <string name="pref_advanced_clear_cache_done">App cache cleared</string>
-    <string name="dialog_clear_cache_title">Clear app cache?</string>
-    <string name="dialog_clear_cache_message">Clear the cache when the list looks wrong: apps are missing, the list is empty, or it still shows apps that were uninstalled. \n\nThe cache is rebuilt immediately, which can take a while if many apps are installed. Pinned apps are kept.</string>
-    <string name="dialog_clear_cache_action">Clear</string>
     <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
-    <string name="analyzer_section_general">General</string>
-    <string name="analyzer_section_clip_data">Clip data</string>
-    <string name="analyzer_section_handlers">Handlers</string>
-    <string name="analyzer_section_export">Export</string>
-    <string name="analyzer_label_resolved_mime_type">Resolved mime type</string>
-    <string name="analyzer_label_calling_package">Calling package</string>
-    <string name="analyzer_label_calling_activity">Calling activity</string>
-    <string name="analyzer_label_flags_raw">Raw value</string>
-    <string name="analyzer_label_clip_label">Label</string>
-    <string name="analyzer_label_clip_mime_types">Mime types</string>
-    <string name="analyzer_clip_text">Text</string>
-    <string name="analyzer_type_query_parameter">query parameter</string>
-    <string name="analyzer_extras_error">Failed to read the extras</string>
-    <string name="analyzer_action_open_in_launcher">Open in Intent launcher</string>
-    <string name="analyzer_dialog_unsupported_uris_title">Attached files will be lost</string>
-    <string name="analyzer_dialog_unsupported_uris_message">These uris are readable only through the temporary permission this screen was granted. The launcher passes them on as plain text, so the target application will not be able to open them.\n\n%1$s</string>
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistema</item>
         <item>Claro</item>
@@ -179,16 +115,4 @@
     <string name="manifest_viewer_search">Buscar</string>
     <string name="manifest_viewer_search_hint">Buscar palabra clave</string>
     <!-- filter -->
-    <string name="filter">Filter</string>
-    <string name="filter_header">%1$d applications</string>
-    <string name="filter_header_sort_by">Sort by</string>
-    <string name="filter_sort_by_name">Name</string>
-    <string name="filter_sort_by_update_time">Update time</string>
-    <string name="filter_sort_by_install_time">Install time</string>
-    <string name="filter_sort_order_asc">Ascending</string>
-    <string name="filter_sort_order_desc">Descending</string>
-    <string name="filter_system_apps_title">System applications</string>
-    <string name="filter_disabled_apps_title">Disabled applications</string>
-    <string name="filter_toggle_show">Show</string>
-    <string name="filter_toggle_label">Label</string>
 </resources>
