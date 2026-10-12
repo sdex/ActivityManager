@@ -31,7 +31,6 @@
     <!-- Shizuku method setup wizard -->
     <string name="activities_list_empty_text">No hay actividades exportadas</string>
     <string name="activities_list_empty_action">Mostrar no exportadas</string>
-    <string name="activities_list_non_exported_show_once">Newline. : \"Empty\", \"translation\", \"root\", \"magisck\"</string>
     <string name="activities_list_failed_loading">%1$s</string>
     <string name="action_about">Acerca de</string>
     <string name="action_launch_intent">Lanzador de intents</string>
