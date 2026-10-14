@@ -133,6 +133,9 @@
     <string name="pref_header_intent">Intencje</string>
     <string name="pref_intercept_intents_title">Przechwyć intencje</string>
     <string name="pref_intercept_intents_summary">Wyświetlaj aplikację Activity Manager w oknach dialogowych udostępniania systemowego i otwierania, aby sprawdzić przychodzące intencje</string>
+    <string name="pref_header_experimental">Eksperymentalne</string>
+    <string name="pref_card_layout_title">Układ kart</string>
+    <string name="pref_card_layout_summary">Pokazuj aplikacje i aktywności jako karty</string>
     <string name="pref_advanced_clear_cache_title">Usuń pliki pamięci podręcznej</string>
     <string name="pref_advanced_clear_cache_summary">Przebuduj listę zainstalowanych aplikacji od podstaw</string>
     <string name="pref_advanced_clear_cache_done">Wyczyszczono pamięć podręczną</string>
