@@ -115,7 +115,11 @@ class ActivitiesListActivity : BaseActivity() {
         }
 
         binding.showNonExported.setOnClickListener {
-            viewModel.reloadItems(appPackageName, showNotExported = true)
+            viewModel.reloadItems(
+                appPackageName,
+                showNotExported = true,
+                showDisabled = viewModel.showDisabledActivities,
+            )
         }
 
         if (viewModel.shouldShowNotExportedMessageDialog) {
@@ -135,6 +139,7 @@ class ActivitiesListActivity : BaseActivity() {
         menuInflater.inflate(R.menu.activities_list, menu)
         configureSearchView(menu)
         menu.findItem(R.id.show_not_exported).isChecked = viewModel.showNotExported
+        menu.findItem(R.id.show_disabled_activities).isChecked = viewModel.showDisabledActivities
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -144,7 +149,23 @@ class ActivitiesListActivity : BaseActivity() {
                 item.isChecked = !item.isChecked
                 viewModel.showNotExported = item.isChecked
 
-                viewModel.reloadItems(appPackageName, showNotExported = item.isChecked)
+                viewModel.reloadItems(
+                    appPackageName,
+                    showNotExported = item.isChecked,
+                    showDisabled = viewModel.showDisabledActivities,
+                )
+                true
+            }
+
+            R.id.show_disabled_activities -> {
+                item.isChecked = !item.isChecked
+                viewModel.showDisabledActivities = item.isChecked
+
+                viewModel.reloadItems(
+                    appPackageName,
+                    showNotExported = viewModel.showNotExported,
+                    showDisabled = item.isChecked,
+                )
                 true
             }
 
