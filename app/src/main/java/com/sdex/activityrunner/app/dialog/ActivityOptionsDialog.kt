@@ -55,7 +55,6 @@ class ActivityOptionsDialog : BottomSheetDialogFragment() {
         binding.activityName.text = model.name
         binding.permission.text = model.permission
         binding.permission.copyToClipboardOnLongClick()
-
         binding.activityInfo.isVisible = model.hasPermission
 
         binding.actionActivityAddShortcut.setOnClickListener {

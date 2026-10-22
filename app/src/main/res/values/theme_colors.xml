@@ -9,6 +9,7 @@
     <color name="md_theme_onSecondaryContainer">#3A4857</color>
     <color name="md_theme_tertiary">#415F91</color>
     <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="disabled_activity">#1976D2</color>
     <color name="md_theme_tertiaryContainer">#D6E3FF</color>
     <color name="md_theme_onTertiaryContainer">#274777</color>
     <color name="md_theme_error">#BA1A1A</color>

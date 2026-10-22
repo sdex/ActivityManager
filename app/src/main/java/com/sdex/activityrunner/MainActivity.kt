@@ -51,6 +51,8 @@ class MainActivity : BaseActivity() {
             object : MenuProvider {
                 override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                     menuInflater.inflate(R.menu.main, menu)
+                    menu.findItem(R.id.action_show_disabled_apps).isChecked =
+                        appPreferences.isShowDisabledApps
                     configureSearchView(menu)
                 }
 
@@ -66,6 +68,12 @@ class MainActivity : BaseActivity() {
 
                         R.id.action_launch_intent -> {
                             IntentBuilderActivity.start(this@MainActivity, null)
+                            true
+                        }
+
+                        R.id.action_show_disabled_apps -> {
+                            menuItem.isChecked = !menuItem.isChecked
+                            appPreferences.isShowDisabledApps = menuItem.isChecked
                             true
                         }
 

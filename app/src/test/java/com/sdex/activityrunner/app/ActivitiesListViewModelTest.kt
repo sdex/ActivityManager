@@ -126,7 +126,7 @@ class ActivitiesListViewModelTest {
             viewModel.filterItems("hidden")
             assertThat(awaitItem().activities).isEmpty()
 
-            viewModel.reloadItems(PACKAGE_NAME, showNotExported = true)
+            viewModel.reloadItems(PACKAGE_NAME, showNotExported = true, showDisabled = false)
             val reloadedState = awaitItem()
 
             assertThat(reloadedState.searchText).isEqualTo("hidden")
