@@ -133,6 +133,9 @@
     <string name="pref_header_intent">Intent</string>
     <string name="pref_intercept_intents_title">拦截 Intent</string>
     <string name="pref_intercept_intents_summary">在系统共享和打开对话框中显示 Activity Manager 以检查传入的 Intent</string>
+    <string name="pref_header_experimental">实验性功能</string>
+    <string name="pref_card_layout_title">卡片布局</string>
+    <string name="pref_card_layout_summary">以卡片显示 App 和 Activity</string>
     <string name="pref_advanced_clear_cache_title">清除应用缓存</string>
     <string name="pref_advanced_clear_cache_summary">从零开始重建已安装应用列表</string>
     <string name="pref_advanced_clear_cache_done">应用缓存已清除</string>
