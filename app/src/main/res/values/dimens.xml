@@ -25,7 +25,7 @@
     <dimen name="default_card_corner_radius">6dp</dimen>
 
     <dimen name="app_content_padding_vertical">8dp</dimen>
-    <dimen name="app_icon_size">60dp</dimen>
+    <dimen name="app_icon_size">50dp</dimen>
     <dimen name="app_icon_margin_horizontal">12dp</dimen>
     <dimen name="app_icon_size_tv">60dp</dimen>
 
