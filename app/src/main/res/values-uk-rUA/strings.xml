@@ -11,31 +11,31 @@
     <string name="application_option_unpin">Відкріпити зверху</string>
     <string name="application_pinned">Закріплено</string>
     <string name="application_option_open_manifest">Вікрити маніфест</string>
-    <string name="application_option_open_info">Вікрити інфо</string>
+    <string name="application_option_open_info">Відкрити інформацію про додаток</string>
     <string name="application_option_open_market">Відкрити в магазині додатків</string>
     <string name="application_disabled">Вимкнено</string>
     <string name="application_system">Системний</string>
     <!-- create shortcut -->
     <string name="shortcut_name">Назва</string>
-    <string name="shortcut_name_empty">Обов\'язкове поле</string>
+    <string name="shortcut_name_empty">Мітка не може бути порожньою</string>
     <string name="shortcut_create">Створити</string>
     <string name="shortcut_change_icon">Змінити іконку</string>
-    <string name="shortcut_set_icon_tooltip">Натисніть щоб змінити зображення</string>
-    <string name="icons_loading_error">Не вдалося завантажити значок</string>
+    <string name="shortcut_set_icon_tooltip">Натисніть, щоб змінити іконку</string>
+    <string name="icons_loading_error">Не вдалося завантажити іконки</string>
     <string name="shortcut_icon_gallery">Вибрати з галереї</string>
-    <string name="shortcut_icon_preset">Вибрати зі значків</string>
-    <string name="shortcut_invert_icon_colors">Інвертувати кольори значків</string>
+    <string name="shortcut_icon_preset">Виберіть з іконок</string>
+    <string name="shortcut_invert_icon_colors">Інвертувати кольори іконок</string>
     <string name="shortcut_options">Опції</string>
     <string name="create_shortcut_non_exported_warning">Запуск цієї активності потребує root-доступу</string>
     <!-- launching activity -->
     <string name="starting_activity">Запуск: %s</string>
-    <string name="starting_activity_failed">Помилка запуску: %s</string>
+    <string name="starting_activity_failed">Не вдалося запустити активність: %s</string>
     <string name="starting_activity_launch_intent_failed">Неможливо запустити додаток</string>
-    <string name="starting_activity_failed_security">Немає прав для запуску: %s</string>
+    <string name="starting_activity_failed_security">У вас немає дозволу на запуск цієї активності: %s</string>
     <string name="starting_activity_intent">Запуск</string>
-    <string name="starting_activity_intent_failed">Помилка запуску</string>
-    <string name="starting_activity_root_error">Помилка запуску</string>
-    <string name="starting_activity_root_not_available">Root недоступний або права не надані</string>
+    <string name="starting_activity_intent_failed">Не вдалося запустити активність</string>
+    <string name="starting_activity_root_error">Не вдалося запустити активність за допомогою root</string>
+    <string name="starting_activity_root_not_available">Root недоступний або дозвіл не надано</string>
     <string name="onboarding_title">Налаштувати Shizuku</string>
     <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> використовується для запуску неекспортованих активностей без root. Виконайте налаштування один раз.]]></string>
     <string name="onboarding_step_install_title">Встановити Shizuku</string>
@@ -50,14 +50,14 @@
     <string name="activities_list_empty_action">Увімкнути показ прихованих компонентів</string>
     <string name="activities_list_non_exported_show_once">Тільки раз</string>
     <string name="activities_list_non_exported_show_always">Завжди показувати</string>
-    <string name="activities_list_failed_loading">Помилка при відкритті \"%1$s\"</string>
-    <string name="action_about">Про програму</string>
+    <string name="activities_list_failed_loading">Не вдалося відкрити \"%1$s\"</string>
+    <string name="action_about">Про додаток</string>
     <string name="action_launch_intent">Запустити intent</string>
     <string name="action_history">Історія</string>
     <string name="action_clear_history">Очистити історію</string>
     <string name="action_search">Пошук</string>
-    <string name="action_search_hint">Назва програми</string>
-    <string name="action_search_activity_hint">Ім\'я компоненту або пакету</string>
+    <string name="action_search_hint">Назва додатку або пакета</string>
+    <string name="action_search_activity_hint">Ім\'я активності або пакет</string>
     <string name="action_settings">Налаштування</string>
     <!-- intent builder -->
     <string name="launch_param_package_name">Ім\'я пакету</string>
@@ -69,7 +69,7 @@
     <string name="launch_param_extras_add">+ Додати</string>
     <string name="launch_param_categories">Категорії</string>
     <string name="launch_param_flags">Параметри</string>
-    <string name="save_to_history">Зберегти в історії</string>
+    <string name="save_to_history">Зберегти в історію</string>
     <string name="launch_with_root">Запуск від root</string>
     <string name="item_history_has_extras">Дані</string>
     <string name="item_history_has_categories">Категорії</string>
@@ -83,9 +83,9 @@
     <string name="about_open_source">Бібліотеки з відкритим кодом</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
-    <string name="donate_message">Якщо вам подобається програма, будь ласка, розгляньте можливість підтримати розробку.</string>
-    <string name="donate_action_text">Підтримати</string>
-    <string name="donate_negative_action_text">Не показувати</string>
+    <string name="donate_message">Якщо ви користуєтеся Activity Manager і він вам подобається, тоді це чудовий спосіб висловити свою подяку! Роблячи пожертву, ви допомагаєте зробити цей інструмент, який вже допомагає вам, кращим.</string>
+    <string name="donate_action_text">Пожертвувати</string>
+    <string name="donate_negative_action_text">Ніколи не запитувати</string>
     <string name="input_key">Введіть ключ</string>
     <string name="input_value">Введіть значення</string>
     <string name="key">Ключ</string>
@@ -104,9 +104,9 @@
     <string name="no">Ні</string>
     <string name="yes">Так</string>
     <string name="dialog_add_extra_title">Додати дані</string>
-    <string name="dialog_add_extra_key_empty">Обов\'язкове поле</string>
-    <string name="dialog_add_extra_value_empty">Обов\'язкове поле</string>
-    <string name="dialog_add_extra_type_incorrect">Неправильний тип</string>
+    <string name="dialog_add_extra_key_empty">Ключ не може бути порожнім</string>
+    <string name="dialog_add_extra_value_empty">Значення не може бути порожнім</string>
+    <string name="dialog_add_extra_type_incorrect">Неправильний тип значення</string>
     <string name="dialog_export_intent_copy">Копіювати</string>
     <string name="dialog_export_intent_warning_array_extras">Цей intent містить додаткові дані типу масив, які не можна представити як URI. Вони не включені.</string>
     <string name="dialog_export_intent_warning_boolean_array_extras">Додаткові дані типу масив логічних значень не підтримуються командою \'am\' і не включені.</string>
@@ -114,8 +114,8 @@
     <string name="dialog_enable_non_exported_message">Ви можете увімкнути відображення прихованих компонентів, вони будуть виділені червоним кольором. Такі компоненти можна запустити тільки використовуючи root</string>
     <string name="dialog_root_config_title">Встановити власний виконуваний файл \'su\'</string>
     <!-- errors -->
-    <string name="error_failed_to_instantiate_web_view">Помилка ініціалізації WebView, спробуйте пізніше</string>
-    <string name="error_failed_to_open_manifest">Помилка відкриття файлу AndroidManifest.xml</string>
+    <string name="error_failed_to_instantiate_web_view">Не вдалося відкрити WebView, спробуйте пізніше</string>
+    <string name="error_failed_to_open_manifest">Не вдалося відкрити AndroidManifest.xml</string>
     <!-- share -->
     <string name="dialog_share_title">Поділитися файлом AndroidManifest.xml</string>
     <!-- settings -->
@@ -131,6 +131,8 @@
     <string name="pref_header_intent">Intent</string>
     <string name="pref_intercept_intents_title">Перехоплення intent</string>
     <string name="pref_intercept_intents_summary">Показувати Activity Manager у системних діалогах «Поділитися» та «Відкрити через», щоб переглядати вхідні intent</string>
+    <string name="pref_header_experimental">Експериментальний</string>
+    <string name="pref_card_layout_title">Макет картки</string>
     <string name="pref_advanced_clear_cache_title">Очистити кеш додатка</string>
     <string name="pref_advanced_clear_cache_summary">Заново створити список встановлених додатків</string>
     <string name="pref_advanced_clear_cache_done">Кеш додатка очищено</string>
@@ -175,18 +177,18 @@
     <string name="manifest_viewer_help">Довідка</string>
     <string name="manifest_viewer_line_numbers">Номери рядків</string>
     <string name="manifest_viewer_search">Пошук</string>
-    <string name="manifest_viewer_search_hint">Знайти слово</string>
+    <string name="manifest_viewer_search_hint">Знайти ключове слово</string>
     <!-- filter -->
     <string name="filter">Фільтр</string>
     <string name="filter_header">%1$d додатків</string>
-    <string name="filter_header_sort_by">Сортувати по</string>
+    <string name="filter_header_sort_by">Сортувати за</string>
     <string name="filter_sort_by_name">Ім\'я</string>
     <string name="filter_sort_by_update_time">Час оновлення</string>
     <string name="filter_sort_by_install_time">Час встановлення</string>
     <string name="filter_sort_order_asc">За зростанням</string>
     <string name="filter_sort_order_desc">За спаданням</string>
     <string name="filter_system_apps_title">Системні додатки</string>
-    <string name="filter_disabled_apps_title">Неактивні додатки</string>
+    <string name="filter_disabled_apps_title">Вимкнені додатки</string>
     <string name="filter_toggle_show">Показувати</string>
     <string name="filter_toggle_label">Мітка</string>
 </resources>

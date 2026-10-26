@@ -9,7 +9,7 @@
     <string name="application_option_open">Lanzar la aplicación</string>
     <string name="application_option_open_manifest">Abrir el visor del manifiesto</string>
     <string name="application_option_open_info">Abrir informacione la aplicación</string>
-    <string name="application_option_open_market">Open in app market</string>
+    <string name="application_option_open_market">Abrir en el App Market</string>
     <string name="application_disabled">Desactivado</string>
     <string name="application_system">Sistema</string>
     <!-- create shortcut -->
@@ -34,7 +34,7 @@
     <string name="activities_list_empty_action">Mostrar no exportadas</string>
     <string name="activities_list_non_exported_show_once">Just once</string>
     <string name="activities_list_non_exported_show_always">Always show</string>
-    <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
+    <string name="activities_list_failed_loading">Error al abrir \"%1$s\"</string>
     <string name="action_about">Acerca de</string>
     <string name="action_launch_intent">Lanzador de intents</string>
     <string name="action_history">Historial</string>

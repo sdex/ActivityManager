@@ -141,5 +141,5 @@
     <string name="filter_system_apps_title">Apps do sistema</string>
     <string name="filter_disabled_apps_title">Apps desativados</string>
     <string name="filter_toggle_show">Mostrar</string>
-    <string name="filter_toggle_label">Descrição</string>
+    <string name="filter_toggle_label">Indicador</string>
 </resources>
