@@ -7,9 +7,9 @@
     <string name="activity_option_create_shortcut">Kısayol oluştur</string>
     <!-- application options -->
     <string name="application_option_open">Uygulamayı aç</string>
-    <string name="application_option_pin">Başa tuttur</string>
-    <string name="application_option_unpin">Baştan kaldır</string>
-    <string name="application_pinned">Tutturuldu</string>
+    <string name="application_option_pin">Başa sabitle</string>
+    <string name="application_option_unpin">Baştan sabitlemeyi kaldır</string>
+    <string name="application_pinned">Sabitlendi</string>
     <string name="application_option_open_manifest">Manifest dosyasını incele</string>
     <string name="application_option_open_info">Uygulama ayrıntıları</string>
     <string name="application_option_open_market">Uygulama mağazasında göster</string>
@@ -26,11 +26,11 @@
     <string name="shortcut_icon_preset">Hazır simgelerden seç</string>
     <string name="shortcut_invert_icon_colors">Simge renklerini tersine çevir</string>
     <string name="shortcut_options">Seçenekler</string>
-    <string name="create_shortcut_non_exported_warning">Bu aktiviteyi başlatabilmek için root yetkisi gerekir</string>
+    <string name="create_shortcut_non_exported_warning">Bu eylemi başlatabilmek için root yetkisi gerekir</string>
     <!-- launching activity -->
-    <string name="starting_activity">Aktivite başlatılıyor: %s</string>
-    <string name="starting_activity_failed">Aktivite başlatılamadı: %s</string>
-    <string name="starting_activity_launch_intent_failed">Başlatıcı aktivite bulunamadı</string>
+    <string name="starting_activity">Eylem başlatılıyor: %s</string>
+    <string name="starting_activity_failed">Eylem başlatılamadı: %s</string>
+    <string name="starting_activity_launch_intent_failed">Eylem çalıştırıcı bulunamadı</string>
     <string name="starting_activity_failed_security">Bu aktiviteyi çalıştırma yetkiniz yok: %s</string>
     <string name="starting_activity_intent">Aktivite başlatılıyor</string>
     <string name="starting_activity_intent_failed">Aktivite başlatılamadı</string>
@@ -63,13 +63,13 @@
     <!-- intent builder -->
     <string name="launch_param_package_name">Paket adı</string>
     <string name="launch_param_class_name">Sınıf adı</string>
-    <string name="launch_param_action">Eylem (Action)</string>
-    <string name="launch_param_data">Veri (Data)</string>
+    <string name="launch_param_action">Aktivite</string>
+    <string name="launch_param_data">Veri adı</string>
     <string name="launch_param_mime_type">MIME türü</string>
-    <string name="launch_param_extras">Ekstra veriler (Extras)</string>
+    <string name="launch_param_extras">Ekstra veriler</string>
     <string name="launch_param_extras_add">+ Ekstra ekle</string>
     <string name="launch_param_categories">Kategoriler</string>
-    <string name="launch_param_flags">Bayraklar (Flags)</string>
+    <string name="launch_param_flags">Bayrak adı</string>
     <string name="save_to_history">Geçmişe kaydet</string>
     <string name="launch_with_root">Root ile başlat</string>
     <string name="item_history_has_extras">Ekstralar</string>
@@ -80,12 +80,12 @@
     <string name="about_version">Sürüm</string>
     <string name="about_bug_tracker">Sorun bildir</string>
     <string name="about_suggest_idea">Fikir öner</string>
-    <string name="about_translation">Çeviriye katkıda bulun</string>
-    <string name="about_open_source">Açık kaynak kütüphaneler</string>
+    <string name="about_translation">Çeviriye yardım et</string>
+    <string name="about_open_source">Açık kaynak kütüphanelerı</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
     <string name="donate_message">Activity Manager işinizi kolaylaştırıyor ve severek kullanıyorsanız, bir teşekkür etmenin en güzel yolu küçük bir destek vermektir! Katkınız sayesinde, elinizin altındaki bu aracı canlı ve güncel tutmaya devam edebiliriz.</string>
-    <string name="donate_action_text">Destek Ol</string>
+    <string name="donate_action_text">Bağıs yap</string>
     <string name="donate_negative_action_text">Bir daha sorma</string>
     <string name="input_key">Anahtarı girin</string>
     <string name="input_value">Değeri girin</string>
