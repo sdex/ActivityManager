@@ -36,6 +36,7 @@
     <string name="starting_activity_intent_failed">启动 Activity 失败</string>
     <string name="starting_activity_root_error">无法使用 Root 权限启动 Activity</string>
     <string name="starting_activity_root_not_available">Root 不可用或未授予权限</string>
+    <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">设置 Shizuku</string>
     <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> 用于在无需 root 权限的情况下启动未导出的 Activity。只需完成一次设置。]]></string>
     <string name="onboarding_step_install_title">安装 Shizuku</string>
@@ -141,10 +142,14 @@
     <string name="dialog_clear_cache_title">清除应用缓存？</string>
     <string name="dialog_clear_cache_message">当列表看起来有问题时清除缓存：应用程序丢失，列表为空，或者它仍然显示已卸载的应用程序。 \n\n缓存立即重建，如果安装了许多应用，重建缓存可能需要一段时间。固定的应用将被保存。</string>
     <string name="dialog_clear_cache_action">清除</string>
+    <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
     <string name="analyzer_section_general">一般</string>
+    <string name="analyzer_section_clip_data">剪贴板数据</string>
     <string name="analyzer_section_handlers">处理程序</string>
     <string name="analyzer_section_export">导出</string>
     <string name="analyzer_label_resolved_mime_type">解析的 mime 类型</string>
+    <string name="analyzer_label_calling_package">调用方软件包</string>
+    <string name="analyzer_label_calling_activity">调用方 Activity</string>
     <string name="analyzer_label_flags_raw">原始值</string>
     <string name="analyzer_label_clip_label">标签</string>
     <string name="analyzer_label_clip_mime_types">Mime 类型</string>

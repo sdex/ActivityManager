@@ -7,9 +7,9 @@
     <string name="activity_option_create_shortcut">Kısayol oluştur</string>
     <!-- application options -->
     <string name="application_option_open">Uygulamayı aç</string>
-    <string name="application_option_pin">Başa tuttur</string>
-    <string name="application_option_unpin">Baştan kaldır</string>
-    <string name="application_pinned">Tutturuldu</string>
+    <string name="application_option_pin">Başa sabitle</string>
+    <string name="application_option_unpin">Baştan sabitlemeyi kaldır</string>
+    <string name="application_pinned">Sabitlendi</string>
     <string name="application_option_open_manifest">Manifest dosyasını incele</string>
     <string name="application_option_open_info">Uygulama ayrıntıları</string>
     <string name="application_option_open_market">Uygulama mağazasında göster</string>
@@ -36,6 +36,7 @@
     <string name="starting_activity_intent_failed">Aktivite başlatılamadı</string>
     <string name="starting_activity_root_error">Aktivite root yetkisiyle başlatılamadı</string>
     <string name="starting_activity_root_not_available">Root erişimi bulunamadı veya gerekli izin verilmedi</string>
+    <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">Shizuku Kurulumu</string>
     <string name="onboarding_intro"><![CDATA[Dışa aktarılmamış aktiviteleri root olmadan çalıştırabilmek için <a href="%1$s">Shizuku</a> kullanılır. Kurulumu bir kez yapmanız yeterlidir.]]></string>
     <string name="onboarding_step_install_title">Shizuku\'yu Yükleyin</string>
@@ -65,7 +66,7 @@
     <string name="launch_param_action">Eylem (Action)</string>
     <string name="launch_param_data">Veri (Data)</string>
     <string name="launch_param_mime_type">MIME türü</string>
-    <string name="launch_param_extras">Ekstra veriler (Extras)</string>
+    <string name="launch_param_extras">Ekstra veriler</string>
     <string name="launch_param_extras_add">+ Ekstra ekle</string>
     <string name="launch_param_categories">Kategoriler</string>
     <string name="launch_param_flags">Bayraklar (Flags)</string>
@@ -79,7 +80,7 @@
     <string name="about_version">Sürüm</string>
     <string name="about_bug_tracker">Sorun bildir</string>
     <string name="about_suggest_idea">Fikir öner</string>
-    <string name="about_translation">Çeviriye katkıda bulun</string>
+    <string name="about_translation">Çeviriye yardım et</string>
     <string name="about_open_source">Açık kaynak kütüphaneler</string>
     <string name="donate_snackbar_text">@string/about_donation</string>
     <string name="donate_snackbar_action_text">@string/donate_action_text</string>
@@ -127,6 +128,7 @@
     <string name="pref_header_launch">Başlatma</string>
     <string name="pref_launch_toast_title">Başlatma bildirimini göster</string>
     <string name="pref_launch_toast_summary">Bir aktivite çalıştırıldığında ekranda kısa bir bilgilendirme göster</string>
+    <string name="pref_header_root">Root</string>
     <string name="pref_root_config_summary">Aktiviteleri root ile başlatırken kullanılan \'su\' komutunu özelleştirin</string>
     <string name="pref_header_intent">Intent\'ler</string>
     <string name="pref_intercept_intents_title">Intent\'leri yakala</string>
@@ -140,6 +142,7 @@
     <string name="dialog_clear_cache_title">Önbellek temizlensin mi?</string>
     <string name="dialog_clear_cache_message">Listede bir tutarsızlık fark ettiğinizde önbelleği temizleyin: Bazı uygulamalar eksikse, liste tamamen boş görünüyorsa ya da kaldırılmış uygulamalar hâlâ listeleniyorsa bu işlem sorunu çözecektir.\n\nÖnbellek anında baştan oluşturulur; cihazınızda çok fazla uygulama varsa bu biraz zaman alabilir. Başa tutturulan uygulamalarınız korunur.</string>
     <string name="dialog_clear_cache_action">Temizle</string>
+    <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
     <string name="analyzer_section_general">Genel</string>
     <string name="analyzer_section_clip_data">Pano verisi</string>
     <string name="analyzer_section_handlers">İşleyiciler</string>

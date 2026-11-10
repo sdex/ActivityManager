@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
-
+    <!-- Crowdin exports only the "one" and "other" plural forms and strips tools:ignore from translations -->
+    <issue id="MissingQuantity">
+        <ignore path="src/main/res/values-es-rES/strings.xml" />
+        <ignore path="src/main/res/values-pt-rBR/strings.xml" />
+    </issue>
 </lint>

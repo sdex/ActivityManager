@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="history_activity">Histórico</string>
     <!-- activity options -->
     <string name="activity_option_launch_params">Iniciar atividade com parâmetros</string>
@@ -36,6 +36,7 @@
     <string name="starting_activity_intent_failed">Não foi possível iniciar atividade</string>
     <string name="starting_activity_root_error">Falha ao iniciar a atividade via root</string>
     <string name="starting_activity_root_not_available">Root não está disponível ou a permissão não foi concedida</string>
+    <!-- Shizuku method setup wizard -->
     <string name="activities_list_empty_text">Existem atividades não exportáveis</string>
     <string name="activities_list_empty_action">Mostrar não exportáveis</string>
     <string name="activities_list_non_exported_show_once">Apenas uma vez</string>
@@ -110,16 +111,17 @@
     <string name="pref_header_advanced">Avançado</string>
     <string name="pref_advanced_not_exported_title">Mostrar atividades não exportadas</string>
     <string name="pref_advanced_not_exported_summary">Só pode ser executado via Root</string>
+    <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
     <string-array name="pref_appearance_theme_list_titles">
         <item>Sistema</item>
         <item>Claro</item>
         <item>Escuro</item>
     </string-array>
-    <plurals name="history_records" tools:ignore="MissingQuantity">
+    <plurals name="history_records">
         <item quantity="one">%d registro</item>
         <item quantity="other">%d registros</item>
     </plurals>
-    <plurals name="activities_count" tools:ignore="MissingQuantity">
+    <plurals name="activities_count">
         <item quantity="one">%d atividade</item>
         <item quantity="other">%d atividades</item>
     </plurals>

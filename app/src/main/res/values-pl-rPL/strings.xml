@@ -36,6 +36,7 @@
     <string name="starting_activity_intent_failed">Nie udało się rozpocząć aktywności</string>
     <string name="starting_activity_root_error">Nie udało się uruchomić aktywności przy użyciu roota</string>
     <string name="starting_activity_root_not_available">Root nie jest dostępny lub zezwolenie nie jest przyznane</string>
+    <!-- Shizuku method setup wizard -->
     <string name="onboarding_title">Skonfiguruj Shizuku</string>
     <string name="onboarding_intro"><![CDATA[<a href="%1$s">Shizuku</a> służy do uruchamiania nieeksportowanych aktywności bez roota. Wykonaj konfigurację jednorazowo.]]></string>
     <string name="onboarding_step_install_title">Zainstaluj Shizuku</string>
@@ -140,10 +141,14 @@
     <string name="dialog_clear_cache_title">Wyczyścić pamięć podręczną?</string>
     <string name="dialog_clear_cache_message">Wyczyść pamięć podręczną, jeśli lista wygląda nieprawidłowo: brakuje aplikacji, lista jest pusta lub nadal wyświetla aplikacje, które zostały odinstalowane. \n\nPamięć podręczna zostanie natychmiast odbudowana, co może chwilę potrwać, jeśli zainstalowanych jest wiele aplikacji. Przypięte aplikacje zostaną zachowane.</string>
     <string name="dialog_clear_cache_action">Wyczyść</string>
+    <!-- intent analyzer, the labels that name an Android API field live in strings_common.xml -->
     <string name="analyzer_section_general">Ogólne</string>
     <string name="analyzer_section_clip_data">Dane klipu</string>
     <string name="analyzer_section_handlers">Moduły obsługi</string>
     <string name="analyzer_section_export">Eksportuj</string>
+    <string name="analyzer_label_resolved_mime_type">Rozpoznany typ MIME</string>
+    <string name="analyzer_label_calling_package">Pakiet wywołujący</string>
+    <string name="analyzer_label_calling_activity">Aktywność wywołująca</string>
     <string name="analyzer_label_flags_raw">Wartość surowa</string>
     <string name="analyzer_label_clip_label">Etykieta</string>
     <string name="analyzer_label_clip_mime_types">Typy MIME</string>

@@ -20,6 +20,7 @@ build/
 local.properties
 project.properties
 keystore.properties
+.env
 
 # Eclipse project files
 .classpath
