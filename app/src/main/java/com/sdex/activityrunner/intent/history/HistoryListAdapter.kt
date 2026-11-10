@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -67,9 +68,9 @@ class HistoryListAdapter(
             binding.action.text = getValueOrPlaceholder(item.action)
             binding.data.text = getValueOrPlaceholder(item.data)
             binding.mimeType.text = getValueOrPlaceholder(item.mimeType)
-            binding.extras.setText(isNotEmpty(item.extras))
-            binding.categories.setText(isNotEmpty(item.categories))
-            binding.flags.setText(isNotEmpty(item.flags))
+            binding.extras.bindIndicator(item.extras)
+            binding.categories.bindIndicator(item.categories)
+            binding.flags.bindIndicator(item.flags)
 
             binding.root.setOnClickListener {
                 callback.onItemClicked(item, bindingAdapterPosition)
@@ -110,8 +111,14 @@ class HistoryListAdapter(
             )
         }
 
-        private fun isNotEmpty(value: String?): Int {
-            return if (value.isNullOrEmpty()) R.string.no else R.string.yes
+        private fun TextView.bindIndicator(value: String?) {
+            val isSet = !value.isNullOrEmpty()
+            isActivated = isSet
+            setCompoundDrawablesRelativeWithIntrinsicBounds(
+                if (isSet) R.drawable.ic_history_indicator_check else 0, 0, 0, 0,
+            )
+            val state = context.getString(if (isSet) R.string.yes else R.string.no)
+            contentDescription = "$text: $state"
         }
 
         private fun getValueOrPlaceholder(value: String?): String {
