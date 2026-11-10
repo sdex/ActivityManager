@@ -62,7 +62,7 @@ Contributing to the project
 
 Support development
 ----------
-https://sdex.dev/donate/
+https://github.com/sponsors/sdex
 
 License
 ----------
