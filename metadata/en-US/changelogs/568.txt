@@ -1,0 +1,3 @@
+- show history in multiple columns on large screens (thanks @Jesse205)
+- update history item indicators for set intent fields
+- update translations

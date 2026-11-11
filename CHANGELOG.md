@@ -1,3 +1,8 @@
+## 5.5.4 (11 Nov 2026)
+- show history in multiple columns on large screens (thanks @Jesse205)
+- update history item indicators for set intent fields
+- update translations
+
 ## 5.5.3 (10 Oct 2026)
 - add experimental card layout option for app and activity lists
 - update translations
