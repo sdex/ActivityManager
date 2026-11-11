@@ -137,6 +137,16 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
             }
         }
 
+    override var showDisabledActivities: Boolean
+        get() = runBlocking { dataStore.data.first()[KEY_SHOW_DISABLED_ACTIVITIES] ?: false }
+        set(value) {
+            coroutineScope.launch {
+                dataStore.edit { prefs ->
+                    prefs[KEY_SHOW_DISABLED_ACTIVITIES] = value
+                }
+            }
+        }
+
     override var showLineNumbers: Boolean
         get() = runBlocking { dataStore.data.first()[KEY_SHOW_LINE_NUMBERS] ?: true }
         set(value) {
@@ -281,6 +291,7 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
         val KEY_INTERCEPT_INTENTS = booleanPreferencesKey("intercept_intents")
         val KEY_CARD_LAYOUT = booleanPreferencesKey("experimental_card_layout")
         val KEY_SHOW_NOT_EXPORTED = booleanPreferencesKey("advanced_not_exported")
+        val KEY_SHOW_DISABLED_ACTIVITIES = booleanPreferencesKey("advanced_disabled_activities")
         val KEY_SHOW_SYSTEM_APPS = booleanPreferencesKey("show_system_apps")
         val KEY_SHOW_SYSTEM_APP_LABEL = booleanPreferencesKey("advanced_system_app")
         val KEY_SHOW_DISABLED_APPS = booleanPreferencesKey("show_disabled_apps")

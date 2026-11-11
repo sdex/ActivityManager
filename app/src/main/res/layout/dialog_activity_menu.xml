@@ -103,7 +103,6 @@
             android:scaleType="center"
             app:srcCompat="@drawable/ic_settings"
             app:tint="@color/icon_tint" />
-
     </LinearLayout>
 
 </LinearLayout>

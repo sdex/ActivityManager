@@ -10,6 +10,8 @@ interface PackageInfoProvider {
     fun getInstalledPackages(): List<String>
     fun getApplication(packageName: String): ApplicationModel?
     fun getActivities(packageName: String): List<ActivityModel>
+    fun getActivities(packageName: String, includeDisabled: Boolean): List<ActivityModel> =
+        getActivities(packageName)
     fun getPackageInfo(packageName: String): PackageInfo
     fun getResourcesForApplication(packageName: String): Resources
     fun getChangedPackages(lastSequenceNumber: Int): ChangedPackages?

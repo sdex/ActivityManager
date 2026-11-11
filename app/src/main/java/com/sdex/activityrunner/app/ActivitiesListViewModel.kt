@@ -52,6 +52,12 @@ class ActivitiesListViewModel @Inject constructor(
             appPreferences.showNotExported = value
         }
 
+    var showDisabledActivities
+        get() = appPreferences.showDisabledActivities
+        set(value) {
+            appPreferences.showDisabledActivities = value
+        }
+
     var isNotExportedDialogShown
         get() = appPreferences.isNotExportedDialogShown
         set(value) {
@@ -71,7 +77,11 @@ class ActivitiesListViewModel @Inject constructor(
                     ?: packageInfoProvider.getApplication(packageName))
             }
             val activities = withContext(ioDispatcher) {
-                getActivitiesList(packageName, appPreferences.showNotExported)
+                getActivitiesList(
+                    packageName,
+                    appPreferences.showNotExported,
+                    appPreferences.showDisabledActivities,
+                )
             }
             _uiState.update {
                 it.copy(
@@ -84,10 +94,10 @@ class ActivitiesListViewModel @Inject constructor(
         }
     }
 
-    fun reloadItems(packageName: String, showNotExported: Boolean) {
+    fun reloadItems(packageName: String, showNotExported: Boolean, showDisabled: Boolean) {
         viewModelScope.launch {
             val activities = withContext(ioDispatcher) {
-                getActivitiesList(packageName, showNotExported)
+                getActivitiesList(packageName, showNotExported, showDisabled)
             }
             _uiState.update {
                 it.copy(
@@ -134,9 +144,13 @@ class ActivitiesListViewModel @Inject constructor(
     }
 
     @WorkerThread
-    private fun getActivitiesList(packageName: String, showNotExported: Boolean) = try {
-        packageInfoProvider.getActivities(packageName)
-            .filter { it.exported || showNotExported }
+    private fun getActivitiesList(
+        packageName: String,
+        showNotExported: Boolean,
+        showDisabled: Boolean,
+    ) = try {
+        packageInfoProvider.getActivities(packageName, showDisabled)
+            .filter { (it.exported || showNotExported) && (it.enabled || showDisabled) }
             .sortedBy { it.name }
     } catch (e: Exception) {
         Timber.e(e)

@@ -20,6 +20,13 @@ class PackageInfoProviderImpl(
 
     private val packageManager = context.packageManager
 
+    private val INCLUDE_DISABLED_FLAGS: Int = PackageManager.GET_ACTIVITIES or
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            PackageManager.MATCH_DISABLED_COMPONENTS
+        } else {
+            0
+        }
+
     override fun getApplication(packageName: String): ApplicationModel? = try {
         val packageInfo = getPackageInfo(packageName)
         val applicationInfo = packageInfo.applicationInfo
@@ -47,7 +54,6 @@ class PackageInfoProviderImpl(
         Timber.e(e, "Failed to process: $packageName")
         null
     }
-
     override fun getActivities(packageName: String): List<ActivityModel> {
         val packageInfo = getPackageInfo(packageName)
         val applicationInfo = packageInfo.applicationInfo
@@ -58,6 +64,22 @@ class PackageInfoProviderImpl(
             getPackageArchiveInfo(packageManager, packageName).activities
         }
         return activityInfos?.map { it.toActivityModel() } ?: emptyList()
+    }
+
+    override fun getActivities(packageName: String, includeDisabled: Boolean): List<ActivityModel> {
+        if (!includeDisabled) {
+            return getActivities(packageName)
+        }
+        val activityInfos = runCatching {
+            getPackageInfoCompat(packageManager, packageName, INCLUDE_DISABLED_FLAGS)
+                .activities
+                ?.toList()
+        }.getOrNull()
+        return if (activityInfos.isNullOrEmpty()) {
+            getActivities(packageName)
+        } else {
+            activityInfos.map { it.toActivityModel() }
+        }
     }
 
     fun getActivities(packageInfo: PackageInfo): List<ActivityModel> {
@@ -174,6 +196,16 @@ class PackageInfoProviderImpl(
     }
 
     private fun isAndroidT() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+
+    private fun getPackageInfoCompat(
+        pm: PackageManager,
+        packageName: String,
+        flags: Int,
+    ): PackageInfo = if (isAndroidT()) {
+        pm.getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(flags.toLong()))
+    } else {
+        pm.getPackageInfo(packageName, flags)
+    }
 
     private fun ActivityInfo.toActivityModel() = ActivityModel(
         name = name.split(".").last(),

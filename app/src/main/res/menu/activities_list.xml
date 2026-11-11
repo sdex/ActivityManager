@@ -16,6 +16,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/show_disabled_activities"
+        android:checkable="true"
+        android:title="@string/show_disabled_activities"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/create_shortcut"
         android:title="@string/activity_option_create_shortcut"
         app:showAsAction="never" />

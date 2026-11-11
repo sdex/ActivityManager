@@ -68,6 +68,12 @@ class ActivityLauncher @Inject constructor(
         }
     }
 
+    fun launchWithRoot(component: ComponentName) {
+        coroutineScope.launch {
+            runElevated(strategyFactory.get(LaunchMethod.ROOT), component, component.shortName())
+        }
+    }
+
     private fun launch(component: ComponentName, name: String, requiresElevation: Boolean) {
         if (!requiresElevation) {
             IntentUtils.launchActivity(

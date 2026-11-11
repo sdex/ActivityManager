@@ -24,10 +24,18 @@ class EnableNotExportedActivitiesDialog : BaseDialogFragment() {
             .setPositiveButton(R.string.activities_list_non_exported_show_always) { _, _ ->
                 viewModel.showNotExported = true
 
-                viewModel.reloadItems(appPackageName, showNotExported = true)
+                viewModel.reloadItems(
+                    appPackageName,
+                    showNotExported = true,
+                    showDisabled = viewModel.showDisabledActivities,
+                )
             }
             .setNegativeButton(R.string.activities_list_non_exported_show_once) { _, _ ->
-                viewModel.reloadItems(appPackageName, showNotExported = true)
+                viewModel.reloadItems(
+                    appPackageName,
+                    showNotExported = true,
+                    showDisabled = viewModel.showDisabledActivities,
+                )
             }
             .create()
             .apply {
