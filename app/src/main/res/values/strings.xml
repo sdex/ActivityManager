@@ -52,6 +52,7 @@
     <string name="activities_list_empty_action">Show non-exported</string>
     <string name="activities_list_non_exported_show_once">Just once</string>
     <string name="activities_list_non_exported_show_always">Always show</string>
+    <string name="highlight_disabled_activities">Highlight disabled activities</string>
     <string name="activities_list_failed_loading">Failed to open \"%1$s\"</string>
     <string name="action_about">About</string>
     <string name="action_launch_intent">Intent launcher</string>
@@ -126,8 +127,6 @@
     <string name="pref_header_advanced">Advanced</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
     <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
-    <string name="pref_highlight_disabled_activities_title">Highlight disabled activities</string>
-    <string name="pref_highlight_disabled_activities_summary">Mark activities disabled in AndroidManifest.xml as yellow</string>
     <string name="pref_header_launch">Launch</string>
     <string name="pref_launch_toast_title">Show launch message</string>
     <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>

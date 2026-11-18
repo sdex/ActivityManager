@@ -102,13 +102,6 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         binding.showDisabledAppIndicator.setOnCheckedChangeListener { _, isChecked ->
             viewModel.handleIntent(PreferencesIntent.ToggleDisabledAppIndicator(isChecked))
         }
-        binding.highlightDisabledActivities.setOnClickListener {
-            binding.switchHighlightDisabledActivities.isChecked =
-                !binding.switchHighlightDisabledActivities.isChecked
-        }
-        binding.switchHighlightDisabledActivities.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.handleIntent(PreferencesIntent.ToggleHighlightDisabledActivities(isChecked))
-        }
         binding.nonExported.setOnClickListener {
             binding.switchNonExported.isChecked = !binding.switchNonExported.isChecked
         }
@@ -166,8 +159,6 @@ class PreferencesBottomDialog : BottomSheetDialogFragment() {
         binding.showDisabledApps.isChecked = state.isShowDisabledApps
         binding.showDisabledAppIndicator.isEnabled = state.isShowDisabledApps
         binding.showDisabledAppIndicator.isChecked = state.isShowDisabledAppIndicator
-        binding.switchHighlightDisabledActivities.isChecked =
-            state.isHighlightDisabledActivities
         binding.switchNonExported.isChecked = state.isShowNonExportedActivities
 
         clearThemeChangeListener()

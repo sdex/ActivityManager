@@ -280,58 +280,6 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/highlightDisabledActivities"
-                style="?attr/materialCardViewElevatedStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/preferences_card_spacing"
-                app:contentPaddingBottom="@dimen/preferences_card_content_padding_vertical"
-                app:contentPaddingLeft="@dimen/preferences_card_content_padding_horizontal"
-                app:contentPaddingRight="@dimen/preferences_card_content_padding_horizontal"
-                app:contentPaddingTop="@dimen/preferences_card_content_padding_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/disabledAppsCard">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/pref_highlight_disabled_activities_title"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/pref_highlight_disabled_activities_summary"
-                            android:textAppearance="?attr/textAppearanceBodyMedium" />
-
-                    </LinearLayout>
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchHighlightDisabledActivities"
-                        style="@style/Widget.Material3.CompoundButton.Switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="8dp"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/nonExported"
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="0dp"
@@ -343,7 +291,7 @@
                 app:contentPaddingTop="@dimen/preferences_card_content_padding_vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/highlightDisabledActivities">
+                app:layout_constraintTop_toBottomOf="@+id/disabledAppsCard">
 
                 <LinearLayout
                     android:layout_width="match_parent"

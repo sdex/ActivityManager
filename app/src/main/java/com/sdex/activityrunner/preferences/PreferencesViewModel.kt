@@ -72,10 +72,6 @@ class PreferencesViewModel @Inject constructor(
                 appPreferences.isShowDisabledAppIndicator = intent.value
             }
 
-            is PreferencesIntent.ToggleHighlightDisabledActivities -> {
-                appPreferences.isHighlightDisabledActivities = intent.value
-            }
-
             is PreferencesIntent.ToggleNonExportedActivities -> {
                 appPreferences.showNotExported = intent.value
             }

@@ -36,6 +36,7 @@ class ActivitiesListActivity : BaseActivity() {
     private val viewModel by viewModels<ActivitiesListViewModel>()
 
     private lateinit var binding: ActivityActivitiesListBinding
+    private lateinit var adapter: ActivitiesListAdapter
     private lateinit var appPackageName: String
     private var application: ApplicationModel? = null
 
@@ -54,7 +55,7 @@ class ActivitiesListActivity : BaseActivity() {
         setContentView(binding.root)
         setupToolbar(isBackButtonEnabled = true)
 
-        val adapter = ActivitiesListAdapter(this).apply {
+        adapter = ActivitiesListAdapter(this).apply {
             application = item
             isCardLayoutEnabled = appPreferences.isCardLayoutEnabled
             isHighlightDisabledActivities = appPreferences.isHighlightDisabledActivities
@@ -136,6 +137,8 @@ class ActivitiesListActivity : BaseActivity() {
         menuInflater.inflate(R.menu.activities_list, menu)
         configureSearchView(menu)
         menu.findItem(R.id.show_not_exported).isChecked = viewModel.showNotExported
+        menu.findItem(R.id.highlight_disabled_activities).isChecked =
+            appPreferences.isHighlightDisabledActivities
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -146,6 +149,13 @@ class ActivitiesListActivity : BaseActivity() {
                 viewModel.showNotExported = item.isChecked
 
                 viewModel.reloadItems(appPackageName, showNotExported = item.isChecked)
+                true
+            }
+
+            R.id.highlight_disabled_activities -> {
+                item.isChecked = !item.isChecked
+                appPreferences.isHighlightDisabledActivities = item.isChecked
+                adapter.isHighlightDisabledActivities = item.isChecked
                 true
             }
 

@@ -37,7 +37,15 @@ class ActivitiesListAdapter(
 
     var application: ApplicationModel? = null
     var itemClickListener: ItemClickListener? = null
+
+    @SuppressLint("NotifyDataSetChanged")
     var isHighlightDisabledActivities: Boolean = true
+        set(value) {
+            if (field != value) {
+                field = value
+                notifyDataSetChanged()
+            }
+        }
 
     @SuppressLint("NotifyDataSetChanged")
     var isCardLayoutEnabled: Boolean = false

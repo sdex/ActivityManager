@@ -45,7 +45,6 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
             isShowSystemAppIndicator = it[KEY_SHOW_SYSTEM_APP_LABEL] ?: false,
             isShowDisabledApps = it[KEY_SHOW_DISABLED_APPS] ?: true,
             isShowDisabledAppIndicator = it[KEY_SHOW_DISABLED_APP_LABEL] ?: false,
-            isHighlightDisabledActivities = it[KEY_HIGHLIGHT_DISABLED_ACTIVITIES] ?: true,
             theme = it[KEY_THEME]?.toInt() ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM,
             sortBy = it[KEY_SORT_BY] ?: ApplicationModel.NAME,
             sortOrder = it[KEY_ORDER_BY] ?: GetApplicationsQuery.ASC,
