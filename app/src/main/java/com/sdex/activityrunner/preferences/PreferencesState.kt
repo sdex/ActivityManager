@@ -7,6 +7,7 @@ data class PreferencesState(
     val isShowSystemAppIndicator: Boolean,
     val isShowDisabledApps: Boolean,
     val isShowDisabledAppIndicator: Boolean,
+    val isHighlightDisabledActivities: Boolean = true,
     val isShowNonExportedActivities: Boolean,
     val theme: Int,
 ) {
@@ -19,6 +20,7 @@ data class PreferencesState(
                 isShowSystemAppIndicator = appPreferences.isShowSystemAppIndicator,
                 isShowDisabledApps = appPreferences.isShowDisabledApps,
                 isShowDisabledAppIndicator = appPreferences.isShowDisabledAppIndicator,
+                isHighlightDisabledActivities = appPreferences.isHighlightDisabledActivities,
                 isShowNonExportedActivities = appPreferences.showNotExported,
                 theme = appPreferences.theme,
             )

@@ -57,6 +57,7 @@ class ActivitiesListActivity : BaseActivity() {
         val adapter = ActivitiesListAdapter(this).apply {
             application = item
             isCardLayoutEnabled = appPreferences.isCardLayoutEnabled
+            isHighlightDisabledActivities = appPreferences.isHighlightDisabledActivities
             itemClickListener = object : ActivitiesListAdapter.ItemClickListener {
                 override fun onItemClick(item: ActivityModel) {
                     viewModel.launchActivity(item)

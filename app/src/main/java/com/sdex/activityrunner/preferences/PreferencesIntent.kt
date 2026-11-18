@@ -10,6 +10,7 @@ sealed class PreferencesIntent {
     data class ToggleSystemAppIndicator(val value: Boolean) : PreferencesIntent()
     data class ToggleDisabledApps(val value: Boolean) : PreferencesIntent()
     data class ToggleDisabledAppIndicator(val value: Boolean) : PreferencesIntent()
+    data class ToggleHighlightDisabledActivities(val value: Boolean) : PreferencesIntent()
     data class ToggleNonExportedActivities(val value: Boolean) : PreferencesIntent()
     data class ToggleTheme(val value: Int) : PreferencesIntent()
 }

@@ -31,9 +31,13 @@ class ActivitiesListAdapter(
     private val permissionColor = activity.resolveColorAttr(android.R.attr.textColorHint)
     @ColorInt
     private val notExportedColor = ContextCompat.getColor(activity, R.color.md_theme_error)
+    @ColorInt
+    private val disabledActivityColor =
+        ContextCompat.getColor(activity, R.color.disabled_activity)
 
     var application: ApplicationModel? = null
     var itemClickListener: ItemClickListener? = null
+    var isHighlightDisabledActivities: Boolean = true
 
     @SuppressLint("NotifyDataSetChanged")
     var isCardLayoutEnabled: Boolean = false
@@ -71,6 +75,8 @@ class ActivitiesListAdapter(
             exportedColor = exportedColor,
             permissionColor = permissionColor,
             notExportedColor = notExportedColor,
+            disabledActivityColor = disabledActivityColor,
+            highlightDisabledActivities = isHighlightDisabledActivities,
             itemClickListener = itemClickListener,
         )
     }
@@ -98,11 +104,14 @@ class ActivitiesListAdapter(
             @ColorInt exportedColor: Int,
             @ColorInt permissionColor: Int,
             @ColorInt notExportedColor: Int,
+            @ColorInt disabledActivityColor: Int,
+            highlightDisabledActivities: Boolean,
             itemClickListener: ItemClickListener?,
         ) {
             binding.name.text = item.name
             binding.name.setTextColor(
                 when {
+                    highlightDisabledActivities && !item.enabled -> disabledActivityColor
                     !item.exported -> notExportedColor
                     item.hasPermission -> permissionColor
                     else -> exportedColor

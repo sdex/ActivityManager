@@ -13,6 +13,7 @@ interface AppPreferences {
     var isShowSystemAppIndicator: Boolean
     var isShowDisabledApps: Boolean
     var isShowDisabledAppIndicator: Boolean
+    var isHighlightDisabledActivities: Boolean
     var showNotExported: Boolean
     var showLineNumbers: Boolean
     var isShowLaunchToast: Boolean

@@ -126,6 +126,8 @@
     <string name="pref_header_advanced">Advanced</string>
     <string name="pref_advanced_not_exported_title">Show not exported activities</string>
     <string name="pref_advanced_not_exported_summary">Can be run only using root permission</string>
+    <string name="pref_highlight_disabled_activities_title">Highlight disabled activities</string>
+    <string name="pref_highlight_disabled_activities_summary">Mark activities disabled in AndroidManifest.xml as yellow</string>
     <string name="pref_header_launch">Launch</string>
     <string name="pref_launch_toast_title">Show launch message</string>
     <string name="pref_launch_toast_summary">Display a toast message when starting an activity</string>
