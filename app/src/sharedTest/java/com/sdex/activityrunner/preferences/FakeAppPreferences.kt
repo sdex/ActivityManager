@@ -28,6 +28,7 @@ class FakeAppPreferences(
     override var isShowSystemAppIndicator: Boolean = false
     override var isShowDisabledApps: Boolean = true
     override var isShowDisabledAppIndicator: Boolean = false
+    override var isHighlightDisabledActivities: Boolean = true
     override var showLineNumbers: Boolean = true
     override var isShowLaunchToast: Boolean = true
     override var isInterceptIntents: Boolean = false

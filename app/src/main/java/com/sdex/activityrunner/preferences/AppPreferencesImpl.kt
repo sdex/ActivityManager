@@ -127,6 +127,18 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
             }
         }
 
+    override var isHighlightDisabledActivities: Boolean
+        get() = runBlocking {
+            dataStore.data.first()[KEY_HIGHLIGHT_DISABLED_ACTIVITIES] ?: true
+        }
+        set(value) {
+            coroutineScope.launch {
+                dataStore.edit { prefs ->
+                    prefs[KEY_HIGHLIGHT_DISABLED_ACTIVITIES] = value
+                }
+            }
+        }
+
     override var showNotExported: Boolean
         get() = runBlocking { dataStore.data.first()[KEY_SHOW_NOT_EXPORTED] ?: false }
         set(value) {
@@ -285,6 +297,8 @@ class AppPreferencesImpl(context: Context) : AppPreferences {
         val KEY_SHOW_SYSTEM_APP_LABEL = booleanPreferencesKey("advanced_system_app")
         val KEY_SHOW_DISABLED_APPS = booleanPreferencesKey("show_disabled_apps")
         val KEY_SHOW_DISABLED_APP_LABEL = booleanPreferencesKey("advanced_disabled_app")
+        val KEY_HIGHLIGHT_DISABLED_ACTIVITIES =
+            booleanPreferencesKey("highlight_disabled_activities")
         val KEY_THEME = stringPreferencesKey("appearance_theme")
 
         val KEY_SORT_BY = stringPreferencesKey("sort_by")
