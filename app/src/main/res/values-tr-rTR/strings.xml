@@ -51,6 +51,7 @@
     <string name="activities_list_empty_action">Dışa aktarılmayanları göster</string>
     <string name="activities_list_non_exported_show_once">Yalnızca bu seferlik</string>
     <string name="activities_list_non_exported_show_always">Her zaman göster</string>
+    <string name="highlight_disabled_activities">Devre dışı olan eylemleri vurgulayın</string>
     <string name="activities_list_failed_loading">\"%1$s\" açılamadı</string>
     <string name="action_about">Hakkında</string>
     <string name="action_launch_intent">Intent Başlatıcı</string>
