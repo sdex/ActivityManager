@@ -51,6 +51,7 @@
     <string name="activities_list_empty_action">Увімкнути показ прихованих компонентів</string>
     <string name="activities_list_non_exported_show_once">Тільки раз</string>
     <string name="activities_list_non_exported_show_always">Завжди показувати</string>
+    <string name="highlight_disabled_activities">Підсвічувати відключені активності</string>
     <string name="activities_list_failed_loading">Не вдалося відкрити \"%1$s\"</string>
     <string name="action_about">Про додаток</string>
     <string name="action_launch_intent">Запустити intent</string>
